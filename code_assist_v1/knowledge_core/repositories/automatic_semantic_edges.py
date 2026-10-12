@@ -107,6 +107,17 @@ class AutomaticSemanticEdgeRepository:
 
     __slots__ = ()
 
+    @staticmethod
+    def supports_native_aggregate_targets(connection: ManagedConnection) -> bool:
+        # Validated factory/catalog owns schema identity. Never emit a v48
+        # intent into an older database whose insert guard cannot accept it.
+        connection = _connection(connection)
+        from ..migrations.native_semantic_targets_catalog import SCHEMA_V48_MIGRATION
+        return connection.execute(
+            "SELECT 1 FROM schema_migration WHERE version=48 AND name=? AND checksum_sha256=?",
+            (SCHEMA_V48_MIGRATION.name, SCHEMA_V48_MIGRATION.checksum_sha256),
+        ).fetchone() is not None
+
     def snapshot_high_water(
         self,
         connection: ManagedConnection,
@@ -219,6 +230,12 @@ class AutomaticSemanticEdgeRepository:
         *,
         source_space_id: str,
     ) -> tuple[SemanticIntentTarget, ...]:
+        """Local plus eligible aggregate homes, including a native higher home.
+
+        A Team/Responsibility source needs two distinct jobs at its own space:
+        local compares native peers; aggregate compares strict descendants.
+        Part/personal sources still have no aggregate home at depth zero.
+        """
         connection = _connection(connection)
         source = _uuid(source_space_id, "source_space_id")
         local = connection.execute(
@@ -259,11 +276,11 @@ class AutomaticSemanticEdgeRepository:
                    JOIN knowledge_space AS space
                      ON space.owner_org_unit_id=unit.id
                     AND space.space_kind=unit.kind
-                  WHERE ancestors.depth>0 AND unit.status='active'
+                  WHERE (ancestors.depth>0 OR ?=1) AND unit.status='active'
                     AND unit.kind IN ('team','responsibility')
                     AND space.status='active'
                   ORDER BY ancestors.depth,space.id LIMIT 2""",
-            (source,),
+            (source, int(self.supports_native_aggregate_targets(connection))),
         ).fetchall()
         values.extend(
             SemanticIntentTarget(
@@ -312,6 +329,35 @@ class AutomaticSemanticEdgeRepository:
         from .semantic_graph_contracts import SemanticGraphContractRepository
 
         return SemanticGraphContractRepository().get_intent(connection, str(row["id"]))
+
+    def has_missing_native_target_intents(
+        self, connection: ManagedConnection, *, detector_generation: int,
+    ) -> bool:
+        """Attest v48 adoption for every current published native revision.
+
+        This is a backfill coverage gate, not ongoing generation/job health.
+        The existing local check and lifecycle/retarget workers keep their own
+        contracts. Requiring current organization generations here would block
+        startup after renames (which do not schedule semantic reseeding).
+        """
+        connection = _connection(connection)
+        return connection.execute(
+            """SELECT 1 FROM knowledge_item i
+                JOIN knowledge_space s ON s.id=i.space_id
+                JOIN org_unit o ON o.id=s.owner_org_unit_id
+               WHERE i.lifecycle_status='active' AND i.curation_status='published'
+                 AND s.status='active' AND o.status='active'
+                 AND s.space_kind IN ('team','responsibility')
+                 AND NOT EXISTS (
+                   SELECT 1 FROM semantic_edge_intent intent
+                    WHERE intent.source_revision_id=i.current_revision_id
+                      AND intent.source_space_id=i.space_id AND intent.source_item_id=i.id
+                      AND intent.target_kind='aggregate' AND intent.target_space_id=i.space_id
+                      AND intent.target_org_unit_id=s.owner_org_unit_id
+                      AND intent.detector_generation=?
+                 ) LIMIT 1""",
+            (detector_generation,),
+        ).fetchone() is not None
 
     def list_unjoined_intents(
         self,
@@ -408,8 +454,8 @@ class AutomaticSemanticEdgeRepository:
     ) -> tuple[SemanticCandidateDocument, ...]:
         """Return at most 20 lexical plus 20 one-hop candidates.
 
-        Exact local/LCA eligibility is intentionally rechecked by the service
-        after this broad bounded read and again immediately before edge commit.
+        Exact local/LCA eligibility is applied before both limits, then
+        independently rechecked by the service and immediately before commit.
         """
 
         connection = _connection(connection)
@@ -418,21 +464,58 @@ class AutomaticSemanticEdgeRepository:
         if not isinstance(fts_query, str) or not fts_query:
             raise ValueError("fts_query must be nonblank text.")
         if intent.target_kind is SemanticIntentTargetKind.LOCAL:
-            scope_sql = "candidate.space_id=?"
-            scope_parameters: tuple[object, ...] = (intent.target_space_id,)
+            scope_sql = "candidate.space_id=? AND candidate.space_id=?"
+            scope_parameters: tuple[object, ...] = (intent.source_space_id, intent.target_space_id)
         else:
+            # Compute eligible SPACE ids, not a correlated LCA for each matching
+            # document. Preserve the old active-descendant boundary, and mirror
+            # resolve_placement's nearest active native home within that scope.
+            # Ancestor traversal must not prune inactive intermediate units.
             scope_sql = """candidate.space_id IN (
-              WITH RECURSIVE descendants(id) AS (
+              WITH RECURSIVE
+              descendants(id) AS (
                 SELECT owner_org_unit_id FROM knowledge_space WHERE id=?
                 UNION ALL
                 SELECT child.id FROM org_unit AS child JOIN descendants
                   ON child.parent_id=descendants.id WHERE child.status='active'
+              ),
+              source_space(id,org_id) AS (
+                SELECT id,owner_org_unit_id FROM knowledge_space
+                 WHERE id=? AND status='active' AND space_kind<>'personal'
+              ),
+              source_ancestors(id,depth) AS (
+                SELECT org_id,0 FROM source_space
+                UNION ALL
+                SELECT unit.parent_id,source_ancestors.depth+1
+                  FROM org_unit AS unit JOIN source_ancestors ON unit.id=source_ancestors.id
+                 WHERE unit.parent_id IS NOT NULL
+              ),
+              candidate_ancestors(space_id,id,depth) AS (
+                SELECT space.id,space.owner_org_unit_id,0
+                  FROM knowledge_space AS space JOIN descendants
+                    ON descendants.id=space.owner_org_unit_id
+                  CROSS JOIN source_space
+                 WHERE space.status='active' AND space.space_kind<>'personal'
+                   AND space.id<>source_space.id
+                UNION ALL
+                SELECT ancestor.space_id,unit.parent_id,ancestor.depth+1
+                  FROM org_unit AS unit JOIN candidate_ancestors AS ancestor ON unit.id=ancestor.id
+                 WHERE unit.parent_id IS NOT NULL
+              ),
+              homes(space_id,home_id,priority) AS (
+                SELECT target.space_id,home.id,
+                       row_number() OVER (PARTITION BY target.space_id
+                         ORDER BY source.depth+target.depth,source.id)
+                  FROM source_ancestors AS source JOIN candidate_ancestors AS target ON target.id=source.id
+                  JOIN org_unit AS unit ON unit.id=source.id
+                  JOIN knowledge_space AS home
+                    ON home.owner_org_unit_id=unit.id AND home.space_kind=unit.kind
+                 WHERE unit.status='active' AND unit.kind IN ('team','responsibility')
+                   AND home.status='active'
               )
-              SELECT space.id FROM knowledge_space AS space JOIN descendants
-                ON descendants.id=space.owner_org_unit_id
-               WHERE space.status='active' AND space.space_kind<>'personal'
+              SELECT space_id FROM homes WHERE priority=1 AND home_id=?
             )"""
-            scope_parameters = (intent.target_space_id,)
+            scope_parameters = (intent.target_space_id, intent.source_space_id, intent.target_space_id)
         lexical = connection.execute(
             f"""SELECT candidate.space_id,candidate.item_id,
                         candidate.revision_id,item.row_version,candidate.title,

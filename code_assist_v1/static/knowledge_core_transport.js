@@ -585,14 +585,66 @@
       const status = string(value.status, "preview.status");
       if (value.wiki_generation !== undefined || value.publication_ready !== undefined) {
         const generation = object(value.wiki_generation, "preview.wiki_generation");
+        const preserving = generation.schema_version === 2;
+        const nativeAuthoring = generation.schema_version === 4;
+        const roleAuthoring = generation.schema_version === 5;
+        const pdfAuthoring = generation.schema_version === 6;
+        const pdfVisualAuthoring = generation.schema_version === 7;
+        const officeHybridAuthoring = generation.schema_version === 8;
+        const pdfContinuation = generation.schema_version === 9;
+        const authoringOnly = generation.schema_version === 3 || nativeAuthoring || roleAuthoring || pdfAuthoring || pdfVisualAuthoring || officeHybridAuthoring || pdfContinuation;
+        const validShape = authoringOnly
+          ? Object.keys(generation).sort().join(",") === "kind,schema_version,semantic_completeness_proven,semantic_review_performed,status"
+            && generation.kind === (pdfContinuation ? "pdf_source_continuation" : officeHybridAuthoring ? "office_hybrid_native_page_information_authoring" : pdfVisualAuthoring ? "pdf_visual_information_authoring" : pdfAuthoring ? "pdf_information_authoring" : roleAuthoring ? "pptx_role_information_authoring"
+              : nativeAuthoring ? "native_information_authoring" : "information_authoring")
+            && generation.semantic_completeness_proven === false
+            && generation.semantic_review_performed === false && generation.status !== "extraction_only"
+          : preserving
+          ? Object.keys(generation).sort().join(",") === "kind,schema_version,semantic_completeness_proven,status"
+            && generation.kind === "information_preservation" && generation.semantic_completeness_proven === false
+            && generation.status !== "extraction_only"
+          : Object.keys(generation).sort().join(",") === "schema_version,status" && generation.schema_version === 1;
         const canBeReady = status === "ready" && ["ready", "extraction_only"].includes(generation.status);
-        if (Object.keys(generation).sort().join(",") !== "schema_version,status"
-          || generation.schema_version !== 1 || !["pending", "ready", "extraction_only", "unavailable"].includes(generation.status)
+        if (!validShape || !["pending", "ready", "extraction_only", "unavailable"].includes(generation.status)
           || typeof value.publication_ready !== "boolean"
           || (value.publication_ready && !canBeReady)
           || (generation.status === "pending" && !["queued", "extracting", "ready"].includes(status))
           || (["queued", "extracting", "failed"].includes(status) && ["ready", "extraction_only"].includes(generation.status))) {
           fail("INVALID_CANONICAL_RESPONSE", "preview Wiki readiness is invalid.");
+        }
+      }
+      if (value.generation_progress !== undefined) {
+        const progress = object(value.generation_progress, "preview.generation_progress");
+        const phases = ["extraction_queued", "extracting", "planning_queued", "planning", "writing_queued",
+          "writing", "assembling_queued", "assembling", "recovery_pending", "ready", "failed"];
+        const counts = ["completed_batches", "total_batches", "queued_batches", "running_batches"];
+        if (![7, 8, 9].includes(value.wiki_generation?.schema_version)
+          || Object.keys(progress).sort().join(",") !== "completed_batches,phase,queued_batches,recovery_pending,running_batches,total_batches"
+          || !phases.includes(progress.phase)
+          || counts.some(key => !Number.isSafeInteger(progress[key]) || progress[key] < 0 || progress[key] > 100000)
+          || progress.completed_batches + progress.queued_batches + progress.running_batches > progress.total_batches
+          || typeof progress.recovery_pending !== "boolean"
+          || progress.recovery_pending !== (progress.phase === "recovery_pending")) {
+          fail("INVALID_CANONICAL_RESPONSE", "preview generation progress is invalid.");
+        }
+      }
+      if (value.generation_worker !== undefined) {
+        const worker = object(value.generation_worker, "preview.generation_worker");
+        if (!value.wiki_generation || Object.keys(worker).sort().join(",") !== "automatic_recovery,status"
+          || !["healthy", "recovering", "unavailable"].includes(worker.status)
+          || typeof worker.automatic_recovery !== "boolean"
+          || (worker.status === "recovering" && !worker.automatic_recovery)) {
+          fail("INVALID_CANONICAL_RESPONSE", "preview generation worker status is invalid.");
+        }
+      }
+      if (value.generation_error !== undefined) {
+        const failure = object(value.generation_error, "preview.generation_error");
+        const codes = ["MODEL_FAILURE", "INVALID_OUTPUT", "TIMEOUT", "WORK_LIMIT", "SOURCE_UNAVAILABLE",
+          "AUTHORITY_UNAVAILABLE", "CANCELLED", "LEASE_LOST", "EXPIRED", "EXTRACTION_FAILED", "PROCESSING_FAILED"];
+        if (![7, 8, 9].includes(value.wiki_generation?.schema_version) || value.wiki_generation.status !== "unavailable"
+          || Object.keys(failure).sort().join(",") !== "code,retryable" || !codes.includes(failure.code)
+          || typeof failure.retryable !== "boolean") {
+          fail("INVALID_CANONICAL_RESPONSE", "preview generation failure is invalid.");
         }
       }
       if (["queued", "extracting"].includes(status)) {
@@ -672,6 +724,25 @@
 
     async function getPublicationPreview(previewId) {
       return previewDocument(await json(PREFIX + "/publication-previews/" + encodedId(previewId, "preview_id")));
+    }
+
+    async function probePdfPublicationResume(previewId) {
+      try {
+        await request(PREFIX + "/publication-previews/" + encodedId(previewId, "preview_id") + "/resume", { method: "OPTIONS" });
+        return true;
+      } catch (error) {
+        if (error instanceof CanonicalTransportError && error.status === 404) return false;
+        throw error;
+      }
+    }
+
+    async function resumePdfPublicationPreview({ previewId, operationId: supplied }) {
+      const op = operationId(idFactory, supplied);
+      const value = previewDocument(await json(PREFIX + "/publication-previews/" + encodedId(previewId, "preview_id") + "/resume", {
+        method: "POST", body: { operation_id: op }, operationId: op,
+      }));
+      if (value.preview_id !== previewId) fail("INVALID_CANONICAL_RESPONSE", "PDF resume preview binding is invalid.");
+      return value;
     }
 
     async function cancelPublicationPreview({ previewId, operationId: supplied }) {
@@ -791,7 +862,7 @@
       }
       const resultKeys = value.body_source === undefined ? "operation_id,request_id,results" : "body_source,operation_id,request_id,results";
       if (value.operation_id !== op || Object.keys(value).sort().join(",") !== resultKeys
-        || (value.body_source !== undefined && !["authored_wiki", "extraction"].includes(value.body_source))) {
+        || (value.body_source !== undefined && !["authored_wiki", "extraction", "preserved_wiki", "native_wiki", "pptx_role_wiki", "pdf_wiki", "pdf_visual_wiki", "office_hybrid_wiki", "pdf_continuation_wiki"].includes(value.body_source))) {
         fail("INVALID_CANONICAL_RESPONSE", "publication operation binding is invalid.");
       }
       const spaces = new Set();
@@ -831,27 +902,132 @@
       if (conversationId !== null) query.set("conversation_id", uuid(conversationId, "conversationId"));
       const suffix = query.toString();
       const value = await json(PREFIX + "/spaces" + (suffix ? "?" + suffix : ""));
-      // Production currently exposes personal + Part.  The isolated hierarchy
-      // preview additionally exposes Responsibility and Team scopes. An exact
-      // non-default personal Wiki adds one server-authorized selector option.
-      if (!Array.isArray(value.items) || value.items.length < 1 || value.items.length > 5) {
+      // The server may return any number of owned active personal Wikis along
+      // with the authorized Part, Team and Responsibility views.
+      if (!Array.isArray(value.items) || value.items.length < 1) {
         fail("INVALID_CANONICAL_RESPONSE", "Selectable spaces are invalid.");
       }
       positive(value.scope_epoch, "scope_epoch");
       return value;
     }
 
-    async function getConversation(conversationId) {
-      const value = await json(PREFIX + "/conversations/" + encodedId(conversationId, "conversation_id"));
-      object(value.conversation, "conversation");
-      if (!Array.isArray(value.messages) || !Array.isArray(value.pins) || !Array.isArray(value.context_bindings)) {
-        fail("INVALID_CANONICAL_RESPONSE", "Conversation collections are invalid.");
+    function validateHistoryMessage(value) {
+      exactKeys(value, ["id", "sequence_no", "role", "content", "created_at"], "history message");
+      uuid(value.id, "message.id"); positive(value.sequence_no, "message.sequence_no");
+      object(value.content, "message.content");
+      if (!["system", "user", "assistant", "tool"].includes(value.role)
+          || typeof value.created_at !== "string" || !Number.isFinite(Date.parse(value.created_at))) {
+        fail("INVALID_CANONICAL_RESPONSE", "History message is invalid.");
       }
       return value;
     }
 
+    async function getMessagePage(conversationId, { afterSequenceNo = 0, throughSequenceNo = null, limit = 100 } = {}) {
+      if (!Number.isSafeInteger(afterSequenceNo) || afterSequenceNo < 0 || !Number.isSafeInteger(limit) || limit < 1 || limit > 100
+          || throughSequenceNo !== null && (!Number.isSafeInteger(throughSequenceNo) || throughSequenceNo < afterSequenceNo)) {
+        throw new TypeError("Invalid history page bounds.");
+      }
+      const params = new URLSearchParams({ after_sequence_no: String(afterSequenceNo), limit: String(limit) });
+      if (throughSequenceNo !== null) params.set("through_sequence_no", String(throughSequenceNo));
+      const page = await json(`${PREFIX}/conversations/${encodedId(conversationId, "conversation_id")}/messages?${params}`);
+      exactKeys(page, ["request_id", "schema_version", "conversation_id", "items", "through_sequence_no", "has_more", "next_after_sequence_no"], "history page");
+      if (page.schema_version !== 1 || page.conversation_id !== conversationId || !Array.isArray(page.items) || page.items.length > limit
+          || !Number.isSafeInteger(page.through_sequence_no) || page.through_sequence_no < afterSequenceNo
+          || throughSequenceNo !== null && page.through_sequence_no !== throughSequenceNo || typeof page.has_more !== "boolean") {
+        fail("INVALID_CANONICAL_RESPONSE", "History page binding is invalid.");
+      }
+      let last = afterSequenceNo;
+      const ids = new Set();
+      for (const value of page.items) {
+        validateHistoryMessage(value);
+        if (value.sequence_no <= last || value.sequence_no > page.through_sequence_no || ids.has(value.id)) {
+          fail("INVALID_CANONICAL_RESPONSE", "History message order is invalid.");
+        }
+        last = value.sequence_no; ids.add(value.id);
+      }
+      if (page.has_more ? !page.items.length || page.next_after_sequence_no !== last || last >= page.through_sequence_no
+        : page.next_after_sequence_no !== null || last !== page.through_sequence_no) {
+        fail("INVALID_CANONICAL_RESPONSE", "History page cursor is invalid.");
+      }
+      return page;
+    }
+
+    async function getTurnAnswer(conversationId, operation, expectedTurnId, expectedMessageId) {
+      uuid(expectedTurnId, "turn_id"); uuid(expectedMessageId, "assistant_message_id");
+      const answer = await json(`${PREFIX}/conversations/${encodedId(conversationId, "conversation_id")}/turns/${encodedId(operation, "operation_id")}/answer`);
+      exactKeys(answer, ["request_id", "schema_version", "conversation_id", "operation_id", "turn_id", "message"], "turn answer");
+      const message = validateHistoryMessage(answer.message);
+      if (answer.schema_version !== 1 || answer.conversation_id !== conversationId || answer.operation_id !== operation
+          || answer.turn_id !== expectedTurnId || message.id !== expectedMessageId || message.role !== "assistant") {
+        fail("INVALID_CANONICAL_RESPONSE", "Completed answer binding is invalid.");
+      }
+      return message;
+    }
+
+    async function getConversation(conversationId, { includeAllMessages = true } = {}) {
+      const value = await json(PREFIX + "/conversations/" + encodedId(conversationId, "conversation_id"));
+      object(value.conversation, "conversation");
+      if (value.conversation.id !== conversationId || !Array.isArray(value.messages) || !Array.isArray(value.pins) || !Array.isArray(value.context_bindings)) {
+        fail("INVALID_CANONICAL_RESPONSE", "Conversation collections are invalid.");
+      }
+      if (includeAllMessages && value.messages.length === 100) {
+        let last = 0, through = null;
+        const messages = [...value.messages], ids = new Set();
+        for (const message of messages) {
+          validateHistoryMessage(message);
+          if (message.sequence_no <= last || ids.has(message.id)) fail("INVALID_CANONICAL_RESPONSE", "History message order is invalid.");
+          last = message.sequence_no; ids.add(message.id);
+        }
+        while (true) {
+          const page = await getMessagePage(conversationId, { afterSequenceNo: last, throughSequenceNo: through });
+          through = page.through_sequence_no;
+          for (const message of page.items) {
+            if (ids.has(message.id)) fail("INVALID_CANONICAL_RESPONSE", "Duplicate history message identity.");
+            ids.add(message.id); messages.push(message);
+          }
+          if (!page.has_more) break;
+          last = page.next_after_sequence_no;
+        }
+        return { ...value, messages };
+      }
+      return value;
+    }
+
+    async function listPendingTurns(conversationId, { afterSequenceNo = 0, limit = 20 } = {}) {
+      const cid = encodedId(conversationId, "conversation_id");
+      if (!Number.isSafeInteger(afterSequenceNo) || afterSequenceNo < 0 || !Number.isSafeInteger(limit) || limit < 1 || limit > 100) {
+        throw new TypeError("Invalid pending-turn page bounds.");
+      }
+      const value = await json(`${PREFIX}/conversations/${cid}/pending-turns?after_sequence_no=${afterSequenceNo}&limit=${limit}`);
+      exactKeys(value, ["request_id", "schema_version", "conversation_id", "items", "has_more", "next_after_sequence_no"], "pending turns");
+      if (value.schema_version !== 1 || value.conversation_id !== conversationId || !Array.isArray(value.items)
+          || value.items.length > limit || typeof value.has_more !== "boolean") {
+        fail("INVALID_CANONICAL_RESPONSE", "Pending-turn page binding is invalid.");
+      }
+      let previous = afterSequenceNo;
+      const operations = new Set();
+      for (const item of value.items) {
+        exactKeys(item, ["operation_id", "user_message_id", "sequence_no", "state", "message", "can_resume", "reason"], "pending turn");
+        uuid(item.operation_id, "operation_id"); uuid(item.user_message_id, "user_message_id");
+        positive(item.sequence_no, "sequence_no");
+        if (item.sequence_no <= previous || operations.has(item.operation_id)
+            || !["accepted", "running"].includes(item.state) || typeof item.message !== "string"
+            || typeof item.can_resume !== "boolean" || (item.can_resume ? item.reason !== null || !item.message
+              : typeof item.reason !== "string" || !/^[A-Z][A-Z0-9_]+$/.test(item.reason))) {
+          fail("INVALID_CANONICAL_RESPONSE", "Pending-turn binding is invalid.");
+        }
+        operations.add(item.operation_id); previous = item.sequence_no;
+        Object.freeze(item);
+      }
+      if (value.has_more ? !value.items.length || value.next_after_sequence_no !== previous : value.next_after_sequence_no !== null) {
+        fail("INVALID_CANONICAL_RESPONSE", "Pending-turn cursor is invalid.");
+      }
+      Object.freeze(value.items);
+      return Object.freeze(value);
+    }
+
     async function readSnapshot({ selectedSpaceId = null, conversationId = null } = {}) {
-      const detail = conversationId ? await getConversation(conversationId) : null;
+      const detail = conversationId ? await getConversation(conversationId, { includeAllMessages: false }) : null;
       const conversation = detail ? object(detail.conversation, "conversation") : null;
       const badgeSpace = conversation ? object(conversation.space, "conversation.space") : null;
       const spaceList = await spaces(
@@ -938,14 +1114,25 @@
           CODEX_EXEC_FAILED: "Codex 실행이 실패했습니다. 다시 시도해 주세요.",
           CODEX_EMPTY_OUTPUT: "Codex가 빈 응답을 반환했습니다. 다시 시도해 주세요.",
           CODEX_OUTPUT_INVALID: "Codex 응답이 안전한 출력 조건을 충족하지 못했습니다.",
+          MODEL_RESPONSE_HTTP_STATUS: "모델 API 요청이 거절되었거나 서버 오류가 발생했습니다. 연결 설정과 서버 상태를 확인해 주세요.",
+          MODEL_API_AUTH_FAILED: "모델 API 인증 또는 접근 권한을 확인할 수 없습니다. API 키와 모델 접근 권한을 확인해 주세요.",
+          MODEL_API_INPUT_TOO_LARGE: "모델 API가 입력 크기를 허용하지 않았습니다. 요청 범위나 서버 입력 한도를 확인해 주세요.",
+          MODEL_API_RATE_LIMITED: "모델 API 호출 한도에 도달했습니다. 잠시 후 다시 시도해 주세요.",
+          MODEL_API_SERVER_ERROR: "모델 API 서버에서 오류가 발생했습니다. 잠시 후 다시 시도하고, 반복되면 서버 상태를 확인해 주세요.",
+          MODEL_RESPONSE_ENCODING_UNSUPPORTED: "모델 API가 지원하지 않는 응답 인코딩을 반환했습니다. API 연결 설정을 확인해 주세요.",
+          MODEL_RESPONSE_TOO_LARGE: "모델 API 응답이 처리 한도를 초과했습니다. 불완전한 답변은 저장하지 않았습니다.",
+          MODEL_RESPONSE_INVALID: "모델 API 응답 형식이 올바르지 않습니다. API 호환성을 확인해 주세요.",
+          MODEL_RESPONSE_INCOMPLETE: "모델 API가 답변을 끝까지 생성하지 못했습니다. 출력 한도 또는 종료 상태를 확인해 주세요.",
+          MODEL_EMPTY_OUTPUT: "모델 API가 빈 답변을 반환했습니다. 다시 시도해 주세요.",
+          MODEL_EXEC_TIMEOUT: "모델 API 응답 시간이 초과되었습니다. 다시 시도해 주세요.",
+          MODEL_EXEC_FAILED: "모델 API 연결 또는 실행에 실패했습니다. 연결 상태를 확인하고 다시 시도해 주세요.",
         };
         fail(code, messages[code] || "The canonical Agent turn failed.", 409, !!error.retryable, true);
       }
-      const detail = await getConversation(conversationId);
-      const assistants = detail.messages.filter((entry) => entry.role === "assistant");
-      if (!assistants.length) fail("INVALID_CANONICAL_RESPONSE", "Completed turn has no assistant message.");
+      const assistant = await getTurnAnswer(conversationId, op, terminal.turn_id, terminal.payload.assistant_message_id);
+      const detail = await getConversation(conversationId, { includeAllMessages: false });
       return Object.freeze({
-        assistantText: messageText(assistants[assistants.length - 1]),
+        assistantText: messageText(assistant),
         conversation: detail,
         events,
         operationId: op,
@@ -1018,11 +1205,13 @@
       }
       const seen = new Set();
       for (const artifact of value.items) {
-        exactKeys(artifact, [
+        const hasPermission = Object.prototype.hasOwnProperty.call(artifact, "download_permitted");
+        const keys = [
           "artifact_id", "created_at", "download_url", "media_type",
-          "origin_type", "original_filename", "size_bytes",
-          "source_revision_id",
-        ], "source artifact");
+          "origin_type", "original_filename", "size_bytes", "source_revision_id",
+        ];
+        if (hasPermission) keys.push("download_permitted");
+        exactKeys(artifact, keys, "source artifact");
         const artifactId = uuid(artifact.artifact_id, "source_artifact.artifact_id");
         if (
           seen.has(artifactId)
@@ -1035,6 +1224,8 @@
           || artifact.media_type.length > 255
           || !Number.isSafeInteger(artifact.size_bytes)
           || artifact.size_bytes < 0
+          || (hasPermission && artifact.download_permitted !== null
+              && typeof artifact.download_permitted !== "boolean")
         ) {
           fail("INVALID_CANONICAL_RESPONSE", "Source artifact metadata is invalid.");
         }
@@ -1436,6 +1627,22 @@
       return Object.freeze(value);
     }
 
+    async function getSystemDocument(spaceId, documentName) {
+      const sid = encodedId(spaceId, "space_id");
+      if (!["index", "log"].includes(documentName)) throw new TypeError("Unknown system document.");
+      const value = await json(`${SPACE_V2_PREFIX}/${sid}/system-docs/${documentName}`);
+      exactKeys(value, ["request_id", "schema_version", "space_id", "document_name", "corpus_closure_sha256", "entry_count", "content"], "system document");
+      if (value.schema_version !== 1 || uuid(value.space_id, "system document.space_id") !== spaceId
+        || value.document_name !== documentName || !SHA256_RE.test(value.corpus_closure_sha256)
+        || !Number.isSafeInteger(value.entry_count) || value.entry_count < 0
+        || typeof value.content !== "string" || !value.content.trim()) {
+        fail("INVALID_CANONICAL_RESPONSE", "System document binding is invalid.");
+      }
+      // A complete metadata inventory has no fixed document-count/body-text cap.
+      // It is rendered as text, not interpreted as HTML or an editable Wiki body.
+      return Object.freeze(value);
+    }
+
     async function management(spaceId, surface, options = {}) {
       const sid = encodedId(spaceId, "space_id");
       if (surface === "list") {
@@ -1508,11 +1715,11 @@
 
     return Object.freeze({
       acquireItemLease, applyChangeProposal, applyMerge, archivePersonalWiki, cancelJob, cancelPublicationPreview, commitPublication, compactConversation,
-      createConversation, createDistribution, createPersonalWiki, createPublicationPreview, getConversation,
+      createConversation, createDistribution, createPersonalWiki, createPublicationPreview, getConversation, getMessagePage, getTurnAnswer, listPendingTurns,
       compareRevisions, forceReleaseItemLease, getCurationShadowMetrics, getFinding, getItem, getJob, getPublicationPreview, getRevision,
-      heartbeatItemLease,
+      getSystemDocument, heartbeatItemLease,
       liftSemanticEdgeSuppression, listConversations, listDistributions, listDistributionTargets, listItemSourceArtifacts, listPersonalWikis, listRevisions, management, probe, readSnapshot,
-      previewChangeProposal, previewMerge, probePublication, rebaseChangeProposal, releaseItemLease,
+      previewChangeProposal, previewMerge, probePublication, probePdfPublicationResume, rebaseChangeProposal, releaseItemLease, resumePdfPublicationPreview,
       renamePersonalWiki, restorePersonalWiki, revokeDistribution, reviewFinding, searchPersonalWikis, setDefaultPersonalWiki, spaces, streamTurn, suppressSemanticEdge, updateConversation,
       updateItem,
     });
@@ -1520,3 +1727,6 @@
 
   return Object.freeze({ CanonicalTransportError, PERSONAL_WIKI_PREFIX, PREFIX, SPACE_V2_PREFIX, createLeaseToken, createTransport, decodeSse, messageText });
 });
+
+
+

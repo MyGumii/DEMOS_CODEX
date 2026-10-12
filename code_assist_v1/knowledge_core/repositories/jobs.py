@@ -621,9 +621,12 @@ def _verify_record_integrity(record: DurableJobRecord) -> None:
         capabilities = tuple(capabilities_value)
         if capabilities != tuple(sorted(set(capabilities))):
             raise ValueError("authorization capabilities are not sorted and unique")
-        if _canonical_object(input_ref, field="input_ref") != record.input_ref_json:
+        canonical_input = _canonical_object(input_ref, field="input_ref")
+        if canonical_input != record.input_ref_json:
             raise ValueError("input reference is not canonical")
-        if canonical_job_input_sha256(input_ref) != record.input_sha256:
+        # Hash the exact bytes just validated; do not canonicalize the same
+        # parsed input again. Every row is still freshly parsed and verified.
+        if _json_sha256(canonical_input) != record.input_sha256:
             raise ValueError("input reference hash differs")
         if (
             _canonical_object(expected_state, field="expected_state")

@@ -243,6 +243,7 @@ class AgentSourceArtifact:
     media_type: str
     size_bytes: int
     content_sha256: str = ""
+    protected_source_kind: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -825,6 +826,7 @@ class AgentTurnContextService:
                             media_type=artifact.media_type,
                             size_bytes=artifact.size_bytes,
                             content_sha256=artifact.content_sha256,
+                            protected_source_kind=artifact.protected_source_kind,
                         )
                         for artifact in artifacts.list_for_authorized_item(
                             connection,

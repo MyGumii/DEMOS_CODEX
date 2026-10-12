@@ -30,6 +30,16 @@ if os.path.isfile(API_CONFIG_PATH):
     try:
         with open(API_CONFIG_PATH, "r", encoding="utf-8") as _cf:
             _EXT_CONFIG = json.load(_cf)
+        if _explicit_config_path:
+            # An operator-bound registry is authoritative, including an empty
+            # model mapping. Invalid shapes must not activate built-in models.
+            if not isinstance(_EXT_CONFIG, dict) or not isinstance(_EXT_CONFIG.get("models"), dict):
+                raise ValueError("invalid explicit model registry shape")
+            if any(
+                not isinstance(key, str) or not key.strip() or not isinstance(info, dict)
+                for key, info in _EXT_CONFIG["models"].items()
+            ):
+                raise ValueError("invalid explicit model registry entry")
         print(
             "[code_assist_v1] api_config loaded "
             f"({len(_EXT_CONFIG.get('models', {}))} models): {API_CONFIG_PATH}"
@@ -91,7 +101,7 @@ _DEFAULT_MODELS = {
 
 MODEL_REGISTRY = (
     _build_model_registry(_EXT_CONFIG["models"])
-    if _EXT_CONFIG.get("models")
+    if _explicit_config_path or _EXT_CONFIG.get("models")
     else _DEFAULT_MODELS
 )
 

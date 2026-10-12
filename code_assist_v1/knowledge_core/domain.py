@@ -50,6 +50,7 @@ class SemanticIntentProvenanceKind(str, Enum):
     PUBLICATION = "publication"
     BASELINE_BACKFILL = "baseline_backfill"
     ORG_RETARGET = "org_retarget"
+    ORG_RENAME_RESEED = "org_rename_reseed"
     DETECTOR_RESEED = "detector_reseed"
     LIFECYCLE_REACTIVATE = "lifecycle_reactivate"
 

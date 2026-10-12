@@ -43,11 +43,12 @@
     },
     "ItemSourceArtifact": {
       "type": "object",
-      "required": ["artifact_id", "created_at", "download_url", "media_type", "origin_type", "original_filename", "size_bytes", "source_revision_id"],
+      "required": ["artifact_id", "created_at", "download_url", "download_permitted", "media_type", "origin_type", "original_filename", "size_bytes", "source_revision_id"],
       "properties": {
         "artifact_id": {"$ref": "common.schema.json#/$defs/Uuid"},
         "created_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
         "download_url": {"type": "string", "format": "uri-reference", "pattern": "^/api/knowledge/v1/spaces/[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}/items/[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}/source-artifacts/[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}/download$"},
+        "download_permitted": {"type": ["boolean", "null"], "description": "A current protected-original permission check: true or false when protected provenance exists; null when original bytes and policy have not yet been checked. Every download rechecks authorization and integrity."},
         "media_type": {"type": "string", "minLength": 1, "maxLength": 255},
         "origin_type": {"enum": ["upload", "notion", "chat", "manual", "legacy"]},
         "original_filename": {"type": "string", "minLength": 1, "maxLength": 240},
@@ -548,6 +549,7 @@
     },
     "PurgeSizeSummary": {
       "type": "object",
+      "description": "Logical payload bytes, not SQLite file shrinkage. Optional derived fields count source-table and preservation/native/role authoring bodies removed by the existing cleanup cascade; shared retained bodies are excluded.",
       "required": ["artifact_body_bytes", "artifact_body_count", "candidate_blob_bytes", "candidate_blob_count", "extraction_body_bytes", "extraction_body_count", "revision_body_bytes", "revision_body_count"],
       "properties": {
         "artifact_body_bytes": {"type": "integer", "minimum": 0},
@@ -556,9 +558,15 @@
         "candidate_blob_count": {"type": "integer", "minimum": 0},
         "extraction_body_bytes": {"type": "integer", "minimum": 0},
         "extraction_body_count": {"type": "integer", "minimum": 0},
+        "derived_body_bytes": {"type": "integer", "minimum": 0},
+        "derived_body_count": {"type": "integer", "minimum": 0},
         "revision_body_bytes": {"type": "integer", "minimum": 0},
         "revision_body_count": {"type": "integer", "minimum": 1}
       },
+      "oneOf": [
+        {"required": ["derived_body_bytes", "derived_body_count"]},
+        {"not": {"anyOf": [{"required": ["derived_body_bytes"]}, {"required": ["derived_body_count"]}]}}
+      ],
       "additionalProperties": false
     },
     "PurgeBlockingReference": {
@@ -581,8 +589,8 @@
         "item_id": {"$ref": "common.schema.json#/$defs/Uuid"},
         "eligible": {"type": "boolean"},
         "purge_eligible_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
-        "retained_categories": {"type": "array", "items": {"enum": ["audit_history", "blob_objects_pending_gc", "item_identity", "item_provenance", "item_tombstone", "referenced_artifact_bodies", "referenced_extraction_bodies", "revision_hashes", "revision_metadata"]}, "uniqueItems": true},
-        "deleted_categories": {"type": "array", "items": {"enum": ["artifact_body_links", "extraction_body_links", "revision_bodies", "search_documents"]}, "uniqueItems": true},
+        "retained_categories": {"type": "array", "items": {"enum": ["audit_history", "blob_objects_pending_gc", "item_identity", "item_provenance", "item_tombstone", "referenced_artifact_bodies", "referenced_extraction_bodies", "revision_hashes", "revision_metadata", "derived_source_and_authoring_metadata"]}, "uniqueItems": true},
+        "deleted_categories": {"type": "array", "items": {"enum": ["artifact_body_links", "extraction_body_links", "revision_bodies", "search_documents", "derived_source_and_authoring_bodies"]}, "uniqueItems": true},
         "sizes": {"$ref": "#/$defs/PurgeSizeSummary"},
         "blocking_references": {"type": "array", "items": {"$ref": "#/$defs/PurgeBlockingReference"}, "uniqueItems": true},
         "preview_token": {"type": "string", "minLength": 32, "maxLength": 4096},

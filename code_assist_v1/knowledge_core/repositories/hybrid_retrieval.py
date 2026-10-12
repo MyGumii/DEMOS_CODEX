@@ -1,6 +1,6 @@
 """Authorized and deterministic hybrid retrieval.
 
-The repository owns the ``canonical-hybrid-rerank-v4-shared-preview-budget`` fallback
+The repository owns the ``canonical-hybrid-rerank-v5-scope-aware-followup`` fallback
 pipeline.  It never broadens the caller supplied corpus closure and returns
 only current published revisions. Every selected Wiki/view scans its complete
 authorized lexical corpus; graph expansion retains cycle/hop safety bounds and
@@ -39,13 +39,14 @@ from .retrieval import (
     _integer,
     _limit,
     _normalize_query,
+    _normalize_semantic_query,
     _optional_uuid,
     _text,
     _uuid,
 )
 
 
-PIPELINE_VERSION = "canonical-hybrid-rerank-v4-shared-preview-budget"
+PIPELINE_VERSION = "canonical-hybrid-rerank-v5-scope-aware-followup"
 DIRECT_CAP = 40
 ONE_HOP_SEED_CAP = 12
 ONE_HOP_PER_SEED_CAP = 4
@@ -283,7 +284,7 @@ class HybridRetrievalRepository(RetrievalRepository):
         full_corpus = selected_view_kind in {
             "personal", "part", "team", "responsibility"
         }
-        normalized_query, _ = _normalize_query(query)
+        normalized_query = _normalize_semantic_query(query)
         if retrieval_intent not in _QUERY_INTENTS:
             raise RetrievalQueryError("retrieval_intent is invalid.")
         continuation_documents = self._continuation_identities(
@@ -314,6 +315,7 @@ class HybridRetrievalRepository(RetrievalRepository):
                 "query": normalized_query,
                 "query_intent": retrieval_intent,
                 "search_query": search_query,
+                "event_limit": event_limit,
                 "continuation_documents": [
                     {
                         "item_id": row.item_id,
@@ -343,7 +345,10 @@ class HybridRetrievalRepository(RetrievalRepository):
             source_json=source_json,
             overlay_json=overlay_json,
         )
-        if retrieval_intent in {"overview", "exhaustive", "continuation"}:
+        # A follow-up can introduce new evidence needs. Run the same authorized
+        # lexical plan, then supplement it with revalidated prior identities.
+        # Only corpus navigation intentionally skips topic ranking.
+        if retrieval_intent in {"overview", "exhaustive"}:
             hits, direct = (), ()
         else:
             hits, direct = self._direct_candidates(
@@ -459,6 +464,7 @@ class HybridRetrievalRepository(RetrievalRepository):
             overlay_json=overlay_json,
             ranked_documents=ranked,
             continuation_documents=preferred_continuation,
+            include_representative=retrieval_intent in {"overview", "exhaustive", "unknown"},
             limit=(None if full_corpus else max(0, FINAL_CAP - len(ranked))),
         )
         item_ids = tuple(
@@ -558,6 +564,7 @@ class HybridRetrievalRepository(RetrievalRepository):
         overlay_json: str,
         ranked_documents: tuple[RankedDocument, ...],
         continuation_documents: tuple[RankedDocumentIdentity, ...],
+        include_representative: bool,
         limit: int | None,
     ) -> tuple[SupplementalBodyDocument, ...]:
         """Load authorized current bodies without changing ranked-search semantics.
@@ -711,7 +718,10 @@ class HybridRetrievalRepository(RetrievalRepository):
                 ) from exc
             append_rows(rows, "continuation")
 
-        if limit is None or len(selected) < limit:
+        # Unrelated corpus bodies are navigation evidence, not padding for a
+        # specific topic or a contextual follow-up. Unknown planner fallbacks
+        # retain the existing explicitly labelled representative lane.
+        if include_representative and (limit is None or len(selected) < limit):
             representative_limit = (
                 "" if limit is None else f"LIMIT {PRE_RANK_CAP}"
             )

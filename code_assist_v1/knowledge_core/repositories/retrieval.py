@@ -267,7 +267,10 @@ class HybridRankingEnvelope:
 
 @dataclass(frozen=True, slots=True)
 class HybridRetrievalExplain:
-    pipeline_version: Literal["canonical-hybrid-rerank-v4-shared-preview-budget"]
+    pipeline_version: Literal[
+        "canonical-hybrid-rerank-v4-shared-preview-budget",
+        "canonical-hybrid-rerank-v5-scope-aware-followup",
+    ]
     direct_candidate_count: int
     one_hop_candidate_count: int
     two_hop_candidate_count: int
@@ -342,19 +345,36 @@ def _limit(value: object, field: str, maximum: int) -> int:
     return value
 
 
-def _normalize_query(value: object) -> tuple[str, str]:
+def _normalize_semantic_query(value: object) -> str:
     if not isinstance(value, str):
         raise RetrievalQueryError("query must be text.")
-    normalized = unicodedata.normalize("NFKC", value).strip()
-    if not normalized or len(normalized) > _MAX_QUERY_CHARS:
+    if not value or len(value) > _MAX_QUERY_CHARS:
         raise RetrievalQueryError("query must contain from 1 through 500 characters.")
-    if any(unicodedata.category(character).startswith("C") for character in normalized):
+    normalized = unicodedata.normalize("NFKC", value)
+    if not normalized.strip() or len(normalized) > _MAX_QUERY_CHARS:
+        raise RetrievalQueryError("query must contain from 1 through 500 characters.")
+    if any(
+        unicodedata.category(character).startswith("C")
+        and character not in "\r\n\t"
+        for character in normalized
+    ):
         raise RetrievalQueryError("query contains a disallowed control character.")
+    normalized = (
+        normalized.strip().replace("\r", " ").replace("\n", " ").replace("\t", " ")
+    )
     chunks = tuple(
         chunk for chunk in normalized.split()
         if chunk and any(character.isalnum() for character in chunk)
     )
-    if not chunks or len(chunks) > _MAX_QUERY_TERMS:
+    if not chunks:
+        raise RetrievalQueryError("query must contain at least one searchable term.")
+    return " ".join(chunks)
+
+
+def _normalize_query(value: object) -> tuple[str, str]:
+    normalized = _normalize_semantic_query(value)
+    chunks = tuple(normalized.split())
+    if len(chunks) > _MAX_QUERY_TERMS:
         raise RetrievalQueryError("query must contain from 1 through 32 searchable terms.")
     # Each term is an FTS literal.  Operators, column selectors, prefixes, and
     # parentheses supplied by the caller therefore have no query-language authority.
@@ -408,7 +428,7 @@ class RetrievalRepository:
         neighbor_limit = _limit(neighbor_limit, "neighbor_limit", _MAX_NEIGHBORS)
         event_limit = _limit(event_limit, "event_limit", _MAX_EVENTS)
         retrieval_intent = _retrieval_intent(retrieval_intent)
-        normalized_query, _ = _normalize_query(query)
+        normalized_query = _normalize_semantic_query(query)
         _, fts_query = _normalize_query(
             normalized_query if search_query is None else search_query
         )
@@ -509,7 +529,7 @@ class RetrievalRepository:
         neighbor_limit = _limit(neighbor_limit, "neighbor_limit", _MAX_NEIGHBORS)
         event_limit = _limit(event_limit, "event_limit", _MAX_EVENTS)
         retrieval_intent = _retrieval_intent(retrieval_intent)
-        normalized_query, _ = _normalize_query(query)
+        normalized_query = _normalize_semantic_query(query)
         _, fts_query = _normalize_query(
             normalized_query if search_query is None else search_query
         )

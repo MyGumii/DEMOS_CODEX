@@ -93,9 +93,15 @@ def _validate_physical_schema(
             "The physical SQLite schema could not be verified."
         ) from exc
     if observed != expected:
-        raise KnowledgeCoreSchemaMismatchError(
+        failure = KnowledgeCoreSchemaMismatchError(
             "The physical SQLite schema differs from the numbered migration catalog."
         )
+        # Preserve the exact failing observation for private worker diagnostics.
+        # A second connection after the exception may already see a different
+        # schema; never turn that later observation into a successful validation.
+        failure.expected_schema_sha256 = expected
+        failure.observed_schema_sha256 = observed
+        raise failure
 
 
 def _applied_prefix(
@@ -237,25 +243,30 @@ def _postconditions(
     *,
     excluded_queries: frozenset[str] = frozenset(),
 ) -> None:
-    for migration in catalog.migrations:
-        for postcondition_index, query in enumerate(
-            migration.postcondition_queries, start=1
-        ):
-            if query in excluded_queries:
-                continue
-            try:
-                with _read_only_sql(connection):
-                    violation = connection.execute(query).fetchone()
-            except sqlite3.Error as exc:
-                raise KnowledgeCoreMigrationError(
-                    "A migration postcondition was not a read-only query."
-                ) from exc
-            if violation is not None:
-                label = violation[0] if len(violation) else "unlabelled"
-                raise KnowledgeCoreMigrationError(
-                    f"Migration v{migration.version} postcondition "
-                    f"{postcondition_index} failed: {label}."
-                )
+    for postcondition in catalog.resolved_postconditions:
+        query = postcondition.query
+        # Existing projection-rebuild exemption remains exact SQL, never an
+        # origin ID exemption that could accidentally exempt its successor.
+        if query in excluded_queries:
+            continue
+        try:
+            with _read_only_sql(connection):
+                violation = connection.execute(query).fetchone()
+        except sqlite3.Error as exc:
+            raise KnowledgeCoreMigrationError(
+                "A migration postcondition was not a read-only query."
+            ) from exc
+        if violation is not None:
+            label = violation[0] if len(violation) else "unlabelled"
+            extension = (
+                f" (extended by v{postcondition.defined_version})"
+                if postcondition.defined_version != postcondition.origin_version
+                else ""
+            )
+            raise KnowledgeCoreMigrationError(
+                f"Migration v{postcondition.origin_version} postcondition "
+                f"{postcondition.origin_index}{extension} failed: {label}."
+            )
 
 
 def _probe_persistent_fts(connection: ManagedConnection) -> None:

@@ -7,7 +7,6 @@ Secrets are generated in memory and shared through child environments, never fil
 from __future__ import annotations
 
 import json
-import argparse
 import os
 from pathlib import Path
 import secrets
@@ -33,25 +32,10 @@ def stop_child(process):
         process.wait(timeout=5)
 
 
-def app_command(app_python, *, codex=False):
-    command = [str(app_python), "-u", "-m", "code_assist_v1.app_notion", "--port", "10322"]
-    if codex:
-        command.append("--codex")
-    return command
-
-
 def main():
     root = Path(__file__).resolve().parents[2]
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--comparisons", action="store_true", help="Enable opt-in encrypted host-only AI note comparisons")
-    parser.add_argument("--codex", action="store_true", help="Explicitly enable the authenticated Codex fallback (default: disabled)")
-    parser.add_argument("--app-python", type=Path, default=root / "venv/Scripts/python.exe",
-                        help="Python interpreter for the Notion application")
-    parser.add_argument("--stt-python", type=Path, default=root / ".tools/notion-stt/venv/Scripts/python.exe",
-                        help="Python interpreter for the isolated speech service")
-    args = parser.parse_args()
-    local_python = args.stt_python.resolve()
-    app_python = args.app_python.resolve()
+    local_python = root / ".tools/notion-stt/venv/Scripts/python.exe"
+    app_python = root / "venv/Scripts/python.exe"
     model_dir = root / ".tools/notion-stt/models/base"
     for path in (local_python, app_python, model_dir / "model.bin"):
         if not path.is_file():
@@ -96,9 +80,6 @@ def main():
             "CODE_ASSIST_NOTION_STT_LOCAL_PROTOCOL": "multipart",
             "CODE_ASSIST_NOTION_STT_LOCAL_API_KEY": token,
         })
-        if args.comparisons:
-            env.update({"CODE_ASSIST_NOTION_NOTES_COMPARISONS": "1",
-                        "CODE_ASSIST_NOTION_NOTES_COMPARISON_DB": str(root / ".private/notion-notes-comparisons/comparisons.db")})
         required_origins = [f"http://{host}:{port}" for host in ("localhost", "127.0.0.1") for port in (10011, 10322)]
         origins = [part.strip() for part in env.get("CODE_ASSIST_ALLOWED_ORIGINS", "").split(",") if part.strip()]
         env["CODE_ASSIST_ALLOWED_ORIGINS"] = ",".join(dict.fromkeys(origins + required_origins))
@@ -109,7 +90,7 @@ def main():
             env=env, cwd=root, timeout=15, creationflags=flags)
         if check.returncode:
             raise SystemExit("Notion could not verify local STT; application was not started")
-        app = subprocess.Popen(app_command(app_python, codex=args.codex),
+        app = subprocess.Popen([str(app_python), "-u", "-m", "code_assist_v1.app_notion", "--port", "10322", "--codex"],
                                env=env, cwd=root, creationflags=flags)
         children.append(app)
         print("Local STT connected. Notion: http://127.0.0.1:10322 ; automatic summaries default OFF.", flush=True)

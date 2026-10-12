@@ -37,13 +37,6 @@ from code_assist_v1.notion_collaboration.iam_authority import (
 
 LIVE_AUTHORITY_CONTRACT = "code_assist.notion.live_collaboration_authority.v1"
 LIVE_EVENT_TYPES = (
-    "database.surface.committed",
-    "database.schema.committed",
-    "page.appearance.updated",
-    "page.settings.updated",
-    "page.archived",
-    "page.restored",
-    "page.moved",
     "comment.added",
     "comment.updated",
     "comment.deleted",
@@ -245,20 +238,14 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
             raise AuthorityUnavailable("live collaboration authority is unavailable") from exc
 
     @staticmethod
-    def _comment(con: sqlite3.Connection, document_id: str, comment_id: str, *, include_deleted: bool = False) -> sqlite3.Row:
+    def _comment(con: sqlite3.Connection, document_id: str, comment_id: str) -> sqlite3.Row:
         row = con.execute(
             "SELECT * FROM workspace_collaboration_comments "
-            "WHERE id=? AND document_id=? AND (deleted_at IS NULL OR ?)",
-            (comment_id, document_id, include_deleted),
+            "WHERE id=? AND document_id=? AND deleted_at IS NULL",
+            (comment_id, document_id),
         ).fetchone()
         if row is None:
             raise NotFoundOrDenied("not found or permission denied")
-        from . import database_row_trash, database_trash
-        if str(row["id"]) in (database_trash.hidden_comment_ids(con, document_id)
-                | database_row_trash.hidden_comment_ids(con, document_id)):
-            raise NotFoundOrDenied("not found or permission denied")
-        from .database_row_comments import require_binding
-        require_binding(con, document_id, _json_object(str(row["anchor_json"]), field="comment anchor"), block_id=row["block_id"])
         return row
 
     @classmethod
@@ -393,16 +380,10 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
         *,
         expected_workspace_epoch: int | None = None,
         expected_document_epoch: int | None = None,
-        item_target: Mapping[str, Any] | None = None,
     ) -> dict[str, Any]:
-        from .database_row_comments import require_binding, target
-        selected_target = target(dict(item_target)) if item_target is not None else None
-        if item_target is not None and selected_target is None:
-            raise ValueError("invalid database item comment target")
         subject = self._require_active(subject_id)
         document = _identifier(document_id, field="document_id")
         with self._reader() as con:
-            con.execute("BEGIN")
             workspace, page, role = self._access(
                 con,
                 subject,
@@ -411,8 +392,6 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
                 expected_workspace_epoch=expected_workspace_epoch,
                 expected_document_epoch=expected_document_epoch,
             )
-            if selected_target is not None:
-                require_binding(con, document, selected_target)
             rows = con.execute(
                 "SELECT c.*,COALESCE((SELECT json_group_array(m.mentioned_subject_id) "
                 "FROM workspace_collaboration_comment_mentions m "
@@ -422,16 +401,8 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
                 "ORDER BY c.created_at,c.id",
                 (document,),
             ).fetchall()
-            from . import database_row_trash, database_trash
-            hidden_comments = (database_trash.hidden_comment_ids(con, document)
-                | database_row_trash.hidden_comment_ids(con, document))
             items: list[dict[str, Any]] = []
             for row in rows:
-                if str(row["id"]) in hidden_comments:
-                    continue
-                anchor = _json_object(str(row["anchor_json"]), field="comment anchor")
-                if target(anchor) != selected_target:
-                    continue
                 mentions = json.loads(str(row["mention_ids_json"]))
                 items.append(
                     {
@@ -440,7 +411,7 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
                         "block_id": row["block_id"],
                         "author_subject_id": str(row["author_subject_id"]),
                         "content": str(row["content"]),
-                        "anchor": anchor,
+                        "anchor": _json_object(str(row["anchor_json"]), field="comment anchor"),
                         "parent_comment_id": row["parent_comment_id"],
                         "reactions": _json_object(str(row["reactions_json"]), field="comment reactions"),
                         "mention_subject_ids": mentions,
@@ -457,7 +428,6 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
                 "workspace_id": str(workspace["id"]),
                 "document_id": document,
                 "role": role,
-                **({"item_target": selected_target} if selected_target else {}),
                 "workspace_epoch": int(workspace["security_epoch"]),
                 "document_epoch": int(page["access_epoch"]),
                 "document_sequence": int(page["document_sequence"]),
@@ -482,7 +452,6 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
         fault: str | None = None,
         runtime_generation_id: str | None = None,
     ) -> dict[str, Any]:
-        from .database_row_comments import require_binding, target
         actor = self._require_active(actor_subject_id)
         document = _identifier(document_id, field="document_id")
         comment = _identifier(comment_id, field="comment_id")
@@ -507,15 +476,14 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
         }
         request_hash = _request_sha256(actor, action, request)
         with self._transaction() as con:
-            def authorize():
-                access = self._access(con, actor, document, minimum_role="comment",
-                    expected_workspace_epoch=workspace_epoch, expected_document_epoch=document_epoch)
-                item_target = require_binding(con, document, dict(anchor or {}), block_id=block)
-                if item_target is not None and con.execute(
-                    'SELECT 1 FROM workspace_collaboration_comments WHERE id=? AND deleted_at IS NOT NULL', (comment,)
-                ).fetchone():
-                    raise NotFoundOrDenied("not found or permission denied")
-                return access
+            authorize = lambda: self._access(
+                con,
+                actor,
+                document,
+                minimum_role="comment",
+                expected_workspace_epoch=workspace_epoch,
+                expected_document_epoch=document_epoch,
+            )
             replay = self._replay(
                 con,
                 actor=actor,
@@ -535,10 +503,6 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
                 workspace_id=workspace_id,
             )
             parent_row = None if parent is None else self._comment(con, document, parent)
-            if parent_row is not None and target(dict(anchor or {})) != target(
-                _json_object(str(parent_row["anchor_json"]), field="comment anchor")
-            ):
-                raise NotFoundOrDenied("not found or permission denied")
             if block is not None and con.execute(
                 "SELECT 1 FROM workspace_collaboration_blocks WHERE id=? AND document_id=?",
                 (block, document),
@@ -803,11 +767,14 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
         }
         request_hash = _request_sha256(actor, action, request)
         with self._transaction() as con:
-            def authorize():
-                access = self._access(con, actor, document, minimum_role="comment",
-                    expected_workspace_epoch=workspace_epoch, expected_document_epoch=document_epoch)
-                self._comment(con, document, comment)
-                return access
+            authorize = lambda: self._access(
+                con,
+                actor,
+                document,
+                minimum_role="comment",
+                expected_workspace_epoch=workspace_epoch,
+                expected_document_epoch=document_epoch,
+            )
             replay = self._replay(
                 con,
                 actor=actor,
@@ -909,7 +876,7 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
                     actor,
                     str(workspace["id"]),
                     document,
-                    self._comment(con, document, comment, include_deleted=True),
+                    self._comment(con, document, comment),
                 )
             replay = self._replay(
                 con,
@@ -1017,11 +984,14 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
         }
         request_hash = _request_sha256(actor, action, request)
         with self._transaction() as con:
-            def authorize():
-                access = self._access(con, actor, document, minimum_role="comment",
-                    expected_workspace_epoch=workspace_epoch, expected_document_epoch=document_epoch)
-                self._comment(con, document, comment)
-                return access
+            authorize = lambda: self._access(
+                con,
+                actor,
+                document,
+                minimum_role="comment",
+                expected_workspace_epoch=workspace_epoch,
+                expected_document_epoch=document_epoch,
+            )
             replay = self._replay(
                 con,
                 actor=actor,
@@ -1129,10 +1099,8 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
         if batch_limit < 1 or batch_limit > 200:
             raise ValueError("inbox limit is invalid")
         with self._reader() as con:
-            con.execute("BEGIN")
             rows = con.execute(
-                "SELECT n.*,c.document_id AS current_document_id "
-                "FROM workspace_collaboration_notifications n "
+                "SELECT n.* FROM workspace_collaboration_notifications n "
                 "JOIN workspace_collaboration_comments c ON c.id=n.comment_id "
                 "WHERE n.recipient_subject_id=? AND n.redacted_at IS NULL "
                 "AND c.deleted_at IS NULL AND (? IS NULL OR n.workspace_id=?) "
@@ -1145,23 +1113,19 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
                     break
                 try:
                     workspace, page, _role = self._access(
-                        con, subject, str(row["current_document_id"]), minimum_role="view"
+                        con, subject, str(row["document_id"]), minimum_role="view"
                     )
-                    comment_row = self._comment(con, str(row["current_document_id"]), str(row["comment_id"]))
                 except NotFoundOrDenied:
                     continue
                 if str(workspace["id"]) != str(row["workspace_id"]):
                     continue
                 payload = _json_object(str(row["payload_json"]), field="notification payload")
-                payload["document_id"] = str(row["current_document_id"])
-                from .database_row_comments import target
-                item_target = target(_json_object(str(comment_row["anchor_json"]), field="comment anchor"))
                 items.append(
                     {
                         "id": str(row["id"]),
                         "kind": str(row["kind"]),
                         "workspace_id": str(row["workspace_id"]),
-                        "document_id": str(row["current_document_id"]),
+                        "document_id": str(row["document_id"]),
                         "comment_id": str(row["comment_id"]),
                         "actor_subject_id": str(row["actor_subject_id"]),
                         "payload": payload,
@@ -1171,7 +1135,6 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
                         "read": row["read_at"] is not None,
                         "read_at": row["read_at"],
                         "created_at": int(row["created_at"]),
-                        **({"item_target": item_target} if item_target else {}),
                     }
                 )
             return {
@@ -1203,19 +1166,16 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
         request_hash = _request_sha256(subject, action, request)
         with self._transaction() as con:
             row = con.execute(
-                "SELECT n.*,c.document_id AS current_document_id "
-                "FROM workspace_collaboration_notifications n "
-                "JOIN workspace_collaboration_comments c ON c.id=n.comment_id "
-                "WHERE n.id=? AND n.recipient_subject_id=? AND n.redacted_at IS NULL "
-                "AND (? IS NULL OR n.workspace_id=?)",
+                "SELECT * FROM workspace_collaboration_notifications "
+                "WHERE id=? AND recipient_subject_id=? AND redacted_at IS NULL "
+                "AND (? IS NULL OR workspace_id=?)",
                 (notification, subject, workspace_filter, workspace_filter),
             ).fetchone()
             if row is None:
                 raise NotFoundOrDenied("not found or permission denied")
-            document = str(row["current_document_id"])
+            document = str(row["document_id"])
             def authorize() -> None:
                 self._access(con, subject, document, minimum_role="view")
-                self._comment(con, document, str(row["comment_id"]))
             replay = self._replay(
                 con,
                 actor=subject,
@@ -1229,7 +1189,6 @@ class CollaborativeLiveAuthority(CollaborativeIAMAuthority):
             workspace, page, _role = self._access(
                 con, subject, document, minimum_role="view"
             )
-            self._comment(con, document, str(row["comment_id"]))
             now = int(time.time())
             con.execute(
                 "UPDATE workspace_collaboration_notifications SET "

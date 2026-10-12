@@ -28,6 +28,11 @@ from ..db import (
     transaction,
 )
 from ..errors import KnowledgeCoreError
+from ..protected_source_snapshot import ProtectedExtractionProvenance
+from ..protected_sources import (
+    PolicyProtectedSourceClassifier, ProtectedSourceKind,
+    classify_protected_for_actor,
+)
 from ..repositories.artifacts import (
     ArtifactExtractionSpec,
     ArtifactIds,
@@ -336,7 +341,14 @@ class PublicationResult:
     target: HigherPublicationTargetDescriptor | None = None
     authored_snapshot_id: str | None = None
     reused_extraction_snapshot_id: str | None = None
-    body_source: Literal["authored_wiki", "extraction"] | None = None
+    body_source: Literal["authored_wiki", "extraction", "preserved_wiki", "native_wiki", "pptx_role_wiki", "pdf_wiki", "pdf_visual_wiki", "office_hybrid_wiki", "pdf_continuation_wiki"] | None = None
+    preserved_snapshot_id: str | None = None
+    native_snapshot_id: str | None = None
+    pptx_role_snapshot_id: str | None = None
+    pdf_snapshot_id: str | None = None
+    pdf_visual_snapshot_id: str | None = None
+    office_hybrid_snapshot_id: str | None = None
+    pdf_continuation_snapshot_id: str | None = None
 
     def to_mapping(self) -> dict[str, object]:
         result: dict[str, object] = {
@@ -359,6 +371,20 @@ class PublicationResult:
             result["reused_extraction_snapshot_id"] = self.reused_extraction_snapshot_id
         if self.body_source is not None:
             result["body_source"] = self.body_source
+        if self.preserved_snapshot_id is not None:
+            result["preserved_snapshot_id"] = self.preserved_snapshot_id
+        if self.native_snapshot_id is not None:
+            result["native_snapshot_id"] = self.native_snapshot_id
+        if self.pptx_role_snapshot_id is not None:
+            result["pptx_role_snapshot_id"] = self.pptx_role_snapshot_id
+        if self.pdf_snapshot_id is not None:
+            result["pdf_snapshot_id"] = self.pdf_snapshot_id
+        if self.pdf_visual_snapshot_id is not None:
+            result["pdf_visual_snapshot_id"] = self.pdf_visual_snapshot_id
+        if self.office_hybrid_snapshot_id is not None:
+            result["office_hybrid_snapshot_id"] = self.office_hybrid_snapshot_id
+        if self.pdf_continuation_snapshot_id is not None:
+            result["pdf_continuation_snapshot_id"] = self.pdf_continuation_snapshot_id
         return result
 
 
@@ -415,6 +441,7 @@ class ExtractedPublicationContent:
     extractor_version: str
     warnings: tuple[str, ...] = ()
     assets: tuple["EmbeddedPublicationAsset", ...] = ()
+    protected_provenance: ProtectedExtractionProvenance | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -454,6 +481,7 @@ class _PreparedPreviewExtraction:
     title: str
     failure_code: str | None
     embedded_assets: tuple[CanonicalEmbeddedAssetSpec, ...] = ()
+    protected_provenance: ProtectedExtractionProvenance | None = None
 
 
 def _sha256(value: bytes) -> str:
@@ -1543,6 +1571,10 @@ class Utf8PublicationExtractor:
 class PublicationPreviewExtractionHandler:
     """Exact ``publication_preview.extract/v1`` durable-job adapter."""
 
+    _handler_version = "v1"
+    _rule_version = PUBLICATION_PREVIEW_RULE_VERSION
+    _expected_schema_version = 1
+
     __slots__ = (
         "_asset_stager",
         "_artifacts",
@@ -1596,7 +1628,7 @@ class PublicationPreviewExtractionHandler:
     def registered_handler(self) -> RegisteredJobHandler:
         return RegisteredJobHandler.build(
             job_type="publication_preview.extract",
-            handler_version="v1",
+            handler_version=self._handler_version,
             actor_kind="user",
             required_capability=Capability.PUBLISH,
             validate_input=self.validate_input,
@@ -1606,9 +1638,9 @@ class PublicationPreviewExtractionHandler:
             converge_terminal=self.converge_terminal,
         )
 
-    @staticmethod
+    @classmethod
     def validate_input(
-        input_ref: Mapping[str, object], expected_state: Mapping[str, object]
+        cls, input_ref: Mapping[str, object], expected_state: Mapping[str, object]
     ) -> None:
         if set(input_ref) != {"artifact_id", "preview_id", "rule_version"}:
             raise JobExpectedStateConflictError(
@@ -1616,7 +1648,7 @@ class PublicationPreviewExtractionHandler:
             )
         artifact_id = _preview_uuid(input_ref["artifact_id"], field_name="artifact_id")
         preview_id = _preview_uuid(input_ref["preview_id"], field_name="preview_id")
-        if input_ref["rule_version"] != PUBLICATION_PREVIEW_RULE_VERSION:
+        if input_ref["rule_version"] != cls._rule_version:
             raise JobExpectedStateConflictError(
                 "The publication preview rule version is unsupported."
             )
@@ -1630,16 +1662,26 @@ class PublicationPreviewExtractionHandler:
             "title",
         }
         if frozenset(expected_state) not in {
-            frozenset(expected_keys),
-            frozenset((*expected_keys, "_authorization_fence")),
+            frozenset((*expected_keys, *optional))
+            for optional in (
+                (), ("_authorization_fence",),
+                ("protected_source_kind",),
+                ("_authorization_fence", "protected_source_kind"),
+            )
         }:
             raise JobExpectedStateConflictError(
                 "The publication preview expected-state shape is invalid."
             )
+        if ("protected_source_kind" in expected_state
+                and expected_state["protected_source_kind"]
+                != ProtectedSourceKind.COMPANY_POLICY_PROTECTED.value):
+            raise JobExpectedStateConflictError(
+                "The durable protected source claim is invalid."
+            )
         if (
             expected_state["artifact_id"] != artifact_id
             or expected_state["preview_id"] != preview_id
-            or expected_state["schema_version"] != 1
+            or expected_state["schema_version"] != cls._expected_schema_version
             or not isinstance(expected_state["raw_sha256"], str)
             or _SHA_RE.fullmatch(expected_state["raw_sha256"]) is None
             or isinstance(expected_state["raw_size_bytes"], bool)
@@ -1662,6 +1704,11 @@ class PublicationPreviewExtractionHandler:
             )
         self._mark_extracting(job)
         expected = job.expected_state
+        policy_claim = expected.get("protected_source_kind")
+        if policy_claim is not None and self._factory.migration_catalog.latest_version < 60:
+            raise PermanentJobExecutionError(
+                "The policy-protected source schema is not activated."
+            )
         loaded = self._loader.load(
             artifact_id=str(expected["artifact_id"]),
             expected_sha256=str(expected["raw_sha256"]),
@@ -1670,14 +1717,56 @@ class PublicationPreviewExtractionHandler:
         )
         leases: list[PublicationBlobLease] = [loaded.lease]
         try:
-            outcome = self._extractor.extract(
-                loaded.content,
-                media_type=loaded.media_type,
-                original_filename=loaded.original_filename,
-            )
+            visual_extract = getattr(self._extractor, "extract_for_visual_preview", None)
+            use_visual_extract = False
+            if callable(visual_extract):
+                connection = self._factory.open(read_only=True)
+                try:
+                    with transaction(connection, TransactionMode.DEFERRED):
+                        use_visual_extract = connection.execute(
+                            """SELECT 1 FROM pdf_visual_workflow_request q
+                               JOIN publication_preview p ON p.id=q.preview_id
+                               WHERE q.preview_id=? AND q.parent_job_id=?
+                                 AND p.durable_job_id=? AND p.actor_user_id=?
+                                 AND p.artifact_id=?""",
+                            (job.input_ref["preview_id"], job.id, job.id,
+                             job.actor_user_id, expected["artifact_id"]),
+                        ).fetchone() is not None
+                finally:
+                    connection.close()
+            if use_visual_extract:
+                outcome = visual_extract(
+                    loaded.content, media_type=loaded.media_type,
+                    original_filename=loaded.original_filename,
+                    actor_user_id=job.actor_user_id,
+                )
+            else:
+                actor_extract = getattr(self._extractor, "extract_for_actor", None)
+                if callable(actor_extract):
+                    actor_options = ({"expected_protected_kind":
+                        ProtectedSourceKind.COMPANY_POLICY_PROTECTED}
+                        if policy_claim is not None else {})
+                    outcome = actor_extract(
+                        loaded.content, media_type=loaded.media_type,
+                        original_filename=loaded.original_filename,
+                        actor_user_id=job.actor_user_id,
+                        **actor_options,
+                    )
+                else:
+                    outcome = self._extractor.extract(
+                        loaded.content, media_type=loaded.media_type,
+                        original_filename=loaded.original_filename,
+                    )
             if not isinstance(outcome, ExtractedPublicationContent):
                 raise PermanentJobExecutionError(
                     "The publication extractor returned an invalid result."
+                )
+            if (outcome.protected_provenance is not None
+                    and (type(outcome.protected_provenance) is not ProtectedExtractionProvenance
+                         or outcome.failure_code is not None
+                         or outcome.markdown is None)):
+                raise PermanentJobExecutionError(
+                    "The protected extraction provenance is invalid."
                 )
             prepared_at = self._database_time()
             prepared = prepare_publication_artifact(
@@ -1694,6 +1783,10 @@ class PublicationPreviewExtractionHandler:
                 artifact_id=str(expected["artifact_id"]),
                 effective_at_ms=prepared_at,
                 leases=leases,
+            )
+            payload = self._prepare_payload(
+                loaded=loaded, outcome=outcome, prepared=prepared,
+                embedded_assets=embedded_assets, title=str(expected["title"]),
             )
         except RetryableJobExecutionError:
             _close_publication_leases(leases)
@@ -1712,17 +1805,20 @@ class PublicationPreviewExtractionHandler:
         return PreparedJobEffect(
             result={
                 "preview_id": str(job.input_ref["preview_id"]),
-                "schema_version": 1,
+                "schema_version": self._expected_schema_version,
                 "source_snapshot_sha256": prepared.extraction.extracted_sha256,
                 "status": status,
             },
-            payload=_PreparedPreviewExtraction(
-                prepared=prepared,
-                title=str(expected["title"]),
-                failure_code=outcome.failure_code,
-                embedded_assets=embedded_assets,
-            ),
+            payload=payload,
             cleanup=lambda: _close_publication_leases(leases),
+        )
+
+    def _prepare_payload(self, *, loaded, outcome, prepared, embedded_assets, title):
+        """Trusted successor seam; called before the commit transaction."""
+        return _PreparedPreviewExtraction(
+            prepared=prepared, title=title, failure_code=outcome.failure_code,
+            embedded_assets=embedded_assets,
+            protected_provenance=outcome.protected_provenance,
         )
 
     def _stage_embedded_assets(
@@ -1886,7 +1982,7 @@ class PublicationPreviewExtractionHandler:
             preview.status != "extracting"
             or preview.artifact_id != expected["artifact_id"]
             or preview.durable_job_id != job.id
-            or preview.rule_version != PUBLICATION_PREVIEW_RULE_VERSION
+            or preview.rule_version != self._rule_version
             or source is None
             or source["raw_sha256"] != expected["raw_sha256"]
             or source["raw_size_bytes"] != expected["raw_size_bytes"]
@@ -1915,6 +2011,17 @@ class PublicationPreviewExtractionHandler:
             )
         payload = prepared.payload
         expected = job.expected_state
+        policy_claim = expected.get("protected_source_kind")
+        policy_evidence = payload.protected_provenance
+        if ((policy_claim is not None)
+                != (policy_evidence is not None and policy_evidence.source_kind
+                    is ProtectedSourceKind.COMPANY_POLICY_PROTECTED)):
+            # The web's durable claim and the worker's provider extraction must
+            # agree. A changed policy signal cannot silently become ordinary.
+            if payload.prepared.extraction.status == "ready":
+                raise PermanentJobExecutionError(
+                    "The policy-protected source claim changed before commit."
+                )
         if (
             payload.prepared.raw_sha256 != expected["raw_sha256"]
             or payload.prepared.raw_size_bytes != expected["raw_size_bytes"]
@@ -1933,13 +2040,8 @@ class PublicationPreviewExtractionHandler:
             raise PermanentJobExecutionError(
                 "The extraction identity differs from the queued artifact."
             )
-        self._artifacts.put_source_extraction(
-            connection,
-            artifact_id=ids.artifact_id,
-            extraction_snapshot_id=ids.extraction_snapshot_id,
-            extraction=payload.prepared.extraction,
-            embedded_assets=payload.embedded_assets,
-        )
+        self._store_extraction(connection, ids=ids, payload=payload)
+        self._store_protected_provenance(connection, ids=ids, payload=payload)
         result = self._queued_operation_result(connection, job, preview)
         now_ms = db_now_ms(connection)
         if payload.prepared.extraction.status == "ready":
@@ -2002,6 +2104,51 @@ class PublicationPreviewExtractionHandler:
             outcome=outcome,
             event_type=event_type,
             now_ms=now_ms,
+        )
+
+    def _store_extraction(self, connection, *, ids, payload):
+        """Caller transaction owns both extraction storage and terminal events."""
+        self._artifacts.put_source_extraction(
+            connection, artifact_id=ids.artifact_id,
+            extraction_snapshot_id=ids.extraction_snapshot_id,
+            extraction=payload.prepared.extraction,
+            embedded_assets=payload.embedded_assets,
+        )
+
+    def _store_protected_provenance(self, connection, *, ids, payload) -> None:
+        evidence = payload.protected_provenance
+        if self._factory.migration_catalog.latest_version < 50:
+            # The retained v49 runtime must keep serving until the explicit
+            # v50 activation. No table exists there, so old receipts and
+            # already-queued jobs continue their historical behavior.
+            return
+        protected_extractors = {
+            "canonical-approved-owner-pdf",
+            "canonical-authorized-protected-snapshot",
+        }
+        if (payload.prepared.extraction.status == "ready"
+                and payload.prepared.extraction.extractor_name in protected_extractors
+                and evidence is None):
+            raise PermanentJobExecutionError(
+                "A protected extraction has no retained provenance."
+            )
+        if evidence is None:
+            return
+        if (payload.prepared.extraction.status != "ready"
+                or evidence.original_sha256 != payload.prepared.raw_sha256):
+            raise PermanentJobExecutionError(
+                "The protected source provenance differs from its raw artifact."
+            )
+        values = evidence.insert_values(
+            extraction_snapshot_id=ids.extraction_snapshot_id,
+            artifact_id=ids.artifact_id,
+            created_at=payload.prepared.extraction.created_at_ms,
+        )
+        fields = tuple(values)
+        connection.execute(
+            "INSERT INTO protected_extraction_provenance(" + ",".join(fields)
+            + ") VALUES(" + ",".join("?" for _ in fields) + ")",
+            tuple(values[field] for field in fields),
         )
 
     def converge_terminal(
@@ -2192,6 +2339,9 @@ class PublicationPreviewService:
     operation idempotency, artifact/snapshot persistence, preview state, audit,
     and outbox are revalidated and committed together.
     """
+
+    _upload_handler_version = "v1"
+    _upload_rule_version = PUBLICATION_PREVIEW_RULE_VERSION
 
     __slots__ = (
         "_artifacts",
@@ -2693,7 +2843,7 @@ class PublicationPreviewService:
         target = _publication_target(command.target)
         request_meta = _preview_request_meta(command.request_meta)
         raw_sha256 = hashlib.sha256(content).hexdigest()
-        request_sha256 = _upload_request_sha256(
+        request_sha256 = self._upload_request_sha256(
             actor_user_id=actor_id,
             actor_scope_epoch=epoch,
             operation_id=operation_id,
@@ -2769,6 +2919,12 @@ class PublicationPreviewService:
         finally:
             lease.close()
 
+    def _upload_request_sha256(self, **fields) -> str:
+        return _upload_request_sha256(**fields)
+
+    def _upload_expected_state(self, state: dict[str, object]) -> dict[str, object]:
+        return state
+
     def get_preview(self, query: GetPublicationPreviewQuery) -> dict[str, object]:
         """Return one actor-authorized durable preview status document.
 
@@ -2778,31 +2934,36 @@ class PublicationPreviewService:
         exact committed create-operation result.
         """
 
-        if not isinstance(query, GetPublicationPreviewQuery):
-            raise TypeError("A GetPublicationPreviewQuery is required.")
-        actor_id = _preview_user(query.actor_user_id)
-        epoch = _preview_epoch(query.actor_scope_epoch)
-        preview_id = _preview_uuid(query.preview_id, field_name="preview_id")
+        actor_id, epoch, preview_id = self._status_query_fields(query)
         connection = self._factory.open(read_only=True)
         try:
-            with transaction(connection, TransactionMode.DEFERRED):
-                actor = self._users.require(connection, actor_id)
-                if actor.account_status != "active" or actor.scope_epoch != epoch:
-                    raise PublicationPreviewAuthorizationError(
-                        "Current canonical actor state does not authorize preview status."
-                    )
-                record = self._previews.require_for_actor(
-                    connection,
-                    preview_id=preview_id,
-                    actor_user_id=actor_id,
-                )
-                document = self._preview_status_document(connection, record)
-                selection = None if self._wiki_publication is None else self._wiki_publication.select(connection, record)
-                if selection is not None:
-                    document.update(selection.overlay(record))
-                return document
+            return self._read_preview_status(connection, actor_id, epoch, preview_id)
         finally:
             connection.close()
+
+    @staticmethod
+    def _status_query_fields(query):
+        if not isinstance(query, GetPublicationPreviewQuery):
+            raise TypeError("A GetPublicationPreviewQuery is required.")
+        return (_preview_user(query.actor_user_id), _preview_epoch(query.actor_scope_epoch),
+            _preview_uuid(query.preview_id, field_name="preview_id"))
+
+    def _read_preview_status(self, connection, actor_id, epoch, preview_id):
+        """Non-owning internal read; always opens a fresh authority snapshot."""
+        with transaction(connection, TransactionMode.DEFERRED):
+            actor = self._users.require(connection, actor_id)
+            if actor.account_status != "active" or actor.scope_epoch != epoch:
+                raise PublicationPreviewAuthorizationError(
+                    "Current canonical actor state does not authorize preview status."
+                )
+            record = self._previews.require_for_actor(
+                connection, preview_id=preview_id, actor_user_id=actor_id,
+            )
+            document = self._preview_status_document(connection, record)
+            selection = None if self._wiki_publication is None else self._wiki_publication.select(connection, record)
+            if selection is not None:
+                document.update(selection.overlay(record))
+            return document
 
     def cancel_preview(
         self, command: CancelPublicationPreviewCommand
@@ -3734,7 +3895,7 @@ class PublicationPreviewService:
                 job_input = {
                     "artifact_id": bundle.ids.artifact_id,
                     "preview_id": preview_id,
-                    "rule_version": PUBLICATION_PREVIEW_RULE_VERSION,
+                    "rule_version": self._upload_rule_version,
                 }
                 job_input_sha = canonical_job_input_sha256(job_input)
                 self._users.begin_operation(
@@ -3785,10 +3946,10 @@ class PublicationPreviewService:
                         actor_user_id=actor_id,
                         space_id=publication_space.id,
                         job_type="publication_preview.extract",
-                        handler_version="v1",
+                        handler_version=self._upload_handler_version,
                         effect_key=f"publication-preview:{preview_id}:extract",
                         input_ref=job_input,
-                        expected_state={
+                        expected_state=self._upload_expected_state({
                             "_authorization_fence": authorization_fence,
                             "artifact_id": bundle.ids.artifact_id,
                             "media_type": bundle.raw_blob.media_type,
@@ -3797,7 +3958,7 @@ class PublicationPreviewService:
                             "raw_size_bytes": bundle.raw_blob.size_bytes,
                             "schema_version": 1,
                             "title": title,
-                        },
+                        }),
                         authorization_snapshot={
                             "account_status": "active",
                             "actor_kind": "user",
@@ -3827,7 +3988,7 @@ class PublicationPreviewService:
                         captured_part_id=actor.current_part_id,
                         captured_scope_epoch=actor.scope_epoch,
                         available_target_modes=modes,
-                        rule_version=PUBLICATION_PREVIEW_RULE_VERSION,
+                        rule_version=self._upload_rule_version,
                         expires_at_ms=job.created_at_ms + PREVIEW_TTL_MS,
                         created_at_ms=job.created_at_ms,
                     ),
@@ -4139,7 +4300,7 @@ def _publication_result(
     request_id: str,
     operation_id: str,
     target: HigherPublicationTargetDescriptor | None = None,
-    body_source: Literal["authored_wiki", "extraction"] | None = None,
+    body_source: Literal["authored_wiki", "extraction", "preserved_wiki", "native_wiki", "pptx_role_wiki", "pdf_wiki", "pdf_visual_wiki", "office_hybrid_wiki", "pdf_continuation_wiki"] | None = None,
 ) -> PublicationResult:
     return PublicationResult(
         request_id=request_id,
@@ -4154,10 +4315,29 @@ def _publication_result(
         authored_snapshot_id=commit.authored_snapshot_id,
         reused_extraction_snapshot_id=commit.reused_extraction_snapshot_id,
         body_source=body_source,
+        preserved_snapshot_id=commit.preserved_snapshot_id,
+        native_snapshot_id=commit.native_snapshot_id,
+        pptx_role_snapshot_id=commit.pptx_role_snapshot_id,
+        pdf_snapshot_id=commit.pdf_snapshot_id,
+        pdf_visual_snapshot_id=commit.pdf_visual_snapshot_id,
+        office_hybrid_snapshot_id=commit.office_hybrid_snapshot_id,
+        pdf_continuation_snapshot_id=commit.pdf_continuation_snapshot_id,
     )
 
 
 def _stored_publication_result(value: object) -> PublicationResult:
+    # Persisted result corruption is an exact-replay failure, not malformed
+    # user input. Reuse the strict field validators without exposing their
+    # request-validation error classification at this storage boundary.
+    try:
+        return _parse_stored_publication_result(value)
+    except PublicationPreviewValidationError as exc:
+        raise PublicationPreviewIdempotencyError(
+            "The stored publication result is not canonical."
+        ) from exc
+
+
+def _parse_stored_publication_result(value: object) -> PublicationResult:
     if not isinstance(value, Mapping):
         raise PublicationPreviewIdempotencyError(
             "The stored publication result is not an object."
@@ -4177,11 +4357,56 @@ def _stored_publication_result(value: object) -> PublicationResult:
     target_mode = value.get("target_mode")
     if "body_source" in value:
         required.add("body_source")
-        expected_kind = "authored_wiki" if value.get("authored_snapshot_id") is not None else "extraction"
+        expected_kind = ("pdf_continuation_wiki" if value.get("pdf_continuation_snapshot_id") is not None else
+            "office_hybrid_wiki" if value.get("office_hybrid_snapshot_id") is not None else
+            "pdf_visual_wiki" if value.get("pdf_visual_snapshot_id") is not None else
+            "pdf_wiki" if value.get("pdf_snapshot_id") is not None else
+            "pptx_role_wiki" if value.get("pptx_role_snapshot_id") is not None else
+            "native_wiki" if value.get("native_snapshot_id") is not None else
+            "preserved_wiki" if value.get("preserved_snapshot_id") is not None else
+            "authored_wiki" if value.get("authored_snapshot_id") is not None else "extraction")
         if value["body_source"] != expected_kind:
             raise PublicationPreviewIdempotencyError("The stored publication source kind is inconsistent.")
+    if "pdf_continuation_snapshot_id" in value:
+        required.add("pdf_continuation_snapshot_id")
+        if (any(key in value for key in ("authored_snapshot_id", "preserved_snapshot_id", "native_snapshot_id",
+                "pptx_role_snapshot_id", "pdf_snapshot_id", "pdf_visual_snapshot_id", "office_hybrid_snapshot_id",
+                "reused_extraction_snapshot_id")) or value.get("body_source") != "pdf_continuation_wiki"):
+            raise PublicationPreviewIdempotencyError("The stored continuation body selection is ambiguous.")
     if "authored_snapshot_id" in value:
         required.add("authored_snapshot_id")
+    if "office_hybrid_snapshot_id" in value:
+        required.add("office_hybrid_snapshot_id")
+        if (any(key in value for key in ("authored_snapshot_id", "preserved_snapshot_id", "native_snapshot_id",
+                "pptx_role_snapshot_id", "pdf_snapshot_id", "pdf_visual_snapshot_id", "reused_extraction_snapshot_id"))
+                or value.get("body_source") != "office_hybrid_wiki"):
+            raise PublicationPreviewIdempotencyError("The stored Office body selection is ambiguous.")
+    if "pdf_visual_snapshot_id" in value:
+        required.add("pdf_visual_snapshot_id")
+        if (any(key in value for key in ("authored_snapshot_id", "preserved_snapshot_id", "native_snapshot_id",
+                "pptx_role_snapshot_id", "pdf_snapshot_id", "reused_extraction_snapshot_id"))
+                or value.get("body_source") != "pdf_visual_wiki"):
+            raise PublicationPreviewIdempotencyError("The stored visual PDF body selection is ambiguous.")
+    if "pdf_snapshot_id" in value:
+        required.add("pdf_snapshot_id")
+        if (any(key in value for key in ("authored_snapshot_id", "preserved_snapshot_id", "native_snapshot_id",
+                "pptx_role_snapshot_id", "reused_extraction_snapshot_id")) or value.get("body_source") != "pdf_wiki"):
+            raise PublicationPreviewIdempotencyError("The stored PDF body selection is ambiguous.")
+    if "pptx_role_snapshot_id" in value:
+        required.add("pptx_role_snapshot_id")
+        if (any(key in value for key in ("authored_snapshot_id", "preserved_snapshot_id", "native_snapshot_id", "reused_extraction_snapshot_id"))
+                or value.get("body_source") != "pptx_role_wiki"):
+            raise PublicationPreviewIdempotencyError("The stored role body selection is ambiguous.")
+    if "native_snapshot_id" in value:
+        required.add("native_snapshot_id")
+        if (any(key in value for key in ("authored_snapshot_id", "preserved_snapshot_id", "reused_extraction_snapshot_id"))
+                or value.get("body_source") != "native_wiki"):
+            raise PublicationPreviewIdempotencyError("The stored native body selection is ambiguous.")
+    if "preserved_snapshot_id" in value:
+        required.add("preserved_snapshot_id")
+        if ("authored_snapshot_id" in value or "reused_extraction_snapshot_id" in value
+                or value.get("body_source") != "preserved_wiki"):
+            raise PublicationPreviewIdempotencyError("The stored body selection is ambiguous.")
     if "reused_extraction_snapshot_id" in value:
         required.add("reused_extraction_snapshot_id")
         if "authored_snapshot_id" in value:
@@ -4250,12 +4475,39 @@ def _stored_publication_result(value: object) -> PublicationResult:
         reused_extraction_snapshot_id=(None if "reused_extraction_snapshot_id" not in value else
             _preview_uuid(value["reused_extraction_snapshot_id"], field_name="reused_extraction_snapshot_id")),
         body_source=value.get("body_source"),
+        preserved_snapshot_id=(None if "preserved_snapshot_id" not in value else
+            _preview_uuid(value["preserved_snapshot_id"], field_name="preserved_snapshot_id")),
+        native_snapshot_id=(None if "native_snapshot_id" not in value else
+            _preview_uuid(value["native_snapshot_id"], field_name="native_snapshot_id")),
+        pptx_role_snapshot_id=(None if "pptx_role_snapshot_id" not in value else
+            _preview_uuid(value["pptx_role_snapshot_id"], field_name="pptx_role_snapshot_id")),
+        pdf_snapshot_id=(None if "pdf_snapshot_id" not in value else
+            _preview_uuid(value["pdf_snapshot_id"], field_name="pdf_snapshot_id")),
+        pdf_visual_snapshot_id=(None if "pdf_visual_snapshot_id" not in value else
+            _preview_uuid(value["pdf_visual_snapshot_id"], field_name="pdf_visual_snapshot_id")),
+        office_hybrid_snapshot_id=(None if "office_hybrid_snapshot_id" not in value else
+            _preview_uuid(value["office_hybrid_snapshot_id"], field_name="office_hybrid_snapshot_id")),
+        pdf_continuation_snapshot_id=(None if "pdf_continuation_snapshot_id" not in value else
+            _preview_uuid(value["pdf_continuation_snapshot_id"], field_name="pdf_continuation_snapshot_id")),
     )
     if result.to_mapping() != dict(value):
         raise PublicationPreviewIdempotencyError(
             "The stored publication result is not canonical."
         )
     return result
+
+
+@dataclass(frozen=True, slots=True)
+class ProtectedPublicationEvidence:
+    actor_user_id: str
+    preview_id: str
+    artifact_id: str
+    extraction_snapshot_id: str
+    original_filename: str
+    original_sha256: str
+    derivative_sha256: str | None
+    source_kind: str
+    opening_method: str
 
 
 class PublicationService:
@@ -4271,6 +4523,10 @@ class PublicationService:
         "_jobs",
         "_outbox",
         "_previews",
+        "_protected_publication_authorizer",
+        "_require_protected_publication_authorization",
+        "_policy_protection_classifier",
+        "_policy_source_loader",
         "_scope",
         "_users",
     )
@@ -4288,6 +4544,10 @@ class PublicationService:
         outbox: OutboxRepository | None = None,
         failpoint: Callable[[str], None] | None = None,
         wiki_publication: WikiPublicationSelector | None = None,
+        protected_publication_authorizer: Callable[[ProtectedPublicationEvidence], bool] | None = None,
+        require_protected_publication_authorization: bool = False,
+        policy_protection_classifier: PolicyProtectedSourceClassifier | None = None,
+        policy_source_loader: PublicationSourceLoader | None = None,
     ) -> None:
         if not isinstance(factory, ConnectionFactory):
             raise TypeError("PublicationService requires a ConnectionFactory.")
@@ -4295,6 +4555,18 @@ class PublicationService:
             raise TypeError("PublicationService requires a ScopeResolver.")
         if failpoint is not None and not callable(failpoint):
             raise TypeError("failpoint must be callable or None.")
+        if protected_publication_authorizer is not None and not callable(protected_publication_authorizer):
+            raise TypeError("Protected publication authorizer must be callable or None.")
+        if type(require_protected_publication_authorization) is not bool:
+            raise TypeError("Protected publication authorization policy must be boolean.")
+        if (policy_protection_classifier is None) != (policy_source_loader is None):
+            raise ValueError("Current policy publication checks require a classifier and source loader.")
+        if (policy_protection_classifier is not None
+                and not callable(getattr(policy_protection_classifier, "classify_for_actor", None))):
+            raise TypeError("The current policy classifier is invalid.")
+        if (policy_source_loader is not None
+                and not callable(getattr(policy_source_loader, "load", None))):
+            raise TypeError("The current policy source loader is invalid.")
         self._factory = factory
         self._scope = scope_resolver
         self._authority = authority or HigherPublicationAuthorityRepository()
@@ -4307,6 +4579,10 @@ class PublicationService:
         self._outbox = outbox or OutboxRepository()
         self._jobs = JobRepository()
         self._failpoint = failpoint
+        self._protected_publication_authorizer = protected_publication_authorizer
+        self._require_protected_publication_authorization = require_protected_publication_authorization
+        self._policy_protection_classifier = policy_protection_classifier
+        self._policy_source_loader = policy_source_loader
         if wiki_publication is not None and (
             not isinstance(wiki_publication, WikiPublicationSelector)
             or wiki_publication.database_path != factory.database_path
@@ -4317,6 +4593,167 @@ class PublicationService:
     def _hit(self, name: str) -> None:
         if self._failpoint is not None:
             self._failpoint(name)
+
+    def _authorize_current_source_policy(self, *, actor_id: str, preview_id: str,
+            source_snapshot_sha256: str) -> None:
+        """Reclassify a new upload at commit, including originally ordinary files.
+
+        A protected-origin-only authority callback cannot detect an ordinary
+        preview that gained account-bound protection after the worker ran.
+        This read holds no SQLite transaction while calling the provider.
+        """
+        classifier = self._policy_protection_classifier
+        loader = self._policy_source_loader
+        if classifier is None or loader is None:
+            return
+        connection = self._factory.open(read_only=True)
+        try:
+            with transaction(connection, TransactionMode.DEFERRED):
+                row = connection.execute(
+                    """SELECT p.artifact_id,p.source_snapshot_sha256,
+                              a.origin_type,a.original_filename,a.raw_sha256,
+                              a.raw_size_bytes,a.media_type,
+                              r.source_kind AS recorded_protection
+                         FROM publication_preview p
+                         JOIN source_artifact a ON a.id=p.artifact_id
+                         LEFT JOIN protected_extraction_provenance r
+                           ON r.artifact_id=a.id
+                          AND r.extraction_snapshot_id=p.extraction_snapshot_id
+                        WHERE p.id=? AND p.actor_user_id=?""",
+                    (preview_id, actor_id),
+                ).fetchone()
+                if row is None or row["source_snapshot_sha256"] != source_snapshot_sha256:
+                    raise PublicationPreviewAuthorizationError(
+                        "The publication source protection binding is unavailable."
+                    )
+                if row["origin_type"] != "upload":
+                    return
+                artifact_id = row["artifact_id"]
+                filename = row["original_filename"]
+                raw_sha256 = row["raw_sha256"]
+                raw_size = row["raw_size_bytes"]
+                media_type = row["media_type"]
+                recorded = row["recorded_protection"]
+        finally:
+            connection.close()
+        if not isinstance(filename, str) or not filename:
+            raise PublicationPreviewAuthorizationError(
+                "The upload source filename is unavailable for current policy verification."
+            )
+        try:
+            loaded = loader.load(
+                artifact_id=artifact_id, expected_sha256=raw_sha256,
+                expected_size=raw_size, expected_media_type=media_type,
+            )
+            try:
+                if loaded.original_filename != filename:
+                    raise ValueError("The upload source filename changed.")
+                current = classify_protected_for_actor(
+                    filename, loaded.content, actor_user_id=actor_id,
+                    policy_classifier=classifier,
+                )
+            finally:
+                loaded.lease.close()
+        except Exception as exc:
+            raise PublicationPreviewAuthorizationError(
+                "The current source protection status could not be verified."
+            ) from exc
+        if (None if current is None else current.value) != recorded:
+            raise PublicationPreviewAuthorizationError(
+                "The source protection status changed before publication."
+            )
+
+    def _authorize_protected_publication(self, *, actor_id: str, preview_id: str,
+            source_snapshot_sha256: str) -> None:
+        """Check external rights for a new operation, after source preparation.
+
+        This is a server-owned callback, never a client-supplied permission bit.
+        An already committed idempotent replay does not publish a new body.
+        External rights cannot be made atomic with SQLite; the company adapter
+        must perform its own current, actor-bound check at this boundary.
+        """
+        if (self._protected_publication_authorizer is None
+                and not self._require_protected_publication_authorization):
+            return
+        connection = self._factory.open(read_only=True)
+        try:
+            with transaction(connection, TransactionMode.DEFERRED):
+                if connection.execute(
+                    """SELECT 1 FROM sqlite_schema WHERE type='table'
+                         AND name='protected_extraction_provenance'"""
+                ).fetchone() is None:
+                    legacy = connection.execute(
+                        """SELECT e.extractor_name FROM publication_preview p
+                             JOIN extraction_snapshot e ON e.id=p.extraction_snapshot_id
+                            WHERE p.id=? AND p.actor_user_id=?""",
+                        (preview_id, actor_id),
+                    ).fetchone()
+                    if legacy is None or legacy[0] in {
+                        "canonical-approved-owner-pdf",
+                        "canonical-authorized-protected-snapshot",
+                    }:
+                        raise PublicationPreviewAuthorizationError(
+                            "The protected publication has no origin catalog."
+                        )
+                    return
+                row = connection.execute(
+                    """SELECT p.artifact_id,p.extraction_snapshot_id,p.source_snapshot_sha256,
+                              a.original_filename,
+                              a.raw_sha256,e.extractor_name,r.original_sha256 AS protected_sha256,
+                              r.derivative_sha256,r.source_kind,r.opening_method
+                         FROM publication_preview p
+                         JOIN source_artifact a ON a.id=p.artifact_id
+                         JOIN extraction_snapshot e ON e.id=p.extraction_snapshot_id
+                         LEFT JOIN protected_extraction_provenance r
+                           ON r.extraction_snapshot_id=e.id AND r.artifact_id=a.id
+                        WHERE p.id=? AND p.actor_user_id=?""",
+                    (preview_id, actor_id),
+                ).fetchone()
+                if row is None or row["source_snapshot_sha256"] != source_snapshot_sha256:
+                    raise PublicationPreviewAuthorizationError(
+                        "The protected publication source changed."
+                    )
+                if row["protected_sha256"] is None:
+                    if row["extractor_name"] in {
+                        "canonical-approved-owner-pdf",
+                        "canonical-authorized-protected-snapshot",
+                    }:
+                        raise PublicationPreviewAuthorizationError(
+                            "The protected publication has no origin record."
+                        )
+                    return
+                if (row["protected_sha256"] != row["raw_sha256"]
+                        or row["original_filename"] is None):
+                    raise PublicationPreviewAuthorizationError(
+                        "The protected publication origin is inconsistent."
+                    )
+                evidence = ProtectedPublicationEvidence(
+                    actor_user_id=actor_id, preview_id=preview_id,
+                    artifact_id=row["artifact_id"],
+                    extraction_snapshot_id=row["extraction_snapshot_id"],
+                    original_filename=row["original_filename"],
+                    original_sha256=row["raw_sha256"],
+                    derivative_sha256=row["derivative_sha256"],
+                    source_kind=row["source_kind"],
+                    opening_method=row["opening_method"],
+                )
+        finally:
+            connection.close()
+        authorizer = self._protected_publication_authorizer
+        if authorizer is None:
+            if self._require_protected_publication_authorization:
+                raise PublicationPreviewAuthorizationError(
+                    "A current protected-source permission check is required."
+                )
+            return
+        try:
+            authorized = authorizer(evidence) is True
+        except Exception:
+            authorized = False
+        if not authorized:
+            raise PublicationPreviewAuthorizationError(
+                "Current protected-source permission does not allow publication."
+            )
 
     @staticmethod
     def _request_sha256(
@@ -4395,6 +4832,9 @@ class PublicationService:
         except ScopeResolutionError as exc:
             raise PublicationPreviewAuthorizationError("Current scope does not authorize authored publication.") from exc
 
+    def _publication_preview_current(self, connection, preview, now_ms):
+        return preview.status == "ready" and now_ms < preview.expires_at_ms
+
     def _freeze_new_publication_source(
         self,
         *,
@@ -4443,6 +4883,7 @@ class PublicationService:
                     preview_id=preview_id,
                     actor_user_id=actor_id,
                 )
+                selection = None
                 if self._wiki_publication is not None:
                     selection = self._wiki_publication.select(connection, preview)
                     if selection is not None:
@@ -4456,13 +4897,19 @@ class PublicationService:
                     or preview.source_snapshot_sha256 != source_snapshot_sha256
                     or preview.captured_scope_epoch != epoch
                     or (authored_snapshot_id is not None and target_mode not in preview.available_target_modes)
-                    or db_now_ms(connection) >= preview.expires_at_ms
+                    or not self._publication_preview_current(connection, preview, db_now_ms(connection))
                 ):
                     raise PublicationPreviewAuthorizationError(
                         "The preview is not currently eligible for this publication."
                     )
                 authored_options = {}
-                if authored_snapshot_id is not None:
+                if (authored_snapshot_id is not None or getattr(selection, "preserved_snapshot_id", None) is not None
+                        or getattr(selection, "native_snapshot_id", None) is not None
+                        or getattr(selection, "pptx_role_snapshot_id", None) is not None
+                        or getattr(selection, "pdf_snapshot_id", None) is not None
+                        or getattr(selection, "pdf_visual_snapshot_id", None) is not None
+                        or getattr(selection, "office_hybrid_snapshot_id", None) is not None
+                        or getattr(selection, "pdf_continuation_snapshot_id", None) is not None):
                     authored_options = {"authored_snapshot_id": authored_snapshot_id,
                         "authorized_targets": self._authored_preparation_targets(connection,
                             actor_id=actor_id, epoch=epoch, preview=preview, target_mode=target_mode,
@@ -4679,6 +5126,15 @@ class PublicationService:
             target=target,
             personal_space_id=personal_space_id,
         )
+        if frozen_source is not None:
+            self._authorize_current_source_policy(
+                actor_id=actor_id, preview_id=preview_id,
+                source_snapshot_sha256=expected_source_snapshot,
+            )
+            self._authorize_protected_publication(
+                actor_id=actor_id, preview_id=preview_id,
+                source_snapshot_sha256=expected_source_snapshot,
+            )
         try:
             explicit_references = (
                 ()
@@ -4717,7 +5173,7 @@ class PublicationService:
                             "The publication operation is already in progress."
                         )
                     stored = _stored_publication_result(begun.operation.result)
-                    replay_options = publication_replay_options(connection, actor_id=actor_id,
+                    replay_options = self._wiki_publication.replay_options(connection, actor_id=actor_id,
                         operation_id=operation_id, stored=stored, requested_authored_snapshot_id=authored_snapshot_id)
                     exact = self._commits.require_exact_replay(
                         connection,
@@ -4752,7 +5208,7 @@ class PublicationService:
                     or preview.source_snapshot_sha256 is None
                     or preview.source_snapshot_sha256 != expected_source_snapshot
                     or preview.captured_scope_epoch != epoch
-                    or now_ms >= preview.expires_at_ms
+                    or not self._publication_preview_current(connection, preview, now_ms)
                     or target_mode not in preview.available_target_modes
                 ):
                     raise PublicationPreviewAuthorizationError(
@@ -5124,7 +5580,14 @@ class PublicationService:
                     request_id=request_id,
                     operation_id=operation_id,
                     target=target,
-                    body_source=("authored_wiki" if committed.authored_snapshot_id is not None else "extraction")
+                    body_source=("pdf_continuation_wiki" if committed.pdf_continuation_snapshot_id is not None else
+                        "office_hybrid_wiki" if committed.office_hybrid_snapshot_id is not None else
+                        "pdf_visual_wiki" if committed.pdf_visual_snapshot_id is not None else
+                        "pdf_wiki" if committed.pdf_snapshot_id is not None else
+                        "pptx_role_wiki" if committed.pptx_role_snapshot_id is not None else
+                        "native_wiki" if committed.native_snapshot_id is not None else
+                        "preserved_wiki" if committed.preserved_snapshot_id is not None else
+                        "authored_wiki" if committed.authored_snapshot_id is not None else "extraction")
                         if self._wiki_publication.has_request(connection, preview_id)
                         else None,
                 )
@@ -5193,6 +5656,12 @@ class PublicationApiService:
     def get_preview(self, query: GetPublicationPreviewQuery) -> dict[str, object]:
         return self._previews.get_preview(query)
 
+    def status_read_coordinator(self, principal_resolver, *, server_read_binding=None):
+        """Explicitly opt status GETs into a request-owned two-phase RO read."""
+        from ..publication_status_read import PublicationStatusReadCoordinator
+        return PublicationStatusReadCoordinator(self._previews, self, principal_resolver,
+            server_read_binding=server_read_binding)
+
     def cancel_preview(
         self, command: CancelPublicationPreviewCommand
     ) -> PublicationPreviewRecord:
@@ -5200,3 +5669,4 @@ class PublicationApiService:
 
     def publish(self, command: PublishPreviewCommand) -> PublicationResult:
         return self._commits.publish(command)
+

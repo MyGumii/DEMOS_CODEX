@@ -10,7 +10,6 @@ path.
 from __future__ import annotations
 
 from contextlib import contextmanager
-from contextvars import ContextVar
 from dataclasses import dataclass
 import hashlib
 import json
@@ -40,9 +39,6 @@ FAULT_POINTS = {
 _ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:-]{0,199}$", re.ASCII)
 _OPERATION_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:-]{7,199}$", re.ASCII)
 _GENERATION_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{7,127}$", re.ASCII)
-_bound_temporary_unlock: ContextVar[Mapping[str, Any] | None] = ContextVar(
-    "notion_collaborative_temporary_unlock", default=None,
-)
 
 
 class AuthorityUnavailable(RuntimeError):
@@ -120,66 +116,6 @@ def _canonical_json(value: Any) -> str:
         separators=(",", ":"),
         allow_nan=False,
     )
-
-
-def _require_unlocked_document(document: sqlite3.Row) -> None:
-    if json.loads(str(document["settings_json"])).get("locked"):
-        raise PermissionError("page is locked")
-
-
-@contextmanager
-def bind_temporary_unlock(grant: Mapping[str, Any]) -> Iterator[None]:
-    """Scope a validated HTTP grant to this request, never to a process or tab."""
-    token = _bound_temporary_unlock.set(dict(grant))
-    try:
-        yield
-    finally:
-        _bound_temporary_unlock.reset(token)
-
-
-def _require_unlocked_or_temporary(con: sqlite3.Connection, document: sqlite3.Row,
-                                   actor_subject_id: str) -> None:
-    if not json.loads(str(document["settings_json"])).get("locked"):
-        return
-    if _validated_temporary_unlock(con, document, actor_subject_id) is not None:
-        return
-    raise PermissionError("page is locked")
-
-
-def _validated_temporary_unlock(con: sqlite3.Connection, document: sqlite3.Row,
-                                actor_subject_id: str,
-                                grant: Mapping[str, Any] | None = None) -> Mapping[str, Any] | None:
-    if not json.loads(str(document["settings_json"])).get("locked"):
-        return None
-    if grant is None:
-        grant = _bound_temporary_unlock.get()
-    if (isinstance(grant, Mapping)
-            and grant.get("user_id") == actor_subject_id
-            and grant.get("workspace_id") == str(document["workspace_id"])
-            and grant.get("page_id") == str(document["id"])
-            and type(grant.get("expires_at_ms")) is int
-            and int(time.time() * 1000) < grant["expires_at_ms"]
-            and grant.get("lock_generation") == _lock_generation_on_connection(con, document)):
-        return grant
-    return None
-
-
-def _lock_generation_on_connection(con: sqlite3.Connection, document: sqlite3.Row) -> str:
-    """Fence at the latest lock setting or legacy full save without changing schema."""
-    if not json.loads(str(document["settings_json"])).get("locked"):
-        raise ValueError("page is not locked")
-    event = con.execute(
-        "SELECT event.id FROM workspace_collaboration_events event "
-        "WHERE event.document_id=? AND (event.event_type='document.saved' OR "
-        "(event.event_type='page.settings.updated' AND EXISTS "
-        "(SELECT 1 FROM json_each(event.payload_json, '$.changed_fields') "
-        "WHERE value='locked'))) "
-        "ORDER BY event.document_sequence DESC LIMIT 1",
-        (str(document["id"]),),
-    ).fetchone()
-    if event is not None:
-        return str(event["id"])
-    return f"initial:{document['id']}:{document['access_epoch']}"
 
 
 def _sha256(value: str | bytes) -> str:
@@ -507,11 +443,7 @@ class CanonicalAuthority:
         result: Mapping[str, Any],
         fault: str | None,
         runtime_generation_id: str | None = None,
-        event_operation_id: str | None = None,
     ) -> dict[str, Any]:
-        # Several mutation services can emit the same transport event type.
-        # Keep the public receipt/audit key while separating their event keys.
-        event_operation = operation_id if event_operation_id is None else _operation_id(event_operation_id)
         _trip(fault, "after_domain")
         now = int(time.time())
         event_id = _stable_id("cevt", actor, action, operation_id)
@@ -530,7 +462,7 @@ class CanonicalAuthority:
                 document_sequence,
                 event_type,
                 actor,
-                event_operation,
+                operation_id,
                 workspace_epoch,
                 document_epoch,
                 payload_json,
@@ -565,7 +497,7 @@ class CanonicalAuthority:
                 document_id,
                 event_type,
                 actor,
-                event_operation,
+                operation_id,
                 workspace_epoch,
                 document_epoch,
                 payload_json,
@@ -647,11 +579,6 @@ class CanonicalAuthority:
     def _snapshot_on_connection(
         con: sqlite3.Connection, document: sqlite3.Row
     ) -> dict[str, Any]:
-        from code_assist_v1.notion_collaboration import (
-            database_row_trash, database_row_page_placement, database_trash,
-        )
-        hidden_blocks = {block_id for _, block_id in
-            database_trash.document_members(con, str(document["id"]))}
         blocks = [
             {
                 "id": str(row["id"]),
@@ -665,32 +592,7 @@ class CanonicalAuthority:
                 "WHERE document_id=? ORDER BY position,id",
                 (str(document["id"]),),
             ).fetchall()
-            if str(row["id"]) not in hidden_blocks
         ]
-        # Canonical and linked database blocks can retain a render cache in
-        # props_json. The canonical row reader hides Trash members, but a page
-        # read or transfer export must not return an older cached copy of one.
-        if database_row_trash.installed(con) or database_row_page_placement.installed(con):
-            hidden_by_database: dict[str, frozenset[str]] = {}
-            for block in blocks:
-                props = block["props"]
-                if not isinstance(props, dict) or not isinstance(props.get("rows"), list):
-                    continue
-                linked = props.get("linked_database")
-                linked_id = linked.get("database_id") if isinstance(linked, Mapping) else None
-                database_id = str(linked_id or props.get("database_id") or "")
-                if not database_id:
-                    continue
-                if database_id not in hidden_by_database:
-                    hidden_by_database[database_id] = (
-                        database_row_trash.archived_row_ids(con, database_id)
-                        | database_row_page_placement.page_row_ids(con, database_id))
-                hidden_rows = hidden_by_database[database_id]
-                if hidden_rows:
-                    props["rows"] = [row for row in props["rows"]
-                        if not isinstance(row, Mapping) or str(
-                            row.get("_canonical_row_id") or row.get("id")
-                            or row.get("page_id") or "") not in hidden_rows]
         return _content_descriptor(
             title=str(document["title"]),
             icon=str(document["icon"]),
@@ -709,7 +611,6 @@ class CanonicalAuthority:
         actor_subject_id: str,
         operation_id: str,
         created_at: int,
-        initial_update_sequence: int = 0,
     ) -> None:
         """Successor-schema hook committed atomically with document creation."""
 
@@ -783,17 +684,12 @@ class CanonicalAuthority:
                 blocks=clean_blocks,
             )
             content_hash = _sha256(_canonical_json(descriptor))
-            position = con.execute(
-                "SELECT COALESCE(MAX(position),-1)+1 FROM workspace_collaboration_documents "
-                "WHERE workspace_id=? AND parent_document_id IS ? AND archived=0",
-                (workspace, parent),
-            ).fetchone()[0]
             con.execute(
                 "INSERT INTO workspace_collaboration_documents("
                 "id,workspace_id,legacy_owner_subject_id,parent_document_id,title,icon,cover,"
                 "settings_json,position,archived,archived_at,revision,document_sequence,"
                 "access_epoch,row_version,content_sha256,imported_snapshot_id,created_at,updated_at) "
-                "VALUES(?,?,?,?,?,?,?,?,?,0,NULL,1,1,1,1,?,NULL,?,?)",
+                "VALUES(?,?,?,?,?,?,?,?,0,0,NULL,1,1,1,1,?,NULL,?,?)",
                 (
                     document,
                     workspace,
@@ -803,7 +699,6 @@ class CanonicalAuthority:
                     str(icon),
                     str(cover),
                     _canonical_json(clean_settings),
-                    position,
                     content_hash,
                     now,
                     now,
@@ -862,12 +757,6 @@ class CanonicalAuthority:
         if cls._workspace_role(con, workspace_id, actor) not in WORKSPACE_EDIT_ROLES:
             raise NotFoundOrDenied("not found or permission denied")
         return workspace
-
-    def _extend_save_descriptor(
-        self, con: sqlite3.Connection, document: sqlite3.Row, descriptor: dict[str, Any]
-    ) -> dict[str, Any]:
-        """Successor authorities may retain additional canonical snapshot fields."""
-        return descriptor
 
     def save_document(
         self,
@@ -939,7 +828,6 @@ class CanonicalAuthority:
                 expected_workspace_epoch=workspace_epoch,
                 expected_document_epoch=document_epoch,
             )
-            _require_unlocked_or_temporary(con, document_row, actor)
             if int(document_row["revision"]) != revision:
                 raise RevisionConflict(int(document_row["revision"]))
             next_revision = revision + 1
@@ -952,7 +840,6 @@ class CanonicalAuthority:
                 settings=clean_settings,
                 blocks=clean_blocks,
             )
-            descriptor = self._extend_save_descriptor(con, document_row, descriptor)
             content_hash = _sha256(_canonical_json(descriptor))
             con.execute(
                 "UPDATE workspace_collaboration_documents SET "
@@ -1356,12 +1243,10 @@ class CanonicalAuthority:
         *,
         expected_workspace_epoch: int | None = None,
         expected_document_epoch: int | None = None,
-        include_lock_generation: bool = False,
     ) -> dict[str, Any]:
         subject = _identifier(subject_id, field="subject_id")
         document = _identifier(document_id, field="document_id")
         with self._reader() as con:
-            con.execute("BEGIN")
             workspace_row, document_row, role = self._access(
                 con,
                 subject,
@@ -1371,42 +1256,25 @@ class CanonicalAuthority:
                 expected_document_epoch=expected_document_epoch,
             )
             snapshot = self._snapshot_on_connection(con, document_row)
-            parent_document_id = document_row["parent_document_id"]
-            from code_assist_v1.notion_collaboration import database_access, linked_databases
-            if database_access.installed(con):
-                linked_databases.redact_linked_blocks_on_connection(
-                    self, con, subject, str(workspace_row["id"]), snapshot["blocks"],
-                )
-                if parent_document_id is not None:
-                    try:
-                        self._access(con, subject, str(parent_document_id),
-                                     minimum_role="view")
-                    except NotFoundOrDenied:
-                        parent_document_id = None
-            from code_assist_v1.notion_collaboration import database_row_trash, database_trash
-            hidden_comments = (database_trash.hidden_comment_ids(con, document)
-                | database_row_trash.hidden_comment_ids(con, document))
-            comments = []
-            for row in con.execute(
-                    "SELECT * FROM workspace_collaboration_comments "
-                    "WHERE document_id=? ORDER BY created_at,id",
-                    (document,),
-                ).fetchall():
-                anchor = json.loads(str(row["anchor_json"]))
-                comments.append({
+            comments = [
+                {
                     "id": str(row["id"]),
                     "block_id": row["block_id"],
                     "author_subject_id": str(row["author_subject_id"]),
                     "content": str(row["content"]),
-                    "anchor": anchor,
+                    "anchor": json.loads(str(row["anchor_json"])),
                     "parent_comment_id": row["parent_comment_id"],
                     "reactions": json.loads(str(row["reactions_json"])),
                     "resolved": bool(row["resolved"]),
                     "created_at": int(row["created_at"]),
                     "updated_at": int(row["updated_at"]),
-                })
-            if hidden_comments:
-                comments = [item for item in comments if item["id"] not in hidden_comments]
+                }
+                for row in con.execute(
+                    "SELECT * FROM workspace_collaboration_comments "
+                    "WHERE document_id=? ORDER BY created_at,id",
+                    (document,),
+                ).fetchall()
+            ]
             return {
                 "contract": AUTHORITY_CONTRACT,
                 "workspace_id": str(workspace_row["id"]),
@@ -1417,14 +1285,11 @@ class CanonicalAuthority:
                 "revision": int(document_row["revision"]),
                 "document_sequence": int(document_row["document_sequence"]),
                 "content_sha256": str(document_row["content_sha256"]),
-                "parent_document_id": parent_document_id,
+                "parent_document_id": document_row["parent_document_id"],
                 "position": int(document_row["position"]),
                 "archived": bool(document_row["archived"]),
                 "created_at": int(document_row["created_at"]),
                 "updated_at": int(document_row["updated_at"]),
-                **({"lock_generation": _lock_generation_on_connection(con, document_row)
-                    if json.loads(str(document_row["settings_json"])).get("locked") else ""}
-                   if include_lock_generation else {}),
                 **snapshot,
                 "comments": comments,
             }

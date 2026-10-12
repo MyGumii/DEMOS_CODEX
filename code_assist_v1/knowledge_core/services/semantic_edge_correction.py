@@ -430,7 +430,9 @@ class SemanticEdgeCorrectionService:
                         connection,
                         source_space_id=selected,
                         now_ms=now_ms,
-                        include_self=False,
+                        # Native higher-space relations also appear in their
+                        # own aggregate view, not just in strict ancestors.
+                        include_self=True,
                         create_missing=False,
                     )
                     edge_status = "inactive"

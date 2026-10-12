@@ -346,6 +346,11 @@ def _relative(path: Path, root: Path) -> str:
     return Path(relative).as_posix()
 
 
+def _resolved_windows_path(path: Path) -> Path:
+    """Resolve filesystem spelling while retaining the logical path identity."""
+    return Path(_display_windows_path(_extended_windows_path(path).resolve(strict=True)))
+
+
 def _contains(parent: Path, child: Path) -> bool:
     parent_value = _display_windows_path(parent)
     child_value = _display_windows_path(child)
@@ -783,7 +788,7 @@ class _WindowsDirectoryAnchor:
             delete_access=delete_access,
         )
         raw_handle = create_file(
-            str(path),
+            str(_extended_windows_path(path)),
             desired,
             0x0001 | (0x0002 if share_write else 0),
             # Bootstrap allows child-file writes while still denying delete/
@@ -798,7 +803,7 @@ class _WindowsDirectoryAnchor:
         anchor = cls(path=path, handle=int(raw_handle))
         try:
             if os.path.normcase(str(_windows_final_path(anchor.handle))) != os.path.normcase(
-                str(path.resolve(strict=True))
+                str(_resolved_windows_path(path))
             ):
                 raise OSError("directory_anchor_final_path_changed")
             return anchor
@@ -823,7 +828,7 @@ class _WindowsDirectoryAnchor:
         anchor = cls(path=parent.path / name, handle=handle)
         try:
             if os.path.normcase(str(_windows_final_path(handle))) != os.path.normcase(
-                str(anchor.path.resolve(strict=True))
+                str(_resolved_windows_path(anchor.path))
             ):
                 raise OSError("relative_directory_final_path_changed")
             return anchor

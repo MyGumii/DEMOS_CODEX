@@ -31,7 +31,6 @@ from urllib.request import Request, urlopen
 from uuid import uuid4
 
 from .durable_transport import DurableTransportAuthority
-from .protocol_contract import AcknowledgementConflict
 from .runtime_gateway import (
     ConnectionCapacityExceeded,
     GatewayRejected,
@@ -224,26 +223,13 @@ class RuntimeGatewayASGI:
                     await self._send_json(send, {"type": "connected", **asdict(descriptor)})
                 elif operation == "submit" and connection_id is not None:
                     payload = base64.b64decode(str(document.get("payload_base64", "")), validate=True)
-                    try:
-                        receipt = self.gateway.submit_payload(
-                            connection_id,
-                            operation_id=str(document.get("operation_id", "")),
-                            client_sequence=document.get("client_sequence"),
-                            acknowledgement_sequence=document.get("acknowledgement_sequence"),
-                            payload=payload,
-                        )
-                    except AcknowledgementConflict:
-                        # The authority rejected this exact request before commit.
-                        # Keep the session open so its queued update can acknowledge
-                        # newer durable state without changing an uncertain retry.
-                        await self._send_json(send, {
-                            "type": "submit_rejected",
-                            "error": "ACKNOWLEDGEMENT_CONFLICT",
-                            "operation_id": document.get("operation_id"),
-                            "client_sequence": document.get("client_sequence"),
-                            "acknowledgement_sequence": document.get("acknowledgement_sequence"),
-                        })
-                        continue
+                    receipt = self.gateway.submit_payload(
+                        connection_id,
+                        operation_id=str(document.get("operation_id", "")),
+                        client_sequence=document.get("client_sequence"),
+                        acknowledgement_sequence=document.get("acknowledgement_sequence"),
+                        payload=payload,
+                    )
                     await self._send_json(
                         send,
                         {

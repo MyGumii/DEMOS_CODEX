@@ -4,6 +4,92 @@
   "title": "Publication preview, source snapshot, and atomic target result contracts",
   "$defs": {
     "WikiGeneration": {
+      "oneOf": [{"$ref": "#/$defs/LegacyWikiGeneration"}, {"$ref": "#/$defs/PreservationGeneration"}, {"$ref": "#/$defs/AuthoringGeneration"}, {"$ref": "#/$defs/NativeWikiGeneration"}, {"$ref": "#/$defs/PptxRoleWikiGeneration"}, {"$ref": "#/$defs/PdfWikiGeneration"}, {"$ref": "#/$defs/PdfVisualWikiGeneration"}, {"$ref": "#/$defs/OfficeHybridWikiGeneration"}]
+    },
+    "AuthoringGeneration": {
+      "type": "object",
+      "required": ["schema_version", "status", "kind", "semantic_review_performed", "semantic_completeness_proven"],
+      "properties": {
+        "schema_version": {"const": 3},
+        "kind": {"const": "information_authoring"},
+        "status": {"enum": ["pending", "ready", "unavailable"]},
+        "semantic_review_performed": {"const": false},
+        "semantic_completeness_proven": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "NativeWikiGeneration": {
+      "type": "object",
+      "required": ["schema_version", "status", "kind", "semantic_review_performed", "semantic_completeness_proven"],
+      "properties": {
+        "schema_version": {"const": 4},
+        "kind": {"const": "native_information_authoring"},
+        "status": {"enum": ["pending", "ready", "unavailable"]},
+        "semantic_review_performed": {"const": false},
+        "semantic_completeness_proven": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "PptxRoleWikiGeneration": {
+      "type": "object",
+      "required": ["schema_version", "status", "kind", "semantic_review_performed", "semantic_completeness_proven"],
+      "properties": {
+        "schema_version": {"const": 5},
+        "kind": {"const": "pptx_role_information_authoring"},
+        "status": {"enum": ["pending", "ready", "unavailable"]},
+        "semantic_review_performed": {"const": false},
+        "semantic_completeness_proven": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "PdfWikiGeneration": {
+      "type": "object",
+      "required": ["schema_version", "status", "kind", "semantic_review_performed", "semantic_completeness_proven"],
+      "properties": {
+        "schema_version": {"const": 6},
+        "kind": {"const": "pdf_information_authoring"},
+        "status": {"enum": ["pending", "ready", "unavailable"]},
+        "semantic_review_performed": {"const": false},
+        "semantic_completeness_proven": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "PdfVisualWikiGeneration": {
+      "type": "object",
+      "required": ["schema_version", "status", "kind", "semantic_review_performed", "semantic_completeness_proven"],
+      "properties": {
+        "schema_version": {"const": 7},
+        "kind": {"const": "pdf_visual_information_authoring"},
+        "status": {"enum": ["pending", "ready", "unavailable"]},
+        "semantic_review_performed": {"const": false},
+        "semantic_completeness_proven": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "OfficeHybridWikiGeneration": {
+      "type": "object",
+      "required": ["schema_version", "status", "kind", "semantic_review_performed", "semantic_completeness_proven"],
+      "properties": {
+        "schema_version": {"const": 8},
+        "kind": {"const": "office_hybrid_native_page_information_authoring"},
+        "status": {"enum": ["pending", "ready", "unavailable"]},
+        "semantic_review_performed": {"const": false},
+        "semantic_completeness_proven": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "PreservationGeneration": {
+      "type": "object",
+      "required": ["schema_version", "status", "kind", "semantic_completeness_proven"],
+      "properties": {
+        "schema_version": {"const": 2},
+        "kind": {"const": "information_preservation"},
+        "semantic_completeness_proven": {"const": false},
+        "status": {"enum": ["pending", "ready", "unavailable"]}
+      },
+      "additionalProperties": false
+    },
+    "LegacyWikiGeneration": {
       "type": "object",
       "required": ["schema_version", "status"],
       "properties": {
@@ -346,7 +432,7 @@
       "type": "object",
       "required": ["request_id", "operation_id", "results"],
       "properties": {
-        "body_source": {"enum": ["authored_wiki", "extraction"]},
+        "body_source": {"enum": ["authored_wiki", "extraction", "preserved_wiki", "native_wiki", "pptx_role_wiki", "pdf_wiki", "pdf_visual_wiki", "office_hybrid_wiki"]},
         "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
         "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
         "results": {

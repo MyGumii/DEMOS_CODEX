@@ -14,6 +14,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 import json
 import re
+import sqlite3
 import threading
 from typing import Protocol
 
@@ -43,10 +44,41 @@ from .graph import AggregateGraphProjectionMaterializer
 
 
 _CLAIM_OWNER_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:-]{0,199}$", re.ASCII)
+_RECOVERY_CONTENTION_EXTRA_RETRIES = 3
+_RECOVERY_CONTENTION_INITIAL_DELAY_MS = 100
+_RECOVERY_CONTENTION_MAX_DELAY_MS = 5_000
+
+
+def _is_recovery_sqlite_contention(error: BaseException) -> bool:
+    """Accept only direct SQLite lock contention with successful rollback."""
+    if not isinstance(error, sqlite3.OperationalError):
+        return False
+    # transaction() preserves the original error and adds a note if rollback
+    # also fails. Do not turn an uncertain cleanup into an ordinary retry.
+    if getattr(error, "__notes__", ()):
+        return False
+    code = getattr(error, "sqlite_errorcode", None)
+    return (
+        isinstance(code, int)
+        and not isinstance(code, bool)
+        and (code & 0xFF) in (sqlite3.SQLITE_BUSY, sqlite3.SQLITE_LOCKED)
+    )
 
 
 class ProjectionWorkerError(KnowledgeCoreError):
     code = "KNOWLEDGE_CORE_PROJECTION_WORKER_FAILED"
+
+
+class ProjectionRecoveryContentionError(ProjectionWorkerError):
+    """A recovery-only contention failure after rollback and physical close."""
+
+    code = "KNOWLEDGE_CORE_PROJECTION_RECOVERY_CONTENTION"
+
+    def __init__(self, original: sqlite3.OperationalError) -> None:
+        if not _is_recovery_sqlite_contention(original):
+            raise TypeError("Recovery contention requires a direct safe SQLite error.")
+        super().__init__("The pre-claim projection recovery is temporarily busy.")
+        self.original = original
 
 
 class ProjectionHeartbeatError(ProjectionWorkerError):
@@ -341,8 +373,28 @@ class OutboxProjectionWorker:
         iterations = claimed = idle_polls = applied = retried = dead = 0
         recovered_retry = recovered_dead = heartbeat_count = 0
         idle_delay = self._config.idle_poll_ms
+        recovery_retries = 0
+        recovery_delay = _RECOVERY_CONTENTION_INITIAL_DELAY_MS
         while not stop.is_set():
-            result = self.run_once()
+            try:
+                result = self.run_once()
+            except ProjectionRecoveryContentionError as exc:
+                # Only _recover_expired() creates this exception, after its
+                # ordinary transaction and connection have been cleaned up.
+                # No event has been claimed, so this is not an event attempt.
+                if stop.is_set():
+                    break
+                if recovery_retries >= _RECOVERY_CONTENTION_EXTRA_RETRIES:
+                    raise exc.original from None
+                recovery_retries += 1
+                if stop.wait(recovery_delay / 1000):
+                    break
+                recovery_delay = min(
+                    _RECOVERY_CONTENTION_MAX_DELAY_MS, recovery_delay * 2
+                )
+                continue
+            recovery_retries = 0
+            recovery_delay = _RECOVERY_CONTENTION_INITIAL_DELAY_MS
             iterations += 1
             recovered_retry += len(result.recovery.retried_ids)
             recovered_dead += len(result.recovery.dead_ids)
@@ -413,8 +465,15 @@ class OutboxProjectionWorker:
                             now_ms=now_ms,
                         )
                 return result
+        except sqlite3.OperationalError as exc:
+            if not _is_recovery_sqlite_contention(exc):
+                raise
+            contention = exc
         finally:
             connection.close()
+        # Construct the retry marker only after physical close succeeds. Factory
+        # validation, rollback notes, close failures and all other errors escape.
+        raise ProjectionRecoveryContentionError(contention) from contention
 
     def _claim_next(self) -> OutboxClaimResult | None:
         connection = self._factory.open()
@@ -719,6 +778,7 @@ class OutboxProjectionWorker:
 __all__ = [
     "OutboxProjectionWorker",
     "ProjectionHeartbeatError",
+    "ProjectionRecoveryContentionError",
     "ProjectionIterationResult",
     "ProjectionServiceResult",
     "ProjectionWorkerConfig",

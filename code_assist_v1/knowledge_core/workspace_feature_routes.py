@@ -9,7 +9,7 @@ from uuid import uuid4
 from flask import jsonify, request, send_file
 from ..config import MAX_UPLOAD_MB
 from ..feedback_store import FeedbackStore, FeedbackError
-from .canonical_routes import _principal, _error_response
+from .canonical_routes import _principal, _error_response, _json_response
 from .scope import SessionPrincipal
 from .services.wiki_files import WikiFilesService, file_name
 
@@ -77,6 +77,15 @@ def register_workspace_feature_routes(app, source_service, management_service, p
     def source_availability(p, space_id):
         body = json_body()
         return jsonify(items=files.availability(p, space_id, body.get("item_ids")))
+
+    @route("/api/knowledge/v2/spaces/<space_id>/system-docs/<document_name>", ["GET"])
+    def system_document(p, space_id, document_name):
+        if request.args:
+            raise ValueError("System documents are complete snapshots and accept no query parameters.")
+        response, status = _json_response(files.system_document(p, space_id, document_name), str(uuid4()))
+        response.headers["Cache-Control"] = "private, no-store, max-age=0"
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        return response, status
 
     @route("/api/knowledge/v2/spaces/<space_id>/items/<item_id>/markdown-download", ["GET"])
     def download_markdown(p, space_id, item_id):

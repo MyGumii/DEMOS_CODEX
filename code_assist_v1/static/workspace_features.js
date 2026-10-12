@@ -62,21 +62,15 @@
 
   async function download(url, native = false) {
     if (native) {
-      // Let the browser stream large ZIPs to its download manager, rather than
-      // buffering the complete archive as a JavaScript Blob.
-      const frame = node("iframe");
-      frame.hidden = true;
-      frame.title = "Markdown 다운로드";
-      frame.addEventListener("load", () => {
-        const text = frame.contentDocument?.body?.textContent?.trim();
-        if (text) {
-          try { toast(JSON.parse(text)?.error?.message || "다운로드에 실패했습니다.", "error"); }
-          catch (_) { toast("다운로드에 실패했습니다. 로그인과 서버 상태를 확인해 주세요.", "error"); }
-          frame.remove();
-        }
-      });
-      frame.src = url;
-      document.body.append(frame);
+      // Keep the initiating document's download action. Hidden iframe
+      // attachment responses can be lost by embedded-browser download handlers.
+      // The browser streams the ZIP; do not buffer the archive as a JS Blob.
+      const link = node("a");
+      link.href = url;
+      link.download = ""; // Use the server's Content-Disposition filename.
+      document.body.append(link);
+      link.click();
+      link.remove();
       return;
     }
     const response = await request(url);
@@ -100,7 +94,7 @@
     const graph = button("Graph", openGraph);
     graph.title = "Graph 연결 상세";
     const all = button("전체 MD ↓", async () => {
-      toast("선택한 지식 공간의 전체 Markdown을 준비합니다.");
+      toast("전체 Markdown 다운로드를 요청합니다. 완료 여부는 브라우저 다운로드 목록에서 확인해 주세요.");
       await download(`${wikiPath(sid)}/markdown-export`, true);
     });
     all.title = "선택한 Wiki 전체 문서와 Index · Log를 ZIP으로 다운로드";
@@ -111,17 +105,39 @@
 
   function itemControls(sid, item, refresh) {
     const group = node("span", undefined, "wiki-item-actions");
-    const md = button("MD ↓", () => download(`${wikiPath(sid)}/items/${item.id}/markdown-download`));
+    const md = button("MD ↓", () => download(`${wikiPath(sid)}/items/${item.id}/markdown-download`, true));
     md.title = "Markdown 다운로드";
-    const original = button("원본 ↓", async () => {
+    const original = button("원본", async () => {
       const result = await json(originalPath(sid, item.id));
       if (!result.items.length) { toast("연결된 원본 파일이 없습니다."); return; }
-      if (result.items.length === 1) { await download(result.items[0].download_url); return; }
+      // A still-running older server omits this field; its download endpoint
+      // remains authoritative and will reject a protected original itself.
+      const permitted = result.items.filter(file => file.download_permitted !== false);
+      if (!permitted.length) {
+        toast("보호 원본은 현재 이 계정에서 다운로드할 수 없습니다.");
+        return;
+      }
+      if (result.items.length === 1) { await download(permitted[0].download_url, true); return; }
       const body = node("div", undefined, "wiki-original-list");
-      for (const file of result.items) body.append(button(file.original_filename, () => download(file.download_url)));
+      for (const file of result.items) {
+        const label = file.download_permitted === false
+          ? `${file.original_filename} · 다운로드 불가`
+          : file.download_permitted === true
+            ? file.original_filename
+            : `${file.original_filename} · 다운로드 시 확인`;
+        const control = button(
+          label,
+          () => download(file.download_url, true),
+        );
+        if (file.download_permitted === false) {
+          control.disabled = true;
+          control.title = "현재 계정의 보호 원본 다운로드 권한이 없습니다.";
+        }
+        body.append(control);
+      }
       Modal.open({ title: "원본 파일 다운로드", body, footButtons: [{ label: "닫기" }] });
     });
-    original.title = "연결된 원본 다운로드";
+    original.title = "연결된 원본 파일 확인 및 다운로드";
     original.dataset.originalDownload = item.id;
     group.append(md, original);
     if ((item.capabilities || []).includes("edit") && item.origin === "native") {
@@ -150,7 +166,7 @@
           for (const row of chunk) {
             if (!row.button.isConnected) continue;
             row.button.disabled = result.items[row.id] === 0;
-            row.button.title = result.items[row.id] === 0 ? "연결된 원본 파일 없음 · ⋯ 메뉴에서 원본 연결" : "원본 파일 다운로드";
+            row.button.title = result.items[row.id] === 0 ? "연결된 원본 파일 없음 · ⋯ 메뉴에서 원본 연결" : "원본 파일 확인 및 다운로드";
           }
         } catch (_) {
           for (const row of chunk) row.button.title = "원본 정보 확인 실패 · 눌러서 다시 확인";

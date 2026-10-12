@@ -19,6 +19,7 @@ import uuid
 from typing import Mapping, Sequence
 
 from .migrations.canonical_catalog import CANONICAL_MIGRATION_CATALOG
+from .migrations.model import MigrationCatalog
 from .runtime import APPROVED_SQLITE_SOURCE_ID, APPROVED_SQLITE_VERSION
 
 
@@ -177,10 +178,13 @@ def _blob_identity(rows: Sequence[Mapping[str, object]]) -> list[dict[str, objec
 
 
 def backup_manifest_errors(
-    value: object, *, verify_hash: bool = True
+    value: object, *, verify_hash: bool = True,
+    migration_catalog: MigrationCatalog = CANONICAL_MIGRATION_CATALOG,
 ) -> tuple[str, ...]:
     """Return stable validation codes and never raise for JSON-shaped input."""
 
+    if not isinstance(migration_catalog, MigrationCatalog):
+        raise TypeError("Backup validation requires a trusted MigrationCatalog.")
     errors: set[str] = set()
     if not isinstance(value, Mapping):
         return ("manifest_shape",)
@@ -199,11 +203,12 @@ def backup_manifest_errors(
             errors.add("app_version")
         if not _sha(value.get("build_revision")):
             errors.add("build_revision")
-        catalog = CANONICAL_MIGRATION_CATALOG
+        catalog = migration_catalog
         latest = catalog.migration(catalog.latest_version)
         if value.get("schema_version") != BACKUP_SCHEMA_VERSION:
             errors.add("schema_version")
-        if value.get("physical_schema_version") != catalog.latest_version:
+        if (not _integer(value.get("physical_schema_version"))
+                or value.get("physical_schema_version") != catalog.latest_version):
             errors.add("physical_schema_version")
         if value.get("schema_catalog_sha256") != catalog.checksum_sha256:
             errors.add("schema_catalog_sha256")
@@ -305,11 +310,14 @@ def build_backup_manifest(
     lease_hmac_key_set_version: str,
     created_at: str,
     completed_at: str,
+    migration_catalog: MigrationCatalog = CANONICAL_MIGRATION_CATALOG,
 ) -> dict[str, object]:
+    if not isinstance(migration_catalog, MigrationCatalog):
+        raise TypeError("Backup building requires a trusted MigrationCatalog.")
     if any(not isinstance(blob, VerifiedBackupBlob) for blob in blobs):
         raise TypeError("blobs must contain only VerifiedBackupBlob values.")
     rows = [blob.row() for blob in sorted(blobs, key=lambda item: item.sha256)]
-    catalog = CANONICAL_MIGRATION_CATALOG
+    catalog = migration_catalog
     latest = catalog.migration(catalog.latest_version)
     manifest: dict[str, object] = {
         "app_name": BACKUP_APP_NAME,
@@ -341,7 +349,7 @@ def build_backup_manifest(
         "state": "verified",
     }
     manifest["manifest_sha256"] = manifest_sha256(manifest)
-    errors = backup_manifest_errors(manifest)
+    errors = backup_manifest_errors(manifest, migration_catalog=catalog)
     if errors:
         raise ValueError("Backup manifest is invalid: " + ",".join(errors))
     return manifest

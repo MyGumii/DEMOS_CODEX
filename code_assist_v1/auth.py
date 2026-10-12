@@ -11,7 +11,6 @@ import shutil
 import time
 from functools import wraps
 from typing import Any
-from urllib.parse import quote
 from uuid import uuid4
 
 from flask import g, jsonify, redirect, request, session
@@ -783,14 +782,6 @@ def require_auth_response():
                 status=401,
             )
         return jsonify({"error": "authentication required"}), 401
-    path = request.path or "/"
-    if path.startswith(("/page/", "/database/", "/ai/")) or path in {
-            "/workspace", "/ai"}:
-        destination = path
-        if request.query_string:
-            destination += "?" + request.query_string.decode("utf-8", errors="replace")
-        if len(destination) <= 2048:
-            return redirect("/login?next=" + quote(destination, safe=""), code=302)
     return redirect("/login", code=302)
 
 

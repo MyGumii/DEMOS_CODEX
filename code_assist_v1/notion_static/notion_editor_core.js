@@ -13,11 +13,9 @@
     { type: "heading1", label: "제목 1", icon: "H1", shortcut: "#", group: "basic", keywords: ["h1", "heading", "제목"] },
     { type: "heading2", label: "제목 2", icon: "H2", shortcut: "##", group: "basic", keywords: ["h2", "heading", "제목"] },
     { type: "heading3", label: "제목 3", icon: "H3", shortcut: "###", group: "basic", keywords: ["h3", "heading", "제목"] },
-    { type: "heading4", label: "제목 4", icon: "H4", shortcut: "####", group: "basic", keywords: ["h4", "heading", "제목"] },
     { type: "toggle_heading1", label: "제목 토글 1", icon: "▸H1", shortcut: "", group: "basic", keywords: ["toggle heading 1", "접이식 제목 1", "토글 제목 1"] },
     { type: "toggle_heading2", label: "제목 토글 2", icon: "▸H2", shortcut: "", group: "basic", keywords: ["toggle heading 2", "접이식 제목 2", "토글 제목 2"] },
     { type: "toggle_heading3", label: "제목 토글 3", icon: "▸H3", shortcut: "", group: "basic", keywords: ["toggle heading 3", "접이식 제목 3", "토글 제목 3"] },
-    { type: "toggle_heading4", label: "제목 토글 4", icon: "▸H4", shortcut: "", group: "basic", keywords: ["toggle heading 4", "접이식 제목 4", "토글 제목 4"] },
     { type: "todo", label: "할 일 목록", icon: "☐", shortcut: "[]", group: "basic", keywords: ["todo", "checkbox", "task", "할일", "체크"] },
     { type: "bullet", label: "글머리 기호 목록", icon: "•", shortcut: "-", group: "basic", keywords: ["bullet", "list", "목록", "글머리"] },
     { type: "numbered", label: "번호 매기기 목록", icon: "1.", shortcut: "1.", group: "basic", keywords: ["number", "ordered", "list", "번호", "목록"] },
@@ -57,8 +55,8 @@
 
   const BLOCK_BY_TYPE = Object.fromEntries(BLOCK_DEFINITIONS.map(item => [item.type, item]));
   const TEXT_BLOCK_TYPES = new Set([
-    "paragraph", "heading1", "heading2", "heading3", "heading4", "toggle_heading1", "toggle_heading2",
-    "toggle_heading3", "toggle_heading4", "todo", "bullet", "numbered", "toggle", "quote", "callout", "code",
+    "paragraph", "heading1", "heading2", "heading3", "toggle_heading1", "toggle_heading2",
+    "toggle_heading3", "todo", "bullet", "numbered", "toggle", "quote", "callout", "code",
     "equation", "synced_block",
   ]);
   const LIST_BLOCK_TYPES = new Set(["todo", "bullet", "numbered", "toggle"]);
@@ -100,7 +98,7 @@
       return databaseProps;
     }
     if (type === "todo") return { checked: false };
-    if (["toggle", "toggle_heading1", "toggle_heading2", "toggle_heading3", "toggle_heading4"].includes(type)) return { open: true, children: [] };
+    if (["toggle", "toggle_heading1", "toggle_heading2", "toggle_heading3"].includes(type)) return { open: true, children: [] };
     if (type === "callout") return { icon: "💡" };
     if (["bookmark", "embed", "video", "audio", "pdf"].includes(type)) return { url: "" };
     if (type === "code") return { language: "plain text", caption: "" };
@@ -121,9 +119,8 @@
   function createBlock(type = "paragraph", overrides = {}) {
     const safeType = BLOCK_BY_TYPE[type] ? type : "paragraph";
     const id = overrides.id || blockId();
-    const linked = Object.prototype.hasOwnProperty.call(overrides.props || {}, "linked_database");
-    const props = { ...(linked ? {} : defaultProps(safeType)), ...(deepClone(overrides.props || {})) };
-    if (safeType === "synced_block" && !props.sync_id && !Object.hasOwn(props, "synced_from")) props.sync_id = "sync_" + String(id).replace(/^tmp_/, "");
+    const props = { ...defaultProps(safeType), ...(deepClone(overrides.props || {})) };
+    if (safeType === "synced_block" && !props.sync_id) props.sync_id = "sync_" + String(id).replace(/^tmp_/, "");
     return {
       id,
       type: safeType,
@@ -141,12 +138,6 @@
     return TEXT_BLOCK_TYPES.has(type);
   }
 
-  function isLayoutContainer(block) {
-    return block?.type === 'paragraph' && block.props?.layout_container === true
-      && !block.content && !block.props.rich_text_html && Array.isArray(block.props.children)
-      && block.props.children.length > 0;
-  }
-
   function filterBlockDefinitions(query = "") {
     const q = String(query || "").trim().toLowerCase().replace(/^\//, "");
     if (!q) return BLOCK_DEFINITIONS.slice();
@@ -162,7 +153,6 @@
       "# ": "heading1",
       "## ": "heading2",
       "### ": "heading3",
-      "#### ": "heading4",
       "- ": "bullet",
       "* ": "bullet",
       "+ ": "bullet",
@@ -186,10 +176,10 @@
     const content = String(block.content || "");
     if (LIST_BLOCK_TYPES.has(type)) return type;
     if (type === "paragraph") return "paragraph";
-    if (["toggle_heading1", "toggle_heading2", "toggle_heading3", "toggle_heading4"].includes(type)) {
+    if (["toggle_heading1", "toggle_heading2", "toggle_heading3"].includes(type)) {
       return offset < content.length ? type : "paragraph";
     }
-    if (["heading1", "heading2", "heading3", "heading4", "quote", "callout", "equation"].includes(type)) {
+    if (["heading1", "heading2", "heading3", "quote", "callout", "equation"].includes(type)) {
       return offset < content.length ? type : "paragraph";
     }
     return "paragraph";
@@ -208,8 +198,7 @@
     const second = createBlock(nextType, {
       content: after,
       props: {
-        ...((LIST_BLOCK_TYPES.has(nextType) || current.props?.indent) ? { indent: Number(current.props?.indent || 0) } : {}),
-        ...(current.props?.visual_indent ? {visual_indent: visualOffset(current)} : {}),
+        ...(LIST_BLOCK_TYPES.has(nextType) ? { indent: Number(current.props?.indent || 0) } : {}),
         ...(nextType === "todo" ? { checked: false } : {}),
         ...(current.props?.layout_group ? {
           layout_group: current.props.layout_group,
@@ -234,177 +223,41 @@
     return { block: left, caret };
   }
 
-  function insertSiblingOwnership(blocks, anchorId, insertedIds, before = false) {
-    for (const parent of blocks) {
-      const children = parent.props?.children;
-      if (!Array.isArray(children) || !children.every(id => typeof id === 'string')) continue;
-      const index = children.indexOf(anchorId);
-      if (index >= 0) children.splice(index + (before ? 0 : 1), 0, ...insertedIds);
-    }
-  }
-
-  function replaceBlockRange(blocks, index, count, ...replacements) {
-    const removed = new Set(blocks.slice(index, index + count).map(block => block.id));
-    for (const parent of blocks) {
-      const children = parent.props?.children;
-      if (removed.has(parent.id) || !Array.isArray(children) || !children.every(id => typeof id === 'string')) continue;
-      let inserted = false;
-      parent.props.children = children.flatMap(id => {
-        if (!removed.has(id)) return [id];
-        if (inserted) return [];
-        inserted = true; return replacements.map(block => block.id);
-      });
-    }
-    blocks.splice(index, count, ...replacements);
-    return blocks;
-  }
-
-  function visualOffset(block) {
-    const value = Number(block?.props?.visual_indent);
-    return Number.isFinite(value) ? Math.max(0, Math.min(8, value)) : 0;
-  }
-
-  function blockOutline(blocks) {
-    const scopes = new Map(), result = [], ids = new Map(), preferred = new Map();
-    blocks.forEach((block, index) => {
-      if (ids.has(block.id)) throw new Error('Duplicate block identity');
-      ids.set(block.id, index);
-      const props = block.props || {}, raw = Number(props.indent);
-      const indent = Number.isFinite(raw) ? Math.max(0, Math.min(32, raw)) : 0;
-      const scope = JSON.stringify([props.layout_group || '', props.layout_group ? Number(props.layout_column) || 0 : 0, props.tab_group || '', props.tab_id || '']);
-      if (!scopes.has(scope)) scopes.set(scope, []);
-      const stack = scopes.get(scope);
-      while (stack.length && result[stack.at(-1)].indent >= indent) stack.pop();
-      result.push({indent, scope, parentIndex: stack.at(-1) ?? -1, childIndices: []});
-      stack.push(index);
+  function duplicateBlocks(blocks, indices) {
+    const source = (blocks || []).map(normalizeBlock);
+    const wanted = [...new Set((indices || []).map(Number).filter(i => i >= 0 && i < source.length))].sort((a, b) => a - b);
+    if (!wanted.length) return source;
+    const wantedSet = new Set(wanted);
+    const out = [];
+    source.forEach((block, index) => {
+      out.push(block);
+      if (wantedSet.has(index)) out.push(createBlock(block.type, { content: block.content, props: block.props }));
     });
-    result.forEach((entry, index) => {
-      const tabIndex = ids.get(blocks[index].props?.tab_group);
-      if (blocks[tabIndex]?.type === 'tabs' && blocks[entry.parentIndex]?.props?.tab_group !== blocks[tabIndex].id) entry.parentIndex = tabIndex;
-    });
-    const explicitOwners = new Set();
-    blocks.forEach((block, index) => {
-      // Inline bodies retain their existing separate editing contract. Flat ID
-      // edges can express ownership across column/tab indentation scopes.
-      const children = block.props?.children;
-      if (!Array.isArray(children) || !children.length || !children.every(id => typeof id === 'string')) return;
-      preferred.set(index, children.map(id => {
-        const child = ids.get(id);
-        if (child === undefined || explicitOwners.has(child)) throw new Error('Unresolved or shared block child');
-        explicitOwners.add(child); result[child].parentIndex = index; return child;
-      }));
-    });
-    result.forEach((entry, index) => {
-      if (entry.parentIndex >= 0) result[entry.parentIndex].childIndices.push(index);
-    });
-    preferred.forEach((children, index) => {
-      const first = new Set(children);
-      result[index].childIndices = children.concat(result[index].childIndices.filter(child => !first.has(child)));
-    });
-    const visiting = new Set(), done = new Set();
-    function resolve(index, depth = 0) {
-      if (done.has(index)) return result[index];
-      if (visiting.has(index) || depth > 64) throw new Error('Cyclic or deep block hierarchy');
-      visiting.add(index);
-      const entry = result[index], parentIndex = entry.parentIndex;
-      const parent = parentIndex >= 0 ? resolve(parentIndex, depth + 1) : null;
-      const parentBlock = blocks[parentIndex], block = blocks[index];
-      const extra = visualOffset(block) + (parent?.extra || 0);
-      const relative = parent ? Math.max(parentBlock.type === 'tabs' || isLayoutContainer(parentBlock) ? 0 : 1, entry.indent - parent.indent) : entry.indent;
-      entry.structuralIndent = (parent?.structuralIndent || 0) + relative;
-      entry.extra = extra; entry.visualIndent = entry.structuralIndent + extra;
-      entry.calloutIndex = parentBlock?.type === 'callout' ? parentIndex : parent?.calloutIndex ?? -1;
-      entry.collapsed = Boolean(parent && (parent.collapsed || ['toggle','toggle_heading1','toggle_heading2','toggle_heading3','toggle_heading4'].includes(parentBlock.type) && parentBlock.props?.open === false));
-      const tab = blocks[ids.get(block.props?.tab_group)];
-      entry.hiddenByTab = Boolean(parent?.hiddenByTab || tab?.type === 'tabs' && String(block.props?.tab_id || '') !== String(tab.props?.active_tab_id || ''));
-      visiting.delete(index); done.add(index); return entry;
-    }
-    result.forEach((_, index) => resolve(index));
-    return result;
-  }
-
-  function expandBlockSelection(blocks, indices) {
-    const selected = new Set((indices || []).map(Number).filter(i => Number.isInteger(i) && i >= 0 && i < blocks.length));
-    const outline = blockOutline(blocks), pending = [...selected];
-    while (pending.length) for (const child of outline[pending.pop()].childIndices) {
-      if (!selected.has(child)) {selected.add(child);pending.push(child);}
-    }
-    return [...selected].sort((a,b) => a-b);
-  }
-
-  function cloneBlocks(blocks, mapClone) {
-    const clones = blocks.map(block => createBlock(block.type, {content:block.content, props:block.props}));
-    const ids = new Map(blocks.map((block, i) => [block.id, clones[i].id])), layouts = new Map();
-    clones.forEach(block => {
-      const props = block.props;
-      if (props.layout_group) {
-        if (!layouts.has(props.layout_group)) layouts.set(props.layout_group, blockId());
-        props.layout_group = layouts.get(props.layout_group);
-      }
-      if (props.tab_group) {
-        if (ids.has(props.tab_group)) props.tab_group = ids.get(props.tab_group);
-        else {delete props.tab_group;delete props.tab_id;}
-      }
-      if (Array.isArray(props.children) && props.children.every(id => typeof id === 'string')) {
-        props.children = props.children.map(id => {
-          if (!ids.has(id)) throw new Error('Copy requires the complete child subtree');
-          return ids.get(id);
-        });
-      }
-    });
-    return mapClone ? clones.map((copy, index) => mapClone(blocks[index], copy)) : clones;
-  }
-
-  function duplicateBlocks(blocks, indices, mapClone) {
-    const source = (blocks || []).map(normalizeBlock), wanted = expandBlockSelection(source, indices);
-    if (wanted.length) {
-      const copies = cloneBlocks(wanted.map(i => source[i]), mapClone);
-      const copied = new Map(wanted.map((index, i) => [source[index].id, copies[i].id]));
-      source.forEach(parent => {
-        const children = parent.props?.children;
-        if (copied.has(parent.id) || !Array.isArray(children) || !children.every(id => typeof id === 'string')) return;
-        const newChildren = children.filter(id => copied.has(id)).map(id => copied.get(id));
-        if (newChildren.length) children.splice(children.findLastIndex(id => copied.has(id)) + 1, 0, ...newChildren);
-      });
-      source.splice(wanted.at(-1) + 1, 0, ...copies);
-    }
-    return source;
+    return out;
   }
 
   function removeBlocks(blocks, indices) {
-    const remove = new Set(expandBlockSelection(blocks || [], indices));
+    const remove = new Set((indices || []).map(Number));
     const out = (blocks || []).filter((_, index) => !remove.has(index)).map(normalizeBlock);
-    const remaining = new Set(out.map(block => block.id));
-    out.forEach(block => {
-      if (Array.isArray(block.props?.children) && block.props.children.every(id => typeof id === 'string')) block.props.children = block.props.children.filter(id => remaining.has(id));
-    });
     return out.length ? out : [createBlock("paragraph")];
   }
 
-  function structuralCommands() {
-    return typeof module === 'object' && module.exports ? require('./notion_block_structure') : globalThis.NotionBlockStructure;
-  }
-
-  function moveBlockSelection(blocks, indices, delta) {
-    return structuralCommands().vertical(blocks, indices, delta);
-  }
-
   function moveBlock(blocks, fromIndex, toIndex) {
-    const from = Number(fromIndex), to = Number(toIndex);
-    if (!Number.isInteger(from) || !Number.isInteger(to) || from < 0 || from >= blocks.length || from === to) return blocks.map(normalizeBlock);
-    if (Math.abs(to - from) === 1) return structuralCommands().vertical(blocks, [from], to - from);
-    return structuralCommands().moveRelative(blocks, [from], Math.max(0, Math.min(blocks.length - 1, to)), to > from ? 'after' : 'before').blocks;
+    const out = (blocks || []).map(normalizeBlock);
+    const from = Number(fromIndex);
+    let to = Number(toIndex);
+    if (!Number.isInteger(from) || !Number.isInteger(to) || from < 0 || from >= out.length) return out;
+    to = Math.max(0, Math.min(out.length - 1, to));
+    if (from === to) return out;
+    const [item] = out.splice(from, 1);
+    out.splice(to, 0, item);
+    return out;
   }
 
   function setIndent(block, delta) {
     const out = normalizeBlock(block);
     const current = Number(out.props?.indent || 0);
     out.props = out.props || {};
-    if (current === 0 && delta < 0 && visualOffset(out) > 0) {
-      const value = Math.max(0, visualOffset(out) + Number(delta));
-      if (value) out.props.visual_indent = value; else delete out.props.visual_indent;
-      return out;
-    }
     out.props.indent = Math.max(0, Math.min(MAX_INDENT, current + Number(delta || 0)));
     return out;
   }
@@ -412,7 +265,6 @@
   function blockFromLine(line) {
     const text = String(line ?? "");
     const patterns = [
-      [/^####\s+(.*)$/, "heading4"],
       [/^###\s+(.*)$/, "heading3"],
       [/^##\s+(.*)$/, "heading2"],
       [/^#\s+(.*)$/, "heading1"],
@@ -437,13 +289,9 @@
 
   function pushHistory(history, snapshot, limit = 100) {
     const current = history && typeof history === "object" ? history : { entries: [], index: -1 };
-    const stable = value => Array.isArray(value) ? value.map(stable)
-      : value && typeof value === "object" ? Object.fromEntries(Object.keys(value).sort().map(key => [key, stable(value[key])])) : value;
-    const serialized = JSON.stringify(stable(snapshot));
-    // Saving can reorder object keys without changing content. Such a snapshot
-    // neither adds an undo step nor discards an existing redo branch.
-    if (current.entries?.[current.index] === serialized) return { entries: current.entries.slice(), index: current.index };
     const entries = Array.isArray(current.entries) ? current.entries.slice(0, Number(current.index) + 1) : [];
+    const serialized = JSON.stringify(snapshot);
+    if (entries.length && entries[entries.length - 1] === serialized) return { entries, index: entries.length - 1 };
     entries.push(serialized);
     while (entries.length > Math.max(2, Number(limit) || 100)) entries.shift();
     return { entries, index: entries.length - 1 };
@@ -645,21 +493,14 @@
     createBlock,
     normalizeBlock,
     isTextBlock,
-    isLayoutContainer,
     filterBlockDefinitions,
     markdownShortcut,
     splitBlock,
     mergeBlocks,
-    insertSiblingOwnership,
-    replaceBlockRange,
     duplicateBlocks,
-    expandBlockSelection,
-    cloneBlocks,
     removeBlocks,
-    moveBlockSelection,
     moveBlock,
     setIndent,
-    blockOutline,
     blockFromLine,
     blocksFromPlainText,
     pushHistory,

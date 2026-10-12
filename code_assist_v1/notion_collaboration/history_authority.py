@@ -12,8 +12,6 @@ from typing import Any
 
 from code_assist_v1 import notion_workspace_history_authority_migration as migration
 from code_assist_v1 import notion_workspace_healing_migration as migration_core
-from code_assist_v1.notion_update_preview import page_change_preview
-from code_assist_v1.notion_collaboration import database_activity, database_row_content
 from code_assist_v1.notion_collaboration.canonical_authority import (
     AuthorityUnavailable,
     NotFoundOrDenied,
@@ -23,7 +21,6 @@ from code_assist_v1.notion_collaboration.canonical_authority import (
     _identifier,
     _operation_id,
     _request_sha256,
-    _require_unlocked_or_temporary,
     _sha256,
     _stable_id,
 )
@@ -255,67 +252,6 @@ class CollaborativeHistoryAuthority(CollaborativeFileAuthority):
                 ),
             }
 
-    def list_update_previews(
-        self, subject_id: str, document_id: str, *,
-        before_revision: int | None = None, limit: int = 20,
-    ) -> dict[str, Any]:
-        """Authorized, paged edit summaries without sending full snapshots."""
-        subject = self._require_active(subject_id)
-        document = _identifier(document_id, field="document_id")
-        if before_revision is not None and (
-            isinstance(before_revision, bool) or not isinstance(before_revision, int)
-            or before_revision < 1
-        ):
-            raise ValueError("positive before_revision required")
-        page_size = max(1, min(int(limit), 30))
-        with self._reader() as con:
-            workspace, _current, _role = self._authorized_document(con, subject, document)
-            params: list[Any] = [document]
-            boundary = ""
-            if before_revision is not None:
-                boundary = "AND revision.revision<? "
-                params.append(before_revision)
-            params.append(page_size + 1)
-            rows = con.execute(
-                "SELECT revision.revision,revision.actor_subject_id,revision.created_at,"
-                "revision.content_sha256,"
-                "CASE WHEN length(CAST(revision.snapshot_json AS BLOB))<=2097152 "
-                "THEN revision.snapshot_json END AS snapshot_json,"
-                "restore.source_revision AS restored_from_revision "
-                "FROM workspace_collaboration_revisions revision "
-                "LEFT JOIN workspace_collaboration_history_restores restore "
-                "ON restore.document_id=revision.document_id "
-                "AND restore.result_revision=revision.revision "
-                "WHERE revision.document_id=? " + boundary +
-                "ORDER BY revision.revision DESC LIMIT ?",
-                tuple(params),
-            ).fetchall()
-            self._authorized_document(con, subject, document)
-
-        def snapshot(row):
-            return self._decode_revision(row) if row is not None and row["snapshot_json"] is not None else None
-
-        visible = rows[:page_size]
-        items = []
-        for index, row in enumerate(visible):
-            older = rows[index + 1] if index + 1 < len(rows) else None
-            after = snapshot(row)
-            before = snapshot(older) if older is not None else None
-            items.append({
-                "revision": int(row["revision"]),
-                "actor_subject_id": str(row["actor_subject_id"]),
-                "created_at": int(row["created_at"]),
-                "restored_from_revision": row["restored_from_revision"],
-                "preview": page_change_preview(before, after) if after is not None
-                    and (older is None or before is not None) else None,
-            })
-        has_more = len(rows) > page_size
-        return {
-            "workspace_id": str(workspace["id"]), "document_id": document,
-            "items": items, "has_more": has_more,
-            "next_before_revision": int(visible[-1]["revision"]) if has_more and visible else None,
-        }
-
     def get_revision(
         self, subject_id: str, document_id: str, revision: int
     ) -> dict[str, Any]:
@@ -387,22 +323,13 @@ class CollaborativeHistoryAuthority(CollaborativeFileAuthority):
         actor: str,
         now: int,
     ) -> None:
-        # Durable Yjs titles may be empty or contain intentional edge spaces.
-        # A restore must retain the exact recorded string, not normalize it.
-        title = snapshot.get("title")
-        if not isinstance(title, str) or len(title) > 1000:
+        title = str(snapshot.get("title") or "").strip()
+        if not title or len(title) > 1000:
             raise HistoryIntegrityError("history title is invalid")
         settings = snapshot.get("settings", {})
         if not isinstance(settings, dict):
             raise HistoryIntegrityError("history settings are invalid")
         blocks = _clean_blocks(snapshot.get("blocks", []))
-        if database_row_content.installed(con):
-            current_databases = self._editing_snapshot(con, document)["databases"]
-            try:
-                database_row_content.restore_bodies(con, current_databases,
-                    snapshot.get("databases", []), now=now)
-            except (ValueError, KeyError, TypeError) as exc:
-                raise HistoryIntegrityError(str(exc)) from exc
         document_id = str(document["id"])
         con.execute(
             "UPDATE workspace_collaboration_documents SET title=?,icon=?,cover=?,"
@@ -514,22 +441,12 @@ class CollaborativeHistoryAuthority(CollaborativeFileAuthority):
                 expected_workspace_epoch=int(expected_workspace_epoch),
                 expected_document_epoch=int(expected_document_epoch),
             )
-            _require_unlocked_or_temporary(con, current, actor)
             if int(current["revision"]) != int(expected_revision):
                 raise RevisionConflict(int(current["revision"]))
             if int(current["document_sequence"]) != int(expected_document_sequence):
                 raise DocumentSequenceConflict(int(current["document_sequence"]))
             source_row = self._revision_on_connection(con, document, source_revision)
             source_snapshot = self._decode_revision(source_row)
-            before_database_items = {}
-            if database_activity.installed(con):
-                before_database_items = {
-                    database["id"]: {
-                        row["id"]: (row.get("body"), row.get("appearance"))
-                        for row in database["rows"]
-                    }
-                    for database in self._editing_snapshot(con, current)["databases"]
-                }
             now = int(time.time())
             current_generation = self._generation(con, document)
             generation = int(current_generation["generation"])
@@ -599,18 +516,6 @@ class CollaborativeHistoryAuthority(CollaborativeFileAuthority):
             next_document_epoch = int(current["access_epoch"]) + 1
             refreshed = self._document(con, document)
             restored_snapshot = self._editing_snapshot(con, refreshed)
-            if database_activity.installed(con):
-                changed_databases = [
-                    database["id"] for database in restored_snapshot["databases"]
-                    if before_database_items.get(database["id"]) != {
-                        row["id"]: (row.get("body"), row.get("appearance"))
-                        for row in database["rows"]
-                    }
-                ]
-                database_activity.touch(
-                    con, database_ids=changed_databases, document_id=document,
-                    actor_subject_id=actor, edited_at=now, document_sequence=next_sequence,
-                )
             result_content_sha256 = _sha256(_canonical_json(restored_snapshot))
             con.execute(
                 "UPDATE workspace_collaboration_documents SET revision=?,document_sequence=?,"

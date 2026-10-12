@@ -14,14 +14,10 @@ DESTINATION = ROOT / "static/integrations/hermes"
 def artifacts():
     adapter = (ROOT / "agent_integrations/hermes_mcp.py").read_bytes()
     guide = (ROOT / "integrations/hermes/client_install.md").read_bytes()
-    skill = (ROOT / "integrations/hermes/second-brain/SKILL.md").read_bytes()
     manifest = dict(schema_version=1, filename="hermes_mcp.py",
                     sha256=hashlib.sha256(adapter).hexdigest(), size_bytes=len(adapter),
-                    python_min="3.10", mcp="2.x", contract_version="agent-knowledge-loop-v1",
-                    knowledge_sets_version=2,
-                    skill=dict(name="second-brain", filename="second-brain/SKILL.md",
-                               sha256=hashlib.sha256(skill).hexdigest(), size_bytes=len(skill)))
-    return {"hermes_mcp.py": adapter, "install.md": guide, "second-brain/SKILL.md": skill,
+                    python_min="3.10", mcp="2.x", contract_version="agent-knowledge-loop-v1")
+    return {"hermes_mcp.py": adapter, "install.md": guide,
             "manifest.json": (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8")}
 
 
@@ -39,7 +35,6 @@ def main():
         DESTINATION.mkdir(parents=True, exist_ok=True)
         for name, content in expected.items():
             target = DESTINATION / name
-            target.parent.mkdir(parents=True, exist_ok=True)
             if not target.is_file() or target.read_bytes() != content:
                 temporary = target.with_name(target.name + ".packaging-tmp")
                 temporary.write_bytes(content)

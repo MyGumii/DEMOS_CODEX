@@ -175,8 +175,8 @@
     if (!Number.isSafeInteger(value.scope_epoch) || value.scope_epoch < 1) {
       fail("INVALID_SCOPE_SNAPSHOT", "scope_epoch must be a positive integer.");
     }
-    if (!Array.isArray(value.spaces) || value.spaces.length < 1 || value.spaces.length > 5) {
-      fail("INVALID_SCOPE_SNAPSHOT", "selector must expose one through five spaces.");
+    if (!Array.isArray(value.spaces) || value.spaces.length < 1) {
+      fail("INVALID_SCOPE_SNAPSHOT", "selector must expose at least one space.");
     }
     const spaces = Object.freeze(value.spaces.map(normalizeSpace));
     const ids = new Set(spaces.map((space) => space.id));
@@ -188,8 +188,8 @@
       fail("INVALID_SCOPE_SNAPSHOT", "scope selection is inconsistent.");
     }
     const personalCount = spaces.filter((space) => space.kind === "personal").length;
-    if (personalCount < 1 || personalCount > 2) {
-      fail("INVALID_SCOPE_SNAPSHOT", "one default and at most one exact personal Wiki are required.");
+    if (personalCount < 1) {
+      fail("INVALID_SCOPE_SNAPSHOT", "at least one personal Wiki is required.");
     }
     const badge = normalizeBadge(value.conversation_badge);
     return Object.freeze({
@@ -229,7 +229,7 @@
   }
 
   function isBrowserSelectableSpace(space) {
-    return !!space && !["team", "responsibility"].includes(space.kind);
+    return !!space && space.history_only !== true;
   }
 
   function publicState(internal) {
@@ -264,6 +264,22 @@
     }
 
     const listeners = new Set();
+    let transitionTail = Promise.resolve();
+    const pendingTransitions = new Set();
+    const settlementObservers = new Set();
+    function transition(action) {
+      // Scope reads/commits (including management rollback) are ordered.
+      // Post-commit notifications may reenter; a failed read cannot poison
+      // later transitions.
+      const work = transitionTail.then(action);
+      pendingTransitions.add(work);
+      for (const observed of settlementObservers) observed.add(work);
+      transitionTail = work.then(
+        () => { pendingTransitions.delete(work); },
+        () => { pendingTransitions.delete(work); },
+      );
+      return work;
+    }
     const internal = {
       currentConversationId: null,
       mode: CHAT_MODE,
@@ -289,9 +305,8 @@
     function ensureAvailable(spaceId) {
       nonEmptyString(spaceId, "spaceId");
       if (!internal.snapshot || !internal.snapshot.spaces.some((space) => space.id === spaceId)) {
-        // Newly-created non-default personal Wikis are omitted from the compact
-        // default snapshot. Canonical UUIDs are revalidated by readSnapshot;
-        // non-canonical UI values still fail locally.
+        // A newly-created Wiki can appear after the last snapshot. Canonical
+        // UUIDs are revalidated by readSnapshot; arbitrary UI values fail here.
         if (!UUID_RE.test(spaceId)) {
           fail("SPACE_NOT_SELECTABLE", "The requested knowledge space is not selectable.");
         }
@@ -310,37 +325,86 @@
         return publicState(internal);
       },
 
-      async initialize({ mode = CHAT_MODE, conversationId = null, selectedSpaceId = null } = {}) {
+      async whenSettled() {
+        // Read-only barrier: observe pending work and any transitions queued
+        // while waiting, without changing mode, IDs or requesting a snapshot.
+        // The queue recovers after a failed read, but a caller waiting on that
+        // failed selection must not silently use the preceding upload target.
+        const observed = new Set(pendingTransitions);
+        settlementObservers.add(observed);
+        let failed = false;
+        let failure;
+        try {
+          while (observed.size) {
+            const batch = [...observed];
+            const outcomes = await Promise.allSettled(batch);
+            for (const work of batch) observed.delete(work);
+            for (const outcome of outcomes) {
+              if (outcome.status === "rejected" && !failed) {
+                failed = true;
+                failure = outcome.reason;
+              }
+            }
+          }
+          if (failed) throw failure;
+          return publicState(internal);
+        } finally {
+          settlementObservers.delete(observed);
+        }
+      },
+
+      async initialize({ mode = CHAT_MODE, conversationId = null, selectedSpaceId = null,
+        preserveSelection = false, preserveMode = false } = {}) {
         if (mode !== CHAT_MODE && mode !== MANAGEMENT_MODE) {
           throw new TypeError("mode must be chat or management.");
         }
-        internal.mode = mode;
-        internal.currentConversationId = conversationId;
-        internal.pendingOperationId = null;
-        internal.pendingSpaceId = null;
-        internal.startPromise = null;
-        internal.snapshot = await fetchSnapshot(selectedSpaceId, conversationId);
-        if (internal.snapshot.conversation_badge && internal.snapshot.conversation_badge.conversation_id !== conversationId) {
+        if (typeof preserveSelection !== "boolean") throw new TypeError("preserveSelection must be a boolean.");
+        if (typeof preserveMode !== "boolean") throw new TypeError("preserveMode must be a boolean.");
+        return transition(async () => {
+        // Tab/catalog refresh may have captured an old selection while a Wiki
+        // change was still reading. Resolve these IDs only when its turn starts.
+        if (preserveSelection && internal.snapshot) {
+          selectedSpaceId = internal.snapshot.selected_space_id;
+          conversationId = internal.currentConversationId;
+        }
+        if (preserveMode) mode = internal.mode;
+        const validated = await fetchSnapshot(selectedSpaceId, conversationId);
+        if (validated.conversation_badge && validated.conversation_badge.conversation_id !== conversationId) {
           fail("INVALID_SCOPE_SNAPSHOT", "conversation badge identity is inconsistent.");
         }
+        const preservePending = preserveSelection && preserveMode && mode === CHAT_MODE
+          && internal.pendingSpaceId === validated.selected_space_id;
+        internal.mode = mode;
+        internal.currentConversationId = conversationId;
+        if (!preservePending) {
+          internal.pendingOperationId = null;
+          internal.pendingSpaceId = null;
+        }
+        if (!preserveSelection) internal.startPromise = null;
+        internal.snapshot = validated;
         return emit();
+        });
       },
 
       async openConversation(conversationId) {
         nonEmptyString(conversationId, "conversationId");
-        internal.snapshot = await fetchSnapshot(null, conversationId);
-        if (!internal.snapshot.conversation_badge || internal.snapshot.conversation_badge.conversation_id !== conversationId) {
+        return transition(async () => {
+        const validated = await fetchSnapshot(null, conversationId);
+        if (!validated.conversation_badge || validated.conversation_badge.conversation_id !== conversationId) {
           fail("INVALID_SCOPE_SNAPSHOT", "conversation badge is missing or inconsistent.");
         }
+        internal.snapshot = validated;
         internal.currentConversationId = conversationId;
         internal.pendingOperationId = null;
         internal.pendingSpaceId = null;
         internal.startPromise = null;
         internal.mode = CHAT_MODE;
         return emit();
+        });
       },
 
       async selectSpace(spaceId) {
+        return transition(async () => {
         ensureAvailable(spaceId);
         const validated = await fetchSnapshot(spaceId, internal.currentConversationId);
         if (internal.mode === MANAGEMENT_MODE) {
@@ -373,9 +437,11 @@
           internal.pendingOperationId = nonEmptyString(operationIdFactory(), "operationId");
         }
         return emit();
+        });
       },
 
       async cancelPendingSelection() {
+        return transition(async () => {
         if (!internal.pendingSpaceId) return emit();
         const badge = internal.snapshot && internal.snapshot.conversation_badge;
         const fallback = badge && internal.snapshot.spaces.some((space) => space.id === badge.space_id)
@@ -385,17 +451,21 @@
         internal.pendingOperationId = null;
         internal.pendingSpaceId = null;
         return emit();
+        });
       },
 
       async startNewConversation() {
         if (internal.startPromise) return internal.startPromise;
-        const targetSpaceId = internal.pendingSpaceId;
-        if (!targetSpaceId) {
+        if (!internal.pendingSpaceId) {
           fail("NO_PENDING_SCOPE_CHANGE", "No chat scope change is pending.");
         }
-        const operationId = internal.pendingOperationId || nonEmptyString(operationIdFactory(), "operationId");
-        internal.pendingOperationId = operationId;
-        const work = (async () => {
+        const work = transition(async () => {
+          // A newer queued selection/cancel/tab change may have superseded the
+          // pending target since the button callback requested this action.
+          const targetSpaceId = internal.pendingSpaceId;
+          if (!targetSpaceId) return { event: null };
+          const operationId = internal.pendingOperationId || nonEmptyString(operationIdFactory(), "operationId");
+          internal.pendingOperationId = operationId;
           const oldConversationId = internal.currentConversationId;
           const created = await createConversation({ operationId, spaceId: targetSpaceId });
           if (!created || typeof created !== "object" || Array.isArray(created)) {
@@ -413,15 +483,23 @@
           internal.pendingOperationId = null;
           internal.pendingSpaceId = null;
           internal.snapshot = validated;
-          const state = emit();
-          await onConversationStarted({ oldConversationId, newConversationId, spaceId: targetSpaceId });
-          return state;
-        })();
+          emit();
+          // Only the start transaction is deduplicated. A slow notification
+          // must not prevent a later selection from starting its own session.
+          if (internal.startPromise === work) internal.startPromise = null;
+          return { event: { oldConversationId, newConversationId, spaceId: targetSpaceId } };
+        }).then(async ({ event }) => {
+          // The callback may refresh the selected Wiki and therefore reenter
+          // initialize(). Never hold the scope queue while awaiting it, and
+          // never return an old captured state over a later session/selection.
+          if (event && internal.currentConversationId === event.newConversationId) await onConversationStarted(event);
+          return publicState(internal);
+        });
         internal.startPromise = work;
         try {
           return await work;
         } finally {
-          internal.startPromise = null;
+          if (internal.startPromise === work) internal.startPromise = null;
         }
       },
     };
@@ -459,7 +537,7 @@
         option.selected = space.id === state.selectedSpaceId;
         option.disabled = !isBrowserSelectableSpace(space);
         if (option.disabled) {
-          option.title = "현재 웹 UI에서는 선택할 수 없습니다.";
+          option.title = "보관된 Wiki는 새 대화에 선택할 수 없습니다.";
         }
         select.appendChild(option);
       }
@@ -502,7 +580,8 @@
         select.value = controller.state().selectedSpaceId;
         return;
       }
-      const selected = await controller.selectSpace(select.value);
+      await controller.selectSpace(select.value);
+      const selected = controller.state();
       if (selected.mode === CHAT_MODE && selected.pendingSpaceId) {
         await controller.startNewConversation();
       }

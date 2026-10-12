@@ -4,9 +4,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import re
+from typing import Callable
 
 from ..db import ConnectionFactory, TransactionMode, transaction
 from ..errors import KnowledgeCoreError
+from ..protected_sources import (
+    PolicyProtectedSourceClassifier, classify_protected_for_actor,
+)
 from ..repositories.management_reads import ManagementReadRepository
 from ..repositories.source_artifacts import (
     ItemSourceArtifactRecord,
@@ -39,6 +43,11 @@ class SourceArtifactStateConflictError(SourceArtifactServiceError):
     retryable = True
 
 
+class ProtectedOriginalDownloadForbiddenError(SourceArtifactServiceError):
+    code = "FORBIDDEN"
+    http_status = 403
+
+
 @dataclass(frozen=True, slots=True)
 class ItemSourceArtifactRequest:
     principal: SessionPrincipal
@@ -60,6 +69,7 @@ class ItemSourceArtifactPage:
     item_id: str
     corpus_closure_sha256: str
     items: tuple[ItemSourceArtifactRecord, ...]
+    download_permitted_artifact_ids: frozenset[str] = frozenset()
 
 
 @dataclass(frozen=True, slots=True)
@@ -72,6 +82,18 @@ class ItemSourceArtifactDownload:
     size_bytes: int
     content_sha256: str
     content: bytes
+
+
+@dataclass(frozen=True, slots=True)
+class ProtectedOriginalDownloadEvidence:
+    actor_user_id: str
+    selected_space_id: str
+    item_id: str
+    source_revision_id: str
+    artifact_id: str
+    original_sha256: str
+    source_kind: str
+    media_type: str
 
 
 def _principal(value: object) -> SessionPrincipal:
@@ -97,7 +119,7 @@ def _uuid(value: object, field: str) -> str:
 class SourceArtifactService:
     """Keep authorization in SQLite and immutable byte verification outside it."""
 
-    __slots__ = ("_artifacts", "_factory", "_management", "_scopes", "_stager")
+    __slots__ = ("_artifacts", "_factory", "_management", "_policy_protection_classifier", "_protected_download_authorizer", "_scopes", "_stager")
 
     def __init__(
         self,
@@ -107,6 +129,8 @@ class SourceArtifactService:
         stager: object,
         management_reads: ManagementReadRepository | None = None,
         source_artifacts: SourceArtifactRepository | None = None,
+        protected_download_authorizer: Callable[[ProtectedOriginalDownloadEvidence], bool] | None = None,
+        policy_protection_classifier: PolicyProtectedSourceClassifier | None = None,
     ) -> None:
         if not isinstance(factory, ConnectionFactory):
             raise TypeError("SourceArtifactService requires a ConnectionFactory.")
@@ -114,11 +138,51 @@ class SourceArtifactService:
             raise TypeError("SourceArtifactService requires a ScopeResolver.")
         if not callable(getattr(stager, "verify_existing", None)):
             raise TypeError("stager must provide verify_existing().")
+        if protected_download_authorizer is not None and not callable(protected_download_authorizer):
+            raise TypeError("protected_download_authorizer must be callable.")
+        if (policy_protection_classifier is not None
+                and not callable(getattr(policy_protection_classifier, "classify_for_actor", None))):
+            raise TypeError("policy_protection_classifier must supply classify_for_actor().")
         self._factory = factory
         self._scopes = scope_resolver
         self._stager = stager
         self._management = management_reads or ManagementReadRepository()
         self._artifacts = source_artifacts or SourceArtifactRepository()
+        self._protected_download_authorizer = protected_download_authorizer
+        self._policy_protection_classifier = policy_protection_classifier
+
+    def _authorize_protected_original(
+        self,
+        *,
+        principal: SessionPrincipal,
+        selected_space_id: str,
+        artifact: ItemSourceArtifactRecord,
+    ) -> None:
+        if artifact.protected_source_kind is None:
+            return
+        authorizer = self._protected_download_authorizer
+        if authorizer is None:
+            raise ProtectedOriginalDownloadForbiddenError(
+                "The protected original source cannot be downloaded."
+            )
+        evidence = ProtectedOriginalDownloadEvidence(
+            actor_user_id=principal.user_id,
+            selected_space_id=selected_space_id,
+            item_id=artifact.item_id,
+            source_revision_id=artifact.source_revision_id,
+            artifact_id=artifact.artifact_id,
+            original_sha256=artifact.content_sha256,
+            source_kind=artifact.protected_source_kind,
+            media_type=artifact.media_type,
+        )
+        try:
+            allowed = authorizer(evidence)
+        except Exception:
+            allowed = False
+        if allowed is not True:
+            raise ProtectedOriginalDownloadForbiddenError(
+                "The protected original source cannot be downloaded."
+            )
 
     def _snapshot(
         self,
@@ -180,8 +244,32 @@ class SourceArtifactService:
         principal = _principal(request.principal)
         selected = _uuid(request.selected_space_id, "selected_space_id")
         item = _uuid(request.item_id, "item_id")
-        return self._snapshot(
+        page = self._snapshot(
             principal=principal, selected_space_id=selected, item_id=item
+        )
+        # List-time rights are advisory for the UI; download() rechecks the
+        # same actor after reading and verifying the immutable original.
+        permitted: set[str] = set()
+        for artifact in page.items:
+            if artifact.protected_source_kind is None:
+                # An older link or ordinary source has no policy provenance.
+                # Its bytes are classified only in download(), so the list
+                # must not claim that a download has already been authorized.
+                continue
+            try:
+                self._authorize_protected_original(
+                    principal=principal, selected_space_id=selected,
+                    artifact=artifact,
+                )
+            except ProtectedOriginalDownloadForbiddenError:
+                continue
+            permitted.add(artifact.artifact_id)
+        return ItemSourceArtifactPage(
+            selected_space_id=page.selected_space_id,
+            item_id=page.item_id,
+            corpus_closure_sha256=page.corpus_closure_sha256,
+            items=page.items,
+            download_permitted_artifact_ids=frozenset(permitted),
         )
 
     def download(
@@ -203,6 +291,9 @@ class SourceArtifactService:
             raise SourceArtifactNotFoundError(
                 "The requested original source file was not found."
             )
+        self._authorize_protected_original(
+            principal=principal, selected_space_id=selected, artifact=artifact
+        )
         try:
             observation, content = self._stager.verify_existing(
                 expected_sha256=artifact.content_sha256,
@@ -216,6 +307,22 @@ class SourceArtifactService:
                 "The original source file failed immutable-storage verification."
             ) from exc
         try:
+            # Older original-only links may lack protected provenance. Recheck
+            # both container and installed policy signals against the bytes
+            # before any such original can leave the server.
+            if artifact.protected_source_kind is None:
+                try:
+                    unrecorded_protection = classify_protected_for_actor(
+                        artifact.original_filename, content,
+                        actor_user_id=principal.user_id,
+                        policy_classifier=self._policy_protection_classifier,
+                    ) is not None
+                except Exception:
+                    unrecorded_protection = True
+                if unrecorded_protection:
+                    raise ProtectedOriginalDownloadForbiddenError(
+                        "The protected original source cannot be downloaded."
+                    )
             verified = self._snapshot(
                 principal=principal, selected_space_id=selected, item_id=item
             )
@@ -227,6 +334,9 @@ class SourceArtifactService:
                 raise SourceArtifactStateConflictError(
                     "The original source authorization changed during download."
                 )
+            self._authorize_protected_original(
+                principal=principal, selected_space_id=selected, artifact=current
+            )
             if not isinstance(content, bytes) or len(content) != artifact.size_bytes:
                 raise SourceArtifactServiceError(
                     "The verified original source bytes are invalid."
@@ -253,6 +363,8 @@ __all__ = [
     "ItemSourceArtifactDownloadRequest",
     "ItemSourceArtifactPage",
     "ItemSourceArtifactRequest",
+    "ProtectedOriginalDownloadEvidence",
+    "ProtectedOriginalDownloadForbiddenError",
     "SourceArtifactNotFoundError",
     "SourceArtifactService",
     "SourceArtifactServiceError",

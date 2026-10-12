@@ -20,6 +20,7 @@ from ..domain import (
     SemanticIntentTargetKind,
 )
 from ..errors import KnowledgeCoreError
+from ..semantic_maintenance_reads import maintenance_read_connection
 from ..repositories.audit import AuditEventDraft, AuditRepository
 from ..repositories.automatic_semantic_edges import (
     AutomaticSemanticEdgeRepository,
@@ -292,6 +293,17 @@ class SemanticIntentSeedService:
                 "organization.unit.move",
                 "organization.part.move",
             )
+        elif command.cause_kind is SemanticIntentProvenanceKind.ORG_RENAME_RESEED:
+            from ..migrations.semantic_rename_reseed_catalog import SCHEMA_V49_MIGRATION
+
+            enabled = connection.execute(
+                "SELECT 1 FROM schema_migration WHERE version=49 AND name=? AND checksum_sha256=?",
+                (SCHEMA_V49_MIGRATION.name, SCHEMA_V49_MIGRATION.checksum_sha256),
+            ).fetchone()
+            if enabled is None:
+                raise SemanticEdgeSeedError("The rename reseed schema is unavailable.")
+            expected_id = command.organization_event_audit_id
+            expected_actions = ("organization.unit.rename",)
         elif command.cause_kind is SemanticIntentProvenanceKind.DETECTOR_RESEED:
             expected_id = command.detector_rollout_audit_id
             expected_actions = ("semantic_edge.detector.rollout",)
@@ -312,14 +324,31 @@ class SemanticIntentSeedService:
                 raise SemanticEdgeSeedError("The seed cause carries an invalid event proof.")
             return
         row = connection.execute(
-            "SELECT action,outcome,space_id,item_id FROM audit_event WHERE id=?",
+            "SELECT action,outcome,space_id,item_id,details_json FROM audit_event WHERE id=?",
             (expected_id,),
         ).fetchone()
-        if row is None or row["outcome"] not in {"committed", "moved", "restored"}:
+        if row is None or row["outcome"] not in {"committed", "moved", "restored", "renamed"}:
             raise SemanticEdgeSeedError("The seed cause audit proof is unavailable.")
         action = str(row["action"])
         if action not in expected_actions:
             raise SemanticEdgeSeedError("The seed cause audit proof has the wrong action.")
+        if command.cause_kind is SemanticIntentProvenanceKind.ORG_RENAME_RESEED:
+            details = json.loads(str(row["details_json"]))
+            unit = connection.execute(
+                "SELECT kind,status,row_version FROM org_unit WHERE id=?",
+                (command.scope_id,),
+            ).fetchone()
+            if (
+                command.scope_kind != "org_unit"
+                or not isinstance(details, dict)
+                or details.get("resource_id") != command.scope_id
+                or unit is None
+                or unit["kind"] not in {"part", "team"}
+                or isinstance(details.get("row_version"), bool)
+                or not isinstance(details.get("row_version"), int)
+                or not 1 <= details["row_version"] <= unit["row_version"]
+            ):
+                raise SemanticEdgeSeedError("The rename proof is invalid or out of scope.")
         if command.scope_kind == "item" and row["item_id"] != command.scope_id:
             raise SemanticEdgeSeedError("The item restore proof is out of scope.")
         if command.scope_kind == "wiki" and row["space_id"] != command.scope_id:
@@ -347,6 +376,11 @@ class SemanticIntentSeedService:
                     expected_fence=run.fence,
                     now_ms=db_now_ms(connection),
                 )
+                if (
+                    run.cause_kind is SemanticIntentProvenanceKind.ORG_RENAME_RESEED
+                    and not self._rename_cause_current(connection, run)
+                ):
+                    return self._complete(connection, run)
                 sources = self._auto.list_seed_sources(connection, run, limit=limit)
                 if not sources:
                     return self._complete(connection, run)
@@ -477,9 +511,16 @@ class SemanticIntentSeedService:
             or detector_generation < 1
         ):
             raise ValueError("detector_generation must be a positive integer.")
+        with maintenance_read_connection(self._factory, None) as connection:
+            native_targets = self._auto.supports_native_aggregate_targets(connection)
+        effect_key = f"semantic-seed:baseline:d{detector_generation}"
+        if native_targets:
+            # A completed pre-v48 run cannot attest the newly eligible homes.
+            # Its intents/jobs remain immutable; this bounded run anti-joins them.
+            effect_key += ":native-targets-v1"
         return self.create(
             CreateSemanticSeedRunCommand(
-                effect_key=f"semantic-seed:baseline:d{detector_generation}",
+                effect_key=effect_key,
                 cause_kind=SemanticIntentProvenanceKind.BASELINE_BACKFILL,
                 scope_kind="global",
                 scope_id=None,
@@ -488,7 +529,7 @@ class SemanticIntentSeedService:
         )
 
     def run_next_batch(
-        self, *, limit: int = SEMANTIC_SEED_BATCH_LIMIT
+        self, *, limit: int = SEMANTIC_SEED_BATCH_LIMIT, _read_scope=None
     ) -> SemanticSeedBatchResult | None:
         """Advance at most one oldest restartable seed run by one batch."""
 
@@ -498,16 +539,13 @@ class SemanticIntentSeedService:
             or not 1 <= limit <= SEMANTIC_SEED_BATCH_LIMIT
         ):
             raise ValueError("limit must be from 1 through 200.")
-        connection = self._factory.open(read_only=True)
-        try:
+        with maintenance_read_connection(self._factory, _read_scope) as connection:
             with transaction(connection, TransactionMode.DEFERRED):
                 row = connection.execute(
                     """SELECT id FROM semantic_edge_intent_seed_run
                         WHERE state IN ('pending','running','failed')
                         ORDER BY created_at,id LIMIT 1"""
                 ).fetchone()
-        finally:
-            connection.close()
         if row is None:
             return None
         return self.run_batch(str(row["id"]), limit=limit)
@@ -522,6 +560,11 @@ class SemanticIntentSeedService:
         targets = self._auto.list_targets(
             connection, source_space_id=source.source_space_id
         )
+        if run.cause_kind is SemanticIntentProvenanceKind.ORG_RENAME_RESEED:
+            return tuple(
+                target for target in targets
+                if target.target_org_unit_id == run.scope_id
+            )
         if run.cause_kind is not SemanticIntentProvenanceKind.ORG_RETARGET:
             return targets
         if run.new_ancestor_space_id is None:
@@ -543,8 +586,35 @@ class SemanticIntentSeedService:
             target
             for target in targets
             if target.target_kind is SemanticIntentTargetKind.AGGREGATE
-            and target.target_space_id in allowed
-            and target.target_space_id != run.old_ancestor_space_id
+            and (
+                (target.target_space_id in allowed
+                 and target.target_space_id != run.old_ancestor_space_id)
+                # Moving a native Team also advances that Team's organization
+                # generation. Its own-home aggregate intent must be renewed.
+                or target.target_space_id == source.source_space_id
+            )
+        )
+
+    @staticmethod
+    def _rename_cause_current(
+        connection: ManagedConnection,
+        run: SemanticEdgeIntentSeedRunRecord,
+    ) -> bool:
+        row = connection.execute(
+            """SELECT o.row_version,o.kind,o.status,a.action,a.outcome,a.details_json
+                 FROM org_unit o JOIN audit_event a ON a.id=?
+                WHERE o.id=?""",
+            (run.organization_event_audit_id, run.scope_id),
+        ).fetchone()
+        if row is None or row["kind"] not in {"part", "team"} or row["status"] != "active":
+            return False
+        details = json.loads(str(row["details_json"]))
+        return (
+            row["action"] == "organization.unit.rename"
+            and row["outcome"] == "renamed"
+            and isinstance(details, dict)
+            and details.get("resource_id") == run.scope_id
+            and details.get("row_version") == row["row_version"]
         )
 
     def _complete(
@@ -597,12 +667,15 @@ class SemanticIntentSeedService:
         connection = self._factory.open(read_only=True)
         try:
             with transaction(connection, TransactionMode.DEFERRED):
+                native_targets = self._auto.supports_native_aggregate_targets(connection)
+                effect_key = f"semantic-seed:baseline:d{detector_generation}:native-targets-v1"
                 row = connection.execute(
                     """SELECT id FROM semantic_edge_intent_seed_run
                         WHERE cause_kind='baseline_backfill' AND scope_kind='global'
                           AND detector_generation=? AND state='completed'
+                          AND (?=0 OR effect_key=?)
                         ORDER BY completed_at DESC,id DESC LIMIT 1""",
-                    (detector_generation,),
+                    (detector_generation, int(native_targets), effect_key),
                 ).fetchone()
                 if row is None:
                     raise SemanticEdgeBaselineIncompleteError(
@@ -625,6 +698,12 @@ class SemanticIntentSeedService:
                 if missing is not None:
                     raise SemanticEdgeBaselineIncompleteError(
                         "The automatic-edge baseline does not reconcile the current corpus."
+                    )
+                if native_targets and self._auto.has_missing_native_target_intents(
+                    connection, detector_generation=detector_generation,
+                ):
+                    raise SemanticEdgeBaselineIncompleteError(
+                        "The automatic-edge baseline lacks native own-home target coverage."
                     )
         finally:
             connection.close()
@@ -854,12 +933,23 @@ class SemanticSeedTriggerConsumer:
         self._factory = factory
         self._seeds = seeds or SemanticIntentSeedService(factory)
 
-    def run_batch(self, *, limit: int = SEMANTIC_SEED_BATCH_LIMIT) -> SemanticSeedTriggerResult:
+    def run_batch(self, *, limit: int = SEMANTIC_SEED_BATCH_LIMIT, _read_scope=None) -> SemanticSeedTriggerResult:
         if isinstance(limit, bool) or not isinstance(limit, int) or not 1 <= limit <= SEMANTIC_SEED_BATCH_LIMIT:
             raise ValueError("limit must be from 1 through 200.")
-        connection = self._factory.open(read_only=True)
-        try:
+        with maintenance_read_connection(self._factory, _read_scope) as connection:
             with transaction(connection, TransactionMode.DEFERRED):
+                from ..migrations.semantic_rename_reseed_catalog import SCHEMA_V49_MIGRATION
+
+                rename_enabled = connection.execute(
+                    "SELECT 1 FROM schema_migration WHERE version=49 AND name=? AND checksum_sha256=?",
+                    (SCHEMA_V49_MIGRATION.name, SCHEMA_V49_MIGRATION.checksum_sha256),
+                ).fetchone() is not None
+                rename_floor = (
+                    int(connection.execute(
+                        "SELECT legacy_audit_high_water FROM semantic_rename_reseed_boundary WHERE id=1"
+                    ).fetchone()[0])
+                    if rename_enabled else 2**63 - 1
+                )
                 rows = connection.execute(
                     """SELECT audit.id,audit.action,audit.space_id,audit.item_id,
                               audit.details_json
@@ -871,7 +961,9 @@ class SemanticSeedTriggerConsumer:
                              SELECT 1 FROM semantic_edge_intent_seed_run AS seed
                               WHERE seed.lifecycle_restore_audit_id=audit.id))
                           OR
-                          (audit.action='organization.unit.move' AND audit.outcome='moved'
+                          (((audit.action='organization.unit.move' AND audit.outcome='moved')
+                            OR (audit.action='organization.unit.rename'
+                                AND audit.outcome='renamed' AND audit.id>?))
                            AND NOT EXISTS (
                              SELECT 1 FROM semantic_edge_intent_seed_run AS seed
                               WHERE seed.organization_event_audit_id=audit.id))
@@ -883,7 +975,7 @@ class SemanticSeedTriggerConsumer:
                               WHERE seed.detector_rollout_audit_id=audit.id))
                         )
                         ORDER BY audit.id LIMIT ?""",
-                    (limit,),
+                    (rename_floor, limit),
                 ).fetchall()
                 events = tuple(
                     (
@@ -895,8 +987,6 @@ class SemanticSeedTriggerConsumer:
                     )
                     for row in rows
                 )
-        finally:
-            connection.close()
         created = replayed = 0
         for audit_id, action, space_id, item_id, details in events:
             command = self._command_for_event(
@@ -975,6 +1065,17 @@ class SemanticSeedTriggerConsumer:
                 detector_generation=current,
                 previous_detector_generation=previous,
                 detector_rollout_audit_id=audit_id,
+            )
+        if action == "organization.unit.rename":
+            unit_id = details.get("resource_id")
+            if not isinstance(unit_id, str):
+                raise SemanticEdgeSeedError("The organization rename seed lacks a unit.")
+            return CreateSemanticSeedRunCommand(
+                effect_key=f"semantic-seed:org-rename:{audit_id}",
+                cause_kind=SemanticIntentProvenanceKind.ORG_RENAME_RESEED,
+                scope_kind="org_unit",
+                scope_id=unit_id,
+                organization_event_audit_id=audit_id,
             )
         unit_id = details.get("resource_id")
         old_parent = details.get("old_parent_id")

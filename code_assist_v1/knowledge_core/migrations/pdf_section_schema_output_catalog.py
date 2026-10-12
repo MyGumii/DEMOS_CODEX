@@ -1,0 +1,10 @@
+"""Explicit v66 successor for source-ID constrained v7 Wiki output."""
+from .model import Migration,MigrationCatalog
+from .pdf_section_guard_dispatch_catalog import PDF_SECTION_GUARD_DISPATCH_MIGRATION_CATALOG
+from .v066_pdf_section_schema_output import V066_STATEMENTS,V066_POSTCONDITION_REPLACEMENTS
+V066_EXPECTED_SCHEMA_SHA256='df764e8bd4c9901c15112d32441398f4983c4c98f3e70ef4f8adf0a4a3f85328'
+SCHEMA_V66_MIGRATION=Migration(version=66,name='pdf_section_schema_output_v66',
+    statements=V066_STATEMENTS,expected_schema_sha256=V066_EXPECTED_SCHEMA_SHA256,
+    requires_foreign_keys_off=True,postcondition_replacements=V066_POSTCONDITION_REPLACEMENTS)
+PDF_SECTION_SCHEMA_OUTPUT_MIGRATION_CATALOG=MigrationCatalog((
+    *PDF_SECTION_GUARD_DISPATCH_MIGRATION_CATALOG.migrations,SCHEMA_V66_MIGRATION))

@@ -13,10 +13,12 @@ touch legacy JSON sessions; those remain later P3 slices.
 from __future__ import annotations
 
 from collections.abc import Callable, Mapping
+from contextlib import closing
 from dataclasses import dataclass, field
 from hashlib import sha256
 import json
 import re
+import time
 from typing import Literal, Protocol, TypeVar
 from uuid import UUID, uuid5
 
@@ -24,8 +26,9 @@ from ..conversation_binding import (
     ConversationBindingFence,
     ConversationBindingIntegrityError,
 )
-from ..db import ConnectionFactory, db_now_ms, transaction
+from ..db import ConnectionFactory, TransactionMode, db_now_ms, transaction
 from ..errors import KnowledgeCoreError
+from ..turn_execution import TURN_EXECUTION_PROTOCOL, hold_turn_execution
 from ..repositories.audit import AuditEventDraft, AuditRepository
 from ..repositories.conversations import (
     ConversationCreate,
@@ -1063,7 +1066,7 @@ class ConversationService:
     """Own canonical conversation lifecycle transactions and replay."""
 
     __slots__ = (
-        "_audit", "_context_resolver", "_conversation_wiki_binding",
+        "_audit", "_auto_curation_wait_ms", "_context_resolver", "_conversation_wiki_binding",
         "_conversations", "_factory", "_outbox", "_personal_wikis",
         "_scopes", "_users",
     )
@@ -1079,10 +1082,15 @@ class ConversationService:
         context_resolver: ConversationContextResolver | None = None,
         scope_resolver: ScopeResolver | None = None,
         personal_wikis: PersonalWikiProfileRepository | None = None,
+        auto_curation_wait_ms: int = 0,
     ) -> None:
         if not isinstance(factory, ConnectionFactory):
             raise TypeError("ConversationService requires a ConnectionFactory.")
+        if (type(auto_curation_wait_ms) is not int
+                or not 0 <= auto_curation_wait_ms <= 30_000):
+            raise ValueError("auto_curation_wait_ms must be between zero and 30000.")
         self._factory = factory
+        self._auto_curation_wait_ms = auto_curation_wait_ms
         self._conversations = conversations or ConversationRepository()
         self._users = users or UserRepository()
         self._audit = audit or AuditRepository()
@@ -1096,6 +1104,8 @@ class ConversationService:
             raise TypeError(
                 "Conversation-Wiki binding requires a ScopeResolver."
             )
+        if auto_curation_wait_ms and not self._conversation_wiki_binding:
+            raise ValueError("Automatic curation waiting requires conversation-Wiki binding.")
         if scope_resolver is not None and not isinstance(
             scope_resolver, ScopeResolver
         ):
@@ -1660,11 +1670,126 @@ class ConversationService:
         finally:
             connection.close()
 
+    def _auto_curation_pending_for_turn(self, command: AcceptConversationTurnCommand) -> bool:
+        with closing(self._factory.open(read_only=True)) as connection:
+            with transaction(connection, TransactionMode.DEFERRED):
+                actor_id = _user(command.actor_user_id)
+                epoch = _positive(command.actor_scope_epoch, "actor_scope_epoch")
+                conversation_id = _uuid(command.conversation_id, "conversation_id")
+                self._active_actor(connection, actor_id, epoch)
+                conversation = self._conversations.require_owned(
+                    connection, conversation_id=conversation_id,
+                    owner_user_id=actor_id,
+                )
+                self._binding_fence(
+                    connection, actor_user_id=actor_id,
+                    actor_scope_epoch=epoch, space_id=conversation.space_id,
+                )
+                existing = self._conversations.get_turn_by_operation(
+                    connection, conversation_id=conversation_id,
+                    operation_id=command.operation_id,
+                )
+                if existing is not None:
+                    return False
+                # An item may already be published while its publication
+                # outbox and semantic-edge jobs are still changing the corpus
+                # closure.  Resolve the server-owned closure so inherited
+                # Team/Responsibility sources are covered as well.
+                plan = self._scopes.resolve_access_plan_in_transaction(
+                    connection,
+                    SessionPrincipal(actor_id, epoch),
+                    conversation.space_id,
+                    Capability.READ,
+                )
+                source_ids = tuple(sorted({conversation.space_id} | {
+                    source.source_space_id for source in plan.corpus_closure.sources
+                }))
+                placeholders = ",".join("?" for _ in source_ids)
+                if connection.execute(
+                    f"""SELECT 1 FROM durable_job j
+                          LEFT JOIN knowledge_item i
+                            ON i.id=json_extract(j.input_ref_json,'$.item_id')
+                         WHERE j.state IN ('queued','claimed','running','retry')
+                           AND (
+                             (j.job_type='semantic_edge.evaluate'
+                              AND j.space_id IN ({placeholders}))
+                             OR
+                             (j.job_type='curation.rescan'
+                              AND i.space_id IN ({placeholders})
+                              AND i.curation_status='provisional')
+                           )
+                         LIMIT 1""",
+                    source_ids + source_ids,
+                ).fetchone() is not None:
+                    return True
+                return connection.execute(
+                    f"""SELECT 1 FROM outbox_event
+                         WHERE event_type='knowledge.item.published'
+                           AND state IN ('pending','processing','retry')
+                           AND space_id IN ({placeholders})
+                         LIMIT 1""",
+                    source_ids,
+                ).fetchone() is not None
+
+    def _await_auto_curation_before_turn(self, command: AcceptConversationTurnCommand) -> None:
+        """Do not accept a turn against a soon-to-change publication closure.
+
+        This opt-in waits for pending publication, automatic curation, and
+        semantic-edge jobs in the authorized corpus closure. No DB connection
+        or WAL snapshot is retained during the bounded wait. Existing turns
+        replay immediately, and every observation rechecks actor/Wiki authority.
+        """
+
+        if not self._auto_curation_wait_ms:
+            return
+        deadline = time.monotonic() + self._auto_curation_wait_ms / 1000
+        while True:
+            pending = self._auto_curation_pending_for_turn(command)
+            if not pending:
+                return
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise ConversationOperationInProgressError(
+                    "The selected Wiki is still being indexed; retry this question shortly."
+                )
+            time.sleep(min(0.2, remaining))
+
+    def execute_turn(
+        self, command: AcceptConversationTurnCommand,
+        executor: Callable[[ConversationTurnResult], object],
+    ) -> ConversationTurnResult:
+        """Execute or reconnect under cross-process ownership, outside SQL transactions."""
+        if not isinstance(command, AcceptConversationTurnCommand) or not callable(executor):
+            raise TypeError("Turn execution requires a command and executor.")
+        with closing(self._factory.open(read_only=True)) as probe:
+            identity = probe.database_identity
+        # Do not retain an idle SQLite/WAL handle for the entire model call.
+        # Execution exclusion belongs to the OS mutex, not an open DB reader.
+        with hold_turn_execution(identity, command.conversation_id, command.operation_id) as owner:
+            self._await_auto_curation_before_turn(command)
+            accepted = self.accept_turn(command, _execution_protocol=TURN_EXECUTION_PROTOCOL)
+            if owner and accepted.state not in {"completed", "failed", "cancelled"}:
+                with closing(self._factory.open(read_only=True)) as probe:
+                    if probe.database_identity != identity:
+                        raise ConversationServiceError("The turn database file identity changed.")
+                    first = self._conversations.list_turn_events(
+                        probe, turn_id=accepted.turn_id,
+                        conversation_id=accepted.conversation_id, limit=1,
+                    )
+                # Never steal a pre-upgrade request that lacks this ownership
+                # protocol. Quiesced legacy-turn recovery is a separate action.
+                if first and first[0].payload.get("execution_protocol") == TURN_EXECUTION_PROTOCOL:
+                    executor(accepted)
+            return accepted
+
     def accept_turn(
-        self, command: AcceptConversationTurnCommand
+        self, command: AcceptConversationTurnCommand, *,
+        _execution_protocol: str | None = None,
     ) -> ConversationTurnResult:
         if not isinstance(command, AcceptConversationTurnCommand):
             raise TypeError("An AcceptConversationTurnCommand is required.")
+        if _execution_protocol not in {None, TURN_EXECUTION_PROTOCOL}:
+            raise ValueError("The turn execution protocol is invalid.")
         actor_id = _user(command.actor_user_id)
         epoch = _positive(command.actor_scope_epoch, "actor_scope_epoch")
         operation_id = _uuid(command.operation_id, "operation_id")
@@ -1771,6 +1896,12 @@ class ConversationService:
                         if begun.inserted
                         else self._required_turn_request_id(connection, turn_id)
                     )
+                    execution_protocol = _execution_protocol
+                    if not begun.inserted:
+                        first = self._conversations.list_turn_events(
+                            connection, turn_id=turn_id, conversation_id=conversation_id, limit=1
+                        )
+                        execution_protocol = first[0].payload.get("execution_protocol") if first else None
                     accepted = self._conversations.accept_turn(
                         connection,
                         ConversationTurnAccept(
@@ -1786,6 +1917,8 @@ class ConversationService:
                             ),
                             accepted_event_json=_canonical_json(
                                 {
+                                    **({"execution_protocol": execution_protocol}
+                                       if execution_protocol is not None else {}),
                                     **(
                                         {}
                                         if current_fence is None
@@ -2500,6 +2633,144 @@ class ConversationService:
                 raise ConversationServiceScopeError(str(exc)) from exc
         finally:
             connection.close()
+
+    def read_message_page(
+        self, *, actor_user_id: str, actor_scope_epoch: int, conversation_id: str,
+        after_sequence_no: int = 0, through_sequence_no: int | None = None, limit: int = 100,
+    ) -> dict[str, object]:
+        actor = _user(actor_user_id)
+        epoch = _positive(actor_scope_epoch, "actor_scope_epoch")
+        cid = _uuid(conversation_id, "conversation_id")
+        after = _nonnegative(after_sequence_no, "after_sequence_no")
+        requested_through = None if through_sequence_no is None else _nonnegative(through_sequence_no, "through_sequence_no")
+        limit = _positive(limit, "limit")
+        if limit > 100:
+            raise ValueError("limit must not exceed 100.")
+        with closing(self._factory.open(read_only=True)) as connection:
+            with transaction(connection, TransactionMode.DEFERRED):
+                self._active_actor(connection, actor, epoch)
+                try:
+                    watermark = self._conversations.message_watermark(
+                        connection, conversation_id=cid, owner_user_id=actor,
+                    )
+                    through = watermark if requested_through is None else requested_through
+                    if not after <= through <= watermark:
+                        raise ValueError("The history page range is invalid.")
+                    messages = self._conversations.list_messages(
+                        connection, conversation_id=cid, owner_user_id=actor,
+                        after_sequence_no=after, through_sequence_no=through, limit=limit,
+                    )
+                except ConversationScopeError as exc:
+                    raise ConversationServiceScopeError(str(exc)) from exc
+                last = messages[-1].sequence_no if messages else after
+                has_more = last < through
+                return {"schema_version": 1, "conversation_id": cid, "items": messages,
+                        "through_sequence_no": through, "has_more": has_more,
+                        "next_after_sequence_no": last if has_more else None}
+
+    def read_turn_answer(
+        self, *, actor_user_id: str, actor_scope_epoch: int,
+        conversation_id: str, operation_id: str,
+    ) -> tuple[ConversationTurnRecord, ConversationMessageRecord]:
+        actor = _user(actor_user_id)
+        epoch = _positive(actor_scope_epoch, "actor_scope_epoch")
+        cid = _uuid(conversation_id, "conversation_id")
+        operation = _uuid(operation_id, "operation_id")
+        with closing(self._factory.open(read_only=True)) as connection:
+            with transaction(connection, TransactionMode.DEFERRED):
+                self._active_actor(connection, actor, epoch)
+                try:
+                    self._conversations.require_history_readable(connection, conversation_id=cid, owner_user_id=actor)
+                except ConversationScopeError as exc:
+                    raise ConversationServiceScopeError(str(exc)) from exc
+                turn = self._conversations.get_turn_by_operation(connection, conversation_id=cid, operation_id=operation)
+                if turn is None or turn.actor_user_id != actor:
+                    raise ConversationNotFoundError("The requested owner-bound turn does not exist.")
+                if turn.state != "completed" or turn.assistant_message_id is None:
+                    raise ConversationStateConflictError("The requested turn has no completed answer.")
+                message = self._conversations.get_message(connection, turn.assistant_message_id)
+                if message is None or message.conversation_id != cid or message.role != "assistant":
+                    raise ConversationIdempotencyError("The completed answer binding is invalid.")
+                return turn, message
+
+    def list_pending_turns(
+        self, *, actor_user_id: str, actor_scope_epoch: int,
+        conversation_id: str, after_sequence_no: int = 0, limit: int = 20,
+    ) -> dict[str, object]:
+        """Discovery only: POST still revalidates authority, binding and ownership.
+
+        The server supplies the original operation and exact accepted text, not
+        a text-similarity guess. A read never executes or changes a pending turn.
+        """
+        actor = _user(actor_user_id)
+        epoch = _positive(actor_scope_epoch, "actor_scope_epoch")
+        cid = _uuid(conversation_id, "conversation_id")
+        after = _nonnegative(after_sequence_no, "after_sequence_no")
+        limit = _positive(limit, "limit")
+        if limit > 100:
+            raise ValueError("limit must not exceed 100.")
+        with closing(self._factory.open(read_only=True)) as connection:
+            with transaction(connection, TransactionMode.DEFERRED):
+                self._active_actor(connection, actor, epoch)
+                try:
+                    conversation = self._conversations.require_history_readable(
+                        connection, conversation_id=cid, owner_user_id=actor,
+                    )
+                    turns = self._conversations.list_pending_turns(
+                        connection, conversation_id=cid, owner_user_id=actor,
+                        after_sequence_no=after, limit=limit,
+                    )
+                except ConversationScopeError as exc:
+                    raise ConversationServiceScopeError(str(exc)) from exc
+                items = []
+                for turn in turns:
+                    message = self._conversations.get_message(connection, turn.user_message_id)
+                    if message is None or message.conversation_id != cid or message.role != "user":
+                        raise ConversationIdempotencyError("The pending message binding is invalid.")
+                    events = self._conversations.list_turn_events(
+                        connection, turn_id=turn.id, conversation_id=cid, limit=1,
+                    )
+                    envelope = message.content
+                    content = envelope.get("content")
+                    if envelope.get("role") != "user" or not isinstance(content, dict):
+                        raise ConversationIdempotencyError("The pending message envelope is invalid.")
+                    text = content.get("text")
+                    reason = None
+                    if conversation.status != "active":
+                        reason = "CONVERSATION_ARCHIVED"
+                    elif not events or events[0].payload.get("execution_protocol") != TURN_EXECUTION_PROTOCOL:
+                        reason = "LEGACY_EXECUTION_PROTOCOL"
+                    elif set(content) != {"text"} or not isinstance(text, str) or not text:
+                        reason = "UNSUPPORTED_MESSAGE_CONTENT"
+                    elif turn.request_sha256 != _semantic_hash({
+                        "actor_scope_epoch": epoch, "actor_user_id": actor,
+                        "conversation_id": cid, "operation_type": "conversation_turn",
+                        "schema_version": 1, "user_content": content,
+                    }):
+                        reason = "REQUEST_SCOPE_CHANGED"
+                    else:
+                        try:
+                            self._require_mutation_access(connection, actor_user_id=actor, conversation_id=cid)
+                            if self._conversation_wiki_binding:
+                                self._validate_turn_binding(
+                                    connection, actor_user_id=actor, actor_scope_epoch=epoch,
+                                    conversation_id=cid, turn_id=turn.id,
+                                )
+                        except (ConversationServiceError, ConversationScopeError) as exc:
+                            reason = getattr(exc, "code", "CONVERSATION_SCOPE_INVALID")
+                    items.append({
+                        "operation_id": turn.operation_id, "user_message_id": message.id,
+                        "sequence_no": message.sequence_no, "state": turn.state,
+                        "message": text if isinstance(text, str) else "",
+                        "can_resume": reason is None, "reason": reason,
+                    })
+                next_after = items[-1]["sequence_no"] if items else after
+                has_more = bool(items) and bool(self._conversations.list_pending_turns(
+                    connection, conversation_id=cid, owner_user_id=actor,
+                    after_sequence_no=next_after, limit=1,
+                ))
+                return {"schema_version": 1, "conversation_id": cid, "items": items,
+                        "has_more": has_more, "next_after_sequence_no": next_after if has_more else None}
 
     def list_messages(
         self,

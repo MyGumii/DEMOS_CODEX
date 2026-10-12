@@ -219,7 +219,6 @@ class ReplayQueueReceipt:
     event_frames_enqueued: int
     duplicate_frames: int
     has_more: bool
-    next_document_sequence: int = 0
 
 
 @dataclass(frozen=True, slots=True)
@@ -966,7 +965,6 @@ class RuntimeGateway:
             sum(outcome == "enqueued" for outcome in outcomes) - int(snapshot_enqueued),
             outcomes.count("duplicate"),
             batch.has_more,
-            batch.events[-1].document_sequence if batch.has_more else batch.high_water_sequence,
         )
 
     def replay_live_to_queue(

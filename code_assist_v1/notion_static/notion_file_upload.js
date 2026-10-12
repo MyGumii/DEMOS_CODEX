@@ -182,31 +182,21 @@
   async function upload(options) {
     const file = options.file;
     if (!file || typeof file.slice !== "function") throw new TypeError("file is required");
-    if (options.databaseId && (!Number.isSafeInteger(options.databaseEpoch)
-        || options.databaseEpoch < 1)) throw new TypeError("database access epoch is required");
     const fetchImpl = options.fetch || globalThis.fetch.bind(globalThis);
     const csrfToken = String(options.csrfToken || "");
     const baseUrl = String(options.baseUrl || "").replace(/\/$/, "");
     const expectedSha256 = await hashFile(file, { onProgress: options.onProgress });
     const fingerprint = `${file.name}:${file.size}:${file.lastModified || 0}:${expectedSha256}`;
     const store = options.storage || globalThis.sessionStorage;
-    const resourceId = options.databaseId ? `database:${options.databaseId}` : options.pageId || "";
-    const key = storageKey(options.subjectId || "", options.workspaceId || "", resourceId, fingerprint);
+    const key = storageKey(options.subjectId || "", options.workspaceId || "", options.pageId || "", fingerprint);
     let record = null;
     try { record = JSON.parse(store?.getItem(key) || "null"); } catch {}
     let session = null;
     if (record?.session_id) {
       try {
         const status = await request(fetchImpl, csrfToken, `${baseUrl}/uploads/${encodeURIComponent(record.session_id)}`, { method: "GET" });
-        if (["prepared", "ready"].includes(status.state)
-            && (!options.databaseId || status.database_id === options.databaseId)) {
-          session = { ...record, ...status };
-        }
-      } catch (error) {
-        if (error?.status && error.status < 500) {
-          try { store?.removeItem(key); } catch {}
-        }
-      }
+        if (["prepared", "ready"].includes(status.state)) session = { ...record, ...status };
+      } catch {}
     }
     if (!session) {
       const beginOperationId = operationId("file-begin");
@@ -221,14 +211,10 @@
           expected_document_sequence: options.documentSequence,
           expected_workspace_epoch: options.workspaceEpoch,
           expected_document_epoch: options.documentEpoch,
-          ...(options.databaseId ? { expected_database_epoch: options.databaseEpoch } : {}),
           operation_id: beginOperationId,
           chunk_size: UPLOAD_CHUNK_SIZE,
         }),
       });
-      if (options.databaseId && session.database_id !== options.databaseId) {
-        throw new Error("Database upload scope does not match the selected source");
-      }
       record = {
         session_id: session.session_id,
         chunk_size: session.chunk_size,
@@ -280,10 +266,6 @@
           });
           store?.removeItem(key);
         } catch {}
-      } else if (error?.status && error.status < 500) {
-        // A rejected upload session cannot be resumed with a newer document witness.
-        // Keep resumability only for transient failures.
-        try { store?.removeItem(key); } catch {}
       }
       throw error;
     }

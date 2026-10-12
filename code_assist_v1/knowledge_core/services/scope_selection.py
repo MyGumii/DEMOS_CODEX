@@ -24,6 +24,7 @@ from ..repositories.conversations import (
 )
 from ..repositories.organization import OrganizationRepository
 from ..repositories.personal_wikis import (
+    PERSONAL_WIKI_MAX_PAGE_SIZE,
     PersonalWikiProfileRecord,
     PersonalWikiProfileRepository,
 )
@@ -289,7 +290,6 @@ class ScopeSelectionService:
                     "The scope selector actor binding is inconsistent."
                 )
             summaries = list(selectable.items)
-            available = {space.id: space for space in summaries}
             personal = next(
                 (space for space in selectable.items if space.kind == "personal"),
                 None,
@@ -298,6 +298,13 @@ class ScopeSelectionService:
                 raise ScopeSelectionIntegrityError(
                     "The authenticated actor has no selectable personal space."
                 )
+            if self._conversations.conversation_wiki_binding:
+                additional = self._active_personal_summaries(
+                    connection, actor=actor, epoch=epoch, default_space_id=personal.id,
+                )
+                personal_index = summaries.index(personal)
+                summaries[personal_index + 1:personal_index + 1] = additional
+            available = {space.id: space for space in summaries}
 
             conversation: ConversationRecord | None = None
             badge: ConversationSpaceBadge | None = None
@@ -394,6 +401,47 @@ class ScopeSelectionService:
                 spaces=options,
                 conversation_badge=badge,
             )
+
+    def _active_personal_summaries(
+        self,
+        connection: ManagedConnection,
+        *,
+        actor: str,
+        epoch: int,
+        default_space_id: str,
+    ) -> list[SpaceSummary]:
+        """Expose every owned active Wiki without making a browser ID authority."""
+
+        summaries: list[SpaceSummary] = []
+        after_name_key: str | None = None
+        after_space_id: str | None = None
+        while True:
+            page = self._personal_wikis.list_by_owner(
+                connection,
+                owner_user_id=actor,
+                lifecycle_status="active",
+                after_name_key=after_name_key,
+                after_space_id=after_space_id,
+                limit=PERSONAL_WIKI_MAX_PAGE_SIZE,
+            )
+            for profile in page:
+                if profile.space_id == default_space_id:
+                    continue
+                summary = self._exact_active_summary(
+                    connection,
+                    actor=actor,
+                    epoch=epoch,
+                    space_id=profile.space_id,
+                )
+                if summary.kind != "personal" or summary.name != profile.display_name:
+                    raise ScopeSelectionIntegrityError(
+                        "An active personal Wiki selector option is inconsistent."
+                    )
+                summaries.append(summary)
+            if len(page) < PERSONAL_WIKI_MAX_PAGE_SIZE:
+                return summaries
+            after_name_key = page[-1].name_key
+            after_space_id = page[-1].space_id
 
     def _higher_native_authority(
         self,

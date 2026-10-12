@@ -5,13 +5,17 @@ from pathlib import Path
 import os
 
 
-def main():
+def main(argv=None):
+    from code_assist_v1.tools.full_second_brain_preview import (
+        _add_answer_request_arguments, _answer_request_policy_from_args)
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-root",type=Path,required=True)
     parser.add_argument("--port",type=int,choices=[10221,10223],default=10221)
     parser.add_argument("--agent-worker",action="store_true")
     parser.add_argument("--check",action="store_true")
-    args=parser.parse_args()
+    _add_answer_request_arguments(parser)
+    args=parser.parse_args(argv)
+    policy=_answer_request_policy_from_args(args)
     root=args.data_root.resolve(strict=True)
     marker=json.loads((root/".runtime/full-second-brain-preview.json").read_text(encoding="utf-8"))
     if Path(marker["data_root"]).resolve(strict=True)!=root or marker.get("schema_version")!=3:
@@ -43,20 +47,22 @@ def main():
             os.environ["CODE_ASSIST_AGENT_OUTLOOK"] = "1" if values["outlook_enabled"] else "0"
     os.environ["CODE_ASSIST_AGENT_WORKER"]="1" if args.agent_worker and not args.check else "0"
     factory=_canonical_factory(root)
-    app=build_preview_app(factory,marker)
+    app=build_preview_app(factory,marker,answer_request_policy=policy)
     extension=app.extensions.get("agent_integrations")
     if extension is None:
         raise RuntimeError("Integration composition failed")
     if args.check:
         print(json.dumps(dict(status="composition_ready",port=args.port,
-            integration_routes=len(extension["bearer_endpoints"]),marker_sha256=marker["marker_sha256"])))
+            integration_routes=len(extension["bearer_endpoints"]),marker_sha256=marker["marker_sha256"],
+            answer_request_policy=None if policy is None else policy.receipt())))
         return
     from waitress import serve
     from code_assist_v1.tools.full_second_brain_preview_workers import PreviewWorkerSupervisor
     supervisor=PreviewWorkerSupervisor(root,marker_sha256=marker["marker_sha256"],codex_validation=True)
     supervisor.start()
     app.extensions["full_second_brain_preview_worker_supervisors"].append(supervisor)
-    print(json.dumps(dict(status="ready",port=args.port,marker_sha256=marker["marker_sha256"],workers=supervisor.status())),flush=True)
+    print(json.dumps(dict(status="ready",port=args.port,marker_sha256=marker["marker_sha256"],workers=supervisor.status(),
+        answer_request_policy=None if policy is None else policy.receipt())),flush=True)
     try:
         serve(app,host="127.0.0.1",port=args.port,threads=8)
     finally:

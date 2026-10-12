@@ -27,10 +27,8 @@ from code_assist_v1.notion_collaboration.canonical_authority import (
     _canonical_json,
     _identifier,
     _operation_id,
-    _require_unlocked_document,
     _sha256,
     _stable_id,
-    _validated_temporary_unlock,
 )
 from code_assist_v1.notion_collaboration.protocol_contract import (
     Acknowledgement,
@@ -123,28 +121,11 @@ def _acknowledgement(value: Mapping[str, Any]) -> Acknowledgement:
     )
 
 
-def _ticket_record(row: sqlite3.Row) -> tuple[TicketClaims, Mapping[str, Any] | None]:
-    stored = json.loads(str(row["capabilities_json"]))
-    temporary_unlock = None
-    if isinstance(stored, dict):
-        if (set(stored) != {"version", "capabilities", "temporary_unlock"}
-                or type(stored["version"]) is not int or stored["version"] != 2):
-            raise AuthorityUnavailable("stored collaboration ticket is invalid")
-        temporary_unlock = stored["temporary_unlock"]
-        if (not isinstance(temporary_unlock, dict)
-                or set(temporary_unlock) != {"lock_generation", "expires_at_ms"}
-                or not isinstance(temporary_unlock["lock_generation"], str)
-                or not temporary_unlock["lock_generation"]
-                or type(temporary_unlock["expires_at_ms"]) is not int):
-            raise AuthorityUnavailable("stored collaboration ticket is invalid")
-        capabilities = stored["capabilities"]
-    else:
-        capabilities = stored
+def _ticket_claims(row: sqlite3.Row) -> TicketClaims:
+    capabilities = json.loads(str(row["capabilities_json"]))
     if not isinstance(capabilities, list) or not all(isinstance(item, str) for item in capabilities):
         raise AuthorityUnavailable("stored collaboration ticket is invalid")
-    if temporary_unlock is not None and "write" not in capabilities:
-        raise AuthorityUnavailable("stored collaboration ticket is invalid")
-    claims = TicketClaims(
+    return TicketClaims(
         protocol_version=1,
         jti=str(row["jti"]),
         subject_id=str(row["subject_id"]),
@@ -159,20 +140,6 @@ def _ticket_record(row: sqlite3.Row) -> tuple[TicketClaims, Mapping[str, Any] | 
         issued_at_ms=int(row["issued_at_ms"]),
         expires_at_ms=int(row["expires_at_ms"]),
     )
-    return claims, temporary_unlock
-
-
-def _ticket_temporary_grant(claims: TicketClaims,
-                            temporary_unlock: Mapping[str, Any] | None) -> Mapping[str, Any] | None:
-    if temporary_unlock is None:
-        return None
-    return {
-        "user_id": claims.subject_id,
-        "workspace_id": claims.workspace_id,
-        "page_id": claims.page_id,
-        "lock_generation": temporary_unlock["lock_generation"],
-        "expires_at_ms": temporary_unlock["expires_at_ms"],
-    }
 
 
 class DurableTransportAuthority:
@@ -293,33 +260,19 @@ class DurableTransportAuthority:
         capabilities: Sequence[str],
         now_ms: int,
         ttl_ms: int = 30_000,
-        include_temporary_write: bool = False,
     ) -> IssuedTicket:
         subject = _identifier(subject_id, field="subject_id")
         workspace = _identifier(workspace_id, field="workspace_id")
         document = _identifier(document_id, field="document_id")
-        requested_capabilities = tuple(capabilities)
-        if type(include_temporary_write) is not bool or (include_temporary_write and "write" in requested_capabilities):
-            raise ValueError("invalid temporary ticket request")
         with self._transaction() as con:
             workspace_row, document_row, _role = self.canonical_authority()._access(
                 con,
                 subject,
                 document,
-                minimum_role=_capability_role(
-                    requested_capabilities + (("write",) if include_temporary_write else ()),
-                ),
+                minimum_role=_capability_role(tuple(capabilities)),
             )
             if str(workspace_row["id"]) != workspace:
                 raise NotFoundOrDenied("not found or permission denied")
-            if "write" in requested_capabilities:
-                _require_unlocked_document(document_row)
-            temporary_unlock = None
-            effective_capabilities = requested_capabilities
-            if include_temporary_write:
-                temporary_unlock = _validated_temporary_unlock(con, document_row, subject)
-                if temporary_unlock is not None or not json.loads(str(document_row["settings_json"])).get("locked"):
-                    effective_capabilities += ("write",)
             issued = TicketAuthority().issue(
                 csrf_valid=csrf_valid,
                 subject_id=subject,
@@ -328,23 +281,13 @@ class DurableTransportAuthority:
                 client_id=client_id,
                 session_binding_sha256=session_binding_sha256,
                 origin=origin,
-                capabilities=effective_capabilities,
+                capabilities=capabilities,
                 workspace_epoch=int(workspace_row["security_epoch"]),
                 page_epoch=int(document_row["access_epoch"]),
                 now_ms=now_ms,
                 ttl_ms=ttl_ms,
             )
             digest = _sha256(issued.token.encode("ascii"))
-            stored_capabilities: Any = list(issued.claims.capabilities)
-            if temporary_unlock is not None:
-                stored_capabilities = {
-                    "version": 2,
-                    "capabilities": stored_capabilities,
-                    "temporary_unlock": {
-                        "lock_generation": temporary_unlock["lock_generation"],
-                        "expires_at_ms": temporary_unlock["expires_at_ms"],
-                    },
-                }
             con.execute(
                 "INSERT INTO workspace_collaboration_tickets("
                 "ticket_sha256,jti,subject_id,workspace_id,document_id,client_id,"
@@ -360,7 +303,7 @@ class DurableTransportAuthority:
                     issued.claims.client_id,
                     issued.claims.session_binding_sha256,
                     issued.claims.origin,
-                    _canonical_json(stored_capabilities),
+                    _canonical_json(list(issued.claims.capabilities)),
                     issued.claims.workspace_epoch,
                     issued.claims.page_epoch,
                     issued.claims.issued_at_ms,
@@ -400,7 +343,6 @@ class DurableTransportAuthority:
             raise TicketRejected() from None
 
         claims: TicketClaims | None = None
-        temporary_unlock: Mapping[str, Any] | None = None
         accepted = False
         with self._transaction() as con:
             row = con.execute(
@@ -410,7 +352,7 @@ class DurableTransportAuthority:
             if row is None or row["consumed_at_ms"] is not None:
                 raise TicketRejected()
             try:
-                claims, temporary_unlock = _ticket_record(row)
+                claims = _ticket_claims(row)
                 workspace_row, document_row, _role = self.canonical_authority()._access(
                     con,
                     claims.subject_id,
@@ -428,10 +370,6 @@ class DurableTransportAuthority:
                     and claims.workspace_epoch == int(workspace_row["security_epoch"])
                     and claims.page_epoch == int(document_row["access_epoch"])
                 )
-                if accepted and "write" in claims.capabilities and json.loads(str(document_row["settings_json"])).get("locked"):
-                    candidate = _ticket_temporary_grant(claims, temporary_unlock)
-                    accepted = (candidate is not None
-                                and _validated_temporary_unlock(con, document_row, claims.subject_id, candidate) is not None)
             except (AuthorityUnavailable, NotFoundOrDenied, ValueError, json.JSONDecodeError):
                 accepted = False
             con.execute(
@@ -441,9 +379,7 @@ class DurableTransportAuthority:
             )
         if not accepted or claims is None:
             raise TicketRejected()
-        return TicketGrant(
-            claims=claims, consumed_at_ms=presented["now_ms"], temporary_unlock=temporary_unlock,
-        )
+        return TicketGrant(claims=claims, consumed_at_ms=presented["now_ms"])
 
     def accept_update(
         self,
@@ -504,12 +440,6 @@ class DurableTransportAuthority:
             )
             if replay is not None:
                 return _acknowledgement(replay)
-
-            if json.loads(str(document_row["settings_json"])).get("locked"):
-                candidate = _ticket_temporary_grant(grant.claims, grant.temporary_unlock)
-                if (candidate is None
-                        or _validated_temporary_unlock(con, document_row, envelope.subject_id, candidate) is None):
-                    raise PermissionError("page is locked")
 
             client_key = (
                 envelope.subject_id,

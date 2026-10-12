@@ -122,6 +122,11 @@ class WikiPublicationSelector:
             raise PublicationCommitIntegrityError("Wiki readiness has no exact synthesis completion.")
         return WikiPublicationSelection("ready", snapshot["id"], eligible and bool(snapshot["retained"]))
 
+    def replay_options(self, connection, **kwargs):
+        # The v17 implementation is unchanged. Successors may own a different
+        # immutable selection receipt without reinterpreting old rows.
+        return publication_replay_options(connection, **kwargs)
+
 
 def publication_replay_options(connection, *, actor_id, operation_id, stored, requested_authored_snapshot_id):
     """Infer the actual frozen selection without reading purgeable source bodies."""

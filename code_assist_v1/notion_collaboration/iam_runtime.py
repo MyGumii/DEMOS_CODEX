@@ -23,42 +23,19 @@ from code_assist_v1 import notion_workspace_database_features_migration as datab
 from code_assist_v1 import notion_workspace_file_authority_migration as file_migration
 from code_assist_v1 import notion_workspace_history_authority_migration as history_migration
 from code_assist_v1 import notion_workspace_search_authority_migration as search_migration
-from code_assist_v1 import notion_workspace_icon_image_migration as image_migration
-from code_assist_v1 import notion_workspace_guest_navigation_migration as guest_navigation_migration
-from code_assist_v1 import notion_workspace_page_archive_migration as archive_migration
-from code_assist_v1 import notion_workspace_native_page_migration as native_page_migration
-from code_assist_v1 import notion_workspace_member_navigation_migration as member_navigation_migration
-from code_assist_v1 import notion_workspace_file_copy_migration as file_copy_migration
-from code_assist_v1 import notion_workspace_native_team_migration as team_migration
-from code_assist_v1 import notion_workspace_row_body_migration as row_body_migration
-from code_assist_v1 import notion_workspace_row_appearance_migration as row_appearance_migration
-from code_assist_v1 import notion_workspace_same_document_file_copy_migration as same_file_migration
-from code_assist_v1 import notion_workspace_database_activity_migration as activity_migration
-from code_assist_v1 import notion_workspace_database_trash_migration as database_trash_migration
-from code_assist_v1 import notion_workspace_database_row_trash_migration as row_trash_migration
-from code_assist_v1 import notion_workspace_database_row_page_placement_migration as placement_migration
-from code_assist_v1 import notion_workspace_custom_emoji_migration as custom_emoji_migration
-from code_assist_v1 import notion_workspace_database_item_page_layout_migration as item_layout_migration
-from code_assist_v1 import notion_workspace_database_template_default_migration as template_default_migration
-from code_assist_v1 import notion_member_navigation as member_navigation
-from code_assist_v1 import notion_guest_navigation as guest_navigation
 from code_assist_v1 import notion_workspace_store as nws
 from code_assist_v1.notion_collaboration.canonical_authority import (
     AuthorityUnavailable,
     CanonicalAuthority,
     NotFoundOrDenied,
-    _identifier,
 )
 from code_assist_v1.notion_collaboration.durable_transport import (
     DurableTransportAuthority,
 )
 from code_assist_v1.notion_collaboration.file_authority import CollaborativeFileAuthority
-from code_assist_v1.notion_collaboration.editing_authority import CollaborativeEditingAuthority
 from code_assist_v1.notion_collaboration.database_features import CollaborativeDatabaseAuthority
 from code_assist_v1.notion_collaboration.history_authority import CollaborativeHistoryAuthority
 from code_assist_v1.notion_collaboration.search_authority import CollaborativeSearchAuthority
-from code_assist_v1.notion_collaboration.workspace_image_authority import WorkspaceImageAuthority
-from code_assist_v1.notion_collaboration.title_projection import read_current_titles, retry_title_projection
 from code_assist_v1.notion_collaboration.iam_authority import (
     CollaborativeIAMAuthority,
     InMemoryIdentityDirectory,
@@ -112,47 +89,6 @@ def _current_target(con: sqlite3.Connection) -> tuple[int, str, str, str] | None
         return None
     version = int(latest[0])
     targets = {
-        row_body_migration.TARGET_VERSION: (row_body_migration.TARGET_NAME, row_body_migration.TARGET_CHECKSUM, row_body_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        row_appearance_migration.TARGET_VERSION: (row_appearance_migration.TARGET_NAME, row_appearance_migration.TARGET_CHECKSUM, row_appearance_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        same_file_migration.TARGET_VERSION: (same_file_migration.TARGET_NAME, same_file_migration.TARGET_CHECKSUM, same_file_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        activity_migration.TARGET_VERSION: (activity_migration.TARGET_NAME, activity_migration.TARGET_CHECKSUM, activity_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        database_trash_migration.TARGET_VERSION: (database_trash_migration.TARGET_NAME, database_trash_migration.TARGET_CHECKSUM, database_trash_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        row_trash_migration.TARGET_VERSION: (row_trash_migration.TARGET_NAME, row_trash_migration.TARGET_CHECKSUM, row_trash_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        placement_migration.TARGET_VERSION: (placement_migration.TARGET_NAME, placement_migration.TARGET_CHECKSUM, placement_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        custom_emoji_migration.TARGET_VERSION: (custom_emoji_migration.TARGET_NAME, custom_emoji_migration.TARGET_CHECKSUM, custom_emoji_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        item_layout_migration.TARGET_VERSION: (item_layout_migration.TARGET_NAME, item_layout_migration.TARGET_CHECKSUM, item_layout_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        template_default_migration.TARGET_VERSION: (template_default_migration.TARGET_NAME, template_default_migration.TARGET_CHECKSUM, template_default_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        team_migration.TARGET_VERSION: (team_migration.TARGET_NAME, team_migration.TARGET_CHECKSUM, team_migration.TARGET_ACTUAL_SCHEMA_SHA256),
-        file_copy_migration.TARGET_VERSION: (
-            file_copy_migration.TARGET_NAME,
-            file_copy_migration.TARGET_CHECKSUM,
-            file_copy_migration.TARGET_ACTUAL_SCHEMA_SHA256,
-        ),
-        member_navigation_migration.TARGET_VERSION: (
-            member_navigation_migration.TARGET_NAME,
-            member_navigation_migration.TARGET_CHECKSUM,
-            member_navigation_migration.TARGET_ACTUAL_SCHEMA_SHA256,
-        ),
-        native_page_migration.TARGET_VERSION: (
-            native_page_migration.TARGET_NAME,
-            native_page_migration.TARGET_CHECKSUM,
-            native_page_migration.TARGET_ACTUAL_SCHEMA_SHA256,
-        ),
-        archive_migration.TARGET_VERSION: (
-            archive_migration.TARGET_NAME,
-            archive_migration.TARGET_CHECKSUM,
-            archive_migration.TARGET_ACTUAL_SCHEMA_SHA256,
-        ),
-        guest_navigation_migration.TARGET_VERSION: (
-            guest_navigation_migration.TARGET_NAME,
-            guest_navigation_migration.TARGET_CHECKSUM,
-            guest_navigation_migration.TARGET_ACTUAL_SCHEMA_SHA256,
-        ),
-        image_migration.TARGET_VERSION: (
-            image_migration.TARGET_NAME,
-            image_migration.TARGET_CHECKSUM,
-            image_migration.TARGET_ACTUAL_SCHEMA_SHA256,
-        ),
         iam_migration.TARGET_VERSION: (
             iam_migration.TARGET_NAME,
             iam_migration.TARGET_CHECKSUM,
@@ -225,9 +161,7 @@ class CollaborativeWorkspaceStore(nws.WorkspaceStore):
             target = _current_target(con)
         finally:
             con.close()
-        if target is not None and target[0] in {image_migration.TARGET_VERSION, guest_navigation_migration.TARGET_VERSION, archive_migration.TARGET_VERSION, native_page_migration.TARGET_VERSION, member_navigation_migration.TARGET_VERSION, file_copy_migration.TARGET_VERSION, team_migration.TARGET_VERSION, row_body_migration.TARGET_VERSION, row_appearance_migration.TARGET_VERSION, same_file_migration.TARGET_VERSION, activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}:
-            self.iam = WorkspaceImageAuthority.open(self.db_path, self.user_data_root, identity_directory)
-        elif target is not None and target[0] == search_migration.TARGET_VERSION:
+        if target is not None and target[0] == search_migration.TARGET_VERSION:
             self.iam = CollaborativeSearchAuthority.open(
                 self.db_path,
                 self.user_data_root,
@@ -325,49 +259,13 @@ class CollaborativeWorkspaceStore(nws.WorkspaceStore):
         except sqlite3.Error:
             ready = False
             target = None
-        # The exact additive guest-navigation schema retains every 2411 feature.
-        feature_version = target[0] if target is not None else None
-        if feature_version in {guest_navigation_migration.TARGET_VERSION, archive_migration.TARGET_VERSION, native_page_migration.TARGET_VERSION, member_navigation_migration.TARGET_VERSION, file_copy_migration.TARGET_VERSION, team_migration.TARGET_VERSION, row_body_migration.TARGET_VERSION, row_appearance_migration.TARGET_VERSION, same_file_migration.TARGET_VERSION, activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}:
-            feature_version = image_migration.TARGET_VERSION
         return {
             "workspace_v2": ready,
             "schema_version": target[0] if target is not None else None,
             "collaborative_iam_sharing": ready,
-            # Activation waits for linked-source semantics and durable UI recovery.
-            "collaborative_page_copy": False,
-            # Owned DB copy is staged behind an independent API/UI recovery gate.
-            "collaborative_owned_database_copy": False,
-            # Owned DB move still lacks file, child-page, comment and Trash transfer.
-            "collaborative_owned_database_move": False,
-            # Independent database Trash still requires reader, UI and backup gates.
-            "collaborative_owned_database_trash": False,
-            # Row Trash transport remains disabled until runtime and UI gates pass.
-            "collaborative_database_row_trash": False,
-            "collaborative_database_row_icon_batch": False,
-            "collaborative_database_row_duplicate_batch": False,
-            "collaborative_database_row_move_batch": False,
-            "collaborative_database_row_to_page_batch": False,
-            "collaborative_page_to_database_row": False,
-            "collaborative_database_relation_pair": False,
-            # The detach writer is staged; menu and durable browser recovery are pending.
-            "collaborative_synced_detach": False,
-            # Explicit legacy origin review and recovery have a separate rollout.
-            "collaborative_synced_legacy_adoption": False,
-            "collaborative_team_page_creation": bool(target is not None and target[0] in {team_migration.TARGET_VERSION, row_body_migration.TARGET_VERSION, row_appearance_migration.TARGET_VERSION, same_file_migration.TARGET_VERSION, activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}),
-            "database_row_content": bool(target is not None and target[0] in {row_body_migration.TARGET_VERSION,row_appearance_migration.TARGET_VERSION,same_file_migration.TARGET_VERSION,activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}),
-            "database_row_comments": bool(target is not None and target[0] in {row_body_migration.TARGET_VERSION,row_appearance_migration.TARGET_VERSION,same_file_migration.TARGET_VERSION,activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}),
-            "database_row_appearance": bool(target is not None and target[0] in {row_appearance_migration.TARGET_VERSION,same_file_migration.TARGET_VERSION,activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}),
-            "database_item_page_layout": bool(target is not None and target[0] in {item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}),
-            "database_template_default": bool(target is not None and target[0] == template_default_migration.TARGET_VERSION),
-            "page_workspace_resolution": ready,
-            "collaborative_page_archive": bool(target is not None and target[0] in {archive_migration.TARGET_VERSION, native_page_migration.TARGET_VERSION, member_navigation_migration.TARGET_VERSION, file_copy_migration.TARGET_VERSION, team_migration.TARGET_VERSION, row_body_migration.TARGET_VERSION, row_appearance_migration.TARGET_VERSION, same_file_migration.TARGET_VERSION, activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}),
-            "collaborative_page_creation": bool(target is not None and target[0] in {member_navigation_migration.TARGET_VERSION, file_copy_migration.TARGET_VERSION, team_migration.TARGET_VERSION, row_body_migration.TARGET_VERSION, row_appearance_migration.TARGET_VERSION, same_file_migration.TARGET_VERSION, activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}),
-            "collaborative_database_favorites": bool(target is not None and target[0] in {member_navigation_migration.TARGET_VERSION, file_copy_migration.TARGET_VERSION, team_migration.TARGET_VERSION, row_body_migration.TARGET_VERSION, row_appearance_migration.TARGET_VERSION, same_file_migration.TARGET_VERSION, activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}),
-            "page_creation_templates": ["page", "database", "linked_database", "task_tracker", "meeting_notes", "ai_notes"] if target is not None and target[0] in {member_navigation_migration.TARGET_VERSION, file_copy_migration.TARGET_VERSION, team_migration.TARGET_VERSION, row_body_migration.TARGET_VERSION, row_appearance_migration.TARGET_VERSION, same_file_migration.TARGET_VERSION, activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION} else [],
-            "guest_navigation": bool(target is not None and target[0] in {guest_navigation_migration.TARGET_VERSION, archive_migration.TARGET_VERSION, native_page_migration.TARGET_VERSION, member_navigation_migration.TARGET_VERSION, file_copy_migration.TARGET_VERSION, team_migration.TARGET_VERSION, row_body_migration.TARGET_VERSION, row_appearance_migration.TARGET_VERSION, same_file_migration.TARGET_VERSION, activity_migration.TARGET_VERSION, database_trash_migration.TARGET_VERSION, row_trash_migration.TARGET_VERSION, placement_migration.TARGET_VERSION, custom_emoji_migration.TARGET_VERSION, item_layout_migration.TARGET_VERSION, template_default_migration.TARGET_VERSION}),
             "live_collaboration": bool(
                 target is not None
-                and feature_version
+                and target[0]
                 in {
                     live_migration.TARGET_VERSION,
                     editing_migration.TARGET_VERSION,
@@ -376,12 +274,11 @@ class CollaborativeWorkspaceStore(nws.WorkspaceStore):
                     file_migration.TARGET_VERSION,
                     history_migration.TARGET_VERSION,
                     search_migration.TARGET_VERSION,
-                    image_migration.TARGET_VERSION,
                 }
             ),
             "collaborative_editing": bool(
                 target is not None
-                and feature_version
+                and target[0]
                 in {
                     editing_migration.TARGET_VERSION,
                     publication_migration.TARGET_VERSION,
@@ -389,52 +286,44 @@ class CollaborativeWorkspaceStore(nws.WorkspaceStore):
                     file_migration.TARGET_VERSION,
                     history_migration.TARGET_VERSION,
                     search_migration.TARGET_VERSION,
-                    image_migration.TARGET_VERSION,
                 }
             ),
             "second_brain_publication_intents": bool(
                 target is not None
-                and feature_version
+                and target[0]
                 in {
                     publication_migration.TARGET_VERSION,
                     database_migration.TARGET_VERSION,
                     file_migration.TARGET_VERSION,
                     history_migration.TARGET_VERSION,
                     search_migration.TARGET_VERSION,
-                    image_migration.TARGET_VERSION,
                 }
             ),
             "database_features": bool(
                 target is not None
-                and feature_version in {
+                and target[0] in {
                     database_migration.TARGET_VERSION,
                     file_migration.TARGET_VERSION,
                     history_migration.TARGET_VERSION,
                     search_migration.TARGET_VERSION,
-                    image_migration.TARGET_VERSION,
                 }
             ),
             "collaborative_files": bool(
                 target is not None
-                and feature_version in {
+                and target[0] in {
                     file_migration.TARGET_VERSION,
                     history_migration.TARGET_VERSION,
                     search_migration.TARGET_VERSION,
-                    image_migration.TARGET_VERSION,
                 }
             ),
             "collaborative_history": bool(
                 target is not None
-                and feature_version
-                in {history_migration.TARGET_VERSION, search_migration.TARGET_VERSION, image_migration.TARGET_VERSION}
+                and target[0]
+                in {history_migration.TARGET_VERSION, search_migration.TARGET_VERSION}
             ),
             "collaborative_search": bool(
-                target is not None and feature_version in {search_migration.TARGET_VERSION, image_migration.TARGET_VERSION}
+                target is not None and target[0] == search_migration.TARGET_VERSION
             ),
-            # The direct search UI remains gated until database-only navigation
-            # and the other independent-sharing privacy surfaces are verified.
-            "independent_database_search": False,
-            "workspace_image": bool(target is not None and feature_version == image_migration.TARGET_VERSION),
         }
 
     def get_navigation_state(
@@ -442,10 +331,6 @@ class CollaborativeWorkspaceStore(nws.WorkspaceStore):
     ) -> dict[str, Any]:
         """Return ordinary member state or identifier-safe guest defaults."""
 
-        if self._uses_member_navigation(subject_id, workspace_id):
-            return member_navigation.read(self, subject_id, workspace_id)
-        if self._uses_guest_navigation(subject_id, workspace_id):
-            return guest_navigation.read(self, subject_id, workspace_id)
         try:
             return super().get_navigation_state(subject_id, workspace_id)
         except PermissionError:
@@ -479,7 +364,7 @@ class CollaborativeWorkspaceStore(nws.WorkspaceStore):
                     "preference_version": 0,
                     "favorite_version": 0,
                     "sidebar": {
-                        "width_px": nws.UNCONFIGURED_SIDEBAR_WIDTH_PX,
+                        "width_px": nws.DEFAULT_SIDEBAR_WIDTH_PX,
                         "collapsed": False,
                     },
                     "sections": sections,
@@ -487,61 +372,6 @@ class CollaborativeWorkspaceStore(nws.WorkspaceStore):
                 }
             finally:
                 con.close()
-
-    def _uses_member_navigation(self, subject_id, workspace_id):
-        con = self._read_connection()
-        try:
-            return member_navigation.marker_current(con) and con.execute(
-                "SELECT 1 FROM workspace_memberships WHERE workspace_id=? AND subject_id=? AND revoked_at IS NULL",
-                (workspace_id, subject_id),
-            ).fetchone() is not None
-        finally:
-            con.close()
-
-    def _uses_guest_navigation(self, subject_id, workspace_id):
-        con = self._read_connection()
-        try:
-            return guest_navigation.marker_current(con) and con.execute(
-                "SELECT 1 FROM workspace_guests WHERE workspace_id=? AND subject_id=? AND revoked_at IS NULL",
-                (workspace_id, subject_id),
-            ).fetchone() is not None
-        finally:
-            con.close()
-
-    def replace_sidebar_preferences(self, actor_subject_id, workspace_id, **kwargs):
-        if self._uses_member_navigation(actor_subject_id, workspace_id):
-            return member_navigation.replace_preferences(self, actor_subject_id, workspace_id, **kwargs)
-        if self._uses_guest_navigation(actor_subject_id, workspace_id):
-            return guest_navigation.replace_preferences(self, actor_subject_id, workspace_id, **kwargs)
-        return super().replace_sidebar_preferences(actor_subject_id, workspace_id, **kwargs)
-
-    def add_page_favorite(self, actor_subject_id, workspace_id, **kwargs):
-        if self._uses_member_navigation(actor_subject_id, workspace_id):
-            return member_navigation.change_favorite(self, actor_subject_id, workspace_id, **kwargs)
-        if self._uses_guest_navigation(actor_subject_id, workspace_id):
-            return guest_navigation.change_favorite(self, actor_subject_id, workspace_id, **kwargs)
-        return super().add_page_favorite(actor_subject_id, workspace_id, **kwargs)
-
-    def remove_page_favorite(self, actor_subject_id, workspace_id, **kwargs):
-        if self._uses_member_navigation(actor_subject_id, workspace_id):
-            return member_navigation.change_favorite(self, actor_subject_id, workspace_id, remove=True, **kwargs)
-        if self._uses_guest_navigation(actor_subject_id, workspace_id):
-            return guest_navigation.change_favorite(self, actor_subject_id, workspace_id, remove=True, **kwargs)
-        return super().remove_page_favorite(actor_subject_id, workspace_id, **kwargs)
-
-    def add_database_favorite(self, actor_subject_id, workspace_id, **kwargs):
-        if self._uses_member_navigation(actor_subject_id, workspace_id):
-            return member_navigation.change_favorite(self, actor_subject_id, workspace_id, **kwargs)
-        if self._uses_guest_navigation(actor_subject_id, workspace_id):
-            return guest_navigation.change_favorite(self, actor_subject_id, workspace_id, **kwargs)
-        raise NotFoundOrDenied("not found or permission denied")
-
-    def remove_database_favorite(self, actor_subject_id, workspace_id, **kwargs):
-        if self._uses_member_navigation(actor_subject_id, workspace_id):
-            return member_navigation.change_favorite(self, actor_subject_id, workspace_id, remove=True, **kwargs)
-        if self._uses_guest_navigation(actor_subject_id, workspace_id):
-            return guest_navigation.change_favorite(self, actor_subject_id, workspace_id, remove=True, **kwargs)
-        raise NotFoundOrDenied("not found or permission denied")
 
     def list_page_source_bindings(
         self, subject_id: str | None, workspace_id: str
@@ -766,15 +596,11 @@ def issue_realtime_ticket(
     access = store.iam.resolve_access(actor, document_id)
     if access.workspace_id != workspace_id:
         raise NotFoundOrDenied("not found or permission denied")
-    document = store.iam.read_document(actor, document_id)
     capabilities = ["read", "presence"]
     if PAGE_ROLE_LEVEL[access.role] >= PAGE_ROLE_LEVEL["comment"]:
         capabilities.append("comment")
-    if (PAGE_ROLE_LEVEL[access.role] >= PAGE_ROLE_LEVEL["edit_content"]
-            and not document["settings"].get("locked")):
+    if PAGE_ROLE_LEVEL[access.role] >= PAGE_ROLE_LEVEL["edit_content"]:
         capabilities.append("write")
-    temporary_write = (PAGE_ROLE_LEVEL[access.role] >= PAGE_ROLE_LEVEL["edit_content"]
-                       and bool(document["settings"].get("locked")))
     transport = CollaborativeDurableTransportAuthority.open(
         store.db_path, store.user_data_root
     )
@@ -789,10 +615,7 @@ def issue_realtime_ticket(
         origin=origin,
         capabilities=tuple(capabilities),
         now_ms=issued_at,
-        include_temporary_write=temporary_write,
     )
-    capabilities = [item for item in ("read", "presence", "comment", "write")
-                    if item in issued.claims.capabilities]
     binding = store.iam.binding(actor, document_id)
     return {
         "contract": RUNTIME_CONTRACT,
@@ -889,53 +712,13 @@ def ensure_collaborative_document(
     return store.iam.read_document(actor, document_id)
 
 
-@retry_title_projection
-def resolve_page_workspace(
-    authority: CollaborativeIAMAuthority, subject_id: str, document_id: str,
-) -> dict[str, str]:
-    """Resolve one current authorized document, without reading a legacy projection."""
-    actor = authority._require_active(subject_id)
-    document = _identifier(document_id, field="document_id")
-    with authority._reader() as con:
-        con.execute("BEGIN")
-        row = authority._document(con, document)
-        if row["archived"]:
-            raise NotFoundOrDenied("not found or permission denied")
-        workspace = str(row["workspace_id"])
-        authority._workspace(con, workspace)
-        role, _sources = authority._resolution_on_connection(con, actor, workspace, document)
-        if role is None:
-            raise NotFoundOrDenied("not found or permission denied")
-        authority._require_active(actor)
-        return {"page_id": document, "workspace_id": workspace}
-
-
-@retry_title_projection
 def collaborative_page_payload(
     authority: CollaborativeIAMAuthority,
     subject_id: str,
     document_id: str,
 ) -> dict[str, Any]:
     exact = authority.resolve_access(subject_id, document_id)
-    document = authority.read_document(subject_id, document_id, include_lock_generation=True)
-    from . import database_access, linked_databases
-    parent_id = str(document.get("parent_document_id") or "")
-    with authority._reader() as con:
-        con.execute("BEGIN")
-        scoped_database_access = database_access.installed(con)
-        if scoped_database_access and parent_id and authority._resolution_on_connection(
-                con, subject_id, document["workspace_id"], parent_id,
-        )[0] is None:
-            parent_id = ""
-    if scoped_database_access:
-        visible = linked_databases.read_linked_instance_page_scoped(
-            authority, subject_id, document["workspace_id"], document_id,
-        )
-        if visible["document_sequence"] != document["document_sequence"]:
-            raise linked_databases.LinkedDatabaseSourceChanged(
-                "page changed during linked source projection",
-            )
-        document["blocks"] = visible["snapshot"]["blocks"]
+    document = authority.read_document(subject_id, document_id)
     can_edit = PAGE_ROLE_LEVEL[exact.role] >= PAGE_ROLE_LEVEL["edit_content"]
     can_share = exact.role == "full_access"
     legacy_role = {
@@ -949,22 +732,18 @@ def collaborative_page_payload(
         "id": document["document_id"],
         "workspace_id": document["workspace_id"],
         "owner_user_id": _document_owner(authority, document_id),
-        "parent_id": parent_id,
+        "parent_id": str(document.get("parent_document_id") or ""),
         "title": document["title"],
         "icon": document["icon"],
         "cover": document["cover"],
         "settings": document["settings"],
-        "lock_generation": document["lock_generation"],
         "scope": "own"
         if _document_owner(authority, document_id) == subject_id
         else "shared",
         "role": legacy_role,
         "iam_role": exact.role,
         "can_edit": can_edit,
-        "can_change_appearance": PAGE_ROLE_LEVEL[exact.role] >= PAGE_ROLE_LEVEL["edit"] and not document["settings"].get("locked"),
-        "can_change_settings": isinstance(authority, CollaborativeEditingAuthority) and PAGE_ROLE_LEVEL[exact.role] >= PAGE_ROLE_LEVEL["edit"],
         "can_share": can_share,
-        "can_move": can_share and not document["settings"].get("locked"),
         "created_at": document["created_at"],
         "updated_at": document["updated_at"],
         "revision": document["revision"],
@@ -991,16 +770,10 @@ def collaborative_page_payload(
             {
                 **item,
                 "url": f"/api/notion/collaboration/files/{item['id']}",
-                "document_id": document_id,
                 "size": item["size_bytes"],
             }
             for item in authority.list_files(subject_id, document_id)["files"]
         ]
-    if isinstance(authority, CollaborativeEditingAuthority):
-        titles = read_current_titles(authority, subject_id, page["workspace_id"], [page])
-        if document_id not in titles:
-            raise NotFoundOrDenied("not found or permission denied")
-        page.update(titles[document_id])
     return {
         "contract": RUNTIME_CONTRACT,
         "page": page,
@@ -1011,11 +784,6 @@ def collaborative_page_payload(
         "capabilities": {
             "atomic_save": True,
             "collaborative_iam": True,
-            "collaborative_appearance": isinstance(authority, CollaborativeEditingAuthority),
-            "collaborative_page_settings": isinstance(authority, CollaborativeEditingAuthority),
-            "collaborative_page_move": isinstance(authority, CollaborativeEditingAuthority),
-            "collaborative_synced_read": isinstance(authority, CollaborativeEditingAuthority),
-            "collaborative_block_history": isinstance(authority, CollaborativeEditingAuthority),
             "collaborative_databases": isinstance(
                 authority, CollaborativeDatabaseAuthority
             ),

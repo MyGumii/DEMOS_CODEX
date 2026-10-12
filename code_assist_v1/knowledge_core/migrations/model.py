@@ -87,6 +87,11 @@ class Migration:
     expected_schema_sha256: str
     postcondition_queries: tuple[str, ...] = ()
     requires_foreign_keys_off: bool = False
+    # An explicit forward migration can extend an invariant whose historical
+    # SQL names the old physical representation. Never edit the historical
+    # query/checksum or introduce a runtime skip. Each pair names the exact
+    # active prior query and its complete reviewed successor.
+    postcondition_replacements: tuple[tuple[str, str], ...] = ()
     checksum_sha256: str = field(init=False)
 
     def __post_init__(self) -> None:
@@ -127,8 +132,33 @@ class Migration:
                 raise KnowledgeCoreMigrationError(
                     "Migration postconditions must be read-only SELECT queries."
                 )
+        if not isinstance(self.postcondition_replacements, tuple):
+            raise KnowledgeCoreMigrationError(
+                "Postcondition replacements must be immutable query pairs."
+            )
+        replacements: list[tuple[str, str]] = []
+        replaced_queries: set[str] = set()
+        for pair in self.postcondition_replacements:
+            if not isinstance(pair, tuple) or len(pair) != 2:
+                raise KnowledgeCoreMigrationError(
+                    "Postcondition replacements must be immutable query pairs."
+                )
+            old_query, new_query = (_normalized_sql(query) for query in pair)
+            for query in (old_query, new_query):
+                leading = query.lstrip(" \t\r\n(").upper()
+                if not (leading.startswith("SELECT") or leading.startswith("WITH")):
+                    raise KnowledgeCoreMigrationError(
+                        "Postcondition replacements must be read-only SELECT queries."
+                    )
+            if old_query == new_query or old_query in replaced_queries:
+                raise KnowledgeCoreMigrationError(
+                    "A postcondition replacement must extend one unique query."
+                )
+            replaced_queries.add(old_query)
+            replacements.append((old_query, new_query))
         object.__setattr__(self, "statements", statements)
         object.__setattr__(self, "postcondition_queries", postconditions)
+        object.__setattr__(self, "postcondition_replacements", tuple(replacements))
         checksum_value: dict[str, object] = {
             "format": "code_assist.knowledge_migration.v1",
             "expected_schema_sha256": self.expected_schema_sha256,
@@ -142,6 +172,10 @@ class Migration:
         # actually needs a parent-table rebuild.
         if self.requires_foreign_keys_off:
             checksum_value["requires_foreign_keys_off"] = True
+        # Empty opt-ins do not alter any historical numbered identity. The
+        # complete old/new SQL belongs to the successor migration's checksum.
+        if replacements:
+            checksum_value["postcondition_replacements"] = replacements
         object.__setattr__(
             self,
             "checksum_sha256",
@@ -150,9 +184,20 @@ class Migration:
 
 
 @dataclass(frozen=True, slots=True)
+class _ResolvedPostcondition:
+    origin_version: int
+    origin_index: int
+    defined_version: int
+    query: str
+
+
+@dataclass(frozen=True, slots=True)
 class MigrationCatalog:
     migrations: tuple[Migration, ...]
     checksum_sha256: str = field(init=False)
+    resolved_postconditions: tuple[_ResolvedPostcondition, ...] = field(
+        init=False, repr=False, compare=False
+    )
 
     def __post_init__(self) -> None:
         migrations = tuple(self.migrations)
@@ -166,7 +211,30 @@ class MigrationCatalog:
             raise KnowledgeCoreMigrationError(
                 "Migration catalogs must be ordered and contiguous from version 1."
             )
+        resolved: list[_ResolvedPostcondition] = []
+        for migration in migrations:
+            # Resolve all targets against the preceding version, not partially
+            # applied replacements in this version. Self/future/ambiguous or
+            # already retired targets are never silently accepted.
+            prior = tuple(resolved)
+            for old_query, new_query in migration.postcondition_replacements:
+                matches = [index for index, entry in enumerate(prior)
+                           if entry.query == old_query]
+                if len(matches) != 1:
+                    raise KnowledgeCoreMigrationError(
+                        "A replacement must name exactly one active prior postcondition."
+                    )
+                index = matches[0]
+                old = prior[index]
+                resolved[index] = _ResolvedPostcondition(
+                    old.origin_version, old.origin_index, migration.version, new_query
+                )
+            resolved.extend(
+                _ResolvedPostcondition(migration.version, index, migration.version, query)
+                for index, query in enumerate(migration.postcondition_queries, 1)
+            )
         object.__setattr__(self, "migrations", migrations)
+        object.__setattr__(self, "resolved_postconditions", tuple(resolved))
         object.__setattr__(
             self,
             "checksum_sha256",

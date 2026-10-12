@@ -1,0 +1,10 @@
+"""Reviewed v65 successor for correct v6 policy guard routing."""
+from .model import Migration,MigrationCatalog
+from .pdf_section_json_output_catalog import PDF_SECTION_JSON_OUTPUT_MIGRATION_CATALOG
+from .v065_pdf_section_guard_dispatch import V065_STATEMENTS,V065_POSTCONDITION_REPLACEMENTS
+V065_EXPECTED_SCHEMA_SHA256='3cc591fc4e686d81c710f74114ef6ae839956fd4a9b3fa6b5ae3138790b0ae31'
+SCHEMA_V65_MIGRATION=Migration(version=65,name='pdf_section_guard_dispatch_v65',
+    statements=V065_STATEMENTS,expected_schema_sha256=V065_EXPECTED_SCHEMA_SHA256,
+    postcondition_replacements=V065_POSTCONDITION_REPLACEMENTS)
+PDF_SECTION_GUARD_DISPATCH_MIGRATION_CATALOG=MigrationCatalog((
+    *PDF_SECTION_JSON_OUTPUT_MIGRATION_CATALOG.migrations,SCHEMA_V65_MIGRATION))

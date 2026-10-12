@@ -39,6 +39,7 @@ class ItemSourceArtifactRecord:
     size_bytes: int
     content_sha256: str
     created_at_ms: int
+    protected_source_kind: str | None = None
 
 
 def _uuid(value: object, field: str) -> str:
@@ -148,6 +149,10 @@ class SourceArtifactRepository:
                 ORDER BY source.created_at,source.id,artifact.id""",
             (target_revision, item),
         ).fetchall()
+        has_protected_provenance = connection.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' "
+            "AND name='protected_extraction_provenance'"
+        ).fetchone() is not None
         result: list[ItemSourceArtifactRecord] = []
         seen: set[str] = set()
         for row in rows:
@@ -188,6 +193,28 @@ class SourceArtifactRepository:
                 raise SourceArtifactRepositoryIntegrityError(
                     "Stored artifact creation time is invalid."
                 )
+            protected_kind = None
+            if has_protected_provenance:
+                provenance = connection.execute(
+                    """SELECT DISTINCT source_kind,original_sha256
+                         FROM protected_extraction_provenance
+                        WHERE artifact_id=?""",
+                    (artifact_id,),
+                ).fetchall()
+                if provenance:
+                    if (
+                        len(provenance) != 1
+                        or provenance[0]["original_sha256"] != content_sha256
+                        or provenance[0]["source_kind"] not in (
+                            "pdf_standard_encryption",
+                            "office_encrypted_package_candidate",
+                            "company_policy_protected",
+                        )
+                    ):
+                        raise SourceArtifactRepositoryIntegrityError(
+                            "Stored protected source evidence is inconsistent."
+                        )
+                    protected_kind = provenance[0]["source_kind"]
             result.append(
                 ItemSourceArtifactRecord(
                     artifact_id=artifact_id,
@@ -203,6 +230,7 @@ class SourceArtifactRepository:
                     size_bytes=size,
                     content_sha256=content_sha256,
                     created_at_ms=created_at,
+                    protected_source_kind=protected_kind,
                 )
             )
         return tuple(result)

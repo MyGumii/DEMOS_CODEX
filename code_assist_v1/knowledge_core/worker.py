@@ -15,7 +15,13 @@ rebuild the same registry and safely reclaim expired work.
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Mapping
+from contextlib import contextmanager
 from dataclasses import dataclass, field, replace
+from functools import partial
+import json
+import os
+from pathlib import Path
+import sys
 from types import MappingProxyType
 from typing import Literal, Protocol, TypeAlias
 
@@ -70,6 +76,10 @@ class RetryableJobExecutionError(JobKernelError):
 
 class PermanentJobExecutionError(JobKernelError):
     code = "JOB_EXECUTION_FAILED"
+
+
+class JobPreparationDeadlineError(TimeoutError):
+    """A server-owned preparation deadline expired after current guard checks."""
 
 
 @dataclass(frozen=True, slots=True)
@@ -352,10 +362,70 @@ def _stable_error(error: BaseException, *, retryable: bool) -> dict[str, object]
     }
 
 
+def _log_10521_failure_diagnostic(job_id: str, error: BaseException) -> None:
+    """Log only non-content failure location in the opt-in 10521 worker.
+
+    The persisted/public job error remains intentionally generic.  Neither
+    exception text nor local input paths, document text, or model payloads
+    are written to the worker log.
+    """
+
+    if os.environ.get("CODE_ASSIST_10521_JOB_FAILURE_DIAGNOSTICS") != "1":
+        return
+
+    def identifier(value, maximum=120):
+        if (type(value) is str and 0 < len(value) <= maximum and value.isascii()
+                and all(c.isalnum() or c in "_.<>" for c in value)):
+            return value
+        return None
+
+    trusted_root = Path(__file__).resolve().parents[1]
+
+    def metadata(exception):
+        # Read code metadata only: extract_tb/format_exception can load source
+        # lines. Never inspect exception messages, arguments or frame locals.
+        location = {"source_module": None, "source_function": None,
+                    "source_line": None}
+        current_frame = exception.__traceback__
+        for _ in range(128):
+            if current_frame is None:
+                break
+            code = current_frame.tb_frame.f_code
+            try:
+                path = Path(code.co_filename).resolve(strict=False)
+                trusted = path.is_relative_to(trusted_root) and path.suffix == ".py"
+            except (OSError, ValueError, RuntimeError):
+                trusted = False
+            if trusted:
+                location = {"source_module": identifier(path.name),
+                    "source_function": identifier(code.co_name),
+                    "source_line": current_frame.tb_lineno}
+            current_frame = current_frame.tb_next
+        return {"error_type": identifier(type(exception).__name__),
+                "error_module": identifier(type(exception).__module__), **location}
+
+    chain = []
+    seen = set()
+    current = error
+    while current is not None and len(chain) < 4 and id(current) not in seen:
+        seen.add(id(current))
+        chain.append(metadata(current))
+        current = (current.__cause__ if current.__cause__ is not None else
+            None if current.__suppress_context__ else current.__context__)
+    outer = chain[0] if chain else metadata(error)
+    print(json.dumps({
+        "event": "durable_job_failure_diagnostic",
+        "job_id": job_id,
+        **outer,
+        "cause_chain": chain,
+        "cause_chain_truncated": current is not None,
+    }, sort_keys=True), file=sys.stderr, flush=True)
+
+
 class DurableWorkKernel:
     """One-job orchestration with no implicit loop, thread, or service start."""
 
-    __slots__ = ("_factory", "_failpoint", "_jobs", "_registry", "_scope")
+    __slots__ = ("_factory", "_failpoint", "_jobs", "_registry", "_scope", "_preparation_reads")
 
     def __init__(
         self,
@@ -365,6 +435,7 @@ class DurableWorkKernel:
         scope_resolver: ScopeResolver | None = None,
         jobs: JobRepository | None = None,
         failpoint: Callable[[str], None] | None = None,
+        preparation_read_binding=None,
     ) -> None:
         if not isinstance(factory, ConnectionFactory):
             raise TypeError("DurableWorkKernel requires a ConnectionFactory.")
@@ -374,6 +445,12 @@ class DurableWorkKernel:
             raise TypeError("scope_resolver must be a ScopeResolver or None.")
         if failpoint is not None and not callable(failpoint):
             raise TypeError("failpoint must be callable or None.")
+        if preparation_read_binding is not None:
+            from .preparation_reads import PreparationReadBinding
+            if type(preparation_read_binding) is not PreparationReadBinding:
+                raise TypeError("An explicit preparation read binding is required.")
+            preparation_read_binding.validate_factory(factory)
+        self._preparation_reads = preparation_read_binding
         self._factory = factory
         self._registry = registry
         self._scope = scope_resolver
@@ -485,30 +562,34 @@ class DurableWorkKernel:
 
         connection = self._factory.open()
         try:
-            with transaction(connection):
-                self._jobs.verify_integrity(connection)
-                self._assert_registry_covers_jobs(connection)
-                self._reconcile_pending(connection)
-                now_ms = db_now_ms(connection)
-                self._prepare_recovery_terminals(connection, now_ms=now_ms)
-                recovery = self._jobs.recover_expired(
-                    connection,
-                    now_ms=now_ms,
-                    error={
-                        "code": "JOB_CLAIM_EXPIRED",
-                        "message": "The prior worker claim expired.",
-                        "retryable": True,
-                        "schema_version": 1,
-                    },
-                )
-                for terminal_id in (*recovery.cancelled_ids, *recovery.dead_ids):
-                    terminal = self._jobs.require(connection, terminal_id)
-                    self._registry.require_job(terminal).converge_terminal(
-                        connection, terminal
-                    )
-                return recovery
+            return self._recover_expired_phase(connection)
         finally:
             connection.close()
+
+    def _recover_expired_phase(self, connection: ManagedConnection) -> RecoveryResult:
+        """One complete recovery transaction; the caller owns the connection."""
+        with transaction(connection):
+            self._jobs.verify_integrity(connection)
+            self._assert_registry_covers_jobs(connection)
+            self._reconcile_pending(connection)
+            now_ms = db_now_ms(connection)
+            self._prepare_recovery_terminals(connection, now_ms=now_ms)
+            recovery = self._jobs.recover_expired(
+                connection,
+                now_ms=now_ms,
+                error={
+                    "code": "JOB_CLAIM_EXPIRED",
+                    "message": "The prior worker claim expired.",
+                    "retryable": True,
+                    "schema_version": 1,
+                },
+            )
+            for terminal_id in (*recovery.cancelled_ids, *recovery.dead_ids):
+                terminal = self._jobs.require(connection, terminal_id)
+                self._registry.require_job(terminal).converge_terminal(
+                    connection, terminal
+                )
+            return recovery
 
     def claim_next(
         self,
@@ -530,22 +611,54 @@ class DurableWorkKernel:
             self._registry.require(key)
         connection = self._factory.open()
         try:
-            with transaction(connection):
-                self._jobs.verify_integrity(connection)
-                self._assert_registry_covers_jobs(connection)
-                self._reconcile_pending(connection)
-                claim = self._jobs.claim_next(
-                    connection,
-                    handler_keys=keys,
-                    claim_owner=claim_owner,
-                    lease_ms=lease_ms,
-                    now_ms=db_now_ms(connection),
-                    avoid_actor=avoid_actor,
-                    durable_fairness=durable_fairness,
-                )
-            if claim is not None:
-                self._hit("job.after_claim")
-            return claim
+            return self._claim_next_phase(connection, keys=keys,
+                claim_owner=claim_owner, lease_ms=lease_ms,
+                avoid_actor=avoid_actor, durable_fairness=durable_fairness)
+        finally:
+            connection.close()
+
+    def _claim_next_phase(
+        self, connection: ManagedConnection, *, keys: tuple[HandlerKey, ...],
+        claim_owner: str, lease_ms: int,
+        avoid_actor: tuple[ActorKind, str | None] | None,
+        durable_fairness: bool,
+    ) -> ClaimResult | None:
+        """One fresh claim transaction, with the original post-commit failpoint."""
+        with transaction(connection):
+            self._jobs.verify_integrity(connection)
+            self._assert_registry_covers_jobs(connection)
+            self._reconcile_pending(connection)
+            claim = self._jobs.claim_next(
+                connection, handler_keys=keys, claim_owner=claim_owner,
+                lease_ms=lease_ms, now_ms=db_now_ms(connection),
+                avoid_actor=avoid_actor, durable_fairness=durable_fairness,
+            )
+        if claim is not None:
+            self._hit("job.after_claim")
+        return claim
+
+    def recover_then_claim_fair(
+        self, *, claim_owner: str, lease_ms: int,
+    ) -> tuple[RecoveryResult, ClaimResult | None]:
+        """Two ordinary transactions on one explicitly owned/revalidated handle.
+
+        Unlike recover_and_claim, recovery commits before a fresh claim phase.
+        Both integrity/reconciliation sweeps and DB clock reads are retained.
+        No connection or cursor escapes to heartbeat, preparation or model work.
+        """
+        connection = self._factory._open_revalidatable_read_write()
+        try:
+            recovery = self._recover_expired_phase(connection)
+            # Preserve the ordinary worker's ordering: recovery commits before
+            # handler validation and the next connection-validation boundary.
+            keys = self._registry.keys
+            for key in keys:
+                self._registry.require(key)
+            self._factory.revalidate_read_write(connection)
+            claim = self._claim_next_phase(connection, keys=keys,
+                claim_owner=claim_owner, lease_ms=lease_ms,
+                avoid_actor=None, durable_fairness=True)
+            return recovery, claim
         finally:
             connection.close()
 
@@ -612,24 +725,84 @@ class DurableWorkKernel:
         self._revalidate_authorization(connection, current, handler)
         return current
 
-    def preflight_preparation(self, fence: ClaimFence) -> DurableJobRecord:
+    @contextmanager
+    def preparation_guard(self, fence: ClaimFence):
+        """Lexical invocation guard; ordinary deployments retain per-call opens."""
+        if self._preparation_reads is None:
+            yield partial(self.preflight_preparation, fence)
+        else:
+            with self._preparation_reads.invocation(self, self._factory, fence) as scope:
+                yield partial(self.preflight_preparation, fence, _read_scope=scope)
+
+    def preparation_read_metrics(self):
+        return None if self._preparation_reads is None else self._preparation_reads.snapshot()
+
+    def prepare_with_read_guard(self, fence: ClaimFence, prepare):
+        """Clean a prepared result if scope teardown fails before handoff."""
+        prepared = None
+        try:
+            with self.preparation_guard(fence) as guard:
+                prepared = prepare(guard)
+            return prepared
+        except BaseException as primary:
+            if isinstance(prepared, PreparedJobEffect) and prepared.cleanup is not None:
+                try:
+                    prepared.cleanup()
+                except BaseException as cleanup:
+                    primary.add_note("Unreturned preparation cleanup failed: " + type(cleanup).__name__)
+            raise
+
+    def preflight_preparation(
+        self, fence: ClaimFence, *, deadline_at_db_ms: int | None = None, _read_scope=None,
+    ) -> DurableJobRecord:
         """Reject revoked/cancelled/stale work immediately before external I/O.
 
         No transaction survives this method. Authority can still change after
         it returns; commit_prepared must retain its independent writer fence.
         Handlers opt in because their pre-effect state can differ from their
         initial state. This is not a new claim or a lease extension.
+
+        An optional persisted DB-clock deadline is checked with a fresh time
+        after all existing guards, preserving their error priority. This avoids
+        a second connection solely to read the clock; no external callback is
+        accepted and callers without a deadline retain the same query sequence.
         """
+        if deadline_at_db_ms is not None and (
+            type(deadline_at_db_ms) is not int
+            or not 0 <= deadline_at_db_ms <= 2**63 - 1
+        ):
+            raise ValueError("Preparation deadline must be a nonnegative int64 DB timestamp.")
+        if _read_scope is not None:
+            from .preparation_reads import PreparationReadError
+            if self._preparation_reads is None:
+                raise PreparationReadError("Preparation read reuse is not bound to this kernel.")
+            return self._preparation_reads.run(
+                _read_scope, self, self._factory, fence, deadline_at_db_ms)
         connection = self._factory.open(read_only=True)
         try:
-            with transaction(connection, TransactionMode.DEFERRED):
-                current = self._jobs.assert_effect_fence(
-                    connection, fence=fence, now_ms=db_now_ms(connection))
-                self.revalidate_job_authority(connection, current.id)
-                self._registry.require_job(current).revalidate_expected_state(connection, current)
-                return current
+            return self._preflight_preparation_phase(
+                connection, fence, deadline_at_db_ms=deadline_at_db_ms)
         finally:
             connection.close()
+
+    def _preflight_preparation_phase(
+        self, connection: ManagedConnection, fence: ClaimFence, *,
+        deadline_at_db_ms: int | None,
+    ) -> DurableJobRecord:
+        """One unchanged guard transaction on a caller-owned validated RO handle.
+
+        The caller validates deadline shape before opening, and owns full factory
+        validation and close. No handler or invocation connection reuse is enabled
+        by extracting this phase. No transaction survives the return.
+        """
+        with transaction(connection, TransactionMode.DEFERRED):
+            current = self._jobs.assert_effect_fence(
+                connection, fence=fence, now_ms=db_now_ms(connection))
+            self.revalidate_job_authority(connection, current.id)
+            self._registry.require_job(current).revalidate_expected_state(connection, current)
+            if deadline_at_db_ms is not None and db_now_ms(connection) >= deadline_at_db_ms:
+                raise JobPreparationDeadlineError("Preparation execution deadline reached.")
+            return current
 
     def run_claim(self, claim: ClaimResult) -> JobRunResult:
         """Run one short handler invocation; later P7 owns loops and heartbeats."""
@@ -780,6 +953,7 @@ class DurableWorkKernel:
     def _record_retry(
         self, fence: ClaimFence, error: BaseException
     ) -> DurableJobRecord:
+        _log_10521_failure_diagnostic(fence.job_id, error)
         connection = self._factory.open()
         try:
             with transaction(connection):
@@ -818,6 +992,7 @@ class DurableWorkKernel:
     def _record_failure(
         self, fence: ClaimFence, error: BaseException
     ) -> DurableJobRecord:
+        _log_10521_failure_diagnostic(fence.job_id, error)
         connection = self._factory.open()
         try:
             with transaction(connection):
@@ -1085,6 +1260,7 @@ __all__ = [
     "JobExpectedStateConflictError",
     "JobHandlerRegistryError",
     "JobKernelError",
+    "JobPreparationDeadlineError",
     "JobRunResult",
     "PermanentJobExecutionError",
     "PrepareTerminalJob",

@@ -444,19 +444,15 @@ def list_workspace_pages(
     *,
     query: str = "",
 ) -> dict[str, Any]:
-    """Read bound page summaries from the active content authority.
+    """Project bound legacy page summaries through both current authorities.
 
-    Collaborative pages use current canonical permissions and metadata. Normal
-    pages retain the existing locator plus legacy-owner authorization. Neither
-    mode enumerates user directories or writes compatibility projections.
+    The canonical catalog decides which explicit owner/page locators the actor
+    may attempt. The legacy owner DB then reauthorizes the page grant. Both must
+    allow access. Missing, stale, corrupt, or revoked locators are omitted and
+    reported as degraded; no filesystem enumeration is attempted.
     """
     workspace = store.get_workspace(requester_subject_id, workspace_id)
     bindings = store.list_page_source_bindings(requester_subject_id, workspace_id)
-    from code_assist_v1.notion_collaboration.editing_authority import CollaborativeEditingAuthority
-    from code_assist_v1.notion_collaboration.page_appearance import project_page_metadata
-
-    authority = getattr(store, "iam", None)
-    collaborative = isinstance(authority, CollaborativeEditingAuthority)
     bindings_by_owner: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for binding in bindings:
         bindings_by_owner[str(binding["source_owner_subject_id"])].append(binding)
@@ -465,8 +461,11 @@ def list_workspace_pages(
     degraded_sources: set[str] = set()
     for owner, owner_bindings in sorted(bindings_by_owner.items()):
         requested_ids = {str(item["source_page_id"]) for item in owner_bindings}
-        summaries = ([{"id": page_id} for page_id in requested_ids] if collaborative else
-                     notion_store.list_pages_from_owner_by_ids(requester_subject_id, owner, requested_ids))
+        summaries = notion_store.list_pages_from_owner_by_ids(
+            requester_subject_id,
+            owner,
+            requested_ids,
+        )
         for summary in summaries:
             summaries_by_locator[(owner, str(summary.get("id") or ""))] = summary
         if len(summaries) != len(requested_ids):
@@ -488,28 +487,6 @@ def list_workspace_pages(
         }
         items.append(item)
 
-    if collaborative:
-        from code_assist_v1.notion_collaboration.page_creation import native_page_items
-        by_id = {item["id"]: item for item in items}
-        for item in native_page_items(authority, requester_subject_id, workspace_id):
-            by_id.setdefault(item["id"], item)
-        items = list(by_id.values())
-        projected = project_page_metadata(authority, requester_subject_id, workspace_id, items)
-        if len(projected) != len(items):
-            degraded_sources.add("canonical_page_metadata")
-        items = projected
-        # A bound legacy document can be moved beneath a native team root.
-        # Its current canonical ancestors own placement there; its original
-        # source locator remains provenance and must not be fabricated anew.
-        from code_assist_v1.notion_collaboration import native_team_location
-        with authority._reader() as con:
-            con.execute("BEGIN")
-            for item in items:
-                root = native_team_location.inherited_root(con, workspace_id, item["id"])
-                if root is not None:
-                    item["placement"] = {"scope":"teamspace", "teamspace_id":root["teamspace_id"],
-                                         "binding_version":item.get("placement", {}).get("binding_version", 1)}
-
     visible_ids = {str(item.get("id") or "") for item in items}
     for item in items:
         if str(item.get("parent_id") or "") not in visible_ids:
@@ -526,7 +503,7 @@ def list_workspace_pages(
         key=lambda item: (
             str(item.get("placement", {}).get("scope") or ""),
             int(item.get("position") or 0),
-            int(item.get("created_at") or 0) if collaborative else -int(item.get("updated_at") or 0),
+            -int(item.get("updated_at") or 0),
             str(item.get("id") or ""),
         )
     )

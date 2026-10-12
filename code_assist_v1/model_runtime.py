@@ -13,6 +13,7 @@ import time.
 from __future__ import annotations
 
 import ctypes
+import hashlib
 import os
 import sys
 import threading
@@ -114,6 +115,7 @@ def assert_legacy_background_jobs_allowed(
 
 
 _ACTIVE_MUTEXES: set[str] = set()
+_REMOTE_WORKER_MUTEXES: set[str] = set()
 _ACTIVE_MUTEXES_GUARD = threading.RLock()
 
 
@@ -164,6 +166,11 @@ def assert_local_inference_allowed(
 ) -> None:
     """Fail closed unless development compatibility or the sole worker owns it."""
 
+    with _ACTIVE_MUTEXES_GUARD:
+        if _REMOTE_WORKER_MUTEXES:
+            raise LocalInferenceOwnershipError(
+                "Local GGUF inference is forbidden in a remote-only worker."
+            )
     role = process_role(environ)
     if role is ProcessRole.DEVELOPMENT:
         return
@@ -191,11 +198,57 @@ def hold_inference_ownership(
     """
 
     assert_worker_process_role(environ)
+    with _ACTIVE_MUTEXES_GUARD:
+        if _REMOTE_WORKER_MUTEXES:
+            raise LocalInferenceOwnershipError(
+                "A remote-only worker cannot acquire local GPU ownership."
+            )
+    name = inference_mutex_name(database_path)
+    with _hold_windows_mutex(name):
+        _mark_active(name)
+        try:
+            yield name
+        finally:
+            _mark_inactive(name)
+
+
+def remote_worker_mutex_name(database_path: str | os.PathLike[str]) -> str:
+    """Serialize remote-only schedulers per database, not per physical GPU."""
+    identity = _normalized_database_identity(database_path)
+    return "Global\\CodeAssistV1RemoteWorkerV1_" + hashlib.sha256(identity.encode()).hexdigest()
+
+
+@contextmanager
+def hold_remote_worker_ownership(
+    database_path: str | os.PathLike[str],
+    *,
+    environ: Mapping[str, str] | None = None,
+) -> Iterator[str]:
+    """Own a remote-only queue while permanently forbidding local model calls.
+
+    This does not grant a local inference lease. The process-wide guard also
+    covers handler threads and accidental provider fallback to GGUF.
+    """
+    assert_worker_process_role(environ)
+    name = remote_worker_mutex_name(database_path)
+    with _ACTIVE_MUTEXES_GUARD:
+        if _ACTIVE_MUTEXES or _REMOTE_WORKER_MUTEXES:
+            raise InferenceOwnerBusyError("This process already owns an inference scheduler.")
+        _REMOTE_WORKER_MUTEXES.add(name)
+    try:
+        with _hold_windows_mutex(name):
+            yield name
+    finally:
+        with _ACTIVE_MUTEXES_GUARD:
+            _REMOTE_WORKER_MUTEXES.discard(name)
+
+
+@contextmanager
+def _hold_windows_mutex(name: str) -> Iterator[str]:
     if sys.platform != "win32":
         raise ModelRuntimeConfigurationError(
             "The production inference owner is implemented for the Windows target."
         )
-    name = inference_mutex_name(database_path)
     kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
     create_mutex = kernel32.CreateMutexW
     create_mutex.argtypes = (ctypes.c_void_p, ctypes.c_int, ctypes.c_wchar_p)
@@ -219,7 +272,7 @@ def hold_inference_ownership(
     if wait_result == _WAIT_TIMEOUT:
         close_handle(handle)
         raise InferenceOwnerBusyError(
-            "Another process already owns local inference on this server."
+            "Another process already owns the requested inference scheduler."
         )
     if wait_result not in {_WAIT_OBJECT_0, _WAIT_ABANDONED}:
         close_handle(handle)
@@ -227,10 +280,8 @@ def hold_inference_ownership(
             "The central local-inference ownership mutex could not be acquired."
         )
     try:
-        _mark_active(name)
         yield name
     finally:
-        _mark_inactive(name)
         release_mutex(handle)
         close_handle(handle)
 
@@ -248,6 +299,8 @@ __all__ = [
     "assert_worker_process_role",
     "gguf_catalog_enabled",
     "hold_inference_ownership",
+    "hold_remote_worker_ownership",
+    "remote_worker_mutex_name",
     "inference_mutex_name",
     "process_role",
 ]

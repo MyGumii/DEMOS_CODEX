@@ -38,6 +38,7 @@ class CitationArtifact:
     source_revision_id: str
     filename: str
     content_sha256: str | None
+    protected_source_kind: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -123,9 +124,19 @@ def prepare_citations(payload: dict, *, turn_id: str, selected_view_space_id: st
             if digest_value is not None and (not isinstance(digest_value, str)
                     or re.fullmatch(r"[0-9a-f]{64}", digest_value) is None):
                 raise CitationValidationError("Invalid original-file digest.")
+            protected_kind = artifact.get("protected_source_kind")
+            if protected_kind is not None and (
+                type(protected_kind) is not str
+                or protected_kind not in {
+                    "pdf_standard_encryption", "office_encrypted_package_candidate",
+                    "company_policy_protected",
+                }
+            ):
+                raise CitationValidationError("Invalid protected source kind.")
             record = CitationArtifact(
                 _uuid(artifact.get("artifact_id")), _uuid(artifact.get("source_revision_id")),
                 str(artifact.get("original_filename") or "원본 파일"), digest_value,
+                protected_kind,
             )
             if record.artifact_id in artifacts_by_id and artifacts_by_id[record.artifact_id] != record:
                 raise CitationValidationError("Conflicting original-file metadata.")
@@ -142,6 +153,7 @@ def prepare_citations(payload: dict, *, turn_id: str, selected_view_space_id: st
         row["citation_handle"] = handles[row["item_id"], row["revision_id"]]
         for artifact in row.get("artifacts", []):
             artifact.pop("download_url", None)
+            artifact.pop("protected_source_kind", None)
     result["citation_sources"] = [
         {"handle": source.handle, "title": source.title,
          "original_filenames": [artifact.filename for artifact in source.artifacts]}
@@ -160,24 +172,38 @@ def _render_source(source: CitationSource, catalog: CitationCatalog) -> str:
     title = _label(source.title)
     if not source.artifacts:
         return f"{title} (원본 링크 미제공)"
-    return " · ".join(
-        f"[{_label(artifact.filename)} — {title}](/api/knowledge/v1/spaces/{catalog.selected_view_space_id}"
-        f"/items/{source.item_id}/source-artifacts/{artifact.artifact_id}/download)"
-        for artifact in source.artifacts
-    )
+    links = []
+    for artifact in source.artifacts:
+        if artifact.protected_source_kind is not None:
+            # Publication rights do not grant original-byte transfer rights.
+            # The Wiki is in the selected read closure; its original may not be.
+            link = (f"[{title} — Wiki MD](/api/knowledge/v2/spaces/{catalog.selected_view_space_id}"
+                    f"/items/{source.item_id}/markdown-download)")
+        else:
+            link = (f"[{_label(artifact.filename)} — {title}](/api/knowledge/v1/spaces/"
+                    f"{catalog.selected_view_space_id}/items/{source.item_id}/source-artifacts/"
+                    f"{artifact.artifact_id}/download)")
+        if link not in links:
+            links.append(link)
+    return " · ".join(links)
 
 
 def _citation_token(state, silent):
     """Inline rule: code spans/blocks are handled by the real Markdown parser."""
     start = state.pos
-    if not state.src.startswith("[[wiki:", start):
+    canonical = state.src.startswith("[[wiki:", start)
+    # Some compatible models omit only the 'wiki:' namespace. Recognize the
+    # exact turn-handle syntax, never titles, item IDs, URLs or guessed sources.
+    bare_handle = re.match(r"\[\[S[1-9][0-9]*_[0-9a-f]{12}\]\]", state.src[start:])
+    if not canonical and bare_handle is None:
         return False
-    end = state.src.find("]]", start + 7)
+    offset = 7 if canonical else 2
+    end = state.src.find("]]", start + offset)
     if end < 0:
         raise CitationValidationError("Unclosed citation marker.")
     if not silent:
         token = state.push("wiki_citation", "", 0)
-        token.content = state.src[start + 7:end]
+        token.content = state.src[start + offset:end]
         token.meta["source_line"] = state.src.count("\n", 0, start)
     state.pos = end + 2
     return True
@@ -311,11 +337,70 @@ def _reserved_route(text: str) -> bool:
     return re.search(r"api/knowledge/v1(?:[/#?]|$)", decoded, re.I) is not None
 
 
+def _section_footer_citations(answer: str, marker_lines: dict[int, list[str]]) -> str:
+    """Move only an unambiguous heading-leading evidence block below its body.
+
+    Citation identities and claim text are unchanged. Real Markdown boundaries
+    prevent code examples or nested headings from assigning sources to a different
+    section. Interleaved evidence is intentionally not regrouped or deduplicated.
+    """
+    if not marker_lines:
+        return answer
+    lines = answer.splitlines(keepends=True)
+    tokens = MarkdownIt("commonmark").enable(["table", "strikethrough"]).parse(answer)
+    boundaries = [token for token in tokens
+                  if token.level == 0 and token.type in {"heading_open", "hr"} and token.map]
+    paragraph_lines = {line for token in tokens if token.type == "paragraph_open"
+                       and token.level == 0 and token.map for line in range(*token.map)}
+    replacements = []
+    for index, boundary in enumerate(boundaries):
+        if boundary.type != "heading_open":
+            continue
+        start = boundary.map[1]
+        end = boundaries[index + 1].map[0] if index + 1 < len(boundaries) else len(lines)
+        cursor = start
+        leading = []
+        while cursor < end:
+            if not lines[cursor].strip():
+                cursor += 1
+                continue
+            if (cursor in marker_lines and cursor in paragraph_lines
+                    and re.fullmatch(r"\s*근거 문서:\s*(.*?)\s*", lines[cursor])):
+                leading.append(cursor)
+                cursor += 1
+                continue
+            break
+        if (not leading or cursor == end
+                or {line for line in marker_lines if start <= line < end} != set(leading)):
+            continue
+        tail = end
+        while tail > cursor and not lines[tail - 1].strip():
+            tail -= 1
+        if tail == cursor:
+            continue
+        newline = "\r\n" if lines[boundary.map[0]].endswith("\r\n") else "\n"
+        body = "".join(lines[cursor:tail])
+        if not body.endswith("\n"):
+            body += newline
+        evidence = newline.join(lines[line].rstrip("\r\n") for line in leading)
+        if lines[end - 1].endswith("\n"):
+            evidence += newline
+        replacement = newline + body + newline + evidence + "".join(lines[tail:end])
+        replacements.append((start, end, replacement))
+    for start, end, replacement in reversed(replacements):
+        lines[start:end] = [replacement]
+    return "".join(lines)
+
+
 def render_citations(answer: str, catalog: CitationCatalog) -> tuple[str, dict]:
     if not isinstance(answer, str) or not answer.strip() or len(answer) > 32_000:
         raise CitationValidationError("Invalid canonical answer size.")
     by_handle = {source.handle: source for source in catalog.sources}
     marker_lines = _citation_lines(answer)
+    normalized = _section_footer_citations(answer, marker_lines)
+    if normalized != answer:
+        answer = normalized
+        marker_lines = _citation_lines(answer)
     cited: list[str] = []
     rendered = []
     occurrences = []
@@ -326,8 +411,8 @@ def render_citations(answer: str, catalog: CitationCatalog) -> tuple[str, dict]:
         evidence = re.fullmatch(r"\s*근거 문서:\s*(.*?)\s*", line)
         if evidence is None:
             raise CitationValidationError("Citation markers must occur on an evidence line.")
-        markers = re.findall(r"\[\[wiki:([^\]\s]+)\]\]", evidence[1])
-        remaining = re.sub(r"\[\[wiki:[^\]\s]+\]\]", "", evidence[1])
+        markers = re.findall(r"\[\[(?:wiki:)?([^\]\s]+)\]\]", evidence[1])
+        remaining = re.sub(r"\[\[(?:wiki:)?[^\]\s]+\]\]", "", evidence[1])
         if (not markers or markers != marker_lines[line_index] or remaining.strip(" ,;·")
                 or any(handle not in by_handle for handle in markers)):
             raise CitationValidationError("Unknown or malformed citation reference.")

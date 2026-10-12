@@ -23,6 +23,7 @@ from .backup_manifest import (
 from .db import ManagedConnection, online_backup_to_existing_file
 from .errors import KnowledgeCoreDatabasePathError, KnowledgeCoreSchemaMismatchError
 from .migrations.canonical_catalog import CANONICAL_MIGRATION_CATALOG
+from .migrations.model import MigrationCatalog
 from .migrations.fingerprint import schema_sha256
 from .migrations.storage_preflight import (
     MigrationStorageBoundary,
@@ -121,7 +122,9 @@ class _RestoreTargetLease:
 
 def _same_or_descendant(candidate: Path, parent: Path) -> bool:
     try:
-        return os.path.commonpath((candidate, parent)) == os.fspath(parent)
+        candidate_key = os.path.normcase(os.fspath(candidate))
+        parent_key = os.path.normcase(os.fspath(parent))
+        return os.path.commonpath((candidate_key, parent_key)) == parent_key
     except (OSError, ValueError):
         return False
 
@@ -149,10 +152,7 @@ def _canonical_uuid(value: object) -> str:
     return value
 
 
-def _backup_root(
-    source: MigrationStorageBoundary,
-    requested: Path,
-) -> tuple[Path, str]:
+def _archive_root(requested: Path) -> tuple[Path, str]:
     if os.name != "nt":
         raise BackupFilesystemError(
             "Knowledge Core backup storage requires the approved Windows host."
@@ -179,13 +179,20 @@ def _backup_root(
     resolved = Path(str(report["resolved_path"])).resolve(strict=True)
     if not resolved.is_dir():
         raise BackupFilesystemError("The backup root must be a directory.")
+    return resolved, ntpath.normcase(str(volume["root"]))
+
+
+def _backup_root(
+    source: MigrationStorageBoundary,
+    requested: Path,
+) -> tuple[Path, str]:
+    resolved, target_volume = _archive_root(requested)
     data = Path(source.data_root.resolved_path)
     if _same_or_descendant(resolved, data) or _same_or_descendant(data, resolved):
         raise BackupFilesystemError(
             "The backup root cannot overlap canonical production storage."
         )
     source_volume = ntpath.normcase(source.data_root.volume_root)
-    target_volume = ntpath.normcase(str(volume["root"]))
     if source_volume == target_volume and os.environ.get("CODE_ASSIST_TEST_MODE") != "1":
         raise BackupFilesystemError(
             "Production backups must use a volume separate from canonical storage."
@@ -205,10 +212,15 @@ def _verify_file_handle(
     expected_path: Path,
     expected_size: int | None = None,
 ) -> int:
-    from ..tools.legacy_inventory import _windows_final_path
+    from ..tools.legacy_inventory import (
+        _display_windows_path, _extended_windows_path, _windows_final_path,
+    )
 
+    # A pinned handle can reference a valid CAS leaf beyond MAX_PATH even when
+    # ordinary strict resolve cannot. Resolve in the extended namespace, then
+    # compare the same display spelling as GetFinalPathNameByHandleW returns.
     if os.path.normcase(os.fspath(_windows_final_path(handle))) != os.path.normcase(
-        os.fspath(expected_path.resolve(strict=True))
+        _display_windows_path(_extended_windows_path(expected_path).resolve(strict=True))
     ):
         raise BackupFilesystemError("A backup file escaped its pinned directory.")
     attributes, links, size = _file_facts(handle)
@@ -328,13 +340,16 @@ def _open_directory(
     name: str,
     *,
     delete_access: bool = False,
+    writable: bool = True,
 ) -> object:
     from ..tools.legacy_inventory import _WindowsDirectoryAnchor
 
     target = parent.path / name  # type: ignore[attr-defined]
     if not os.path.lexists(target):
         raise BackupFilesystemError("A required backup directory is missing.")
-    return _WindowsDirectoryAnchor.open(target, delete_access=delete_access)
+    return _WindowsDirectoryAnchor.open(
+        target, delete_access=delete_access, writable=writable
+    )
 
 
 def _atomic_write(anchor: object, name: str, payload: bytes) -> None:
@@ -368,8 +383,7 @@ def _atomic_write(anchor: object, name: str, payload: bytes) -> None:
         _close_windows_handle(handle)
 
 
-def _snapshot_ledger(raw: sqlite3.Connection) -> None:
-    catalog = CANONICAL_MIGRATION_CATALOG
+def _snapshot_ledger(raw: sqlite3.Connection, catalog: MigrationCatalog) -> None:
     rows = raw.execute(
         """SELECT version,name,checksum_sha256,applied_at,app_version,
                   sqlite_version,sqlite_source_id
@@ -394,16 +408,9 @@ def _snapshot_ledger(raw: sqlite3.Connection) -> None:
 
 
 def _snapshot_blobs(raw: sqlite3.Connection) -> tuple[SnapshotBlob, ...]:
+    from .retained_blob_references import retained_blob_union_sql
     rows = raw.execute(
-        """WITH referenced(sha256) AS (
-               SELECT content_sha256 FROM artifact_blob_body
-               UNION SELECT content_blob_hash FROM extraction_snapshot_body
-                     WHERE content_blob_hash IS NOT NULL
-               UNION SELECT content_blob_hash FROM knowledge_revision_body
-                     WHERE content_blob_hash IS NOT NULL
-               UNION SELECT proposed_content_blob_hash FROM change_proposal
-                     WHERE proposed_content_blob_hash IS NOT NULL
-           )
+        f"""WITH referenced(sha256) AS ({retained_blob_union_sql(raw)})
            SELECT r.sha256,b.size_bytes,b.media_type,b.relative_path,
                   b.verification_status
              FROM referenced r LEFT JOIN blob_object b ON b.sha256=r.sha256
@@ -434,6 +441,9 @@ def _snapshot_blobs(raw: sqlite3.Connection) -> tuple[SnapshotBlob, ...]:
 
 
 def _exact_tree(root: Path, manifest: Mapping[str, object]) -> None:
+    from ..tools.legacy_inventory import _display_windows_path, _extended_windows_path
+
+    root = Path(_display_windows_path(root))
     rows = manifest.get("blobs")
     if not isinstance(rows, list):
         raise BackupFilesystemError("The completed backup blob list is invalid.")
@@ -455,8 +465,9 @@ def _exact_tree(root: Path, manifest: Mapping[str, object]) -> None:
     pending = [root]
     while pending:
         parent = pending.pop()
-        for child in parent.iterdir():
-            facts = child.stat(follow_symlinks=False)
+        for entry in _extended_windows_path(parent).iterdir():
+            child = Path(_display_windows_path(entry))
+            facts = _extended_windows_path(child).stat(follow_symlinks=False)
             attributes = int(getattr(facts, "st_file_attributes", 0))
             if attributes & int(getattr(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400)):
                 raise BackupFilesystemError(
@@ -476,6 +487,32 @@ def _exact_tree(root: Path, manifest: Mapping[str, object]) -> None:
         raise BackupFilesystemError(
             "The completed backup tree differs from its manifest."
         )
+
+
+def business_state_sha256(connection) -> bytes:
+    """Exact logical snapshot state without BackupService's own two ledgers.
+
+    The caller owns a stable read transaction or verified immutable snapshot.
+    Hash one row at a time; never return or log bodies, credentials or raw SQL.
+    """
+    digest = hashlib.sha256()
+    schema = connection.execute(
+        "SELECT type,name,tbl_name,sql FROM sqlite_schema ORDER BY type,name"
+    ).fetchall()
+    digest.update(repr([tuple(row) for row in schema]).encode("utf-8"))
+    for row in schema:
+        if row[0] != "table" or row[1] in ("backup_run", "backup_blob"):
+            continue
+        table = '"' + row[1].replace('"', '""') + '"'
+        columns = connection.execute("SELECT * FROM " + table + " LIMIT 0").description
+        order = ",".join('typeof("' + column[0].replace('"', '""') + '"),"'
+            + column[0].replace('"', '""') + '"' for column in columns)
+        digest.update(repr((row[1], tuple(column[0] for column in columns))).encode("utf-8"))
+        for record in connection.execute("SELECT * FROM " + table + " ORDER BY " + order):
+            encoded = repr(tuple(record)).encode("utf-8")
+            digest.update(len(encoded).to_bytes(8, "big"))
+            digest.update(encoded)
+    return digest.digest()
 
 
 class _BackupDirectory:
@@ -498,7 +535,10 @@ class _BackupDirectory:
         from ..tools.legacy_inventory import _WindowsDirectoryAnchor
 
         self.storage = storage
-        self.root = _WindowsDirectoryAnchor.open(storage.root)
+        if storage.recovery_only and (create or delete_access):
+            raise BackupFilesystemError("Recovery archives are read-only.")
+        writable = not storage.recovery_only
+        self.root = _WindowsDirectoryAnchor.open(storage.root, writable=writable)
         if _directory_identity(self.root.path) != storage._root_identity:
             self.root.close()
             raise BackupFilesystemError("The backup root identity changed.")
@@ -506,7 +546,7 @@ class _BackupDirectory:
         try:
             if os.path.lexists(target):
                 self.directory = _WindowsDirectoryAnchor.open(
-                    target, delete_access=(create or delete_access)
+                    target, delete_access=(create or delete_access), writable=writable
                 )
             elif create:
                 self.directory = _WindowsDirectoryAnchor.create_relative_directory(
@@ -519,10 +559,12 @@ class _BackupDirectory:
                 self.blobs = _open_or_create_directory(self.directory, "blobs")
             else:
                 self.database = _open_directory(
-                    self.directory, "database", delete_access=delete_access
+                    self.directory, "database", delete_access=delete_access,
+                    writable=writable,
                 )
                 self.blobs = _open_directory(
-                    self.directory, "blobs", delete_access=delete_access
+                    self.directory, "blobs", delete_access=delete_access,
+                    writable=writable,
                 )
         except Exception:
             for value in (
@@ -591,11 +633,12 @@ class _BackupDirectory:
             )
             foreign_key_count = len(raw.execute("PRAGMA foreign_key_check").fetchall())
             user_version = int(raw.execute("PRAGMA user_version").fetchone()[0])
-            if user_version != CANONICAL_MIGRATION_CATALOG.latest_version:
+            catalog = self.storage.migration_catalog
+            if user_version != catalog.latest_version:
                 raise BackupSnapshotError("The snapshot schema version is unsupported.")
-            _snapshot_ledger(raw)
+            _snapshot_ledger(raw, catalog)
             physical = schema_sha256(raw)
-            expected_physical = CANONICAL_MIGRATION_CATALOG.migration(
+            expected_physical = catalog.migration(
                 user_version
             ).expected_schema_sha256
             if physical != expected_physical:
@@ -618,6 +661,32 @@ class _BackupDirectory:
             )
         except sqlite3.Error as exc:
             raise BackupSnapshotError("The backup SQLite snapshot is unreadable.") from exc
+        finally:
+            if raw is not None:
+                raw.close()
+            _close(handle)
+
+    def inspect_business_state(self, expected_snapshot_sha256: str) -> bytes:
+        """Read an immutable archive via its pinned handle, never an ordinary DB.
+
+        Offline backup snapshots are intentionally not WAL databases. This
+        capability preserves that archive format and leaves managed live-DB
+        admission unchanged; no raw connection escapes the backup reader.
+        """
+        handle = _open_relative(self.database, _SNAPSHOT_NAME)
+        raw = None
+        try:
+            size = _verify_file_handle(handle, expected_path=self.snapshot_path)
+            digest, streamed_size = _stream(handle)
+            if digest != expected_snapshot_sha256 or streamed_size != size:
+                raise BackupSnapshotError("The pinned snapshot changed before state comparison.")
+            raw = sqlite3.connect(f"{self.snapshot_path.as_uri()}?mode=ro&immutable=1",
+                uri=True, isolation_level=None, check_same_thread=True, cached_statements=0)
+            result = business_state_sha256(raw)
+            _verify_file_handle(handle, expected_path=self.snapshot_path, expected_size=size)
+            return result
+        except sqlite3.Error as exc:
+            raise BackupSnapshotError("The backup logical state is unreadable.") from exc
         finally:
             if raw is not None:
                 raw.close()
@@ -658,6 +727,8 @@ class _BackupDirectory:
     def copy_blob(self, blob: SnapshotBlob) -> None:
         if not isinstance(blob, SnapshotBlob):
             raise TypeError("copy_blob requires a SnapshotBlob.")
+        from ..tools.legacy_inventory import _extended_windows_path
+
         first = _open_or_create_directory(self.blobs, blob.sha256[:2])
         second = None
         source_root = source_first = source_second = None
@@ -665,7 +736,7 @@ class _BackupDirectory:
         try:
             second = _open_or_create_directory(first, blob.sha256[2:4])
             destination = second.path / blob.sha256
-            if os.path.lexists(destination):
+            if os.path.lexists(_extended_windows_path(destination)):
                 destination_handle = _open_relative(second, blob.sha256)
                 _verify_file_handle(
                     destination_handle,
@@ -727,7 +798,7 @@ class _BackupDirectory:
                     anchor.close()
 
     def write_manifest(self, manifest: Mapping[str, object]) -> bytes:
-        if backup_manifest_errors(manifest):
+        if backup_manifest_errors(manifest, migration_catalog=self.storage.migration_catalog):
             raise BackupFilesystemError("The backup manifest is invalid.")
         payload = canonical_json_bytes(manifest) + b"\n"
         if self.manifest_path.exists():
@@ -767,7 +838,7 @@ class _BackupDirectory:
             manifest = json.loads(payload[:-1])
         except (UnicodeDecodeError, ValueError) as exc:
             raise BackupFilesystemError("The backup manifest is unreadable.") from exc
-        if backup_manifest_errors(manifest):
+        if backup_manifest_errors(manifest, migration_catalog=self.storage.migration_catalog):
             raise BackupFilesystemError("The backup manifest contract is invalid.")
         return dict(manifest)
 
@@ -801,7 +872,9 @@ class FilesystemBackupStorage:
     """Production backup root bound to a distinct, pinned local NTFS target."""
 
     __slots__ = (
+        "_expected_manifest_sha256",
         "_root_identity",
+        "_migration_catalog",
         "_source_blob_identity",
         "_source_boundary",
         "_target_volume",
@@ -809,9 +882,16 @@ class FilesystemBackupStorage:
         "root",
     )
 
-    def __init__(self, layout: MigrationStorageLayout, backup_root: Path) -> None:
+    def __init__(
+        self, layout: MigrationStorageLayout, backup_root: Path, *,
+        migration_catalog: MigrationCatalog = CANONICAL_MIGRATION_CATALOG,
+    ) -> None:
         if not isinstance(layout, MigrationStorageLayout):
             raise TypeError("FilesystemBackupStorage requires MigrationStorageLayout.")
+        if not isinstance(migration_catalog, MigrationCatalog):
+            raise TypeError("Backup storage requires a trusted MigrationCatalog.")
+        self._migration_catalog = migration_catalog
+        self._expected_manifest_sha256 = None
         self.layout = layout
         self._source_boundary = verify_migration_storage_layout(
             layout, require_database=True
@@ -824,7 +904,47 @@ class FilesystemBackupStorage:
             self.layout.blob_root.resolve(strict=True)
         )
 
+    @classmethod
+    def for_recovery(
+        cls, backup_root: Path, *, migration_catalog: MigrationCatalog,
+        expected_manifest_sha256: str,
+    ) -> "FilesystemBackupStorage":
+        """Open only the archive; the trusted receipt must come from outside it."""
+        if not isinstance(migration_catalog, MigrationCatalog):
+            raise TypeError("Recovery requires a trusted MigrationCatalog.")
+        if (
+            not isinstance(expected_manifest_sha256, str)
+            or _SHA256_RE.fullmatch(expected_manifest_sha256) is None
+        ):
+            raise BackupFilesystemError("Recovery requires an external manifest SHA256.")
+        storage = cls.__new__(cls)
+        storage._migration_catalog = migration_catalog
+        storage._expected_manifest_sha256 = expected_manifest_sha256
+        storage.layout = None
+        storage._source_boundary = None
+        storage._source_blob_identity = None
+        storage.root, storage._target_volume = _archive_root(Path(backup_root))
+        storage._root_identity = _directory_identity(storage.root)
+        return storage
+
+    @property
+    def recovery_only(self) -> bool:
+        return self._expected_manifest_sha256 is not None
+
+    @property
+    def migration_catalog(self) -> MigrationCatalog:
+        """The application's selected catalog; never selected by backup contents."""
+        return self._migration_catalog
+
     def _verify(self) -> None:
+        if self.recovery_only:
+            observed, volume = _archive_root(self.root)
+            if (
+                observed != self.root or volume != self._target_volume
+                or _directory_identity(self.root) != self._root_identity
+            ):
+                raise BackupFilesystemError("The recovery archive binding changed.")
+            return
         verify_migration_storage_layout(
             self.layout,
             require_database=True,
@@ -865,16 +985,22 @@ class FilesystemBackupStorage:
             target_layout, require_database=False
         )
         target_data = Path(boundary.data_root.resolved_path)
-        source_data = Path(self._source_boundary.data_root.resolved_path)
         if (
             _same_or_descendant(target_data, self.root)
             or _same_or_descendant(self.root, target_data)
-            or _same_or_descendant(target_data, source_data)
-            or _same_or_descendant(source_data, target_data)
         ):
             raise BackupFilesystemError(
                 "The isolated restore root overlaps source or backup storage."
             )
+        if self._source_boundary is not None:
+            source_data = Path(self._source_boundary.data_root.resolved_path)
+            if (
+                _same_or_descendant(target_data, source_data)
+                or _same_or_descendant(source_data, target_data)
+            ):
+                raise BackupFilesystemError("The restore root overlaps source storage.")
+        if self.recovery_only:
+            self._verify_empty_recovery_target(target_layout)
         if any(target_layout.blob_root.iterdir()) or any(
             target_layout.projection_root.iterdir()
         ):
@@ -918,14 +1044,40 @@ class FilesystemBackupStorage:
                 self, target_layout, boundary, tuple(opened), identities
             )
             lease.verify(require_database=False)
+            if self.recovery_only:
+                self._verify_empty_recovery_target(target_layout)
             yield lease
             lease.verify(require_database=True)
         finally:
             for anchor in reversed(opened):
                 anchor.close()  # type: ignore[attr-defined]
 
+    @staticmethod
+    def _verify_empty_recovery_target(layout: MigrationStorageLayout) -> None:
+        """Permit only the prepared directory skeleton, never existing user files."""
+        root = layout.data_root.resolve(strict=True)
+        allowed = {root}
+        for path in (layout.database.parent, layout.blob_root, layout.projection_root):
+            path = path.resolve(strict=True)
+            if not _same_or_descendant(path, root):
+                raise BackupFilesystemError("The recovery target escaped its data root.")
+            while path != root:
+                allowed.add(path)
+                path = path.parent
+        pending = [root]
+        while pending:
+            current = pending.pop()
+            _directory_identity(current)
+            for child in current.iterdir():
+                if child not in allowed:
+                    raise BackupFilesystemError("The entire recovery target must be empty.")
+                _directory_identity(child)
+                pending.append(child)
+
     @contextmanager
     def workspace(self, backup_run_id: str) -> Iterator[_BackupWorkspace]:
+        if self.recovery_only:
+            raise BackupFilesystemError("Recovery archives cannot create backups.")
         run_id = _canonical_uuid(backup_run_id)
         self._verify()
         workspace = _BackupWorkspace(self, run_id)
@@ -947,6 +1099,11 @@ class FilesystemBackupStorage:
                 raise BackupFilesystemError("The completed manifest is missing.")
             if manifest.get("backup_run_id") != run_id:
                 raise BackupFilesystemError("The completed manifest run binding differs.")
+            if (
+                self.recovery_only
+                and manifest.get("manifest_sha256") != self._expected_manifest_sha256
+            ):
+                raise BackupFilesystemError("The backup differs from its external receipt.")
             _exact_tree(directory.path, manifest)
             snapshot = directory.inspect_snapshot()
             if (
@@ -973,11 +1130,15 @@ class FilesystemBackupStorage:
                 blob = expected.get(digest)
                 if blob is None or row["size_bytes"] != blob.size_bytes:
                     raise BackupFilesystemError("The completed blob identity differs.")
-                first = _open_directory(directory.blobs, digest[:2])
+                first = _open_directory(
+                    directory.blobs, digest[:2], writable=not self.recovery_only
+                )
                 second = None
                 blob_handle = None
                 try:
-                    second = _open_directory(first, digest[2:4])
+                    second = _open_directory(
+                        first, digest[2:4], writable=not self.recovery_only
+                    )
                     path = second.path / digest
                     blob_handle = _open_relative(second, digest)
                     _verify_file_handle(
@@ -1001,6 +1162,18 @@ class FilesystemBackupStorage:
         finally:
             directory.close()
 
+    def verified_business_state_sha256(self, backup_run_id: str) -> bytes:
+        """A verified read-only archive digest for an offline upgrade gate."""
+        run_id = _canonical_uuid(backup_run_id)
+        _, snapshot = self.verify_completed(run_id)
+        directory = _BackupDirectory(self, f"backup-{run_id}", create=False)
+        try:
+            result = directory.inspect_business_state(snapshot.sha256)
+            self._verify()
+            return result
+        finally:
+            directory.close()
+
     def delete_completed(self, backup_run_id: str) -> None:
         """Delete one fully verified retained backup through pinned handles.
 
@@ -1010,6 +1183,8 @@ class FilesystemBackupStorage:
         backup.
         """
 
+        if self.recovery_only:
+            raise BackupFilesystemError("Recovery archives cannot prune backups.")
         run_id = _canonical_uuid(backup_run_id)
         manifest, snapshot = self.verify_completed(run_id)
         pruning_name = f".pruning-{run_id}.partial"
@@ -1256,11 +1431,15 @@ class FilesystemBackupStorage:
             for row in rows:
                 digest = str(row["sha256"])
                 expected_size = int(row["size_bytes"])
-                source_first = _open_directory(source.blobs, digest[:2])
+                source_first = _open_directory(
+                    source.blobs, digest[:2], writable=not self.recovery_only
+                )
                 source_second = target_first = target_second = None
                 source_handle = target_handle = None
                 try:
-                    source_second = _open_directory(source_first, digest[2:4])
+                    source_second = _open_directory(
+                        source_first, digest[2:4], writable=not self.recovery_only
+                    )
                     target_first = _open_or_create_directory(
                         target_blob_root, digest[:2]
                     )

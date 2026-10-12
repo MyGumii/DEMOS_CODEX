@@ -116,6 +116,7 @@ const Sessions = {
   },
 
   async load(sid) {
+    window.PendingTurnUI?.clear();
     try {
       if (window.KnowledgeCoreBrowser?.active && !CANONICAL_SESSION_ID_RE.test(String(sid || ""))) {
         State.session_id = null;
@@ -138,6 +139,7 @@ const Sessions = {
         context_status: State.lastContextStatus,
       });
       Chat.renderMessages(State.messages);
+      if (window.KnowledgeCoreBrowser?.active) void window.PendingTurnUI?.refresh(sid);
       toast(`세션 로드: ${(data.title || data.first_message || sid).slice(0,24)}`, "ok");
       Sessions.render();
     } catch (e) {

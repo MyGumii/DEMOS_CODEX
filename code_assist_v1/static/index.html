@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Second Brain Agent</title>
-<link rel="stylesheet" href="static/app.css?v=20260901a">
+<link rel="stylesheet" href="static/app.css?v=20261007-wiki-math">
+<link rel="stylesheet" href="static/vendor/katex-0.18.7/katex.min.css">
 <link rel="stylesheet" href="static/workspace_features.css?v=20260908b">
-<link rel="stylesheet" href="static/agent_integrations.css?v=20260913a">
+<link rel="stylesheet" href="static/agent_integrations.css?v=20260930a">
 <!-- highlight.js 테마는 app.js 에서 라이트/다크에 따라 동적 로드 -->
 </head>
 <body>
@@ -35,11 +36,11 @@
 
     <select id="modelSelect" class="model-select"><option>모델 로드 중…</option></select>
 
-    <a class="icon top-link notion-entry" id="notionWorkspaceLink" href="http://localhost:10012" target="_blank" title="Notion Workspace">
+    <a class="icon top-link notion-entry" id="notionWorkspaceLink" href="http://localhost:10322" target="_blank" title="Notion Workspace">
       <span class="notion-entry-mark">N</span><span>Notion</span>
     </a>
     <button class="icon notion-save-btn" id="chatToNotionBtn" title="현재 대화 세션을 Notion 페이지로 저장">대화 저장</button>
-    <a class="icon top-link" href="static/docs.html?v=20260622e" target="_blank" title="사용자 가이드">사용 가이드</a>
+    <a class="icon top-link" href="static/docs.html?v=20260930-guide-v61" target="_blank" title="사용자 가이드">사용 가이드</a>
     <button class="icon" id="graphToggleBtn" title="Second Brain 그래프">그래프</button>
     <button class="icon" id="themeBtn" title="다크/라이트 전환">🌙</button>
     <button class="icon" id="systemPromptBtn" title="시스템 프롬프트 보기/편집">⚙️ 프롬프트</button>
@@ -71,6 +72,7 @@
 
   <!-- ── 중앙 채팅 ── -->
   <section class="chat">
+    <aside id="pendingTurnPanel" aria-label="미완료 요청 복구" hidden style="padding:10px 16px;max-height:180px;overflow:auto;border-bottom:1px solid var(--border);font-size:13px;"></aside>
     <div class="messages" id="messages">
       <div class="msg assistant">
         <div class="avatar">A</div>
@@ -173,23 +175,29 @@
 
 <div class="toast-wrap" id="toastWrap"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+<script src="static/vendor/marked-18.0.14/marked.umd.js"></script>
+<script src="static/vendor/dompurify-3.4.16/purify.min.js"></script>
+<script src="static/vendor/highlightjs-11.9.0/highlight.min.js"></script>
 
 <script src="static/admin_organization.js?v=20260813a"></script>
-<script src="static/knowledge_core_transport.js?v=20260901a"></script>
-<script src="static/knowledge_scope.js?v=20260908a"></script>
+<script src="static/knowledge_core_transport.js?v=20260928-all-scopes"></script>
+<script src="static/knowledge_scope.js?v=20260928-all-scopes"></script>
 <script src="static/personal_wiki_ui.js?v=20260825c"></script>
-<script src="static/knowledge_publication.js?v=20260825b"></script>
-<script src="static/app.js?v=20260906a"></script>
-<script src="static/workspace_features.js?v=20260907c"></script>
-<script src="static/agent_integrations.js?v=20260913a"></script>
-<script src="static/chat.js?v=20260901a"></script>
-<script src="static/graph.js?v=20260817b"></script>
+<script src="static/knowledge_publication.js?v=20261008-auto-upload-b"></script>
+<script src="static/app.js?v=20260928-local-vendor"></script>
+<script src="static/workspace_features.js?v=20260927d"></script>
+<script src="static/agent_integrations.js?v=20260930a"></script>
+<script src="static/chat.js?v=20261007-wiki-math-render"></script>
+<script src="static/vendor/katex-0.18.7/katex.min.js"></script>
+<script src="static/canonical_math.js?v=20261007c"></script>
+<script src="static/canonical_markdown.js?v=20261007-wiki-math"></script>
+<script src="static/graph.js?v=20260915d"></script>
 <script src="static/skills.js?v=20260604f"></script>
-<script src="static/knowledge.js?v=20260826a"></script>
+<script src="static/knowledge.js?v=20261008-auto-upload-b"></script>
 <script src="static/workspace.js?v=20260614c"></script>
-<script src="static/sessions.js?v=20260825e"></script>
-<script src="static/knowledge_core_browser.js?v=20260907a"></script>
+<script src="static/sessions.js?v=20260914c"></script>
+<script src="static/pending_turn_ui.js?v=20260914c"></script>
+<script src="static/knowledge_turn_retry.js?v=20260914a"></script>
+  <script src="static/knowledge_core_browser.js?v=20261008-auto-upload-b"></script>
 </body>
 </html>

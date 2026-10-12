@@ -1,0 +1,10 @@
+"""Explicit v68 successor; frozen v1–v8 paths remain replayable."""
+from .model import Migration,MigrationCatalog
+from .pdf_section_markdown_output_catalog import PDF_SECTION_MARKDOWN_OUTPUT_MIGRATION_CATALOG
+from .v068_pdf_section_markdown_delimiters import V068_STATEMENTS,V068_POSTCONDITION_REPLACEMENTS
+V068_EXPECTED_SCHEMA_SHA256='454f16c4688f96d91779f5f565e436925e2333c2316dfc880d6df62b8db12f16'
+SCHEMA_V68_MIGRATION=Migration(version=68,name='pdf_section_markdown_delimiters_v68',
+    statements=V068_STATEMENTS,expected_schema_sha256=V068_EXPECTED_SCHEMA_SHA256,
+    requires_foreign_keys_off=True,postcondition_replacements=V068_POSTCONDITION_REPLACEMENTS)
+PDF_SECTION_MARKDOWN_DELIMITERS_MIGRATION_CATALOG=MigrationCatalog((
+    *PDF_SECTION_MARKDOWN_OUTPUT_MIGRATION_CATALOG.migrations,SCHEMA_V68_MIGRATION))

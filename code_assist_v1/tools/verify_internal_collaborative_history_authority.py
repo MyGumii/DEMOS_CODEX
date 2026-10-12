@@ -51,7 +51,6 @@ EXPECTED_TEST_PATHS = [
 EXPECTED_ROUTES = sorted(
     [
         ("GET", "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/history", "api_notion_collaborative_history"),
-        ("GET", "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/updates", "api_notion_collaborative_page_updates"),
         ("GET", "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/history/diff", "api_notion_collaborative_history_diff"),
         ("GET", "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/history/policy", "api_notion_collaborative_history_policy"),
         ("GET", "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/history/revisions/<int:revision>", "api_notion_collaborative_history_revision"),

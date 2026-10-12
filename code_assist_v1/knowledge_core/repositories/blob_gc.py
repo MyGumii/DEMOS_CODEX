@@ -8,6 +8,7 @@ import re
 
 from ..db import ManagedConnection
 from ..errors import KnowledgeCoreDatabaseError, KnowledgeCoreTransactionError
+from ..retained_blob_references import blob_is_referenced
 
 
 _SHA_RE = re.compile(r"^[0-9a-f]{64}$", re.ASCII)
@@ -57,17 +58,7 @@ def _time(value: object, *, field: str) -> int:
 
 
 def _references(connection: ManagedConnection, digest: str) -> int:
-    row = connection.execute(
-        """SELECT
-             EXISTS(SELECT 1 FROM artifact_blob_body WHERE content_sha256=?)
-             OR EXISTS(SELECT 1 FROM extraction_snapshot_body WHERE content_blob_hash=?)
-             OR EXISTS(SELECT 1 FROM knowledge_revision_body WHERE content_blob_hash=?)
-             OR EXISTS(SELECT 1 FROM change_proposal WHERE proposed_content_blob_hash=?)""",
-        (digest, digest, digest, digest),
-    ).fetchone()
-    if row is None:
-        raise BlobGcIntegrityError("Blob reference closure is unavailable.")
-    return int(row[0])
+    return int(blob_is_referenced(connection,digest))
 
 
 class BlobGcRepository:

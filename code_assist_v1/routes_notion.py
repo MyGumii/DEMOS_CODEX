@@ -12,17 +12,10 @@ import re
 import time
 from urllib.parse import quote_plus
 
-from flask import Response, current_app, g, jsonify, redirect, request, send_file
-from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
+from flask import Response, current_app, jsonify, redirect, request, send_file
 
 from code_assist_v1 import notion_http
-from code_assist_v1 import notion_icons
-from code_assist_v1 import notion_html_blocks
-from code_assist_v1 import notion_html_database
-from code_assist_v1 import notion_database_export_bundle
-from code_assist_v1 import notion_database_export_assets
 from code_assist_v1 import notion_publication
-from code_assist_v1 import notion_personal_database_sources
 from code_assist_v1 import notion_store as ns
 from code_assist_v1 import second_brain_store as sb
 from code_assist_v1.auth import current_user_id, list_public_users
@@ -289,9 +282,7 @@ def _public_block_html(token: str, block: dict, files_by_id: dict[str, dict]) ->
         return f"<h2>{_text_html(content)}</h2>"
     if btype == "heading3":
         return f"<h3>{_text_html(content)}</h3>"
-    if btype == "heading4":
-        return f"<h4>{_text_html(content)}</h4>"
-    if btype in {"toggle_heading1", "toggle_heading2", "toggle_heading3", "toggle_heading4"}:
+    if btype in {"toggle_heading1", "toggle_heading2", "toggle_heading3"}:
         level = int(btype[-1])
         opened = " open" if props.get("open", True) else ""
         return f"<details class=\"toggle-heading toggle-heading-{level}\"{opened}><summary><span>{_text_html(content)}</span></summary></details>"
@@ -321,8 +312,7 @@ def _public_block_html(token: str, block: dict, files_by_id: dict[str, dict]) ->
         label = content or (file_item or {}).get("original_name") or "attachment"
         if not file_id:
             return f"<p>{_text_html(label)}</p>"
-        href = (f"/public/notion/{_esc(token)}/files/{_esc(file_id)}" if token else
-                f"/api/notion/{'collaboration/' if file_id.startswith('file_') else ''}files/{_esc(file_id)}")
+        href = f"/public/notion/{_esc(token)}/files/{_esc(file_id)}" if token else f"/api/notion/files/{_esc(file_id)}"
         if btype == "image":
             return f"<figure><img src='{href}' alt='{_esc(label)}'><figcaption>{_text_html(label)}</figcaption></figure>"
         if btype == "video":
@@ -366,24 +356,83 @@ def _public_block_html(token: str, block: dict, files_by_id: dict[str, dict]) ->
 
 
 def _public_blocks_html(token: str, blocks: list[dict], files_by_id: dict[str, dict]) -> str:
-    return notion_html_blocks.render(blocks,
-        render_fallback=lambda block: _public_block_html(token, block, files_by_id))
+    output: list[str] = []
+    tab_controllers = {
+        str(block.get("id") or ""): block
+        for block in blocks
+        if isinstance(block, dict) and block.get("type") == "tabs" and block.get("id")
+    }
+    index = 0
+    while index < len(blocks):
+        block = blocks[index] if isinstance(blocks[index], dict) else {}
+        props = block.get("props") if isinstance(block.get("props"), dict) else {}
+        if str(props.get("tab_group") or "") in tab_controllers:
+            index += 1
+            continue
+        if block.get("type") == "tabs":
+            controller_id = str(block.get("id") or "")
+            tabs = [
+                {"id": str(item.get("id") or ""), "name": str(item.get("name") or f"탭 {tab_index + 1}")}
+                for tab_index, item in enumerate(props.get("tabs") if isinstance(props.get("tabs"), list) else [])
+                if isinstance(item, dict) and item.get("id")
+            ][:20]
+            if not tabs:
+                tabs = [{"id": "default", "name": "탭 1"}]
+            active_id = str(props.get("active_tab_id") or tabs[0]["id"])
+            if not any(item["id"] == active_id for item in tabs):
+                active_id = tabs[0]["id"]
+            labels: list[str] = []
+            panels: list[str] = []
+            for tab_index, tab in enumerate(tabs):
+                panel_id = f"public-tab-{index}-{tab_index}"
+                is_active = tab["id"] == active_id
+                labels.append(
+                    f"<button type='button' role='tab' aria-selected='{'true' if is_active else 'false'}' "
+                    f"class='{'active' if is_active else ''}' data-public-tab-target='{panel_id}'>{_esc(tab['name'])}</button>"
+                )
+                members = [
+                    candidate for candidate in blocks
+                    if isinstance(candidate, dict)
+                    and isinstance(candidate.get("props"), dict)
+                    and str(candidate["props"].get("tab_group") or "") == controller_id
+                    and str(candidate["props"].get("tab_id") or "") == tab["id"]
+                ]
+                panels.append(
+                    f"<section id='{panel_id}' class='public-tab-panel' {'hidden' if not is_active else ''}>"
+                    f"{_public_blocks_html(token, members, files_by_id)}</section>"
+                )
+            output.append(
+                f"<div class='public-tabs'><div class='public-tab-list' role='tablist'>{''.join(labels)}</div>"
+                f"{''.join(panels)}</div>"
+            )
+            index += 1
+            continue
+        group_id = str(props.get("layout_group") or "")
+        if not group_id:
+            output.append(_public_block_html(token, block, files_by_id))
+            index += 1
+            continue
+        count = max(2, min(3, int(props.get("layout_columns") or 2)))
+        columns: list[list[str]] = [[] for _ in range(count)]
+        while index < len(blocks):
+            member = blocks[index] if isinstance(blocks[index], dict) else {}
+            member_props = member.get("props") if isinstance(member.get("props"), dict) else {}
+            if str(member_props.get("layout_group") or "") != group_id:
+                break
+            column = max(0, min(count - 1, int(member_props.get("layout_column") or 0)))
+            columns[column].append(_public_block_html(token, member, files_by_id))
+            index += 1
+        column_html = "".join(f'<div class="public-column">{"".join(items)}</div>' for items in columns)
+        output.append(f'<div class="public-columns" style="--public-columns:{count}">{column_html}</div>')
+    return "\n".join(output)
 
 
-def _public_page_html(token: str, data: dict, *, export_icon: str | None = None) -> str:
+def _public_page_html(token: str, data: dict) -> str:
     page = data.get("page") or {}
     files_by_id = {item.get("id"): item for item in data.get("files") or [] if item.get("id")}
     blocks = _public_blocks_html(token, data.get("blocks") or [], files_by_id)
     title = page.get("title") or "Untitled"
-    icon = export_icon if export_icon is not None else notion_icons.icon_html(page.get("icon"), file_urls={
-        file_id: (f"/public/notion/{token}/files/{file_id}" if token else
-                  f"/api/notion/{'collaboration/' if file_id.startswith('file_') else ''}files/{file_id}")
-        for file_id, item in files_by_id.items()
-        if re.fullmatch(r"(?:f_|file_)[a-zA-Z0-9_-]{1,56}", file_id)
-        and item.get("page_id", item.get("document_id")) == page.get("id")
-    })
-    icon_section = f'<div class="page-icon">{icon}</div>' if icon else ''
-    icon_credit = notion_icons.icon_attribution_html(page.get("icon"))
+    icon = page.get("icon") or "▣"
     updated_at = page.get("updated_at") or 0
     form_success_message = next((
         str((item.get("props") or {}).get("form_success_message") or "응답이 제출되었습니다.")
@@ -418,20 +467,16 @@ def _public_page_html(token: str, data: dict, *, export_icon: str | None = None)
     .public-site-header form {{ margin:0; }}
     .public-site-header button {{ min-height:32px; padding:0 13px; border:1px solid #d8d8d5; border-radius:5px; background:#fff; color:var(--text); font-weight:600; cursor:pointer; }}
     .public-site-header button:hover {{ background:#f7f6f3; }}
-    .page-icon {{ font-size:72px; line-height:1; margin-bottom:14px; }}
-    .page-icon img {{ background:transparent; }}
-    .icon-credit {{ display:block; margin-top:8px; color:var(--muted); font-size:11px; }}
+    .page-icon {{ font-size:42px; margin-bottom:14px; }}
     h1.title {{ margin:0 0 28px; font-size:42px; line-height:1.18; letter-spacing:0; }}
     h1:not(.title) {{ margin:32px 0 8px; font-size:30px; line-height:1.25; }}
     h2 {{ margin:28px 0 8px; font-size:24px; line-height:1.3; }}
     h3 {{ margin:22px 0 8px; font-size:19px; line-height:1.35; }}
-    h4 {{ margin:18px 0 8px; font-size:18px; font-weight:600; line-height:1.3; }}
     .toggle-heading {{ margin:16px 0; }}
     .toggle-heading summary {{ cursor:pointer; }}
     .toggle-heading-1 summary span {{ font-size:30px; font-weight:700; line-height:1.25; }}
     .toggle-heading-2 summary span {{ font-size:24px; font-weight:650; line-height:1.3; }}
     .toggle-heading-3 summary span {{ font-size:19px; font-weight:650; line-height:1.35; }}
-    .toggle-heading-4 summary span {{ font-size:18px; font-weight:600; line-height:1.3; }}
     p, ul, ol, blockquote, pre, table, figure {{ margin:8px 0; }}
     blockquote {{ padding-left:14px; border-left:3px solid var(--text); color:#4f4d48; }}
     pre {{ overflow:auto; padding:14px; border-radius:4px; background:#f7f6f3; }}
@@ -481,20 +526,32 @@ def _public_page_html(token: str, data: dict, *, export_icon: str | None = None)
     .public-dashboard > div {{ display:grid; place-items:center; align-content:center; }}
     .public-dashboard > div strong {{ font-size:34px; }}
     @media (max-width:720px) {{ .public-columns, .public-dashboard {{ grid-template-columns:1fr; gap:8px; }} .public-form {{ padding:18px; }} .public-schedule li, .public-map li {{ grid-template-columns:1fr; gap:3px; }} }}
-    {notion_html_blocks.CSS}
   </style>
 </head>
 <body>
   {public_header}
   <main>
-    {icon_section}
+    <div class="page-icon">{_esc(icon)}</div>
     <h1 class="title">{_esc(title)}</h1>
     {submitted_notice}
     {blocks}
-    <div class="public-note">{footer_note}{icon_credit}</div>
+    <div class="public-note">{footer_note}</div>
   </main>
   <script>
-    {notion_html_blocks.TAB_SCRIPT}
+    document.addEventListener("click", function (event) {{
+      var button = event.target.closest("[data-public-tab-target]");
+      if (!button) return;
+      var tabs = button.closest(".public-tabs");
+      if (!tabs) return;
+      tabs.querySelectorAll("[data-public-tab-target]").forEach(function (item) {{
+        var active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-selected", active ? "true" : "false");
+      }});
+      tabs.querySelectorAll(".public-tab-panel").forEach(function (panel) {{
+        panel.hidden = panel.id !== button.dataset.publicTabTarget;
+      }});
+    }});
     (function () {{
       var form = document.getElementById("publicDuplicateForm");
       if (!form) return;
@@ -720,66 +777,6 @@ def _notion_ai_fallback(question: str, context: str) -> str:
 
 def register_notion_routes(app):
     notion_http.register_error_handlers(app)
-    from code_assist_v1.routes_notion_personal_workspace import register_personal_workspace_routes
-    register_personal_workspace_routes(app)
-
-    def temporary_unlock_serializer():
-        if not current_app.secret_key:
-            raise RuntimeError("application signing key is required")
-        return URLSafeTimedSerializer(current_app.secret_key, salt="notion-page-temporary-unlock-v1")
-
-    def collaborative_temporary_unlock_serializer():
-        if not current_app.secret_key:
-            raise RuntimeError("application signing key is required")
-        from code_assist_v1.notion_collaboration.page_settings import TEMPORARY_UNLOCK_SALT
-        return URLSafeTimedSerializer(current_app.secret_key, salt=TEMPORARY_UNLOCK_SALT)
-
-    @app.before_request
-    def bind_page_temporary_unlock():
-        token = request.headers.get("X-Notion-Temporary-Unlock", "")
-        if not token or not request.path.startswith("/api/notion/"):
-            return None
-        try:
-            grant = temporary_unlock_serializer().loads(token, max_age=12 * 60 * 60)
-            collaborative = False
-        except (BadSignature, SignatureExpired):
-            try:
-                grant = collaborative_temporary_unlock_serializer().loads(token, max_age=12 * 60 * 60)
-                collaborative = True
-            except (BadSignature, SignatureExpired):
-                return _error_response(PermissionError("temporary page unlock expired or invalid"))
-        if not isinstance(grant, dict) or grant.get("user_id") != _uid() or not grant.get("page_id"):
-            return _error_response(PermissionError("temporary page unlock does not match this user"))
-        if collaborative:
-            if not grant.get("workspace_id") or not grant.get("lock_generation") or type(grant.get("expires_at_ms")) is not int:
-                return _error_response(PermissionError("temporary page unlock expired or invalid"))
-            from code_assist_v1.notion_collaboration.canonical_authority import bind_temporary_unlock
-            scope = bind_temporary_unlock(grant)
-        else:
-            scope = ns.bind_temporary_unlock(grant)
-        scope.__enter__()
-        g.notion_temporary_unlock_scope = scope
-        return None
-
-    @app.teardown_request
-    def unbind_page_temporary_unlock(_error):
-        scope = getattr(g, "notion_temporary_unlock_scope", None)
-        if scope is not None:
-            scope.__exit__(None, None, None)
-
-    @app.route("/api/notion/pages/<path:page_id>/temporary-unlock", methods=["POST"])
-    def api_notion_page_temporary_unlock(page_id):
-        try:
-            uid = _uid()
-            nonce = ns.temporary_unlock_nonce(uid, page_id)
-            token = temporary_unlock_serializer().dumps({
-                "user_id": uid, "page_id": page_id, "lock_nonce": nonce,
-            })
-        except Exception as exc:
-            return _error_response(exc)
-        response = jsonify({"page_id": page_id, "unlock_token": token})
-        response.headers["Cache-Control"] = "no-store"
-        return response
 
     @app.route("/api/notion/inbox", methods=["GET"])
     def api_notion_inbox():
@@ -819,73 +816,6 @@ def register_notion_routes(app):
         except Exception as e:
             return _error_response(e)
         return jsonify({"items": items, "count": len(items), "user_id": uid})
-
-    @app.route("/api/notion/meetings", methods=["GET"])
-    def api_notion_meetings():
-        try:
-            from code_assist_v1.notion_collaboration import iam_runtime
-            if iam_runtime.runtime_requested():
-                raise FileNotFoundError("workspace scope required")
-            result = ns.list_meeting_pages(
-                _uid(), query=str(request.args.get("q") or "")[:200],
-                limit=int(request.args.get("limit") or 100),
-                offset=int(request.args.get("offset") or 0),
-                owner_filter=str(request.args.get("owner") or ""),
-            )
-            response = jsonify(result)
-            response.headers["Cache-Control"] = "no-store, max-age=0"
-            return response
-        except Exception as exc:
-            return _error_response(exc)
-
-    @app.route("/api/notion/database-sources", methods=["GET"])
-    def api_notion_personal_database_sources():
-        try:
-            from code_assist_v1.notion_collaboration import iam_runtime
-            if iam_runtime.runtime_requested():
-                raise FileNotFoundError("workspace scope required")
-            result = notion_personal_database_sources.list_sources(
-                _uid(), query=str(request.args.get("q") or "")[:200],
-                limit=int(request.args.get("limit") or 50),
-                offset=int(request.args.get("offset") or 0),
-            )
-            response = jsonify(result)
-            response.headers["Cache-Control"] = "no-store, max-age=0"
-            return response
-        except Exception as exc:
-            return _error_response(exc)
-
-    @app.route("/api/notion/database-sources/<page_id>/<block_id>", methods=["GET"])
-    def api_notion_personal_database_source(page_id, block_id):
-        try:
-            from code_assist_v1.notion_collaboration import iam_runtime
-            if iam_runtime.runtime_requested():
-                raise FileNotFoundError("workspace scope required")
-            result = notion_personal_database_sources.read_source(_uid(), page_id, block_id)
-            response = jsonify(result)
-            response.headers["Cache-Control"] = "no-store, max-age=0"
-            return response
-        except Exception as exc:
-            return _error_response(exc)
-
-    @app.route("/api/notion/database-sources/<page_id>/<block_id>/items", methods=["POST"])
-    def api_notion_personal_database_item_create(page_id, block_id):
-        try:
-            from code_assist_v1.notion_collaboration import iam_runtime
-            if iam_runtime.runtime_requested():
-                raise FileNotFoundError("workspace scope required")
-            data = _json_data()
-            if set(data) - {"base_revision", "operation_id"}:
-                raise ValueError("unsupported item creation fields")
-            result = notion_personal_database_sources.create_item(
-                _uid(), page_id, block_id, base_revision=data.get("base_revision"),
-                operation_id=data.get("operation_id"),
-            )
-            response = jsonify({"status": "created", **result})
-            response.headers["Cache-Control"] = "no-store, max-age=0"
-            return response
-        except Exception as exc:
-            return _error_response(exc)
 
     @app.route("/api/notion/search", methods=["GET"])
     def api_notion_search():
@@ -969,20 +899,6 @@ def register_notion_routes(app):
     def api_notion_pages_create():
         data = _json_data()
         try:
-            if "operation_id" in data:
-                from code_assist_v1.notion_collaboration import iam_runtime
-                from code_assist_v1.notion_page_creation import create_draft_page
-                if iam_runtime.runtime_requested():
-                    raise FileNotFoundError("not found")
-                if set(data) - {"operation_id", "title", "parent_id", "blocks", "icon"}:
-                    raise ValueError("unsupported draft creation fields")
-                page = create_draft_page(
-                    _uid(), operation_id=data.get("operation_id"), title=data.get("title", ""),
-                    parent_id=data.get("parent_id", ""), blocks=data.get("blocks"), icon=data.get("icon", ""),
-                )
-                response = jsonify({"status": "created", **page})
-                response.headers["Cache-Control"] = "no-store, max-age=0"
-                return response
             add_to_parent_blocks = notion_http.boolean_field(
                 data,
                 "add_to_parent_blocks",
@@ -1017,11 +933,6 @@ def register_notion_routes(app):
     def api_notion_page_get(page_id):
         try:
             page = ns.get_page(_uid(), page_id)
-            if request.args.get("draft_creation") == "1":
-                from code_assist_v1.notion_collaboration import iam_runtime
-                page["capabilities"]["local_page_draft_create"] = (
-                    page["capabilities"].get("atomic_save") is True and not iam_runtime.runtime_requested()
-                )
         except Exception as e:
             return _error_response(e)
         return jsonify(page)
@@ -1143,25 +1054,6 @@ def register_notion_routes(app):
             return _error_response(e)
         return jsonify({"items": items, "count": len(items)})
 
-    @app.route("/api/notion/pages/<path:page_id>/versions/<version_id>", methods=["GET"])
-    def api_notion_page_version(page_id, version_id):
-        try:
-            result = ns.get_page_version(_uid(), page_id, version_id)
-        except Exception as e:
-            return _error_response(e)
-        return jsonify(result)
-
-    @app.route("/api/notion/pages/<path:page_id>/updates", methods=["GET"])
-    def api_notion_page_updates(page_id):
-        try:
-            result = ns.list_page_updates(
-                _uid(), page_id, limit=int(request.args.get("limit") or 20),
-                before_version_id=request.args.get("before") or None,
-            )
-        except Exception as e:
-            return _error_response(e)
-        return jsonify(result)
-
     @app.route("/api/notion/pages/<path:page_id>/backlinks", methods=["GET"])
     def api_notion_page_backlinks(page_id):
         try:
@@ -1173,11 +1065,7 @@ def register_notion_routes(app):
     @app.route("/api/notion/pages/<path:page_id>/versions/<path:version_id>/restore", methods=["POST"])
     def api_notion_page_version_restore(page_id, version_id):
         try:
-            data = _json_data()
-            page = ns.restore_page_version(
-                _uid(), page_id, version_id,
-                expected_revision=data.get("expected_revision"),
-            )
+            page = ns.restore_page_version(_uid(), page_id, version_id)
         except Exception as e:
             return _error_response(e)
         return jsonify({"status": "restored", **page})
@@ -1342,119 +1230,10 @@ def register_notion_routes(app):
     @app.route("/api/notion/pages/<path:page_id>/export_html", methods=["GET"])
     def api_notion_page_export_html(page_id):
         try:
-            actor = _uid()
-            data = ns.get_page(actor, page_id)
-            block_id = request.args.get("block_id")
-            view_id = request.args.get("view_id")
-            bundle = request.args.get("bundle")
-            page_content = request.args.get("page_content", "all")
-            if page_content not in {"all", "exclude_files_images"}:
-                raise notion_http.NotionRequestValidationError("invalid page content option")
-            if page_content != "all" and not block_id:
-                raise notion_http.NotionRequestValidationError("database block required for page content option")
-            if view_id is not None and block_id is None:
-                raise notion_http.NotionRequestValidationError("block_id required for database view")
-            if bundle not in (None, "1", "markdown_csv") or bundle is not None and not block_id:
-                raise notion_http.NotionRequestValidationError("database block required for HTML bundle")
-            if block_id is not None:
-                database_types = {"table", "board", "calendar", "list", "gallery", "timeline", "chart", "dashboard", "form", "feed", "map"}
-                block = next((item for item in data.get("blocks", [])
-                    if item.get("id") == block_id and item.get("type") in database_types), None)
-                if block is None:
-                    raise FileNotFoundError("database block not found")
-                props = block.get("props") if isinstance(block.get("props"), dict) else {}
-                properties = [{**item, "type": item.get("type") or "text"}
-                    for item in (props.get("properties") if isinstance(props.get("properties"), list) else [])
-                    if isinstance(item, dict) and item.get("id")]
-                rows = [{"id": str(row.get("id") or ""), "cells": {
-                    str(prop["id"]): row.get(str(prop["id"])) for prop in properties},
-                    **({"body": row["body"]} if isinstance(row.get("body"), dict) else {})}
-                    for row in (props.get("rows") if isinstance(props.get("rows"), list) else [])
-                    if isinstance(row, dict) and not row.get("archived")]
-                config, kind = {}, "table"
-                if view_id is not None:
-                    if not view_id or len(view_id) > 160:
-                        raise notion_http.NotionRequestValidationError("valid view_id required")
-                    views = props.get("views") if isinstance(props.get("views"), list) else []
-                    view = next((item for item in views if isinstance(item, dict)
-                        and str(item.get("id") or "") == view_id and item.get("state") != "archived"), None)
-                    if view is None:
-                        raise FileNotFoundError("database view not found")
-                    config = view.get("config") if isinstance(view.get("config"), dict) else view
-                    kind = str(view.get("type") or "table")
-                title = str(block.get("content") or "데이터베이스")
-                model = {"database": {"title": title,
-                    "properties": properties, "rows": rows}, "config": config, "type": kind,
-                    "include_media": page_content == "all"}
-                stream = None
-                manifest = ()
-                if bundle == "1" and page_content == "all":
-                    manifest = notion_database_export_assets.personal_manifest(
-                        ns, actor, model)
-                    if manifest:
-                        model["asset_paths"] = {
-                            item["file_id"]: item["zip_path"] for item in manifest}
-                body = notion_html_database.render(model)
-                html = ('<!doctype html><html lang="ko"><head><meta charset="utf-8">'
-                    '<meta name="viewport" content="width=device-width,initial-scale=1">'
-                    f'<title>{html_lib.escape(title)}</title><style>'
-                    'body{margin:0;color:#37352f;background:#fff;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif}'
-                    'main{width:min(760px,calc(100% - 48px));margin:72px auto 120px}'
-                    'h1{font-size:42px;line-height:1.18;margin:0 0 28px;overflow-wrap:anywhere}'
-                    + notion_html_blocks.CSS + notion_html_database.CSS +
-                    f'</style></head><body><main><h1>{html_lib.escape(title)}</h1>{body}</main></body></html>')
-                filename = re.sub(r"[^A-Za-z0-9._-]+", "-", title).strip("-.") or "database"
-                if bundle is not None:
-                    csv_text = notion_database_export_bundle.database_csv(model, current_view=view_id is not None)
-                    if bundle == "1":
-                        stream = notion_database_export_bundle.html_archive_with_assets(
-                            title, html, csv_text, identity=block_id, assets=manifest)
-                    else:
-                        all_csv = notion_database_export_bundle.database_csv(model, current_view=False)
-                        archive = notion_database_export_bundle.markdown_csv_archive(title, csv_text, all_csv,
-                            identity=block_id)
-                    try:
-                        current = ns.get_page(actor, page_id)
-                        if (current["page"] != data["page"] or current["blocks"] != data["blocks"]
-                                or current["files"] != data["files"]):
-                            raise notion_database_export_bundle.ExportAttachmentChanged(
-                                "page changed during database export")
-                        if manifest:
-                            notion_database_export_assets.verify_personal_manifest(
-                                ns, actor, manifest)
-                    except Exception:
-                        if stream is not None:
-                            stream.close()
-                        raise
-                    if stream is not None:
-                        stream.seek(0, 2)
-                        size = stream.tell()
-                        stream.seek(0)
-
-                        def chunks():
-                            try:
-                                while chunk := stream.read(1024 * 1024):
-                                    yield chunk
-                            finally:
-                                stream.close()
-
-                        response = Response(chunks(), mimetype="application/zip",
-                            headers={"Content-Disposition": f'attachment; filename="{filename[:100]}.zip"'})
-                        response.content_length = size
-                        response.call_on_close(stream.close)
-                        return response
-                    return Response(archive, mimetype="application/zip",
-                        headers={"Content-Disposition": f'attachment; filename="{filename[:100]}.zip"'})
-                ns.get_page(actor, page_id)
-                return Response(html, mimetype="text/html; charset=utf-8",
-                    headers={"Content-Disposition": f'attachment; filename="{filename[:100]}.html"'})
-            icon = notion_icons.export_icon_html(data["page"].get("icon"), page_id=page_id,
-                resolve_file=lambda file_id: ns.get_file(actor, file_id))
-            # File IO above runs outside a transaction; recheck the page read boundary.
-            ns.get_page(actor, page_id)
+            data = ns.get_page(_uid(), page_id)
             filename = re.sub(r"[^A-Za-z0-9._-]+", "-", str((data.get("page") or {}).get("title") or page_id)).strip("-.") or "notion-page"
             return Response(
-                _public_page_html("", data, export_icon=icon),
+                _public_page_html("", data),
                 mimetype="text/html; charset=utf-8",
                 headers={"Content-Disposition": f'attachment; filename="{filename[:100]}.html"'},
             )
@@ -1478,19 +1257,6 @@ def register_notion_routes(app):
         props = block.get("props") if isinstance(block.get("props"), dict) else {}
         properties = [item for item in (props.get("properties") if isinstance(props.get("properties"), list) else []) if isinstance(item, dict) and item.get("id")]
         rows = [item for item in (props.get("rows") if isinstance(props.get("rows"), list) else []) if isinstance(item, dict) and not item.get("archived")]
-        view_id = request.args.get("view_id")
-        if view_id is not None:
-            if not view_id or len(view_id) > 160:
-                return _error_response(notion_http.NotionRequestValidationError("valid view_id required"))
-            views = props.get("views") if isinstance(props.get("views"), list) else []
-            view = next((item for item in views if isinstance(item, dict)
-                         and str(item.get("id") or "") == view_id and item.get("state") != "archived"), None)
-            if view is None:
-                return _error_response(FileNotFoundError("database view not found"))
-            config = view.get("config") if isinstance(view.get("config"), dict) else view
-            properties = notion_html_database.visible_properties(properties, config)
-            rows = [item["values"] for item in notion_html_database.visible_rows(
-                [{"cells": row} for row in rows], config)]
         output = io.StringIO(newline="")
         writer = csv.writer(output, lineterminator="\n")
         writer.writerow([str(item.get("name") or item.get("id")) for item in properties])

@@ -7,7 +7,7 @@ import os
 
 from flask import jsonify
 
-from code_assist_v1.model_routing import codex_fallback_enabled, model_kind, ordered_model_candidates
+from code_assist_v1.model_routing import ordered_model_candidates
 from code_assist_v1.model_runtime import gguf_catalog_enabled
 
 from code_assist_v1.prompts import (
@@ -57,7 +57,6 @@ def register_model_routes(app):
         from code_assist_v1.config import DEFAULT_MODEL_PRIORITY
 
         model_registry, env_config = _load_model_state()
-        codex_enabled = codex_fallback_enabled()
 
         api_models = []
         for mid, info in model_registry.items():
@@ -67,7 +66,7 @@ def register_model_routes(app):
             env_id = info.get("env_id")
             if runtime == "gguf" or str(env_id or "").startswith("gguf-"):
                 continue
-            if model_kind(info) == "codex":
+            if runtime == "codex":
                 continue
             caps = info.get("capabilities", [])
             if isinstance(caps, set):
@@ -86,7 +85,7 @@ def register_model_routes(app):
 
         codex_models = []
         for mid, info in model_registry.items():
-            if not codex_enabled or not _model_enabled(info) or model_kind(info) != "codex":
+            if not _model_enabled(info) or info.get("runtime") != "codex":
                 continue
             caps = info.get("capabilities", [])
             if isinstance(caps, set):
@@ -132,6 +131,9 @@ def register_model_routes(app):
                     return False
             return bool(env_id)
 
+        codex_enabled = os.environ.get(
+            "CODE_ASSIST_ENABLE_CODEX_BRIDGE", "0"
+        ).strip().lower() not in {"", "0", "false", "no", "off"}
         routing_priority = ordered_model_candidates(
             requested_model_id=None,
             priority_ids=list(DEFAULT_MODEL_PRIORITY or []),

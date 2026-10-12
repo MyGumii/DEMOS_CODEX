@@ -30,6 +30,7 @@ from .materializer import (
     ProjectionCanonicalDriftError,
     ProjectionMaterializationError,
     _child_anchor,
+    _projection_io_path,
     _read_relative,
     _write_relative,
 )
@@ -291,7 +292,7 @@ def _prepare(vector: AggregateGenerationVectorRecord, graph) -> _PreparedGraphPr
 
 def _verify_generation(anchor: object, prepared: _PreparedGraphProjection) -> None:
     expected = {name for name, _ in prepared.files} | {"manifest.json"}
-    paths = tuple(anchor.path.iterdir())  # type: ignore[attr-defined]
+    paths = tuple(_projection_io_path(anchor.path).iterdir())  # type: ignore[attr-defined]
     if {path.name for path in paths} != expected or any(
         path.suffix.casefold() == ".md" for path in paths
     ):
@@ -315,7 +316,8 @@ def _verify_generation(anchor: object, prepared: _PreparedGraphProjection) -> No
 
 def _cleanup_staging(anchor: object) -> None:
     try:
-        for path in list(anchor.path.iterdir()):  # type: ignore[attr-defined]
+        for path in list(_projection_io_path(anchor.path).iterdir()):  # type: ignore[attr-defined]
+            path = _projection_io_path(path)
             if not path.is_file() or path.is_symlink():
                 raise ProjectionMaterializationError(
                     "Aggregate graph staging contains an unsafe entry."
@@ -360,7 +362,7 @@ class _AggregateGraphWriter:
             with _child_anchor(root, prepared.vector.selected_space_id) as space:
                 with _child_anchor(space, "aggregate-graph-generations") as generations:
                     target = generations.path / prepared.generation_name  # type: ignore[attr-defined]
-                    if target.exists():
+                    if _projection_io_path(target).exists():
                         existing = _WindowsDirectoryAnchor.open(target)
                         try:
                             _verify_generation(existing, prepared)
@@ -390,7 +392,7 @@ class _AggregateGraphWriter:
                             )
                             committed = True
                         except OSError:
-                            if target.exists():
+                            if _projection_io_path(target).exists():
                                 _cleanup_staging(staging)
                                 existing = _WindowsDirectoryAnchor.open(target)
                                 try:

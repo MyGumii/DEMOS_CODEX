@@ -89,18 +89,12 @@
     const right = String(next || "");
     let prefix = 0;
     while (prefix < left.length && prefix < right.length && left[prefix] === right[prefix]) prefix += 1;
-    const splitsSurrogate = (text, index) => index > 0 && index < text.length
-      && text.charCodeAt(index - 1) >= 0xD800 && text.charCodeAt(index - 1) <= 0xDBFF
-      && text.charCodeAt(index) >= 0xDC00 && text.charCodeAt(index) <= 0xDFFF;
-    // Y.Text edits use UTF-16 offsets. Never delete/insert half an emoji.
-    if (splitsSurrogate(left, prefix) || splitsSurrogate(right, prefix)) prefix -= 1;
     let suffix = 0;
     while (
       suffix < left.length - prefix
       && suffix < right.length - prefix
       && left[left.length - 1 - suffix] === right[right.length - 1 - suffix]
     ) suffix += 1;
-    if (splitsSurrogate(left, left.length - suffix) || splitsSurrogate(right, right.length - suffix)) suffix -= 1;
     return { prefix, suffix };
   }
 
@@ -169,10 +163,7 @@
   }
 
   function readProjection(Y, document, context) {
-    // Inspect presence before getText() creates an empty named root. A replay
-    // that intentionally deleted its title still contains that root.
-    const title = document.share.has("page-title")
-      ? document.getText("page-title").toString() : context.baseline_title;
+    const title = document.getText("page-title").toString();
     const order = document.getArray("block-order").toArray().map(String);
     const blocks = document.getMap("blocks");
     const seen = new Set();
@@ -264,7 +255,6 @@
     let pendingSeedUpdate = null;
     let applyingProjection = false;
     let pendingStructureCommands = [];
-    let historyProjection = null;
 
     const unsubscribeHost = host.subscribe(event => {
       if (disposed) return;
@@ -292,7 +282,6 @@
       pendingSeedUpdate = null;
       applyingProjection = false;
       pendingStructureCommands = [];
-      historyProjection = null;
     }
 
     function configureDocument(snapshot) {
@@ -301,34 +290,26 @@
       context = {
         page_id: baseline.page_id,
         server_revision: baseline.server_revision,
-        baseline_title: baseline.title,
       };
       document = new Y.Doc();
       const trackedOrigins = new Set([LOCAL_ORIGIN]);
       undoManager = new Y.UndoManager(
-        [document.getArray("block-order"), document.getMap("blocks")],
+        [document.getText("page-title"), document.getArray("block-order"), document.getMap("blocks")],
         { trackedOrigins, captureTimeout: 350 },
       );
       document.on("update", (update, origin) => {
         if (origin === SEED_ORIGIN) {
-          // A transaction delta may reference root structs created before the
-          // seed transaction. Publish a self-contained state for a fresh page.
-          pendingSeedUpdate = new Uint8Array(Y.encodeStateAsUpdate(document));
+          pendingSeedUpdate = new Uint8Array(update);
           return;
         }
         if (!ready || origin === REMOTE_ORIGIN || origin === PENDING_ORIGIN) return;
         if (origin === LOCAL_ORIGIN || origin === undoManager) {
-          const snapshot = readProjection(Y, document, context);
-          const commands = origin === undoManager && historyProjection && options.structureHistory?.() !== false
-            ? structureCommands(historyProjection, snapshot).map(command => command.command_kind === "block.insert"
-              ? {...command, payload: {...command.payload, restore_deleted: true}} : command)
-            : pendingStructureCommands;
           emit({
             type: "local-update",
             page_id: context.page_id,
             update: new Uint8Array(update),
-            snapshot,
-            structure_commands: clone(commands),
+            snapshot: readProjection(Y, document, context),
+            structure_commands: clone(pendingStructureCommands),
           });
         }
       });
@@ -350,7 +331,6 @@
         applied += 1;
         if (frame.operation_id) operationIds.push(String(frame.operation_id));
       }
-      if (applied) pendingSeedUpdate = null;
       return { applied, operation_ids: operationIds };
     }
 
@@ -391,19 +371,9 @@
         document.clientID = randomClientId;
       }
       const recovered = applyPendingUpdates(pendingEntries);
-      if (!document.share.has("page-title")) {
-        // Older body-only states have no title root. Seed only that field after
-        // pending offline intent has replayed. All clients use the same identity
-        // so opening the same page concurrently cannot duplicate the title.
-        const randomClientId = document.clientID;
-        document.clientID = stringHash32(`code-assist:${context.page_id}:generation-1:page-title`);
-        document.transact(() => replaceYText(document.getText("page-title"), baseline.title), SEED_ORIGIN);
-        document.clientID = randomClientId;
-      }
-      undoManager.addToScope(document.getText("page-title"));
       ready = true;
       project(recovered ? "offline-recovery" : "collaboration-bootstrap");
-      if (pendingSeedUpdate && options.canPublishSeed?.() !== false) {
+      if (pendingSeedUpdate) {
         const update = pendingSeedUpdate;
         pendingSeedUpdate = null;
         sawCrdtFrame = true;
@@ -445,16 +415,14 @@
 
     function undo() {
       if (!ready || !undoManager?.undoStack?.length) return false;
-      historyProjection = readProjection(Y, document, context);
-      try { undoManager.undo(); } finally { historyProjection = null; }
+      undoManager.undo();
       project("local-undo");
       return true;
     }
 
     function redo() {
       if (!ready || !undoManager?.redoStack?.length) return false;
-      historyProjection = readProjection(Y, document, context);
-      try { undoManager.redo(); } finally { historyProjection = null; }
+      undoManager.redo();
       project("local-redo");
       return true;
     }
@@ -479,7 +447,6 @@
       applyPendingUpdates,
       finishReplay,
       syncLocalSnapshot,
-      stopCapturing() { undoManager?.stopCapturing(); },
       projection() {
         return document && context ? clone(readProjection(Y, document, context)) : null;
       },
@@ -573,41 +540,33 @@
 
     async function encryptionKey(keys) {
       const db = await database();
-      let transaction = db.transaction(KEY_STORE, "readwrite");
-      let done = transactionDone(transaction);
+      let transaction = db.transaction(KEY_STORE, "readonly");
       let record = await requestResult(transaction.objectStore(KEY_STORE).get(keys.subject));
-      const newToken = () => bytesToBase64(cryptoApi.getRandomValues(new Uint8Array(24)));
-      if (record?.key && !record.token) {
-        record = {...record, token:newToken()};
-        transaction.objectStore(KEY_STORE).put(record);
-      }
-      await done;
-      if (record?.key) return record;
+      await transactionDone(transaction);
+      if (record?.key) return record.key;
       const key = await cryptoApi.subtle.generateKey(
         { name: "AES-GCM", length: 256 },
         false,
         ["encrypt", "decrypt"],
       );
       transaction = db.transaction(KEY_STORE, "readwrite");
-      record = {id:keys.subject, key, token:newToken(), created_at:Date.now()};
-      done = transactionDone(transaction);
-      transaction.objectStore(KEY_STORE).add(record);
+      transaction.objectStore(KEY_STORE).add({ id: keys.subject, key, created_at: Date.now() });
       try {
-        await done;
-        return record;
+        await transactionDone(transaction);
+        return key;
       } catch {
         transaction = db.transaction(KEY_STORE, "readonly");
         record = await requestResult(transaction.objectStore(KEY_STORE).get(keys.subject));
         await transactionDone(transaction);
         if (!record?.key) throw new Error("offline encryption key race could not be resolved");
-        return record;
+        return record.key;
       }
     }
 
     async function put(context, envelope) {
       const keys = await keysFor(context);
       const operationId = validIdentifier(envelope.operation_id, "operation id");
-      const keyRecord = await encryptionKey(keys);
+      const key = await encryptionKey(keys);
       const iv = cryptoApi.getRandomValues(new Uint8Array(12));
       const aad = encoder.encode(`${OUTBOX_CONTRACT}\n${keys.page}`);
       const plaintext = encoder.encode(stableJson({
@@ -618,7 +577,7 @@
         workspace_id: keys.workspace_id,
         subject_id: keys.subject_id,
       }));
-      const ciphertext = await cryptoApi.subtle.encrypt({ name: "AES-GCM", iv, additionalData: aad }, keyRecord.key, plaintext);
+      const ciphertext = await cryptoApi.subtle.encrypt({ name: "AES-GCM", iv, additionalData: aad }, key, plaintext);
       const record = {
         id: `${keys.page}:${operationId}`,
         scope: keys.page,
@@ -629,21 +588,15 @@
         created_at: Number(envelope.created_at || Date.now()),
       };
       const db = await database();
-      const transaction = db.transaction([OUTBOX_STORE, KEY_STORE], "readwrite");
-      const done = transactionDone(transaction);
-      const currentKey = await requestResult(transaction.objectStore(KEY_STORE).get(keys.subject));
-      if (!currentKey?.token || currentKey.token !== keyRecord.token) {
-        transaction.abort();await done.catch(() => {});
-        throw new Error("로컬 저장소가 정리되었습니다. 입력 저장을 다시 확인해 주세요.");
-      }
+      const transaction = db.transaction(OUTBOX_STORE, "readwrite");
       transaction.objectStore(OUTBOX_STORE).put(record);
-      await done;
+      await transactionDone(transaction);
       return { id: record.id, operation_id: operationId, durable: true };
     }
 
     async function list(context) {
       const keys = await keysFor(context);
-      const key = (await encryptionKey(keys)).key;
+      const key = await encryptionKey(keys);
       const db = await database();
       const transaction = db.transaction(OUTBOX_STORE, "readonly");
       const records = await requestResult(transaction.objectStore(OUTBOX_STORE).index("scope").getAll(keys.page));
@@ -684,30 +637,18 @@
       await transactionDone(transaction);
     }
 
-    async function clearSubject(context, options = {}) {
+    async function clearSubject(context) {
       const scope = outboxScope({ ...context, workspace_id: context.workspace_id || "scope", page_id: context.page_id || "scope" });
       const subject = await digestText(cryptoApi, `${scope.realm}\n${scope.subject_id}`);
       const db = await database();
-      let transaction = db.transaction(OUTBOX_STORE, "readonly");
-      const records = await requestResult(transaction.objectStore(OUTBOX_STORE).index("subject").getAll(subject));
+      let transaction = db.transaction(OUTBOX_STORE, "readwrite");
+      const index = transaction.objectStore(OUTBOX_STORE).index("subject");
+      const records = await requestResult(index.getAllKeys(subject));
+      for (const key of records || []) transaction.objectStore(OUTBOX_STORE).delete(key);
       await transactionDone(transaction);
-      if (records.length && options.confirmDiscard && !await options.confirmDiscard(records.length)) {
-        return { cleared: false, cancelled: true };
-      }
-      // Confirmation does not authorize removing edits created in another tab
-      // while the dialog was open. Compare and remove in one transaction.
-      transaction = db.transaction([OUTBOX_STORE, KEY_STORE], "readwrite");
-      const done = transactionDone(transaction);
-      const latest = await requestResult(transaction.objectStore(OUTBOX_STORE).index("subject").getAll(subject));
-      const signature = rows => stableJson(rows.slice().sort((a, b) => a.id.localeCompare(b.id)));
-      if (signature(latest) !== signature(records)) {
-        transaction.abort();
-        await done.catch(() => {});
-        throw new Error("보관된 입력이 변경되었습니다. 로그아웃을 다시 확인해 주세요.");
-      }
-      for (const record of latest) transaction.objectStore(OUTBOX_STORE).delete(record.id);
+      transaction = db.transaction(KEY_STORE, "readwrite");
       transaction.objectStore(KEY_STORE).delete(subject);
-      await done;
+      await transactionDone(transaction);
       return { cleared: true };
     }
 

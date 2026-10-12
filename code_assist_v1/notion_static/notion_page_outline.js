@@ -1,7 +1,7 @@
 /* Page-level heading navigation, derived only from the currently visible page. */
 (function () {
   "use strict";
-  let navigation, canvas, scrollRoot, pageView, observer, resizeObserver;
+  let navigation, canvas, scrollRoot, observer, resizeObserver;
   let entries = [];
   let signature = "";
   let pending = false;
@@ -15,7 +15,7 @@
   function initialize() {
     canvas = document.getElementById("blocks");
     scrollRoot = document.getElementById("workspaceMain");
-    pageView = document.getElementById("pageView");
+    const pageView = document.getElementById("pageView");
     if (!canvas || !scrollRoot || !pageView) return false;
     navigation = document.createElement("nav");
     navigation.id = "pageOutline";
@@ -68,10 +68,7 @@
       && row.getClientRects().length > 0
       && row.querySelector(".block-editor")?.textContent.trim()
     ));
-    // A long page may contain only one heading alongside tables/AI notes.
-    // Keep that heading reachable instead of making its index disappear.
-    navigation.hidden = headings.length === 0 || scrollRoot.clientWidth < 600
-      || pageView.classList.contains("outline-disabled");
+    navigation.hidden = headings.length < 2 || scrollRoot.clientWidth < 600;
     const next = JSON.stringify(headings.map(row => [row.id, row.dataset.type, row.querySelector(".block-editor").textContent.trim()]));
     if (next !== signature || entries.some((entry, index) => entry.row !== headings[index])) {
       signature = next;

@@ -112,13 +112,13 @@ function setNotionWorkspaceLink() {
   const link = $("#notionWorkspaceLink");
   if (!link) return;
   const host = window.location.hostname || "localhost";
-  const notionPort = location.port === "10111" ? "10112" : "10012";
+  const notionPort = location.port === "10521" ? "10322" : location.port === "10111" ? "10112" : "10012";
   link.href = `http://${host}:${notionPort}`;
 }
 
 function notionWorkspacePageUrl(pageId) {
   const host = window.location.hostname || "localhost";
-  const notionPort = location.port === "10111" ? "10112" : "10012";
+  const notionPort = location.port === "10521" ? "10322" : location.port === "10111" ? "10112" : "10012";
   return `http://${host}:${notionPort}/page/${encodeURIComponent(pageId || "")}`;
 }
 
@@ -561,7 +561,7 @@ function openOwnPasswordChangeModal({ required = false } = {}) {
         : "현재 로그인한 계정의 비밀번호를 변경합니다."}
     </p>
     <label>현재 비밀번호</label>
-    <input id="ownCurrentPassword" type="password" autocomplete="current-password" placeholder="${required ? "초기 비밀번호 user1234" : "현재 비밀번호"}">
+    <input id="ownCurrentPassword" type="password" autocomplete="current-password" placeholder="${required ? "관리자가 안내한 임시 비밀번호" : "현재 비밀번호"}">
     <label>새 비밀번호</label>
     <input id="ownNewPassword" type="password" autocomplete="new-password" placeholder="8자 이상">
     <label>새 비밀번호 확인</label>
@@ -921,8 +921,8 @@ function applyTheme(name) {
     document.head.appendChild(link);
   }
   link.href = name === "light"
-    ? "https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css"
-    : "https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css";
+    ? "/static/vendor/highlightjs-11.9.0/github.min.css"
+    : "/static/vendor/highlightjs-11.9.0/github-dark.min.css";
 }
 
 const _initialTheme = localStorage.getItem("code_assist_v1.theme") || "light";
@@ -1407,18 +1407,11 @@ $("#btnSend").addEventListener("click", () => {
   else Chat.send();
 });
 
-// 마크다운 렌더 옵션 (highlight.js 자동 적용)
+// 마크다운 렌더 옵션. 코드블록 강조는 chat.js의 highlightElement가 적용한다.
 if (window.marked) {
   marked.setOptions({
     breaks: true,
     gfm: true,
-    highlight: (code, lang) => {
-      if (window.hljs && lang && hljs.getLanguage(lang)) {
-        try { return hljs.highlight(code, { language: lang }).value; }
-        catch {}
-      }
-      return code;
-    },
   });
 }
 
@@ -1428,20 +1421,28 @@ const SidebarToggle = {
     document.querySelector(".app-root").classList.toggle("left-collapsed", collapsed);
     if (persist) localStorage.setItem("ws.left.collapsed", collapsed ? "1" : "0");
     const btn = $("#btnToggleLeft");
-    if (btn) btn.title = collapsed ? "왼쪽 사이드바 펼치기" : "왼쪽 사이드바 접기";
+    if (btn) {
+      btn.title = collapsed ? "왼쪽 사이드바 펼치기" : "왼쪽 사이드바 접기";
+      btn.setAttribute("aria-expanded", String(!collapsed));
+    }
   },
   applyRight(collapsed, persist = true) {
     document.querySelector(".app-root").classList.toggle("right-collapsed", collapsed);
     if (persist) localStorage.setItem("ws.right.collapsed", collapsed ? "1" : "0");
     const btn = $("#btnToggleRight");
-    if (btn) btn.title = collapsed ? "워크스페이스 펼치기" : "워크스페이스 접기";
+    if (btn) {
+      btn.title = collapsed ? "워크스페이스 펼치기" : "워크스페이스 접기";
+      btn.setAttribute("aria-expanded", String(!collapsed));
+    }
   },
   toggleLeft() {
     const cur = document.querySelector(".app-root").classList.contains("left-collapsed");
+    if (cur && window.matchMedia("(max-width: 860px)").matches) SidebarToggle.applyRight(true, false);
     SidebarToggle.applyLeft(!cur);
   },
   toggleRight() {
     const cur = document.querySelector(".app-root").classList.contains("right-collapsed");
+    if (cur && window.matchMedia("(max-width: 860px)").matches) SidebarToggle.applyLeft(true, false);
     SidebarToggle.applyRight(!cur);
   },
   init() {
@@ -1449,6 +1450,12 @@ const SidebarToggle = {
     const left = localStorage.getItem("ws.left.collapsed");
     SidebarToggle.applyLeft(left === "1", false);
     SidebarToggle.applyRight(true, false);
+    window.matchMedia("(max-width: 860px)").addEventListener("change", ({ matches }) => {
+      if (matches && !document.querySelector(".app-root").classList.contains("left-collapsed")) {
+        // Keep one drawer accessible after shrinking a two-panel desktop layout.
+        SidebarToggle.applyRight(true, false);
+      }
+    });
   },
 };
 $("#btnToggleLeft").addEventListener("click", () => SidebarToggle.toggleLeft());

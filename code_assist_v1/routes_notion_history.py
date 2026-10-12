@@ -67,30 +67,6 @@ def register_notion_history_routes(app) -> None:
             return workspace_routes._workspace_error_response(exc)
 
     @app.route(
-        "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/updates",
-        methods=["GET"],
-    )
-    def api_notion_collaborative_page_updates(workspace_id: str, page_id: str):
-        try:
-            authority, actor = _scope(workspace_id, page_id)
-            raw_limit = request.args.get("limit", "20")
-            try:
-                limit = int(raw_limit)
-            except (TypeError, ValueError) as exc:
-                raise notion_http.NotionRequestValidationError("positive limit required") from exc
-            if limit < 1:
-                raise notion_http.NotionRequestValidationError("positive limit required")
-            return workspace_routes._success(
-                "page_updates_loaded",
-                authority.list_update_previews(
-                    actor, page_id, before_revision=_positive_query("before_revision", required=False),
-                    limit=limit,
-                ),
-            )
-        except Exception as exc:
-            return workspace_routes._workspace_error_response(exc)
-
-    @app.route(
         "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/history/policy",
         methods=["GET"],
     )

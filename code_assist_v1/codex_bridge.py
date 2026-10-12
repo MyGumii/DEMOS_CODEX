@@ -6,12 +6,15 @@ import os
 import shutil
 import subprocess
 import threading
+import time
 from collections import deque
+from queue import Empty, Full, Queue
 from typing import Callable, Iterable
 
 from code_assist_v1.config import WORKSPACE_DIR
 from code_assist_v1.job_manager import redact_sensitive
 from code_assist_v1.model_invocation import InvocationGuard
+from code_assist_v1.codex_response import CodexOutputCollector, CodexResponseError, CodexResponsePolicy
 
 
 CODEX_MODEL_ID = "codex-local"
@@ -98,8 +101,28 @@ def stream_codex_exec(
     *,
     preserve_input: bool = False,
     attempt_guard: Callable[[], None] | None = None,
+    response_policy: CodexResponsePolicy | None = None,
+    image_inputs=None,
+    image_policy=None,
+    image_attempt=None,
 ) -> Iterable[dict]:
     guard = None if attempt_guard is None else InvocationGuard(attempt_guard)
+    if response_policy is not None:
+        if type(response_policy) is not CodexResponsePolicy or guard is None or preserve_input is not True:
+            raise ValueError("Bounded Codex output requires a policy, guard and complete input.")
+        guard()
+    if image_inputs is not None or image_policy is not None:
+        from code_assist_v1.llm_images import (
+            IMAGE_INPUT_CAPABILITY, prepare_image_messages, validate_image_inputs,
+        )
+        if response_policy is None or guard is None or preserve_input is not True:
+            raise ValueError("Image input requires the bounded complete-input Codex lane.")
+        capabilities = cfg.get("capabilities") or ()
+        if (not isinstance(capabilities, (tuple, list, set, frozenset))
+                or IMAGE_INPUT_CAPABILITY not in capabilities):
+            raise CodexBridgeError("MODEL_IMAGE_UNSUPPORTED", "Codex image input is not enabled for this model.", retryable=False)
+        validate_image_inputs(image_inputs, image_policy)
+        messages = prepare_image_messages(messages, image_inputs, inline=False)
     codex_bin = _resolve_codex_bin()
     if not codex_bin:
         requested_bin = os.environ.get("CODE_ASSIST_CODEX_BIN", "codex")
@@ -166,6 +189,33 @@ def stream_codex_exec(
             ["--config", f'model_reasoning_effort="{reasoning_effort}"']
         )
     args.append("-")
+
+    if response_policy is not None:
+        # The legacy UI streaming path remains below. Canonical reading gets
+        # one completed message only, after all child I/O and cleanup finish.
+        image_receipt = None
+        if image_inputs is not None:
+            from code_assist_v1.llm_images import image_input_receipt, staged_image_files
+            if image_attempt is not None:
+                from hashlib import sha256
+                submitted = prompt.encode("utf-8")
+                image_attempt.update(phase="prepared", request_sha256=sha256(submitted).hexdigest(),
+                                     request_bytes=len(submitted), staged=False)
+            with staged_image_files(image_inputs, image_policy, guard, attempt=image_attempt) as paths:
+                image_args = args[:-1]
+                for path in paths:
+                    image_args.extend(["--image", path])
+                image_args.append("-")
+                if image_attempt is not None:
+                    image_attempt.update(staged=True)
+                text, receipt = _bounded_codex_exec(image_args, cwd, prompt, timeout_s, response_policy, guard,
+                    **({"image_attempt": image_attempt} if image_attempt is not None else {}))
+            image_receipt = image_input_receipt(image_inputs, image_policy, transport="codex-cli-image-files-v1")
+        else:
+            text, receipt = _bounded_codex_exec(args, cwd, prompt, timeout_s, response_policy, guard)
+        yield {"delta": text, "codex_response_transport": receipt,
+               **({"image_input_transport": image_receipt} if image_receipt is not None else {})}
+        return
 
     stderr_tail: deque[str] = deque(maxlen=40)
     proc: subprocess.Popen | None = None
@@ -342,28 +392,188 @@ def stream_codex_exec(
         yield from buffered_events
 
 
-def _cleanup_guarded_child(proc, stdin_thread, stderr_thread) -> None:
+def _bounded_codex_exec(args, cwd, prompt, timeout_s, policy, guard, *, image_attempt=None):
+    """Opt-in binary/line-bounded acquisition; not a hard process-tree deadline.
+
+    A queue deadline also detects a descendant holding a pipe after root exit.
+    Cleanup must then fail if a reader cannot join, never close its busy pipe.
+    Reclaiming all orphan descendants still needs process-tree containment;
+    this is not a proven hard deadline for spawn/OS cleanup or all descendants.
+    """
+    submitted = prompt.encode("utf-8", errors="strict")
+    collector = CodexOutputCollector(policy, submitted)
+    proc = None
+    timer = None
+    stdin_thread = stderr_thread = stdout_thread = None
+    timed_out = threading.Event()
+    stopping = threading.Event()
+    output_queue = Queue(maxsize=1)
+    worker_errors = []
+    rc = None
+    deadline = time.monotonic() + max(1, int(timeout_s))
+    try:
+        guard()
+        if image_attempt is not None:
+            image_attempt.update(phase="submission_attempted")
+        proc = subprocess.Popen(
+            args, cwd=cwd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE, text=False, bufsize=-1,
+            **({"creationflags": subprocess.CREATE_NO_WINDOW} if os.name == "nt" else {}),
+        )
+        if image_attempt is not None:
+            image_attempt.update(child_started=True)
+
+        def stop_on_timeout():
+            timed_out.set()
+            if proc.poll() is None:
+                _terminate_process_tree(proc)
+
+        timer = threading.Timer(max(1, int(timeout_s)), stop_on_timeout)
+        timer.daemon = True
+        timer.start()
+
+        def read_stderr():
+            try:
+                while True:
+                    guard.raise_if_failed()
+                    raw = proc.stderr.readline(policy.line_bytes + 1)
+                    guard.raise_if_failed()
+                    if not raw:
+                        break
+                    collector.stderr_line(raw)
+            except BaseException as exc:
+                worker_errors.append(exc)
+                if proc.poll() is None:
+                    _terminate_process_tree(proc)
+
+        def enqueue(value):
+            while not stopping.is_set():
+                try:
+                    output_queue.put(value, timeout=0.1)
+                    return
+                except Full:
+                    continue
+
+        def read_stdout():
+            try:
+                while not stopping.is_set():
+                    guard.raise_if_failed()
+                    raw = proc.stdout.readline(policy.line_bytes + 1)
+                    enqueue(raw)
+                    if not raw:
+                        return
+            except BaseException as exc:
+                enqueue(exc)
+
+        def write_stdin():
+            try:
+                guard()
+                written = proc.stdin.write(submitted)
+                if type(written) is not int or written != len(submitted):
+                    raise CodexResponseError("CODEX_INPUT_INCOMPLETE", "Codex prompt was not fully submitted.")
+            except BaseException as exc:
+                worker_errors.append(exc)
+            finally:
+                try:
+                    proc.stdin.close()  # Flush is part of prompt submission.
+                except BaseException as exc:
+                    worker_errors.append(exc)
+                try:
+                    guard()
+                except BaseException as exc:
+                    worker_errors.append(exc)
+                if worker_errors and proc.poll() is None:
+                    _terminate_process_tree(proc)
+
+        # Publish only started workers to cleanup; join on an unstarted Thread
+        # itself raises and could skip child/pipe cleanup after startup failure.
+        worker = threading.Thread(target=read_stderr, daemon=True)
+        worker.start()
+        stderr_thread = worker
+        worker = threading.Thread(target=write_stdin, daemon=True)
+        worker.start()
+        stdin_thread = worker
+        worker = threading.Thread(target=read_stdout, daemon=True)
+        worker.start()
+        stdout_thread = worker
+        while True:
+            guard()
+            if worker_errors:
+                raise worker_errors[0]
+            remaining = deadline - time.monotonic()
+            if timed_out.is_set() or remaining <= 0:
+                raise CodexResponseError("CODEX_EXEC_TIMEOUT", "Codex output did not finish before its deadline.")
+            try:
+                raw = output_queue.get(timeout=min(1.0, remaining))
+            except Empty:
+                continue
+            guard()
+            if isinstance(raw, BaseException):
+                raise raw
+            if not raw:
+                collector.stdout_eof()
+                break
+            collector.stdout_line(raw)
+        rc = proc.wait(timeout=min(5, max(0.001, deadline - time.monotonic())))
+        stdin_thread.join(timeout=1)
+        stderr_thread.join(timeout=1)
+        guard()
+        if worker_errors:
+            raise worker_errors[0]
+        if timed_out.is_set():
+            raise CodexResponseError("CODEX_EXEC_TIMEOUT", "Codex execution timed out.")
+    except subprocess.TimeoutExpired as exc:
+        raise CodexResponseError("CODEX_EXEC_TIMEOUT", "Codex process did not finish in time.") from exc
+    except OSError:
+        if image_attempt is not None:
+            raise CodexBridgeError("CODEX_EXEC_FAILED", "Codex image invocation did not complete.", retryable=False) from None
+        raise
+    finally:
+        if timer is not None:
+            timer.cancel()
+        stopping.set()
+        try:
+            if proc is not None:
+                _cleanup_guarded_child(proc, stdin_thread, stderr_thread, stdout_thread=stdout_thread,
+                                       require_clean_io=True)
+        finally:
+            guard.raise_if_failed()
+    guard()
+    # Errors collected just before thread join/cleanup must not be missed.
+    if worker_errors:
+        raise worker_errors[0]
+    result = collector.finish(exit_code=rc, cleanup_completed=True)
+    if image_attempt is not None:
+        image_attempt.update(phase="response_received", child_cleanup_completed=True)
+    return result
+
+
+def _cleanup_guarded_child(proc, stdin_thread, stderr_thread, *, stdout_thread=None,
+                           require_clean_io=False) -> None:
     """Bounded child/pipe cleanup; never close a stream a live thread owns."""
     if proc.poll() is None:
         _terminate_process_tree(proc)
+    cleanup_failed = False
     try:
         proc.wait(timeout=2)
     except Exception:
         # Still join the pipe workers, even if wait/reaping itself failed.
-        pass
-    for thread in (stdin_thread, stderr_thread):
+        cleanup_failed = True
+    for thread in (stdin_thread, stderr_thread, stdout_thread):
         if thread is not None:
             thread.join(timeout=2)
     writer_alive = stdin_thread is not None and stdin_thread.is_alive()
     stderr_alive = stderr_thread is not None and stderr_thread.is_alive()
-    for stream, busy in ((proc.stdin, writer_alive), (proc.stdout, False), (proc.stderr, stderr_alive)):
+    stdout_alive = stdout_thread is not None and stdout_thread.is_alive()
+    for stream, busy in ((proc.stdin, writer_alive), (proc.stdout, stdout_alive), (proc.stderr, stderr_alive)):
         close = getattr(stream, "close", None)
         if not busy and callable(close):
             try:
                 close()
             except Exception:
-                pass
-    if proc.poll() is None or writer_alive or stderr_alive:
+                cleanup_failed = True
+    if (proc.poll() is None or writer_alive or stderr_alive or stdout_alive
+            or (require_clean_io and cleanup_failed)):
         raise CodexBridgeError("CODEX_EXEC_FAILED", "Codex child cleanup did not finish.", retryable=False)
 
 

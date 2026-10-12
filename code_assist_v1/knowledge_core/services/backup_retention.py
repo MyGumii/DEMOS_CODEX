@@ -120,7 +120,9 @@ class BackupRetentionService:
             raise TypeError("BackupRetentionService requires a ConnectionFactory.")
         self._factory = factory
         self._repository = BackupRepository()
-        self._storage = FilesystemBackupStorage(layout, backup_root)
+        self._storage = FilesystemBackupStorage(
+            layout, backup_root, migration_catalog=factory.migration_catalog
+        )
 
     def _retained(self) -> tuple[RetainedBackup, ...]:
         connection = self._factory.open(read_only=True)

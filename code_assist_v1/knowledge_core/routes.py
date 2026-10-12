@@ -93,6 +93,7 @@ def register_routes(
             conversation_summarizer=bindings.conversation_summarizer,
             principal_resolver=bindings.principal_resolver,
             publication_service=publication_service,
+            publication_status_reader=bindings.publication_status_reader,
             item_edit_service=item_edit_service,
             item_lifecycle_service=item_lifecycle_service,
             item_purge_service=item_purge_service,
@@ -172,6 +173,7 @@ def register_routes(
         scope_selection_service=services.require("scope_selection"),
         publication_service=services.require("publication"),
         principal_resolver=publication_bindings.principal_resolver,
+        publication_status_reader=publication_bindings.publication_status_reader,
     )
     return ("canonical_publication_v1",)
 

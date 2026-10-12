@@ -197,7 +197,6 @@ class IssuedTicket:
 class TicketGrant:
     claims: TicketClaims
     consumed_at_ms: int
-    temporary_unlock: Mapping[str, Any] | None = field(default=None, repr=False)
 
     def allows(self, capability: str) -> bool:
         return str(capability).strip().lower() in self.claims.capabilities

@@ -28,10 +28,8 @@ from typing import Any
 
 from code_assist_v1.auth import safe_user_id
 from code_assist_v1.config import USER_DATA_DIR
-from code_assist_v1.notion_update_preview import page_change_preview
 
 _bound_user_data_dir = ContextVar("notion_store_user_data_dir", default=None)
-_bound_temporary_unlock = ContextVar("notion_store_temporary_unlock", default=None)
 
 
 @contextmanager
@@ -54,40 +52,6 @@ def _user_data_dir():
     return _bound_user_data_dir.get() or USER_DATA_DIR
 
 
-@contextmanager
-def bind_temporary_unlock(grant):
-    """Bind a route-verified, tab-local page unlock to this request only."""
-    token = _bound_temporary_unlock.set(grant)
-    try:
-        yield
-    finally:
-        _bound_temporary_unlock.reset(token)
-
-
-def _page_write_locked(settings, requester_user_id: str, page_id: str) -> bool:
-    if not isinstance(settings, dict) or not settings.get("locked"):
-        return False
-    grant = _bound_temporary_unlock.get()
-    return not (
-        isinstance(grant, dict)
-        and grant.get("user_id") == requester_user_id
-        and grant.get("page_id") == page_id
-        and grant.get("lock_nonce") == str(settings.get("_np2b_lock_nonce") or "")
-    )
-
-
-def temporary_unlock_nonce(user_id: str | None, page_id: str) -> str:
-    """Read the current lock generation after checking current edit access."""
-    uid = _uid(user_id)
-    _owner, role, page = _require_page(uid, page_id, "edit")
-    if role not in EDIT_ROLES:
-        raise PermissionError("edit permission required")
-    settings = _json_load(page.get("settings_json"), {})
-    if not isinstance(settings, dict) or not settings.get("locked"):
-        raise ValueError("page is not locked")
-    return str(settings.get("_np2b_lock_nonce") or "")
-
-
 ROLE_LEVELS = {"view": 1, "comment": 2, "edit": 3, "owner": 4}
 EDIT_ROLES = {"owner", "edit"}
 BLOCK_TYPES = {
@@ -95,11 +59,9 @@ BLOCK_TYPES = {
     "heading1",
     "heading2",
     "heading3",
-    "heading4",
     "toggle_heading1",
     "toggle_heading2",
     "toggle_heading3",
-    "toggle_heading4",
     "todo",
     "toggle",
     "callout",
@@ -274,10 +236,6 @@ def bootstrap_workspace(user_id: str | None) -> dict[str, Any]:
         _ensure_schema(con, bootstrap_atomic=True)
         if not _atomic_schema_ready(con):
             raise RuntimeError("fresh workspace bootstrap did not install the latest schema")
-        from code_assist_v1.notion_personal_workspace_schema import install_new
-        con.execute("BEGIN IMMEDIATE")
-        install_new(con, uid)
-        con.commit()
     except Exception:
         con.rollback()
         raise
@@ -930,7 +888,7 @@ def _page_payload_in_connection(
         ),
         "blocks": blocks,
         "files": [_file_from_row(dict(row), owner) for row in file_rows],
-        "capabilities": {"atomic_save": _atomic_schema_ready(con), "personal_linked_database": True},
+        "capabilities": {"atomic_save": _atomic_schema_ready(con)},
     }
     if payload["capabilities"]["atomic_save"]:
         payload["revision"] = int(payload["page"]["revision"])
@@ -977,70 +935,6 @@ def list_pages(user_id: str | None, query: str = "") -> list[dict[str, Any]]:
         ]
     items.sort(key=lambda item: (item["scope"] != "own", item.get("position", 0), -int(item.get("updated_at") or 0)))
     return items
-
-
-def list_meeting_pages(
-    user_id: str | None,
-    *,
-    query: str = "",
-    limit: int = 100,
-    offset: int = 0,
-    allowed_pages: list[dict[str, Any]] | None = None,
-    owner_filter: str = "",
-) -> dict[str, Any]:
-    """Return note metadata without loading transcripts or walking page bodies.
-
-    Workspace callers supply their authorized catalog. Each owner shard still
-    revalidates the current legacy grant before returning a meeting summary.
-    """
-    uid = _uid(user_id)
-    summaries = list_pages(uid) if allowed_pages is None else allowed_pages
-    owners: dict[str, set[str]] = {}
-    for summary in summaries:
-        owner, page_id = str(summary.get("owner_user_id") or ""), str(summary.get("id") or "")
-        if owner and page_id and (not owner_filter or owner == owner_filter):
-            owners.setdefault(owner, set()).add(page_id)
-    found: list[dict[str, Any]] = []
-    degraded = False
-    folded = str(query or "").strip().casefold()
-    for owner, ids in owners.items():
-        if not _database_exists(owner):
-            degraded = True
-            continue
-        try:
-            with _connection(owner) as con:
-                con.execute("BEGIN")
-                role_cache: dict[str, str] = {}
-                ordered_ids = sorted(ids)
-                for start in range(0, len(ordered_ids), 500):
-                    chunk = ordered_ids[start:start + 500]
-                    placeholders = ",".join("?" for _ in chunk)
-                    rows = con.execute(
-                        "SELECT p.*,COUNT(b.id) AS note_count,"
-                        "(SELECT first.id FROM blocks first WHERE first.page_id=p.id "
-                        "AND first.block_type='ai_notes' ORDER BY first.position,first.id LIMIT 1) AS first_note_id "
-                        "FROM pages p JOIN blocks b ON b.page_id=p.id AND b.block_type='ai_notes' "
-                        f"WHERE p.archived=0 AND p.id IN ({placeholders}) GROUP BY p.id",
-                        chunk,
-                    ).fetchall()
-                    for row in rows:
-                        role = "owner" if owner == uid else _inherited_share_role(con, str(row["id"]), uid, role_cache)
-                        if not role or not _role_ok(role, "view"):
-                            continue
-                        page = _page_summary(dict(row), owner, role, "own" if owner == uid else "shared")
-                        if folded and folded not in page["title"].casefold():
-                            continue
-                        metadata = {key: page[key] for key in ("id", "title", "icon", "owner_user_id", "updated_at", "role", "can_edit")}
-                        found.append({**metadata, "note_count": int(row["note_count"]), "block_id": str(row["first_note_id"])})
-        except (FileNotFoundError, sqlite3.Error):
-            degraded = True
-    found.sort(key=lambda item: (-int(item["updated_at"]), item["id"]))
-    size, skip = max(1, min(100, int(limit))), max(0, int(offset))
-    return {
-        "items": found[skip:skip + size], "count": len(found),
-        "has_more": skip + size < len(found), "offset": skip,
-        "degraded": degraded, "degraded_sources": ["meeting_metadata"] if degraded else [],
-    }
 
 
 def list_calendar_events(
@@ -1336,7 +1230,7 @@ def create_page_idempotent(
         if owner != uid or role not in EDIT_ROLES:
             raise PermissionError("self-owned parent page edit permission required")
         parent_settings = _json_load(parent_page.get("settings_json"), {})
-        if _page_write_locked(parent_settings, uid, normalized_parent):
+        if isinstance(parent_settings, dict) and parent_settings.get("locked"):
             raise PermissionError("parent page is locked")
 
     now = _now()
@@ -1372,7 +1266,10 @@ def create_page_idempotent(
                 parent is None
                 or str(parent["owner_user_id"]) != uid
                 or int(parent["archived"]) != 0
-                or _page_write_locked(parent_settings, uid, normalized_parent)
+                or (
+                    isinstance(parent_settings, dict)
+                    and bool(parent_settings.get("locked"))
+                )
             ):
                 con.rollback()
                 raise PermissionError("self-owned parent page edit permission required")
@@ -1443,20 +1340,12 @@ def create_page(
             raise PermissionError("edit permission required")
         workspace_owner = owner
         parent_settings = _json_load(parent_page.get("settings_json"), {})
-        if _page_write_locked(parent_settings, uid, parent_id):
+        if isinstance(parent_settings, dict) and parent_settings.get("locked"):
             raise PermissionError("parent page is locked")
 
     pid = _page_id()
     with _write_connection(workspace_owner, bootstrap_if_missing=True) as con:
-        con.execute("BEGIN IMMEDIATE")
         if parent_id:
-            _effective_edit_role(con, uid, workspace_owner, parent_id)
-            parent_row = con.execute(
-                "SELECT archived, settings_json FROM pages WHERE id=?", (parent_id,)
-            ).fetchone()
-            parent_settings = _json_load(parent_row["settings_json"], {}) if parent_row else {}
-            if not parent_row or parent_row["archived"] or _page_write_locked(parent_settings, uid, parent_id):
-                raise PermissionError("parent page is locked or unavailable")
             pos_row = con.execute(
                 "SELECT COALESCE(MAX(position), 0) + 1 AS pos FROM pages WHERE archived=0 AND parent_id=?",
                 (parent_id,),
@@ -1802,32 +1691,11 @@ def _page_metadata_changes(page: dict[str, Any], updates: dict[str, Any]) -> dic
             current_settings = {}
         next_settings = dict(current_settings)
         for key, value in updates["settings"].items():
-            if key in {"font", "small_text", "full_width", "show_outline", "show_page_comments", "inline_comments", "locked"}:
-                if key == "inline_comments" and (not isinstance(value, str) or value not in {"default", "minimized"}):
-                    continue
-                if key == "show_page_comments" and type(value) is not bool:
-                    continue
+            if key in {"font", "small_text", "full_width", "locked"}:
                 next_settings[key] = value
-        if bool(next_settings.get("locked")) != bool(current_settings.get("locked")):
-            if next_settings["locked"]:
-                next_settings["_np2b_lock_nonce"] = secrets.token_urlsafe(18)
-            else:
-                next_settings.pop("_np2b_lock_nonce", None)
         if next_settings != current_settings:
             changes["settings_json"] = _json_dump(next_settings)
     return changes
-
-
-def _copied_page_settings(raw_settings: Any) -> dict[str, Any]:
-    settings = _json_load(raw_settings, {})
-    if not isinstance(settings, dict):
-        return {}
-    settings = dict(settings)
-    if settings.get("locked"):
-        settings["_np2b_lock_nonce"] = secrets.token_urlsafe(18)
-    else:
-        settings.pop("_np2b_lock_nonce", None)
-    return settings
 
 
 def update_page(user_id: str | None, page_id: str, updates: dict[str, Any]) -> dict[str, Any]:
@@ -1852,7 +1720,7 @@ def update_page(user_id: str | None, page_id: str, updates: dict[str, Any]) -> d
         current_settings = _json_load(current_page.get("settings_json"), {})
         if not isinstance(current_settings, dict):
             current_settings = {}
-        if _page_write_locked(current_settings, uid, page_id) and not (settings_update is not None and settings_update.get("locked") is False):
+        if current_settings.get("locked") and not (settings_update is not None and settings_update.get("locked") is False):
             raise PermissionError("page is locked")
         changes = _page_metadata_changes(current_page, updates)
         if not changes:
@@ -1993,15 +1861,8 @@ def move_page(
     if page_id in {parent_id, before_id, after_id}:
         raise ValueError("page cannot be moved onto itself")
 
+    old_parent_id = str(_page.get("parent_id") or "")
     with _write_connection(owner) as con:
-        con.execute("BEGIN IMMEDIATE")
-        source = con.execute("SELECT * FROM pages WHERE id=? AND archived=0", (page_id,)).fetchone()
-        if source is None or str(source["owner_user_id"] or "") != uid:
-            raise FileNotFoundError("page not found or permission denied")
-        _page = dict(source)
-        if _page_write_locked(_json_load(_page.get("settings_json"), {}), uid, page_id):
-            raise PermissionError("page is locked")
-        old_parent_id = str(_page.get("parent_id") or "")
         descendants = _page_descendants(con, page_id)
         target_id = before_id or after_id
         if target_id:
@@ -2020,7 +1881,7 @@ def move_page(
                 (old_parent_id,),
             ).fetchone()
             old_settings = _json_load(old_parent["settings_json"], {}) if old_parent else {}
-            if _page_write_locked(old_settings, uid, old_parent_id):
+            if isinstance(old_settings, dict) and old_settings.get("locked"):
                 raise PermissionError("parent page is locked")
         if parent_id:
             if parent_id in descendants:
@@ -2032,7 +1893,7 @@ def move_page(
             if not parent:
                 raise FileNotFoundError(parent_id)
             parent_settings = _json_load(parent["settings_json"], {})
-            if _page_write_locked(parent_settings, uid, parent_id):
+            if isinstance(parent_settings, dict) and parent_settings.get("locked"):
                 raise PermissionError("parent page is locked")
 
         if parent_id:
@@ -2103,13 +1964,6 @@ def duplicate_page(user_id: str | None, page_id: str) -> dict[str, Any]:
     root_new_id = ""
     try:
         with _write_connection(owner) as con:
-            con.execute("BEGIN IMMEDIATE")
-            source = con.execute("SELECT * FROM pages WHERE id=? AND archived=0", (page_id,)).fetchone()
-            if source is None or str(source["owner_user_id"] or "") != uid:
-                raise FileNotFoundError("page not found or permission denied")
-            page = dict(source)
-            if _page_write_locked(_json_load(page.get("settings_json"), {}), uid, page_id):
-                raise PermissionError("page is locked")
             ordered_pages: list[dict[str, Any]] = []
             visited: set[str] = set()
 
@@ -2171,7 +2025,7 @@ def duplicate_page(user_id: str | None, page_id: str) -> dict[str, Any]:
                     (
                         page_map[old_id], owner, new_parent or None, title[:160],
                         str(item.get("icon") or "")[:64], str(item.get("cover") or "")[:1000],
-                        _json_dump(_copied_page_settings(item.get("settings_json"))),
+                        item.get("settings_json") or "{}",
                         root_position if old_id == page_id else int(item.get("position") or 0),
                         0, None, now, now,
                     ),
@@ -2433,12 +2287,6 @@ def duplicate_page_idempotent(
                 con.rollback()
                 replayed = True
             else:
-                source = con.execute("SELECT * FROM pages WHERE id=? AND archived=0", (page_id,)).fetchone()
-                if source is None or str(source["owner_user_id"] or "") != uid:
-                    raise FileNotFoundError("page not found or permission denied")
-                _page = dict(source)
-                if _page_write_locked(_json_load(_page.get("settings_json"), {}), uid, page_id):
-                    raise PermissionError("page is locked")
                 ordered_pages: list[dict[str, Any]] = []
                 visited: set[str] = set()
 
@@ -2527,7 +2375,9 @@ def duplicate_page_idempotent(
                         old_parent, root_parent_id if old_id == page_id else ""
                     )
                     title = str(item.get("title") or "Untitled")
-                    settings = _copied_page_settings(item.get("settings_json"))
+                    settings = _json_load(item.get("settings_json"), {})
+                    if not isinstance(settings, dict):
+                        settings = {}
                     if old_id == page_id:
                         title = f"{title} copy"
                         settings = dict(settings)
@@ -2860,8 +2710,6 @@ def archive_page_idempotent(
             raise OperationIdConflict(
                 operation_id, max(1, int(current.get("revision") or 1))
             )
-        if _page_write_locked(settings, uid, page_id):
-            raise PermissionError("page is locked")
         previous_marker = str(settings.get(_IDEMPOTENT_ARCHIVE_MARKER) or "")
         if previous_marker == digest:
             raise OperationIdConflict(
@@ -3018,18 +2866,10 @@ def list_archived_pages_from_owner_by_ids(
 
 
 def archive_page(user_id: str | None, page_id: str) -> dict[str, Any]:
-    uid = _uid(user_id)
-    owner, role, _page = _require_page(uid, page_id, "edit")
+    owner, role, _page = _require_page(user_id, page_id, "edit")
     if role not in EDIT_ROLES:
         raise PermissionError("edit permission required")
     with _write_connection(owner) as con:
-        con.execute("BEGIN IMMEDIATE")
-        _effective_edit_role(con, uid, owner, page_id)
-        source = con.execute("SELECT settings_json FROM pages WHERE id=? AND archived=0", (page_id,)).fetchone()
-        if source is None:
-            raise FileNotFoundError("page not found or permission denied")
-        if _page_write_locked(_json_load(source["settings_json"], {}), uid, page_id):
-            raise PermissionError("page is locked")
         now = _now()
         page_ids = {page_id, *_page_descendants(con, page_id)}
         placeholders = ",".join("?" for _ in page_ids)
@@ -3341,7 +3181,7 @@ def replace_blocks(user_id: str | None, page_id: str, blocks: list[dict[str, Any
     if role not in EDIT_ROLES:
         raise PermissionError("edit permission required")
     settings = _json_load(page.get("settings_json"), {})
-    if _page_write_locked(settings, uid, page_id):
+    if isinstance(settings, dict) and settings.get("locked"):
         raise PermissionError("page is locked")
     prepared_blocks = _prepare_blocks(blocks)
     with _write_connection(owner) as con:
@@ -3351,7 +3191,7 @@ def replace_blocks(user_id: str | None, page_id: str, blocks: list[dict[str, Any
         if not page_row:
             raise FileNotFoundError("page not found or permission denied")
         current_settings = _json_load(dict(page_row).get("settings_json"), {})
-        if _page_write_locked(current_settings, uid, page_id):
+        if isinstance(current_settings, dict) and current_settings.get("locked"):
             raise PermissionError("page is locked")
         current_blocks = _page_blocks_in_connection(con, page_id)
         if _block_content_signature(current_blocks) == _block_content_signature(prepared_blocks):
@@ -3454,7 +3294,7 @@ def save_page_atomic(
         if not isinstance(current_settings, dict):
             current_settings = {}
         settings_update = page_updates.get("settings") if isinstance(page_updates.get("settings"), dict) else None
-        if _page_write_locked(current_settings, uid, page_id) and not (settings_update is not None and settings_update.get("locked") is False):
+        if current_settings.get("locked") and not (settings_update is not None and settings_update.get("locked") is False):
             raise PermissionError("page is locked")
 
         metadata_changes = _page_metadata_changes(current_page, page_updates)
@@ -3518,125 +3358,25 @@ def list_page_versions(user_id: str | None, page_id: str, limit: int = 30) -> li
     ]
 
 
-def get_page_version(user_id: str | None, page_id: str, version_id: str) -> dict[str, Any]:
-    """Read one authorized historical page without changing the current page."""
-    owner, _role, _page = _require_page(user_id, page_id, "view")
-    version_id = str(version_id or "").strip()
-    if not version_id:
-        raise ValueError("version_id required")
-    with _connection(owner) as con:
-        row = con.execute(
-            "SELECT id,title,icon,cover,settings_json,blocks_json,created_at "
-            "FROM page_versions WHERE id=? AND page_id=?",
-            (version_id, page_id),
-        ).fetchone()
-        latest = con.execute(
-            "SELECT id FROM page_versions WHERE page_id=? "
-            "ORDER BY created_at DESC,rowid DESC LIMIT 1",
-            (page_id,),
-        ).fetchone()
-    _require_page(user_id, page_id, "view")
-    if row is None:
-        raise FileNotFoundError("page version not found")
-    blocks = _json_load(row["blocks_json"], None)
-    if not isinstance(blocks, list) or any(not isinstance(block, dict) for block in blocks):
-        raise ValueError("page version snapshot is invalid")
-    settings = _json_load(row["settings_json"], {})
-    if not isinstance(settings, dict):
-        raise ValueError("page version settings are invalid")
-    return {
-        "id": row["id"], "page_id": page_id, "title": row["title"],
-        "icon": row["icon"], "cover": row["cover"], "settings": settings,
-        "blocks": blocks, "created_at": row["created_at"],
-        "current": bool(latest and latest["id"] == row["id"]),
-    }
-
-
-def list_page_updates(user_id: str | None, page_id: str, *, limit: int = 20,
-                      before_version_id: str | None = None) -> dict[str, Any]:
-    """Page a small, authorized activity feed with bounded snapshot previews."""
-    owner, _role, _page = _require_page(user_id, page_id, "view")
-    safe_limit = max(1, min(30, int(limit)))
-    with _connection(owner) as con:
-        boundary = ""
-        params: list[Any] = [page_id]
-        if before_version_id:
-            cursor = con.execute(
-                "SELECT rowid,created_at FROM page_versions WHERE id=? AND page_id=?",
-                (before_version_id, page_id),
-            ).fetchone()
-            if cursor is None:
-                raise FileNotFoundError("page version not found")
-            boundary = "AND (created_at<? OR (created_at=? AND rowid<?)) "
-            params.extend((cursor["created_at"], cursor["created_at"], cursor["rowid"]))
-        params.append(safe_limit + 1)
-        rows = con.execute(
-            "SELECT id,title,icon,cover,settings_json,created_at,"
-            "length(CAST(blocks_json AS BLOB)) AS snapshot_size,"
-            "CASE WHEN length(CAST(blocks_json AS BLOB))<=2097152 THEN blocks_json END AS blocks_json "
-            "FROM page_versions WHERE page_id=? " + boundary +
-            "ORDER BY created_at DESC,rowid DESC LIMIT ?",
-            tuple(params),
-        ).fetchall()
-    # A share may be revoked while the snapshot query is in flight.
-    _require_page(user_id, page_id, "view")
-
-    def snapshot(row):
-        if row is None or row["blocks_json"] is None:
-            return None
-        try:
-            blocks = json.loads(str(row["blocks_json"]))
-        except (TypeError, ValueError) as exc:
-            raise ValueError("page version snapshot is invalid") from exc
-        if not isinstance(blocks, list):
-            raise ValueError("page version snapshot is invalid")
-        return {"title": row["title"], "icon": row["icon"],
-                "cover": row["cover"], "settings": _json_load(row["settings_json"], {}),
-                "blocks": blocks}
-
-    visible = rows[:safe_limit]
-    items = []
-    for index, row in enumerate(visible):
-        older = rows[index + 1] if index + 1 < len(rows) else None
-        after = snapshot(row)
-        before = snapshot(older) if older is not None else None
-        items.append({
-            "id": row["id"], "title": row["title"], "created_at": row["created_at"],
-            "preview": page_change_preview(before, after) if after is not None
-                and (older is None or before is not None) else None,
-        })
-    has_more = len(rows) > safe_limit
-    return {"items": items, "has_more": has_more,
-            "next_before_id": visible[-1]["id"] if has_more and visible else None}
-
-
-def restore_page_version(
-    user_id: str | None, page_id: str, version_id: str, *, expected_revision: int,
-) -> dict[str, Any]:
+def restore_page_version(user_id: str | None, page_id: str, version_id: str) -> dict[str, Any]:
     uid = _uid(user_id)
     owner, role, page = _require_page(uid, page_id, "edit")
     if role not in EDIT_ROLES:
         raise PermissionError("edit permission required")
     settings = _json_load(page.get("settings_json"), {})
-    if _page_write_locked(settings, uid, page_id):
+    if isinstance(settings, dict) and settings.get("locked"):
         raise PermissionError("page is locked")
     version_id = str(version_id or "").strip()
     if not version_id:
         raise ValueError("version_id required")
-    if isinstance(expected_revision, bool) or not isinstance(expected_revision, int) or expected_revision < 1:
-        raise ValueError("expected_revision must be a positive integer")
     with _write_connection(owner) as con:
         con.execute("BEGIN IMMEDIATE")
         _effective_edit_role(con, uid, owner, page_id)
         current_page_row = con.execute("SELECT * FROM pages WHERE id=? AND archived=0", (page_id,)).fetchone()
         if not current_page_row:
             raise FileNotFoundError("page not found or permission denied")
-        current_page = dict(current_page_row)
-        current_revision = max(1, int(current_page.get("revision") or 1))
-        if current_revision != expected_revision:
-            raise PageRevisionConflict(current_revision)
-        current_settings = _json_load(current_page.get("settings_json"), {})
-        if _page_write_locked(current_settings, uid, page_id):
+        current_settings = _json_load(dict(current_page_row).get("settings_json"), {})
+        if isinstance(current_settings, dict) and current_settings.get("locked"):
             raise PermissionError("page is locked")
         row = con.execute(
             "SELECT * FROM page_versions WHERE id=? AND page_id=?",
@@ -3648,11 +3388,6 @@ def restore_page_version(
         blocks = _json_load(version.get("blocks_json"), [])
         if not isinstance(blocks, list):
             raise ValueError("invalid page version")
-        restored_settings = _json_load(version.get("settings_json"), {})
-        if not isinstance(restored_settings, dict):
-            restored_settings = {}
-        if restored_settings.get("locked"):
-            restored_settings["_np2b_lock_nonce"] = secrets.token_urlsafe(18)
         now = _now()
         con.execute(
             """
@@ -3664,7 +3399,7 @@ def restore_page_version(
                 version.get("title") or "Untitled",
                 version.get("icon") or "",
                 version.get("cover") or "",
-                _json_dump(restored_settings),
+                version.get("settings_json") or "{}",
                 now,
                 page_id,
             ),
@@ -3742,8 +3477,6 @@ def add_comment(
         "start": max(0, int(safe_anchor.get("start") or 0)),
         "end": max(0, int(safe_anchor.get("end") or 0)),
         "text": str(safe_anchor.get("text") or "")[:1000],
-        "context_before": str(safe_anchor.get("context_before") or "")[-48:],
-        "context_after": str(safe_anchor.get("context_after") or "")[:48],
     } if safe_anchor else {}
     parent_id = str(parent_id or "").strip()
     with _connection(owner) as con:
@@ -3891,7 +3624,7 @@ def upload_file(
     if role not in EDIT_ROLES:
         raise PermissionError("edit permission required")
     settings = _json_load(page.get("settings_json"), {})
-    if _page_write_locked(settings, uid, page_id):
+    if isinstance(settings, dict) and settings.get("locked"):
         raise PermissionError("page is locked")
     safe_name = _safe_filename(filename)
     mime_type = mime_type or mimetypes.guess_type(safe_name)[0] or "application/octet-stream"
@@ -3904,18 +3637,6 @@ def upload_file(
     rel_path = os.path.relpath(path, _workspace_root(owner)).replace("\\", "/")
     now = _now()
     with _write_connection(owner) as con:
-        con.execute("BEGIN IMMEDIATE")
-        try:
-            _effective_edit_role(con, uid, owner, page_id)
-            current_page = con.execute(
-                "SELECT settings_json FROM pages WHERE id=? AND archived=0", (page_id,)
-            ).fetchone()
-            current_settings = _json_load(current_page["settings_json"], {}) if current_page else {}
-            if current_page is None or _page_write_locked(current_settings, uid, page_id):
-                raise PermissionError("page is locked or unavailable")
-        except Exception:
-            os.unlink(path)
-            raise
         con.execute(
             """
             INSERT INTO files(id, page_id, owner_user_id, uploader_user_id, original_name, stored_name, rel_path, mime_type, size, created_at)
@@ -4593,9 +4314,7 @@ def blocks_to_markdown(page: dict[str, Any], blocks: list[dict[str, Any]], files
             parts.append(f"## {content}")
         elif btype == "heading3":
             parts.append(f"### {content}")
-        elif btype == "heading4":
-            parts.append(f"#### {content}")
-        elif btype in {"toggle_heading1", "toggle_heading2", "toggle_heading3", "toggle_heading4"}:
+        elif btype in {"toggle_heading1", "toggle_heading2", "toggle_heading3"}:
             level = btype[-1]
             opened = " open" if props.get("open", True) else ""
             parts.append(f'<details data-heading="{level}"{opened}><summary>{content}</summary></details>')
@@ -4789,9 +4508,6 @@ def markdown_to_blocks(markdown: str) -> list[dict[str, Any]]:
         if stripped == "---":
             flush_paragraph()
             blocks.append({"type": "divider", "content": "", "props": {}})
-        elif stripped.startswith("#### "):
-            flush_paragraph()
-            blocks.append({"type": "heading4", "content": stripped[5:].strip(), "props": {}})
         elif stripped.startswith("### "):
             flush_paragraph()
             blocks.append({"type": "heading3", "content": stripped[4:].strip(), "props": {}})
@@ -4801,9 +4517,9 @@ def markdown_to_blocks(markdown: str) -> list[dict[str, Any]]:
         elif stripped.startswith("# "):
             flush_paragraph()
             blocks.append({"type": "heading1", "content": stripped[2:].strip(), "props": {}})
-        elif re.match(r'^<details\s+data-heading=["\'][1234]["\'](?:\s+open)?><summary>.*</summary></details>$', stripped, flags=re.I):
+        elif re.match(r'^<details\s+data-heading=["\'][123]["\'](?:\s+open)?><summary>.*</summary></details>$', stripped, flags=re.I):
             flush_paragraph()
-            level_match = re.search(r'data-heading=["\']([1234])["\']', stripped, flags=re.I)
+            level_match = re.search(r'data-heading=["\']([123])["\']', stripped, flags=re.I)
             content = re.sub(r'^<details[^>]*><summary>|</summary></details>$', "", stripped, flags=re.I)
             level = (level_match.group(1) if level_match else "1")
             blocks.append({"type": f"toggle_heading{level}", "content": content, "props": {"open": " open" in stripped.lower()}})

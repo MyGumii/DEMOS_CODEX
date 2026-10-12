@@ -1,0 +1,11 @@
+"""Prospective layout-retention schema; importing never activates a writer."""
+from .model import Migration,MigrationCatalog
+from .pdf_source_faithful_markdown_catalog import PDF_SOURCE_FAITHFUL_MARKDOWN_MIGRATION_CATALOG
+from .v071_pdf_layout_retention import V071_STATEMENTS,V071_POSTCONDITION_REPLACEMENTS
+
+V071_EXPECTED_SCHEMA_SHA256='53a87109a2bc3edf0d46cbbd22270a4516ebffcfe09a0f55f8d9d96b87427533'
+SCHEMA_V71_MIGRATION=Migration(version=71,name='pdf_layout_retention_v71',
+    statements=V071_STATEMENTS,expected_schema_sha256=V071_EXPECTED_SCHEMA_SHA256,
+    requires_foreign_keys_off=True,postcondition_replacements=V071_POSTCONDITION_REPLACEMENTS)
+PDF_LAYOUT_RETENTION_MIGRATION_CATALOG=MigrationCatalog((
+    *PDF_SOURCE_FAITHFUL_MARKDOWN_MIGRATION_CATALOG.migrations,SCHEMA_V71_MIGRATION))

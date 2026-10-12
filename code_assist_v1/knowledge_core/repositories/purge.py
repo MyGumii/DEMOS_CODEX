@@ -18,6 +18,8 @@ from typing import Literal
 
 from ..db import ManagedConnection
 from ..errors import KnowledgeCoreDatabaseError, KnowledgeCoreTransactionError
+from .derived_body_purge import DerivedBodyInventory, inventory_derived_bodies
+from ..retained_blob_references import blob_is_referenced, visual_blob_references
 
 
 _UUID_RE = re.compile(
@@ -78,9 +80,11 @@ class PurgeSizes:
     extraction_body_bytes: int
     candidate_blob_count: int
     candidate_blob_bytes: int
+    derived_body_count: int | None = None
+    derived_body_bytes: int | None = None
 
     def as_dict(self) -> dict[str, int]:
-        return {
+        result = {
             "artifact_body_bytes": self.artifact_body_bytes,
             "artifact_body_count": self.artifact_body_count,
             "candidate_blob_bytes": self.candidate_blob_bytes,
@@ -90,6 +94,9 @@ class PurgeSizes:
             "revision_body_bytes": self.revision_body_bytes,
             "revision_body_count": self.revision_body_count,
         }
+        if self.derived_body_count is not None:
+            result.update(derived_body_count=self.derived_body_count, derived_body_bytes=self.derived_body_bytes)
+        return result
 
 
 @dataclass(frozen=True, slots=True)
@@ -124,6 +131,7 @@ class PurgeSnapshot:
     sizes: PurgeSizes
     candidate_blobs: tuple[tuple[str, int], ...]
     state_sha256: str
+    derived_bodies: DerivedBodyInventory | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -150,6 +158,8 @@ class PurgeWriteResult:
     gc_candidate_count: int
     retained_artifact_count: int
     space_generation: int
+    derived_body_delete_count: int | None = None
+    derived_body_delete_bytes: int | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -335,6 +345,7 @@ def _candidate_blob_rows(
         )
     }
     if cleanup_artifacts:
+        candidates.update(row[0] for row in visual_blob_references(connection,artifact_ids=cleanup_artifacts))
         marks = ",".join("?" for _ in cleanup_artifacts)
         candidates.update(
             str(row[0])
@@ -350,6 +361,8 @@ def _candidate_blob_rows(
         )
     result: list[tuple[str, int]] = []
     for digest in sorted(candidates):
+        if visual_blob_references(connection,digest=digest,exclude_artifacts=cleanup_artifacts):
+            continue
         outside_revision = connection.execute(
             "SELECT 1 FROM knowledge_revision_body WHERE content_blob_hash=? AND item_id<>? LIMIT 1",
             (digest, item_id),
@@ -469,6 +482,7 @@ def _snapshot(
     candidates = _candidate_blob_rows(
         connection, item_id=item_id, cleanup_artifacts=cleanup_tuple
     )
+    derived = inventory_derived_bodies(connection, cleanup_tuple)
     sizes = PurgeSizes(
         revision_body_count=int(revision_sizes[0]),
         revision_body_bytes=int(revision_sizes[1]),
@@ -478,6 +492,8 @@ def _snapshot(
         extraction_body_bytes=extraction_bytes,
         candidate_blob_count=len(candidates),
         candidate_blob_bytes=sum(size for _, size in candidates),
+        derived_body_count=derived.count if derived.tables else None,
+        derived_body_bytes=derived.size_bytes if derived.tables else None,
     )
     item_blocked = any(value.scope == "item_body" for value in blockers)
     eligible = now_ms >= purge_eligible_at and not item_blocked
@@ -494,6 +510,9 @@ def _snapshot(
         deleted.append("artifact_body_links")
     if extraction_count:
         deleted.append("extraction_body_links")
+    if derived.count:
+        deleted.append("derived_source_and_authoring_bodies")
+        retained.append("derived_source_and_authoring_metadata")
     if any(not value.cleanup_allowed for value in decisions):
         retained.extend(("referenced_artifact_bodies", "referenced_extraction_bodies"))
     if candidates:
@@ -517,6 +536,8 @@ def _snapshot(
         ],
         "space_id": space_id,
     }
+    if derived.tables:
+        facts["derived_bodies"] = derived.facts()
     state_sha = sha256(_canonical_json(facts)).hexdigest()
     return PurgeSnapshot(
         item_id=item_id,
@@ -535,6 +556,7 @@ def _snapshot(
         sizes=sizes,
         candidate_blobs=candidates,
         state_sha256=state_sha,
+        derived_bodies=derived,
     )
 
 
@@ -720,20 +742,16 @@ class ItemPurgeRepository:
             raise PurgeIntegrityError("Revision body deletion count changed after preview validation.")
         if artifact_deleted != snapshot.sizes.artifact_body_count or extraction_deleted != snapshot.sizes.extraction_body_count:
             raise PurgeIntegrityError("Artifact body deletion counts changed after preview validation.")
+        if snapshot.derived_bodies is not None and snapshot.derived_bodies.tables:
+            remaining = inventory_derived_bodies(connection, cleanup_artifacts)
+            if remaining.tables != snapshot.derived_bodies.tables or remaining.rows:
+                raise PurgeIntegrityError("Previewed derived bodies remain after source-body cleanup.")
         if failpoint is not None:
             failpoint("lifecycle.purge_after_body_delete")
 
         gc_count = len(snapshot.candidate_blobs)
         for digest, _ in snapshot.candidate_blobs:
-            referenced = connection.execute(
-                """SELECT
-                     EXISTS(SELECT 1 FROM knowledge_revision_body WHERE content_blob_hash=?)
-                     OR EXISTS(SELECT 1 FROM artifact_blob_body WHERE content_sha256=?)
-                     OR EXISTS(SELECT 1 FROM extraction_snapshot_body WHERE content_blob_hash=?)
-                     OR EXISTS(SELECT 1 FROM change_proposal WHERE proposed_content_blob_hash=?)""",
-                (digest, digest, digest, digest),
-            ).fetchone()
-            if referenced is None or int(referenced[0]) != 0:
+            if blob_is_referenced(connection,digest):
                 raise PurgeIntegrityError(
                     "A previewed GC blob remains canonically referenced."
                 )
@@ -781,6 +799,8 @@ class ItemPurgeRepository:
             gc_candidate_count=gc_count,
             retained_artifact_count=sum(not value.cleanup_allowed for value in snapshot.artifact_decisions),
             space_generation=generation + 1,
+            derived_body_delete_count=snapshot.sizes.derived_body_count,
+            derived_body_delete_bytes=snapshot.sizes.derived_body_bytes,
         )
 
 

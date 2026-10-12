@@ -18,6 +18,7 @@ from ..repositories.audit import AuditEventDraft, AuditRepository
 from ..repositories.item_history import ItemHistoryRepository
 from ..repositories.outbox import OutboxEventDraft, OutboxRepository
 from ..repositories.users import UserRepository
+from ..protected_sources import classify_protected_for_actor
 from ..scope import Capability
 from .management_reads import _closure_inputs, _materialize_body
 from .publication import prepare_publication_artifact, build_source_artifact_bundle
@@ -33,6 +34,11 @@ def file_name(value, fallback="document", maximum=150):
     if value.split(".")[0].upper() in {"CON", "PRN", "AUX", "NUL", *[f"{x}{i}" for x in ("COM", "LPT") for i in range(1, 10)]}:
         value = "_" + value
     return value
+
+
+class ProtectedOriginalLinkForbiddenError(SourceArtifactServiceError):
+    code = "PROTECTED_SOURCE_REQUIRES_AUTHORIZED_PUBLICATION"
+    http_status = 403
 
 
 class WikiFilesService:
@@ -105,6 +111,22 @@ class WikiFilesService:
                 self._authorization(c, principal, space_id, item_id, write=True)
         finally:
             c.close()
+        # An original-only attachment has no protected extraction, publication
+        # provenance, or current-rights receipt. Route protected files through
+        # the canonical upload/authoring path instead of retaining them here.
+        try:
+            protected_kind = classify_protected_for_actor(
+                filename, content, actor_user_id=principal.user_id,
+                policy_classifier=self.sources._policy_protection_classifier,
+            )
+        except Exception as exc:
+            raise ProtectedOriginalLinkForbiddenError(
+                "보호 원본 판정을 확인하지 못했습니다. 정식 지식 업로드 경로를 사용해 주세요."
+            ) from exc
+        if protected_kind is not None:
+            raise ProtectedOriginalLinkForbiddenError(
+                "보호 문서는 원본 연결로 추가할 수 없습니다. 정식 지식 업로드 경로를 사용해 주세요."
+            )
         now = time.time_ns() // 1_000_000
         # Native extraction records real text when available. No LLM call or
         # Wiki re-publication is performed; extraction failure still retains raw bytes.
@@ -180,7 +202,7 @@ class WikiFilesService:
             if getattr(observed, "lease", None):
                 observed.lease.close()
 
-    def _inventory(self, principal, space_id, item_id=None):
+    def _inventory(self, principal, space_id, item_id=None, *, document_name=None):
         c = self.factory.open(read_only=True)
         try:
             with transaction(c, TransactionMode.DEFERRED):
@@ -191,7 +213,7 @@ class WikiFilesService:
                 if item_id:
                     r = self.history.get_revision(c, space_id=auth.source_space_id, item_id=item_id, revision_id=auth.source_revision_id)
                     items = [(item_id, auth.source_space_id, r.id, r.title)]
-                else:
+                elif document_name != "log":
                     while True:
                         batch = self.reads.list_items_closure(c, selected_space_id=space_id, source_space_ids=sources, overlays=overlays,
                             before_updated_at_ms=before_time, before_item_id=before_id, limit=100)
@@ -201,7 +223,7 @@ class WikiFilesService:
                         before_time, before_id = batch[-1].updated_at_ms, batch[-1].id
                 events = []
                 before_time = before_id = None
-                if item_id is None:
+                if item_id is None and document_name != "index":
                     while True:
                         batch = self.reads.list_activity_closure(c, selected_space_id=space_id, source_space_ids=sources, overlays=overlays,
                             before_occurred_at_ms=before_time, before_event_uuid=before_id, limit=100)
@@ -213,6 +235,34 @@ class WikiFilesService:
                         "items": items, "events": events}
         finally:
             c.close()
+
+    def system_document(self, principal, space_id, document_name):
+        """One authorized, complete metadata snapshot; never read Wiki bodies.
+
+        The sidebar cursor is not an inventory boundary. All metadata pages and
+        the closure are read in the same transaction; formatting happens after
+        it closes. The batch size bounds each SQL read, not the document count.
+        """
+        if document_name not in ("index", "log"):
+            raise ValueError("Only index and log system documents are supported.")
+        inventory = self._inventory(principal, space_id, document_name=document_name)
+        rows = [f"# {inventory['name']} {document_name.title()}", ""]
+        if document_name == "index":
+            entries = inventory["items"]
+            rows.extend(f"- {title} [{item_id}]" for item_id, _, _, title in entries)
+        else:
+            entries = inventory["events"]
+            for event in entries:
+                occurred = datetime.fromtimestamp(event["occurred_at_ms"] / 1000,
+                    timezone.utc).isoformat(timespec="milliseconds")
+                rows.append(f"- {occurred} · {event['action']} · {event['outcome']}"
+                    f" · {event['actor_display_name']} · {event['reason'] or ''}"
+                    f" [{event['event_uuid']}]")
+        if not entries:
+            rows.append("등록된 문서가 없습니다." if document_name == "index" else "변경 기록이 없습니다.")
+        return {"schema_version": 1, "space_id": space_id, "document_name": document_name,
+            "corpus_closure_sha256": inventory["closure"], "entry_count": len(entries),
+            "content": "\n".join(rows) + "\n"}
 
     def _body(self, principal, space_id, item):
         iid, source_space, revision_id, title = item

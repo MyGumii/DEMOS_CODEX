@@ -86,6 +86,7 @@ class CanonicalRouteBindings:
     turn_executor: Any
     conversation_summarizer: Any
     principal_resolver: Callable[[], object]
+    publication_status_reader: Any = None
 
     def __post_init__(self) -> None:
         if not callable(getattr(self.turn_executor, "complete", None)):
@@ -101,6 +102,7 @@ class PublicationRouteBindings:
     """Authentication adapter for the standalone P4.5 publication surface."""
 
     principal_resolver: Callable[[], object]
+    publication_status_reader: Any = None
 
     def __post_init__(self) -> None:
         if not callable(self.principal_resolver):

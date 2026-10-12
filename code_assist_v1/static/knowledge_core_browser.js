@@ -37,14 +37,32 @@
     let activeEditor = null;
     let leaveHandler = null;
     let managementRequestGeneration = 0;
+    let managementRenderGeneration = 0;
+    let itemOpenGeneration = 0;
+    let systemDocRequestGeneration = 0;
+    let systemDocScopeGeneration = 0;
+    let systemDocScopeSubscription = null;
     let renderedManagementSpaceId = null;
     let lastManagementQuery = "";
+    let publicationRefresh = null;
+    let externalRefreshHandle = null;
+    let externalRefreshPromise = null;
+    let externalFocusHandler = null;
+    let externalVisibilityHandler = null;
+    let destroyed = false;
+    const managementClosureBySpace = new Map();
+    const publicationRefreshSleep = options.publicationRefreshSleep
+      || ((ms) => new Promise((resolve) => root.setTimeout(resolve, ms)));
     const pendingTurnOperations = new Map();
     const pendingTurnPromises = new Map();
+    const serverPendingTurns = new Map();
+    let pendingReadGeneration = 0;
     const recentEdgeSuppressions = new Map();
     const scheduleHeartbeat = options.setIntervalImpl || ((callback, delay) => root.setInterval(callback, delay));
     const cancelHeartbeat = options.clearIntervalImpl || ((handle) => root.clearInterval(handle));
     const heartbeatIntervalMs = options.heartbeatIntervalMs === undefined ? 30000 : options.heartbeatIntervalMs;
+    const externalRefreshIntervalMs = options.externalRefreshIntervalMs === undefined
+      ? 30000 : options.externalRefreshIntervalMs;
     const leaseTokenFactory = options.leaseTokenFactory || (
       options.transportModule && options.transportModule.createLeaseToken
     );
@@ -56,6 +74,11 @@
     ) {
       throw new TypeError("heartbeatIntervalMs is invalid.");
     }
+    if (options.enableExternalRefresh === true && (
+      !Number.isSafeInteger(externalRefreshIntervalMs)
+      || externalRefreshIntervalMs < 5000
+      || externalRefreshIntervalMs > 300000
+    )) throw new TypeError("externalRefreshIntervalMs is invalid.");
 
     function ageLabel(seconds) {
       if (seconds === null || seconds === undefined) return "not reviewed";
@@ -92,21 +115,36 @@
         return null;
       }
       let loading = false;
+      const requestGeneration = managementRequestGeneration;
+      const renderGeneration = managementRenderGeneration;
+      const scopeGeneration = systemDocScopeGeneration;
+      const isCurrent = () => controller && managementIsVisible()
+        && controller.state().selectedSpaceId === spaceId
+        && requestGeneration === managementRequestGeneration
+        && renderGeneration === managementRenderGeneration
+        && scopeGeneration === systemDocScopeGeneration;
       const button = appendButton(
         documentRef,
         `문서 더 보기 (현재 ${Array.isArray(page.items) ? page.items.length : 0}개)`,
         "knowledge-tree-more canonical-items-more",
         async () => {
-          if (loading) return false;
+          if (loading || !isCurrent()) return false;
           loading = true;
           button.disabled = true;
           try {
-            const next = await transport.management(spaceId, "list", {
-              cursor: page.next_cursor,
-              limit: 50,
-            });
-            const current = controller && controller.state();
-            if (!current || current.selectedSpaceId !== spaceId) return false;
+            let next;
+            try {
+              next = await transport.management(spaceId, "list", {
+                cursor: page.next_cursor,
+                limit: 50,
+              });
+            } catch (error) {
+              if (isCurrent()) throw error;
+              return false;
+            }
+            // A manual page may finish after automatic publication has painted
+            // a newer complete view. Never restore its captured partial state.
+            if (!isCurrent()) return false;
             if (
               typeof page.corpus_closure_sha256 === "string"
               && typeof next.corpus_closure_sha256 === "string"
@@ -140,7 +178,7 @@
             return true;
           } finally {
             loading = false;
-            button.disabled = false;
+            if (isCurrent()) button.disabled = false;
           }
         },
         target,
@@ -213,6 +251,23 @@
     }
 
     async function destroy() {
+      destroyed = true;
+      publicationRefresh = null;
+      if (externalRefreshHandle !== null) {
+        cancelHeartbeat(externalRefreshHandle);
+        externalRefreshHandle = null;
+      }
+      if (externalFocusHandler && root && typeof root.removeEventListener === "function") {
+        root.removeEventListener("focus", externalFocusHandler);
+        externalFocusHandler = null;
+      }
+      if (externalVisibilityHandler && root && root.document
+          && typeof root.document.removeEventListener === "function") {
+        root.document.removeEventListener("visibilitychange", externalVisibilityHandler);
+        externalVisibilityHandler = null;
+      }
+      systemDocRequestGeneration += 1;
+      if (typeof systemDocScopeSubscription === "function") systemDocScopeSubscription();
       const editor = activeEditor;
       stopHeartbeat(editor);
       if (leaveHandler && root && typeof root.removeEventListener === "function") {
@@ -463,10 +518,11 @@
       return true;
     }
 
-    async function reloadManagementViews({ spaceId, surfaces, query = "" }) {
+    async function reloadManagementViews({ spaceId, surfaces, query = "", listResult }) {
       const requestGeneration = ++managementRequestGeneration;
       renderManagementLoading(spaceId);
       async function loadSurface(surface) {
+        if (surface === "list" && listResult !== undefined) return listResult;
         if (surface === "search") {
           return query ? transport.management(spaceId, "search", { query }) : null;
         } else if (surface === "pins") {
@@ -545,6 +601,9 @@
         return results;
       }
       renderManagementResults(spaceId, results);
+      if (results.list && typeof results.list.corpus_closure_sha256 === "string") {
+        managementClosureBySpace.set(spaceId, results.list.corpus_closure_sha256);
+      }
       if (
         typeof State === "object" && State.graphMode
         && root && typeof root.SecondBrainGraph === "object"
@@ -650,6 +709,7 @@
           // so the canonical graph is deliberately exploration-only here.
           readOnly: true,
           scopeLabel: scopeUI.spaceDisplayLabel(selected),
+          openDocument: (node) => openItem(selected.id, node.id),
         },
       );
     }
@@ -675,34 +735,58 @@
       return true;
     }
 
-    function openCanonicalSystemDoc(name, selected, results) {
-      if (!root || typeof Modal !== "object") return;
-      const label = scopeUI.spaceDisplayLabel(selected);
-      const rows = name === "index"
-        ? ((results.list && results.list.items) || []).map(
-          (item) => `- ${item.title} [${item.id}]`,
-        )
-        : ((results.activity && results.activity.items) || []).map(
-          (event) => `- ${event.occurred_at} · ${event.action} · ${event.outcome}`,
-        );
-      const content = [
-        `# ${label} ${name === "index" ? "Index" : "Log"}`,
-        "",
-        ...(rows.length ? rows : [name === "index" ? "등록된 문서가 없습니다." : "변경 기록이 없습니다."]),
-      ].join("\n");
+    async function openCanonicalSystemDoc(name, selected, results) {
+      const modal = options.modal || (typeof Modal === "object" ? Modal : null);
+      if (!root || !root.document || !modal) return;
+      const requestGeneration = ++systemDocRequestGeneration;
+      const managementGeneration = managementRequestGeneration;
+      const scopeGeneration = systemDocScopeGeneration;
       const body = root.document.createElement("div");
       const metadata = root.document.createElement("div");
       metadata.className = "sb-detail-meta";
-      metadata.textContent = `${name}.md · canonical read view`;
+      metadata.textContent = `${name}.md · 전체 목록을 불러오는 중…`;
       const source = root.document.createElement("pre");
       source.className = "sb-source-excerpt";
-      source.textContent = content;
       body.append(metadata, source);
-      Modal.open({
+      modal.open({
         title: name === "index" ? "Index" : "Log",
         body,
         footButtons: [{ label: "닫기" }],
       });
+      function ownsModal() {
+        const background = root.document.getElementById("modalBg");
+        const host = root.document.getElementById("modalBody");
+        return requestGeneration === systemDocRequestGeneration
+          && background && background.dataset.open === "1" && host && host.contains(body);
+      }
+      function currentScope() {
+        const current = controller && controller.state();
+        return managementGeneration === managementRequestGeneration
+          && scopeGeneration === systemDocScopeGeneration
+          && current && current.selectedSpaceId === selected.id;
+      }
+      try {
+        const value = await transport.getSystemDocument(selected.id, name);
+        // Closing/replacing the modal, switching A→B→A, or a new management
+        // refresh must not let an older request paint over the current view.
+        if (!ownsModal()) return;
+        if (!currentScope()) {
+          metadata.textContent = "지식 선택 또는 목록이 변경되었습니다. 닫고 다시 열어 주세요.";
+          return;
+        }
+        const closure = results.list && results.list.corpus_closure_sha256;
+        if (closure && value.corpus_closure_sha256 !== closure) {
+          metadata.textContent = "문서가 변경되어 목록을 새로 고쳤습니다. 닫고 다시 열어 주세요.";
+          await renderManagement();
+          return;
+        }
+        metadata.textContent = `${name}.md · 전체 ${value.entry_count}개 · 조회 시점의 기록`;
+        source.textContent = value.content;
+      } catch (error) {
+        if (!ownsModal() || !currentScope()) return;
+        metadata.textContent = "전체 목록을 불러오지 못했습니다. 닫고 다시 시도해 주세요.";
+        throw error;
+      }
     }
 
     function originLabel(origin) {
@@ -769,6 +853,11 @@
         if (typeof options.onError === "function") options.onError(error);
       }
       const clusters = new Map();
+      const nodeTitles = new Map(graph.nodes.map(node => [
+        node.id,
+        typeof node.title === "string" && node.title.trim()
+          ? node.title.trim() : "이름을 확인할 수 없는 문서",
+      ]));
       for (const node of graph.nodes) {
         const key = node.source_space_id || "unknown";
         const value = clusters.get(key) || { count: 0, origins: new Set() };
@@ -777,10 +866,12 @@
         clusters.set(key, value);
       }
       if (selected && ["team", "responsibility"].includes(selected.kind)) {
-        for (const [sourceSpaceId, cluster] of clusters) {
+        let clusterNumber = 0;
+        for (const cluster of clusters.values()) {
+          clusterNumber += 1;
           appendManagementLine(
             documentRef,
-            `Cluster ${sourceSpaceId} · ${cluster.count} nodes · ${[...cluster.origins].join(", ")}`,
+            `지식 출처 ${clusterNumber} · 문서 ${cluster.count}개 · ${[...cluster.origins].map(originLabel).join(", ")}`,
             "item canonical-graph-cluster",
             target,
           );
@@ -797,29 +888,57 @@
         const model = edge.model_name
           ? `${edge.model_provider || "model"}/${edge.model_name}`
           : "deterministic";
+        const relation = ({
+          related: "관련",
+          extends: "확장",
+          contradicts: "상충",
+          references: "참조",
+        })[edge.edge_type] || edge.edge_type || "관계";
+        const status = ({
+          active: "연결됨",
+          needs_revalidation: "재검토 필요",
+          suppressed: "숨김",
+        })[edge.edge_status] || edge.edge_status || "상태 미확인";
         const row = appendManagementLine(
           documentRef,
-          `${edge.edge_scope} · ${edge.edge_type} · ${edge.source_item_id} → ${edge.target_item_id} · home ${edge.home_space_id || "local"} · confidence ${confidence} · ${originLabel(edge.origin)} · ${edge.edge_status} · ${detector} · ${model}`,
+          `${nodeTitles.get(edge.source_item_id) || "목록에 없는 문서"} → ${nodeTitles.get(edge.target_item_id) || "목록에 없는 문서"} · ${relation} · ${confidence} · ${status}`,
           `item canonical-graph-edge canonical-edge-${edge.edge_status || "unknown"}`,
           target,
         );
         row.dataset.canonicalEdgeId = edge.id;
+        const disclosure = documentRef.createElement("details");
+        disclosure.className = "canonical-graph-edge-diagnostics";
+        const summary = documentRef.createElement("summary");
+        summary.textContent = "연결 근거와 기술 정보";
+        disclosure.appendChild(summary);
         const evidence = documentRef.createElement("pre");
         evidence.className = "canonical-graph-edge-evidence";
         evidence.textContent = JSON.stringify({
+          edge_id: edge.id,
+          edge_scope: edge.edge_scope,
+          edge_type: edge.edge_type,
+          edge_status: edge.edge_status,
+          home_space_id: edge.home_space_id,
+          confidence,
+          origin: originLabel(edge.origin),
+          detector,
+          model,
           semantic_evidence_sha256: edge.semantic_evidence_sha256,
           source: {
+            item_id: edge.source_item_id,
             location: edge.source_evidence_location,
             revision_id: edge.source_evidence_revision_id,
             span_sha256: edge.source_evidence_span_sha256,
           },
           target: {
+            item_id: edge.target_item_id,
             location: edge.target_evidence_location,
             revision_id: edge.target_evidence_revision_id,
             span_sha256: edge.target_evidence_span_sha256,
           },
         }, null, 2);
-        target.appendChild(evidence);
+        disclosure.appendChild(evidence);
+        target.appendChild(disclosure);
         const requiredCapability = edge.edge_scope === "aggregate"
           ? "aggregate_edge_correct" : "local_edge_correct";
         if (
@@ -925,6 +1044,7 @@
 
     function renderManagementResults(spaceId, results) {
       if (!options.managementRoot) return;
+      managementRenderGeneration += 1;
       renderedManagementSpaceId = spaceId;
       const documentRef = options.managementRoot.ownerDocument;
       const selected = controller && controller.state().spaces.find((item) => item.id === spaceId);
@@ -972,11 +1092,11 @@
         options.managementRoot.appendChild(systemDocs);
         systemDocs.querySelectorAll("[data-system-doc]").forEach((button) => {
           button.disabled = results.partial_loading === true;
-          button.addEventListener("click", () => {
+          button.addEventListener("click", () => Promise.resolve().then(() => {
             const name = button.dataset.systemDoc || "";
-            if (name === "graph") openGraphGovernance(selected, results.graph);
-            else openCanonicalSystemDoc(name, selected, results);
-          });
+            if (name === "graph") return openGraphGovernance(selected, results.graph);
+            return openCanonicalSystemDoc(name, selected, results);
+          }).catch(options.onError || (() => {})));
         });
         for (const item of items) {
           const row = documentRef.createElement("div");
@@ -1473,9 +1593,14 @@
       if (detail.lease) {
         appendManagementLine(documentRef, `Editing: ${detail.lease.holder_display} · heartbeat ${detail.lease.heartbeat_at} · expires ${detail.lease.expires_at}`, "item", detailRoot);
       }
-      const body = documentRef.createElement("pre");
-      body.className = "item canonical-item-markdown";
-      body.textContent = detail.markdown === null ? "Body unavailable" : detail.markdown;
+      let body;
+      if (root.CanonicalMarkdown && typeof root.CanonicalMarkdown.render === "function") {
+        body = root.CanonicalMarkdown.render(documentRef, detail.markdown);
+      } else {
+        body = documentRef.createElement("pre");
+        body.className = "item canonical-item-markdown";
+        body.textContent = detail.markdown === null ? "Body unavailable" : detail.markdown;
+      }
       detailRoot.appendChild(body);
       renderAutomaticRelations(documentRef, spaceId, itemId, graph, detailRoot);
       renderDirectReferences(documentRef, spaceId, itemId, detail, detailRoot);
@@ -1620,6 +1745,13 @@
         readSnapshot: (request) => transport.readSnapshot(request),
         reloadManagementViews,
       });
+      let lastSystemDocSpace = null;
+      systemDocScopeSubscription = controller.subscribe((value) => {
+        if (value.selectedSpaceId !== lastSystemDocSpace) {
+          systemDocScopeGeneration += 1;
+          lastSystemDocSpace = value.selectedSpaceId;
+        }
+      });
       if (root && typeof root.addEventListener === "function") {
         leaveHandler = () => {
           const editor = activeEditor;
@@ -1634,16 +1766,31 @@
         root.addEventListener("pagehide", leaveHandler);
       }
       if (publicationAvailability === "available" && options.publicationUI && options.publicationRenderer) {
+        const publicationRenderer = { ...options.publicationRenderer };
+        for (const method of ["showResults", "showBatchResults"]) {
+          if (typeof options.publicationRenderer[method] !== "function") continue;
+          publicationRenderer[method] = (...args) => {
+            const result = options.publicationRenderer[method](...args);
+            if (method === "showResults" || args[0]?.succeededCount > 0) {
+              const targets = method === "showResults" ? args[0].targets
+                : args[0].items.flatMap((item) => item.targets || []);
+              // Commit creates provisional items. Normal deterministic worker
+              // processing makes them visible later; never retry publication.
+              refreshPublishedManagement(targets).catch(() => {});
+            }
+            return result;
+          };
+        }
         publicationController = options.publicationUI.createController({
           operationIdFactory: options.operationIdFactory,
-          renderer: options.publicationRenderer,
+          renderer: publicationRenderer,
           transport,
         });
         if (typeof options.publicationUI.createBatchController === "function") {
           publicationBatchController = options.publicationUI.createBatchController({
             concurrency: 3,
             operationIdFactory: options.operationIdFactory,
-            renderer: options.publicationRenderer,
+            renderer: publicationRenderer,
             transport,
           });
         }
@@ -1681,6 +1828,8 @@
               conversationId: current.currentConversationId,
               mode: current.mode,
               selectedSpaceId: current.selectedSpaceId,
+              preserveSelection: true,
+              preserveMode: true,
             });
           },
           openSearchResult: async ({ itemId, spaceId }) => {
@@ -1734,6 +1883,21 @@
         });
         await personalWikiController.initialize(controller.state());
       }
+      if (options.enableExternalRefresh === true) {
+        externalRefreshHandle = scheduleHeartbeat(
+          () => refreshIfCorpusChanged(), externalRefreshIntervalMs,
+        );
+        if (root && typeof root.addEventListener === "function") {
+          externalFocusHandler = () => { refreshIfCorpusChanged(); };
+          root.addEventListener("focus", externalFocusHandler);
+        }
+        if (root && root.document && typeof root.document.addEventListener === "function") {
+          externalVisibilityHandler = () => {
+            if (!root.document.hidden) refreshIfCorpusChanged();
+          };
+          root.document.addEventListener("visibilitychange", externalVisibilityHandler);
+        }
+      }
       return true;
     }
 
@@ -1746,7 +1910,10 @@
 
     function setWikiNavigationVisible(visible) {
       if (options.personalWikiRoot) options.personalWikiRoot.hidden = !visible;
-      if (!visible) managementRequestGeneration += 1;
+      if (!visible) {
+        managementRequestGeneration += 1;
+        publicationRefresh = null;
+      }
     }
 
     async function ensureConversation() {
@@ -1782,26 +1949,29 @@
     async function enterChat() {
       if (!controller) throw new TypeError("Canonical browser bridge is not active.");
       const current = controller.state();
-      if (current.mode !== scopeUI.CHAT_MODE) {
-        await controller.initialize({
-          conversationId: current.currentConversationId,
-          mode: scopeUI.CHAT_MODE,
-          selectedSpaceId: current.selectedSpaceId,
-        });
-      }
+      await controller.initialize({
+        conversationId: current.currentConversationId,
+        mode: scopeUI.CHAT_MODE,
+        selectedSpaceId: current.selectedSpaceId,
+        preserveSelection: true,
+      });
       return controller.state();
+    }
+
+    async function whenScopeSettled() {
+      if (!controller) throw new TypeError("Canonical browser bridge is not active.");
+      return controller.whenSettled();
     }
 
     async function enterManagement() {
       if (!controller) throw new TypeError("Canonical browser bridge is not active.");
       const current = controller.state();
-      if (current.mode !== scopeUI.MANAGEMENT_MODE) {
-        await controller.initialize({
-          conversationId: current.currentConversationId,
-          mode: scopeUI.MANAGEMENT_MODE,
-          selectedSpaceId: current.selectedSpaceId,
-        });
-      }
+      await controller.initialize({
+        conversationId: current.currentConversationId,
+        mode: scopeUI.MANAGEMENT_MODE,
+        selectedSpaceId: current.selectedSpaceId,
+        preserveSelection: true,
+      });
       return controller.state();
     }
 
@@ -1822,6 +1992,91 @@
       return !options.personalWikiRoot || options.personalWikiRoot.hidden === false;
     }
 
+    async function refreshPublishedManagement(targets) {
+      if (!controller || !managementIsVisible()) return false;
+      const spaceId = controller.state().selectedSpaceId;
+      const pending = new Set(publicationRefresh?.spaceId === spaceId
+        ? publicationRefresh.pending : []);
+      for (const target of targets || []) {
+        if (target.spaceId === spaceId && target.outcome === "created") pending.add(target.itemId);
+      }
+      if (!pending.size) return refreshVisibleManagement();
+      const task = { pending, spaceId };
+      publicationRefresh = task;
+      const current = () => publicationRefresh === task && controller
+        && managementIsVisible() && controller.state().selectedSpaceId === spaceId;
+      // Only the list is polled. Do not repeatedly request Graph/Log, use a
+      // fixed delay as proof of visibility, or display a provisional body.
+      const delays = [250, 500, 1000, 2000, 4000, 8000, 8000, 8000];
+      // Bound background status-read work across all polls/pages. This is not
+      // a Wiki/upload limit: unconfirmed targets remain delayed, never success.
+      // The delay schedule is backoff, not a second poll-count deadline. Large
+      // batches can still be publishing when the schedule first reaches 8s.
+      let remainingListRequests = 64;
+      try {
+        for (let attempt = 0; current() && remainingListRequests > 0; attempt += 1) {
+          const generation = ++managementRequestGeneration;
+          remainingListRequests -= 1;
+          const list = await transport.management(spaceId, "list");
+          if (!current() || generation !== managementRequestGeneration) return false;
+          // Confirmation may need later pages, but the visible list keeps its
+          // first page and manual pager. Retain target IDs, not an entire Wiki.
+          const found = new Set();
+          const cursors = new Set();
+          let page = list;
+          let closureChanged = false;
+          while (current()) {
+            for (const item of page.items || []) {
+              if (pending.has(item.id)) found.add(item.id);
+            }
+            if (found.size === pending.size || page.has_more !== true) break;
+            if (remainingListRequests === 0) break;
+            const cursor = page.next_cursor;
+            if (typeof cursor !== "string" || !cursor || cursors.has(cursor)) {
+              throw new TypeError("The item page cursor did not advance.");
+            }
+            cursors.add(cursor);
+            remainingListRequests -= 1;
+            const next = await transport.management(spaceId, "list", { cursor, limit: 50 });
+            if (!current() || generation !== managementRequestGeneration) return false;
+            if (
+              (typeof list.corpus_closure_sha256 === "string"
+                || typeof next.corpus_closure_sha256 === "string")
+              && list.corpus_closure_sha256 !== next.corpus_closure_sha256
+            ) {
+              // Do not combine different corpus snapshots as visibility proof.
+              // The next bounded poll starts again at the current first page.
+              closureChanged = true;
+              break;
+            }
+            page = next;
+          }
+          if (!closureChanged) for (const id of found) pending.delete(id);
+          if (!pending.size) {
+            await reloadManagementViews({ spaceId, query: lastManagementQuery,
+              surfaces: scopeUI.MANAGEMENT_SURFACES, listResult: list });
+            return true;
+          }
+          const finished = remainingListRequests === 0;
+          // A detected generation change also invalidates this first page for
+          // display. Wait for a fresh poll instead of flashing known-stale rows.
+          if (!closureChanged) renderManagementResults(spaceId, { list, partial_loading: true });
+          if (options.managementRoot && (!closureChanged || finished)) appendManagementLine(options.managementRoot.ownerDocument,
+            finished
+              ? "등록 처리 확인이 지연되고 있습니다. 다시 업로드하지 말고 잠시 후 문서 목록을 확인해 주세요."
+              : "새 문서 자동 등록 처리 중… 완료되면 이 목록에 반영됩니다.",
+            "item canonical-publication-pending");
+          if (!finished) await publicationRefreshSleep(delays[Math.min(attempt, delays.length - 1)]);
+        }
+        return false;
+      } catch (error) {
+        if (current()) (options.onError || (() => {}))(error);
+        return false;
+      } finally {
+        if (publicationRefresh === task) publicationRefresh = null;
+      }
+    }
+
     async function refreshVisibleManagement() {
       if (!controller || !managementIsVisible()) return false;
       try {
@@ -1837,6 +2092,54 @@
       }
     }
 
+    function refreshIfCorpusChanged() {
+      if (externalRefreshPromise) return externalRefreshPromise;
+      if (destroyed || !controller || !managementIsVisible() || activeEditor || publicationRefresh
+          || (root && root.document && root.document.hidden)) return Promise.resolve(false);
+      const current = controller.state();
+      const spaceId = current.selectedSpaceId;
+      const before = managementClosureBySpace.get(spaceId);
+      if (!before) return Promise.resolve(false);
+      const generation = managementRequestGeneration;
+      const task = (async () => {
+        try {
+          const list = await transport.management(spaceId, "list");
+          if (destroyed || !controller || !managementIsVisible() || activeEditor || publicationRefresh
+              || (root && root.document && root.document.hidden)
+              || controller.state().selectedSpaceId !== spaceId
+              || generation !== managementRequestGeneration) return false;
+          const after = list && list.corpus_closure_sha256;
+          if (typeof after !== "string" || after === before) return false;
+          await reloadManagementViews({
+            spaceId, query: lastManagementQuery,
+            surfaces: scopeUI.MANAGEMENT_SURFACES, listResult: list,
+          });
+          return true;
+        } catch (error) {
+          if (error && [401, 403, 404].includes(error.status)
+              && controller && controller.state().selectedSpaceId === spaceId) {
+            // A revoked scope must not leave its last successful document list
+            // visible just because this read runs in the background.
+            managementRequestGeneration += 1;
+            managementClosureBySpace.delete(spaceId);
+            if (options.managementRoot) {
+              options.managementRoot.replaceChildren();
+              appendManagementLine(options.managementRoot.ownerDocument,
+                "지식 접근 권한이 변경되었습니다. 지식 경로를 다시 선택해 주세요.");
+            }
+          }
+          // A transient network failure must not produce a repeated toast.
+          // An explicit user refresh still reports errors.
+          return false;
+        }
+      })();
+      externalRefreshPromise = task;
+      task.finally(() => {
+        if (externalRefreshPromise === task) externalRefreshPromise = null;
+      });
+      return task;
+    }
+
     async function openItem(spaceId, itemId) {
       if (!controller) throw new TypeError("Canonical browser bridge is not active.");
       if (typeof spaceId !== "string" || !UUID_RE.test(spaceId) || typeof itemId !== "string" || !UUID_RE.test(itemId)) {
@@ -1848,6 +2151,7 @@
       if (controller.state().selectedSpaceId !== spaceId) {
         throw new TypeError("The item space is not selected.");
       }
+      const requestGeneration = ++itemOpenGeneration;
       const graphRequest = typeof transport.management === "function"
         ? transport.management(spaceId, "graph").catch(() => null)
         : Promise.resolve(null);
@@ -1887,6 +2191,11 @@
         ]);
         distribution = Object.freeze({ grants, targets });
       }
+      // A document opened from the graph or list may finish after the user
+      // selects another Wiki/document. Do not reopen that stale modal.
+      if (requestGeneration !== itemOpenGeneration || controller.state().selectedSpaceId !== spaceId) {
+        return { detail, graph, history, sourceArtifacts };
+      }
       renderItemDetail(spaceId, itemId, detail, history, distribution, graph, sourceArtifacts);
       if (options.dispatchEvent) options.dispatchEvent("knowledge:item-opened", { itemId, spaceId });
       return { detail, graph, history, sourceArtifacts };
@@ -1894,7 +2203,8 @@
 
     async function selectSpaceAndStart(spaceId) {
       if (!controller) throw new TypeError("Canonical browser bridge is not active.");
-      const selected = await controller.selectSpace(spaceId);
+      await controller.selectSpace(spaceId);
+      const selected = controller.state();
       if (selected.mode === scopeUI.CHAT_MODE && selected.pendingSpaceId) {
         return controller.startNewConversation();
       }
@@ -1934,37 +2244,138 @@
     }
 
     async function chatStreamResponse({ conversationId, message, signal }) {
-      const turnKey = `${conversationId}\n${message}`;
+      const ownerId = (state.currentUser && state.currentUser.id) || "";
+      const turnKey = `${ownerId}\n${conversationId}\n${message}`;
       if (pendingTurnPromises.has(turnKey)) return pendingTurnPromises.get(turnKey);
-      const operationId = pendingTurnOperations.get(turnKey) || options.operationIdFactory();
-      pendingTurnOperations.set(turnKey, operationId);
+      const journal = options.getRetryJournal ? options.getRetryJournal() : null;
       const work = (async () => {
-        try {
-          const result = await transport.streamTurn({
-            conversationId,
-            message,
-            operationId,
-            signal,
-          });
+        const operationId = pendingTurnOperations.get(turnKey) || (journal
+          ? await journal.reserve({ conversationId, message, operationIdFactory: options.operationIdFactory })
+          : options.operationIdFactory());
+        pendingTurnOperations.set(turnKey, operationId);
+        async function settle() {
+          if (journal) await journal.settle({ conversationId, message, operationId });
           pendingTurnOperations.delete(turnKey);
-          const payloads = [
-            { event: "status", message: "Canonical Agent turn accepted", stage: "accepted" },
-            { delta: result.assistantText },
-            { done: true, event_cursor: result.terminalSequence, model_used: "canonical" },
-          ];
-          const encoded = payloads.map((value) => `data: ${JSON.stringify(value)}\n\n`).join("");
-          return new Response(encoded, {
-            headers: { "Content-Type": "text/event-stream; charset=utf-8" },
-            status: 200,
-          });
+        }
+        let result;
+        if (((state.currentUser && state.currentUser.id) || "") !== ownerId) {
+          throw new Error("로그인 계정이 변경되어 이전 계정의 요청 전송을 중단했습니다.");
+        }
+        try {
+          const retryDeadline = Date.now() + 90_000;
+          while (true) {
+            try {
+              result = await transport.streamTurn({
+                conversationId,
+                message,
+                operationId,
+                signal,
+              });
+              break;
+            } catch (error) {
+              // A publication/graph update can make a new turn temporarily
+              // unavailable. The server has not accepted it yet, so replay
+              // only this retryable conflict with the same operation ID.
+              if (error?.code !== "STATE_CONFLICT" || error.status !== 409
+                  || error.retryable !== true || error.terminal === true
+                  || Date.now() >= retryDeadline || signal?.aborted) throw error;
+              await new Promise((resolve, reject) => {
+                const abort = () => {
+                  clearTimeout(timer);
+                  signal?.removeEventListener("abort", abort);
+                  const aborted = new Error("The request was cancelled.");
+                  aborted.name = "AbortError";
+                  reject(aborted);
+                };
+                const timer = setTimeout(() => {
+                  signal?.removeEventListener("abort", abort);
+                  resolve();
+                }, 1000);
+                if (signal) signal.addEventListener("abort", abort, { once: true });
+                if (signal?.aborted) abort();
+              });
+            }
+          }
         } catch (error) {
-          if (error && error.terminal) pendingTurnOperations.delete(turnKey);
+          if (error && error.terminal) {
+            try { await settle(); }
+            catch (storageError) { storageError.cause = error; throw storageError; }
+          }
           throw error;
         }
+        try { await settle(); }
+        catch (storageError) {
+          storageError.message = "답변은 서버에 저장됐지만 브라우저의 요청 복구 상태를 정리하지 못했습니다. 대화 기록을 확인해 주세요.";
+          throw storageError;
+        }
+        if (((state.currentUser && state.currentUser.id) || "") !== ownerId) {
+          throw new Error("로그인 계정이 변경되어 이전 계정의 답변 표시를 중단했습니다.");
+        }
+        const payloads = [
+          { event: "status", message: "Canonical Agent turn accepted", stage: "accepted" },
+          { delta: result.assistantText },
+          { done: true, event_cursor: result.terminalSequence, model_used: "canonical" },
+        ];
+        const encoded = payloads.map((value) => `data: ${JSON.stringify(value)}\n\n`).join("");
+        return new Response(encoded, {
+          headers: { "Content-Type": "text/event-stream; charset=utf-8" },
+          status: 200,
+        });
       })();
       pendingTurnPromises.set(turnKey, work);
       try { return await work; }
       finally { pendingTurnPromises.delete(turnKey); }
+    }
+
+    async function readPendingTurns(conversationId, pageOptions = {}) {
+      const generation = ++pendingReadGeneration;
+      const owner = state.currentUser && state.currentUser.id;
+      if (!owner) throw new Error("로그인이 필요합니다.");
+      const page = await transport.listPendingTurns(conversationId, pageOptions);
+      if ((state.currentUser && state.currentUser.id) !== owner) throw new Error("로그인 계정이 변경되었습니다.");
+      if (generation !== pendingReadGeneration) throw new Error("더 최근의 미완료 요청 목록이 선택되었습니다.");
+      const prefix = `${owner}\n${conversationId}\n`;
+      // Keep only the current page's issued handles, not a growing history cache.
+      serverPendingTurns.clear();
+      for (const item of page.items) serverPendingTurns.set(prefix + item.operation_id, item);
+      return page;
+    }
+
+    async function resumePendingTurn(conversationId, operationId) {
+      const owner = state.currentUser && state.currentUser.id;
+      const key = `${owner}\n${conversationId}\n${operationId}`;
+      const item = serverPendingTurns.get(key);
+      if (!owner || !item || !item.can_resume) throw new Error("서버의 미완료 요청 목록을 다시 확인해 주세요.");
+      if (state.session_id !== conversationId) throw new Error("현재 선택된 대화가 변경되었습니다.");
+      if (pendingTurnPromises.has(key)) return pendingTurnPromises.get(key);
+      const work = (async () => {
+        let terminal = false;
+        try {
+          await transport.streamTurn({ conversationId, operationId, message: item.message });
+          terminal = true;
+        } catch (error) {
+          terminal = !!(error && error.terminal);
+          throw error;
+        } finally {
+          if (terminal) {
+            serverPendingTurns.delete(key);
+            const questionKey = `${owner}\n${conversationId}\n${item.message}`;
+            if (pendingTurnOperations.get(questionKey) === operationId) pendingTurnOperations.delete(questionKey);
+            // Existing server operation is recoverable without tab storage.
+            // Settlement is compare-and-delete and cannot clear a newer request.
+            if ((state.currentUser && state.currentUser.id) === owner && options.getRetryJournal) {
+              try {
+                await options.getRetryJournal().settle({ conversationId, message: item.message, operationId });
+              } catch (_) {
+                if (typeof toast === "function") toast("처리 결과는 서버에 저장됐지만 탭의 복구 기록을 정리하지 못했습니다.", "info");
+              }
+            }
+          }
+        }
+        if ((state.currentUser && state.currentUser.id) !== owner) throw new Error("로그인 계정이 변경되었습니다.");
+      })();
+      pendingTurnPromises.set(key, work);
+      try { await work; } finally { pendingTurnPromises.delete(key); }
     }
 
     async function listSessions() {
@@ -1987,8 +2398,11 @@
     }
 
     async function loadSession(conversationId) {
+      const owner = state.currentUser && state.currentUser.id;
       const detail = await transport.getConversation(conversationId);
+      if ((state.currentUser && state.currentUser.id) !== owner) throw new Error("로그인 계정이 변경되었습니다.");
       await controller.openConversation(conversationId);
+      if ((state.currentUser && state.currentUser.id) !== owner) throw new Error("로그인 계정이 변경되었습니다.");
       state.session_id = conversationId;
       const messages = detail.messages.map((item) => ({
         content: messageText(item, options.transportModule),
@@ -2005,8 +2419,22 @@
       };
     }
 
-    async function updateSession(conversationId, changes) {
+    async function readSessionMessages(conversationId) {
+      if (typeof conversationId !== "string" || !UUID_RE.test(conversationId)) {
+        throw new TypeError("A canonical conversation is required.");
+      }
       const detail = await transport.getConversation(conversationId);
+      if (detail.conversation.id !== conversationId) {
+        throw new TypeError("Conversation history binding is invalid.");
+      }
+      // Read-only reconciliation must not select another Wiki or conversation.
+      return detail.messages.map((item) => ({
+        content: messageText(item, options.transportModule), role: item.role,
+      }));
+    }
+
+    async function updateSession(conversationId, changes) {
+      const detail = await transport.getConversation(conversationId, { includeAllMessages: false });
       return transport.updateConversation({
         archived: changes.archived,
         conversationId,
@@ -2043,17 +2471,17 @@
       return publicationController.open(request);
     }
 
-    async function publishSources(sources) {
+    async function publishSources(sources, { autoPublish = false } = {}) {
       if (publicationAvailability === "error") throw publicationProbeError;
       if (!publicationBatchController) throw new TypeError("Canonical batch publication UI is unavailable.");
-      if (!Array.isArray(sources) || sources.length < 2) throw new TypeError("At least two upload sources are required.");
+      if (!Array.isArray(sources) || sources.length < (autoPublish ? 1 : 2)) throw new TypeError("Upload sources are required.");
       const requests = sources.map((source, index) => {
         if (!source || typeof source !== "object" || source.sourceType !== "upload" || !source.file) {
           throw new TypeError(`Upload source ${index + 1} is invalid.`);
         }
         return { ...source };
       });
-      return publicationBatchController.open(requests);
+      return publicationBatchController.open(requests, { autoPublish });
     }
 
     async function openPublishedTarget(target) {
@@ -2094,7 +2522,8 @@
       publicationAvailability: () => publicationAvailability,
       publishSource, publishSources, renderManagement, renderWikiNavigation, setWikiNavigationVisible,
       startFreshConversation, state: () => controller && controller.state(),
-      updateSession,
+      whenScopeSettled,
+      updateSession, readSessionMessages, readPendingTurns, resumePendingTurn,
     });
   }
 
@@ -2113,6 +2542,8 @@
         operationIdFactory,
       });
       let candidate = null;
+      let retryJournal = null;
+      let retryJournalOwner = null;
       const publicationRenderer = root.KnowledgePublicationUI && typeof Modal === "object"
         ? root.KnowledgePublicationUI.createDomRenderer({
             documentRef: root.document,
@@ -2123,6 +2554,20 @@
         : null;
       candidate = createBridge({
         chat,
+        getRetryJournal: () => {
+          // Authentication loads asynchronously during page startup. Resolve
+          // the actual current account lazily before sending, not from cached
+          // demos_user or an anonymous shared namespace during bootstrap.
+          const owner = state.currentUser && state.currentUser.id;
+          if (!owner || !root.KnowledgeTurnRetry) {
+            throw new Error("로그인 및 요청 복구 기능 초기화를 확인한 뒤 다시 시도해 주세요.");
+          }
+          if (!retryJournal || retryJournalOwner !== owner) {
+            retryJournal = root.KnowledgeTurnRetry.createJournal({ storage: root.sessionStorage, ownerId: owner });
+            retryJournalOwner = owner;
+          }
+          return retryJournal;
+        },
         dispatchEvent: (name, detail) => root.dispatchEvent(new CustomEvent(name, { detail })),
         elements: {
           root: root.document.getElementById("knowledgeScopeControl"),
@@ -2139,6 +2584,7 @@
         publicationRenderer,
         publicationUI: root.KnowledgePublicationUI || null,
         managementRoot: root.document.getElementById("sidebarBody"),
+        enableExternalRefresh: true,
         scopeUI: root.KnowledgeScopeUI,
         state,
         transport,
@@ -2174,6 +2620,9 @@
     get publicationAvailability() { return bridge ? bridge.publicationAvailability() : "not_probed"; },
     bootstrap,
     chatStreamResponse: (...args) => bridge.chatStreamResponse(...args),
+    readSessionMessages: (...args) => bridge.readSessionMessages(...args),
+    readPendingTurns: (...args) => bridge.readPendingTurns(...args),
+    resumePendingTurn: (...args) => bridge.resumePendingTurn(...args),
     compactSession: (...args) => bridge.compactSession(...args),
     createBridge,
     ensureConversation: (...args) => bridge.ensureConversation(...args),
@@ -2196,6 +2645,7 @@
     setWikiNavigationVisible: (...args) => bridge.setWikiNavigationVisible(...args),
     startFreshConversation: (...args) => bridge.startFreshConversation(...args),
     state: () => bridge && bridge.state(),
+    whenScopeSettled: (...args) => bridge.whenScopeSettled(...args),
     updateSession: (...args) => bridge.updateSession(...args),
   };
 

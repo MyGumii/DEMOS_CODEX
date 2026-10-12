@@ -92,8 +92,6 @@ def create_app(
     from code_assist_v1.routes_jobs import register_job_routes
     from code_assist_v1.routes_notion import register_notion_routes
     from code_assist_v1.routes_notion_ai_notes import register_notion_ai_notes_routes
-    from code_assist_v1.routes_notion_document_ai import register_notion_document_ai_routes
-    from code_assist_v1.routes_notion_ai_chat import register_notion_ai_chat_routes
     from code_assist_v1.routes_notion_workspace import register_notion_workspace_routes
     from code_assist_v1.routes_notion_files import register_notion_file_routes
     from code_assist_v1.routes_notion_history import register_notion_history_routes
@@ -131,8 +129,6 @@ def create_app(
     register_job_routes(app)
     register_notion_routes(app)
     register_notion_ai_notes_routes(app)
-    register_notion_document_ai_routes(app)
-    register_notion_ai_chat_routes(app)
     register_notion_workspace_routes(app)
     register_notion_file_routes(app)
     register_notion_history_routes(app)
@@ -142,7 +138,7 @@ def create_app(
     @app.after_request
     def _disable_frontend_cache(response):
         path = request.path or ""
-        if path in {"/", "/workspace", "/shared", "/login", "/healthz", "/ai"} or path.startswith(("/notion_static/", "/ai/", "/database/")):
+        if path in {"/", "/workspace", "/shared", "/login", "/healthz"} or path.startswith("/notion_static/"):
             response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
             response.headers["Pragma"] = "no-cache"
             response.headers["Expires"] = "0"
@@ -154,13 +150,9 @@ def create_app(
 
     @app.route("/")
     @app.route("/workspace")
-    @app.route("/ai")
-    @app.route("/ai/<chat_id>")
     @app.route("/shared")
     @app.route("/page/<path:_page_id>")
-    @app.route("/database/<workspace_id>/<database_id>")
-    def index(_page_id: str | None = None, chat_id: str | None = None,
-              workspace_id: str | None = None, database_id: str | None = None):
+    def index(_page_id: str | None = None):
         return send_from_directory(NOTION_STATIC_DIR, "index.html")
 
     @app.route("/notion_static/<path:filename>")

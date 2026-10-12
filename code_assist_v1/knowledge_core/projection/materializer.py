@@ -738,6 +738,13 @@ def _prepare_generation(
     )
 
 
+def _projection_io_path(path: Path) -> Path:
+    """Use extended paths only for I/O, not manifest or pinned identities."""
+    from ...tools.legacy_inventory import _extended_windows_path
+
+    return _extended_windows_path(path)
+
+
 @contextmanager
 def _child_anchor(
     parent: object,
@@ -749,7 +756,7 @@ def _child_anchor(
 
     child_path = parent.path / name  # type: ignore[attr-defined]
     child = None
-    if os.path.lexists(child_path):
+    if os.path.lexists(_projection_io_path(child_path)):
         child = _WindowsDirectoryAnchor.open(
             child_path, delete_access=delete_access
         )
@@ -757,7 +764,7 @@ def _child_anchor(
         try:
             child = _WindowsDirectoryAnchor.create_relative_directory(parent, name)
         except OSError:
-            if not os.path.lexists(child_path):
+            if not os.path.lexists(_projection_io_path(child_path)):
                 raise
             child = _WindowsDirectoryAnchor.open(
                 child_path, delete_access=delete_access
@@ -766,6 +773,14 @@ def _child_anchor(
         yield child
     finally:
         child.close()
+
+
+def _resolved_file_key(path: Path) -> str:
+    """Resolve long generated files without changing pinned-path identity rules."""
+    from ...tools.legacy_inventory import _display_windows_path, _extended_windows_path
+
+    resolved = _extended_windows_path(path).resolve(strict=True)
+    return os.path.normcase(_display_windows_path(resolved))
 
 
 def _read_relative(anchor: object, name: str, *, expected_path: Path) -> bytes:
@@ -780,9 +795,7 @@ def _read_relative(anchor: object, name: str, *, expected_path: Path) -> bytes:
     handle = _nt_open_relative(anchor.handle, name)  # type: ignore[attr-defined]
     try:
         final = _windows_final_path(handle)
-        if os.path.normcase(str(final)) != os.path.normcase(
-            str(expected_path.resolve(strict=True))
-        ):
+        if os.path.normcase(str(final)) != _resolved_file_key(expected_path):
             raise ProjectionMaterializationError(
                 "A projection file escaped its pinned generation."
             )
@@ -817,9 +830,7 @@ def _pin_relative(
 
     handle = _nt_open_relative(anchor.handle, name)  # type: ignore[attr-defined]
     try:
-        if os.path.normcase(str(_windows_final_path(handle))) != os.path.normcase(
-            str(expected_path.resolve(strict=True))
-        ):
+        if os.path.normcase(str(_windows_final_path(handle))) != _resolved_file_key(expected_path):
             raise ProjectionMaterializationError(
                 "A pinned projection file escaped its generation."
             )
@@ -864,9 +875,7 @@ def _write_relative(anchor: object, name: str, content: bytes, *, replace: bool)
         _nt_clear_disposition(handle)
         _nt_rename_relative(handle, anchor.handle, final_name, replace=replace)  # type: ignore[attr-defined]
         committed = True
-        if os.path.normcase(str(_windows_final_path(handle))) != os.path.normcase(
-            str(final_path.resolve(strict=True))
-        ):
+        if os.path.normcase(str(_windows_final_path(handle))) != _resolved_file_key(final_path):
             raise ProjectionMaterializationError(
                 "A projection file final path changed during publication."
             )
@@ -910,13 +919,13 @@ def _verify_generation(anchor: object, prepared: _PreparedGeneration) -> None:
         if path.startswith("sources/")
     }
     expected_graph = {"graph.json", "backlinks.json"}
-    actual_root = {value.name for value in anchor.path.iterdir()}  # type: ignore[attr-defined]
+    actual_root = {value.name for value in _projection_io_path(anchor.path).iterdir()}  # type: ignore[attr-defined]
     if actual_root != expected_root_files | {"sources", "graph"}:
         raise ProjectionMaterializationError(
             "An immutable projection generation has unexpected entries."
         )
     with _child_anchor(anchor, "sources") as sources:
-        if {value.name for value in sources.path.iterdir()} != expected_sources:  # type: ignore[attr-defined]
+        if {value.name for value in _projection_io_path(sources.path).iterdir()} != expected_sources:  # type: ignore[attr-defined]
             raise ProjectionMaterializationError(
                 "An immutable projection source set differs."
             )
@@ -934,7 +943,7 @@ def _verify_generation(anchor: object, prepared: _PreparedGeneration) -> None:
                     "An immutable projection source differs."
                 )
     with _child_anchor(anchor, "graph") as graph:
-        if {value.name for value in graph.path.iterdir()} != expected_graph:  # type: ignore[attr-defined]
+        if {value.name for value in _projection_io_path(graph.path).iterdir()} != expected_graph:  # type: ignore[attr-defined]
             raise ProjectionMaterializationError(
                 "An immutable projection graph set differs."
             )
@@ -967,14 +976,17 @@ def _verify_generation(anchor: object, prepared: _PreparedGeneration) -> None:
 
 
 def _cleanup_staging(anchor: object) -> None:
+    from ...tools.legacy_inventory import _extended_windows_path
+
     cleanup_error: Exception | None = None
     try:
         for child_name in ("sources", "graph"):
             child_path = anchor.path / child_name  # type: ignore[attr-defined]
-            if not child_path.exists():
+            if not _projection_io_path(child_path).exists():
                 continue
             with _child_anchor(anchor, child_name, delete_access=True) as child:
-                for value in list(child.path.iterdir()):  # type: ignore[attr-defined]
+                for value in list(_projection_io_path(child.path).iterdir()):  # type: ignore[attr-defined]
+                    value = _extended_windows_path(value)
                     if not value.is_file() or value.is_symlink():
                         raise ProjectionMaterializationError(
                             "A projection staging directory contains an unsafe entry."
@@ -982,7 +994,7 @@ def _cleanup_staging(anchor: object) -> None:
                     value.unlink()
                 child.dispose()  # type: ignore[attr-defined]
         for child_name in ("index.md", "log.md"):
-            child_path = anchor.path / child_name  # type: ignore[attr-defined]
+            child_path = _projection_io_path(anchor.path / child_name)  # type: ignore[attr-defined]
             if child_path.exists():
                 child_path.unlink()
         anchor.dispose()  # type: ignore[attr-defined]
@@ -999,7 +1011,7 @@ def _cleanup_abandoned_staging(anchor: object) -> None:
 
     from ...tools.legacy_inventory import _WindowsDirectoryAnchor
 
-    for path in sorted(anchor.path.iterdir(), key=lambda value: value.name):  # type: ignore[attr-defined]
+    for path in sorted(_projection_io_path(anchor.path).iterdir(), key=lambda value: value.name):  # type: ignore[attr-defined]
         if re.fullmatch(r"\.generation-[0-9a-f]{32}", path.name) is None:
             continue
         if not path.is_dir() or path.is_symlink():
@@ -1062,7 +1074,7 @@ class _ProjectionWriter:
                 with _child_anchor(space, "generations") as generations:
                     _cleanup_abandoned_staging(generations)
                     target = generations.path / generation_name  # type: ignore[attr-defined]
-                    if target.exists():
+                    if _projection_io_path(target).exists():
                         existing = _WindowsDirectoryAnchor.open(target)
                         try:
                             _verify_generation(existing, prepared)
@@ -1108,7 +1120,7 @@ class _ProjectionWriter:
                         )
                         committed = True
                     except OSError:
-                        if target.exists():
+                        if _projection_io_path(target).exists():
                             _cleanup_staging(staging)
                             existing = _WindowsDirectoryAnchor.open(target)
                             try:

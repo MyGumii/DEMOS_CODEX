@@ -35,6 +35,7 @@ const Knowledge = {
   _sourceImportFiles: [],
   _currentCandidate: null,
   _currentRecommendation: null,
+  _canonicalAddOpenPromise: null,
 
   async fetchThoughts(query = "") {
     const data = await api("api/code/knowledge/thought/list" + _kbUidQs());
@@ -655,7 +656,33 @@ const Knowledge = {
     if (detail) detail.textContent = `${fileName || "source"} · ${message || "처리 중"}`;
   },
 
-  _openCanonicalAddDialog(initialTab = "upload") {
+  async _openCanonicalAddDialog(initialTab = "upload") {
+    if (Knowledge._canonicalAddOpenPromise) return Knowledge._canonicalAddOpenPromise;
+    const opening = Knowledge._prepareCanonicalAddDialog(initialTab).catch(error => {
+      // Existing menu/event callers do not await the dialog opener.
+      toast(`지식 추가 창을 열지 못했습니다: ${error?.message || "지식 선택 상태를 확인해 주세요."}`, "error");
+      return false;
+    });
+    Knowledge._canonicalAddOpenPromise = opening;
+    try {
+      return await opening;
+    } finally {
+      if (Knowledge._canonicalAddOpenPromise === opening) Knowledge._canonicalAddOpenPromise = null;
+    }
+  },
+
+  async _prepareCanonicalAddDialog(initialTab) {
+    const bridge = window.KnowledgeCoreBrowser;
+    // Observe in-flight failures immediately, including while bootstrap is
+    // awaited. Promise.all attaches the rejection handler without a gap.
+    const pendingScope = bridge.active ? bridge.whenScopeSettled() : Promise.resolve();
+    await Promise.all([bridge.ready(), pendingScope]);
+    if (!bridge.active || bridge.publicationAvailability !== "available") {
+      throw new Error("지식 게시 기능의 사용 가능 여부를 확인해 주세요.");
+    }
+    await bridge.whenScopeSettled();
+    // Capture one settled target/catalog. Once open, the explicit popup
+    // selection remains independent of subsequent sidebar scope changes.
     const activeTab = initialTab === "chat" ? "chat" : "upload";
     const scopeState = window.KnowledgeCoreBrowser?.state?.() || null;
     const spaces = Array.isArray(scopeState?.spaces) ? scopeState.spaces : [];
@@ -713,7 +740,7 @@ const Knowledge = {
     uploadTitle.textContent = "문서를 지식으로 발행";
     const uploadDescription = document.createElement("p");
     uploadDescription.className = "knowledge-add-description";
-    uploadDescription.textContent = "Markdown·PDF·DOCX·PPTX·XLSX·텍스트·코드를 미리보기로 정규화한 뒤 선택한 공간에 발행합니다.";
+    uploadDescription.textContent = "여러 문서를 선택하면 파일별로 Wiki를 생성하고 아래에서 선택한 위치에 자동 게시합니다.";
     const fileInput = document.createElement("input");
     fileInput.id = "canonicalPublicationFile";
     fileInput.type = "file";
@@ -730,6 +757,7 @@ const Knowledge = {
     fileDropTitle.textContent = "파일을 여기에 드래그하거나 클릭해서 선택";
     const fileDropHint = document.createElement("span");
     fileDropHint.textContent = "여러 파일을 한 번에 선택할 수 있으며 파일별로 독립 처리됩니다.";
+    fileDrop.append(fileDropTitle, fileDropHint);
     const fileSummary = document.createElement("ol");
     fileSummary.id = "canonicalPublicationFiles";
     fileSummary.className = "knowledge-add-file-list";
@@ -739,17 +767,35 @@ const Knowledge = {
       fileSummary.replaceChildren();
       fileDrop.classList.toggle("has-files", selectedFiles.length > 0);
       fileDropHint.textContent = selectedFiles.length
-        ? `${selectedFiles.length}개 선택 · 최대 3개씩 병렬로 미리보기/게시`
+        ? `${selectedFiles.length}개 선택 · 파일별 생성 후 자동 게시 (모델 작업은 대기할 수 있습니다)`
         : "여러 파일을 한 번에 선택할 수 있으며 파일별로 독립 처리됩니다.";
       for (const file of selectedFiles) {
         const row = document.createElement("li");
         const size = Number.isFinite(file.size) ? ` · ${(file.size / 1024).toFixed(file.size < 10240 ? 1 : 0)} KB` : "";
-        row.textContent = `${file.name}${size}`;
+        const name = document.createElement("span");
+        name.textContent = `${file.name}${size}`;
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.textContent = "제거";
+        remove.setAttribute("aria-label", `${file.name} 선택 제거`);
+        remove.addEventListener("click", () => {
+          selectedFiles = selectedFiles.filter(candidate => candidate !== file);
+          renderFiles();
+        });
+        row.append(name, remove);
         fileSummary.appendChild(row);
       }
     };
     const selectFiles = files => {
-      selectedFiles = Array.from(files || []).filter(file => file && typeof file.name === "string");
+      // Filename/size/mtime are NOT content identity. Distinct files may
+      // share all of them; never discard their bytes before server hashing.
+      const seen = new Set(selectedFiles);
+      for (const file of Array.from(files || [])) {
+        if (!file || typeof file.name !== "string" || seen.has(file)) continue;
+        seen.add(file);
+        selectedFiles.push(file);
+      }
+      fileInput.value = "";
       renderFiles();
     };
     fileInput.addEventListener("change", () => selectFiles(fileInput.files));
@@ -778,7 +824,7 @@ const Knowledge = {
     }
     const uploadNote = document.createElement("p");
     uploadNote.className = "knowledge-add-note";
-    uploadNote.textContent = "원본은 보존되고 각 파일은 별도 Markdown·지식 항목으로 게시됩니다. 한 파일이 실패해도 다른 파일은 계속 처리되며, 실패 항목만 다시 시도할 수 있습니다.";
+    uploadNote.textContent = "원본은 보존되고 각 파일은 별도 Markdown·지식 항목으로 게시됩니다. 내용·파일명·게시 위치가 모두 동일한 중복 선택은 한 번만 업로드합니다. 한 파일이 실패해도 다른 파일은 계속 처리되며, 실패 항목만 다시 시도할 수 있습니다.";
     uploadPanel.append(uploadTitle, uploadDescription, fileDrop, fileInput, fileSummary, uploadNote);
     sourcePanels.set("upload", uploadPanel);
 
@@ -861,8 +907,10 @@ const Knowledge = {
     }
     targetSection.append(targetTitle, personalWikiLabel, targetTabs, targetDescription);
 
+    let submitButton = null;
     const selectSource = mode => {
       selectedSource = mode;
+      if (submitButton) submitButton.textContent = mode === "upload" ? "업로드·자동 게시" : "다음: 미리보기";
       for (const [candidateMode, button] of sourceButtons) {
         const selected = candidateMode === mode;
         button.classList.toggle("active", selected);
@@ -884,12 +932,12 @@ const Knowledge = {
       footButtons: [
         { label: "취소" },
         {
-          label: "다음: 미리보기",
+          label: selectedSource === "upload" ? "업로드·자동 게시" : "다음: 미리보기",
           primary: true,
           onClick: async () => {
             try {
               if (selectedSource === "upload") {
-                const files = selectedFiles.length ? selectedFiles.slice() : Array.from(fileInput.files || []);
+                const files = selectedFiles.slice();
                 if (!files.length) {
                   toast("게시할 파일을 하나 이상 선택하세요.", "error");
                   return false;
@@ -904,8 +952,7 @@ const Knowledge = {
                   target: selectedTarget === "explicit" ? higherTarget : null,
                   title: file.name,
                 }));
-                if (requests.length === 1) await window.KnowledgeCoreBrowser.publishSource(requests[0]);
-                else await window.KnowledgeCoreBrowser.publishSources(requests);
+                await window.KnowledgeCoreBrowser.publishSources(requests, { autoPublish: true });
               } else {
                 await window.KnowledgeCoreBrowser.publishSource({
                   conversationId: State.session_id,
@@ -925,6 +972,7 @@ const Knowledge = {
         },
       ],
     });
+    submitButton = document.querySelector("#modalFoot .primary");
   },
 
   openAddMenu({ initialTab = "upload" } = {}) {
@@ -1518,7 +1566,7 @@ const Knowledge = {
       const pageId = data.page?.id || "";
       if (pageId) {
         const host = window.location.hostname || "localhost";
-        const notionPort = location.port === "10111" ? "10112" : "10012";
+        const notionPort = location.port === "10521" ? "10322" : location.port === "10111" ? "10112" : "10012";
         window.open(`http://${host}:${notionPort}/page/${encodeURIComponent(pageId)}`, "_blank", "noopener");
       }
       toast("Notion 페이지로 보냈습니다", "ok");

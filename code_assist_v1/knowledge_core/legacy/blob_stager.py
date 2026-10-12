@@ -252,11 +252,11 @@ def _windows_error_code(exc: OSError) -> int | None:
 
 
 def _verify_directory_handle(handle: int, *, expected_path: Path) -> None:
-    from ...tools.legacy_inventory import _windows_final_path
+    from ...tools.legacy_inventory import _resolved_windows_path, _windows_final_path
 
     final = _windows_final_path(handle)
     if os.path.normcase(str(final)) != os.path.normcase(
-        str(expected_path.resolve(strict=True))
+        str(_resolved_windows_path(expected_path))
     ):
         raise LegacyBlobStagingError(
             "A CAS shard directory changed outside the bound blob root."
@@ -387,11 +387,14 @@ class FilesystemLegacyBlobStager:
         expected_size: int,
         read_content: bool,
     ) -> None:
-        from ...tools.legacy_inventory import _windows_final_path
+        from ...tools.legacy_inventory import _resolved_windows_path, _windows_final_path
 
         final = _windows_final_path(handle)
+        # CAS hash leaves may exceed MAX_PATH under an approved short root.
+        # Resolve in the extended namespace, preserving ordinary final-path
+        # spelling for this exact handle identity comparison.
         if os.path.normcase(str(final)) != os.path.normcase(
-            str(expected_path.resolve(strict=True))
+            str(_resolved_windows_path(expected_path))
         ):
             raise LegacyBlobStagingError(
                 "The staged blob final path changed outside the CAS root."

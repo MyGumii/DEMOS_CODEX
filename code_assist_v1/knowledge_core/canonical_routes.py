@@ -23,13 +23,54 @@ from typing import Any, Protocol
 from urllib.parse import quote
 from uuid import uuid4
 
-from flask import Blueprint, Flask, Response, jsonify, request
+from flask import Blueprint, Flask, Response, current_app, jsonify, request
 
 
 _LOGGER = logging.getLogger(__name__)
 
+
+def _worker_generation_status(supervisors):
+    """Public liveness of owned durable lanes, never process diagnostics.
+
+    A down projector does not make document generation unavailable. Hosts
+    without owned supervisors keep their existing external-worker contract.
+    """
+    lanes = []
+    for supervisor in supervisors:
+        try:
+            value = supervisor.status()
+            durable = [child for child in value.get("children", []) if child.get("kind") == "durable"]
+            if not durable:
+                if value.get("status") in {"stopped", "stopping"}:
+                    lanes.append((False, False))
+                continue
+            automatic = value.get("automatic_recovery") is True and value.get("monitoring") is True
+            active = value.get("status") not in {"stopping", "stopped"}
+            healthy = active and all(child.get("alive") is True and child.get("ready") is True for child in durable)
+            if value.get("automatic_recovery") is True and not automatic:
+                healthy = False
+            lanes.append((healthy, active and automatic))
+        except Exception:
+            # Health diagnostics must not break an authorized status read.
+            lanes.append((False, False))
+    if not lanes:
+        return None
+    unhealthy = [automatic for healthy, automatic in lanes if not healthy]
+    return {"status": "healthy" if not unhealthy else "recovering" if all(unhealthy) else "unavailable",
+        "automatic_recovery": any(automatic for _, automatic in lanes)}
+
+
+def _with_generation_worker_health(document):
+    if "wiki_generation" in document:
+        health = _worker_generation_status(current_app.extensions.get("full_second_brain_preview_worker_supervisors", []))
+        if health is not None:
+            document["generation_worker"] = health
+    return document
+
 from .errors import KnowledgeCoreError
+from .answer_response import ANSWER_API_FAILURE_CODES
 from .repositories.conversations import ConversationNotFoundError, ConversationScopeError
+from .repositories.publication import PublicationPreviewNotFoundError
 from .repositories.publication_authority import HigherPublicationTargetDescriptor
 from .services.agent_context import AgentTurnContextRequest
 from .services.conversations import (
@@ -701,7 +742,7 @@ def _publication_result(value: object) -> dict[str, object]:
     }
     # Internal selection IDs are replay metadata, not public source handles.
     if getattr(value, "body_source", None) is not None:
-        if value.body_source not in {"authored_wiki", "extraction"}:
+        if value.body_source not in {"authored_wiki", "extraction", "preserved_wiki", "native_wiki", "pptx_role_wiki", "pdf_wiki", "pdf_visual_wiki", "office_hybrid_wiki"}:
             raise TypeError("The canonical publication source kind is invalid.")
         result["body_source"] = value.body_source
     elif getattr(value, "authored_snapshot_id", None) is not None:
@@ -735,7 +776,7 @@ def _as_error(exc: Exception) -> tuple[dict[str, object], int]:
             },
             400,
         )
-    if isinstance(exc, ConversationNotFoundError):
+    if isinstance(exc, (ConversationNotFoundError, PublicationPreviewNotFoundError)):
         return (
             {
                 "code": "NOT_FOUND",
@@ -806,6 +847,11 @@ def _as_error(exc: Exception) -> tuple[dict[str, object], int]:
         },
         500,
     )
+
+
+def _conversation_message_payload(value):
+    return {"id": value.id, "sequence_no": value.sequence_no, "role": value.role,
+            "content": value.content, "created_at": _utc(value.created_at_ms)}
 
 
 def _json_response(payload: Mapping[str, object], request_id: str, status: int = 200):
@@ -987,6 +1033,7 @@ class _Handlers:
         conversation_summarizer: ConversationSummarizer,
         principal_resolver: Callable[[], object],
         publication: object | None = None,
+        publication_status_reader: object | None = None,
         item_editing: object | None = None,
         item_lifecycle: object | None = None,
         item_purge: object | None = None,
@@ -1003,6 +1050,7 @@ class _Handlers:
         self.conversation_summarizer = conversation_summarizer
         self.principal_resolver = principal_resolver
         self.publication = publication
+        self.publication_status_reader = publication_status_reader
         self.item_editing = item_editing
         self.item_lifecycle = item_lifecycle
         self.item_purge = item_purge
@@ -1474,12 +1522,12 @@ class _Handlers:
                     preview_id=getattr(created, "preview_id"),
                 )
             )
-            return _json_response(document, rid)
+            return _json_response(_with_generation_worker_health(document), rid)
 
         return self.run(execute)
 
     def get_publication_preview(self, preview_id: str):
-        def execute(rid: str, principal: _Principal):
+        def execute(rid: str, principal: _Principal, read_preview=None):
             if request.args:
                 raise _RequestError(
                     "VALIDATION_ERROR", "The query string is invalid.", 400
@@ -1487,15 +1535,39 @@ class _Handlers:
             service = self.publication
             if service is None:
                 raise RuntimeError("The canonical publication service is unavailable.")
-            document = service.get_preview(
+            document = (service.get_preview if read_preview is None else read_preview)(
                 GetPublicationPreviewQuery(
                     actor_user_id=principal.user_id,
                     actor_scope_epoch=principal.scope_epoch,
                     preview_id=_uuid(preview_id, "preview_id"),
                 )
             )
-            return _json_response(document, rid)
+            return _json_response(_with_generation_worker_health(document), rid)
 
+        if self.publication_status_reader is None:
+            return self.run(execute)
+        rid = _request_id()
+        try:
+            # Close is inside the same error envelope as principal/read failures.
+            from_environ = getattr(self.publication_status_reader, "request_from_environ", None)
+            read_request = (from_environ(request.environ) if callable(from_environ)
+                else self.publication_status_reader.request())
+            with read_request as reader:
+                return execute(rid, _principal(reader.resolve_principal), reader.get_preview)
+        except Exception as exc:
+            return _error_response(exc, rid)
+
+    def resume_pdf_publication_preview(self, preview_id: str):
+        def execute(rid: str, principal: _Principal):
+            if request.args:
+                raise _RequestError("VALIDATION_ERROR", "The query string is invalid.", 400)
+            body = _read_json(required=frozenset({"operation_id"}))
+            from .services.pdf_visual_continuation_publication import ResumePdfPreviewCommand
+            document = self.publication.resume_pdf_preview(ResumePdfPreviewCommand(
+                request_id=rid, operation_id=_operation_id(body),
+                actor_user_id=principal.user_id, actor_scope_epoch=principal.scope_epoch,
+                preview_id=_uuid(preview_id, "preview_id")))
+            return _json_response(_with_generation_worker_health(document), rid)
         return self.run(execute)
 
     def cancel_publication_preview(self, preview_id: str):
@@ -1797,6 +1869,57 @@ class _Handlers:
                 },
                 rid,
             )
+        return self.run(execute)
+
+    def message_page(self, conversation_id: str):
+        def execute(rid: str, p: _Principal):
+            allowed = {"after_sequence_no", "through_sequence_no", "limit"}
+            if set(request.args) - allowed or any(len(request.args.getlist(key)) != 1 for key in request.args):
+                raise _RequestError("VALIDATION_ERROR", "Invalid history page query.", 400)
+            values = {}
+            for key in allowed:
+                raw = request.args.get(key)
+                if raw is not None:
+                    if re.fullmatch(r"0|[1-9][0-9]{0,14}", raw, re.ASCII) is None:
+                        raise _RequestError("VALIDATION_ERROR", f"{key} is invalid.", 400)
+                    values[key] = int(raw)
+            result = self.conversations.read_message_page(
+                actor_user_id=p.user_id, actor_scope_epoch=p.scope_epoch,
+                conversation_id=_uuid(conversation_id, "conversation_id"), **values,
+            )
+            return _json_response({**result, "items": [_conversation_message_payload(value) for value in result["items"]]}, rid)
+        return self.run(execute)
+
+    def turn_answer(self, conversation_id: str, operation_id: str):
+        def execute(rid: str, p: _Principal):
+            _require_empty_query()
+            turn, message = self.conversations.read_turn_answer(
+                actor_user_id=p.user_id, actor_scope_epoch=p.scope_epoch,
+                conversation_id=_uuid(conversation_id, "conversation_id"), operation_id=_uuid(operation_id, "operation_id"),
+            )
+            return _json_response({"schema_version": 1, "conversation_id": turn.conversation_id,
+                "operation_id": turn.operation_id, "turn_id": turn.id, "message": _conversation_message_payload(message)}, rid)
+        return self.run(execute)
+
+    def pending_turns(self, conversation_id: str):
+        def execute(rid: str, p: _Principal):
+            if set(request.args) - {"after_sequence_no", "limit"} or any(
+                len(request.args.getlist(key)) != 1 for key in request.args
+            ):
+                raise _RequestError("VALIDATION_ERROR", "Invalid pending-turn query.", 400)
+            values = {}
+            for key, default in (("after_sequence_no", "0"), ("limit", "20")):
+                raw = request.args.get(key, default)
+                if re.fullmatch(r"0|[1-9][0-9]{0,14}", raw, re.ASCII) is None:
+                    raise _RequestError("VALIDATION_ERROR", f"{key} is invalid.", 400)
+                values[key] = int(raw)
+            if not 1 <= values["limit"] <= 100:
+                raise _RequestError("VALIDATION_ERROR", "limit is invalid.", 400)
+            result = self.conversations.list_pending_turns(
+                actor_user_id=p.user_id, actor_scope_epoch=p.scope_epoch,
+                conversation_id=_uuid(conversation_id, "conversation_id"), **values,
+            )
+            return _json_response(result, rid)
         return self.run(execute)
 
     def update_conversation(self, conversation_id: str):
@@ -2168,6 +2291,10 @@ class _Handlers:
                             "download_url": (
                                 f"{CANONICAL_ROUTE_PREFIX}/spaces/{selected}/items/"
                                 f"{item}/source-artifacts/{row.artifact_id}/download"
+                            ),
+                            "download_permitted": (
+                                None if row.protected_source_kind is None else
+                                row.artifact_id in result.download_permitted_artifact_ids
                             ),
                             "media_type": row.media_type,
                             "origin_type": row.origin_type,
@@ -3180,7 +3307,7 @@ class _Handlers:
             operation_id = _operation_id(body)
             cid = _uuid(conversation_id, "conversation_id")
             resume_after = _nonnegative(body.get("resume_after_event_sequence", 0), "resume_after_event_sequence")
-            accepted = self.conversations.accept_turn(
+            command = (
                 AcceptConversationTurnCommand(
                     actor_user_id=p.user_id,
                     actor_scope_epoch=p.scope_epoch,
@@ -3191,16 +3318,7 @@ class _Handlers:
                     request_meta=_request_meta(),
                 )
             )
-            if accepted.state in {"completed", "failed", "cancelled"}:
-                stored, events = self.conversations.reconnect_turn(
-                    actor_user_id=p.user_id,
-                    actor_scope_epoch=p.scope_epoch,
-                    conversation_id=cid,
-                    operation_id=operation_id,
-                    after_event_sequence_no=resume_after,
-                )
-                chunks = _sse_chunks(stored, events)
-            else:
+            def complete_accepted(accepted):
                 try:
                     context = self.agent_context.compose(
                         AgentTurnContextRequest(
@@ -3218,7 +3336,7 @@ class _Handlers:
                             actor_user_id=p.user_id,
                             actor_scope_epoch=p.scope_epoch,
                             operation_id=operation_id,
-                            request_id=rid,
+                            request_id=accepted.request_id,
                             conversation_id=cid,
                             assistant_content=completion.assistant_content,
                             final_response=completion.final_response,
@@ -3240,7 +3358,7 @@ class _Handlers:
                     terminal_code = (
                         observed_code
                         if isinstance(observed_code, str)
-                        and observed_code in {
+                        and observed_code in ANSWER_API_FAILURE_CODES | {
                             "CODEX_CLI_NOT_FOUND",
                             "CODEX_EMPTY_OUTPUT",
                             "CODEX_EXEC_FAILED",
@@ -3258,7 +3376,7 @@ class _Handlers:
                             actor_user_id=p.user_id,
                             actor_scope_epoch=p.scope_epoch,
                             operation_id=operation_id,
-                            request_id=rid,
+                            request_id=accepted.request_id,
                             conversation_id=cid,
                             terminal_state="failed",
                             error_code=terminal_code,
@@ -3266,14 +3384,15 @@ class _Handlers:
                             request_meta=_request_meta(),
                         )
                     )
-                stored, events = self.conversations.reconnect_turn(
-                    actor_user_id=p.user_id,
-                    actor_scope_epoch=p.scope_epoch,
-                    conversation_id=cid,
-                    operation_id=operation_id,
-                    after_event_sequence_no=resume_after,
-                )
-                chunks = _sse_chunks(stored, events)
+            self.conversations.execute_turn(command, complete_accepted)
+            stored, events = self.conversations.reconnect_turn(
+                actor_user_id=p.user_id,
+                actor_scope_epoch=p.scope_epoch,
+                conversation_id=cid,
+                operation_id=operation_id,
+                after_event_sequence_no=resume_after,
+            )
+            chunks = _sse_chunks(stored, events)
             response = Response("".join(chunks), status=200, mimetype="text/event-stream")
             response.headers["Cache-Control"] = "no-store, no-cache"
             response.headers["X-Accel-Buffering"] = "no"
@@ -3410,6 +3529,13 @@ def _publication_route_specs(
                 handlers.spaces,
             ),
         )
+    if callable(getattr(handlers.publication, "resume_pdf_preview", None)):
+        specs += ((
+            f"{CANONICAL_ROUTE_PREFIX}/publication-previews/<preview_id>/resume",
+            "knowledge_v1_pdf_publication_preview_resume",
+            ("POST",),
+            handlers.resume_pdf_publication_preview,
+        ),)
     return specs + (
         (
             f"{CANONICAL_ROUTE_PREFIX}/publication-previews",
@@ -3462,6 +3588,7 @@ def register_publication_routes(
     scope_selection_service: object,
     publication_service: object,
     principal_resolver: Callable[[], object],
+    publication_status_reader: object | None = None,
 ) -> tuple[str, ...]:
     """Register the standalone P4.5 publication and target-discovery surface.
 
@@ -3493,6 +3620,9 @@ def register_publication_routes(
             "publish",
         ),
     )
+    if publication_status_reader is not None:
+        _require_methods(publication_status_reader, "publication_status_reader", ("request", "validate_bindings"))
+        publication_status_reader.validate_bindings(principal_resolver, publication_service)
     handlers = _Handlers(
         scope_selection=scope_selection_service,
         conversations=None,
@@ -3503,6 +3633,7 @@ def register_publication_routes(
         conversation_summarizer=None,  # type: ignore[arg-type]
         principal_resolver=principal_resolver,
         publication=publication_service,
+        publication_status_reader=publication_status_reader,
         item_editing=None,
     )
     specs = _publication_route_specs(handlers, include_spaces=True)
@@ -3523,6 +3654,7 @@ def register_canonical_routes(
     conversation_summarizer: ConversationSummarizer,
     principal_resolver: Callable[[], object],
     publication_service: object | None = None,
+    publication_status_reader: object | None = None,
     item_edit_service: object | None = None,
     item_lifecycle_service: object | None = None,
     item_purge_service: object | None = None,
@@ -3553,9 +3685,9 @@ def register_canonical_routes(
         conversation_service,
         "conversation_service",
         (
-            "accept_turn", "complete_turn", "create", "get", "get_active_summary",
+            "accept_turn", "execute_turn", "complete_turn", "create", "get", "get_active_summary",
             "add_context", "add_pin", "compact", "list_contexts", "list_for_owner",
-            "list_messages", "list_pins", "reconnect_turn", "remove_context",
+            "list_messages", "read_message_page", "read_turn_answer", "list_pending_turns", "list_pins", "reconnect_turn", "remove_context",
             "remove_pin", "terminate_turn", "update",
         ),
     )
@@ -3592,6 +3724,9 @@ def register_canonical_routes(
                 "publish",
             ),
         )
+    if publication_status_reader is not None:
+        _require_methods(publication_status_reader, "publication_status_reader", ("request", "validate_bindings"))
+        publication_status_reader.validate_bindings(principal_resolver, publication_service)
     if item_edit_service is not None:
         _require_methods(
             item_edit_service,
@@ -3647,6 +3782,7 @@ def register_canonical_routes(
         conversation_summarizer=conversation_summarizer,
         principal_resolver=principal_resolver,
         publication=publication_service,
+        publication_status_reader=publication_status_reader,
         item_editing=item_edit_service,
         item_lifecycle=item_lifecycle_service,
         item_purge=item_purge_service,
@@ -3659,6 +3795,9 @@ def register_canonical_routes(
         (f"{CANONICAL_ROUTE_PREFIX}/conversations", "knowledge_v1_conversations_list", ("GET",), handlers.list_conversations),
         (f"{CANONICAL_ROUTE_PREFIX}/conversations", "knowledge_v1_conversations_create", ("POST",), handlers.create_conversation),
         (f"{CANONICAL_ROUTE_PREFIX}/conversations/<conversation_id>", "knowledge_v1_conversation_get", ("GET",), handlers.get_conversation),
+        (f"{CANONICAL_ROUTE_PREFIX}/conversations/<conversation_id>/pending-turns", "knowledge_v1_pending_turns", ("GET",), handlers.pending_turns),
+        (f"{CANONICAL_ROUTE_PREFIX}/conversations/<conversation_id>/messages", "knowledge_v1_message_page", ("GET",), handlers.message_page),
+        (f"{CANONICAL_ROUTE_PREFIX}/conversations/<conversation_id>/turns/<operation_id>/answer", "knowledge_v1_turn_answer", ("GET",), handlers.turn_answer),
         (f"{CANONICAL_ROUTE_PREFIX}/conversations/<conversation_id>", "knowledge_v1_conversation_update", ("PATCH",), handlers.update_conversation),
         (f"{CANONICAL_ROUTE_PREFIX}/conversations/<conversation_id>/turns/stream", "knowledge_v1_turn_stream", ("POST",), handlers.turn_stream),
         (f"{CANONICAL_ROUTE_PREFIX}/conversations/<conversation_id>/compact", "knowledge_v1_conversation_compact", ("POST",), handlers.compact),
@@ -3852,3 +3991,4 @@ __all__ = [
     "register_canonical_routes",
     "register_publication_routes",
 ]
+

@@ -120,6 +120,7 @@ input:focus, textarea:focus, select:focus { border-color: var(--accent); }
 .app-root.right-collapsed .workspace {
   width: 0; min-width: 0; padding: 0; border: 0;
   overflow: hidden;
+  visibility: hidden;
 }
 #btnToggleLeft, #btnToggleRight {
   font-size: 14px; padding: 4px 9px;
@@ -1347,6 +1348,7 @@ input:focus, textarea:focus, select:focus { border-color: var(--accent); }
 
 .composer .input-wrap {
   display: flex; gap: 8px; align-items: flex-end;
+  flex-wrap: wrap;
   background: var(--bg-3);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
@@ -1426,13 +1428,16 @@ input:focus, textarea:focus, select:focus { border-color: var(--accent); }
   line-height: 1;
 }
 .composer textarea {
-  flex: 1; resize: none;
+  flex: 1 1 240px; resize: none;
+  min-width: 0;
   border: 0; background: transparent;
   min-height: 22px; max-height: 200px;
   padding: 0;
 }
 .composer .actions {
   display: flex; gap: 6px; align-items: center;
+  flex-wrap: wrap;
+  max-width: 100%;
 }
 .composer .actions .icon-btn {
   background: transparent; border: 0;
@@ -1610,6 +1615,28 @@ input:focus, textarea:focus, select:focus { border-color: var(--accent); }
 .graph-node.selected circle {
   stroke: #fff;
   stroke-width: 3;
+}
+.graph-node:focus-visible circle {
+  stroke: var(--accent);
+  stroke-width: 4;
+}
+.graph-node:focus-visible, .graph-node.dim:focus-visible { opacity: 1; outline: none; }
+.graph-node-title {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  max-height: 35%;
+  overflow: auto;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  color: var(--text);
+  pointer-events: none;
 }
 .graph-node.dim {
   opacity: .24;
@@ -2160,6 +2187,35 @@ button.icon.active,
   white-space: pre-wrap;
   word-break: break-word;
 }
+.canonical-item-markdown[data-markdown-display="rendered"] {
+  white-space: normal;
+  line-height: 1.65;
+  display: block;
+  min-width: 0;
+  overflow-x: auto;
+}
+.canonical-item-markdown p { margin: .7em 0; }
+.canonical-item-markdown h1,
+.canonical-item-markdown h2,
+.canonical-item-markdown h3 { margin: 1em 0 .5em; line-height: 1.35; }
+.canonical-item-markdown table { border-collapse: collapse; margin: 1em 0; width: 100%; }
+.canonical-item-markdown th,
+.canonical-item-markdown td { border: 1px solid var(--border-strong); padding: 8px 10px; text-align: left; vertical-align: top; }
+.canonical-item-markdown th { background: var(--selected-bg); }
+.canonical-item-markdown pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.canonical-item-markdown ul,
+.canonical-item-markdown ol { padding-left: 1.5em; }
+.canonical-item-markdown .canonical-math-display {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: .25em 0;
+}
+.canonical-item-markdown .katex-display { margin: .65em 0; }
+.canonical-item-markdown .katex-display > .katex { text-align: left; }
+.canonical-item-markdown .katex { font-size: 1.05em; }
+.canonical-item-markdown [data-math-display="source"] { white-space: pre-wrap; }
 .canonical-item-modal > button {
   align-self: flex-start;
 }
@@ -2961,8 +3017,9 @@ html[data-theme="dark"] .modal-bg {
   .app-root.left-collapsed.right-collapsed {
     grid-template-columns: 1fr;
     grid-template-rows: auto minmax(0, 1fr);
-    height: auto;
-    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
   }
   .topbar {
     grid-column: 1;
@@ -2982,10 +3039,20 @@ html[data-theme="dark"] .modal-bg {
   }
   .sidebar,
   .workspace {
-    display: none;
+    /* Drawers share the content row; the existing collapsed state hides them. */
+    grid-area: 2 / 1;
+    width: min(320px, 100%);
+    min-height: 0;
+    z-index: 10;
+    box-shadow: var(--shadow);
   }
-  .chat {
-    min-height: calc(100vh - 96px);
+  .sidebar { justify-self: start; }
+  .workspace { justify-self: end; }
+  .chat,
+  .graph-view {
+    grid-area: 2 / 1;
+    min-width: 0;
+    min-height: 0;
   }
   .chat .messages {
     padding: 22px 14px 18px;

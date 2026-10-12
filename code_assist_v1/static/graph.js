@@ -6,28 +6,49 @@
   const Graph = {
     built: false,
     data: null,
+    visibleData: null,
     selectedId: null,
     zoom: 1,
+    viewportWidth: 900,
+    viewportHeight: 620,
     pan: { x: 0, y: 0 },
     nodeMap: new Map(),
     positionCache: new Map(),
+    layoutScope: null,
+    hoveredId: null,
+    focusedId: null,
     draggingNode: null,
     draggingStage: false,
     lastPointer: null,
     provider: null,
+    openDocument: null,
     readOnly: false,
     scopeLabel: "",
     loadToken: 0,
 
-    useProvider(provider, { readOnly = false, scopeLabel = "" } = {}) {
+    useProvider(provider, { readOnly = false, scopeLabel = "", openDocument = null } = {}) {
       if (provider !== null && typeof provider !== "function") {
         throw new TypeError("Graph provider must be a function or null.");
       }
+      if (openDocument !== null && typeof openDocument !== "function") {
+        throw new TypeError("Graph document opener must be a function or null.");
+      }
       Graph.provider = provider;
+      Graph.openDocument = openDocument;
       Graph.readOnly = Boolean(readOnly);
       Graph.scopeLabel = String(scopeLabel || "");
       Graph.data = null;
+      Graph.visibleData = null;
       Graph.selectedId = null;
+      Graph.hoveredId = null;
+      Graph.focusedId = null;
+      if ($("#graphNodeTitle")) $("#graphNodeTitle").hidden = true;
+      // A new authorized space must not inherit the previous space's filters.
+      ["graphSearch", "graphTopic", "graphService", "graphMemory", "graphEdge"].forEach(id => {
+        const control = $("#" + id);
+        if (control) control.value = "";
+      });
+      if ($("#graphDepth")) $("#graphDepth").value = "all";
       Graph.loadToken += 1;
       const svg = $("#graphSvg");
       if (svg) svg.innerHTML = "";
@@ -41,6 +62,16 @@
       const convert = $("#graphConvertBtn");
       if (add) add.hidden = Graph.readOnly;
       if (convert) convert.hidden = true;
+      const canonical = Boolean(Graph.provider);
+      const topic = $("#graphTopic");
+      if (topic) topic.hidden = canonical; // Canonical graph metadata has no tags.
+      const search = $("#graphSearch");
+      if (search) search.placeholder = canonical ? "Wiki 제목, 문서 ID 검색" : "markdown 파일명, 제목, 태그 검색";
+      const canonicalTypes = new Set(["", "related", "supports", "contradicts", "depends_on", "extends", "example_of"]);
+      for (const option of $("#graphEdge")?.options || []) {
+        option.hidden = canonical && !canonicalTypes.has(option.value);
+        option.disabled = option.hidden;
+      }
     },
 
     render() {
@@ -90,6 +121,8 @@
               <option value="extends">확장</option>
               <option value="contradicts">충돌</option>
               <option value="requires">필요</option>
+              <option value="depends_on">의존</option>
+              <option value="example_of">적용 사례</option>
               <option value="source-of">출처</option>
               <option value="supersedes">대체</option>
               <option value="related">관련</option>
@@ -101,7 +134,8 @@
           </div>
           <div class="graph-main">
             <div class="graph-stage" id="graphStage">
-              <svg class="graph-svg" id="graphSvg" role="img" aria-label="LLM Wiki 그래프"></svg>
+              <svg class="graph-svg" id="graphSvg" role="group" aria-label="LLM Wiki 그래프"></svg>
+              <div class="graph-node-title" id="graphNodeTitle" role="tooltip" hidden></div>
               <div class="graph-legend">
                 <span><i style="background:#58a6ff"></i>Wiki page</span>
                 <span><i style="background:#6e7681"></i>Source markdown</span>
@@ -116,12 +150,12 @@
         </div>
       `;
 
-      const debouncedLoad = debounce(() => Graph.load(), 280);
+      const debouncedLoad = debounce(() => Graph.refreshView(), 280);
       ["graphSearch", "graphService", "graphTopic"].forEach(id => {
         $("#" + id)?.addEventListener("input", debouncedLoad);
       });
       ["graphViewMode", "graphDepth", "graphMemory", "graphEdge"].forEach(id => {
-        $("#" + id)?.addEventListener("change", () => Graph.load());
+        $("#" + id)?.addEventListener("change", () => Graph.refreshView());
       });
       $("#graphMemoryBtn")?.addEventListener("click", e => {
         e.stopPropagation();
@@ -137,7 +171,7 @@
           Graph.updateMemoryPicker(value);
           const menu = $("#graphMemoryMenu");
           if (menu) menu.hidden = true;
-          Graph.load();
+          Graph.refreshView();
         });
       });
       document.addEventListener("click", e => {
@@ -151,13 +185,12 @@
       $("#graphConvertBtn")?.addEventListener("click", () => Graph.convertDocs());
 
       const svg = $("#graphSvg");
+      svg.setAttribute("role", "group");
       svg.addEventListener("wheel", e => {
         e.preventDefault();
         const oldZoom = Graph.zoom;
         Graph.zoom = clamp(Graph.zoom * (e.deltaY > 0 ? 0.9 : 1.1), 0.25, 3.5);
-        const rect = svg.getBoundingClientRect();
-        const mx = e.clientX - rect.left;
-        const my = e.clientY - rect.top;
+        const { x: mx, y: my } = viewportPoint(e, svg);
         Graph.pan.x = mx - (mx - Graph.pan.x) * (Graph.zoom / oldZoom);
         Graph.pan.y = my - (my - Graph.pan.y) * (Graph.zoom / oldZoom);
         Graph.applyTransform();
@@ -182,6 +215,13 @@
       const label = $("#graphMemoryLabel");
       if (dot) dot.className = "graph-type-dot " + (value || "all");
       if (label) label.textContent = memoryLabel(value || "");
+    },
+
+    refreshView() {
+      // Display filters operate only on the already authorized graph. They
+      // never query another space or load document bodies; Refresh still fetches.
+      if (Graph.provider && Graph.data) Graph.draw();
+      else return Graph.load();
     },
 
     async load() {
@@ -236,16 +276,44 @@
       if (!svg || !stage || !Graph.data) return;
       svg.innerHTML = "";
       Graph.nodeMap.clear();
+      Graph.hoveredId = null;
+      Graph.focusedId = null;
+      if ($("#graphNodeTitle")) $("#graphNodeTitle").hidden = true;
 
-      const nodes = (Graph.data.nodes || []).map(n => ({ ...n.data }));
-      const edges = (Graph.data.edges || []).map(e => ({ ...e.data }));
+      Graph.visibleData = Graph.provider ? filteredGraph(Graph.data, {
+        query: $("#graphSearch")?.value || "",
+        topic: $("#graphTopic")?.value || "",
+        memory: $("#graphMemory")?.value || "",
+        service: $("#graphService")?.value || "",
+        edgeType: $("#graphEdge")?.value || "",
+        depth: $("#graphDepth")?.value || "all",
+        focus: Graph.selectedId,
+      }) : Graph.data;
+      const nodes = (Graph.visibleData.nodes || []).map(n => ({ ...n.data }));
+      const edges = (Graph.visibleData.edges || []).map(e => ({ ...e.data }));
       const w = Math.max(720, stage.clientWidth || 900);
       const h = Math.max(520, stage.clientHeight || 620);
+      Graph.viewportWidth = w;
+      Graph.viewportHeight = h;
+      // Provider functions are recreated on refresh. Only the stable selected
+      // view identity, never a function reference, owns manual layout state.
+      const layoutScope = Graph.provider
+        ? "canonical:" + String(Graph.data.space_id || Graph.scopeLabel)
+        : "legacy:" + String(graphUid() || "");
+      if (layoutScope !== Graph.layoutScope) {
+        Graph.positionCache.clear();
+        Graph.layoutScope = layoutScope;
+        Graph.pan = { x: 0, y: 0 };
+        Graph.zoom = 1;
+      }
       svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
 
       if (!nodes.length) {
         svg.innerHTML = "";
-        if (Graph.readOnly) {
+        if (Graph.provider && (Graph.data.nodes || []).length) {
+          $("#graphDetail").innerHTML = `<h2>조건에 맞는 문서가 없습니다</h2>
+            <p class="muted">검색어나 관계 유형, 주변 범위를 변경해 주세요. 문서가 삭제된 것은 아닙니다.</p>`;
+        } else if (Graph.readOnly) {
           $("#graphDetail").innerHTML = `
             <h2>${escapeHtml(Graph.scopeLabel || "조직 지식")} 그래프가 비어 있습니다</h2>
             <p class="muted">이 조직 지식공간에는 아직 게시된 지식이 없습니다.</p>
@@ -263,9 +331,8 @@
         return;
       }
 
-      seedPositions(nodes, edges, Graph.nodeMap, Graph.positionCache, w, h);
-      layout(nodes, edges, Graph.nodeMap, w, h);
-      syncPositionCache(nodes, Graph.nodeMap, Graph.positionCache);
+      layoutComponents(nodes, edges, Graph.nodeMap, Graph.positionCache, w, h);
+      syncPositionCache(nodes, Graph.nodeMap, Graph.positionCache, w, h);
 
       const g = document.createElementNS(NS, "g");
       g.setAttribute("id", "graphWorld");
@@ -292,6 +359,8 @@
         group.classList.add("graph-node", node.memory_type || "semantic");
         group.dataset.id = node.id;
         group.setAttribute("tabindex", "0");
+        group.setAttribute("role", "button");
+        group.setAttribute("aria-label", node.title || node.label || node.id);
 
         const circle = document.createElementNS(NS, "circle");
         circle.setAttribute("r", String(9 + Math.min(12, Number(node.degree || 0) * 1.6)));
@@ -302,6 +371,9 @@
         label.setAttribute("y", "5");
         label.textContent = truncate(node.label || node.id, 34);
         group.appendChild(label);
+        const title = document.createElementNS(NS, "title");
+        title.textContent = node.title || node.label || node.id;
+        group.appendChild(title);
 
         group.addEventListener("click", e => {
           e.stopPropagation();
@@ -313,10 +385,21 @@
           Graph.select(node.id);
         });
         group.addEventListener("keydown", e => {
-          if (e.key === "Enter") Graph.select(node.id);
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            Graph.select(node.id);
+          }
         });
+        group.addEventListener("mouseenter", () => { Graph.hoveredId = node.id; Graph.positionLabels(); });
+        group.addEventListener("mouseleave", () => { Graph.hoveredId = null; Graph.positionLabels(); });
+        group.addEventListener("focus", () => { Graph.focusedId = node.id; Graph.positionLabels(); });
+        group.addEventListener("blur", () => { Graph.focusedId = null; Graph.positionLabels(); });
         nodeLayer.appendChild(group);
         pos.el = group;
+        pos.label = label;
+        pos.title = node.title || node.label || node.id;
+        pos.labelText = node.label || node.title || node.id;
+        pos.labelCache = new Map();
       });
 
       svg.addEventListener("click", e => {
@@ -326,7 +409,7 @@
       Graph.applyTransform();
       Graph.redrawPositions();
       Graph.updateClasses();
-      if (Graph.selectedId) Graph.renderDetail(Graph.selectedId);
+      if (Graph.selectedId && Graph.nodeMap.has(Graph.selectedId)) Graph.renderDetail(Graph.selectedId);
       else Graph.renderSummary();
     },
 
@@ -345,16 +428,23 @@
       Graph.nodeMap.forEach(pos => {
         if (pos.el) pos.el.setAttribute("transform", `translate(${pos.x},${pos.y})`);
       });
+      Graph.positionLabels();
+    },
+
+    positionLabels() {
+      positionVisibleLabels(Graph);
     },
 
     applyTransform() {
       const world = $("#graphWorld");
       if (world) world.setAttribute("transform", `translate(${Graph.pan.x},${Graph.pan.y}) scale(${Graph.zoom})`);
+      Graph.positionLabels();
     },
 
     select(id) {
       Graph.selectedId = id;
       Graph.updateClasses();
+      Graph.positionLabels();
       if (id) Graph.renderDetail(id);
       else Graph.renderSummary();
     },
@@ -376,18 +466,62 @@
       $$(".graph-node", svg).forEach(node => {
         const id = node.dataset.id;
         node.classList.toggle("selected", id === selected);
+        node.setAttribute("aria-pressed", String(id === selected));
         node.classList.toggle("pinned", pinned.has(id));
         node.classList.toggle("dim", !!selected && id !== selected && !neighbors.has(id));
       });
     },
 
     renderSummary() {
-      const counts = Graph.data?.counts || { nodes: 0, edges: 0 };
+      const counts = Graph.visibleData?.counts || Graph.data?.counts || { nodes: 0, edges: 0 };
       $("#graphDetail").innerHTML = `
         <h2>${escapeHtml(Graph.scopeLabel || "LLM Wiki")} 그래프</h2>
         <p class="muted">${counts.nodes}개 노드, ${counts.edges}개 관계</p>
-        <p class="muted">노드는 markdown 파일이고, 관계는 graph cache에 저장됩니다. 노드 선택 후 1-hop 또는 2-hop으로 주변 Wiki만 좁혀볼 수 있습니다.</p>
+        <p class="muted">${Graph.provider
+          ? "현재 지식공간에서 읽을 수 있는 Wiki와 저장된 관계입니다. 노드를 선택하면 문서를 열거나 1-hop·2-hop 주변 연결을 볼 수 있습니다."
+          : "노드는 markdown 파일이고, 관계는 graph cache에 저장됩니다. 노드 선택 후 1-hop 또는 2-hop으로 주변 Wiki만 좁혀볼 수 있습니다."}</p>
+        <p class="muted">겹치는 제목은 줄여 표시합니다. 노드에 마우스를 올리거나 키보드로 이동·선택하면 전체 제목을 확인할 수 있습니다.</p>
       `;
+    },
+
+    renderCanonicalDetail(node) {
+      const provider = Graph.provider;
+      const token = Graph.loadToken;
+      const opener = Graph.openDocument;
+      const nodes = new Map((Graph.data.nodes || []).map(value => [value.data.id, value.data]));
+      const relations = (Graph.visibleData?.edges || Graph.data.edges || []).map(value => value.data)
+        .filter(edge => edge.source === node.id || edge.target === node.id);
+      const relationRows = relations.map(edge => {
+        const reversed = edge.direction === "target_to_source";
+        const source = nodes.get(reversed ? edge.target : edge.source);
+        const target = nodes.get(reversed ? edge.source : edge.target);
+        const symmetric = edge.direction === "symmetric" || ["related", "contradicts"].includes(edge.edge_type);
+        return `<li>${escapeHtml(source?.title || source?.label || "문서")} ${symmetric ? "↔" : "→"} ${escapeHtml(target?.title || target?.label || "문서")} · ${escapeHtml(edge.edge_type || "related")}</li>`;
+      }).join("");
+      $("#graphDetail").innerHTML = `
+        <h2>${escapeHtml(node.title || node.label || "Wiki 문서")}</h2>
+        <p class="muted">본문·자동 연관 문서·수정 이력은 Wiki 문서에서 확인할 수 있습니다.</p>
+        <div class="actions">
+          ${opener ? '<button class="primary" id="graphOpenDocumentBtn">Wiki 문서 열기</button>' : ""}
+          <button id="graphHop1Btn">1-hop</button>
+          <button id="graphHop2Btn">2-hop</button>
+        </div>
+        <h3 style="font-size:13px;margin-top:14px;">표시 중인 연결</h3>
+        ${relations.length ? `<ul>${relationRows}</ul>` : '<p class="muted">표시 중인 연결이 없습니다.</p>'}
+        <p class="muted" id="graphDocumentError" role="status"></p>
+      `;
+      $("#graphOpenDocumentBtn")?.addEventListener("click", async () => {
+        if (token !== Graph.loadToken || provider !== Graph.provider || Graph.selectedId !== node.id) return;
+        try { await opener(node); }
+        catch (error) {
+          if (token === Graph.loadToken && provider === Graph.provider && Graph.selectedId === node.id) {
+            const notice = $("#graphDocumentError");
+            if (notice) notice.textContent = `문서를 열지 못했습니다: ${error.message || error}`;
+          }
+        }
+      });
+      $("#graphHop1Btn")?.addEventListener("click", () => Graph.focusDepth(node.id, 1));
+      $("#graphHop2Btn")?.addEventListener("click", () => Graph.focusDepth(node.id, 2));
     },
 
     renderSourceDetail(node) {
@@ -424,6 +558,10 @@
     async renderDetail(id) {
       const node = (Graph.data?.nodes || []).map(n => n.data).find(n => n.id === id);
       if (!node) return;
+      if (Graph.provider && node.view_type === "canonical") {
+        Graph.renderCanonicalDetail(node);
+        return;
+      }
       if (node.view_type === "source" || String(node.id || "").startsWith("source:")) {
         Graph.renderSourceDetail(node);
         return;
@@ -492,7 +630,7 @@
     focusDepth(id, depth) {
       Graph.selectedId = id;
       $("#graphDepth").value = String(depth);
-      Graph.load();
+      Graph.refreshView();
     },
 
     async deleteThought(meta) {
@@ -627,15 +765,17 @@
         const pt = toGraphPoint(e);
         const pos = Graph.nodeMap.get(Graph.draggingNode);
         if (pos) {
-          pos.x = pt.x;
-          pos.y = pt.y;
+          pos.x = clamp(pt.x, 36, Graph.viewportWidth - 36);
+          pos.y = clamp(pt.y, 36, Graph.viewportHeight - 54);
           Graph.redrawPositions();
         }
         return;
       }
       if (Graph.draggingStage && Graph.lastPointer && svg) {
-        Graph.pan.x += e.clientX - Graph.lastPointer.x;
-        Graph.pan.y += e.clientY - Graph.lastPointer.y;
+        const current = viewportPoint(e, svg);
+        const previous = viewportPoint({ clientX: Graph.lastPointer.x, clientY: Graph.lastPointer.y }, svg);
+        Graph.pan.x += current.x - previous.x;
+        Graph.pan.y += current.y - previous.y;
         Graph.lastPointer = { x: e.clientX, y: e.clientY };
         Graph.applyTransform();
       }
@@ -650,6 +790,9 @@
             y: pos.y,
             vx: 0,
             vy: 0,
+            userDragged: true,
+            width: Graph.viewportWidth,
+            height: Graph.viewportHeight,
           });
         }
       }
@@ -659,6 +802,254 @@
       $("#graphSvg")?.classList.remove("dragging");
     },
   };
+
+  function filteredGraph(data, filters) {
+    const fold = value => String(value || "").normalize("NFKC").toLowerCase();
+    const allNodes = data.nodes || [];
+    const ids = new Set(allNodes.map(node => node.data.id));
+    let edges = (data.edges || []).filter(({ data: edge }) => ids.has(edge.source) && ids.has(edge.target)
+      && (!filters.edgeType || edge.edge_type === filters.edgeType));
+    // With an explicit relation filter, display only its endpoints. Without
+    // that filter, isolated documents remain first-class visible nodes.
+    let allowed = filters.edgeType
+      ? new Set(edges.flatMap(({ data: edge }) => [edge.source, edge.target])) : ids;
+    const depth = Number(filters.depth);
+    if (filters.focus && [1, 2].includes(depth)) {
+      allowed = new Set(allowed.has(filters.focus) ? [filters.focus] : []);
+      const neighbors = new Map();
+      for (const { data: edge } of edges) {
+        if (!neighbors.has(edge.source)) neighbors.set(edge.source, new Set());
+        if (!neighbors.has(edge.target)) neighbors.set(edge.target, new Set());
+        neighbors.get(edge.source).add(edge.target);
+        neighbors.get(edge.target).add(edge.source);
+      }
+      let frontier = [...allowed];
+      for (let hop = 0; hop < depth; hop += 1) {
+        const next = [];
+        for (const id of frontier) for (const neighbor of neighbors.get(id) || []) {
+          if (!allowed.has(neighbor)) { allowed.add(neighbor); next.push(neighbor); }
+        }
+        frontier = next;
+      }
+    }
+    const query = fold(filters.query).trim();
+    const topic = fold(filters.topic).trim();
+    const service = fold(filters.service).trim();
+    const nodes = allNodes.filter(({ data: node }) => {
+      const topics = Array.isArray(node.topics) ? node.topics : [];
+      return allowed.has(node.id)
+        && (!query || fold([node.title, node.label, node.filename, node.id, ...topics].join(" ")).includes(query))
+        && (!topic || topics.some(value => fold(value).includes(topic)))
+        && (!service || fold(node.service).includes(service))
+        && (!filters.memory || node.memory_type === filters.memory);
+    });
+    const visible = new Set(nodes.map(node => node.data.id));
+    edges = edges.filter(({ data: edge }) => visible.has(edge.source) && visible.has(edge.target));
+    return { ...data, nodes, edges, counts: { nodes: nodes.length, edges: edges.length } };
+  }
+
+  function compareIds(a, b) { return a < b ? -1 : a > b ? 1 : 0; }
+
+  function layoutComponents(nodes, edges, nodeMap, positionCache, w, h) {
+    // O(V+E) connectivity, deterministic weighted rectangle partition, and
+    // O(ticks * sum(component_size^2)) local forces. Isolates need no force.
+    // Rendered/API edges are untouched; this is a separate layout projection.
+    const ordered = [...nodes].sort((a, b) => compareIds(a.id, b.id));
+    const adjacency = new Map(ordered.map(node => [node.id, new Set()]));
+    for (const edge of edges) {
+      if (!adjacency.has(edge.source) || !adjacency.has(edge.target)) continue;
+      adjacency.get(edge.source).add(edge.target);
+      adjacency.get(edge.target).add(edge.source);
+    }
+    const byId = new Map(ordered.map(node => [node.id, node]));
+    const membership = new Map();
+    const components = [];
+    for (const node of ordered) {
+      if (membership.has(node.id)) continue;
+      const component = { nodes: [], edges: [] };
+      const pending = [node.id];
+      membership.set(node.id, component);
+      for (let i = 0; i < pending.length; i++) {
+        const id = pending[i];
+        component.nodes.push(byId.get(id));
+        for (const next of [...adjacency.get(id)].sort(compareIds)) if (!membership.has(next)) {
+          membership.set(next, component); pending.push(next);
+        }
+      }
+      component.nodes.sort((a, b) => compareIds(a.id, b.id));
+      component.visitOrder = pending;
+      components.push(component);
+    }
+    for (const edge of edges) {
+      const component = membership.get(edge.source);
+      if (component && component === membership.get(edge.target)) component.edges.push(edge);
+    }
+    const edgeKey = edge => JSON.stringify([edge.source, edge.target, edge.edge_type || "", edge.id || ""]);
+    for (const component of components) component.edges.sort((a, b) => compareIds(edgeKey(a), edgeKey(b)));
+    components.sort((a, b) => b.nodes.length - a.nodes.length || compareIds(a.nodes[0].id, b.nodes[0].id));
+    function partition(parts, box) {
+      if (parts.length === 1) { parts[0].box = box; return; }
+      const total = parts.reduce((sum, part) => sum + part.nodes.length, 0);
+      let split = 1, weight = parts[0].nodes.length;
+      while (split < parts.length - 1 && weight + parts[split].nodes.length / 2 < total / 2) {
+        weight += parts[split++].nodes.length;
+      }
+      const extent = Math.max(box.w, box.h);
+      const minimum = Math.min(72, extent / 2);
+      const ratio = clamp(weight / total, minimum / extent, 1 - minimum / extent);
+      if (box.w >= box.h) {
+        partition(parts.slice(0, split), { ...box, w: box.w * ratio });
+        partition(parts.slice(split), { ...box, x: box.x + box.w * ratio, w: box.w * (1 - ratio) });
+      } else {
+        partition(parts.slice(0, split), { ...box, h: box.h * ratio });
+        partition(parts.slice(split), { ...box, y: box.y + box.h * ratio, h: box.h * (1 - ratio) });
+      }
+    }
+    if (components.length) partition(components, { x: 36, y: 36, w: w - 72, h: h - 108 });
+    for (const component of components) {
+      const box = component.box;
+      const local = new Map();
+      if (component.nodes.length === 1) local.set(component.nodes[0].id, { x: 0, y: 0 });
+      else {
+        seedPositions(component.nodes, component.edges, local, new Map(), 900, 620);
+        layout(component.nodes, component.edges, local, 900, 620);
+      }
+      const points = [...local.values()];
+      const minX = points.reduce((v,p) => Math.min(v,p.x), Infinity), maxX = points.reduce((v,p) => Math.max(v,p.x), -Infinity);
+      const minY = points.reduce((v,p) => Math.min(v,p.y), Infinity), maxY = points.reduce((v,p) => Math.max(v,p.y), -Infinity);
+      const padding = Math.min(28, box.w * .2, box.h * .2);
+      const fit = (value, min, max, size) => max === min ? size / 2 : padding + (value - min) / (max - min) * (size - 2 * padding);
+      const fitted = new Map(component.nodes.map(node => [node.id, {
+        x: fit(local.get(node.id).x, minX, maxX, box.w),
+        y: fit(local.get(node.id).y, minY, maxY, box.h),
+      }]));
+      // A local force fit can still stack nodes on its own clamp boundaries.
+      // Only when centers collide, use a topology-ordered serpentine grid.
+      // No links are added/removed. BFS orders placement, not edge distance;
+      // arbitrary branching/cyclic graphs can still have crossing lines.
+      const cells = new Map();
+      let crowded = false;
+      for (const p of fitted.values()) {
+        const cx = Math.floor(p.x / 44), cy = Math.floor(p.y / 44);
+        for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++)
+          if ((cells.get((cx + dx) + ":" + (cy + dy)) || []).some(q => Math.hypot(p.x - q.x, p.y - q.y) < 44)) crowded = true;
+        if (crowded) break;
+        const key = cx + ":" + cy;
+        if (!cells.has(key)) cells.set(key, []);
+        cells.get(key).push(p);
+      }
+      let gridWidth = null;
+      if (crowded) {
+        const count = component.nodes.length, width = box.w - padding * 2, height = box.h - padding * 2;
+        let columns = 1, best = 0;
+        for (let candidate = 1; candidate <= count; candidate++) {
+          const gap = Math.min(width / candidate, height / Math.ceil(count / candidate));
+          if (gap > best) { best = gap; columns = candidate; }
+        }
+        const rows = Math.ceil(count / columns);
+        gridWidth = width / columns;
+        component.visitOrder.forEach((id, index) => {
+          const row = Math.floor(index / columns), column = row % 2 ? columns - 1 - index % columns : index % columns;
+          fitted.set(id, { x: padding + (column + .5) * gridWidth, y: padding + (row + .5) * height / rows });
+        });
+        // A one-row/column star makes overlapping spokes look like a chain.
+        // If the component box has room, separate its sole hub from a fan of
+        // leaves. Detect topology only, never document names or model scores.
+        const countNeighbors = node => adjacency.get(node.id).size;
+        const hub = component.nodes.length > 2
+          ? component.nodes.find(node => countNeighbors(node) === count - 1
+            && component.nodes.every(other => other.id === node.id || countNeighbors(other) === 1)) : null;
+        const horizontal = width >= height;
+        const longSide = horizontal ? width : height, shortSide = horizontal ? height : width;
+        const maxRadius = component.nodes.reduce((radius, node) => Math.max(radius, 9 + Math.min(12, Number(node.degree || 0) * 1.6)), 9);
+        const fanGap = Math.max(44, 2 * maxRadius + 4);
+        if (hub && longSide / (count - 2) >= fanGap && shortSide >= fanGap) {
+          const point = (along, across) => horizontal ? { x: padding + along, y: padding + across }
+            : { x: padding + across, y: padding + along };
+          fitted.set(hub.id, point(longSide / 2, 0));
+          component.nodes.filter(node => node.id !== hub.id).forEach((node, index) => {
+            fitted.set(node.id, point(index * longSide / (count - 2), shortSide));
+          });
+          gridWidth = horizontal ? longSide / (count - 2) : shortSide;
+        }
+      }
+      for (const node of component.nodes) {
+        const point = fitted.get(node.id), old = positionCache.get(node.id);
+        const userDragged = Boolean(old?.userDragged);
+        nodeMap.set(node.id, {
+          x: userDragged ? clamp(old.x * w / (old.width || w), 36, w - 36) : box.x + point.x,
+          y: userDragged ? clamp(old.y * h / (old.height || h), 36, h - 54) : box.y + point.y,
+          vx: 0, vy: 0, userDragged,
+          labelWidth: gridWidth ? gridWidth - 12 : component.nodes.length === 1 ? box.w - 12 : Math.sqrt(box.w * box.h / component.nodes.length),
+        });
+      }
+    }
+  }
+
+  function positionVisibleLabels(graph) {
+    const active = graph.focusedId || graph.hoveredId || graph.selectedId;
+    const title = $("#graphNodeTitle");
+    const activeNode = graph.nodeMap.get(active);
+    if (title) { title.hidden = !activeNode; title.textContent = activeNode?.title || ""; }
+    const dense = graph.nodeMap.size > 24;
+    // Screen-space occupancy buckets avoid a quadratic all-label scan on every
+    // mouse move. Text measurements are cached until the label budget changes.
+    const occupied = new Map(), size = 64;
+    const keys = box => {
+      const result = [];
+      for (let x = Math.floor(box.left / size); x <= Math.floor(box.right / size); x++)
+        for (let y = Math.floor(box.top / size); y <= Math.floor(box.bottom / size); y++) result.push(x + ":" + y);
+      return result;
+    };
+    const overlaps = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+    const entries = [...graph.nodeMap].sort(([a], [b]) => Number(b === active) - Number(a === active) || compareIds(a, b));
+    for (const [id, pos] of entries) {
+      if (!pos.label) continue;
+      const x = pos.x * graph.zoom + graph.pan.x, y = pos.y * graph.zoom + graph.pan.y;
+      const faceLeft = x > graph.viewportWidth / 2;
+      const available = dense ? Math.min(pos.labelWidth || 100, 180) : 340;
+      const budget = Math.max(24, Math.min(available, (graph.viewportWidth - 24) / graph.zoom));
+      const cacheKey = Math.floor(budget);
+      let fitted = pos.labelCache?.get(cacheKey);
+      if (!fitted) {
+        const chars = [...String(pos.labelText || pos.title || "")];
+        let limit = Math.min(34, chars.length), text, width;
+        const measure = value => {
+          pos.label.textContent = value;
+          return typeof pos.label.getComputedTextLength === "function" ? pos.label.getComputedTextLength()
+            : [...value].reduce((sum, char) => sum + (char.charCodeAt(0) > 255 ? 13 : 7), 0);
+        };
+        do {
+          text = chars.slice(0, limit).join("") + (limit < chars.length ? "…" : "");
+          width = measure(text);
+          if (width <= budget || limit <= 1) break;
+          limit -= 1;
+        } while (true);
+        fitted = { text, width };
+        if (pos.labelCache) { if (pos.labelCache.size > 16) pos.labelCache.clear(); pos.labelCache.set(cacheKey, fitted); }
+      }
+      pos.label.textContent = fitted.text;
+      const offsetX = dense ? 0 : faceLeft ? -17 : 17;
+      const offsetY = dense ? 28 : 5;
+      pos.label.setAttribute("x", String(offsetX));
+      pos.label.setAttribute("y", String(offsetY));
+      pos.label.setAttribute("text-anchor", dense ? "middle" : faceLeft ? "end" : "start");
+      const anchorX = x + offsetX * graph.zoom;
+      const labelWidth = (fitted.width + 8) * graph.zoom;
+      const left = dense ? anchorX - labelWidth / 2 : faceLeft ? anchorX - labelWidth : anchorX;
+      const box = { left, right: left + labelWidth, top: y + (offsetY - 14) * graph.zoom, bottom: y + (offsetY + 4) * graph.zoom };
+      const bucketKeys = keys(box);
+      const onScreen = box.left >= 0 && box.right <= graph.viewportWidth && box.top >= 0 && box.bottom <= graph.viewportHeight - 42;
+      const collision = bucketKeys.some(key => (occupied.get(key) || []).some(other => overlaps(box, other)));
+      const visible = id === active || (onScreen && !collision);
+      pos.label.setAttribute("visibility", visible ? "visible" : "hidden");
+      pos.labelBox = visible ? box : null;
+      if (visible) for (const key of bucketKeys) {
+        if (!occupied.has(key)) occupied.set(key, []);
+        occupied.get(key).push(box);
+      }
+    }
+  }
 
   function seedPositions(nodes, edges, nodeMap, positionCache, w, h) {
     const margin = 48;
@@ -769,7 +1160,7 @@
     }
   }
 
-  function syncPositionCache(nodes, nodeMap, positionCache) {
+  function syncPositionCache(nodes, nodeMap, positionCache, w, h) {
     nodes.forEach(node => {
       const p = nodeMap.get(node.id);
       if (!p) return;
@@ -778,6 +1169,9 @@
         y: p.y,
         vx: 0,
         vy: 0,
+        userDragged: Boolean(p.userDragged),
+        width: w,
+        height: h,
       });
     });
     if (positionCache.size > 1600) {
@@ -789,12 +1183,21 @@
     }
   }
 
-  function toGraphPoint(e) {
-    const svg = $("#graphSvg");
+  function viewportPoint(e, svg) {
     const rect = svg.getBoundingClientRect();
+    const width = rect.width || Graph.viewportWidth, height = rect.height || Graph.viewportHeight;
+    // The SVG uses the default xMidYMid meet aspect ratio: account for both
+    // uniform scale and letterboxing when the CSS viewport is narrower/shorter.
+    const scale = Math.min(width / Graph.viewportWidth, height / Graph.viewportHeight);
+    return { x: (e.clientX - rect.left - (width - Graph.viewportWidth * scale) / 2) / scale,
+      y: (e.clientY - rect.top - (height - Graph.viewportHeight * scale) / 2) / scale };
+  }
+
+  function toGraphPoint(e) {
+    const point = viewportPoint(e, $("#graphSvg"));
     return {
-      x: (e.clientX - rect.left - Graph.pan.x) / Graph.zoom,
-      y: (e.clientY - rect.top - Graph.pan.y) / Graph.zoom,
+      x: (point.x - Graph.pan.x) / Graph.zoom,
+      y: (point.y - Graph.pan.y) / Graph.zoom,
     };
   }
 

@@ -126,6 +126,13 @@ class PublicationCommitResult:
     targets: tuple[PublicationTargetResult, ...]
     authored_snapshot_id: str | None = None
     reused_extraction_snapshot_id: str | None = None
+    preserved_snapshot_id: str | None = None
+    native_snapshot_id: str | None = None
+    pptx_role_snapshot_id: str | None = None
+    pdf_snapshot_id: str | None = None
+    pdf_visual_snapshot_id: str | None = None
+    office_hybrid_snapshot_id: str | None = None
+    pdf_continuation_snapshot_id: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -376,6 +383,7 @@ class PublicationCommitRepository:
         effective_at_ms: int,
         authored_snapshot_id: str | None = None,
         authorized_targets: tuple[PublicationCommitTarget, ...] = (),
+        continuation_snapshot_id: str | None = None,
     ) -> FrozenPublicationSource:
         """Read and hash the immutable source before a write transaction opens."""
 
@@ -389,7 +397,7 @@ class PublicationCommitRepository:
             _sha(source_snapshot_sha256, field="source_snapshot_sha256"),
             _now(effective_at_ms),
         )
-        source = self._source(connection, binding)
+        source = self._source(connection, binding, continuation_snapshot_id=continuation_snapshot_id)
         if authored_snapshot_id is None:
             return source
         snapshot = _uuid(authored_snapshot_id, field="authored_snapshot_id")
@@ -563,6 +571,7 @@ class PublicationCommitRepository:
         connection: ManagedConnection,
         draft: PublicationCommitDraft,
         source: FrozenPublicationSource,
+        *, continuation_snapshot_id: str | None = None,
     ) -> None:
         """Fence immutable source metadata without fetching the full body again."""
 
@@ -592,7 +601,7 @@ class PublicationCommitRepository:
                     raise PublicationCommitConflictError("The reused publication body is inconsistent.")
             source = source.extraction_source
         row = connection.execute(
-            """SELECT artifact.publisher_user_id,artifact.origin_type,
+            f"""SELECT artifact.publisher_user_id,artifact.origin_type,
                       artifact.original_filename,
                       artifact.origin_key,artifact.origin_revision_key,
                       artifact.metadata_json,artifact.body_retention_status,
@@ -615,7 +624,7 @@ class PublicationCommitRepository:
                WHERE preview.id=? AND preview.actor_user_id=?
                  AND preview.artifact_id=? AND preview.extraction_snapshot_id=?
                  AND preview.source_snapshot_sha256=?
-                 AND preview.status='ready' AND preview.expires_at>?""",
+                 AND preview.status='ready' AND ({_source_lifetime(continuation_snapshot_id)})""",
             (
                 draft.preview_id,
                 draft.actor_user_id,
@@ -682,9 +691,10 @@ class PublicationCommitRepository:
     def _source(
         connection: ManagedConnection,
         draft: PublicationCommitDraft | _SourceBinding,
+        *, continuation_snapshot_id: str | None = None,
     ) -> FrozenPublicationSource:
         row = connection.execute(
-            """SELECT artifact.publisher_user_id,artifact.origin_type,
+            f"""SELECT artifact.publisher_user_id,artifact.origin_type,
                       artifact.original_filename,
                       artifact.origin_key,artifact.origin_revision_key,
                       artifact.metadata_json,artifact.body_retention_status,
@@ -706,7 +716,7 @@ class PublicationCommitRepository:
                WHERE preview.id=? AND preview.actor_user_id=?
                  AND preview.artifact_id=? AND preview.extraction_snapshot_id=?
                  AND preview.source_snapshot_sha256=?
-                 AND preview.status='ready' AND preview.expires_at>?""",
+                 AND preview.status='ready' AND ({_source_lifetime(continuation_snapshot_id)})""",
             (
                 draft.preview_id,
                 draft.actor_user_id,
@@ -1163,10 +1173,28 @@ class PublicationCommitRepository:
                 "schema_version": 1,
                 "source_snapshot_sha256": draft.source_snapshot_sha256,
         }
-        if source.authored_snapshot_id is not None:
+        body_metadata = getattr(source, "publication_body_metadata", None)
+        if body_metadata is not None:
+            # Successor metadata is an extension, not an override of the exact
+            # preview/schema/source identity or a place for private model data.
+            if not isinstance(body_metadata, dict) or set(body_metadata) != {
+                "body_kind", "selected_snapshot_id", "requested_body_kind",
+                "requested_snapshot_id", "selected_manifest_sha256",
+            }:
+                raise PublicationCommitIntegrityError("Publication body metadata shape is invalid.")
+            metadata_value.update(body_metadata)
+        elif source.authored_snapshot_id is not None:
             metadata_value.update({"body_kind": "authored",
                 "authored_snapshot_id": source.authored_snapshot_id,
                 "authored_manifest_sha256": source.authored_fence[5]})
+        elif getattr(source, "native_snapshot_id", None) is not None:
+            metadata_value.update({"body_kind": "native_wiki",
+                "native_snapshot_id": source.native_snapshot_id,
+                "native_manifest_sha256": source.native_manifest_sha256})
+        elif getattr(source, "preserved_snapshot_id", None) is not None:
+            metadata_value.update({"body_kind": "preserved_wiki",
+                "preserved_snapshot_id": source.preserved_snapshot_id,
+                "preserved_manifest_sha256": source.preserved_fence[5]})
         elif source.reused_extraction_snapshot_id is not None:
             metadata_value.update({"body_kind": "extraction",
                 "reused_extraction_snapshot_id": source.reused_extraction_snapshot_id})
@@ -1245,7 +1273,7 @@ class PublicationCommitRepository:
         item_id: str,
         revision_id: str,
         derived_from: tuple[str, str] | None,
-    ) -> None:
+    ) -> bool:
         row = connection.execute(
             "SELECT lineage_group_id FROM knowledge_item WHERE id=? AND space_id=?",
             (item_id, target.space_id),
@@ -1267,9 +1295,11 @@ class PublicationCommitRepository:
                 ),
             )
         elif existing != lineage_group_id:
-            raise PublicationCommitConflictError(
-                "An exact target already belongs to another lineage group."
-            )
+            # An unchanged target may already belong to an earlier both upload,
+            # including another member's shared Part copy. Keep that immutable
+            # history; this operation's source links/targets record the reupload.
+            # Do not enroll a new private copy in the other author's lineage.
+            return False
         member = connection.execute(
             """SELECT initial_revision_id,derived_from_item_id,
                       derived_from_revision_id,member_role,created_by,created_at
@@ -1301,7 +1331,7 @@ class PublicationCommitRepository:
                 raise PublicationCommitConflictError(
                     "The lineage member is already bound incompatibly."
                 )
-            return
+            return True
         connection.execute(
             """INSERT INTO lineage_member(
                  lineage_group_id,item_id,initial_revision_id,
@@ -1319,6 +1349,7 @@ class PublicationCommitRepository:
                 draft.created_at_ms,
             ),
         )
+        return True
 
     def _resolve_target(
         self,
@@ -1652,11 +1683,11 @@ class PublicationCommitRepository:
             ):
                 if attach_new_lineage:
                     derived = None if target.kind == "personal" else personal_anchor
-                    if target.kind == "part" and derived is None:
-                        raise PublicationCommitIntegrityError(
-                            "The personal lineage origin was not resolved first."
-                        )
-                    self._attach_lineage(
+                    # Derivation is only within this new group. If the personal
+                    # target retains an older lineage, a newly created Part item
+                    # is an origin here; the publication/source receipt still
+                    # records its provenance without reparenting the old item.
+                    attached = self._attach_lineage(
                         connection,
                         draft=draft,
                         target=target,
@@ -1665,7 +1696,7 @@ class PublicationCommitRepository:
                         revision_id=result.resolved_revision_id,
                         derived_from=derived,
                     )
-                    if target.kind == "personal":
+                    if target.kind == "personal" and attached:
                         personal_anchor = (
                             result.item_id,
                             result.resolved_revision_id,
@@ -1729,6 +1760,7 @@ class PublicationCommitRepository:
                     WikiAuthoringRepository().extraction_only(connection, run_id=pending[0],
                         actor_user_id=draft.actor_user_id, now_ms=draft.created_at_ms,
                         failure_code="extraction_selected")
+            self._commit_source_selection(connection, draft, source, operation_id, failpoint)
             cursor = connection.execute(
                 """UPDATE publication_preview
                    SET status='consumed',updated_at=?,row_version=row_version+1
@@ -1759,6 +1791,10 @@ class PublicationCommitRepository:
             source.authored_snapshot_id,
             source.reused_extraction_snapshot_id,
         )
+
+    @staticmethod
+    def _commit_source_selection(connection, draft, source, operation_id, failpoint):
+        """Successor hook; legacy publication keeps its exact existing effect."""
 
     @staticmethod
     def _verify_selected_bodies(connection, operation_id, content_sha256, size_bytes, *, retained=True):
@@ -2042,3 +2078,16 @@ __all__ = [
     "publication_lineage_group_id",
     "publication_operation_id",
 ]
+
+def _source_lifetime(continuation_snapshot_id):
+    # Only an explicit new typed candidate substitutes its own finite deadline.
+    # No old row is renewed, and the default SQL rule remains unchanged.
+    if continuation_snapshot_id is None:
+        return "preview.expires_at>?"
+    selected = _uuid(continuation_snapshot_id, field="continuation_snapshot_id")
+    return f"""EXISTS(SELECT 1 FROM pdf_continuation_publication_candidate continuation
+      WHERE continuation.snapshot_id='{selected}' AND continuation.preview_id=preview.id
+        AND continuation.actor_user_id=preview.actor_user_id AND continuation.artifact_id=preview.artifact_id
+        AND continuation.extraction_snapshot_id=preview.extraction_snapshot_id
+        AND continuation.source_snapshot_sha256=preview.source_snapshot_sha256 AND continuation.deadline_at>?)"""
+

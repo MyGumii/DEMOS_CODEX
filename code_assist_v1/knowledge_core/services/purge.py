@@ -823,6 +823,9 @@ class ItemPurgeService:
             "schema_version": 1,
             "space_generation": written.space_generation,
         }
+        if written.derived_body_delete_count is not None:
+            details.update(derived_body_delete_count=written.derived_body_delete_count,
+                           derived_body_delete_bytes=written.derived_body_delete_bytes)
         self._audit.append(
             connection,
             AuditEventDraft(

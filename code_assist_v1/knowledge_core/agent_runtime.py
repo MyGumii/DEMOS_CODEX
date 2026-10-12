@@ -12,6 +12,7 @@ from .agent_execution import (
     _default_runner,
 )
 from .composition import CanonicalRouteBindings, ServiceRegistry
+from .answer_request import AnswerRequestPolicy
 from .db import ConnectionFactory
 from .db import TransactionMode, transaction
 from .domain import FeatureFlags
@@ -58,7 +59,7 @@ def canonical_cookie_principal_resolver(
     if not isinstance(factory, ConnectionFactory):
         raise TypeError("factory must be a ConnectionFactory.")
 
-    def resolve() -> object:
+    def resolve(*, _read_connection_provider=None) -> object:
         from flask import session
         from .repositories.users import UserRepository
 
@@ -71,12 +72,17 @@ def canonical_cookie_principal_resolver(
         user_id = public.get("id")
         if not isinstance(user_id, str):
             return None
-        connection = factory.open(read_only=True)
+        owns_connection = _read_connection_provider is None
+        connection = (factory.open(read_only=True) if owns_connection
+            else _read_connection_provider())
         try:
+            if not owns_connection:
+                factory._check_owned_read_only(connection)
             with transaction(connection, TransactionMode.DEFERRED):
                 user = UserRepository().require(connection, user_id)
         finally:
-            connection.close()
+            if owns_connection:
+                connection.close()
         if user.account_status != "active":
             return None
         # Canonical knowledge routes consume only ``id`` and ``scope_epoch``.
@@ -89,6 +95,9 @@ def canonical_cookie_principal_resolver(
             "scope_epoch": user.scope_epoch,
         }
 
+    # Binding metadata only: the borrowed handle itself is independently checked.
+    # Per-request state is passed as an argument, never stored on this closure.
+    resolve._canonical_read_factory = factory
     return resolve
 
 
@@ -130,6 +139,9 @@ def compose_canonical_agent_runtime(
     local_reranker_model_ids: Sequence[str] | None = None,
     local_reranker_model_revision: str = "local-cross-encoder-unconfigured-v1",
     source_artifact_stager: object | None = None,
+    answer_request_policy: AnswerRequestPolicy | None = None,
+    answer_context_limit_tokens: int | None = None,
+    auto_curation_wait_ms: int = 0,
 ) -> CanonicalAgentRuntime:
     """Compose all dependencies needed for canonical one-space Agent traffic.
 
@@ -137,6 +149,9 @@ def compose_canonical_agent_runtime(
     The returned services own their documented snapshots/transactions, while
     both model adapters execute only after those snapshots have closed.
     """
+
+    if answer_request_policy is not None and type(answer_request_policy) is not AnswerRequestPolicy:
+        raise TypeError("answer_request_policy must be an AnswerRequestPolicy or None.")
 
     if not isinstance(factory, ConnectionFactory):
         raise TypeError("factory must be a ConnectionFactory.")
@@ -174,6 +189,7 @@ def compose_canonical_agent_runtime(
         conversations=conversation_repository,
         context_resolver=conversation_context_resolver,
         scope_resolver=scope_resolver,
+        auto_curation_wait_ms=auto_curation_wait_ms,
     )
     retrieval_repository = (
         HybridRetrievalRepository(
@@ -307,6 +323,8 @@ def compose_canonical_agent_runtime(
             runner=model_runner,
             provider_order=providers,
             model_ids=selected_models,
+            answer_request_policy=answer_request_policy,
+            answer_context_limit_tokens=answer_context_limit_tokens,
         ),
         conversation_summarizer=CanonicalConversationSummarizer(
             conversations,

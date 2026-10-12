@@ -19,10 +19,9 @@
     "rollup", "formula", "created_time", "last_edited_time",
   ]);
   const VIEW_STATE_KEYS = Object.freeze([
-    "filters", "filter_group", "sorts", "group_property", "group_sort", "group_order", "month", "timeline_anchor",
+    "filters", "sorts", "group_property", "month", "timeline_anchor",
     "timeline_scale", "timeline_date_property", "board_group_property",
-    "calendar_date_property", "property_visibility", "property_order",
-    "show_source_title", "show_vertical_lines", "show_page_icons", "wrap_all_content",
+    "calendar_date_property", "property_visibility",
   ]);
 
   function clone(value) {
@@ -45,11 +44,7 @@
   function propertyConfigFromUi(property) {
     const type = String(property?.type || "text");
     if (type === "relation") {
-      const config = { target_database_id: String(property.relation_database_block_id || "") };
-      if (property.config?.reciprocal_property_id) {
-        config.reciprocal_property_id = String(property.config.reciprocal_property_id);
-      }
-      return config;
+      return { target_database_id: String(property.relation_database_block_id || "") };
     }
     if (type === "rollup") {
       const raw = String(property.rollup_calculation || "show_unique");
@@ -65,11 +60,7 @@
         aggregation,
       };
     }
-    if (type === "formula") {
-      const config = { expression: String(property.expression || "") };
-      if (property.config?.copy_property_ids) config.copy_property_ids = clone(property.config.copy_property_ids);
-      return config;
-    }
+    if (type === "formula") return { expression: String(property.expression || "") };
     if (["select", "multi_select", "status"].includes(type)) {
       return { options: Array.isArray(property.options) ? clone(property.options) : [] };
     }
@@ -118,7 +109,6 @@
       _canonical_row_id: String(row.id || ""),
       _canonical_row_version: Number(row.version || 0),
       _canonical_cell_versions: clone(row.cell_versions || {}),
-      ...(row.appearance?{_canonical_appearance:clone(row.appearance)}:{}),
     };
   }
 
@@ -127,18 +117,12 @@
     props.active_view_id = view.id;
     props.view = view.type;
     for (const key of VIEW_STATE_KEYS) {
-      delete props[key];
       if (Object.prototype.hasOwnProperty.call(view, key)) props[key] = clone(view[key]);
     }
     return props;
   }
 
   function canonicalToBlock(database, existingBlock) {
-    // Linked instances need a read authorized through that specific instance.
-    // An owned DB refresh cannot replace their independent local view settings.
-    if (existingBlock?.props && Object.prototype.hasOwnProperty.call(existingBlock.props, "linked_database")) {
-      return existingBlock;
-    }
     const views = (database?.views || [])
       .filter(view => view?.state !== "archived" && ADOPTED_VIEW_TYPE_SET.has(view?.type))
       .map(viewFromCanonical);
@@ -155,8 +139,6 @@
       rows: (database.rows || []).map(rowFromCanonical),
       views,
       templates: clone(database.templates || []),
-      ...(Object.prototype.hasOwnProperty.call(database, "default_template")
-        ? {default_template:clone(database.default_template)} : {}),
     };
     applyViewState(props, active);
     return {
@@ -166,36 +148,6 @@
       content: String(database.title || existingBlock?.content || "Database"),
       props,
     };
-  }
-
-  function linkedToBlock(result, storedBlock, documentId) {
-    const source = storedBlock?.props?.linked_database;
-    const scoped = Boolean(result?.access && result?.instance_witness);
-    const sourceMatches = Boolean(result?.source && source && source.database_id)
-      && result.source.database_id === source.database_id
-      && (scoped
-        ? Object.keys(result.source).length === 1 && !Object.hasOwn(result.source, "document_id")
-        : result?.source?.document_id === source?.document_id);
-    if (result?.contract !== "code_assist.notion.linked_database.v1"
-        || !documentId || result.instance?.document_id !== documentId
-        || result.instance?.block_id !== storedBlock?.id
-        || !sourceMatches
-        || result.database?.id !== source?.database_id) {
-      throw new Error("연결된 데이터베이스 응답이 현재 보기에 해당하지 않습니다.");
-    }
-    const views = clone(result.views || []);
-    const active = views.find(view => view.id === result.active_view_id);
-    if (!active || !ADOPTED_VIEW_TYPE_SET.has(active.type)) {
-      throw new Error("연결된 데이터베이스의 보기를 찾을 수 없습니다.");
-    }
-    const base = clone(storedBlock);
-    delete base.props.linked_database;
-    base.props.active_view_id = active.id;
-    const projected = canonicalToBlock({ ...result.database, views }, base);
-    projected.props.linked_database = clone(result.source);
-    // This is an ephemeral render model. Persist only the original reference
-    // and local view descriptors; never send these source caches as block props.
-    return projected;
   }
 
   function applyCanonicalDatabases(blocks, databases) {
@@ -236,16 +188,12 @@
       return String(value || "").split(",").map(part => part.trim()).filter(Boolean);
     }
     if (property.type === "files") return Array.isArray(value) ? clone(value) : [];
-    if (property.type === "date" && value && typeof value === "object") return clone(value);
     if (value == null) return null;
     return String(value);
   }
 
   function blockToDesired(block) {
     if (!ADOPTED_VIEW_TYPE_SET.has(block?.type)) return null;
-    // Shared data writes must use source authority. The owned-database diff
-    // would otherwise rename/archive source views or create a duplicate DB.
-    if (block.props && Object.prototype.hasOwnProperty.call(block.props, "linked_database")) return null;
     const databaseId = String(block?.props?.database_id || block.id || "");
     const properties = (block.props?.properties || [])
       .filter(property => property?.id && ADOPTED_PROPERTY_TYPE_SET.has(property.type))
@@ -271,9 +219,7 @@
       for (const property of properties) {
         if (!READ_ONLY_PROPERTY_TYPES.has(property.type)) cells[property.id] = cellValue(property, item || {});
       }
-      return { id, position, cells,
-        templateId: Object.prototype.hasOwnProperty.call(item || {}, "_template_id")
-          ? item._template_id : undefined };
+      return { id, position, cells };
     });
     return {
       id: databaseId,
@@ -375,25 +321,13 @@
     const desiredRows = new Map(desired.rows.map(item => [item.id, item]));
     for (const row of desired.rows) {
       const current = canonicalRows.get(row.id);
-      const template = !current && row.templateId
-        ? (canonical.templates || []).find(item => item.id === row.templateId && item.state === "active") : null;
-      if (!current) actions.push(action("database.row.create", databaseId, row.id,
-        row.templateId === null ? {template_id:null}
-          : template ? {template_id:template.id} : {}, 0));
+      if (!current) actions.push(action("database.row.create", databaseId, row.id, {}, 0));
       const versions = current?.cell_versions || {};
       const values = current?.cells || {};
       for (const property of desired.properties) {
         if (READ_ONLY_PROPERTY_TYPES.has(property.type)) continue;
         const nextValue = row.cells[property.id];
-        if (!current && template && Object.prototype.hasOwnProperty.call(template.default_values || {}, property.id)
-            && equal(template.default_values[property.id], nextValue)) continue;
-        // A newly added array property has no stored cell until its first edit.
-        // Do not turn that implicit empty value into a separate write: doing so
-        // can race the first file/relation selection and invalidate its version.
-        const implicitEmptyArray = current
-          && !Object.prototype.hasOwnProperty.call(values, property.id)
-          && Array.isArray(nextValue) && nextValue.length === 0;
-        if (!implicitEmptyArray && (!current || !equal(values[property.id], nextValue))) {
+        if (!current || !equal(values[property.id], nextValue)) {
           actions.push(action(
             "database.cell.set",
             databaseId,
@@ -423,33 +357,13 @@
     return actions;
   }
 
-  function atomicCellActions(actions, databases) {
-    const supported = new Map((databases || []).filter(db=>db.capabilities?.atomic_cell_batch === true).map(db=>[db.id, db]));
-    const result = [];
-    for (let i=0; i<actions.length;) {
-      const first=actions[i], database=supported.get(first.database_id);
-      if (first.command_kind !== "database.cell.set" || !database) {result.push(first);i++;continue;}
-      let end=i+1;
-      while(end<actions.length && actions[end].command_kind === "database.cell.set" && actions[end].database_id === first.database_id) end++;
-      const group=actions.slice(i,end), maximum=Math.min(1000,Number(database.capabilities.max_cell_batch)||1000);
-      if (group.length > maximum) throw new Error(`한 번에 ${maximum}개 셀까지 변경할 수 있습니다.`);
-      if (group.length === 1) result.push(first);
-      else result.push(action("database.cells.set", first.database_id, first.database_id, {cells:group.map(item=>({...item.payload,expected_target_version:item.expected_target_version}))}, null));
-      i=end;
-    }
-    return result;
-  }
-
   return Object.freeze({
     ADOPTED_PROPERTY_TYPES,
     ADOPTED_VIEW_TYPES,
     applyCanonicalDatabases,
     blockToDesired,
     canonicalToBlock,
-    linkedToBlock,
     diffDatabase,
     diffPage,
-    atomicCellActions,
-    cellValue,
   });
 });

@@ -28,9 +28,12 @@ from .answer_citations import CitationValidationError, prepare_citations, render
 from .answer_input import (
     AnswerInputError, answer_messages, factor_source_documents, input_receipt, validated_api_receipt,
 )
+from .answer_response import ANSWER_API_FAILURE_CODES, ANSWER_API_RESPONSE_POLICY, ANSWER_API_RETRYABLE_CODES
+from .answer_request import AnswerRequestPolicy
+from code_assist_v1.llm_response import ModelResponseError, validate_chat_response_receipt
 
 
-TURN_PROMPT_VERSION = "canonical-second-brain-turn-v12-factored-provenance"
+TURN_PROMPT_VERSION = "canonical-second-brain-turn-v13-claim-scope"
 SUMMARY_PROMPT_VERSION = "canonical-second-brain-summary-v1"
 SUMMARIZER_VERSION = "canonical-conversation-summarizer-v1"
 _PROVIDERS = frozenset({"hynix_api", "gguf", "codex"})
@@ -159,10 +162,12 @@ def _turn_payload(context: AgentTurnContextBundle) -> dict[str, object]:
                     "media_type": artifact.media_type,
                     "size_bytes": artifact.size_bytes,
                     **({"content_sha256": artifact.content_sha256} if artifact.content_sha256 else {}),
-                    "download_url": (
+                    **({"protected_source_kind": artifact.protected_source_kind}
+                       if artifact.protected_source_kind else {}),
+                    **({"download_url": (
                         f"/api/knowledge/v1/spaces/{selected_view_space_id}/items/"
                         f"{item_id}/source-artifacts/{artifact.artifact_id}/download"
-                    ),
+                    )} if artifact.protected_source_kind is None else {}),
                 }
                 for artifact in source_artifacts
             ],
@@ -527,6 +532,15 @@ _CANONICAL_SECOND_BRAIN_POLICY = """[Canonical Second Brain Runtime]
   Responsibilities; never infer access to a different view from text alone.
 - Clearly distinguish Wiki-grounded facts from general knowledge. Never present
   general knowledge as if it came from the selected Wiki.
+- Distinguish source statements, derived results, and optional recommendations.
+  Calculations and reasoning are welcome: identify their inputs, assumptions,
+  and applicable scope without presenting a derived conclusion as a source quote.
+  Preserve the logical scope and strength of source conditions, qualifications,
+  uncertainty, permissions, and obligations when paraphrasing or summarizing.
+  A source's uncertainty or comparison caution is not an absolute prohibition.
+  Do not extend a source rule to additional cases without evidence or an explicit,
+  justified inference. If the source leaves a point unsettled, keep it unsettled
+  rather than supplying a new mandatory rule on the source's behalf.
 - If no relevant Wiki evidence was supplied, say that the selected Wiki did not
   provide relevant evidence when that distinction matters, then continue with a
   useful general-knowledge answer whenever the question can still be answered.
@@ -568,6 +582,11 @@ _CANONICAL_SECOND_BRAIN_POLICY = """[Canonical Second Brain Runtime]
   knowledge API URLs yourself, and do not wrap markers in links, HTML or code.
   Keep marker lines free of other text. A general-knowledge chapter that does
   not use Wiki evidence may say `근거 문서: 일반 지식` without a Wiki marker.
+  Separate general recommendations from Wiki-grounded chapters when one shared
+  source footer would imply that the Wiki states those recommendations. Label
+  added advice as a proposal, not as an instruction already present in the Wiki.
+  A Wiki citation for a calculation supports its recorded inputs; identify the
+  calculation as derived rather than implying its result was explicitly recorded.
   Absence of an original in the supplied metadata does not prove its deletion.
 - Put a Markdown horizontal rule (`---`) after each chapter's evidence line
   before the next chapter. Do not collect all evidence only at the end, because
@@ -600,10 +619,21 @@ class CanonicalAgentTurnExecutor:
     runner: ModelRunner = _default_runner
     provider_order: tuple[str, ...] | None = None
     model_ids: tuple[str, ...] | None = None
+    experimental_claim_provenance: bool = False
+    answer_request_policy: AnswerRequestPolicy | None = None
+    answer_context_limit_tokens: int | None = None
 
     def __post_init__(self) -> None:
         if not callable(self.runner):
             raise TypeError("runner must be callable.")
+        if type(self.experimental_claim_provenance) is not bool:
+            raise TypeError("experimental_claim_provenance must be an explicit bool.")
+        if self.answer_request_policy is not None and type(self.answer_request_policy) is not AnswerRequestPolicy:
+            raise TypeError("answer_request_policy must be an AnswerRequestPolicy or None.")
+        if self.answer_context_limit_tokens is not None and (
+            type(self.answer_context_limit_tokens) is not int or self.answer_context_limit_tokens <= 3584
+        ):
+            raise ValueError("The answer model context limit must reserve input and output tokens.")
         object.__setattr__(self, "provider_order", _provider_order(self.provider_order))
         object.__setattr__(self, "model_ids", _model_ids(self.model_ids))
 
@@ -656,21 +686,73 @@ class CanonicalAgentTurnExecutor:
                 "The canonical Agent context binding is invalid."
             )
         server_payload = _turn_payload(context)
+        token_receipt = None
+        if self.answer_context_limit_tokens is not None:
+            from .answer_token_budget import AnswerTokenBudgetError, fit_answer_payload, model_message_counter
+            try:
+                revalidate()
+                counter, method = model_message_counter(self.model_ids)
+                budget_system = _TURN_SYSTEM
+                if self.experimental_claim_provenance:
+                    from .answer_provenance import PROVENANCE_POLICY
+                    budget_system += "\n\n" + PROVENANCE_POLICY
+                def guarded_count(messages):
+                    revalidate()
+                    return counter(messages)
+                server_payload, token_receipt = fit_answer_payload(
+                    server_payload, system=budget_system, turn_id=context.turn_id,
+                    view_id=context.selected_view_space_id or context.space_id,
+                    count_messages=guarded_count, context_limit=self.answer_context_limit_tokens,
+                )
+                token_receipt["count_method"] = method
+            except AnswerTokenBudgetError as exc:
+                raise CanonicalAgentExecutionError(str(exc), code="MODEL_API_INPUT_TOO_LARGE") from exc
         try:
             payload, citation_catalog = prepare_citations(
                 server_payload, turn_id=context.turn_id,
                 selected_view_space_id=context.selected_view_space_id or context.space_id,
             )
+            quote_catalog = citation_catalog
+            if self.experimental_claim_provenance:
+                from .answer_provenance import contiguous_quote_catalog
+                quote_catalog = contiguous_quote_catalog(payload, citation_catalog)
             payload = factor_source_documents(payload)
         except (CitationValidationError, AnswerInputError) as exc:
             raise CanonicalAgentExecutionError("The canonical citation context is invalid.") from exc
 
-        messages = answer_messages(payload, system=_TURN_SYSTEM)
+        system = _TURN_SYSTEM
+        prompt_version = TURN_PROMPT_VERSION
+        if self.experimental_claim_provenance:
+            from .answer_provenance import PROVENANCE_POLICY, PROVENANCE_PROMPT_VERSION, render_provenance
+            system += "\n\n" + PROVENANCE_POLICY
+            prompt_version = PROVENANCE_PROMPT_VERSION
+        messages = answer_messages(payload, system=system)
         model_input_trace = input_receipt(payload, messages, max_output_tokens=3072)
+        if token_receipt is not None:
+            # Citation/provenance preparation is included in the final check;
+            # counters are not confused with raw UTF-8 source budgets.
+            actual_tokens = guarded_count(messages)
+            if actual_tokens + 3072 + 512 > self.answer_context_limit_tokens:
+                raise CanonicalAgentExecutionError(
+                    "Prepared answer input exceeds the selected model context.", code="MODEL_API_INPUT_TOO_LARGE")
+            model_input_trace.update(input_tokens=actual_tokens,
+                                    provider_context_limit_tokens=self.answer_context_limit_tokens,
+                                    token_budget=token_receipt)
+        request_options = {"max_attempts": 1} if self.experimental_claim_provenance else {}
+        if self.answer_request_policy is not None:
+            request_options = self.answer_request_policy.runner_options(
+                single_attempt=self.experimental_claim_provenance)
+            # Configuration is not a claim about model tokens or an injected
+            # custom runner. The separate transport receipt records actual I/O.
+            model_input_trace["configured_request_policy"] = self.answer_request_policy.receipt(
+                single_attempt=self.experimental_claim_provenance)
 
         def validate_answer(value):
             try:
-                render_citations(str(value or "").strip(), citation_catalog)
+                candidate = str(value or "").strip()
+                if self.experimental_claim_provenance:
+                    candidate, _ = render_provenance(candidate, quote_catalog)
+                render_citations(candidate, citation_catalog)
             except CitationValidationError as exc:
                 return str(exc)
             return ""
@@ -692,6 +774,8 @@ class CanonicalAgentTurnExecutor:
                 validate_output=validate_answer,
                 capture_request_receipt=True,
                 preserve_codex_input=True,
+                api_response_policy=ANSWER_API_RESPONSE_POLICY,
+                **request_options,
                 **({"attempt_guard": revalidate} if attempt_guard is not None else {}),
             )
         finally:
@@ -707,7 +791,7 @@ class CanonicalAgentTurnExecutor:
                 if isinstance(failure_codes, list) and failure_codes
                 else "AGENT_EXECUTION_FAILED"
             )
-            if failure_code not in {
+            if failure_code not in ANSWER_API_FAILURE_CODES | {
                 "CODEX_CLI_NOT_FOUND",
                 "CODEX_EMPTY_OUTPUT",
                 "CODEX_EXEC_FAILED",
@@ -720,9 +804,12 @@ class CanonicalAgentTurnExecutor:
                 "No canonical Agent model provider produced an answer.",
                 code=failure_code,
                 retryable=failure_code
-                in {"CODEX_EMPTY_OUTPUT", "CODEX_EXEC_FAILED", "CODEX_EXEC_TIMEOUT"},
+                in ANSWER_API_RETRYABLE_CODES | {"CODEX_EMPTY_OUTPUT", "CODEX_EXEC_FAILED", "CODEX_EXEC_TIMEOUT"},
             )
+        provenance_trace = None
         try:
+            if self.experimental_claim_provenance:
+                answer, provenance_trace = render_provenance(answer, quote_catalog)
             answer, citation_trace = render_citations(answer, citation_catalog)
         except CitationValidationError as exc:
             # Custom runners may ignore validate_output; fence their result too.
@@ -733,16 +820,37 @@ class CanonicalAgentTurnExecutor:
         except AnswerInputError as exc:
             raise CanonicalAgentExecutionError("The model transport receipt is invalid.") from exc
         if api_receipt is not None:
+            if (self.answer_request_policy is not None
+                    and api_receipt["body_bytes"] > self.answer_request_policy.request_budget_bytes):
+                raise CanonicalAgentExecutionError(
+                    "The model transport receipt exceeds the configured request budget.",
+                    code="MODEL_API_INPUT_TOO_LARGE")
             model_input_trace["api_request_transport"] = api_receipt
+        response_trace = None
+        if model_kind == "hynix_api" and api_receipt is not None:
+            # A real common-adapter HTTP receipt must be paired with verified
+            # completion. Trusted injected non-HTTP runners carry no wire claim.
+            try:
+                response_trace = validate_chat_response_receipt(
+                    meta.get("response_transport"), text=str(text).strip(), policy=ANSWER_API_RESPONSE_POLICY,
+                )
+            except ModelResponseError as exc:
+                raise CanonicalAgentExecutionError(
+                    "The API did not provide a verified complete response.", code=exc.code,
+                ) from exc
         final_response: dict[str, object] = {
-            "finish_reason": "stop",
+            "finish_reason": response_trace["finish_reason"] if response_trace is not None else "stop",
             "model_id": model_id,
             "model_kind": model_kind,
-            "prompt_version": TURN_PROMPT_VERSION,
+            "prompt_version": prompt_version,
             "retrieval_source": context.retrieval.retrieval_source,
             "citation_trace": citation_trace,
             "model_input_trace": model_input_trace,
         }
+        if provenance_trace is not None:
+            final_response["answer_provenance"] = provenance_trace
+        if response_trace is not None:
+            final_response["model_response_trace"] = response_trace
         selected_view_space_id = (
             context.selected_view_space_id or context.space_id
         )

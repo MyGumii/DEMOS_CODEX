@@ -10,23 +10,9 @@
 .equation-popover textarea { flex: 1; min-width: 0; min-height: 48px; max-height: 240px; resize: none; border: 0; outline: none; padding: 2px; background: transparent; color: inherit; font: 14px/1.5 var(--mono, monospace); }
 .equation-popover button { flex-shrink: 0; padding: 3px 7px; border: 0; border-radius: 4px; background: var(--blue, #2383e2); color: white; font: 13px var(--sans, sans-serif); cursor: pointer; }
 .equation-input-hint { position: absolute; bottom: 5px; left: 12px; color: var(--soft, #787774); font-size: 10px; }
-.block-menu { overflow: auto; max-height: min(430px, calc(100dvh - 16px)); overscroll-behavior: contain; }
-#blockMenu { display: flex; flex-direction: column; overflow: visible; }
+.block-menu { display: flex; flex-direction: column; overflow: visible; max-height: min(430px, calc(100vh - 16px)); }
 .block-menu[hidden] { display: none; }
 #blockMenuOptions { overflow: auto; overscroll-behavior: contain; min-height: 0; }
-.block-selecting, .block-selecting * { user-select: none !important; cursor: default !important; }
-.block-selection-marquee {
-  position: fixed;
-  z-index: 25;
-  pointer-events: none;
-  box-sizing: border-box;
-  border: 0;
-  background: rgb(35 131 226 / 14%);
-  border-radius: 1px;
-}
-.search-filter-menu { z-index: 120; }
-.search-filter-menu label { display: flex; flex-direction: column; gap: 5px; padding: 8px; font-size: 12px; color: var(--soft); }
-.search-filter-menu select { width: 100%; color: var(--text); }
 .block-menu .menu-search, .block-menu > [data-close] { flex-shrink: 0; }
 .block-menu > [data-close] { border-top: 1px solid var(--border); margin-top: 5px; }
 .block-menu [data-command-group] + [data-command-group] { margin-top: 6px; padding-top: 4px; border-top: 1px solid var(--border); }
@@ -102,3 +88,9 @@
 .slash-command-row { display: flex; align-items: center; }
 .slash-command-row[hidden] { display: none; }
 .slash-command-row > .menu-item { flex: 1; min-width: 0; }
+.slash-pin { flex: 0 0 28px; border: 0; background: transparent; color: #777; cursor: pointer; padding: 5px; border-radius: 4px; }
+.slash-pin[aria-pressed="true"] { color: #b17910; }
+.slash-pin:hover, .slash-pin:focus-visible { background: var(--hover, #eee); outline: 2px solid #8cb5dc; }
+.slash-preferences { padding: 6px 10px; border-bottom: 1px solid var(--border, #eee); font-size: 12px; }
+.slash-preferences select { max-width: 180px; font: inherit; padding: 3px; }
+.slash-preferences small { display: block; color: #777; margin-top: 5px; }

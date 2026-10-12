@@ -166,16 +166,9 @@ def _migration_fact(connection: object) -> dict[str, object]:
 
 
 def _referenced_blob_fact(connection: object) -> dict[str, int]:
+    from .retained_blob_references import retained_blob_union_sql
     row = connection.execute(  # type: ignore[attr-defined]
-        """WITH referenced(sha256) AS (
-               SELECT content_sha256 FROM artifact_blob_body
-               UNION SELECT content_blob_hash FROM extraction_snapshot_body
-                    WHERE content_blob_hash IS NOT NULL
-               UNION SELECT content_blob_hash FROM knowledge_revision_body
-                    WHERE content_blob_hash IS NOT NULL
-               UNION SELECT proposed_content_blob_hash FROM change_proposal
-                    WHERE proposed_content_blob_hash IS NOT NULL
-           )
+        f"""WITH referenced(sha256) AS ({retained_blob_union_sql(connection)})
            SELECT count(*),coalesce(sum(b.size_bytes),0),
                   coalesce(sum(CASE WHEN b.verification_status='verified' THEN 0 ELSE 1 END),0)
              FROM blob_object b JOIN referenced r ON r.sha256=b.sha256"""

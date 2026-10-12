@@ -1263,6 +1263,7 @@ class ConversationRepository:
         owner_user_id: str,
         after_sequence_no: int = 0,
         limit: int = 100,
+        through_sequence_no: int | None = None,
     ) -> tuple[ConversationMessageRecord, ...]:
         connection = _managed_connection(connection)
         conversation = self.require_history_readable(
@@ -1272,13 +1273,48 @@ class ConversationRepository:
         )
         after = _nonnegative(after_sequence_no, "after_sequence_no")
         limit = _optional_limit(limit)
+        through = _SQLITE_INTEGER_MAX if through_sequence_no is None else _nonnegative(through_sequence_no, "through_sequence_no")
         rows = connection.execute(
             f"""SELECT {','.join(_MESSAGE_COLUMNS)} FROM conversation_message
-                WHERE conversation_id=? AND sequence_no>?
+                WHERE conversation_id=? AND sequence_no>? AND sequence_no<=?
                 ORDER BY sequence_no LIMIT ?""",
-            (conversation.id, after, limit),
+            (conversation.id, after, through, limit),
         ).fetchall()
         return tuple(_message_record(row) for row in rows)
+
+    def message_watermark(self, connection: ManagedConnection, *,
+                          conversation_id: str, owner_user_id: str) -> int:
+        connection = _managed_connection(connection)
+        conversation = self.require_history_readable(
+            connection, conversation_id=conversation_id, owner_user_id=owner_user_id,
+        )
+        row = connection.execute(
+            "SELECT sequence_no FROM conversation_message WHERE conversation_id=? ORDER BY sequence_no DESC LIMIT 1",
+            (conversation.id,),
+        ).fetchone()
+        return 0 if row is None else int(row["sequence_no"])
+
+    def list_pending_turns(
+        self, connection: ManagedConnection, *, conversation_id: str,
+        owner_user_id: str, after_sequence_no: int = 0, limit: int = 100,
+    ) -> tuple[ConversationTurnRecord, ...]:
+        """Read an owner-authorized page ordered by immutable user-message order."""
+        connection = _managed_connection(connection)
+        conversation = self.require_history_readable(
+            connection, conversation_id=conversation_id, owner_user_id=owner_user_id,
+        )
+        after = _nonnegative(after_sequence_no, "after_sequence_no")
+        limit = _optional_limit(limit)
+        rows = connection.execute(
+            f"""SELECT {','.join('t.' + name for name in _TURN_COLUMNS)}
+                FROM conversation_turn t JOIN conversation_message m
+                  ON m.id=t.user_message_id AND m.conversation_id=t.conversation_id
+                WHERE t.conversation_id=? AND t.actor_user_id=?
+                  AND t.state IN ('accepted','running') AND m.sequence_no>?
+                ORDER BY m.sequence_no LIMIT ?""",
+            (conversation.id, owner_user_id, after, limit),
+        ).fetchall()
+        return tuple(_turn_record(row) for row in rows)
 
     def create(
         self,

@@ -22,7 +22,6 @@ from code_assist_v1.notion_collaboration.canonical_authority import (
     _identifier,
     _operation_id,
     _request_sha256,
-    _require_unlocked_or_temporary,
     _sha256,
     _stable_id,
 )
@@ -247,38 +246,6 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
         if remaining < self.minimum_free_bytes or (usage.total and remaining * 100 / usage.total < self.minimum_free_percent):
             raise CapacityUnavailable("operational disk reserve unavailable")
 
-    def _session_access(self, con: sqlite3.Connection, actor: str,
-                        row: sqlite3.Row):
-        """Recheck a session's original page or immutable database scope."""
-        from . import database_access
-
-        scope = None
-        if database_access.upload_scope_installed(con):
-            scope = con.execute(
-                "SELECT database_id,database_epoch FROM "
-                "workspace_collaboration_database_upload_scopes WHERE session_id=?",
-                (str(row["id"]),),
-            ).fetchone()
-        if scope is not None:
-            access = database_access.require_write_on_connection(
-                self, con, actor, str(row["workspace_id"]),
-                str(scope["database_id"]), minimum_role="edit_content",
-                expected_workspace_epoch=int(row["workspace_epoch"]),
-                expected_document_epoch=int(row["document_epoch"]),
-                expected_database_epoch=int(scope["database_epoch"]),
-            )
-            if access.document_id != str(row["document_id"]):
-                raise NotFoundOrDenied("not found or permission denied")
-            page = self._document(con, access.document_id)
-            _require_unlocked_or_temporary(con, page, actor)
-            return self._workspace(con, access.workspace_id), page, access.role, scope
-        workspace, page, role = self._exact_access(
-            con, actor, str(row["document_id"]), minimum_role="edit_content",
-            expected_workspace_epoch=int(row["workspace_epoch"]),
-            expected_document_epoch=int(row["document_epoch"]),
-        )
-        return workspace, page, role, None
-
     def begin_upload(
         self,
         actor_subject_id: str,
@@ -327,7 +294,6 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
             if replay is not None:
                 return replay
             workspace, page, role = self._exact_access(con, actor, document, minimum_role="edit_content", expected_workspace_epoch=int(expected_workspace_epoch), expected_document_epoch=int(expected_document_epoch))
-            _require_unlocked_or_temporary(con, page, actor)
             if int(page["document_sequence"]) != int(expected_document_sequence):
                 raise DocumentSequenceConflict(int(page["document_sequence"]))
             self._reserve_capacity(con, size)
@@ -361,7 +327,7 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
             row = con.execute("SELECT * FROM workspace_collaboration_upload_sessions WHERE id=? AND actor_subject_id=?", (session, actor)).fetchone()
             if row is None:
                 raise NotFoundOrDenied("not found or permission denied")
-            self._session_access(con, actor, row)
+            self._exact_access(con, actor, str(row["document_id"]), minimum_role="edit_content", expected_workspace_epoch=int(row["workspace_epoch"]), expected_document_epoch=int(row["document_epoch"]))
             if str(row["state"]) not in {"prepared", "ready"} or index < 0 or index >= int(row["chunk_count"]):
                 raise UploadStateConflict("upload session does not accept this chunk")
             expected_size = int(row["chunk_size"])
@@ -369,11 +335,7 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
                 expected_size = int(row["total_size"]) - int(row["chunk_size"]) * index
         directory = self._session_directory(session)
         directory.mkdir(mode=0o700, parents=False, exist_ok=True)
-        # The full operation ID remains in the receipt binding, not the path.
-        # Repeating it in the leaf can exceed Windows' path limit even when
-        # the session directory and final chunk name fit.
-        temporary_identity = hashlib.sha256(operation.encode("utf-8")).hexdigest()[:24]
-        temporary = directory / f"{index:08d}.{temporary_identity}.tmp"
+        temporary = directory / f"{index:08d}.{operation}.tmp"
         final = directory / f"{index:08d}.chunk"
         digest = hashlib.sha256()
         size = 0
@@ -411,7 +373,7 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
             row = con.execute("SELECT * FROM workspace_collaboration_upload_sessions WHERE id=? AND actor_subject_id=?", (session, actor)).fetchone()
             if row is None:
                 raise NotFoundOrDenied("not found or permission denied")
-            self._session_access(con, actor, row)
+            self._exact_access(con, actor, str(row["document_id"]), minimum_role="edit_content", expected_workspace_epoch=int(row["workspace_epoch"]), expected_document_epoch=int(row["document_epoch"]))
             if str(row["state"]) not in {"prepared", "ready"}:
                 raise UploadStateConflict("upload session no longer accepts chunks")
             existing = con.execute("SELECT * FROM workspace_collaboration_upload_chunks WHERE session_id=? AND chunk_index=?", (session, index)).fetchone()
@@ -432,14 +394,9 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
             row = con.execute("SELECT * FROM workspace_collaboration_upload_sessions WHERE id=? AND actor_subject_id=?", (session, actor)).fetchone()
             if row is None:
                 raise NotFoundOrDenied("not found or permission denied")
-            _workspace, _page, _role, scope = self._session_access(con, actor, row)
+            self._exact_access(con, actor, str(row["document_id"]), minimum_role="edit_content", expected_workspace_epoch=int(row["workspace_epoch"]), expected_document_epoch=int(row["document_epoch"]))
             received = [int(item[0]) for item in con.execute("SELECT chunk_index FROM workspace_collaboration_upload_chunks WHERE session_id=? ORDER BY chunk_index", (session,)).fetchall()]
-            result = {"contract": FILE_AUTHORITY_CONTRACT, "session_id": session, "state": str(row["state"]), "chunk_size": int(row["chunk_size"]), "chunk_count": int(row["chunk_count"]), "total_size": int(row["total_size"]), "expected_sha256": str(row["expected_sha256"]), "received_chunks": received, "missing_chunks": [index for index in range(int(row["chunk_count"])) if index not in set(received)], "row_version": int(row["row_version"])}
-            if scope is None:
-                result["document_id"] = str(row["document_id"])
-            else:
-                result["database_id"] = str(scope["database_id"])
-            return result
+            return {"contract": FILE_AUTHORITY_CONTRACT, "session_id": session, "document_id": str(row["document_id"]), "state": str(row["state"]), "chunk_size": int(row["chunk_size"]), "chunk_count": int(row["chunk_count"]), "total_size": int(row["total_size"]), "expected_sha256": str(row["expected_sha256"]), "received_chunks": received, "missing_chunks": [index for index in range(int(row["chunk_count"])) if index not in set(received)], "row_version": int(row["row_version"])}
 
     def _assemble(self, row: sqlite3.Row, chunks: list[sqlite3.Row], operation_id: str) -> tuple[Path, str]:
         session = str(row["id"])
@@ -493,11 +450,9 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
             if row is None:
                 raise NotFoundOrDenied("not found or permission denied")
             request_sha = _request_sha256(actor, action, {"session_id": session})
-            replay = self._replay(con, actor=actor, action=action, operation_id=operation, request_sha256=request_sha, authorize=lambda: self._session_access(con, actor, row))
+            replay = self._replay(con, actor=actor, action=action, operation_id=operation, request_sha256=request_sha, authorize=lambda: self._exact_access(con, actor, str(row["document_id"]), minimum_role="edit_content", expected_workspace_epoch=int(row["workspace_epoch"]), expected_document_epoch=int(row["document_epoch"])))
             if replay is not None:
                 return replay
-            _workspace, page, _role, _scope = self._session_access(con, actor, row)
-            _require_unlocked_or_temporary(con, page, actor)
             if str(row["state"]) != "ready":
                 raise UploadStateConflict("upload is not ready")
             chunks = con.execute("SELECT * FROM workspace_collaboration_upload_chunks WHERE session_id=? ORDER BY chunk_index", (session,)).fetchall()
@@ -509,11 +464,10 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
             row = con.execute("SELECT * FROM workspace_collaboration_upload_sessions WHERE id=? AND actor_subject_id=?", (session, actor)).fetchone()
             if row is None:
                 raise NotFoundOrDenied("not found or permission denied")
-            workspace, page, role, scope = self._session_access(con, actor, row)
+            workspace, page, role = self._exact_access(con, actor, str(row["document_id"]), minimum_role="edit_content", expected_workspace_epoch=int(row["workspace_epoch"]), expected_document_epoch=int(row["document_epoch"]))
             replay = self._replay(con, actor=actor, action=action, operation_id=operation, request_sha256=request_sha, authorize=lambda: None)
             if replay is not None:
                 return replay
-            _require_unlocked_or_temporary(con, page, actor)
             source_sequence = int(row["source_document_sequence"])
             current_sequence = int(page["document_sequence"])
             intervening = []
@@ -544,107 +498,63 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
             content_sha = _sha256(_canonical_json(snapshot))
             con.execute("UPDATE workspace_collaboration_documents SET document_sequence=?,content_sha256=?,row_version=row_version+1,updated_at=? WHERE id=?", (next_sequence, content_sha, now, str(row["document_id"])))
             con.execute("UPDATE workspace_collaboration_upload_sessions SET state='committed',row_version=row_version+1,updated_at=?,completed_at=? WHERE id=?", (now, now, session))
-            result = {"contract": FILE_AUTHORITY_CONTRACT, "file_id": file_id, "session_id": session, "size_bytes": int(row["total_size"]), "content_sha256": str(row["expected_sha256"]), "mime_type": str(row["mime_type"]), "original_name": str(row["original_name"]), "state": "active", "document_sequence": next_sequence, "effective_role": role}
-            if scope is None:
-                result["document_id"] = str(row["document_id"])
-            else:
-                result["database_id"] = str(scope["database_id"])
+            result = {"contract": FILE_AUTHORITY_CONTRACT, "file_id": file_id, "session_id": session, "document_id": str(row["document_id"]), "size_bytes": int(row["total_size"]), "content_sha256": str(row["expected_sha256"]), "mime_type": str(row["mime_type"]), "original_name": str(row["original_name"]), "state": "active", "document_sequence": next_sequence, "effective_role": role}
             return self._finish(con, actor=actor, action=action, operation_id=operation, request_sha256=request_sha, workspace_id=str(workspace["id"]), document_id=str(row["document_id"]), workspace_epoch=int(row["workspace_epoch"]), document_epoch=int(row["document_epoch"]), document_sequence=next_sequence, event_type="file.upload.committed", event_payload=result, result=result, fault=None)
 
     def get_file(self, subject_id: str, file_id: str) -> dict[str, Any]:
         subject = self._require_active(subject_id)
         file_identity = _identifier(file_id, field="file_id")
-        from . import database_trash
-        for _attempt in range(3):
-            with self._reader() as con:
-                con.execute("BEGIN")
-                row = con.execute("SELECT * FROM workspace_collaboration_files "
-                    "WHERE id=? AND state='active'", (file_identity,)).fetchone()
-                if row is None:
-                    raise NotFoundOrDenied("not found or permission denied")
-                page = self._document(con, str(row["document_id"]))
-                workspace = self._workspace(con, str(page["workspace_id"]))
-                role, _sources = CollaborativeIAMAuthority._resolution_on_connection(
-                    con, subject, str(workspace["id"]), str(page["id"]))
-                if role is None:
-                    raise NotFoundOrDenied("not found or permission denied")
-                probe = database_trash.file_visibility_probe(self, con, page)
-            hidden_files = database_trash.hidden_file_ids_from_probe(probe)
-            with self._reader() as con:
-                con.execute("BEGIN")
-                current = con.execute("SELECT * FROM workspace_collaboration_files "
-                    "WHERE id=? AND state='active'", (file_identity,)).fetchone()
-                if current is None:
-                    raise NotFoundOrDenied("not found or permission denied")
-                page = self._document(con, str(current["document_id"]))
-                workspace = self._workspace(con, str(page["workspace_id"]))
-                role, _sources = CollaborativeIAMAuthority._resolution_on_connection(
-                    con, subject, str(workspace["id"]), str(page["id"]))
-                if role is None:
-                    raise NotFoundOrDenied("not found or permission denied")
-                if (tuple(current) != tuple(row)
-                        or not database_trash.file_visibility_unchanged(con, page, probe)):
-                    continue
-                if file_identity in hidden_files:
-                    raise NotFoundOrDenied("not found or permission denied")
-                try:
-                    path = (self.storage_root / str(current["blob_relative_path"])).resolve(strict=True)
-                    path.relative_to(self.storage_root.resolve(strict=True))
-                except (OSError, ValueError) as exc:
-                    raise AuthorityUnavailable("authorized file content is unavailable") from exc
-                return {"contract": FILE_AUTHORITY_CONTRACT, "file_id": file_identity,
-                    "document_id": str(current["document_id"]),
-                    "original_name": str(current["original_name"]),
-                    "mime_type": str(current["mime_type"]),
-                    "size_bytes": int(current["size_bytes"]),
-                    "content_sha256": str(current["content_sha256"]),
-                    "path": path, "effective_role": role}
-        raise AuthorityUnavailable("file visibility changed during read; retry")
+        with self._reader() as con:
+            row = con.execute("SELECT * FROM workspace_collaboration_files WHERE id=? AND state='active'", (file_identity,)).fetchone()
+            if row is None:
+                raise NotFoundOrDenied("not found or permission denied")
+            page = self._document(con, str(row["document_id"]))
+            workspace = self._workspace(con, str(page["workspace_id"]))
+            role, _sources = CollaborativeIAMAuthority._resolution_on_connection(
+                con, subject, str(workspace["id"]), str(page["id"])
+            )
+            if role is None:
+                raise NotFoundOrDenied("not found or permission denied")
+            try:
+                path = (self.storage_root / str(row["blob_relative_path"])).resolve(strict=True)
+                path.relative_to(self.storage_root.resolve(strict=True))
+            except (OSError, ValueError) as exc:
+                raise AuthorityUnavailable("authorized file content is unavailable") from exc
+            return {"contract": FILE_AUTHORITY_CONTRACT, "file_id": file_identity, "document_id": str(row["document_id"]), "original_name": str(row["original_name"]), "mime_type": str(row["mime_type"]), "size_bytes": int(row["size_bytes"]), "content_sha256": str(row["content_sha256"]), "path": path, "effective_role": role}
 
     def list_files(self, subject_id: str, document_id: str) -> dict[str, Any]:
         subject = self._require_active(subject_id)
         document = _identifier(document_id, field="document_id")
-        from . import database_trash
-        for _attempt in range(3):
-            with self._reader() as con:
-                con.execute("BEGIN")
-                page = self._document(con, document)
-                workspace = self._workspace(con, str(page["workspace_id"]))
-                role, _sources = CollaborativeIAMAuthority._resolution_on_connection(
-                    con, subject, str(workspace["id"]), document)
-                if role is None:
-                    raise NotFoundOrDenied("not found or permission denied")
-                probe = database_trash.file_visibility_probe(self, con, page)
-            hidden_files = database_trash.hidden_file_ids_from_probe(probe)
-            with self._reader() as con:
-                con.execute("BEGIN")
-                page = self._document(con, document)
-                workspace = self._workspace(con, str(page["workspace_id"]))
-                role, _sources = CollaborativeIAMAuthority._resolution_on_connection(
-                    con, subject, str(workspace["id"]), document)
-                if role is None:
-                    raise NotFoundOrDenied("not found or permission denied")
-                if not database_trash.file_visibility_unchanged(con, page, probe):
-                    continue
-                files = [
-                    {"id": str(row["id"]),
-                     "original_name": str(row["original_name"]),
-                     "mime_type": str(row["mime_type"]),
-                     "size_bytes": int(row["size_bytes"]),
-                     "content_sha256": str(row["content_sha256"]),
-                     "created_at": int(row["created_at"]),
-                     "row_version": int(row["row_version"])}
-                    for row in con.execute(
-                        "SELECT * FROM workspace_collaboration_files "
-                        "WHERE document_id=? AND state='active' ORDER BY created_at,id",
-                        (document,),
-                    ).fetchall()
-                    if str(row["id"]) not in hidden_files
-                ]
-                return {"contract": FILE_AUTHORITY_CONTRACT,
-                    "document_id": document, "effective_role": role,
-                    "files": files}
-        raise AuthorityUnavailable("file visibility changed during read; retry")
+        with self._reader() as con:
+            page = self._document(con, document)
+            workspace = self._workspace(con, str(page["workspace_id"]))
+            role, _sources = CollaborativeIAMAuthority._resolution_on_connection(
+                con, subject, str(workspace["id"]), document
+            )
+            if role is None:
+                raise NotFoundOrDenied("not found or permission denied")
+            files = [
+                {
+                    "id": str(row["id"]),
+                    "original_name": str(row["original_name"]),
+                    "mime_type": str(row["mime_type"]),
+                    "size_bytes": int(row["size_bytes"]),
+                    "content_sha256": str(row["content_sha256"]),
+                    "created_at": int(row["created_at"]),
+                    "row_version": int(row["row_version"]),
+                }
+                for row in con.execute(
+                    "SELECT * FROM workspace_collaboration_files "
+                    "WHERE document_id=? AND state='active' ORDER BY created_at,id",
+                    (document,),
+                ).fetchall()
+            ]
+            return {
+                "contract": FILE_AUTHORITY_CONTRACT,
+                "document_id": document,
+                "effective_role": role,
+                "files": files,
+            }
 
     def delete_file(
         self,
@@ -703,11 +613,7 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
                 expected_workspace_epoch=int(expected_workspace_epoch),
                 expected_document_epoch=int(expected_document_epoch),
             )
-            _require_unlocked_or_temporary(con, page, actor)
             if str(row["state"]) != "active":
-                raise NotFoundOrDenied("not found or permission denied")
-            from . import database_trash
-            if file_identity in database_trash.trashed_file_ids(con, str(page["id"])):
                 raise NotFoundOrDenied("not found or permission denied")
             if int(page["document_sequence"]) != int(expected_document_sequence):
                 raise DocumentSequenceConflict(int(page["document_sequence"]))
@@ -901,7 +807,7 @@ class CollaborativeFileAuthority(CollaborativeDatabaseAuthority):
             row = con.execute("SELECT * FROM workspace_collaboration_upload_sessions WHERE id=? AND actor_subject_id=?", (session, actor)).fetchone()
             if row is None:
                 raise NotFoundOrDenied("not found or permission denied")
-            workspace, _page, role, _scope = self._session_access(con, actor, row)
+            workspace, _page, role = self._exact_access(con, actor, str(row["document_id"]), minimum_role="edit_content", expected_workspace_epoch=int(row["workspace_epoch"]), expected_document_epoch=int(row["document_epoch"]))
             replay = self._replay(con, actor=actor, action=action, operation_id=operation, request_sha256=request_sha, authorize=lambda: None)
             if replay is not None:
                 stable = replay

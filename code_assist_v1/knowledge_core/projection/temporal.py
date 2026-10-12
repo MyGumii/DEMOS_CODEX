@@ -999,12 +999,14 @@ class TemporalProjectionMaterializer:
                               projection_root_identity_sha256
                          FROM projection_manifest_v2_ledger
                         WHERE space_id=? AND content_generation=?
-                          AND graph_generation=? AND temporal_generation=?""",
+                          AND graph_generation=? AND temporal_generation=?
+                          AND projection_root_identity_sha256=?""",
                     (
                         snapshot.space_id,
                         snapshot.content_generation,
                         GRAPH_GENERATION,
                         snapshot.temporal_generation,
+                        prepared.root_identity_sha256,
                     ),
                 ).fetchone()
                 if existing is None:

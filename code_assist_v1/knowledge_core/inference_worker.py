@@ -9,19 +9,46 @@ owner on the same server.
 
 from __future__ import annotations
 
+import json
+import os
 import re
+import sys
 import threading
+import time
 from dataclasses import dataclass
 from collections.abc import Callable
 from typing import Protocol
 
-from code_assist_v1.model_runtime import hold_inference_ownership
+from code_assist_v1.model_runtime import hold_inference_ownership, hold_remote_worker_ownership
 
 from .repositories.jobs import ClaimResult, RecoveryResult
 from .worker import DurableWorkKernel, JobRunResult
 
 
 _CLAIM_OWNER_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.:-]{0,199}$", re.ASCII)
+
+
+def _log_10521_job_timing(claim: ClaimResult, *, started_at_ms: int,
+                          elapsed_ms: int, state: str) -> None:
+    """Opt-in timing only: never log account IDs, paths, or document content."""
+    if os.environ.get("CODE_ASSIST_10521_JOB_TIMING_DIAGNOSTICS") != "1":
+        return
+    try:
+        print(json.dumps({
+            "event": "durable_job_timing",
+            "job_id": claim.job.id,
+            "job_type": claim.job.job_type,
+            "attempt_count": claim.job.attempt_count,
+            "started_at_ms": started_at_ms,
+            # A retried job's age also includes its earlier attempt; only a
+            # first attempt can interpret this interval as queue wait.
+            "job_age_at_start_ms": max(0, started_at_ms - claim.job.created_at_ms),
+            "elapsed_ms": elapsed_ms,
+            "result_state": state,
+        }, sort_keys=True), file=sys.stderr, flush=True)
+    except OSError:
+        # Losing optional diagnostics must not change a durable job result.
+        pass
 
 
 class DurableInferenceWorkerError(RuntimeError):
@@ -45,8 +72,14 @@ class DurableInferenceWorkerConfig:
     heartbeat_interval_ms: int = 30_000
     idle_poll_ms: int = 100
     maximum_idle_poll_ms: int = 5_000
+    ownership_mode: str = "local_gguf"
+    revalidate_poll_connection: bool = False
 
     def __post_init__(self) -> None:
+        if not isinstance(self.revalidate_poll_connection, bool):
+            raise ValueError("revalidate_poll_connection must be boolean.")
+        if self.ownership_mode not in ("local_gguf", "remote_only"):
+            raise ValueError("ownership_mode must be local_gguf or remote_only.")
         if (
             not isinstance(self.claim_owner, str)
             or _CLAIM_OWNER_RE.fullmatch(self.claim_owner) is None
@@ -184,7 +217,7 @@ class DurableInferenceWorker:
     def run_once(self) -> WorkerIterationResult:
         """Acquire central ownership and execute at most one durable job."""
 
-        with hold_inference_ownership(self._kernel.database_path):
+        with self._ownership():
             self._kernel.verify_registry_coverage()
             return self._run_once_owned()
 
@@ -211,7 +244,7 @@ class DurableInferenceWorker:
         recovered_retry = recovered_dead = recovered_cancelled = 0
         terminal: dict[str, int] = {}
         idle_delay = self._config.idle_poll_ms
-        with hold_inference_ownership(self._kernel.database_path):
+        with self._ownership():
             self._kernel.verify_registry_coverage()
             while not stop.is_set():
                 result = self._run_once_owned()
@@ -246,23 +279,51 @@ class DurableInferenceWorker:
             terminal_counts=tuple(sorted(terminal.items())),
         )
 
+    def _ownership(self):
+        if self._config.ownership_mode == "remote_only":
+            return hold_remote_worker_ownership(self._kernel.database_path)
+        return hold_inference_ownership(self._kernel.database_path)
+
     def _run_once_owned(self) -> WorkerIterationResult:
+        phase_started_ns = time.monotonic_ns()
         if self._before_poll is not None:
             # The maintenance hook is deliberately bounded and runs while the
             # process owns central inference.  It may seed/materialize durable
             # work, but it must never perform model or network work.
             self._before_poll()
-        recovery = self._kernel.recover_expired()
-        claim = self._claim_fair()
+        maintenance_ms = max(0, (time.monotonic_ns() - phase_started_ns) // 1_000_000)
+        poll_started_ns = time.monotonic_ns()
+        if self._config.revalidate_poll_connection:
+            recovery, claim = self._kernel.recover_then_claim_fair(
+                claim_owner=self._config.claim_owner, lease_ms=self._config.lease_ms)
+        else:
+            recovery = self._kernel.recover_expired()
+            claim = self._claim_fair()
+        claim_ms = max(0, (time.monotonic_ns() - poll_started_ns) // 1_000_000)
+        if (os.environ.get("CODE_ASSIST_10521_WORKER_PHASE_DIAGNOSTICS") == "1"
+                and (claim is not None or maintenance_ms > 1000 or claim_ms > 1000)):
+            print(json.dumps({
+                "event": "durable_worker_poll_timing",
+                "maintenance_ms": maintenance_ms,
+                "claim_ms": claim_ms,
+                "claimed": claim is not None,
+            }, sort_keys=True), file=sys.stderr, flush=True)
         if claim is None:
             return WorkerIterationResult(recovery, None, None, 0)
         keeper = _HeartbeatKeeper(self._kernel, claim, self._config)
         keeper.start()
         run: JobRunResult | None = None
+        started_at_ms = time.time_ns() // 1_000_000
+        started_monotonic_ns = time.monotonic_ns()
         try:
             run = self._kernel.run_claim(claim)
         finally:
             keeper.close()
+            _log_10521_job_timing(
+                claim, started_at_ms=started_at_ms,
+                elapsed_ms=max(0, (time.monotonic_ns() - started_monotonic_ns) // 1_000_000),
+                state=run.job.state if run is not None else "raised",
+            )
         if keeper.error is not None and (
             run is None
             or run.job.state not in {"succeeded", "failed", "cancelled", "dead", "retry"}

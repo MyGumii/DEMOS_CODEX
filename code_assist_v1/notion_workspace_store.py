@@ -64,29 +64,16 @@ PAGE_LIFECYCLE_EFFECT_ROLE_MASK = 63
 MIN_SIDEBAR_WIDTH_PX = 180
 MAX_SIDEBAR_WIDTH_PX = 600
 DEFAULT_SIDEBAR_WIDTH_PX = 240
-# The stored value above remains the schema's untouched-preference sentinel.
-# Show Notion's 270px initial rail until the user explicitly saves a width.
-UNCONFIGURED_SIDEBAR_WIDTH_PX = 270
-
-
-def _visible_sidebar_width(preference_version: int, stored_width: int) -> int:
-    return (
-        UNCONFIGURED_SIDEBAR_WIDTH_PX
-        if preference_version == 0
-        else int(stored_width)
-    )
 NAVIGATION_SECTIONS = (
     "favorites",
-    "private",
+    "recents",
     "teamspaces",
     "shared",
-    "recents",
+    "private",
 )
 NAVIGATION_PREFERENCES_ACTION = "workspace.navigation_preferences_updated"
 NAVIGATION_FAVORITE_ADDED_ACTION = "workspace.page_favorite_added"
 NAVIGATION_FAVORITE_REMOVED_ACTION = "workspace.page_favorite_removed"
-NAVIGATION_DATABASE_FAVORITE_ADDED_ACTION = "workspace.database_favorite_added"
-NAVIGATION_DATABASE_FAVORITE_REMOVED_ACTION = "workspace.database_favorite_removed"
 NAVIGATION_ACTIONS = frozenset({
     NAVIGATION_PREFERENCES_ACTION,
     NAVIGATION_FAVORITE_ADDED_ACTION,
@@ -7319,8 +7306,6 @@ def _normalize_navigation_operation_result(
     elif action in {
         NAVIGATION_FAVORITE_ADDED_ACTION,
         NAVIGATION_FAVORITE_REMOVED_ACTION,
-        NAVIGATION_DATABASE_FAVORITE_ADDED_ACTION,
-        NAVIGATION_DATABASE_FAVORITE_REMOVED_ACTION,
     }:
         if set(value) != {
             "workspace_id",
@@ -7337,14 +7322,10 @@ def _normalize_navigation_operation_result(
         subject_id = _subject(value["subject_id"], field="subject_id")
         changed = value["changed"]
         favorite = value["favorite"]
-        database_favorite = action in {
-            NAVIGATION_DATABASE_FAVORITE_ADDED_ACTION,
-            NAVIGATION_DATABASE_FAVORITE_REMOVED_ACTION,
-        }
-        expected_favorite_fields = {"source_owner_subject_id", "source_page_id"}
-        if database_favorite:
-            expected_favorite_fields.add("database_block_id")
-        if type(changed) is not bool or not isinstance(favorite, dict) or set(favorite) != expected_favorite_fields:
+        if type(changed) is not bool or not isinstance(favorite, dict) or set(favorite) != {
+            "source_owner_subject_id",
+            "source_page_id",
+        }:
             raise ValueError("workspace page favorite result is invalid")
         normalized = {
             "workspace_id": workspace_id,
@@ -7364,9 +7345,6 @@ def _normalize_navigation_operation_result(
                 "source_page_id": _source_page_identifier(
                     favorite["source_page_id"]
                 ),
-                **({"database_block_id": _source_page_identifier(
-                    favorite["database_block_id"]
-                )} if database_favorite else {}),
             },
         }
     else:
@@ -13742,7 +13720,7 @@ class WorkspaceStore:
             "preference_version": preference_version,
             "favorite_version": favorite_version,
             "sidebar": {
-                "width_px": _visible_sidebar_width(preference_version, sidebar_width_px),
+                "width_px": sidebar_width_px,
                 "collapsed": sidebar_collapsed,
             },
             "sections": sections,

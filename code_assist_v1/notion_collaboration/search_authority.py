@@ -19,18 +19,6 @@ from typing import Any, Iterable, Mapping, Sequence
 
 from code_assist_v1 import notion_workspace_healing_migration as migration_core
 from code_assist_v1 import notion_workspace_search_authority_migration as schema_2410
-from code_assist_v1 import notion_workspace_database_activity_migration as schema_2421
-from code_assist_v1 import notion_workspace_database_trash_migration as schema_2422
-from code_assist_v1 import notion_workspace_database_row_trash_migration as schema_2423
-from code_assist_v1 import notion_workspace_database_row_page_placement_migration as schema_2424
-from code_assist_v1 import notion_workspace_custom_emoji_migration as schema_2425
-from code_assist_v1 import notion_workspace_database_item_page_layout_migration as schema_2426
-from code_assist_v1 import notion_workspace_database_template_default_migration as schema_2427
-from code_assist_v1 import notion_icons
-from code_assist_v1 import notion_html_blocks
-from code_assist_v1 import notion_html_database
-from code_assist_v1 import notion_database_export_bundle
-from code_assist_v1 import notion_database_export_assets
 from code_assist_v1.notion_collaboration.canonical_authority import (
     AuthorityUnavailable,
     NotFoundOrDenied,
@@ -46,9 +34,6 @@ from code_assist_v1.notion_collaboration.iam_authority import (
     CollaborativeIAMAuthority,
     InMemoryIdentityDirectory,
 )
-from code_assist_v1.notion_collaboration.title_projection import read_current_titles, retry_title_projection
-from code_assist_v1.notion_collaboration.title_projection import _frames, _generation
-from code_assist_v1.notion_collaboration import search_projection, visible_text
 
 
 AUTHORITY_CONTRACT = "code_assist.notion.collaborative_search_authority.v1"
@@ -66,14 +51,23 @@ TAG_RE = re.compile(r"<[^>]+>")
 
 def _marker_current(con: sqlite3.Connection) -> bool:
     row = con.execute(
-        "SELECT version,name,checksum,actual_schema_sha256 "
-        "FROM workspace_schema_migrations ORDER BY version DESC LIMIT 1"
+        "SELECT MAX(version) FROM workspace_schema_migrations"
     ).fetchone()
-    return row is not None and tuple(row) in {
-        (migration.TARGET_VERSION, migration.TARGET_NAME,
-         migration.TARGET_CHECKSUM, migration.TARGET_ACTUAL_SCHEMA_SHA256)
-        for migration in (schema_2410, schema_2421, schema_2422, schema_2423, schema_2424, schema_2425, schema_2426, schema_2427)
-    }
+    if row is None or row[0] != schema_2410.TARGET_VERSION:
+        return False
+    marker = con.execute(
+        "SELECT name,checksum,actual_schema_sha256 FROM workspace_schema_migrations WHERE version=?",
+        (schema_2410.TARGET_VERSION,),
+    ).fetchone()
+    return bool(
+        marker is not None
+        and tuple(marker)
+        == (
+            schema_2410.TARGET_NAME,
+            schema_2410.TARGET_CHECKSUM,
+            schema_2410.TARGET_ACTUAL_SCHEMA_SHA256,
+        )
+    )
 
 
 def _text(value: Any, *, limit: int = MAX_INDEX_TEXT_CHARS) -> str:
@@ -237,8 +231,6 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
     @staticmethod
     def _projection_sha256(con: sqlite3.Connection, workspace_id: str) -> str:
         payload = {
-            "text_contract": visible_text.CONTRACT,
-            "body_contract": search_projection.CONTRACT,
             "documents": [
                 dict(row)
                 for row in con.execute(
@@ -358,65 +350,7 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
             ),
         )
 
-    def _search_source_stamp(self, con, workspace_id):
-        workspace = self._workspace(con, workspace_id)
-        state = con.execute(
-            "SELECT desired_generation FROM workspace_collaboration_search_state WHERE workspace_id=?",
-            (workspace_id,),
-        ).fetchone()
-        documents = con.execute(
-            "SELECT * FROM workspace_collaboration_documents "
-            "WHERE workspace_id=? AND archived=0 ORDER BY id", (workspace_id,),
-        ).fetchall()
-        stamp = (int(workspace["security_epoch"]), int(state[0]) if state else 0,
-                 tuple((tuple(row), _generation(con, str(row["id"]))) for row in documents))
-        return documents, stamp
-
-    def _prepare_search_projection(self, actor, workspace_id):
-        self._require_active(actor)
-        with self._reader() as con:
-            con.execute("BEGIN")
-            self._require_workspace_visibility(con, actor, workspace_id)
-            documents, stamp = self._search_source_stamp(con, workspace_id)
-            descriptors, frame_sets, frame_ids = {}, [], []
-            from . import database_trash
-            hidden_blocks = {}
-            for document in documents:
-                document_id = str(document["id"])
-                descriptors[document_id] = self._editing_snapshot(con, document)
-                hidden_blocks[document_id] = {block_id for _, block_id in
-                    database_trash.document_members(con, document_id)}
-                frames = _frames(con, document_id, _generation(con, document_id))
-                if frames:
-                    frame_ids.append(document_id)
-                    frame_sets.append(frames)
-        # Replay may run Node.js; no database transaction is held here.
-        for document_id, current in zip(frame_ids, search_projection.materialize(frame_sets)):
-            if current["title"] is not None:
-                descriptors[document_id]["title"] = current["title"]
-            if current["blocks"] is not None:
-                descriptors[document_id]["blocks"] = [block for block in current["blocks"]
-                    if block.get("id") not in hidden_blocks[document_id]]
-        return {"stamp": stamp, "descriptors": descriptors}
-
-    def _refresh_search_index(self, actor, workspace_id, *, force=False):
-        for _attempt in range(3):
-            prepared = self._prepare_search_projection(actor, workspace_id)
-            self._require_active(actor)
-            try:
-                with self._transaction() as con:
-                    self._require_workspace_visibility(con, actor, workspace_id)
-                    if not force and not self._state_needs_rebuild(con, workspace_id):
-                        return self._state_descriptor(con, workspace_id)
-                    return self._rebuild_workspace(con, workspace_id, prepared)
-            except search_projection.SearchProjectionChanged:
-                continue
-        raise AuthorityUnavailable("document changed while rebuilding search; retry")
-
-    def _rebuild_workspace(self, con: sqlite3.Connection, workspace_id: str, prepared) -> dict[str, Any]:
-        documents, stamp = self._search_source_stamp(con, workspace_id)
-        if stamp != prepared["stamp"]:
-            raise search_projection.SearchProjectionChanged()
+    def _rebuild_workspace(self, con: sqlite3.Connection, workspace_id: str) -> dict[str, Any]:
         state = con.execute(
             "SELECT desired_generation FROM workspace_collaboration_search_state WHERE workspace_id=?",
             (workspace_id,),
@@ -429,6 +363,11 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
             desired_generation = 1
         else:
             desired_generation = int(state["desired_generation"])
+        documents = con.execute(
+            "SELECT * FROM workspace_collaboration_documents "
+            "WHERE workspace_id=? AND archived=0 ORDER BY id",
+            (workspace_id,),
+        ).fetchall()
         con.execute(
             "DELETE FROM workspace_collaboration_search_reminders WHERE workspace_id=?",
             (workspace_id,),
@@ -442,12 +381,18 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
             (workspace_id,),
         )
         now = int(time.time())
-        descriptors = prepared["descriptors"]
+        descriptors: dict[str, dict[str, Any]] = {}
         for document in documents:
             document_id = str(document["id"])
-            descriptor = descriptors[document_id]
-            body = visible_text.document_text(descriptor, limit=MAX_INDEX_TEXT_CHARS)
-            title = str(descriptor.get("title", document["title"]))
+            descriptor = self._editing_snapshot(con, document)
+            descriptors[document_id] = descriptor
+            body = _text(
+                {
+                    "blocks": descriptor.get("blocks", []),
+                    "databases": descriptor.get("databases", []),
+                }
+            )
+            title = str(descriptor.get("title") or document["title"])
             con.execute(
                 "INSERT INTO workspace_collaboration_search_documents("
                 "document_id,workspace_id,legacy_owner_subject_id,revision,document_sequence,"
@@ -480,7 +425,7 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
                 content = str(block.get("content") or "")
                 props = block.get("props") if isinstance(block.get("props"), Mapping) else {}
                 props_json = _canonical_json(props)
-                context = _snippet(visible_text.block_text(block, limit=500), (), limit=500)
+                context = _snippet(_text({"content": content, "props": props}), (), limit=500)
                 for target_id in target_ids:
                     if (
                         target_id != source_id
@@ -505,7 +450,7 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
                         )
                 parser = _ReminderParser()
                 try:
-                    parser.feed(str(props.get("rich_text_html") or content))
+                    parser.feed(content)
                 except (ValueError, RecursionError):
                     parser.items = []
                 for index, item in enumerate(parser.items):
@@ -535,102 +480,6 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
                         lead=reminder.get("lead"),
                         supplied_id=reminder.get("id"),
                         message=context,
-                        revision=source_revision,
-                        indexed_at=now,
-                    )
-            from . import database_row_trash, database_row_page_placement, database_trash
-            trash_filter = ("AND NOT EXISTS (SELECT 1 FROM "
-                "workspace_collaboration_database_trash_state t "
-                "WHERE t.database_id=database.id) "
-                if database_trash.installed(con) else "")
-            row_trash_filter = ("AND NOT EXISTS (SELECT 1 FROM "
-                "workspace_collaboration_database_row_trash_state rt "
-                "WHERE rt.database_id=database.id AND rt.row_id=row_item.id) "
-                if database_row_trash.installed(con) else "")
-            page_placement_filter = ("AND NOT EXISTS (SELECT 1 FROM "
-                "workspace_collaboration_database_row_page_placements placement "
-                "WHERE placement.row_id=row_item.id AND placement.placement='page') "
-                if database_row_page_placement.installed(con) else "")
-            for cell in con.execute(
-                "SELECT database.id AS database_id,database.title AS database_title,"
-                "row_item.id AS row_id,property.id AS property_id,property.name AS property_name,"
-                "value.value_json "
-                "FROM workspace_collaboration_databases database "
-                "JOIN workspace_collaboration_database_rows row_item ON row_item.database_id=database.id "
-                "JOIN workspace_collaboration_database_properties property "
-                "ON property.database_id=database.id AND property.property_type='date' "
-                "JOIN workspace_collaboration_database_cells value "
-                "ON value.row_id=row_item.id AND value.property_id=property.id "
-                "WHERE database.document_id=? " + trash_filter + row_trash_filter
-                + page_placement_filter +
-                "ORDER BY database.id,row_item.id,property.id",
-                (source_id,),
-            ).fetchall():
-                try:
-                    date_value = json.loads(str(cell["value_json"]))
-                except (TypeError, ValueError):
-                    continue
-                reminder = date_value.get("reminder") if isinstance(date_value, Mapping) else None
-                if not isinstance(reminder, Mapping):
-                    continue
-                self._insert_reminder(
-                    con,
-                    workspace_id=workspace_id,
-                    document_id=source_id,
-                    block_id=str(cell["database_id"]),
-                    source_locator=f"database:{cell['row_id']}:{cell['property_id']}",
-                    recipient=reminder.get("user_id"),
-                    remind_at=reminder.get("at"),
-                    lead=reminder.get("lead"),
-                    supplied_id=None,
-                    message=f"{cell['database_title']} · {cell['property_name']}",
-                    revision=source_revision,
-                    indexed_at=now,
-                )
-            if database_row_page_placement.installed(con):
-                # A row placed as an ordinary page keeps its canonical date
-                # cell, even though that property is hidden from the page UI.
-                # Route its reminder to the live page identity, not the old DB.
-                for cell in con.execute(
-                    "SELECT property.id AS property_id,"
-                    "property.name AS property_name,value.value_json "
-                    "FROM workspace_collaboration_database_row_page_placements placement "
-                    "JOIN workspace_collaboration_database_rows row_item "
-                    "ON row_item.id=placement.row_id "
-                    "JOIN workspace_collaboration_databases database "
-                    "ON database.id=row_item.database_id "
-                    "JOIN workspace_collaboration_documents database_document "
-                    "ON database_document.id=database.document_id "
-                    "JOIN workspace_collaboration_database_properties property "
-                    "ON property.database_id=row_item.database_id "
-                    "AND property.property_type='date' "
-                    "JOIN workspace_collaboration_database_cells value "
-                    "ON value.row_id=row_item.id AND value.property_id=property.id "
-                    "WHERE placement.page_document_id=? "
-                    "AND placement.placement='page' "
-                    "AND database_document.workspace_id=? "
-                    "ORDER BY property.id",
-                    (source_id, workspace_id),
-                ).fetchall():
-                    try:
-                        date_value = json.loads(str(cell["value_json"]))
-                    except (TypeError, ValueError):
-                        continue
-                    reminder = (date_value.get("reminder")
-                                if isinstance(date_value, Mapping) else None)
-                    if not isinstance(reminder, Mapping):
-                        continue
-                    self._insert_reminder(
-                        con,
-                        workspace_id=workspace_id,
-                        document_id=source_id,
-                        block_id=source_id,
-                        source_locator=f"database:{source_id}:{cell['property_id']}",
-                        recipient=reminder.get("user_id"),
-                        remind_at=reminder.get("at"),
-                        lead=reminder.get("lead"),
-                        supplied_id=None,
-                        message=f"{descriptor.get('title', '')} · {cell['property_name']}",
                         revision=source_revision,
                         indexed_at=now,
                     )
@@ -675,6 +524,27 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
             "converged": True,
         }
 
+    def _converge(self, con: sqlite3.Connection, workspace_id: str) -> dict[str, Any]:
+        self._workspace(con, workspace_id)
+        if self._state_needs_rebuild(con, workspace_id):
+            return self._rebuild_workspace(con, workspace_id)
+        row = con.execute(
+            "SELECT * FROM workspace_collaboration_search_state WHERE workspace_id=?",
+            (workspace_id,),
+        ).fetchone()
+        assert row is not None
+        return {
+            "workspace_id": workspace_id,
+            "desired_generation": int(row["desired_generation"]),
+            "built_generation": int(row["built_generation"]),
+            "source_document_count": int(row["source_document_count"]),
+            "indexed_document_count": int(row["indexed_document_count"]),
+            "backlink_count": int(row["backlink_count"]),
+            "reminder_count": int(row["reminder_count"]),
+            "projection_sha256": str(row["last_rebuild_sha256"]),
+            "converged": True,
+        }
+
     @staticmethod
     def _state_descriptor(con: sqlite3.Connection, workspace_id: str) -> dict[str, Any]:
         row = con.execute(
@@ -712,15 +582,35 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
             finally:
                 con.close()
             if needs_rebuild:
-                self._refresh_search_index(actor_subject_id, workspace_id)
+                with self._transaction() as writable:
+                    self._require_workspace_visibility(
+                        writable, actor_subject_id, workspace_id
+                    )
+                    self._converge(writable, workspace_id)
         raise AuthorityUnavailable("collaborative search index did not converge")
 
     def rebuild_search_index(self, actor_subject_id: str, workspace_id: str) -> dict[str, Any]:
         actor = self._require_active(actor_subject_id)
         workspace = _identifier(workspace_id, field="workspace_id")
-        return self._refresh_search_index(actor, workspace, force=True)
+        with self._transaction() as con:
+            self._workspace(con, workspace)
+            visible = any(
+                self._resolution_on_connection(con, actor, workspace, str(row["id"]))[0]
+                is not None
+                for row in con.execute(
+                    "SELECT id FROM workspace_collaboration_documents WHERE workspace_id=?",
+                    (workspace,),
+                ).fetchall()
+            )
+            membership = con.execute(
+                "SELECT 1 FROM workspace_memberships WHERE workspace_id=? AND subject_id=? "
+                "AND revoked_at IS NULL",
+                (workspace, actor),
+            ).fetchone()
+            if not visible and membership is None:
+                raise NotFoundOrDenied("not found or permission denied")
+            return self._rebuild_workspace(con, workspace)
 
-    @retry_title_projection
     def search(
         self,
         actor_subject_id: str,
@@ -776,6 +666,11 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
                     continue
                 if int(date_after or 0) and int(row["source_updated_at"]) < int(date_after):
                     continue
+                title_folded = str(row["title"]).casefold()
+                haystack = title_folded if title_only else str(row["search_text"])
+                if terms and not all(term in haystack for term in terms):
+                    continue
+                score = sum(4 if term in title_folded else 1 for term in terms)
                 candidates.append(
                     {
                         "id": document_id,
@@ -793,100 +688,30 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
                         "workspace_epoch": int(workspace_row["security_epoch"]),
                         "content_sha256": str(row["content_sha256"]),
                         "updated_at": int(row["source_updated_at"]),
-                        # Older index rows use the initial title as an empty-body
-                        # snippet. Do not turn that fallback into searchable body.
-                        "_body_text": "" if str(row["search_text"]) == str(row["title"]).casefold() + "\n"
-                                      else str(row["body_text"]),
+                        "score": score,
                     }
                 )
-        # Decode after closing the index read snapshot, and before title matching,
-        # ranking or pagination. Otherwise renamed pages disappear from search.
-        titles = read_current_titles(self, actor, workspace, candidates)
-        matched = []
-        for item in candidates:
-            if item["id"] not in titles:
-                continue
-            item.update(titles[item["id"]])
-            title_folded = item["title"].casefold()
-            body = item.pop("_body_text")
-            item["snippet"] = _snippet(body or item["title"], terms)
-            haystack = title_folded if title_only else title_folded + "\n" + body.casefold()
-            if terms and not all(term in haystack for term in terms):
-                continue
-            item["score"] = sum(4 if term in title_folded else 1 for term in terms)
-            matched.append(item)
-        if clean_sort == "title":
-            matched.sort(key=lambda item: (item["title"].casefold(), item["id"]))
-        elif clean_sort == "oldest":
-            matched.sort(key=lambda item: (item["updated_at"], item["id"]))
-        elif clean_sort == "recent":
-            matched.sort(key=lambda item: (-item["updated_at"], item["id"]))
-        else:
-            matched.sort(key=lambda item: (-item["score"], -item["updated_at"], item["id"]))
-        return {
-            "contract": AUTHORITY_CONTRACT,
-            "workspace_id": workspace,
-            "workspace_epoch": int(workspace_row["security_epoch"]),
-            "query": clean_query,
-            "items": matched[:requested_limit],
-            "count": min(len(matched), requested_limit),
-            "has_more": len(matched) > requested_limit,
-            "index": state,
-            "cache_policy": "no_store_reauthorize_every_request",
-        }
-
-    @retry_title_projection
-    def list_meetings(
-        self, actor_subject_id: str, workspace_id: str, *,
-        query: str = "", limit: int = 100, offset: int = 0,
-    ) -> dict[str, Any]:
-        """Read authorized note metadata with the current collaborative title."""
-        actor = self._require_active(actor_subject_id)
-        workspace = _identifier(workspace_id, field="workspace_id")
-        folded = str(query or "").strip().casefold()
-        if len(folded) > MAX_QUERY_CHARS:
-            raise ValueError("meeting query is too long")
-        con = self._connect(query_only=True)
-        try:
-            con.execute("BEGIN")
-            workspace_row = self._require_workspace_visibility(con, actor, workspace)
-            rows = con.execute(
-                "SELECT d.*,COUNT(b.id) AS note_count,"
-                "(SELECT first.id FROM workspace_collaboration_blocks first "
-                "WHERE first.document_id=d.id AND first.block_type='ai_notes' "
-                "ORDER BY first.position,first.id LIMIT 1) AS first_note_id "
-                "FROM workspace_collaboration_documents d "
-                "JOIN workspace_collaboration_blocks b ON b.document_id=d.id AND b.block_type='ai_notes' "
-                "WHERE d.workspace_id=? AND d.archived=0 GROUP BY d.id ORDER BY d.updated_at DESC,d.id",
-                (workspace,),
-            ).fetchall()
-            items = []
-            for row in rows:
-                role, _sources = self._resolution_on_connection(con, actor, workspace, str(row["id"]))
-                if role is None:
-                    continue
-                items.append({
-                    "id": str(row["id"]), "workspace_id": workspace,
-                    "title": str(row["title"]), "icon": str(row["icon"]),
-                    "owner_user_id": str(row["legacy_owner_subject_id"]),
-                    "updated_at": int(row["updated_at"]), "iam_role": role,
-                    "document_sequence": int(row["document_sequence"]),
-                    "document_epoch": int(row["access_epoch"]),
-                    "workspace_epoch": int(workspace_row["security_epoch"]),
-                    "note_count": int(row["note_count"]), "block_id": str(row["first_note_id"]),
-                })
-        finally:
-            con.close()
-        titles = read_current_titles(self, actor, workspace, items)
-        items = [{**item, **titles[item["id"]]} for item in items
-                 if item["id"] in titles and (not folded or folded in titles[item["id"]]["title"].casefold())]
-        size, skip = max(1, min(100, int(limit))), max(0, int(offset))
-        return {
-            "items": items[skip:skip + size], "count": len(items),
-            "has_more": skip + size < len(items), "offset": skip,
-            "workspace_id": workspace, "workspace_epoch": int(workspace_row["security_epoch"]),
-            "cache_policy": "no_store_reauthorize_every_request",
-        }
+            if clean_sort == "title":
+                candidates.sort(key=lambda item: (item["title"].casefold(), item["id"]))
+            elif clean_sort == "oldest":
+                candidates.sort(key=lambda item: (item["updated_at"], item["id"]))
+            elif clean_sort == "recent":
+                candidates.sort(key=lambda item: (-item["updated_at"], item["id"]))
+            else:
+                candidates.sort(
+                    key=lambda item: (-item["score"], -item["updated_at"], item["id"])
+                )
+            return {
+                "contract": AUTHORITY_CONTRACT,
+                "workspace_id": workspace,
+                "workspace_epoch": int(workspace_row["security_epoch"]),
+                "query": clean_query,
+                "items": candidates[:requested_limit],
+                "count": min(len(candidates), requested_limit),
+                "has_more": len(candidates) > requested_limit,
+                "index": state,
+                "cache_policy": "no_store_reauthorize_every_request",
+            }
 
     def list_backlinks(
         self, actor_subject_id: str, workspace_id: str, document_id: str
@@ -1307,257 +1132,62 @@ class CollaborativeSearchAuthority(CollaborativeHistoryAuthority):
             parent_document_id=parent_document_id,
         )
 
-    def _html_export_view(self, actor_subject_id: str, document_id: str):
-        actor = self._require_active(actor_subject_id)
-        document = _identifier(document_id, field="document_id")
-        for _attempt in range(3):
-            bundle = self.export_bundle(actor, document)
-            with self._reader() as con:
-                con.execute("BEGIN")
-                workspace, page, _role = self._access(con, actor, document, minimum_role="view")
-                generation = _generation(con, document)
-                stamp = (tuple(workspace), tuple(page), generation)
-                if (int(page["document_sequence"]), int(page["access_epoch"]), int(workspace["security_epoch"])) != (
-                    bundle["source_document_sequence"], bundle["source_document_epoch"], bundle["source_workspace_epoch"]
-                ):
-                    continue
-                frames = _frames(con, document, generation)
-            # The transfer bundle remains an immutable structural snapshot. The HTML
-            # view follows current durable Yjs edits without rewriting that snapshot.
-            snapshot = dict(bundle["snapshot"])
-            if frames:
-                current = search_projection.materialize([frames])[0]
-                for key in ("title", "blocks"):
-                    if current[key] is not None:
-                        snapshot[key] = current[key]
-            def resolve_custom_emoji(emoji_id):
-                with self._reader() as emoji_con:
-                    emoji_con.execute("BEGIN")
-                    icon_workspace, _icon_page, _icon_role = self._access(
-                        emoji_con, actor, document, minimum_role="view")
-                    row = emoji_con.execute(
-                        "SELECT image_bytes,mime_type,size_bytes,content_sha256 "
-                        "FROM workspace_custom_emojis WHERE id=? AND workspace_id=?",
-                        (emoji_id, icon_workspace["id"]),
-                    ).fetchone()
-                    if row is None or len(row["image_bytes"]) != row["size_bytes"]:
-                        raise FileNotFoundError("workspace custom emoji not found")
-                    return {"raw": bytes(row["image_bytes"]), "mime_type": row["mime_type"],
-                            "content_sha256": row["content_sha256"]}
-
-            icon = notion_icons.export_icon_html(snapshot.get("icon"), page_id=document,
-                resolve_file=lambda file_id: self.get_file(actor, file_id),
-                resolve_custom_emoji=resolve_custom_emoji)
-            self._require_active(actor)
-            with self._reader() as con:
-                con.execute("BEGIN")
-                workspace, page, _role = self._access(con, actor, document, minimum_role="view")
-                if stamp != (tuple(workspace), tuple(page), _generation(con, document)):
-                    continue
-            return bundle, snapshot, icon
-        raise AuthorityUnavailable("document changed while exporting HTML; retry")
-
     def export_html(self, actor_subject_id: str, document_id: str) -> dict[str, Any]:
-        from . import html_database_export
-        for _attempt in range(3):
-            bundle, snapshot, icon = self._html_export_view(actor_subject_id, document_id)
-            try:
-                models, witnesses = html_database_export.prepare(self, actor_subject_id, bundle, snapshot)
-                result = self._export_html_document(bundle, snapshot, icon, models)
-                html_database_export.verify(self, actor_subject_id, witnesses)
-            except html_database_export.HtmlExportChanged:
-                continue
-            return result
-        raise AuthorityUnavailable("export sources changed while rendering HTML; retry")
-
-    @staticmethod
-    def _database_export_view(block, model, requested_view, *, canonical):
-        if requested_view is None:
-            return {}, "table"
-        props = block.get("props") if isinstance(block.get("props"), Mapping) else {}
-        views = model["database"].get("views", []) if canonical else props.get("views", [])
-        views = views if isinstance(views, list) else []
-        view = next((item for item in views
-            if isinstance(item, Mapping) and str(item.get("id") or "") == requested_view
-            and item.get("state") != "archived"), None)
-        if view is not None:
-            config = view.get("config", {}) if canonical else view.get("config", view)
-            kind = str(view.get("type") or "table")
-        elif canonical and props.get("linked_database") and props.get("active_view_id") == requested_view:
-            config = model.get("config", {})
-            kind = str(model.get("type") or "table")
-        else:
-            raise NotFoundOrDenied("not found or permission denied")
-        return (config if isinstance(config, Mapping) else {}), kind
-
-    def export_database_html(
-        self, actor_subject_id: str, document_id: str, *, block_id: str,
-        view_id: str | None = None, include_media: bool = True,
-        with_asset_bundle: bool = False,
-    ) -> dict[str, Any]:
-        from . import html_database_export
-
-        requested_view = _identifier(view_id, field="view_id") if view_id is not None else None
-        for _attempt in range(3):
-            archive = None
-            bundle, snapshot, _icon = self._html_export_view(actor_subject_id, document_id)
-            block = next((item for item in snapshot.get("blocks", [])
-                if isinstance(item, Mapping) and str(item.get("id") or "") == str(block_id or "")
-                and str(item.get("type") or "") in html_database_export.DATABASE_TYPES), None)
-            if block is None:
-                raise NotFoundOrDenied("not found or permission denied")
-            try:
-                models, witnesses = html_database_export.prepare(self, actor_subject_id, bundle, snapshot)
-                model = models.get(str(block_id))
-                if model and not model.get("unavailable"):
-                    canonical = True
-                else:
-                    props = block.get("props") if isinstance(block.get("props"), Mapping) else {}
-                    if props.get("linked_database") or props.get("database_id") or props.get("_canonical_version"):
-                        raise NotFoundOrDenied("not found or permission denied")
-                    raw_properties = props.get("properties") if isinstance(props.get("properties"), list) else []
-                    raw_rows = props.get("rows") if isinstance(props.get("rows"), list) else []
-                    properties = [item for item in raw_properties
-                        if isinstance(item, Mapping) and item.get("id")]
-                    rows = [{"id": str(row.get("id") or ""), "cells": {
-                        str(prop["id"]): row.get(str(prop["id"])) for prop in properties}}
-                        for row in raw_rows if isinstance(row, Mapping) and not row.get("archived")]
-                    model = {"database": {"title": block.get("content") or "Database",
-                        "properties": properties, "rows": rows}, "type": "table", "config": {}}
-                    canonical = False
-                config, kind = self._database_export_view(block, model, requested_view, canonical=canonical)
-                rendered_model = {**model, "config": config, "type": kind,
-                    "include_media": include_media}
-                manifest = notion_database_export_assets.authorized_manifest(
-                    self, actor_subject_id, rendered_model) if with_asset_bundle and include_media else ()
-                if manifest:
-                    rendered_model["asset_paths"] = {
-                        item["file_id"]: item["zip_path"] for item in manifest}
-                title = str(model["database"].get("title") or block.get("content") or "Database")
-                result = self._export_html_document(bundle,
-                    {"title": title, "icon": "", "blocks": [block]}, "", {str(block_id): rendered_model})
-                result["title"] = title
-                result["csv"] = notion_database_export_bundle.database_csv(
-                    rendered_model, current_view=requested_view is not None)
-                result["all_csv"] = notion_database_export_bundle.database_csv(
-                    rendered_model, current_view=False)
-                if with_asset_bundle:
-                    archive = notion_database_export_bundle.html_archive_with_assets(
-                        title, result["html"], result["csv"], identity=str(block_id),
-                        assets=manifest)
-                html_database_export.verify(self, actor_subject_id, witnesses)
-                if manifest:
-                    notion_database_export_assets.verify_manifest(self, actor_subject_id, manifest)
-            except html_database_export.HtmlExportChanged:
-                if archive is not None:
-                    archive.close()
-                continue
-            except notion_database_export_bundle.ExportAttachmentChanged as exc:
-                if archive is not None:
-                    archive.close()
-                raise AuthorityUnavailable("exported attachment changed during download; retry") from exc
-            except Exception:
-                if archive is not None:
-                    archive.close()
-                raise
-            if archive is not None:
-                result["archive"] = archive
-            return result
-        raise AuthorityUnavailable("export sources changed while rendering database HTML; retry")
-
-    @staticmethod
-    def _export_html_document(bundle, snapshot, icon, models):
-        def special(block):
-            model = models.get(str(block.get('id')))
-            return notion_html_database.render(model) if model is not None else f'<p>{notion_html_blocks.rich(block)}</p>'
-        sections = notion_html_blocks.render(snapshot.get("blocks", []), render_fallback=special)
-        title = escape(str(snapshot.get("title") or "Untitled"))
-        icon_section = f'<div class="page-icon">{icon}</div>' if icon else ''
-        credit = notion_icons.icon_attribution_html(snapshot.get("icon"))
+        bundle = self.export_bundle(actor_subject_id, document_id)
+        snapshot = bundle["snapshot"]
+        sections = "".join(
+            f"<section data-block-type=\"{escape(str(block.get('type') or 'paragraph'))}\">"
+            f"{escape(_text(block.get('content', ''), limit=100_000))}</section>"
+            for block in snapshot.get("blocks", [])
+            if isinstance(block, Mapping)
+        )
         return {
             "bundle": bundle,
-            "html": '<!doctype html><html lang="ko"><head><meta charset="utf-8">'
-            + '<meta name="viewport" content="width=device-width,initial-scale=1">'
-            + f'<title>{title}</title><style>'
-            + 'body{margin:0;color:#37352f;background:#fff;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif}'
-            + 'main{width:min(760px,calc(100% - 48px));margin:72px auto 120px}'
-            + 'h1{font-size:42px;line-height:1.18;margin:0 0 28px;overflow-wrap:anywhere}'
-            + '.page-icon{font-size:72px;line-height:1;margin-bottom:14px}.page-icon img{display:block;max-width:100%}'
-            + 'section{white-space:pre-wrap;overflow-wrap:anywhere;margin:8px 0}'
-            + '.icon-credit{display:block;font-size:11px;color:#787774;margin-top:44px}.icon-credit a{color:inherit}'
-            + notion_html_blocks.CSS
-            + notion_html_database.CSS
-            + f'</style></head><body><main>{icon_section}<h1>{title}</h1>{sections}{credit}</main>'
-            + f'<script>{notion_html_blocks.TAB_SCRIPT}</script></body></html>',
+            "html": "<!doctype html><meta charset=\"utf-8\"><title>"
+            + escape(str(snapshot.get("title") or "Untitled"))
+            + "</title><main><h1>"
+            + escape(str(snapshot.get("title") or "Untitled"))
+            + "</h1>"
+            + sections
+            + "</main>",
         }
 
     def export_csv(
-        self, actor_subject_id: str, document_id: str, *, block_id: str,
-        view_id: str | None = None,
+        self, actor_subject_id: str, document_id: str, *, block_id: str
     ) -> dict[str, Any]:
-        from . import html_database_export
-
-        requested_view = _identifier(view_id, field="view_id") if view_id is not None else None
-        for _attempt in range(3):
-            bundle, snapshot, _icon = self._html_export_view(actor_subject_id, document_id)
-            block = next((item for item in snapshot.get("blocks", [])
-                if isinstance(item, Mapping) and str(item.get("id") or "") == str(block_id or "")
-                and str(item.get("type") or "") in html_database_export.DATABASE_TYPES), None)
-            if block is None:
-                raise NotFoundOrDenied("not found or permission denied")
-            try:
-                models, witnesses = html_database_export.prepare(self, actor_subject_id, bundle, snapshot)
-                model = models.get(str(block_id))
-                if model and not model.get("unavailable"):
-                    database = model["database"]
-                    properties = database["properties"]
-                    rows = database["rows"]
-                    relation_labels = database.get("relation_labels", {})
-                    canonical = True
-                else:
-                    props = block.get("props") if isinstance(block.get("props"), Mapping) else {}
-                    # The old transfer format can contain an unadopted inline
-                    # table. Never fall back to a cache for a canonical/linked DB.
-                    if props.get("linked_database") or props.get("database_id") or props.get("_canonical_version"):
-                        raise NotFoundOrDenied("not found or permission denied")
-                    raw_properties = props.get("properties") if isinstance(props.get("properties"), list) else []
-                    raw_rows = props.get("rows") if isinstance(props.get("rows"), list) else []
-                    properties = [item for item in raw_properties
-                        if isinstance(item, Mapping) and item.get("id")]
-                    rows = [item for item in raw_rows if isinstance(item, Mapping)]
-                    relation_labels = {}
-                    canonical = False
-
-                if requested_view is not None:
-                    config, _kind = self._database_export_view(block,
-                        model if canonical else {"database": {}}, requested_view, canonical=canonical)
-                    properties = notion_html_database.visible_properties(properties, config)
-                    source_rows = rows if canonical else [{"cells": row} for row in rows]
-                    rows = notion_html_database.visible_rows(source_rows, config)
-                    canonical = True
-
-                output = io.StringIO(newline="")
-                writer = csv.writer(output, lineterminator="\n")
-                writer.writerow([str(item.get("name") or item["id"]) for item in properties])
-                for row in rows:
-                    cells = row.get("cells", {}) if canonical else row
-                    computed = row.get("computed", {}) if canonical else {}
-                    values = {**cells, **computed}
-                    fields = []
-                    for prop in properties:
-                        prop_id = str(prop["id"])
-                        value = values.get(prop_id)
-                        labels = relation_labels.get(prop_id, {})
-                        if prop.get("type") == "relation" and isinstance(value, list) and labels:
-                            fields.append(", ".join(labels.get(str(identity), "연결된 페이지") for identity in value))
-                        else:
-                            fields.append(notion_html_database.display(value))
-                    writer.writerow(fields)
-                html_database_export.verify(self, actor_subject_id, witnesses)
-            except html_database_export.HtmlExportChanged:
-                continue
-            return {"bundle": bundle, "csv": "\ufeff" + output.getvalue()}
-        raise AuthorityUnavailable("export sources changed while rendering CSV; retry")
+        bundle = self.export_bundle(actor_subject_id, document_id)
+        blocks = bundle["snapshot"].get("blocks", [])
+        block = next(
+            (
+                item
+                for item in blocks
+                if isinstance(item, Mapping)
+                and str(item.get("id") or "") == str(block_id or "")
+            ),
+            None,
+        )
+        if block is None:
+            raise NotFoundOrDenied("not found or permission denied")
+        props = block.get("props") if isinstance(block.get("props"), Mapping) else {}
+        properties = [
+            item
+            for item in props.get("properties", [])
+            if isinstance(item, Mapping) and item.get("id")
+        ]
+        rows = [item for item in props.get("rows", []) if isinstance(item, Mapping)]
+        output = io.StringIO(newline="")
+        writer = csv.writer(output, lineterminator="\n")
+        writer.writerow([str(item.get("name") or item["id"]) for item in properties])
+        for row in rows:
+            writer.writerow(
+                [
+                    _canonical_json(row.get(str(item["id"])))
+                    if isinstance(row.get(str(item["id"])), (dict, list))
+                    else str(row.get(str(item["id"])) or "")
+                    for item in properties
+                ]
+            )
+        return {"bundle": bundle, "csv": "\ufeff" + output.getvalue()}
 
 
 __all__ = [

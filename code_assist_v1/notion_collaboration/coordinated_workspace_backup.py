@@ -28,13 +28,6 @@ from typing import Any, Iterable, Mapping, Sequence
 from uuid import UUID, uuid5
 
 from code_assist_v1 import notion_workspace_search_authority_migration as search_migration
-from code_assist_v1 import notion_workspace_database_activity_migration as database_activity_migration
-from code_assist_v1 import notion_workspace_database_trash_migration as database_trash_migration
-from code_assist_v1 import notion_workspace_database_row_trash_migration as database_row_trash_migration
-from code_assist_v1 import notion_workspace_database_row_page_placement_migration as database_row_page_placement_migration
-from code_assist_v1 import notion_workspace_custom_emoji_migration as custom_emoji_migration
-from code_assist_v1 import notion_workspace_database_item_page_layout_migration as item_layout_migration
-from code_assist_v1 import notion_workspace_database_template_default_migration as template_default_migration
 from code_assist_v1 import notion_workspace_store as workspace_store
 from code_assist_v1.knowledge_core.backup_manifest import (
     BACKUP_SNAPSHOT_RELATIVE_PATH,
@@ -442,16 +435,13 @@ def _notion_observation(path: Path) -> dict[str, Any]:
             "SELECT version,name,checksum,actual_schema_sha256 "
             "FROM workspace_schema_migrations ORDER BY version DESC LIMIT 1"
         ).fetchone()
-        supported_markers = {
-            (migration.TARGET_VERSION, migration.TARGET_NAME,
-             migration.TARGET_CHECKSUM, migration.TARGET_ACTUAL_SCHEMA_SHA256)
-            for migration in (search_migration, database_activity_migration,
-                              database_trash_migration, database_row_trash_migration,
-                              database_row_page_placement_migration, custom_emoji_migration,
-                              item_layout_migration, template_default_migration)
-        }
-        if marker is None or tuple(marker) not in supported_markers:
-            raise LocalGenerationIntegrityError("Notion snapshot schema is not a supported exact marker")
+        if marker is None or tuple(marker) != (
+            search_migration.TARGET_VERSION,
+            search_migration.TARGET_NAME,
+            search_migration.TARGET_CHECKSUM,
+            search_migration.TARGET_ACTUAL_SCHEMA_SHA256,
+        ):
+            raise LocalGenerationIntegrityError("Notion snapshot schema is not 2026082410")
         tables = {
             str(row[0])
             for row in connection.execute(

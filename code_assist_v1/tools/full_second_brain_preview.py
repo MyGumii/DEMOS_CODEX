@@ -278,10 +278,22 @@ def _default_data_root() -> Path:
     return base / "CodeAssist" / "previews" / "second-brain-10111-sbe7-v2"
 
 
-def _configure_environment(root: Path, *, port: int, codex: bool) -> None:
+def _configure_environment(root: Path, *, port: int, codex: bool,
+                           api_config_path: Path | None = None) -> None:
     if not root.is_absolute() or not 1 <= port <= 65535:
         raise FullPreviewError("The preview root or port is invalid.")
+    registry = root / ".runtime" / "api_config.json"
+    if api_config_path is not None:
+        active = root / ".runtime" / "api_config_active.json"
+        if api_config_path != active or not active.is_file():
+            raise FullPreviewError("The active API registry is not the bound runtime file.")
+        registry = active
     origins = f"http://localhost:{port},http://127.0.0.1:{port}"
+    listener_promotion = os.environ.get("CODE_ASSIST_LISTENER_PROMOTION_PORT")
+    if listener_promotion:
+        if listener_promotion != "10521" or port != 10541:
+            raise FullPreviewError("Only the explicit restored A10541 listener promotion is permitted.")
+        origins = "http://localhost:10521,http://127.0.0.1:10521"
     values = {
         "CODE_ASSIST_TEST_MODE": "1",
         "CODE_ASSIST_TEST_DATA_ROOT": os.fspath(root),
@@ -289,12 +301,13 @@ def _configure_environment(root: Path, *, port: int, codex: bool) -> None:
         "CODE_ASSIST_STANDALONE": "1",
         "CODE_ASSIST_PROCESS_ROLE": "development",
         "CODE_ASSIST_PORT": str(port),
-        "CODE_ASSIST_API_CONFIG": os.fspath(root / ".runtime" / "api_config.json"),
+        "CODE_ASSIST_API_CONFIG": os.fspath(registry),
         "CODE_ASSIST_AUTOLOAD_GGUF": "0",
         # This preview never executes an operator-supplied document converter.
         # Native in-process parsers are the only allowed normalization lane.
         "CODE_ASSIST_DOCUMENT_CONVERTERS": "native",
         "CODE_ASSIST_ENABLE_CODEX_BRIDGE": "1" if codex else "0",
+        "CODE_ASSIST_PREVIEW_CODEX_ONLY": "1" if codex else "0",
         "CODE_ASSIST_CODEX_CWD": os.fspath(root / "codex-context"),
         "CODE_ASSIST_CODEX_SANDBOX": "read-only",
         "CODE_ASSIST_CODEX_EPHEMERAL": "1",
@@ -309,6 +322,10 @@ def _configure_environment(root: Path, *, port: int, codex: bool) -> None:
         # faster without changing company-provider routing or prompts.
         values["CODE_ASSIST_CODEX_REASONING_EFFORT"] = "none"
         values["CODE_ASSIST_CODEX_CLI_MODEL"] = _VALIDATION_CODEX_CLI_MODEL
+        if port == 10421:
+            # Match the independently reviewed preservation validation run.
+            values["CODE_ASSIST_CODEX_CLI_MODEL"] = "gpt-5.6-sol"
+            values["CODE_ASSIST_CODEX_REASONING_EFFORT"] = "xhigh"
     for name, value in values.items():
         current = os.environ.get(name)
         if current not in (None, value):
@@ -388,6 +405,8 @@ def _preview_model_config(source: Path, target: Path, *, codex: bool) -> None:
 
 
 def _load_marker(root: Path) -> dict[str, Any]:
+    from code_assist_v1.tools.recovered_preview_binding import load_binding
+    binding = load_binding(root)
     path = root / ".runtime" / _MARKER
     try:
         value = json.loads(path.read_text(encoding="utf-8"))
@@ -402,9 +421,15 @@ def _load_marker(root: Path) -> dict[str, Any]:
         value.get("report_schema") != _SCHEMA
         or value.get("schema_version") != _SCHEMA_VERSION
         or digest != _sha256(_canonical_bytes(payload))
-        or Path(str(value.get("data_root"))).resolve(strict=False) != root
+        or (Path(str(value.get("data_root"))) != binding.source_data_root if binding is not None
+            else Path(str(value.get("data_root"))).resolve(strict=False) != root)
+        or (binding is not None and digest != binding.source_marker_sha256)
     ):
         raise FullPreviewError("The preview marker binding is invalid.")
+    if binding is not None:
+        value = dict(value, data_root=str(binding.data_root),
+            restored_from_data_root=str(binding.source_data_root),
+            recovery_binding_sha256=binding.document_sha256)
     return value
 
 
@@ -572,6 +597,20 @@ def _bootstrap_preview_schema(database: Path) -> None:
 
 
 def _canonical_factory(root: Path) -> object:
+    from code_assist_v1.tools.clean_10521_runtime import is_clean_root, catalog_for
+    if is_clean_root(root):
+        from code_assist_v1.knowledge_core.db import ConnectionFactory
+        catalog = catalog_for(root)
+        factory = ConnectionFactory(root / "core" / "knowledge_core.db", catalog)
+        probe = factory.open(read_only=True)
+        probe.close()
+        return factory
+    from code_assist_v1.tools.preservation_preview_runtime import enabled, factory_for
+    from code_assist_v1.tools.native_publication_preview_runtime import native_publication_enabled
+    if native_publication_enabled(root) or enabled(root):
+        # Already migrated clone: verify the explicitly selected catalog, never
+        # run the legacy schema bootstrap against a successor database.
+        return factory_for(root)
     from code_assist_v1.knowledge_core.db import ConnectionFactory
     from code_assist_v1.knowledge_core.migrations import CANONICAL_MIGRATION_CATALOG
 
@@ -2031,8 +2070,19 @@ def initialize_clean_semantic_baseline(factory: object) -> dict[str, object]:
         SemanticIntentSeedService,
     )
 
+    from code_assist_v1.knowledge_core.repositories.automatic_semantic_edges import (
+        AutomaticSemanticEdgeRepository,
+    )
+
+    connection = factory.open(read_only=True)
+    try:
+        native_targets = AutomaticSemanticEdgeRepository.supports_native_aggregate_targets(connection)
+    finally:
+        connection.close()
     seeds = SemanticIntentSeedService(factory)
-    run = seeds.create(
+    # The v48 readiness gate requires its own adoption baseline. Old preview
+    # roots retain their original effect identity; startup never migrates them.
+    run = seeds.ensure_baseline_run() if native_targets else seeds.create(
         CreateSemanticSeedRunCommand(
             effect_key="full-preview-semantic-clean-v1",
             cause_kind=SemanticIntentProvenanceKind.BASELINE_BACKFILL,
@@ -2077,7 +2127,11 @@ def initialize_clean_semantic_baseline(factory: object) -> dict[str, object]:
     }
 
 
-def build_preview_app(factory: object, marker: Mapping[str, object]) -> object:
+def build_preview_app(factory: object, marker: Mapping[str, object], *, status_read_binding=None,
+        answer_request_policy=None) -> object:
+    from code_assist_v1.knowledge_core.answer_request import AnswerRequestPolicy
+    if answer_request_policy is not None and type(answer_request_policy) is not AnswerRequestPolicy:
+        raise TypeError("answer_request_policy must be an AnswerRequestPolicy or None.")
     from code_assist_v1.app_code import create_app
     from code_assist_v1.knowledge_core.admin_routes import register_admin_routes
     from code_assist_v1.knowledge_core.agent_runtime import (
@@ -2125,7 +2179,24 @@ def build_preview_app(factory: object, marker: Mapping[str, object]) -> object:
     def health() -> tuple[Mapping[str, object], int]:
         payload: dict[str, object] = {
             "company_api_called": False,
-            "data_mode": "isolated_legacy_copy_with_canonical_admin",
+            "data_mode": (
+                "isolated_clean_10521_v61" if marker.get("clone_port") == 10521
+                and marker.get("clean_schema_version") == 61
+                else "isolated_clean_10521_v60" if marker.get("clone_port") == 10521
+                and marker.get("clean_schema_version") == 60
+                else "isolated_clean_10521_v59" if marker.get("clone_port") == 10521
+                and marker.get("clean_schema_version") == 59
+                else "isolated_clean_10521_v58" if marker.get("clone_port") == 10521
+                and marker.get("clean_schema_version") == 58
+                else "isolated_clean_10521_v52" if marker.get("clone_port") == 10521
+                and marker.get("clean_schema_version") == 52
+                else "isolated_clean_10521_v51" if marker.get("clone_port") == 10521
+                and marker.get("clean_schema_version") == 51
+                else "isolated_clean_10521_v50" if marker.get("clone_port") == 10521
+                and marker.get("clean_schema_version") == 50
+                else "isolated_clean_10521_v49" if marker.get("clone_port") == 10521
+                else "isolated_legacy_copy_with_canonical_admin"
+            ),
             "marker_sha256": marker.get("marker_sha256"),
             "report_schema": _SCHEMA,
             "schema_version": _SCHEMA_VERSION,
@@ -2228,7 +2299,9 @@ def build_preview_app(factory: object, marker: Mapping[str, object]) -> object:
         allow_higher_spaces=True,
         conversation_wiki_binding=True,
     )
-    codex_only = os.environ.get("CODE_ASSIST_ENABLE_CODEX_BRIDGE") == "1"
+    # The optional Codex model selector must not turn the Qwen publication,
+    # semantic, and canonical-answer policy into the historic Codex-only lane.
+    codex_only = os.environ.get("CODE_ASSIST_PREVIEW_CODEX_ONLY") == "1"
     runtime = compose_canonical_agent_runtime(
         factory,
         flags=flags,
@@ -2237,6 +2310,12 @@ def build_preview_app(factory: object, marker: Mapping[str, object]) -> object:
         conversation_repository=conversation_repository,
         provider_order=("codex",) if codex_only else None,
         model_ids=("codex-local",) if codex_only else None,
+        answer_request_policy=answer_request_policy,
+        answer_context_limit_tokens=(
+            int(os.environ["CODE_ASSIST_ANSWER_CONTEXT_LIMIT_TOKENS"])
+            if os.environ.get("CODE_ASSIST_ANSWER_CONTEXT_LIMIT_TOKENS") else None
+        ),
+        auto_curation_wait_ms=(20_000 if marker.get("clone_port") == 10521 else 0),
         personal_wiki_cursor_secret=(
             b"full-second-brain-preview-personal-wiki-cursor-v1"
         ),
@@ -2248,11 +2327,24 @@ def build_preview_app(factory: object, marker: Mapping[str, object]) -> object:
     from code_assist_v1.knowledge_core.services.source_artifacts import (
         SourceArtifactService,
     )
-    preview_service = PublicationPreviewService(factory, scope_resolver, stager)
+    from code_assist_v1.tools.preservation_preview_runtime import enabled as preservation_enabled, workflow_for, extractor_for
+    from code_assist_v1.tools.native_publication_preview_runtime import native_mode_for_factory, composition_for
+    native_publication_active = native_mode_for_factory(factory, preview_root)
+    preservation = (workflow_for(factory, codex_validation=codex_only)
+        if not native_publication_active and preservation_enabled(preview_root) else None)
+    selector = None
+    commits = None
+    if preservation is not None:
+        from code_assist_v1.knowledge_core.services.preserved_publication import PreservedWikiPublicationSelector
+        from code_assist_v1.knowledge_core.repositories.preserved_publication import PreservedPublicationCommitRepository
+        selector = PreservedWikiPublicationSelector(factory)
+        commits = PreservedPublicationCommitRepository()
+    preview_service = PublicationPreviewService(factory, scope_resolver, stager,
+        wiki_upload=preservation, wiki_publication=selector)
     extraction_handler = PublicationPreviewExtractionHandler(
         factory,
         CanonicalPublicationSourceLoader(factory, stager),
-        CanonicalRichPublicationExtractor(),
+        extractor_for(preview_root),
         asset_stager=stager,
     )
     curation_handler = CanonicalCurationRescanHandler(
@@ -2293,6 +2385,31 @@ def build_preview_app(factory: object, marker: Mapping[str, object]) -> object:
         extraction_key=extraction_registered.key,
         curation_key=curation_registered.key,
     )
+    if preservation is not None:
+        # All extraction/LLM/curation work runs on the durable worker. A web
+        # request only creates the frozen request or commits reviewed content.
+        publication = PublicationApiService(preview_service,
+            PublicationService(factory, scope_resolver, commits=commits, wiki_publication=selector))
+    protected_provider = None
+    if native_publication_active:
+        # Same registry and policies as the independent durable worker. Never
+        # use the historical inline adapter for native extraction or writing.
+        from code_assist_v1.tools.clean_10521_runtime import is_clean_root
+        from code_assist_v1.tools.protected_source_runtime import (
+            approved_protected_provider_for_10521_runtime,
+        )
+        protected_provider = (approved_protected_provider_for_10521_runtime()
+            if is_clean_root(preview_root) else None)
+        publication = composition_for(factory, scope_resolver, stager,
+            root=preview_root, codex_validation=codex_only,
+            policy_protection_classifier=(
+                protected_provider if (protected_provider is not None
+                    and factory.migration_catalog.latest_version >= 60
+                    and callable(getattr(protected_provider, "classify_for_actor", None)))
+                else None),
+            protected_publication_authorizer=(
+                protected_provider.authorize_publication if protected_provider else None),
+            additional_handlers=(curation_registered, *semantic_handler.registered_handlers())).api
     lease_key = hashlib.sha256(
         b"full-second-brain-preview-lease-v1\0"
         + str(marker["marker_sha256"]).encode("ascii")
@@ -2315,6 +2432,16 @@ def build_preview_app(factory: object, marker: Mapping[str, object]) -> object:
             factory,
             scope_resolver=scope_resolver,
             stager=stager,
+            protected_download_authorizer=(
+                getattr(protected_provider, "authorize_original_download", None)
+                if protected_provider else None
+            ),
+            policy_protection_classifier=(
+                protected_provider
+                if (protected_provider
+                    and callable(getattr(protected_provider, "classify_for_actor", None)))
+                else None
+            ),
         ),
     )
     runtime = replace(runtime, services=services)
@@ -2360,6 +2487,9 @@ def build_preview_app(factory: object, marker: Mapping[str, object]) -> object:
         conversation_summarizer=runtime.route_bindings.conversation_summarizer,
         principal_resolver=principal_resolver,
         publication_service=runtime.services.require("publication"),
+        publication_status_reader=(publication.status_read_coordinator(principal_resolver,
+            server_read_binding=status_read_binding)
+            if isinstance(publication, PublicationApiService) else None),
         item_edit_service=runtime.services.require("editing"),
         item_lifecycle_service=runtime.services.require("lifecycle"),
         item_purge_service=None,
@@ -3308,6 +3438,14 @@ def run_gold_codex_grounding_gate(
     }
 
 
+def _add_answer_request_arguments(parser):
+    """Share opt-in operator flags across initial, restart and recovery CLIs."""
+    parser.add_argument("--answer-api-request-bytes", type=int, default=None,
+        help="Explicit complete API request-byte budget; requires --answer-max-attempts.")
+    parser.add_argument("--answer-max-attempts", type=int, default=None,
+        help="Answer runner candidate-attempt limit across selected providers; requires byte budget.")
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-root", type=Path, default=_default_data_root())
@@ -3319,6 +3457,7 @@ def _parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--password", default="")
     parser.add_argument("--codex", action="store_true")
+    _add_answer_request_arguments(parser)
     parser.add_argument("--probe", action="store_true")
     parser.add_argument("--probe-codex", action="store_true")
     parser.add_argument(
@@ -3333,8 +3472,18 @@ def _parser() -> argparse.ArgumentParser:
     return parser
 
 
+def _answer_request_policy_from_args(args):
+    """Pure operator policy parsing; no environment or preview-root mutation."""
+    from code_assist_v1.knowledge_core.answer_request import AnswerRequestPolicy
+    policy_values = (args.answer_api_request_bytes, args.answer_max_attempts)
+    if (policy_values[0] is None) != (policy_values[1] is None):
+        raise FullPreviewError("Both answer request-byte and attempt limits must be supplied together.")
+    return None if policy_values[0] is None else AnswerRequestPolicy(*policy_values)
+
+
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
+    answer_request_policy = _answer_request_policy_from_args(args)
     root = args.data_root.resolve(strict=False)
     gold_organization = (
         None
@@ -3394,7 +3543,7 @@ def main(argv: list[str] | None = None) -> int:
             semantic_model_provider=semantic_policy.model_provider,
             semantic_model_name=semantic_policy.model_name,
         )
-    app = build_preview_app(factory, marker)
+    app = build_preview_app(factory, marker, answer_request_policy=answer_request_policy)
     result: dict[str, object] = {
         "data_root": os.fspath(root),
         "knowledge_projection": knowledge_projection,

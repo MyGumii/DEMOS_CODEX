@@ -3,19 +3,16 @@ from __future__ import annotations
 
 from threading import BoundedSemaphore
 
-from flask import current_app, jsonify, request
+from flask import jsonify, request
 from werkzeug.exceptions import RequestEntityTooLarge
 
 from code_assist_v1 import notion_ai_notes as notes
 from code_assist_v1 import notion_http, notion_store
 from code_assist_v1 import notion_audio
-from code_assist_v1 import notion_notes_translation as translation
-from code_assist_v1 import internal_llm
 from code_assist_v1.auth import current_user_id
 
 _slots = BoundedSemaphore(2)
 _audio_slots = BoundedSemaphore(2)
-_translation_slots = BoundedSemaphore(2)
 
 
 def require_edit(user_id: str, page_id: str, workspace_id: str = "") -> None:
@@ -46,69 +43,18 @@ def _json(payload: dict):
 
 
 def register_notion_ai_notes_routes(app):
-    from code_assist_v1 import notion_notes_comparison as comparisons
-    comparisons.register(app, require_edit)
-
-    def comparison_service():
-        service = current_app.extensions.get(comparisons.VERSION)
-        if not service:
-            raise notes.NotesUnavailable("호스트의 비공개 비교 수집이 아직 설정되지 않았습니다.")
-        return service
-
     @app.get("/api/notion/ai-notes/capabilities")
     def api_notion_ai_notes_capabilities():
         if not current_user_id():
             return notion_http.validation_response("로그인이 필요합니다.", status=401)
         audio = notion_audio.capabilities()
-        models = notes.available_models()
         return _json({
-            "models": models,
-            "codex_bridge": {"enabled": internal_llm.codex_internal_enabled(),
-                             "connected": any(model["provider"] == "codex" for model in models)},
-            "translation": {"enabled": bool(models), "max_text_chars": translation.MAX_TEXT,
-                            "default_model_id": ""},
+            "models": notes.available_models(),
             "max_transcript_chars": notes.MAX_SOURCE_CHARS,
             "max_notes_chars": notes.MAX_NOTES_CHARS,
             "audio_transcription": audio["enabled"],
             "audio": audio,
-            "comparison": {"enabled": comparisons.VERSION in current_app.extensions,
-                           "notice_version": comparisons.VERSION, "results_visible": False},
         })
-
-    @app.get("/api/notion/ai-notes/comparison-sources")
-    def api_notion_ai_notes_comparison_sources():
-        if not current_user_id():
-            return notion_http.validation_response("로그인이 필요합니다.", status=401)
-        try:
-            return _json(comparison_service().reader.scopes(str(current_user_id()), request.args.get("cursor")))
-        except notes.NotesUnavailable as exc:
-            return notion_http.validation_response(str(exc), status=503)
-        except Exception as exc:
-            return notion_http.error_response(exc)
-
-    @app.post("/api/notion/ai-notes/comparisons")
-    def api_notion_ai_notes_comparison_submit():
-        if not current_user_id():
-            return notion_http.validation_response("로그인이 필요합니다.", status=401)
-        try:
-            request.max_content_length = 512000
-            data = notion_http.json_object_request()
-            return _json(comparison_service().submit(str(current_user_id()), data)), 202
-        except notes.NotesUnavailable as exc:
-            return notion_http.validation_response(str(exc), status=503)
-        except Exception as exc:
-            return notion_http.error_response(exc)
-
-    @app.get("/api/notion/ai-notes/comparisons/<run_id>")
-    def api_notion_ai_notes_comparison_status(run_id):
-        if not current_user_id():
-            return notion_http.validation_response("로그인이 필요합니다.", status=401)
-        try:
-            return _json(comparison_service().store.status(str(current_user_id()), run_id))
-        except notes.NotesUnavailable as exc:
-            return notion_http.validation_response(str(exc), status=503)
-        except Exception as exc:
-            return notion_http.error_response(exc)
 
     @app.post("/api/notion/ai-notes/transcribe")
     def api_notion_ai_notes_transcribe():
@@ -129,7 +75,7 @@ def register_notion_ai_notes_routes(app):
             if not segment_id:
                 raise ValueError("segment_id required")
             if fields.get("consent") != "true":
-                raise ValueError("음성 입력 시작을 확인해 주세요.")
+                raise ValueError("참석자의 녹음·전사 동의를 확인해 주세요.")
 
             def guard():
                 require_edit(uid, page_id, workspace_id)
@@ -152,36 +98,6 @@ def register_notion_ai_notes_routes(app):
             return notion_http.validation_response("오디오 요청은 20 MiB 이하여야 합니다.", status=413)
         except notes.NotesUnavailable as exc:
             return notion_http.validation_response(str(exc), code="stt_unavailable", status=503)
-        except Exception as exc:
-            return notion_http.error_response(exc)
-
-    @app.post("/api/notion/ai-notes/translate")
-    def api_notion_ai_notes_translate():
-        if not current_user_id():
-            return notion_http.validation_response("로그인이 필요합니다.", status=401)
-        try:
-            request.max_content_length = 64000
-            data = notion_http.json_object_request()
-            uid = str(current_user_id())
-            page_id = notes.text_field(data, "page_id", 160)
-            workspace_id = notes.text_field(data, "workspace_id", 160)
-
-            def guard():
-                require_edit(uid, page_id, workspace_id)
-
-            guard()
-            if not _translation_slots.acquire(blocking=False):
-                return notion_http.validation_response("번역 요청이 처리 중입니다. 잠시 후 재시도하세요.", status=429)
-            try:
-                result = translation.translate(data, guard=guard)
-                guard()
-                return _json({"status": "translated", **result})
-            finally:
-                _translation_slots.release()
-        except RequestEntityTooLarge:
-            return notion_http.validation_response("번역 요청은 64,000바이트 이하여야 합니다.", status=413)
-        except notes.NotesUnavailable as exc:
-            return notion_http.validation_response(str(exc), code="translation_unavailable", status=503)
         except Exception as exc:
             return notion_http.error_response(exc)
 

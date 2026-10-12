@@ -22,12 +22,15 @@ const Chat = {
     body.appendChild(c);
     wrap.appendChild(av);
     wrap.appendChild(body);
-    $("#messages").appendChild(wrap);
+    const messagesHost = $("#messages");
+    installAssistantSourceDownloads(messagesHost);
+    messagesHost.appendChild(wrap);
     Chat.scrollToBottom();
     return c;
   },
 
   clear() {
+    window.PendingTurnUI?.clear();
     $("#messages").innerHTML = "";
   },
 
@@ -529,6 +532,8 @@ const Chat = {
     }
 
     const streamSessionId = Chat.ensureSessionId();
+    const canonicalBridge = window.KnowledgeCoreBrowser?.active ? window.KnowledgeCoreBrowser : null;
+    const canonicalOwnerId = State.currentUser?.id || "";
     const streamMessages = Chat.cloneMessages(State.messages);
     streamMessages.push({ role: "user", content: userContent });
     Chat.setCurrentMessages(streamMessages);
@@ -612,8 +617,8 @@ const Chat = {
     };
 
     try {
-      const r = window.KnowledgeCoreBrowser?.active
-        ? await window.KnowledgeCoreBrowser.chatStreamResponse({
+      const r = canonicalBridge
+        ? await canonicalBridge.chatStreamResponse({
             conversationId: streamSessionId,
             message: text,
             signal: ac.signal,
@@ -624,6 +629,7 @@ const Chat = {
             body: JSON.stringify(payload),
             signal: ac.signal,
           });
+      if (canonicalBridge && (State.currentUser?.id || "") !== canonicalOwnerId) return;
       if (!r.ok || !r.body) {
         streamErrorStatus = r.status;
         const detail = await Chat.readErrorResponse(r);
@@ -678,6 +684,7 @@ const Chat = {
         }
       }
 
+      if (canonicalBridge && (State.currentUser?.id || "") !== canonicalOwnerId) return;
       // 종료
       const assistantContent = normalizeLatexSymbols(buffer + Chat.truncationNotice(meta || {}));
       streamMessages.push({ role: "assistant", content: assistantContent });
@@ -742,7 +749,21 @@ const Chat = {
       }
       if (!Chat.isCurrentSession(streamSessionId)) toast("백그라운드 세션 응답이 완료되었습니다.", "ok");
     } catch (e) {
-      if (e.name === "AbortError") {
+      if (canonicalBridge) {
+        // A lost/pending stream is not a failed model answer. Do not invent an
+        // assistant message or permanently cache optimistic duplicate retries.
+        if ((State.currentUser?.id || "") === canonicalOwnerId) {
+          const terminal = Boolean(e.terminal);
+          const notice = e.name === "AbortError"
+            ? "답변 수신을 중단했습니다. 서버 처리는 계속될 수 있으므로 대화 기록을 확인해 주세요."
+            : terminal ? `응답 생성 실패: ${e.message}`
+            : e.code === "INCOMPLETE_EVENT_STREAM"
+              ? "요청의 완료를 아직 확인하지 못했습니다. 잠시 후 같은 질문을 다시 보내 결과를 확인할 수 있습니다."
+              : `응답 확인 필요: ${e.message}`;
+          toast(notice, terminal || (e.retryable === false && e.name !== "AbortError") ? "error" : "info");
+          if (Chat.isCurrentSession(streamSessionId)) $("#metaStatus").textContent = notice;
+        }
+      } else if (e.name === "AbortError") {
         const errorContent = Chat.failureContent("중단됨", "사용자가 응답 생성을 중단했습니다.", buffer);
         streamMessages.push({ role: "assistant", content: errorContent });
         State.sessionCache.set(streamSessionId, Chat.cloneMessages(streamMessages));
@@ -793,6 +814,22 @@ const Chat = {
         if (Chat.isCurrentSession(streamSessionId)) $("#metaStatus").textContent = "오류";
       }
     } finally {
+      if (canonicalBridge && (State.currentUser?.id || "") === canonicalOwnerId) {
+        try {
+          const saved = await canonicalBridge.readSessionMessages(streamSessionId);
+          if ((State.currentUser?.id || "") === canonicalOwnerId) {
+            State.sessionCache.set(streamSessionId, Chat.cloneMessages(saved));
+            if (Chat.isCurrentSession(streamSessionId)) {
+              Chat.setCurrentMessages(saved);
+              Chat.renderMessages(saved);
+            }
+          }
+        } catch (historyError) {
+          if ((State.currentUser?.id || "") === canonicalOwnerId) {
+            toast("서버 대화 기록을 확인하지 못했습니다. 연결 복구 후 세션을 다시 열어 주세요.", "error");
+          }
+        }
+      }
       if (window.KnowledgeCoreBrowser?.active && currentTab === "sessions") {
         try { await Sessions.render(); }
         catch (sessionError) { console.warn("[chat] canonical session refresh failed", sessionError); }
@@ -840,15 +877,39 @@ function messageDisplayText(content) {
   return String(content ?? "");
 }
 
-// 마크다운 렌더 (marked.js 사용, 폐쇄망 폴백 mini parser)
-function renderMd(text) {
+// 마크다운 렌더. HTML 정화 자산이 없으면 평문으로 안전하게 강등한다.
+function renderMd(text, options = {}) {
   if (!text) return "";
-  text = normalizeLatexSymbols(text);
+  if (!options.preserveMath) text = normalizeLatexSymbols(text);
+  let html = "";
   if (window.marked) {
-    try { return marked.parse(text); }
+    try { html = marked.parse(text); }
     catch { /* fallthrough */ }
   }
-  return miniRenderMd(text);
+  if (!html) html = miniRenderMd(text);
+  if (!window.DOMPurify || typeof DOMPurify.sanitize !== "function") {
+    return chatEscapeHtml(text).replace(/\n/g, "<br>");
+  }
+  const safeHtml = DOMPurify.sanitize(html, {
+    USE_PROFILES: { html: true },
+    FORBID_TAGS: ["audio", "video", "source", "picture", "track", "style", "link"],
+    FORBID_ATTR: ["style", "srcset", "sizes", "autoplay", "poster"],
+  });
+  // Markdown supplied by a document or model must not initiate cross-origin
+  // image requests merely because a user opens the answer. Local images remain.
+  const template = document.createElement("template");
+  template.innerHTML = safeHtml;
+  template.content.querySelectorAll("img").forEach(image => {
+    const source = image.getAttribute("src") || "";
+    let local = false;
+    try {
+      const url = new URL(source, window.location.href);
+      local = (url.origin === window.location.origin
+        && (url.protocol === "http:" || url.protocol === "https:"));
+    } catch { /* Invalid or empty URL: show alt text below. */ }
+    if (!local) image.replaceWith(document.createTextNode(image.getAttribute("alt") || "[이미지]"));
+  });
+  return template.innerHTML;
 }
 
 function chatEscapeHtml(value) {
@@ -873,6 +934,43 @@ function renderAssistantHtml(text) {
   });
   highlightUnicodeMath(host);
   return host.innerHTML;
+}
+
+const assistantSourceDownloadHosts = new WeakSet();
+const assistantSourceDownloadPath = /^\/api\/knowledge\/v1\/spaces\/[0-9a-f-]{36}\/items\/[0-9a-f-]{36}\/source-artifacts\/[0-9a-f-]{36}\/download$/;
+
+function installAssistantSourceDownloads(host) {
+  if (!host || typeof host.addEventListener !== "function" || assistantSourceDownloadHosts.has(host)) return;
+  assistantSourceDownloadHosts.add(host);
+  host.addEventListener("click", async event => {
+    const anchor = event.target?.closest?.("a.assistant-source-download");
+    if (!anchor || !host.contains(anchor)) return;
+    const href = anchor.getAttribute("href") || "";
+    if (!assistantSourceDownloadPath.test(href)) return;
+    event.preventDefault();
+    if (anchor.dataset.downloadPending === "true") return;
+    anchor.dataset.downloadPending = "true";
+    try {
+      const response = await authenticatedFetch(href);
+      if (!response.ok) throw new Error(`원본 다운로드 실패 (${response.status})`);
+      const disposition = response.headers.get("Content-Disposition") || "";
+      const encoded = /filename\*=UTF-8''([^;]+)/i.exec(disposition);
+      const plain = /filename="([^"]+)"/.exec(disposition);
+      const filename = encoded ? decodeURIComponent(encoded[1]) : (plain?.[1] || "download");
+      const objectUrl = URL.createObjectURL(await response.blob());
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = filename;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 30000);
+    } catch (error) {
+      toast(error?.message || "원본 다운로드에 실패했습니다.", "error");
+    } finally {
+      delete anchor.dataset.downloadPending;
+    }
+  });
 }
 
 function highlightUnicodeMath(root) {
@@ -1094,6 +1192,7 @@ function normalizeLatexSymbols(text) {
 function normalizeLatexSymbolSegment(text) {
   let out = String(text || "");
   const mathDisplays = [];
+  const markdownLiterals = [];
   const stashDisplay = value => {
     const token = `@@MATHDISPLAY${mathDisplays.length}@@`;
     mathDisplays.push(formatMathDisplay(value));
@@ -1103,13 +1202,22 @@ function normalizeLatexSymbolSegment(text) {
   out = convertLatexEnvironments(out);
   out = out.replace(/\$\$([\s\S]*?)\$\$/g, (_, inner) => stashDisplay(convertLatexMath(inner)));
   out = out.replace(/\\\[([\s\S]*?)\\\]/g, (_, inner) => stashDisplay(convertLatexMath(inner)));
-  out = out.replace(/\$([^$\n]{1,800})\$/g, (_, inner) => convertLatexMath(inner));
-  out = out.replace(/\\\(([^()\n]{1,800})\\\)/g, (_, inner) => convertLatexMath(inner));
+  out = out.replace(/\$([^$\n]{1,800})\$/g, (_, inner) => escapeMathHtml(convertLatexMath(inner)));
+  out = out.replace(/\\\(([^()\n]{1,800})\\\)/g, (_, inner) => escapeMathHtml(convertLatexMath(inner)));
+
+  // Escaped Markdown punctuation outside math is literal (e.g. rob\_fair.pdf),
+  // not a bare LaTeX script. Keep its escape until the Markdown parser runs.
+  out = out.replace(/\\([_*])/g, (_, literal) => {
+    const token = `@@MDLITERAL${markdownLiterals.length}@@`;
+    markdownLiterals.push("\\" + literal);
+    return token;
+  });
 
   out = convertLatexStructuredCommands(out);
   out = convertLatexCommands(out);
   out = convertScripts(out);
   out = out.replace(/@@MATHDISPLAY(\d+)@@/g, (_, idx) => mathDisplays[Number(idx)] || "");
+  out = out.replace(/@@MDLITERAL(\d+)@@/g, (_, idx) => markdownLiterals[Number(idx)] || "");
   return out;
 }
 
@@ -1448,7 +1556,11 @@ function formatRoot(root, inner) {
 }
 
 function convertLatexMath(input) {
-  let out = String(input || "").trim();
+  // Stored Markdown may safely encode literal comparisons. Decode these only
+  // within explicit math; HTML is escaped again at the display boundary.
+  let out = String(input || "").trim()
+    .replace(/&lt;|&#0*60;|&#x0*3c;/gi, "<")
+    .replace(/&gt;|&#0*62;|&#x0*3e;/gi, ">");
   if (!out) return "";
 
   out = convertLatexEnvironments(out);
@@ -1597,7 +1709,7 @@ function mapChars(value, map, fallbackPrefix) {
   return out;
 }
 
-// marked.js 로드 실패 시 폴백 (코드블록·헤딩·리스트만)
+// marked.js 로드 실패 시 폴백. 이 결과도 renderMd에서 정화한다.
 function miniRenderMd(t) {
   const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   // 코드블록

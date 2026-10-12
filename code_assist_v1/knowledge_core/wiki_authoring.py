@@ -352,20 +352,22 @@ def _model_receipt(value, policy: AuthoringModelPolicy) -> dict:
     return result
 
 
-def _transport_receipt(raw: str, policy: AuthoringModelPolicy, *, messages, model) -> dict:
+def _transport_receipt(raw: str, policy: AuthoringModelPolicy, *, messages, model, response_format=None,
+                       chat_template_kwargs=None) -> dict:
     try:
         result = json.loads(raw)
         if raw != _json(result) or not isinstance(result, dict):
             raise ValueError
         if model.get("model_kind") != "hynix_api":
-            if result:
+            if result or chat_template_kwargs is not None:
                 raise ValueError
             return result
         if not result or set(result) != {"serializer", "model", "body_bytes", "body_sha256"}:
             raise ValueError
         if policy.wire_models is not None and dict(policy.wire_models).get(model["model_id"]) != result["model"]:
             raise ValueError
-        payload = chat_payload(result["model"], messages, max_tokens=policy.max_tokens, temperature=0.1)
+        payload = chat_payload(result["model"], messages, max_tokens=policy.max_tokens, temperature=0.1,
+            response_format=response_format, chat_template_kwargs=chat_template_kwargs)
         wire = encode_chat_payload(payload)
         if (type(result["body_bytes"]) is not int or len(wire) > policy.request_budget_bytes
                 or result != request_body_receipt(payload, wire)):
@@ -522,7 +524,11 @@ def _literal(text: str) -> str:
     # or publication instructions via Markdown syntax.
     # Plain text needs no attribute-quote escaping. Numeric quote entities were
     # subsequently Markdown-escaped at '#', displaying as literal entity text.
-    return re.sub(r"([\\`*_{}\[\]()#!|>])", r"\\\1", escape(text, quote=False))
+    # Canonical rendered Markdown is LF-only. Normalize at rendering, not in
+    # immutable source/quotes/model receipts: their exact bytes and locations
+    # remain evidence. CRLF and lone CR represent one line break, not two.
+    rendered = text.replace("\r\n", "\n").replace("\r", "\n")
+    return re.sub(r"([\\`*_{}\[\]()#!|>])", r"\\\1", escape(rendered, quote=False))
 
 
 def assemble_wiki(plan: AuthoringPlan, results: Sequence[AuthoredChunk]) -> AuthoredWiki:

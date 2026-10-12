@@ -19,8 +19,8 @@ from ..db import ConnectionFactory, ManagedConnection, TransactionMode, db_now_m
 from ..domain import (
     ExplicitReferenceAvailability,
     SemanticIntentProvenanceKind,
-    SemanticIntentTargetKind,
 )
+from ..repositories.automatic_semantic_edges import AutomaticSemanticEdgeRepository
 from ..repositories.audit import AuditEventDraft, AuditRepository
 from ..repositories.jobs import DurableJobRecord, JobEnqueueDraft, JobRepository
 from ..repositories.outbox import OutboxEventDraft, OutboxRepository
@@ -853,43 +853,19 @@ class CanonicalCurationRescanHandler:
         ).fetchone()
         if source is None:
             raise JobExpectedStateConflictError("The semantic source space is unavailable.")
-        targets: list[tuple[SemanticIntentTargetKind, str, str | None, int, int]] = [
-            (
-                SemanticIntentTargetKind.LOCAL,
-                prepared.space_id,
-                source["owner_org_unit_id"],
-                int(source["generation"]),
-                0 if source["row_version"] is None else int(source["row_version"]),
-            )
-        ]
-        current_org = source["owner_org_unit_id"]
-        while current_org is not None and len(targets) < 3:
-            parent = connection.execute(
-                "SELECT parent_id FROM org_unit WHERE id=? AND status='active'",
-                (current_org,),
-            ).fetchone()
-            if parent is None or parent["parent_id"] is None:
-                break
-            current_org = str(parent["parent_id"])
-            aggregate = connection.execute(
-                """SELECT s.id,s.generation,o.row_version
-                     FROM org_unit o JOIN knowledge_space s ON s.owner_org_unit_id=o.id
-                    WHERE o.id=? AND o.status='active' AND s.status='active'
-                      AND s.space_kind IN ('team','responsibility')""",
-                (current_org,),
-            ).fetchone()
-            if aggregate is not None:
-                targets.append(
-                    (
-                        SemanticIntentTargetKind.AGGREGATE,
-                        str(aggregate["id"]),
-                        current_org,
-                        int(aggregate["generation"]),
-                        int(aggregate["row_version"]),
-                    )
-                )
+        # Publication and later baseline/reseed must enumerate the same homes.
+        # In particular a higher-native source has an own-home aggregate job
+        # for descendants as well as its local job for same-space native peers.
+        targets = AutomaticSemanticEdgeRepository().list_targets(
+            connection, source_space_id=prepared.space_id,
+        )
         source_generation = int(source["generation"])
-        for target_kind, target_space, target_org, target_generation, org_generation in targets:
+        for target in targets:
+            target_kind = target.target_kind
+            target_space = target.target_space_id
+            target_org = target.target_org_unit_id
+            target_generation = target.target_space_generation
+            org_generation = target.organization_generation
             proof = _sha_json(
                 {
                     "detector_generation": 1,

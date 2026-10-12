@@ -20,7 +20,7 @@
     return new Blob([bytes], { type: "audio/wav" });
   }
 
-  function capture(source, onChunk, onError, seconds = 12, boundaryMode = "fixed") {
+  function capture(source, onChunk, onError, seconds = 12) {
     let context, worklet, ended, stopPromise, stopped = false;
     const streams = [], inputs = [];
     const watch = stream => {
@@ -50,11 +50,11 @@
           if (stopped) { await release(); return; }
           if (streams.some(stream => stream.getTracks().some(track => track.readyState === "ended"))) throw new Error("선택한 오디오 공유가 이미 종료되었습니다. 다시 시작하세요.");
           context = new AudioContext({ sampleRate: 16000 });
-          await context.audioWorklet.addModule("/notion_static/notion_audio_worklet.js?v=20260913-speech-boundary");
+          await context.audioWorklet.addModule("/notion_static/notion_audio_worklet.js?v=20260911c");
           if (stopped) { await release(); return; }
-          worklet = new AudioWorkletNode(context, "notion-pcm-capture", { processorOptions: { seconds, boundaryMode }, channelCount: 1 });
+          worklet = new AudioWorkletNode(context, "notion-pcm-capture", { processorOptions: { seconds }, channelCount: 1 });
           worklet.port.onmessage = ({ data }) => {
-            if (data.samples) onChunk(wav(data.samples, data.sampleRate), data.samples.length / data.sampleRate, data.reason);
+            if (data.samples) onChunk(wav(data.samples, data.sampleRate), data.samples.length / data.sampleRate);
             if (data.stopped) ended?.();
           };
           worklet.onprocessorerror = () => onError(new Error("음성 처리기가 중단되었습니다. 오디오 수집을 다시 시작하세요."));
@@ -88,8 +88,8 @@
     };
   }
 
-  function microphone(onChunk, onError, seconds, boundaryMode) { return capture("microphone", onChunk, onError, seconds, boundaryMode); }
-  function sourceFactory(source) { return (onChunk, onError, seconds, boundaryMode) => capture(["system", "mixed", "microphone"].includes(source) ? source : "system", onChunk, onError, seconds, boundaryMode); }
+  function microphone(onChunk, onError, seconds) { return capture("microphone", onChunk, onError, seconds); }
+  function sourceFactory(source) { return (onChunk, onError, seconds) => capture(["system", "mixed", "microphone"].includes(source) ? source : "system", onChunk, onError, seconds); }
 
   class Meeting {
     constructor(options) {
@@ -99,8 +99,6 @@
       this.sequence = 0;
       this.duration = 0;
       this.received = 0;
-      this.lastTranscribeMs = null;
-      this.lastSaveMs = null;
       this.message = "";
       this.capture = null;
       this.draining = null;
@@ -119,24 +117,21 @@
       if (this.phase !== "idle" || this.disposed) return;
       this.phase = "starting"; this.notify("오디오 공유·입력 권한을 확인하고 있습니다…");
       this.capture = (this.options.captureFactory || microphone)(
-        (blob, duration, reason) => this.enqueue(blob, duration, reason), error => this.fail(error), this.options.chunkSeconds || 12, this.options.boundaryMode || "fixed");
+        (blob, duration) => this.enqueue(blob, duration), error => this.fail(error), this.options.chunkSeconds || 12);
       try {
         await this.capture.start();
         if (this.disposed || this.phase !== "starting") { await this.capture.stop(); return; }
         this.startedAt = new Date().toISOString();
         this.recording = true; this.phase = "recording";
-        this.options.onStarted?.();
         this.notify("녹음 중 · 음성을 순서대로 전사합니다.");
       } catch (error) {
         const message = error.name === "NotAllowedError" ? "오디오 공유가 취소되었거나 권한이 거부되었습니다. 다시 시작해 입력을 선택하세요." : error.message;
         this.fail(new Error(message));
       }
     }
-    enqueue(blob, duration = 0, reason = "file") {
+    enqueue(blob, duration = 0) {
       if (this.disposed) return;
-      const item = { id: `${this.identity}-${++this.sequence}`, blob, duration, reason, offset: this.duration, applied: false, result: null };
-      this.lastChunkSeconds = duration;
-      this.lastBoundaryReason = reason;
+      const item = { id: `${this.identity}-${++this.sequence}`, blob, duration, offset: this.duration, applied: false, result: null };
       this.duration += duration;
       this.queue.push(item);
       if (this.queue.length >= 10) { this.fail(new Error("전사가 지연되어 녹음을 멈췄습니다. 대기 음성을 재시도하세요.")); return; }
@@ -150,21 +145,14 @@
           const item = this.queue[0];
           try {
             if (!this.options.valid()) throw new Error("페이지 또는 편집 권한이 변경되어 음성 처리를 중단했습니다.");
-            if (!item.result) {
-              const started = Date.now();
-              item.result = await this.options.transcribe(item, this.controller.signal);
-              this.lastTranscribeMs = Math.max(0, Date.now() - started);
-              this.notify();
-            }
+            if (!item.result) item.result = await this.options.transcribe(item, this.controller.signal);
             if (this.disposed) break;
             if (!this.options.valid()) throw new Error("페이지 또는 편집 권한이 변경되었습니다.");
             if (!item.applied) {
               this.options.onText(item.result.text || "", item);
               item.applied = true;
             }
-            const saving = Date.now();
             if (!(await this.options.persist())) throw new Error("전사 원문을 저장하지 못했습니다. 저장 상태를 확인하고 재시도하세요.");
-            this.lastSaveMs = Math.max(0, Date.now() - saving);
             if (this.disposed) break;
             this.queue.shift(); this.received++;
             this.options.onCommitted?.(item);

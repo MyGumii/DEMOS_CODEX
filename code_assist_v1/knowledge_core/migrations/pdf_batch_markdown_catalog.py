@@ -1,0 +1,10 @@
+"""Explicit v69 successor; prior source/claim policies remain immutable."""
+from .model import Migration,MigrationCatalog
+from .pdf_section_markdown_delimiters_catalog import PDF_SECTION_MARKDOWN_DELIMITERS_MIGRATION_CATALOG
+from .v069_pdf_batch_markdown import V069_STATEMENTS,V069_POSTCONDITION_REPLACEMENTS
+V069_EXPECTED_SCHEMA_SHA256='52a25bc88827a347fd73b048b587a0f20bf3f219e8c7c48954cbfd8ad8c655f1'
+SCHEMA_V69_MIGRATION=Migration(version=69,name='pdf_batch_markdown_v69',
+    statements=V069_STATEMENTS,expected_schema_sha256=V069_EXPECTED_SCHEMA_SHA256,
+    requires_foreign_keys_off=True,postcondition_replacements=V069_POSTCONDITION_REPLACEMENTS)
+PDF_BATCH_MARKDOWN_MIGRATION_CATALOG=MigrationCatalog((
+    *PDF_SECTION_MARKDOWN_DELIMITERS_MIGRATION_CATALOG.migrations,SCHEMA_V69_MIGRATION))

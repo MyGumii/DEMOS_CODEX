@@ -17,6 +17,7 @@ from pathlib import Path
 import sqlite3
 import stat
 import threading
+import weakref
 from typing import TYPE_CHECKING, Iterator
 
 from .errors import (
@@ -159,10 +160,20 @@ class SQLiteOnlineBackupResult:
 class ManagedCursor:
     """Result cursor that never exposes its raw sqlite3 connection."""
 
-    __slots__ = ("__cursor",)
+    __slots__ = ("__cursor", "__lease_revoked", "__weakref__")
 
     def __init__(self, cursor: sqlite3.Cursor) -> None:
         self.__cursor = cursor
+        self.__lease_revoked = False
+
+    def _revoke_read_lease(self, capability: object) -> None:
+        if capability is not _CONNECTION_INTERNAL_CAPABILITY:
+            raise KnowledgeCoreTransactionError("Invalid SQLite internal capability.")
+        self.__lease_revoked = True
+
+    def __check_read_lease(self) -> None:
+        if self.__lease_revoked:
+            raise sqlite3.ProgrammingError("Cannot operate on a retired read-only cursor.")
 
     @property
     def description(self) -> object:
@@ -177,12 +188,15 @@ class ManagedCursor:
         return self.__cursor.rowcount
 
     def fetchone(self) -> sqlite3.Row | tuple[object, ...] | None:
+        self.__check_read_lease()
         return self.__cursor.fetchone()
 
     def fetchmany(self, size: int | None = None) -> list[sqlite3.Row]:
+        self.__check_read_lease()
         return self.__cursor.fetchmany() if size is None else self.__cursor.fetchmany(size)
 
     def fetchall(self) -> list[sqlite3.Row]:
+        self.__check_read_lease()
         return self.__cursor.fetchall()
 
     def close(self) -> None:
@@ -192,6 +206,7 @@ class ManagedCursor:
         return self
 
     def __next__(self) -> sqlite3.Row:
+        self.__check_read_lease()
         return next(self.__cursor)
 
 
@@ -210,6 +225,10 @@ class ManagedConnection:
         "__runtime_facts",
         "__schema_writes_allowed",
         "__test_runtime_override",
+        "__phase_owner",
+        "__phase_cursors",
+        "__phase_started",
+        "__lease_revoked",
     )
 
     def __init__(self, raw: sqlite3.Connection) -> None:
@@ -226,6 +245,10 @@ class ManagedConnection:
         self.__runtime_facts: SQLiteRuntimeFacts | None = None
         self.__schema_writes_allowed = False
         self.__test_runtime_override = False
+        self.__phase_owner = None
+        self.__phase_cursors = None
+        self.__phase_started = False
+        self.__lease_revoked = False
         self.__install_authorizer()
 
     def __install_authorizer(self) -> None:
@@ -369,7 +392,11 @@ class ManagedConnection:
 
     def execute(self, sql: str, parameters: object = ()) -> ManagedCursor:
         try:
+            if self.__lease_revoked:
+                raise sqlite3.ProgrammingError("Cannot operate on a retired read-only lease.")
             cursor = ManagedCursor(self.__raw.execute(sql, parameters))
+            if self.__phase_cursors is not None:
+                self.__phase_cursors.add(cursor)
         except BaseException as exc:
             _record_database_execute(exc)
             self.__reconcile_failed_statement_transaction()
@@ -379,7 +406,11 @@ class ManagedConnection:
 
     def executemany(self, sql: str, parameters: object) -> ManagedCursor:
         try:
+            if self.__lease_revoked:
+                raise sqlite3.ProgrammingError("Cannot operate on a retired read-only lease.")
             cursor = ManagedCursor(self.__raw.executemany(sql, parameters))
+            if self.__phase_cursors is not None:
+                self.__phase_cursors.add(cursor)
         except BaseException as exc:
             _record_database_execute(exc)
             self.__reconcile_failed_statement_transaction()
@@ -456,7 +487,101 @@ class ManagedConnection:
             raise KnowledgeCoreTransactionError(
                 "A managed connection cannot be closed inside its transaction."
             )
-        self.__raw.close()
+        # Ordinary close remains a direct physical close. Only the explicit
+        # multi-phase ordinary paths finalize retained cursors first, and even a
+        # finalization failure must not skip the raw close attempt.
+        try:
+            if self.__phase_cursors is not None:
+                self.__close_phase_cursors()
+        finally:
+            self.__raw.close()
+
+    def __close_phase_cursors(self) -> None:
+        if self.__phase_cursors is not None:
+            failure = None
+            for cursor in tuple(self.__phase_cursors):
+                try:
+                    cursor.close()
+                except BaseException as exc:
+                    if failure is None:
+                        failure = exc
+                else:
+                    self.__phase_cursors.discard(cursor)
+            if failure is not None:
+                raise failure
+
+    def _bind_read_only_owner(self, capability: object, factory: object) -> None:
+        self._bind_phase_owner(capability, factory, read_only=True)
+
+    def _bind_read_write_owner(self, capability: object, factory: object) -> None:
+        self._bind_phase_owner(capability, factory, read_only=False)
+
+    def _bind_phase_owner(self, capability: object, factory: object, *, read_only: bool) -> None:
+        if capability is not _CONNECTION_INTERNAL_CAPABILITY:
+            raise KnowledgeCoreTransactionError("Invalid SQLite internal capability.")
+        if self.__phase_owner is not None:
+            raise KnowledgeCoreTransactionError("Connection phase ownership is already bound.")
+        self.__phase_owner = (factory, threading.get_ident(), read_only)
+        self.__phase_cursors = weakref.WeakSet()
+
+    def _check_read_only_revalidation(self, capability: object, factory: object) -> None:
+        self._check_phase_revalidation(capability, factory, read_only=True)
+
+    def _check_read_write_revalidation(self, capability: object, factory: object) -> None:
+        self._check_phase_revalidation(capability, factory, read_only=False)
+
+    def _check_phase_revalidation(self, capability: object, factory: object, *, read_only: bool) -> None:
+        if capability is not _CONNECTION_INTERNAL_CAPABILITY:
+            raise KnowledgeCoreTransactionError("Invalid SQLite internal capability.")
+        if self.__lease_revoked:
+            raise sqlite3.ProgrammingError("Cannot revalidate a retired read-only lease.")
+        kind = "Read-only" if read_only else "Read-write"
+        if self.__phase_owner != (factory, threading.get_ident(), read_only):
+            raise KnowledgeCoreTransactionError(
+                f"{kind} revalidation requires the same factory, mode and thread."
+            )
+        if (self.__raw.in_transaction or self.__manager_transaction_active
+                or self.__manager_controls_transaction or self.__internal_sql_active
+                or self.__read_only_sql_active or self.__ledger_write_active
+                or self.__schema_writes_allowed):
+            raise KnowledgeCoreTransactionError(
+                f"{kind} revalidation requires an idle ordinary connection."
+            )
+    def _finish_ordinary_phase(self, capability: object) -> None:
+        if capability is not _CONNECTION_INTERNAL_CAPABILITY:
+            raise KnowledgeCoreTransactionError("Invalid SQLite internal capability.")
+        self.__phase_started = True
+        # An unfinished cursor can retain an old SQLite read snapshot even after
+        # the explicit transaction has ended. Never carry it across phases.
+        self.__close_phase_cursors()
+
+    def _revoke_read_only_lease(self, capability: object, factory: object) -> None:
+        """Revoke public reads even if physical cursor/connection close fails.
+
+        Cleanup may still roll back and close the owned raw resource. Revocation
+        cannot be undone, and an unresolved close poisons the enclosing owner.
+        """
+        if (capability is not _CONNECTION_INTERNAL_CAPABILITY
+                or self.__phase_owner != (factory, threading.get_ident(), True)):
+            raise KnowledgeCoreTransactionError("Invalid read-only revocation owner.")
+        self.__lease_revoked = True
+        for cursor in tuple(self.__phase_cursors):
+            cursor._revoke_read_lease(capability)
+
+    def _park_read_only_lease(self, capability: object, factory: object, owner: object):
+        """Retire this wrapper into an opaque, owner-bound physical RO carrier."""
+        self._check_read_only_revalidation(capability, factory)
+        self._finish_ordinary_phase(capability)
+        _verify_connection_file(self)
+        _require_idle_read_only_contract(self)
+        parked = _ParkedReadOnlyConnection(capability, self.__raw, factory, owner,
+            self.__database_path, self.__database_identity)
+        # An idle carrier accepts no SQL. Reinstallation on a fresh wrapper is
+        # internal to activate(), before the complete validation sequence.
+        self.__raw.set_authorizer(_deny_parked_sql)
+        self._revoke_read_only_lease(capability, factory)
+        self.__raw = _RETIRED_READ_HANDLE
+        return parked
 
     def contract_snapshot(self) -> dict[str, object]:
         """Return a diagnostic snapshot without exposing raw PRAGMA SQL."""
@@ -573,6 +698,179 @@ class ManagedConnection:
                 "The SQLite backup destination is invalid."
             )
         self.__raw.backup(destination, pages=256, sleep=0.05)
+
+
+class _RetiredReadHandle:
+    """Closed-wrapper behavior; closing an old lease cannot close a later one."""
+
+    def close(self):
+        return None
+
+    def __getattr__(self, name):
+        raise sqlite3.ProgrammingError("Cannot operate on a retired read-only lease.")
+
+
+_RETIRED_READ_HANDLE = _RetiredReadHandle()
+
+
+def _deny_parked_sql(*args):
+    return sqlite3.SQLITE_DENY
+
+
+def _require_idle_read_only_contract(connection):
+    snapshot = connection.contract_snapshot()
+    if (not snapshot["no_checkpoint_on_close"]
+            or snapshot["pragmas"]["query_only"] != 1
+            or any(snapshot["pragmas"][name] != expected
+                for name, expected in EXPECTED_CONNECTION_PRAGMAS.items())):
+        raise KnowledgeCorePragmaMismatchError("Read-only lease contract drifted.")
+
+
+class _ParkedReadOnlyConnection:
+    """Internal carrier: neither raw handles nor previous wrappers are lent."""
+
+    __slots__ = ("__raw", "__factory", "__owner", "__thread", "__path", "__identity", "__failed")
+
+    def __init__(self, capability, raw, factory, owner, path, identity):
+        if capability is not _CONNECTION_INTERNAL_CAPABILITY:
+            raise KnowledgeCoreTransactionError("Invalid SQLite internal capability.")
+        self.__raw, self.__factory, self.__owner = raw, factory, owner
+        self.__path, self.__identity = path, identity
+        self.__thread = threading.current_thread()
+        self.__failed = False
+
+    def _check(self, capability, owner):
+        if (capability is not _CONNECTION_INTERNAL_CAPABILITY or owner is not self.__owner
+                or threading.current_thread() is not self.__thread):
+            raise KnowledgeCoreTransactionError("Read-only carrier ownership differs.")
+
+    def activate(self, capability, owner, factory):
+        self._check(capability, owner)
+        if (factory is not self.__factory or self.__raw is None or self.__failed
+                or factory.database_path != self.__path):
+            raise KnowledgeCoreTransactionError("Read-only carrier cannot be activated.")
+        connection = None
+        try:
+            connection = ManagedConnection(self.__raw)
+            connection._bind_database(capability, self.__path, self.__identity)
+            connection._bind_read_only_owner(capability, factory)
+            factory.revalidate_read_only(connection)
+        except BaseException as exc:
+            self.__failed = True
+            try:
+                if connection is None:
+                    self.__raw.close()
+                else:
+                    connection.close()
+            except BaseException as cleanup_error:
+                exc.add_note("Read-only carrier cleanup also failed: " + type(cleanup_error).__name__)
+            else:
+                self.__raw = None
+            raise
+        self.__raw = None
+        return connection
+
+    def close(self, capability, owner):
+        self._check(capability, owner)
+        if self.__raw is not None:
+            self.__raw.close()
+            self.__raw = None
+
+
+class _OwnedReadOnlyLifecycle:
+    """One lexical owner, one thread, sequential distinct managed RO leases.
+
+    No HTTP integration, thread-local lookup, authority cache or global pool.
+    Every borrow is validated anew; close belongs to the enclosing lifecycle.
+    """
+
+    __slots__ = ("__factory", "__thread", "__parked", "__borrowing", "__closed",
+        "__poisoned", "__failed_connection")
+
+    def __init__(self, capability, factory):
+        if capability is not _CONNECTION_INTERNAL_CAPABILITY:
+            raise KnowledgeCoreTransactionError("Invalid SQLite internal capability.")
+        self.__factory, self.__thread = factory, threading.current_thread()
+        self.__parked = self.__failed_connection = None
+        self.__borrowing = self.__closed = self.__poisoned = False
+
+    def _check_thread(self):
+        if threading.current_thread() is not self.__thread:
+            raise KnowledgeCoreTransactionError("Read-only lifecycle cannot transfer between threads.")
+
+    def _discard_connection(self, connection, primary):
+        # Do not rely on a successful native close to make escaped wrappers
+        # unusable. This also prevents stepping a retained cursor after failure.
+        connection._revoke_read_only_lease(_CONNECTION_INTERNAL_CAPABILITY, self.__factory)
+        try:
+            try:
+                active = connection.in_transaction
+            except sqlite3.ProgrammingError:
+                active = False
+            if active:
+                # A borrower that leaks an active transaction cannot return a
+                # usable lease. Roll back before physical close; never commit it.
+                connection._rollback(_TRANSACTION_CAPABILITY)
+        except BaseException as cleanup_error:
+            primary.add_note("Read-only lease rollback also failed: " + type(cleanup_error).__name__)
+        try:
+            connection.close()
+        except BaseException as cleanup_error:
+            self.__poisoned = True
+            self.__failed_connection = connection
+            primary.add_note("Read-only lease close also failed: " + type(cleanup_error).__name__)
+
+    @contextmanager
+    def borrow(self):
+        self._check_thread()
+        if self.__closed or self.__poisoned or self.__borrowing:
+            raise KnowledgeCoreTransactionError("Read-only lifecycle is closed, busy or unsafe.")
+        self.__borrowing = True
+        connection = None
+        try:
+            if self.__parked is None:
+                connection = self.__factory._open_revalidatable_read_only()
+            else:
+                try:
+                    connection = self.__parked.activate(
+                        _CONNECTION_INTERNAL_CAPABILITY, self, self.__factory)
+                except BaseException as exc:
+                    try:
+                        self.__parked.close(_CONNECTION_INTERNAL_CAPABILITY, self)
+                    except BaseException as cleanup_error:
+                        self.__poisoned = True
+                        exc.add_note("Parked read-only close also failed: " + type(cleanup_error).__name__)
+                    else:
+                        self.__parked = None
+                    raise
+                self.__parked = None
+            try:
+                yield connection
+                self.__parked = connection._park_read_only_lease(
+                    _CONNECTION_INTERNAL_CAPABILITY, self.__factory, self)
+            except BaseException as exc:
+                self._discard_connection(connection, exc)
+                raise
+        finally:
+            self.__borrowing = False
+
+    def close(self):
+        self._check_thread()
+        if self.__borrowing:
+            raise KnowledgeCoreTransactionError("Cannot close a read-only lifecycle during a borrow.")
+        if self.__closed:
+            return
+        try:
+            if self.__failed_connection is not None:
+                self.__failed_connection.close()
+                self.__failed_connection = None
+            if self.__parked is not None:
+                self.__parked.close(_CONNECTION_INTERNAL_CAPABILITY, self)
+                self.__parked = None
+        except BaseException:
+            self.__poisoned = True
+            raise
+        self.__closed = True
 
 
 @contextmanager
@@ -1151,30 +1449,7 @@ class ConnectionFactory:
         raw.row_factory = sqlite3.Row
         connection = ManagedConnection(raw)
         try:
-            connection._configure_no_checkpoint_on_close(
-                _CONNECTION_INTERNAL_CAPABILITY
-            )
-            _apply_connection_pragmas(connection)
-            facts = _detect_runtime(connection)
-            override_used = self._runtime_override_used(facts)
-            _probe_fts5(connection)
-            _probe_json(connection)
-            _verify_database_path(connection, self.database_path)
-            identity = _database_file_identity(self.database_path)
-            if expected_identity is not None and identity != expected_identity:
-                raise KnowledgeCoreDatabasePathError(
-                    "The canonical SQLite database changed while it was being opened."
-                )
-            connection._bind_database(
-                _CONNECTION_INTERNAL_CAPABILITY,
-                self.database_path,
-                identity,
-            )
-            connection._bind_runtime(
-                _CONNECTION_INTERNAL_CAPABILITY,
-                facts,
-                override_used,
-            )
+            self._validate_connection_runtime(connection, expected_identity=expected_identity)
             return connection
         except KnowledgeCoreDatabaseError:
             connection.close()
@@ -1187,6 +1462,41 @@ class ConnectionFactory:
         except BaseException:
             connection.close()
             raise
+
+    def _validate_connection_runtime(
+        self, connection: ManagedConnection, *, expected_identity: tuple[int, int] | None,
+    ) -> None:
+        connection._configure_no_checkpoint_on_close(_CONNECTION_INTERNAL_CAPABILITY)
+        _apply_connection_pragmas(connection)
+        facts = _detect_runtime(connection)
+        override_used = self._runtime_override_used(facts)
+        _probe_fts5(connection)
+        _probe_json(connection)
+        _verify_database_path(connection, self.database_path)
+        identity = _database_file_identity(self.database_path)
+        if expected_identity is not None and identity != expected_identity:
+            raise KnowledgeCoreDatabasePathError(
+                "The canonical SQLite database changed while it was being opened."
+            )
+        connection._bind_database(_CONNECTION_INTERNAL_CAPABILITY, self.database_path, identity)
+        connection._bind_runtime(_CONNECTION_INTERNAL_CAPABILITY, facts, override_used)
+
+    def _validate_ordinary_state(self, connection: ManagedConnection, *, read_only: bool) -> None:
+        if _read_single_pragma(connection, "journal_mode") != "wal":
+            raise KnowledgeCorePragmaMismatchError(
+                "Ordinary connections require an existing WAL database."
+            )
+        from .migrations.runner import validate_schema_state
+
+        validate_schema_state(connection, self.migration_catalog)
+        if read_only:
+            with _internal_sql(connection):
+                connection.execute("PRAGMA query_only = ON")
+            if _read_single_pragma(connection, "query_only") != 1:
+                raise KnowledgeCorePragmaMismatchError(
+                    "Read-only connection query_only enforcement failed."
+                )
+        _verify_connection_file(connection)
 
     def open(self, *, read_only: bool = False) -> ManagedConnection:
         """Open and validate an existing canonical DB without changing schema."""
@@ -1201,24 +1511,127 @@ class ConnectionFactory:
             expected_identity=identity,
         )
         try:
-            if _read_single_pragma(connection, "journal_mode") != "wal":
-                raise KnowledgeCorePragmaMismatchError(
-                    "Ordinary connections require an existing WAL database."
-                )
-            from .migrations.runner import validate_schema_state
-
-            validate_schema_state(connection, self.migration_catalog)
-            if read_only:
-                with _internal_sql(connection):
-                    connection.execute("PRAGMA query_only = ON")
-                if _read_single_pragma(connection, "query_only") != 1:
-                    raise KnowledgeCorePragmaMismatchError(
-                        "Read-only connection query_only enforcement failed."
-                    )
-            _verify_connection_file(connection)
+            self._validate_ordinary_state(connection, read_only=read_only)
             return connection
         except BaseException:
             connection.close()
+            raise
+
+    def _open_revalidatable_read_only(self) -> ManagedConnection:
+        """Internal opt-in for an explicit request-owned multi-phase RO read."""
+        connection = self.open(read_only=True)
+        try:
+            connection._bind_read_only_owner(_CONNECTION_INTERNAL_CAPABILITY, self)
+            return connection
+        except BaseException:
+            connection.close()
+            raise
+
+    @contextmanager
+    def _read_only_lifecycle(self):
+        """Explicit opt-in; ordinary open/close and all callers stay unchanged."""
+        owner = _OwnedReadOnlyLifecycle(_CONNECTION_INTERNAL_CAPABILITY, self)
+        try:
+            yield owner
+        except BaseException as exc:
+            try:
+                owner.close()
+            except BaseException as cleanup_error:
+                exc.add_note("Read-only lifecycle cleanup also failed: " + type(cleanup_error).__name__)
+            raise
+        else:
+            owner.close()
+
+    def _check_owned_read_only(self, connection: ManagedConnection) -> None:
+        """Check an explicit borrow without changing or revalidating the handle."""
+        if not isinstance(connection, ManagedConnection):
+            raise TypeError("A managed read-only connection is required.")
+        connection._check_read_only_revalidation(_CONNECTION_INTERNAL_CAPABILITY, self)
+
+    def revalidate_read_only(self, connection: ManagedConnection) -> None:
+        """Recheck an explicitly owned idle RO connection between read phases.
+
+        This does not acquire, pool, transfer or reopen a connection. The caller
+        retains physical-close ownership. Only a RO handle created by this exact
+        factory/thread through the explicit opt-in is accepted. Old cursors are finalized; every ordinary
+        open check executes again. Validation failures physically close it.
+        """
+        self._check_owned_read_only(connection)
+        try:
+            connection._finish_ordinary_phase(_CONNECTION_INTERNAL_CAPABILITY)
+            _verify_connection_file(connection)
+            snapshot = connection.contract_snapshot()
+            if (not snapshot["no_checkpoint_on_close"]
+                    or snapshot["pragmas"]["query_only"] != 1
+                    or any(snapshot["pragmas"][name] != expected
+                        for name, expected in EXPECTED_CONNECTION_PRAGMAS.items())):
+                raise KnowledgeCorePragmaMismatchError(
+                    "Read-only connection state drifted before revalidation."
+                )
+            # The actual URI mode stays ro. Only trusted validation executes
+            # while query_only is off, allowing the original temporary FTS probe.
+            # Restore and read back query_only before returning to any reader.
+            with _internal_sql(connection):
+                connection.execute("PRAGMA query_only = OFF")
+            self._validate_connection_runtime(connection,
+                expected_identity=connection.database_identity)
+            self._validate_ordinary_state(connection, read_only=True)
+        except BaseException as exc:
+            try:
+                connection.close()
+            except BaseException as cleanup_error:
+                exc.add_note("Read-only revalidation cleanup also failed: "
+                    + type(cleanup_error).__name__)
+            raise
+
+    def _open_revalidatable_read_write(self) -> ManagedConnection:
+        """Internal opt-in for one explicitly owned ordinary writer lifecycle.
+
+        Never creates a database, enables migrations or lends a pooled handle.
+        Services must retain independent managed transactions and fresh authority.
+        """
+        connection = self.open(read_only=False)
+        try:
+            connection._bind_read_write_owner(_CONNECTION_INTERNAL_CAPABILITY, self)
+            return connection
+        except BaseException:
+            connection.close()
+            raise
+
+    def _check_owned_read_write(self, connection: ManagedConnection) -> None:
+        if not isinstance(connection, ManagedConnection):
+            raise TypeError("A managed read-write connection is required.")
+        connection._check_read_write_revalidation(_CONNECTION_INTERNAL_CAPABILITY, self)
+
+    def revalidate_read_write(self, connection: ManagedConnection) -> None:
+        """Repeat every ordinary-open guard between two owned writer phases.
+
+        Prior transactions must be finished. Retained cursors are invalidated,
+        never transferred; FULL durability and URI rw stay unchanged. This is
+        not a data/authority cache or a transaction boundary. On guard failure
+        physically discard the connection while preserving the original error.
+        """
+        self._check_owned_read_write(connection)
+        try:
+            connection._finish_ordinary_phase(_CONNECTION_INTERNAL_CAPABILITY)
+            _verify_connection_file(connection)
+            snapshot = connection.contract_snapshot()
+            if (not snapshot["no_checkpoint_on_close"]
+                    or snapshot["pragmas"]["query_only"] != 0
+                    or any(snapshot["pragmas"][name] != expected
+                        for name, expected in EXPECTED_CONNECTION_PRAGMAS.items())):
+                raise KnowledgeCorePragmaMismatchError(
+                    "Read-write connection state drifted before revalidation."
+                )
+            self._validate_connection_runtime(connection,
+                expected_identity=connection.database_identity)
+            self._validate_ordinary_state(connection, read_only=False)
+        except BaseException as exc:
+            try:
+                connection.close()
+            except BaseException as cleanup_error:
+                exc.add_note("Read-write revalidation cleanup also failed: "
+                    + type(cleanup_error).__name__)
             raise
 
     def _open_for_migration(

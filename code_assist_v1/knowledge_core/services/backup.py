@@ -135,7 +135,9 @@ class BackupService:
         self._configuration = configuration
         self._failpoint = failpoint
         self._repository = BackupRepository()
-        self._storage = FilesystemBackupStorage(layout, backup_root)
+        self._storage = FilesystemBackupStorage(
+            layout, backup_root, migration_catalog=factory.migration_catalog
+        )
 
     def _hit(self, name: str) -> None:
         if self._failpoint is not None:
@@ -341,6 +343,7 @@ class BackupService:
                     else _ms_from_utc(existing_manifest.get("completed_at"))
                 )
                 manifest = build_backup_manifest(
+                    migration_catalog=self._factory.migration_catalog,
                     backup_run_id=run.id,
                     app_version=self._configuration.app_version,
                     build_revision=self._configuration.build_revision,

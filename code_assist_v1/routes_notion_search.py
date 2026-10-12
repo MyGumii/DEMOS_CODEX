@@ -7,10 +7,7 @@ import re
 from flask import Response, request
 
 from code_assist_v1 import notion_http
-from code_assist_v1 import notion_database_export_bundle
 from code_assist_v1 import routes_notion_workspace as workspace_routes
-from code_assist_v1.notion_collaboration.search_preview import read_search_preview
-from code_assist_v1.notion_collaboration.database_search import search_database_titles_scoped
 
 
 MAX_TRANSFER_CHARS = 2_000_000
@@ -67,9 +64,9 @@ def _transfer_text(data: dict[str, object], field: str) -> str:
     return value
 
 
-def _download(body: str | bytes, *, mimetype: str, page_id: str, suffix: str) -> Response:
+def _download(body: str, *, mimetype: str, page_id: str, suffix: str) -> Response:
     safe_name = re.sub(r"[^A-Za-z0-9_-]+", "-", page_id).strip("-") or "page"
-    response = Response(body.encode("utf-8") if isinstance(body, str) else body, mimetype=mimetype)
+    response = Response(body.encode("utf-8"), mimetype=mimetype)
     response.headers["Content-Disposition"] = (
         f'attachment; filename="{safe_name}.{suffix}"'
     )
@@ -79,61 +76,8 @@ def _download(body: str | bytes, *, mimetype: str, page_id: str, suffix: str) ->
     return response
 
 
-def _download_stream(stream, *, mimetype: str, page_id: str, suffix: str) -> Response:
-    safe_name = re.sub(r"[^A-Za-z0-9_-]+", "-", page_id).strip("-") or "page"
-    stream.seek(0, 2)
-    size = stream.tell()
-    stream.seek(0)
-
-    def chunks():
-        try:
-            while chunk := stream.read(1024 * 1024):
-                yield chunk
-        finally:
-            stream.close()
-
-    response = Response(chunks(), mimetype=mimetype)
-    response.content_length = size
-    response.headers["Content-Disposition"] = f'attachment; filename="{safe_name}.{suffix}"'
-    response.headers["Cache-Control"] = "no-store, max-age=0"
-    response.headers["Pragma"] = "no-cache"
-    response.headers["Expires"] = "0"
-    response.call_on_close(stream.close)
-    return response
-
-
 def register_notion_search_routes(app) -> None:
     notion_http.register_error_handlers(app)
-
-    @app.route("/api/notion/workspaces/<workspace_id>/database-search", methods=["GET"])
-    def api_notion_independent_database_search(workspace_id: str):
-        try:
-            if not workspace_routes._collaborative_runtime_enabled():
-                raise FileNotFoundError("not found")
-            store = workspace_routes._store()
-            authority = workspace_routes._database_authority(store)
-            if not workspace_routes._database_sharing_installed(authority):
-                raise FileNotFoundError("not found")
-            result = search_database_titles_scoped(
-                authority,
-                str(workspace_routes._uid() or ""), workspace_id,
-                query=request.args.get("q", ""),
-                sort=str(request.args.get("sort", "relevance") or "relevance"),
-                limit=_integer_query("limit", 50, minimum=1),
-                date_after=_integer_query("date_after", 0),
-                direct_only=_boolean_query("direct_only"),
-            )
-            return workspace_routes._success("database_search_loaded", result)
-        except Exception as exc:
-            return workspace_routes._workspace_error_response(exc)
-
-    @app.route("/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/search-preview", methods=["GET"])
-    def api_notion_collaborative_search_preview(workspace_id: str, page_id: str):
-        try:
-            authority, actor = _page_scope(workspace_id, page_id)
-            return workspace_routes._success("search_preview_loaded", read_search_preview(authority, actor, workspace_id, page_id))
-        except Exception as exc:
-            return workspace_routes._workspace_error_response(exc)
 
     @app.route("/api/notion/workspaces/<workspace_id>/search", methods=["GET"])
     def api_notion_collaborative_search(workspace_id: str):
@@ -224,33 +168,7 @@ def register_notion_search_routes(app) -> None:
     def api_notion_collaborative_export_html(workspace_id: str, page_id: str):
         try:
             authority, actor = _page_scope(workspace_id, page_id)
-            block_id = request.args.get("block_id")
-            view_id = request.args.get("view_id")
-            bundle = request.args.get("bundle")
-            page_content = request.args.get("page_content", "all")
-            if page_content not in {"all", "exclude_files_images"}:
-                raise notion_http.NotionRequestValidationError("invalid page content option")
-            if page_content != "all" and not block_id:
-                raise notion_http.NotionRequestValidationError("database block required for page content option")
-            if view_id is not None and not block_id:
-                raise notion_http.NotionRequestValidationError("block_id required for database view")
-            if bundle not in (None, "1", "markdown_csv") or bundle is not None and not block_id:
-                raise notion_http.NotionRequestValidationError("database block required for HTML bundle")
-            if block_id is not None:
-                result = authority.export_database_html(actor, page_id, block_id=block_id,
-                    view_id=view_id, include_media=page_content == "all",
-                    with_asset_bundle=bundle == "1")
-            else:
-                result = authority.export_html(actor, page_id)
-            if bundle == "1":
-                return _download_stream(result["archive"],
-                    mimetype="application/zip", page_id=page_id, suffix="zip")
-            if bundle == "markdown_csv":
-                return _download(
-                    notion_database_export_bundle.markdown_csv_archive(
-                        result["title"], result["csv"], result["all_csv"], identity=block_id),
-                    mimetype="application/zip", page_id=page_id, suffix="zip",
-                )
+            result = authority.export_html(actor, page_id)
             return _download(
                 result["html"],
                 mimetype="text/html",
@@ -270,8 +188,7 @@ def register_notion_search_routes(app) -> None:
             block_id = str(request.args.get("block_id", "") or "").strip()
             if not block_id:
                 raise notion_http.NotionRequestValidationError("block_id required")
-            view_id = request.args.get("view_id")
-            result = authority.export_csv(actor, page_id, block_id=block_id, view_id=view_id)
+            result = authority.export_csv(actor, page_id, block_id=block_id)
             return _download(
                 result["csv"],
                 mimetype="text/csv",

@@ -252,26 +252,10 @@ class CollaborativeIAMAuthority(ForwardCompatibleCanonicalAuthority):
             "WHERE workspace_id=? AND id=?",
             (workspace_id, document_id),
         ).fetchone()
-        if document is None or document["archived"]:
-            return None, []
-        # A direct grant never revives a document beneath a trashed ancestor.
-        # UNION also terminates on a malformed imported hierarchy cycle.
-        hidden = con.execute(
-            "WITH RECURSIVE lineage(id,parent_document_id,archived) AS ("
-            "SELECT id,parent_document_id,archived FROM workspace_collaboration_documents WHERE workspace_id=? AND id=? "
-            "UNION SELECT d.id,d.parent_document_id,d.archived FROM workspace_collaboration_documents d "
-            "JOIN lineage l ON d.id=l.parent_document_id WHERE d.workspace_id=?) "
-            "SELECT 1 FROM lineage WHERE archived=1 LIMIT 1",
-            (workspace_id, document_id, workspace_id),
-        ).fetchone()
-        if hidden is not None:
+        if document is None:
             return None, []
         sources: list[dict[str, Any]] = []
-        from .native_team_location import inherited_root
-        native_team = inherited_root(con, workspace_id, document_id)
-        # Creator identity is provenance, not a bypass around current team
-        # membership or the team's default grant on native team documents.
-        if str(document["legacy_owner_subject_id"]) == subject_id and native_team is None:
+        if str(document["legacy_owner_subject_id"]) == subject_id:
             sources.append(
                 {
                     "kind": "document_owner",
@@ -818,10 +802,6 @@ class CollaborativeIAMAuthority(ForwardCompatibleCanonicalAuthority):
                 "SELECT id FROM workspace_collaboration_documents WHERE workspace_id=?)",
                 (now, now, target, workspace),
             )
-            from . import database_access
-            affected_database_ids = database_access.revoke_subject_grants_on_member_revoke(
-                con, workspace, target, now,
-            )
             con.execute(
                 "UPDATE workspace_guests SET revoked_at=?,updated_at=?,guest_epoch=guest_epoch+1 "
                 "WHERE workspace_id=? AND subject_id=? AND revoked_at IS NULL",
@@ -865,7 +845,6 @@ class CollaborativeIAMAuthority(ForwardCompatibleCanonicalAuthority):
                 "revoked_subject_id": target,
                 "workspace_epoch": workspace_epoch,
                 "affected_document_ids": document_ids,
-                "affected_database_ids": affected_database_ids,
             }
             return self._finish(
                 con,
@@ -882,7 +861,6 @@ class CollaborativeIAMAuthority(ForwardCompatibleCanonicalAuthority):
                 event_payload={
                     "target_subject_id": target,
                     "affected_document_count": len(document_ids),
-                    "affected_database_count": len(affected_database_ids),
                 },
                 result=result,
                 fault=fault,
@@ -1152,12 +1130,7 @@ class CollaborativeIAMAuthority(ForwardCompatibleCanonicalAuthority):
                     "WHERE page.workspace_id=? AND legacy.subject_id=? AND legacy.active=1 LIMIT 1",
                     (workspace, principal),
                 ).fetchone()
-                from . import database_access
-                database_granted = database_access.has_active_subject_grant(
-                    con, workspace, principal,
-                )
-                if (still_member is None and still_granted is None
-                        and legacy_granted is None and not database_granted):
+                if still_member is None and still_granted is None and legacy_granted is None:
                     con.execute(
                         "UPDATE workspace_guests "
                         "SET revoked_at=?,updated_at=?,guest_epoch=guest_epoch+1 "
