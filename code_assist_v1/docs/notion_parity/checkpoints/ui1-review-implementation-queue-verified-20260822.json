@@ -1,0 +1,84 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T02:31:49.3155105+09:00",
+  "run_id": "ui28-review-implementation-queue-verified-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-review-gate-nested-input-drift-guard-20260822.json",
+    "sha256": "sha256:68dccf9312667f77b079f4522d8059799b85667f9e275e94a3d81666692a2fee",
+    "semantic_status": "current_machine_verified_review_gate_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "Continue the Core Free desktop UI evidence, review, and implementation plan."
+  },
+  "slice": {
+    "id": "UI1-REVIEW-IMPLEMENTATION-QUEUE-V1",
+    "status": "verified_pending_owner_approval",
+    "behavior_change_allowed": false,
+    "completion_matrix_changed": false
+  },
+  "outputs": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json",
+      "sha256": "sha256:a22a8c7d57fd7d86889f0ee650ffa9b4c5dcec7327bf68009ae4d677d3b9ec45",
+      "size": 7019
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_review_gate.py",
+      "sha256": "sha256:210b59c61ea52d6554c2cc44381a2b389db4c208bd9184e088cb28cdecb4a8cb",
+      "size": 6617
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:d3da66f488eee5f99b2ffa751ad848e92c371e156ab9b58fe60536f50163ec93",
+      "size": 8173
+    }
+  ],
+  "verification": [
+    {
+      "selection": "review-gate and implementation-queue focused unit suite",
+      "result": "7 passed in 4.61s",
+      "exit_code": 0
+    },
+    {
+      "selection": "review implementation queue JSON parse",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "selection": "review test module Python compilation",
+      "result": "pass",
+      "exit_code": 0
+    }
+  ],
+  "classification": {
+    "capture_completeness_first": [
+      "UI-DB-001",
+      "UI-DB-002",
+      "UI-DB-003",
+      "UI-SEARCH-001",
+      "UI-COLLAB-001",
+      "UI-SHARE-001"
+    ],
+    "confirmed_focus_or_a11y_difference": [
+      "UI-SHELL-001",
+      "UI-EDITOR-001",
+      "UI-EDITOR-002"
+    ],
+    "entry_context_review_first": [
+      "UI-EDITOR-005"
+    ]
+  },
+  "claims": {
+    "all_ten_review_pending_scenarios_queued_once": true,
+    "behavior_change_authorized": false,
+    "receipt_sealing_authorized": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "goal_should_remain_active": true
+  },
+  "next_exact_action": "After exact owner approval, execute R1 capture completeness before product edits, then R2 confirmed focus/a11y differences, then R3 entry-context review. Recompute every differential before any matrix update."
+}

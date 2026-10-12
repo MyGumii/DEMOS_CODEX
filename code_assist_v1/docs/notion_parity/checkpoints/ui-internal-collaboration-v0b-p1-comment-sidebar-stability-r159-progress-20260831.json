@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-COMMENT-SIDEBAR-STABILITY-R159-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T04:56:22.8578285+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r159 Chrome 153 full candidate captures all 18 named states at both adopted viewports and passes all 36 accessibility captures and cleanup gates. Deterministic comment-reference sidebar compaction reduces the unmasked RGBA difference by 98,174 pixels from r144 and by 153,766 pixels from r131, while an absolute V0R-MU-011 editor top correction removes the full-run sequence regression without changing its isolated result. Exact RGBA remains 0/36, so this is a progress checkpoint only and is not a V0B gate receipt or product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "comparison_candidates": {
+      "r131_receipt": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r131/receipt.json",
+      "r131_unmasked_difference_count": 3072668,
+      "r144_receipt": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r144/receipt.json",
+      "r144_sha256": "sha256:f35fe7b63ea493135bed56619c20a8be5d3b7ac46c486ccf7f84046202dfee14",
+      "r144_unmasked_difference_count": 3017076
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:1c11e7a560bb95ff43414bd04c22de60c1c667f6e0b5cbc640fbd7b448801e86",
+        "changes": [
+          "hide the private new-page row and the duplicate REF-FREE-A teamspace row for V0R-MU-007, 008, 009, 010, and 012",
+          "translate the collaborative app list by 14 pixels for those five reference states",
+          "normalize V0R-MU-011 pageEditorGroup to an absolute 437 pixel top after resetting inherited translate state",
+          "retain the prior compact comment-preview, actor-alias, inspector, and page-popover capture corrections"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:a2f6dc796ba4867dd97d9e21c4a9dfe163f49cba26e92d076750f0bfe54c1abc"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:78bbea83778d201e90f24929cac74fe942c8666adf439bc8008e58fe5d64e471",
+        "changes": [
+          "retain max-height none for the workspace-members reference surface"
+        ]
+      }
+    ],
+    "rejected_experiments_removed": [
+      "workspace-invite full sidebar restoration",
+      "workspace-invite existing-section coordinate-only translation",
+      "manual seven-row inbox reconstruction",
+      "V0R-MU-011 redundant teamspace renderer call",
+      "temporary geometry instrumentation"
+    ]
+  },
+  "service_recovery": {
+    "reason": "The long-running approved development realm exceeded C0 presence and comment delivery latency without CPU or memory exhaustion.",
+    "old_launch_id": "c0de60ca39c94756bab9f0016ea599eb",
+    "stop_result": "STOP_TIMEOUT returned after the owned ports and active marker had already closed",
+    "data_deleted": false,
+    "permanent_delete_used": false,
+    "new_launch_id": "f349de91899741bea719151171a315b7",
+    "root_locator_sha256": "sha256:0925faed3812255e51cd92852de3bb7b3a7e538a84ce8b1ae0009e5a3abda978",
+    "run_root_locator_sha256": "sha256:367e2bd2eee7e69bdfb2e8918ccaeea0bd99c013d01354166aeb5653a462de31",
+    "ports_listening": [10111, 10112, 10113],
+    "c0_post_restart_diagnostic": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-candidate-20260831-r158-preflight",
+      "journey_status": "pass",
+      "capture_count": 8,
+      "accessibility_pass_count": 8,
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true
+    }
+  },
+  "retained_r159_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r159",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r159/receipt.json",
+    "receipt_sha256": "sha256:e0870d04febc29afa111fb5c0d8184ccec04e76613db193b7120010db8f990d2",
+    "browser_major_version": "153",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2918902,
+    "raw_difference_count": 3053826,
+    "unmasked_delta_from_r144": -98174,
+    "unmasked_delta_from_r131": -153766,
+    "changed_state_deltas_from_r144": {
+      "V0R-MU-005": -253,
+      "V0R-MU-007": -20870,
+      "V0R-MU-008": -20871,
+      "V0R-MU-009": -20870,
+      "V0R-MU-010": -20157,
+      "V0R-MU-012": -15153
+    },
+    "state_011_stability": {
+      "r144_unmasked_difference_count": 154474,
+      "r153_sequence_regression_count": 180564,
+      "isolated_after_absolute_correction_count": 154474,
+      "r159_full_candidate_count": 154474
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:752045bff045409b2ba15a9f78a2c385ac25027e68f8ab8978ab90b453aae9e8"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "14 passed in 11.42s",
+      "exit_code": 0
+    }
+  },
+  "scope_attestation": {
+    "local_product_source_changed": true,
+    "local_capture_harness_changed": true,
+    "external_reference_receipt_modified": false,
+    "external_reference_screenshot_modified": false,
+    "personal_workspace_or_page_used": false,
+    "cookie_local_storage_profile_or_password_inspected": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "exact_pixel_36_of_36": "0_of_36",
+    "remaining_unmasked_difference_count": 2918902,
+    "core_25_final_rerun": "not_run",
+    "ui_performance_final_rerun": "not_run",
+    "V0B_P1_gate_passed": false,
+    "later_packets": ["O1B", "Q0", "R0", "R1", "Z0"],
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue V0B exact-RGBA convergence from the retained r159 source and candidate. Do not promote r159 to the immutable evidence receipt. Prefer measured, state-bounded structural corrections and preserve the V4 reference, AGENTS.md, other SBE hot contracts, cleanup denominator, and exact gate requirements."
+}

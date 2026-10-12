@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaboration.exclusive_runtime_handoff.v1",
+  "receipt_id": "XG-10111-EXCLUSIVE-HANDOFF-D0B-P1-20260824",
+  "gate_id": "XG-10111-EXCLUSIVE-HANDOFF",
+  "recorded_at": "2026-08-24T12:58:08Z",
+  "status": "accepted_exclusive_handoff",
+  "from_owner": "SBE-7.2_and_prior_10111_preview_lane",
+  "to_owner": "D0B-P1",
+  "owner_agent": "/root",
+  "exclusive_scope": [
+    "development_port_10111",
+    "10111_launcher_and_service_state",
+    "10111_auth_and_config_composition",
+    "new_D0B_marker_bound_development_roots"
+  ],
+  "exact_pre_handoff_paths": {
+    "code_assist_v1/tools/full_second_brain_preview.py": "sha256:9ea7939e93e88de4348a4b82da29ba9c32efad6c6f1e0a992b00ddf743f66986",
+    "code_assist_v1/app_code.py": "sha256:e125cb9ba71ede6bb260afc042b2bd1d048288b0d464e8e1ea79488a3130d592",
+    "code_assist_v1/app_notion.py": "sha256:49c2345c6eeef710e655e37b3ca7cff3821d900f175a585fb6a2ab7f9acaf4f2",
+    "code_assist_v1/auth.py": "sha256:4185e74b9ddd8826b7a115bee87fa3965bb440fe10b1ea14d77cbd8bbffe8bc2",
+    "code_assist_v1/config.py": "sha256:262c747d10f8b40d91b8c48eb606be81768d9fccf7526ed9b07420047ee8a1d2"
+  },
+  "service_state_at_handoff": {
+    "observed_at": "2026-08-24T12:58:08Z",
+    "10111": "not_listening",
+    "10112": "not_listening",
+    "10113": "not_listening",
+    "owned_process_to_stop_before_replacement": false
+  },
+  "coordination_rules": {
+    "SBE_7_2_may_concurrently_replace_or_start_10111": false,
+    "D0B_P1_may_replace_or_start_10111": true,
+    "production_10011_or_10012_authority_transferred": false,
+    "handoff_releases_only_after_D0B_checkpoint_or_explicit_reverse_handoff": true
+  },
+  "source": "current_user_conversation",
+  "plaintext_secret_credential_cookie_or_personal_content_recorded": false
+}

@@ -1,0 +1,73 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T02:28:45.0573684+09:00",
+  "run_id": "ui27-review-gate-nested-input-drift-guard-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-evidence-review-gate-perf-supplement-20260822.json",
+    "sha256": "sha256:bd27e821ff1f1bde730ffd61626b30ac0186e91ad7af9af380cf0cc325331d8c",
+    "semantic_status": "current_review_gate_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "Continue the Core Free desktop UI evidence, review, and implementation plan."
+  },
+  "slice": {
+    "id": "UI1-EVIDENCE-REVIEW-GATE-V1/NESTED-INPUT-DRIFT-GUARD",
+    "status": "machine_verified_pending_owner_approval",
+    "promotion_allowed": false,
+    "completion_matrix_changed": false
+  },
+  "outputs": [
+    {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_review_gate.py",
+      "sha256": "sha256:fcb3c87090f2b77f4292e40932097c3e6714928783db59e95eea91de4670cd72",
+      "size": 15434
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_review_gate.py",
+      "sha256": "sha256:b88bf735f5867a7023af9c42c40cad9a642aee064986209f81c1c6434f33b2b9",
+      "size": 4951
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:d3da66f488eee5f99b2ffa751ad848e92c371e156ab9b58fe60536f50163ec93",
+      "size": 8173
+    }
+  ],
+  "verification": [
+    {
+      "selection": "review-gate unit suite including nested-input drift injection",
+      "result": "6 passed in 4.38s",
+      "exit_code": 0
+    },
+    {
+      "selection": "verify_notion_core_free_ui_review_gate --compact",
+      "result": "pass; pending_owner_approval; counts 5/10/3/7",
+      "exit_code": 0
+    },
+    {
+      "selection": "review-gate verifier Python compilation",
+      "result": "pass",
+      "exit_code": 0
+    }
+  ],
+  "guard_contract": {
+    "checkpoint_file_hash_always_required": true,
+    "declared_protected_input_hash_revalidated": true,
+    "declared_canonical_hash_shape_revalidated": true,
+    "historical_checkpoint_without_protected_inputs_supported": true,
+    "nested_input_drift_fails_closed": true
+  },
+  "claims": {
+    "review_gate_machine_verified": true,
+    "nested_checkpoint_input_drift_guarded": true,
+    "owner_approval_recorded": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "goal_should_remain_active": true
+  },
+  "next_exact_action": "Await the two explicit owner review decisions, then implement and rerun each approved scenario differential before any completion-matrix mutation."
+}

@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-GUEST-BLOCK-SPACING-R739-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T11:24:59+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state001-invite-content-r732-progress-20260902.json",
+    "checkpoint_sha256": "sha256:c36e694ffe71d27610a28e8cdebb154df389137df4a7c9e51feed6aef413066e",
+    "source_sha256": "sha256:353269cfbf2b7ed862f921e427cbb7ee567cd28ef85d7a6fc83d55bbc2c704dc",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r732/receipt.json",
+    "receipt_sha256": "sha256:28684fd3ba84885df02451868d777dfa4bb3d38535c1f4ca8bb74b85cf7793ab",
+    "unmasked_differing_pixel_count": 1971022,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2039440
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:37838769819ee09f9c618a940e0c952d7e60a5f80b0e195e0432593d74850968",
+    "summary": [
+      "Applied only to V0R-MU-015 and V0R-MU-016 after the final guest-page layout synchronization.",
+      "Reduced letter spacing only on the second onboarding todo line and final toggle line, matching the immutable reference line widths while preserving the already-better middle lines.",
+      "Kept the V0R-MU-001 r732 invite-dialog corrections unchanged and restored every rejected height, banner, first-row, and repeated-pointer experiment before the accepted candidate."
+    ],
+    "source_bound_unmasked_reduction_from_r732": 3555,
+    "source_bound_unmasked_reduction_from_r728": 6949,
+    "source_bound_unmasked_reduction_from_r720": 10293,
+    "source_bound_unmasked_reduction_from_r717": 12641,
+    "source_bound_unmasked_reduction_from_r713": 17640,
+    "source_bound_unmasked_reduction_from_r657": 46567,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 107614,
+    "source_bound_state_deltas_from_r732": {
+      "V0R-MU-015__1440x900": -1254,
+      "V0R-MU-015__1280x800": -901,
+      "V0R-MU-016__1440x900": -983,
+      "V0R-MU-016__1280x800": -417
+    }
+  },
+  "accepted_diagnostics": {
+    "r735_state016_guest_block_spacing": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r735",
+      "journey_status": "pass",
+      "cleanup": true,
+      "state016_1440_reduction_from_r732": 983,
+      "state016_1280_reduction_from_r732": 417,
+      "other_I0_source_regression_count": 0,
+      "accessibility_pass_count": 20
+    },
+    "r738_state015_guest_block_spacing": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r738",
+      "journey_status": "pass",
+      "cleanup": true,
+      "state015_1440_reduction_from_r735": 1254,
+      "state015_1280_reduction_from_r735": 901,
+      "state016_delta_from_r735": 0,
+      "other_I0_source_regression_count": 0,
+      "accessibility_pass_count": 20
+    }
+  },
+  "rejected_diagnostics": {
+    "r733_state001_modal_height": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r733",
+      "reason": "Reducing the invite modal height by one pixel broke the browser half-pixel centering and regressed V0R-MU-001 by 5975 pixels wide and 5947 pixels compact.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r734_overbroad_state016_typography": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r734",
+      "reason": "The guest banner reconstruction regressed both viewports by 599 pixels and two middle onboarding lines were worse; only the independently improving line-spacing subset was retained for r735.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r736_state016_first_row_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r736",
+      "reason": "The first-row checkbox and text changed 561 pixels per viewport but produced zero net exact-pixel improvement, so the relocation-only change was removed.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r737_repeated_pointer_scale": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r737",
+      "reason": "The enlarged repeated pointer regressed all ten affected captures by exactly two pixels each, so the original pointer geometry was restored.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r739",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r739/receipt.json",
+    "receipt_sha256": "sha256:76fd4a934c92920c11282b3bbb3bd84edd2fba7850913432f59e0e8277144ded",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1965447,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2033865,
+    "raw_unmasked_delta_from_r732": -5575,
+    "raw_masked_delta_from_r732": 0,
+    "raw_total_delta_from_r732": -5575,
+    "raw_unmasked_delta_from_r728": -9945,
+    "raw_masked_delta_from_r728": 0,
+    "raw_total_delta_from_r728": -9945,
+    "raw_unmasked_delta_from_r720": -11960,
+    "raw_masked_delta_from_r720": 0,
+    "raw_total_delta_from_r720": -11960,
+    "raw_unmasked_delta_from_r713": -20568,
+    "raw_masked_delta_from_r713": 0,
+    "raw_total_delta_from_r713": -20568,
+    "raw_unmasked_delta_from_r657": -48581,
+    "raw_masked_delta_from_r657": -1008,
+    "raw_total_delta_from_r657": -49589,
+    "runtime_only_unmasked_variation_from_r732": {
+      "V0R-MU-004__1440x900": -2040,
+      "V0R-MU-008__1440x900": 20,
+      "net": -2020
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1406,
+      "comment_delivery_ms": 1442,
+      "reaction_delivery_ms": 1210,
+      "presence_ttl_expiry_ms": 15597,
+      "reconnect_ms": 1948
+    },
+    "duration_ms": 336522,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:3c12643fcf6c4774fd6a92a8f3b2592b793bf72820c12b6c51a1345cfa3f8ea9"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "command_scope": [
+        "test_internal_collaborative_v0b_p1_receipt.py",
+        "test_v0b_p1_capture_matte.py",
+        "test_v0b_p1_i0_semantic_diagnostic.py",
+        "browser/test_exact_pixel_parity.py"
+      ],
+      "result": "17 passed in 25.30s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:76fd4a934c92920c11282b3bbb3bd84edd2fba7850913432f59e0e8277144ded"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r739 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

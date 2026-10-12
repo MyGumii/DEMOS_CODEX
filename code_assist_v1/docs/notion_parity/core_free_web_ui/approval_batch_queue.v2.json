@@ -1,0 +1,87 @@
+{
+  "contract": "code_assist.notion.core_free_ui.approval_batch_queue.v2",
+  "recorded_at": "2026-08-22T17:29:43.9512286+09:00",
+  "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "prior_batch": {
+    "queue": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v1.json",
+      "sha256": "sha256:0c6a80362249a71378f01ac9f6c6f7b12fa8944f381fb7b8ae6ff1f3a9952598"
+    },
+    "approval_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_receipt.20260822.json",
+      "sha256": "sha256:81afd3cab4e94c3b0cddb6dfc7e212e8bfa4d9a39f9f9f6644948b61b08a83ee"
+    },
+    "resolved_entry_count": 3
+  },
+  "manual_input": {
+    "receipt": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/manual_ime_input_verified_receipt.20260822.json",
+      "sha256": "sha256:ae8e3daa4b94c7591431ff6fce6f8a1688782cd41db4c236d8193c1cb5440464"
+    },
+    "entry_id": "UI-EDITOR-004-NATIVE-IME-INPUT",
+    "status": "resolved"
+  },
+  "policy": {
+    "mode": "accumulate_then_process_serially",
+    "approval_is_never_inferred": true,
+    "external_action_authorized": false,
+    "personal_workspace_access_allowed": false,
+    "live_local_data_access_allowed": false,
+    "completion_matrix_mutation_allowed_by_receipt_alone": false
+  },
+  "entries": [
+    {
+      "entry_id": "UI-EDITOR-004-NATIVE-IME-SUMMARY-REVIEW",
+      "kind": "human_evidence_acceptance",
+      "status": "pending_user_approval",
+      "scenario_ids": ["UI-EDITOR-004"],
+      "required_user_text": "UI-EDITOR-004 네이티브 IME 요약 승인",
+      "external_state_change": false,
+      "may_be_batched": true,
+      "authorization_effect": "allow_redacted_observable_differential_recomputation",
+      "evidence": {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-004-native-ime-reference-observed-review-pending-20260822.json",
+        "sha256": "sha256:40875c34a6abea885b09d76654918db7dfb09ed244e388a55b57cbc2e07f7fe5"
+      }
+    },
+    {
+      "entry_id": "UI-PERF-001-LOCAL-BUDGET-REVIEW",
+      "kind": "human_policy_acceptance",
+      "status": "pending_user_approval",
+      "scenario_ids": ["UI-PERF-001"],
+      "required_user_text": "UI-PERF-001 로컬 성능 예산 제안 승인",
+      "external_state_change": false,
+      "may_be_batched": true,
+      "authorization_effect": "allow_local_precalibration_regression_budget",
+      "evidence": {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-local-budget-proposal-green-review-pending-20260822.json",
+        "sha256": "sha256:9b8366c636ae4d1630512e9f6263230239a2bf4f30c92c46920a0ac89a238ce4"
+      }
+    }
+  ],
+  "batch_execution": {
+    "status": "waiting_for_exact_user_text",
+    "exact_user_text": "UI-EDITOR-004 네이티브 IME 요약 승인; UI-PERF-001 로컬 성능 예산 제안 승인",
+    "entry_ids": [
+      "UI-EDITOR-004-NATIVE-IME-SUMMARY-REVIEW",
+      "UI-PERF-001-LOCAL-BUDGET-REVIEW"
+    ],
+    "processing_order": [
+      "seal_native_ime_summary_receipt",
+      "seal_local_performance_budget_decision",
+      "recompute_only_authorized_local_and_observable_differential_claims",
+      "rerun_manual_ime_performance_review_and_completion_verifiers"
+    ]
+  },
+  "claims": {
+    "pending_entry_count": 2,
+    "pending_human_evidence_approval_count": 1,
+    "pending_human_policy_approval_count": 1,
+    "external_action_pending_count": 0,
+    "approval_inferred_count": 0,
+    "manual_input_pending_count": 0,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

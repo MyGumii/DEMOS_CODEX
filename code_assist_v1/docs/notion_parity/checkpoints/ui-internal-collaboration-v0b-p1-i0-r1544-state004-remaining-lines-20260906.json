@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1544-STATE004-REMAINING-LINES-20260906",
+  "recorded_at": "2026-09-06T10:06:56.1626602+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1542-state004-shadow-lines-20260906.json",
+    "sha256": "sha256:b1757bf5b0e072444ffcab2b8eb153f87b311858963e6f64076290e2c4a203d6",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 705071
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-004 at 1440x900 and 1280x800",
+    "description": "Add the remaining reference-exact lower-shadow rows after the first state004 shadow correction.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:7f3ca8d07ba8cd996de0fe6775907a7324269cb8cf375ba449f7b1da293bde9",
+    "duplicated_capture_paths_updated": 2,
+    "python_compile_pass": true
+  },
+  "supporting_sweep": {
+    "run_id": "v0b-p1-i0-r1543-state004-remaining-lines-sweep",
+    "results_path": ".runtime/v0b-p1-i0-r1543-state004-remaining-lines-sweep/state004-shadow-exact-lines-results.json",
+    "results_sha256": "sha256:7d87d52aa082953623618bd2254dc20a3979b98fe70f04e9bd242fac6f269622",
+    "wide_sweep_baseline_difference_count": 44158,
+    "wide_sweep_accepted_difference_count": 44029,
+    "wide_sweep_improvement": 129,
+    "compact_sweep_baseline_difference_count": 43188,
+    "compact_sweep_accepted_difference_count": 43040,
+    "compact_sweep_improvement": 148,
+    "candidate_groups_individually_improved": true,
+    "journey_status": "pass",
+    "cleanup_pass": true
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1544-state004-remaining-lines-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1544-state004-remaining-lines-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:a1b655d5989e27ff4d90abbd0eb68bcb7b89f011881129b57dc3f1c023d9a73b",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 704065,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 704848,
+    "stable_normalization": {
+      "capture": "V0R-MU-002@1440x900",
+      "observed_difference_count": 83353,
+      "stable_high_difference_count": 84136,
+      "known_variance_added": 783
+    },
+    "stable_normalized_improvement_from_predecessor": 223,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 45403,
+    "intended_changed_capture_count": 2,
+    "changed_capture_hash_count_including_known_variance": 3,
+    "unchanged_capture_hash_count": 17,
+    "changed_captures": [
+      {"capture": "V0R-MU-004@1440x900", "predecessor_difference_count": 37549, "accepted_difference_count": 37474, "improvement": 75},
+      {"capture": "V0R-MU-004@1280x800", "predecessor_difference_count": 43188, "accepted_difference_count": 43040, "improvement": 148}
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1525-20260906",
+    "launch_id": "cd39c9dc305a4f6e89b7ac620f1bdbfa",
+    "root_id": "7417e295-3edb-4ffd-923d-8fffb0adeb60",
+    "manager_session_id": 79532,
+    "current_audit": {
+      "workspace_count": 40,
+      "reference_workspace_count": 38,
+      "active_membership_count": 40,
+      "active_page_binding_count": 38,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 704848. Rotate the realm before the 46-workspace threshold. Do not run final gates before exact parity reaches 36/36."
+}

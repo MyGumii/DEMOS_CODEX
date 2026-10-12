@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-T0A-P3-STATUS-INTEGRATION-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-24T00:26:00Z",
+  "checkpoint_kind": "status_integration_pre_edit",
+  "packet_id": "T0A-P3",
+  "owner_agent": "/root",
+  "ownership_lease": {
+    "lease_id": "T0A-P3-STATUS-INTEGRATOR-20260824",
+    "lane": "SPIKE",
+    "status": "active",
+    "acquired_at": "2026-08-24T00:26:00Z",
+    "expires_at": "2026-08-25T00:26:00Z",
+    "exact_paths_only": true
+  },
+  "owned_existing_files": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:6dc95a277830c8fb668e97535f5a9ef6b7bbb83df94d0c072ef8ebc1b9592917",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:eeca51b52f36ee1eedb72831e5e5d6d51ded63bb0df644ef4ca615192da2416a",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:48c4d3b9f87a2dbd5fce48ca4284d0387ed1ca2f6e93b47e890a14fa61f56779",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:8056d796e095278d4cfe2de61c50b31a079d7e5174eb39b4476901861743c92e",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:cac9c9aebb32d6aa754c4ab7cafb50b9caccca738167f4fa7ae0a0cd558e3626"
+  },
+  "accepted_receipts": {
+    "E0-P4-L3-CRDT-WINNER-SELECTION-20260824": "sha256:6fa6752c37d71e46831165e0898807763840aaf37bc02d746e4bba7fea06746f",
+    "T0A-P3-L3-SELECTED-RUNTIME-BINDING-20260824": "sha256:b07575ab2023454b8d128581c299dbb8e003707165eecce6dc9a6a94e8134ab4"
+  },
+  "implementation_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_topology_adr.v1.json": "sha256:ac102389d11e7270d8bb3bacbff37482da81c8cfe0f7389838a9a0f42ee5770f",
+    "code_assist_v1/notion_collaboration/selected_runtime_contract.py": "sha256:31947c8739e5555875e6df8c0e604e987299299726684f2cf3220d11dd1f79fa",
+    "code_assist_v1/tools/verify_internal_collaborative_selected_runtime.py": "sha256:da582cd86f3c14fad9658742dc633788bbb126497e6efe940768f30a840a20fa",
+    "code_assist_v1/tests/notion_collaboration/test_selected_runtime_contract.py": "sha256:2a62de60089ce0877a3f6c5179db4280c8e2b1694aad4908ee797b2803e6c87a",
+    "code_assist_v1/tests/notion_collaboration/test_selected_runtime_topology_adr.py": "sha256:f5d35b904f83ec002ee0d90467c0949d91a19ac084ffa59823135ba1b214b5c5"
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "sbe_input_sha256": "sha256:e42924c7d5d305dad8b483b76909eb86398c720626e90c99f37e60f682d49bc4",
+    "sbe_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+    "global_runtime_lock_sha256": "sha256:fc5522dcbf576d8dcfbbf51d6349dbc007bc5438dcc396cba913f54aa22f0bd0"
+  },
+  "intended_post_state": {
+    "T0A-P3": "gate_passed",
+    "next_packet": "O0A-P3",
+    "runtime_binding_sha256": "sha256:99b8e01015bbf92c385493bebbc08b6600add4b43afd2ab6e1746a6bb8e74057",
+    "actual_gateway_transport_implemented": false,
+    "actual_compactor_service_implemented": false,
+    "product_complete": false
+  },
+  "rollback_or_cleanup": "Restore only the five owned existing files to exact pre-edit hashes if integration fails. Do not touch new T0A-P3 evidence unless the packet is rejected, and never touch dependency locks, SBE contracts, identities, workspaces, services, ports, schemas, or protected data."
+}

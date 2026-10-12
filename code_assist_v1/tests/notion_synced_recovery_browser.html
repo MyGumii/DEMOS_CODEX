@@ -1,0 +1,56 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>동기화 보관본 검증</title>
+<button id="run">암호화 보관본 검증 시작</button><pre id="result">대기</pre>
+<script src="/notion_static/notion_collaboration_editor.js?v=20260923-ui4-synced-recovery2"></script>
+<script>
+document.querySelector('#run').onclick=async()=>{
+  const result=document.querySelector('#result'),checks=[];
+  const box=NotionCollaborationEditor.createEncryptedOutbox();
+  const a={realm:location.origin+'/synthetic-recovery-check',subject_id:'test-recovery-self',workspace_id:'ws-a',page_id:'page-a'};
+  const b={...a,subject_id:'test-recovery-other'};
+  const check=(name,condition)=>{if(!condition)throw Error(name);checks.push(name);};
+  try{
+    await box.clearSubject(a);await box.clearSubject(b);
+    await box.put(a,{operation_id:'draft-a',kind:'synced.text.draft.v1',content:'보관한 한😀글'});
+    await box.put(b,{operation_id:'draft-b',content:'다른 계정'});
+    // Downgrade only this test actor's key metadata to the pre-token format.
+    const subjectDigest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(a.realm+'\n'+a.subject_id));
+    const subject='sha256:'+Array.from(new Uint8Array(subjectDigest),v=>v.toString(16).padStart(2,'0')).join('');
+    const db=await new Promise((resolve,reject)=>{const r=indexedDB.open('code-assist-notion-collaboration-v1');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});
+    await new Promise((resolve,reject)=>{const tx=db.transaction('keys','readwrite'),store=tx.objectStore('keys'),read=store.get(subject);
+      read.onsuccess=()=>{const record=read.result;delete record.token;store.put(record);};tx.oncomplete=resolve;tx.onabort=()=>reject(tx.error);});
+    db.close();
+    check('기존 키와 암호화된 입력 호환',(await box.list(a))[0].content==='보관한 한😀글');
+    const cancelled=await box.clearSubject(a,{confirmDiscard:async count=>{check('현재 계정만 집계',count===1);return false;}});
+    check('취소 시 삭제 없음',cancelled.cancelled===true&&(await box.list(a))[0].content==='보관한 한😀글');
+    let changed=false;
+    try{await box.clearSubject(a,{confirmDiscard:async()=>{await box.put(a,{operation_id:'draft-later',content:'확인 중 입력'});return true;}});}
+    catch(error){changed=error.message.includes('입력이 변경');}
+    check('확인 도중 추가된 입력 보호',changed&&(await box.list(a)).length===2);
+    let replaced=false;
+    try{await box.clearSubject(a,{confirmDiscard:async()=>{await box.put(a,{operation_id:'draft-a',content:'같은 항목 새 입력'});return true;}});}
+    catch(error){replaced=error.message.includes('입력이 변경');}
+    check('동일 번호의 새 입력 보호',replaced&&(await box.list(a)).some(e=>e.content==='같은 항목 새 입력'));
+    const cleared=await box.clearSubject(a,{confirmDiscard:async count=>count===2});
+    check('명시적 확인 후 현재 계정 삭제',cleared.cleared===true&&(await box.list(a)).length===0);
+    check('다른 계정의 암호화 입력 유지',(await box.list(b))[0].content==='다른 계정');
+    await box.put(a,{operation_id:'after-clear',content:'새 암호화 키로 저장'});
+    check('정리 후 새 저장소 사용',(await box.list(a))[0].content==='새 암호화 키로 저장');
+    await box.clearSubject(a);await box.clearSubject(b);
+    check('기본 정리 동작 유지',(await box.list(a)).length===0&&(await box.list(b)).length===0);
+    let release,start;
+    const gate=new Promise(resolve=>release=resolve),started=new Promise(resolve=>start=resolve);
+    const delayed=NotionCollaborationEditor.createEncryptedOutbox({crypto:{
+      getRandomValues:value=>crypto.getRandomValues(value),
+      subtle:{digest:(...v)=>crypto.subtle.digest(...v),generateKey:(...v)=>crypto.subtle.generateKey(...v),decrypt:(...v)=>crypto.subtle.decrypt(...v),
+        encrypt:async(...v)=>{start();await gate;return crypto.subtle.encrypt(...v);}},
+    }});
+    const pending=delayed.put(a,{operation_id:'late-encryption',content:'로그아웃 도중 암호화된 입력'}).then(()=>false,()=>true);
+    await started;await box.clearSubject(a);release();
+    check('로그아웃 전 시작된 암호화의 뒤늦은 저장 차단',await pending);
+    check('키 삭제 이후 해독 불가능한 보관본 없음',(await box.list(a)).length===0);
+    await delayed.close();
+    result.textContent=JSON.stringify({status:'pass',checks},null,2);
+  }catch(error){result.textContent=JSON.stringify({status:'fail',checks,error:error.stack},null,2);}
+  finally{await box.clearSubject(a);await box.clearSubject(b);await box.close();}
+};
+</script></html>

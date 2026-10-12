@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1560-STATE015-HEADER-RASTER-20260906",
+  "recorded_at": "2026-09-06T11:09:43.7036126+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1558-state015-016-icon-raster-20260906.json",
+    "sha256": "sha256:e3a994b1efb50a2f69ba5512595f22a6669dd043b9673776a48a5706a347e108",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 623608
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-015 page icon and title header at 1440x900 and 1280x800",
+    "description": "Replace the state015 icon-only reassertion with a lossless 570x160 icon-and-title header crop; state016 retains its icon-only crop.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:5d76de56831edcabfb447987a18fbbea0a6d0ae5c6a47c40367c432fb20434ef",
+    "pre_bitmap_reassert_path_updated": true,
+    "image_decode_awaited": true,
+    "python_compile_pass": true
+  },
+  "supporting_analysis": {
+    "run_id": "v0b-p1-i0-r1559-state015-header-raster-analysis",
+    "results_path": ".runtime/v0b-p1-i0-r1559-state015-header-raster-analysis.json",
+    "results_sha256": "sha256:14794f99acc427c52fb4651ce0c97112a6923776d5a9d4781637e368b072da4d",
+    "builder_path": ".runtime/build_state015_header_rasters.py",
+    "builder_sha256": "sha256:566a39027db22b95c70c997f0b98597f8b62dcee9ac2c7b971a8bc55cb3e765c",
+    "raster_count": 2,
+    "raster_dimensions": "570x160",
+    "wide_baseline_difference_count": 20176,
+    "wide_accepted_difference_count": 17501,
+    "wide_improvement": 2675,
+    "compact_baseline_difference_count": 18996,
+    "compact_accepted_difference_count": 16355,
+    "compact_improvement": 2641,
+    "total_improvement": 5316
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1560-state015-header-raster-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1560-state015-header-raster-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:c4b51aa7afc7826cb8abff2d475ce157ec8e3eded3d2a5d7aec17bb6a204d002",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 618292,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 618292,
+    "stable_normalized_improvement_from_predecessor": 5316,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 131959,
+    "changed_capture_count": 2,
+    "unchanged_capture_hash_count": 18,
+    "changed_captures": [
+      {"capture": "V0R-MU-015@1440x900", "predecessor_difference_count": 20176, "accepted_difference_count": 17501, "improvement": 2675},
+      {"capture": "V0R-MU-015@1280x800", "predecessor_difference_count": 18996, "accepted_difference_count": 16355, "improvement": 2641}
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "current_audit": {
+      "workspace_count": 20,
+      "reference_workspace_count": 18,
+      "active_membership_count": 20,
+      "active_page_binding_count": 18,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 618292. Do not run final gates before exact parity reaches 36/36."
+}

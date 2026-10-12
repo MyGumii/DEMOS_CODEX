@@ -1,0 +1,320 @@
+{
+  "contract": "code_assist.notion.core_free_ui.reference_differential.v1",
+  "recorded_at": "2026-08-22T20:34:39.3932957+09:00",
+  "scenario_id": "UI-EDITOR-005",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "review": {
+    "approved": true,
+    "approved_by": "workspace_owner",
+    "approval_scope": "redacted_summary_only"
+  },
+  "scope": {
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "external_side_effect_attempted": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "screenshot_count": 0
+  },
+  "reference": {
+    "browser": "chrome-signed-in",
+    "submission_file_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+    "receipt_file_sha256": "sha256:90bbbe185470af6493c272c9d8a2a2520053ef5dd51d013e27c04cbfdaa1190f",
+    "receipt": {
+      "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+      "c0_sha256": "sha256:9c122b6ac60d83575ef822c9c822b96e1f0d84f40dcd53a3ed3dae555550e366",
+      "capture_count": 2,
+      "captures_sha256": "sha256:5b0c224aca08f5b8b0bdd201406b35abfdd57bad62be2293bb92d8af484cace5",
+      "contract": "notion_core_free_ui_manual_reference_receipt_v1",
+      "external_side_effect_attempted": false,
+      "path_disclosed": false,
+      "personal_page_accessed": false,
+      "personal_workspace_accessed": false,
+      "profile": "free-owner-chrome-desktop-ko-KR",
+      "promotion_allowed": false,
+      "run_id": "ui59-r1-r3-reference-completion-20260822",
+      "scenario_id": "UI-EDITOR-005",
+      "screenshot_count": 0,
+      "status": "accepted_reference_observation",
+      "worksheet_sha256": "sha256:6ca7ae02f16d8e07aad7ff065c44506ff506b7e01255cb05089bbcd444570d29"
+    },
+    "captures": {
+      "UI-EDITOR-005-A01": {
+        "a11y": {
+          "name": "SIDE-PEEK",
+          "role": "REGION"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "SIDE-PEEK-TITLE",
+          "state": "focused"
+        },
+        "geometry": {
+          "SIDE-PEEK": {
+            "height": 919,
+            "width": 960,
+            "x": 960,
+            "y": 0
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 1000,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-EDITOR-005",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SIDE-PEEK",
+          "state": "visible"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-EDITOR-005-A02": {
+        "a11y": {
+          "name": "PAGE-CANVAS",
+          "role": "MAIN"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "PAGE-CANVAS",
+          "state": "not_focused"
+        },
+        "geometry": {
+          "PAGE-ROOT": {
+            "height": 875,
+            "width": 1650,
+            "x": 270,
+            "y": 44
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 5042,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-EDITOR-005",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "PAGE-ROOT",
+          "state": "visible"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "local": {
+    "browser": "chrome-ephemeral-headless",
+    "isolated_data_root": true,
+    "capture_sha256": {
+      "UI-EDITOR-005-A01": "sha256:c52432b4206ba82a102125eadd6246c4c68351e2d89da33a7587f0ae43303583",
+      "UI-EDITOR-005-A02": "sha256:4f75c9bb72834fa8e97e860a756aaf574af24f809846a361cea92c5daa9cd1e0"
+    },
+    "captures": {
+      "UI-EDITOR-005-A01": {
+        "a11y": {
+          "name": "SIDE-PEEK",
+          "role": "REGION"
+        },
+        "action_log_sha256": "sha256:cac189d685f95c098f09357fa886efe38482e8bc2c0e5c6e73c7776c5e578b82",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "SIDE-PEEK-TITLE",
+          "state": "focused"
+        },
+        "geometry": {
+          "SIDE-PEEK": {
+            "height": 900,
+            "width": 749,
+            "x": 691,
+            "y": 0
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-EDITOR-005",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SIDE-PEEK",
+          "state": "visible"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-EDITOR-005-A02": {
+        "a11y": {
+          "name": "PAGE-CANVAS",
+          "role": "MAIN"
+        },
+        "action_log_sha256": "sha256:cac189d685f95c098f09357fa886efe38482e8bc2c0e5c6e73c7776c5e578b82",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "PAGE-CANVAS",
+          "state": "not_focused"
+        },
+        "geometry": {
+          "PAGE-ROOT": {
+            "height": 168,
+            "width": 760,
+            "x": 475,
+            "y": 151
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-EDITOR-005",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "PAGE-ROOT",
+          "state": "visible"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "differential": {
+    "policy_state": "precalibration",
+    "all_actions_passed": true,
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-EDITOR-005-A01": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:1ea3ece49519dc3b5ca53fcc807104be260f5a152e3e0fb3a04106131b951885",
+        "candidate_sha256": "sha256:c52432b4206ba82a102125eadd6246c4c68351e2d89da33a7587f0ae43303583",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "SIDE-PEEK": {
+              "height": 919,
+              "width": 960,
+              "x": 960,
+              "y": 0
+            }
+          },
+          "candidate_geometry": {
+            "SIDE-PEEK": {
+              "height": 900,
+              "width": 749,
+              "x": 691,
+              "y": 0
+            }
+          },
+          "reference_latency_ms": 1000,
+          "candidate_latency_ms": 0
+        }
+      },
+      "UI-EDITOR-005-A02": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:257158dddf0ad259263a452d53703a3eddc09649d328d8c3ae460209a40f6337",
+        "candidate_sha256": "sha256:4f75c9bb72834fa8e97e860a756aaf574af24f809846a361cea92c5daa9cd1e0",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "PAGE-ROOT": {
+              "height": 875,
+              "width": 1650,
+              "x": 270,
+              "y": 44
+            }
+          },
+          "candidate_geometry": {
+            "PAGE-ROOT": {
+              "height": 168,
+              "width": 760,
+              "x": 475,
+              "y": 151
+            }
+          },
+          "reference_latency_ms": 5042,
+          "candidate_latency_ms": 0
+        }
+      }
+    }
+  }
+}

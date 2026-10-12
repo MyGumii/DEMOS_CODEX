@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.s0a.current_sbe_audit_successor_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-S0A-CURRENT-SBE-AUDIT-SUCCESSOR-V2-20260909",
+  "recorded_at": "2026-09-09T06:07:21.3615842+09:00",
+  "status": "validated_dynamic_audit_successor",
+  "immutable_after_recording": true,
+  "supersedes": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-s0a-current-sbe-audit-successor-20260909.json",
+    "sha256": "sha256:98998625bc2857c15a3e8c523029f361e47b1d08be36b79f2d051c21ae3eb229",
+    "record_sha256": "sha256:0aa45e79413832a2b322af4fe77d8adb06d5ee89e1e25773e90d857dac2fb64f"
+  },
+  "authority_snapshot": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-strict-similarity-r9-green-20260907.json",
+    "sha256": "sha256:fedcd2208fd4a311ca8191adb31d240ca98fc9d092bc728a0cb6acfe1c716ab8",
+    "previous_sbe_contract_audit_input_sha256": "sha256:4fbbf741aece1a5ee3ddd6e24479b3662dd76d04ed10566e642e300360ceedc7"
+  },
+  "sbe_audit_report": {
+    "path": "capture/o1b-p1-sbe-readiness-contract-audit-20260909-v8.json",
+    "sha256": "sha256:95ff45ff68711a56aaf4ab1e59655d0ccd76a8c98282c2a9f890237e6187d07b"
+  },
+  "expected_report": {
+    "report_schema_version": 2,
+    "status": "pass",
+    "error_count": 0,
+    "input_sha256": "sha256:23775511a9d56f9c3f32ec81ca28499401cc8f430575b1a95b11aaa92dec9d96",
+    "source_file_count": 33,
+    "goal_count": 20,
+    "mandatory_scenario_count": 284
+  },
+  "protected_source_binding": {
+    "path": "code_assist_v1/knowledge_core/services/publication.py",
+    "sha256": "sha256:8f4c0d27eff2e34e03cf9d64a5896fb992df551f49d10e54d7798abaa7853a1b"
+  },
+  "ownership_handoff": {
+    "thread_id": "019fec6f-60b0-7f53-876d-ba9b7acb0c51",
+    "authority_input_count": 33,
+    "bounded_handoff_observed": true,
+    "sbe_source_or_contract_modified_by_notion_agent": false
+  },
+  "claims": {
+    "central_catalogs_modified": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "historical_checkpoint_overwritten": false,
+    "target_or_production_action_executed": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:cacfcef5913aeacffcb3024bf306d7656f645df6039ab18117cff8ca579c6809"
+}

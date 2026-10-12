@@ -1,0 +1,284 @@
+{
+  "contract": "code_assist.notion.internal_collaborative_plan_alignment_checkpoint.v1",
+  "recorded_at": "2026-08-23T04:27:26.2445809+09:00",
+  "run_id": "ui74-internal-collaboration-plan-alignment-20260823",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-xhigh-handoff-20260823.json",
+    "sha256": "sha256:5340ebe2e2700314d5fd3405b22709209ef623b57dfecab64bd5bc4dddbd4dbc",
+    "semantic_status": "historical_xhigh_handoff_superseded_for_alignment_and_execution_safety_by_this_checkpoint"
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "paused",
+    "canonical_observation_sha256": "sha256:79e5e68abab194bb8b5c9dad16569b5b40b95c2359e2d3bcf79f558bcda00e55",
+    "canonicalization": "UTF-8 bytes of compact JSON with keys objective,status,thread_id in that order",
+    "objective_preserved": true,
+    "goal_replaced_resumed_completed_or_blocked_by_this_work": false,
+    "runtime_rule": "Re-query goal state at every resumed session. A plan artifact or checkpoint cannot mutate runtime goal state."
+  },
+  "goal_status_discrepancy": {
+    "runtime_goal_observation": "paused_on_019ff607-9116-78a1-9f40-c580c87c0038",
+    "sbe_status_document_observation": "planning_handoff_says_no_active_goal",
+    "authority": "runtime_goal_state",
+    "resolution_owner": "future_predeclared_status_integrator",
+    "resolution_state": "preserved_not_mutated_by_this_stream",
+    "blocks_notation": "Does not block read-only U0A-P1 inventory; blocks any shared-goal completion claim until reconciled."
+  },
+  "concurrency_boundary": {
+    "agents_instructions": {
+      "path": "code_assist_v1/AGENTS.md",
+      "observed_sha256": "sha256:8e564c290a0100449fbf884e775512f24aab92b5a29dd4da6483eeaf2b5e53cc",
+      "ownership": "other_authorized_development_stream",
+      "access_for_this_plan": "read_only_dynamic_instruction_source",
+      "modified_by_this_work": false,
+      "hash_policy": "Historical observation only; reread completely at every packet start and stop on a conflicting change."
+    },
+    "hot_shared_contracts": {
+      "write_policy": "read_only_for_this_planning_stream",
+      "modified_by_this_work": false,
+      "paths": [
+        "code_assist_v1/AGENTS.md",
+        "code_assist_v1/docs/knowledge_spaces/STATUS.md",
+        "code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md",
+        "code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json",
+        "code_assist_v1/docs/knowledge_spaces/second_brain_evolution"
+      ],
+      "integration_rule": "Only a predeclared status integrator with exact-path pre-edit hashes, accepted packet receipts, and a valid lease may update hot contracts at a phase gate."
+    },
+    "same_path_concurrent_write_allowed": false,
+    "approval_implies_file_ownership": false,
+    "cross_catalog_exact_path_lease_required": true,
+    "vcs_observation": {
+      "status": "unavailable",
+      "reason": "Workspace .git directory is not a valid Git repository; no cleanliness, diff, staging, or commit claim is made."
+    }
+  },
+  "authority_precedence": [
+    {
+      "rank": 1,
+      "role": "dynamic_repository_instructions",
+      "path": "code_assist_v1/AGENTS.md"
+    },
+    {
+      "rank": 2,
+      "role": "active_second_brain_contracts_and_owning_SBE_packet",
+      "path": "code_assist_v1/docs/knowledge_spaces"
+    },
+    {
+      "rank": 3,
+      "role": "scope_and_architecture_parent",
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+      "sha256": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377"
+    },
+    {
+      "rank": 4,
+      "role": "human_readable_execution_handoff",
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+      "sha256": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+    },
+    {
+      "rank": 5,
+      "role": "machine_readable_packet_DAG",
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:ef5749bcfb4c10d969e8af964d752580d872cdef6eaf4d675e28a3aa59ea57bc"
+    },
+    {
+      "rank": 6,
+      "role": "product_completion_denominator",
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:60c35c589563c49730e6bfca7017a29d41a1a7fee2aff2a36e09cb850c2548da"
+    },
+    {
+      "rank": 7,
+      "role": "validation_and_evidence_contract",
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:2cdce4ea06be1f7000576f3c3c34b7845c9c783514e1f90f3de7118bc49ebf2f"
+    }
+  ],
+  "artifact_revision_lineage": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+      "predecessor_sha256": "sha256:16d15a2294b72ff3cda9a95006baaefca689059ea8ca20b5e399f6337036446c",
+      "current_sha256": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+      "predecessor_sha256": "sha256:0a9f505a23d3d8da10f6ea2e1c69b2f16ac877c8dfd60d5b448bf1005dc51c31",
+      "current_sha256": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "predecessor_sha256": "sha256:63deeaa5d8914bf1bb9fba34e7d9ce9a6267a11bed6ec4198cd491b67cf07d38",
+      "current_sha256": "sha256:60c35c589563c49730e6bfca7017a29d41a1a7fee2aff2a36e09cb850c2548da"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "predecessor_sha256": "sha256:0484a1adc34216d7eaa078f778fddd682a2fa199d6ffcf2c4eedc9ad11139c1e",
+      "current_sha256": "sha256:ef5749bcfb4c10d969e8af964d752580d872cdef6eaf4d675e28a3aa59ea57bc"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "predecessor_sha256": "sha256:b1c69b9468cddd2095be76b7a65960aba6ca70e610c4c1e58354696f9574cca7",
+      "current_sha256": "sha256:2cdce4ea06be1f7000576f3c3c34b7845c9c783514e1f90f3de7118bc49ebf2f"
+    }
+  ],
+  "sbe_dynamic_snapshot": {
+    "snapshot_is_execution_authority": false,
+    "reread_required_at_packet_start": true,
+    "agents_ordered_18_document_manifest_sha256": "sha256:13e7814348bce3885deaf95d72d6c782b244b0307ef3bd33002d41852a5c1e23",
+    "key_files": {
+      "execution_plan_sha256": "sha256:c5dfe7401d049c635dc7ed3528c30301b27e06e53ff77d23ee9bdda87893935b",
+      "test_operations_sha256": "sha256:13d285b95c835f8002c06312c8ba5b2942edd333547120f0728e78643034b6a9",
+      "traceability_sha256": "sha256:ce742326a23dfa74c77c3d4aeab0fd833e501032d2ad9ccde8ae06836e893bbf",
+      "goal_contract_sha256": "sha256:fdc9aab16e0eddaea35e255d1f91f4d57f2afe04afe86029252c10a55336e404",
+      "status_sha256": "sha256:5467e6a39ada0b87a92f4c8333eca17209ccc6a82db567cd14f8179fc495d25d"
+    },
+    "observed_execution_state": {
+      "SBE-0.1": "NOT_STARTED_next_eligible_unassigned_integrator",
+      "SBE-7.2": "NOT_STARTED_blocked_on_SBE-7.1",
+      "P7.8": "execution_deferred_until_SBE-7.2_rebaseline",
+      "P7.9": "execution_deferred_until_SBE-7.2_rebaseline",
+      "P8": "execution_deferred_until_SBE-7.2_and_rebaselined_P7.8_P7.9"
+    },
+    "current_contract_counts": {
+      "requirements": 31,
+      "goals": 14,
+      "mandatory_scenarios": 124,
+      "successor_count_transition_owner": "SBE-0.1"
+    }
+  },
+  "alignment_decisions_added": [
+    "Uniform internal capabilities do not bypass Notion or SBE data authorization.",
+    "Notion workspace roles and SBE native-space roles are independent and share only subject identity.",
+    "Notion workspace SQLite and central SBE SQLite remain separate canonical authorities and schema lineages.",
+    "Publication resolves one committed Notion revision/hash/epoch, revalidates source authorization, uses the SBE service layer with operation_id/request hash, and revalidates target SBE authority.",
+    "Personal+Part publication creates two independent SBE items and histories in one SBE transaction; later Notion edits never auto-sync them.",
+    "Notion revoke blocks live/unpublished source access and new publication but never hides, deactivates, or deletes an already-published SBE item.",
+    "One selected Wiki/view per conversation, server-owned CorpusClosure, ten results, four pins, and 32 KiB excerpt limits remain authoritative.",
+    "Notion timestamps never enter SBE canonical body/hash/search/dedup/semantic/rerank/excerpt inputs.",
+    "All retryable mutations use service-layer transactions, operation IDs/request hashes, and atomic audit/outbox; expensive work stays outside transactions with pre-commit revalidation.",
+    "SBE v1-v7 remain historical; v8-v11 require the active owning SBE packet, forward-only checksummed migration, single migrator, and rollout gate.",
+    "D0B/SBE-7.2, S0B/SBE protected paths, and O1/Q0/R0/R1 target operations have explicit cross-stream handoff gates.",
+    "Automated tests always use sanitized runner-owned roots; production copies and canaries are separate approved operator actions.",
+    "Notion matrix performance and operations rows are namespaced ICN-PERF-001 and ICN-OPS-001/002, separate from TEST_OPERATIONS scenario IDs.",
+    "Multiprocess and target Windows receipts require process identities, roles, shared DB identity, fault points, p50/p95/p99, SQLite busy, queue/projection lag, and restore timing.",
+    "Z0 closes the Notion product only; active shared-goal completion additionally requires current SBE test, traceability, and goal-contract gates."
+  ],
+  "external_gate_state": {
+    "XG-SBE-DYNAMIC-BASELINE": "observed_for_planning_recheck_required_at_execution",
+    "XG-10111-EXCLUSIVE-HANDOFF": "pending",
+    "XG-SBE-PROTECTED-CHANGE-OWNER": "conditional_pending",
+    "XG-SBE-TARGET-OPERATIONS-HANDOFF": "pending"
+  },
+  "structural_validation": {
+    "mode": "planning_structural_audit_not_product_gate",
+    "strict_json_duplicate_key_failures": 0,
+    "bom_or_crlf_failures": 0,
+    "packet_count": 51,
+    "phase_gate_count": 20,
+    "completion_row_count": 28,
+    "validation_rung_count": 10,
+    "validation_lane_count": 29,
+    "duplicate_packet_gate_row_rung_or_lane_ids": 0,
+    "missing_required_packet_fields": 0,
+    "unresolved_local_or_external_references": 0,
+    "packet_DAG_cycles": 0,
+    "completion_rows_without_exactly_one_planned_closer": 0,
+    "closure_registry_mismatches": 0,
+    "matrix_ladder_binding_mismatches": 0,
+    "unknown_TEST_OPERATIONS_ids_in_sbe_scenario_fields": 0,
+    "authority_hash_mismatches": 0,
+    "all_completion_claims_false": true,
+    "product_gate_passed": false
+  },
+  "validation_execution": {
+    "pip_check": {
+      "result": "passed",
+      "summary": "No broken requirements found."
+    },
+    "sbe_contract_audit": {
+      "first_attempt": "invalid_relative_docs_root_configuration",
+      "corrected_attempt": "passed",
+      "input_sha256": "sha256:b18e4cabcb5fb95226d620e83cee369c453e0bddab0246525275880a7063ea89",
+      "requirements": "31/31",
+      "goals": "14/14",
+      "mandatory_scenarios": "124/124",
+      "errors": 0
+    },
+    "existing_L0_UI_harness_baseline": {
+      "result": "failed_external_source_hash_drift",
+      "passed": 48,
+      "failed": 1,
+      "failure_test": "test_checked_in_core_free_ui_overlay_and_cli_pass",
+      "failure_code": "SOURCE_HASH_MISMATCH",
+      "failure_subject": "$.source_refs[0].sha256",
+      "drifted_path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+      "expected_sha256": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223",
+      "observed_sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9",
+      "ownership": "other_concurrent_development_stream",
+      "action_taken": "none_read_only_drift_recorded",
+      "gate_effect": "U0A_gate_and_any_product_completion_promotion_remain_false_until_the_owning_stream_reconciles_the_source_reference"
+    },
+    "test_execution_claimed_as_product_evidence": false
+  },
+  "decision_and_approval_state": {
+    "G0": "open",
+    "G0-U": "open",
+    "G0-E": "open",
+    "AP-DEV-PAIR": "pending",
+    "AP-RUNTIME-SPIKE": "conditional_pending",
+    "AP-REFERENCE-MULTIUSER": "pending",
+    "AP-OPS-TARGET": "pending",
+    "AP-PROD-REHEARSAL": "pending",
+    "AP-PROD-DEPLOY": "pending",
+    "AP-PROD-CANARY": "pending",
+    "AP-PROD-RESTORE": "incident_only_not_preapproved",
+    "approval_is_test_evidence": false,
+    "approval_is_file_ownership": false
+  },
+  "execution_cursor": {
+    "next_packet_id": "U0A-P1",
+    "status": "planned",
+    "read_only_inventory_may_start": true,
+    "only_safe_packets_before_cross_catalog_verifier": [
+      "U0A-P1",
+      "U0A-P2"
+    ],
+    "promotion_blockers": [
+      "existing_L0_source_hash_drift",
+      "U0A-P1_receipt_absent",
+      "U0A-P2_cross_catalog_verifier_not_implemented"
+    ],
+    "advance_rule": "Do not start a product implementation packet until U0A-P1 and U0A-P2 pass, the L0 drift is reconciled by its owner, and exact local plus cross-stream ownership/external gates are valid."
+  },
+  "safety": {
+    "AGENTS_md_modified_by_this_stream": false,
+    "shared_STATUS_TRACEABILITY_GOAL_CONTRACT_or_SBE_contract_modified_by_this_stream": false,
+    "existing_product_source_modified": false,
+    "existing_test_source_modified": false,
+    "service_started_stopped_or_restarted": false,
+    "live_or_personal_content_read": false,
+    "account_or_auth_registry_modified": false,
+    "external_reference_mutated": false,
+    "dependency_downloaded_or_installed": false,
+    "migration_backup_restore_or_feature_flag_run": false,
+    "production_data_or_configuration_changed": false,
+    "git_commit_claimed": false
+  },
+  "claims": {
+    "plan_alignment_complete": true,
+    "machine_catalogs_structurally_consistent": true,
+    "implementation_started": false,
+    "any_new_phase_gate_passed": false,
+    "development_pair_ready": false,
+    "canonical_collaboration_authority_ready": false,
+    "sharing_ready": false,
+    "real_time_collaboration_ready": false,
+    "pixel_exact_ready": false,
+    "coordinated_recovery_ready": false,
+    "production_canary_complete": false,
+    "internal_product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_exact_action": "At the next implementation session, reread and hash current AGENTS.md, query the goal, verify this checkpoint and all authority hashes, inspect the current SBE status/ownership snapshot, and acquire only U0A-P1 DOC_HARNESS ownership. Perform read-only route/storage/authority/capability inventory. Do not edit the concurrently owned Core UI source reference; its owner must reconcile the recorded hash drift before U0A can close."
+}

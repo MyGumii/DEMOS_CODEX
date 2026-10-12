@@ -1,0 +1,233 @@
+{
+  "_doc": "code_assist_v1 standalone model configuration.",
+  "_notes": [
+    "API models: Gemma-4-31B (Common), Qwen3.6-35B-A3B (Common), GLM-5.1 (Common).",
+    "Local GGUF model: Gemma-4-31B IT QAT UD-Q4_K_XL with mmproj-F16 for vision.",
+    "The GGUF profile targets a dual RTX A5000 24GB NVLink system. NVLink improves peer bandwidth, but VRAM is still physically split per GPU.",
+    "Put GGUF files under code_assist_v1/MODEL_GGUF or set the CODE_ASSIST_*_GGUF env vars."
+  ],
+  "token_settings": {
+    "agent_max_tokens": 8192,
+    "synth_max_tokens": 16384,
+    "default_n_ctx": 128000,
+    "gguf_reply_cap": 8192,
+    "gguf_ctx_reserve": 2048,
+    "parallel_agent_max_tokens": 4096
+  },
+  "gguf": {
+    "model_dir": "MODEL_GGUF",
+    "auto_register_unconfigured": false,
+    "autoload_on_startup": true,
+    "autoload_model": "gguf-gemma4-31b-q4-k-xl",
+    "max_pool_size": 1,
+    "vram_budget_gb": 48,
+    "n_ctx": 128000,
+    "n_gpu_layers": -1,
+    "n_batch": 1024,
+    "n_ubatch": 256,
+    "flash_attn": true,
+    "offload_kqv": true,
+    "mul_mat_q": true,
+    "logits_all": false,
+    "embedding": false,
+    "use_mmap": true,
+    "use_mlock": false
+  },
+  "models": {
+    "gguf-gemma4-31b-q8-xl": {
+      "env_id": "gguf-gemma4-31b-q8-xl",
+      "runtime": "gguf",
+      "enabled": false,
+      "model": "gemma-4-31B-it-UD-Q8_K_XL",
+      "name": "Gemma-4-31B IT UD Q8_K_XL (GGUF)",
+      "capabilities": [
+        "text",
+        "vision",
+        "analysis",
+        "local",
+        "gguf"
+      ],
+      "context_window": 128000,
+      "priority": 0,
+      "cost_tier": "local",
+      "gguf": {
+        "model_path_env": "CODE_ASSIST_GEMMA4_Q8_GGUF",
+        "model_patterns": [
+          "gemma-4-31B-it-UD-Q8_K_XL.gguf",
+          "gemma-4-31B-it-ID-Q8-XL.gguf",
+          "gemma-4-31B-it*Q8*XL.gguf"
+        ],
+        "mmproj_path_env": "CODE_ASSIST_GEMMA4_MMPROJ_F16",
+        "mmproj_patterns": [
+          "mmproj-F32.gguf"
+        ],
+        "mmproj_mode": "auto",
+        "n_ctx": 128000,
+        "n_ctx_fallbacks": [
+          65536,
+          32768,
+          8192
+        ],
+        "vision_n_ctx": 4096,
+        "n_gpu_layers": -1,
+        "n_batch": 1024,
+        "n_ubatch": 256,
+        "flash_attn": true,
+        "offload_kqv": true,
+        "mul_mat_q": true,
+        "logits_all": false,
+        "embedding": false,
+        "use_mmap": true,
+        "use_mlock": false,
+        "swa_full": false,
+        "tensor_split": [
+          1,
+          1
+        ],
+        "tensor_split_env": "CODE_ASSIST_GGUF_TENSOR_SPLIT",
+        "main_gpu": 0,
+        "split_mode": 1,
+        "n_threads": 8,
+        "n_threads_env": "CODE_ASSIST_GGUF_N_THREADS",
+        "n_threads_batch": 8,
+        "n_threads_batch_env": "CODE_ASSIST_GGUF_N_THREADS_BATCH",
+        "chat_handlers": [
+          "Gemma3ChatHandler",
+          "Llava16ChatHandler",
+          "Llava15ChatHandler"
+        ],
+        "disable_thinking": true,
+        "strip_thinking": true,
+        "strip_reasoning_prefix": true,
+        "no_think_token": "",
+        "stop": [
+          "<end_of_turn>",
+          "<eos>",
+          "</s>"
+        ]
+      }
+    },
+    "gguf-gemma4-31b-q4-k-xl": {
+      "env_id": "gguf-gemma4-31b-q4-k-xl",
+      "runtime": "gguf",
+      "model": "gemma-4-31B-it-qat-UD-Q4_K_XL",
+      "name": "Gemma-4-31B IT Q4_K_XL (GGUF)",
+      "capabilities": [
+        "text",
+        "vision",
+        "analysis",
+        "local",
+        "gguf"
+      ],
+      "context_window": 128000,
+      "priority": 0,
+      "cost_tier": "local",
+      "gguf": {
+        "model_path_env": "CODE_ASSIST_GEMMA4_Q4_GGUF",
+        "model_patterns": [
+          "gemma-4-31B-it-qat-UD-Q4_K_XL.gguf",
+          "gemma-4-31B-it*Q4*K*XL.gguf"
+        ],
+        "mmproj_path_env": "CODE_ASSIST_GEMMA4_MMPROJ_F16",
+        "mmproj_patterns": [
+          "mmproj-F16.gguf"
+        ],
+        "mmproj_mode": "auto",
+        "n_ctx": 128000,
+        "n_ctx_fallbacks": [
+          65536,
+          32768,
+          8192
+        ],
+        "vision_n_ctx": 8192,
+        "n_gpu_layers": -1,
+        "n_batch": 1024,
+        "n_ubatch": 256,
+        "flash_attn": true,
+        "offload_kqv": true,
+        "mul_mat_q": true,
+        "logits_all": false,
+        "embedding": false,
+        "use_mmap": true,
+        "use_mlock": false,
+        "op_offload": true,
+        "swa_full": false,
+        "no_perf": false,
+        "tensor_split": [
+          1,
+          1
+        ],
+        "tensor_split_env": "CODE_ASSIST_GGUF_TENSOR_SPLIT",
+        "main_gpu": 0,
+        "split_mode": 1,
+        "n_threads": 8,
+        "n_threads_env": "CODE_ASSIST_GGUF_N_THREADS",
+        "n_threads_batch": 8,
+        "n_threads_batch_env": "CODE_ASSIST_GGUF_N_THREADS_BATCH",
+        "chat_handlers": [
+          "Gemma3ChatHandler",
+          "Llava16ChatHandler",
+          "Llava15ChatHandler"
+        ],
+        "disable_thinking": true,
+        "strip_thinking": true,
+        "strip_reasoning_prefix": true,
+        "no_think_token": "",
+        "stop": [
+          "<end_of_turn>",
+          "<eos>",
+          "</s>"
+        ]
+      }
+    },
+    "gemma4-31b": {
+      "env_id": "gemma4-31b",
+      "model": "gemma-4-31B-it",
+      "url": "http://common.llm.skhynix.com/v1/chat/completions",
+      "name": "Gemma-4-31B (Common)",
+      "capabilities": [
+        "text",
+        "analysis",
+        "medium"
+      ],
+      "context_window": 128000,
+      "priority": 2,
+      "cost_tier": "medium"
+    },
+    "qwen36-35b": {
+      "env_id": "qwen36-35b",
+      "model": "Qwen3.6-35B-A3B",
+      "url": "http://common.llm.skhynix.com/v1/chat/completions",
+      "name": "Qwen3.6-35B-A3B (Common)",
+      "capabilities": [
+        "text",
+        "code",
+        "medium"
+      ],
+      "context_window": 128000,
+      "priority": 1,
+      "cost_tier": "medium"
+    },
+    "glm-5.1": {
+      "env_id": "GLM-5.1",
+      "model": "GLM-5.1",
+      "url": "http://common.llm.skhynix.com/v1/chat/completions",
+      "name": "GLM-5.1",
+      "capabilities": [
+        "text",
+        "code",
+        "analysis",
+        "fast"
+      ],
+      "context_window": 128000,
+      "priority": 2,
+      "cost_tier": "medium"
+    }
+  },
+  "default_model_priority": [
+    "gemma4-31b",
+    "qwen36-35b",
+    "glm-5.1",
+    "gguf-gemma4-31b-q4-k-xl"
+  ]
+}

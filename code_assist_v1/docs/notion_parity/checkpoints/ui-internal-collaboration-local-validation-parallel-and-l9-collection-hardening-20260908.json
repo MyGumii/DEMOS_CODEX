@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.local_validation_performance_hardening_checkpoint.v2",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-LOCAL-VALIDATION-PARALLEL-AND-L9-COLLECTION-HARDENING-20260908",
+  "recorded_at": "2026-09-07T19:59:10.6009300Z",
+  "status": "local_parallel_validation_and_l9_collection_hardened_external_gates_deferred",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-local-validation-performance-hardening-20260908.json",
+    "sha256": "sha256:8ac1f96bf542b7297b8354c16accd1a701bb6e6e4f5ca9f514d9d15cf4d181dd"
+  },
+  "implementation_bindings": {
+    "candidate_receipt_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py",
+      "before_sha256": "sha256:68694e139f722c3b2f9ff88ce7ea80ccec153c5bddef2291ece4b88537b0c58c",
+      "sha256": "sha256:cc9fe0b7a5654f4fc16a138a056b4f0a3c45643c90b95b9e3368c3d8a8712b9f"
+    },
+    "candidate_receipt_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+      "before_sha256": "sha256:c3e17f82e393e0400b6d6c9640a88e9401e7673ae0eb49005a0d2f4953c111d6",
+      "sha256": "sha256:d8265881c444def59cef256f725a1706bd9681e6416dffa91a01411d1d3cb5ef"
+    },
+    "higher_publication_test": {
+      "path": "code_assist_v1/tests/knowledge_spaces/unit/test_higher_publication_service.py",
+      "before_sha256": "sha256:6fbe56817089af07f3a1c689a56cb50d00dbfe27b9a9b4d31c763b7fe7724e51",
+      "sha256": "sha256:43a945dedd2e6ae371e97bd2c5dde7944a04092fb923504ef8e5e5c167e184bd"
+    },
+    "higher_publication_migration_test": {
+      "path": "code_assist_v1/tests/knowledge_spaces/unit/test_migration_v11_higher_publication_authority.py",
+      "before_sha256": "sha256:ad451c9396f5affb70cfd913b2db6b4cca9194cce97f7d71ed7669b19ea09e10",
+      "sha256": "sha256:67a53fa4709b02dd30f1b7d5982421b9b0dbcec05c3534b0bd096bdbb72ea55a"
+    }
+  },
+  "hardening": {
+    "capture_comparison_execution": "up_to_four_independent_worker_processes",
+    "parallelization_unit": "one_capture_pair_exact_and_optional_visual_similarity_recomputation",
+    "parallel_path_requires_original_comparator_identity": true,
+    "worker_failure_falls_back_to_canonical_sequential_recomputation": true,
+    "parent_cache_populated_only_from_successful_worker_results": true,
+    "cache_remains_bound_to_comparator_png_content_and_all_canonical_keyword_inputs": true,
+    "result_assembly_and_error_order_remain_sequential_and_deterministic": true,
+    "evidence_acceptance_rules_changed": false,
+    "l9_collection_import_repairs": [
+      "tests.knowledge_spaces.unit.test_publication_service -> code_assist_v1.tests.knowledge_spaces.unit.test_publication_service"
+    ],
+    "product_source_changed": false,
+    "sbe_contract_document_changed": false
+  },
+  "verification": {
+    "python_compile": "pass",
+    "candidate_receipt_unit_tests": {
+      "status": "pass",
+      "passed": 18,
+      "failed": 0,
+      "duration_seconds": 13.88
+    },
+    "focused_validation_regression": {
+      "status": "pass",
+      "passed": 68,
+      "failed": 0,
+      "duration_seconds": 33.36
+    },
+    "six_required_node_lanes": {
+      "status": "pass",
+      "passed_lanes": 6,
+      "failed_lanes": 0
+    },
+    "sbe_import_repair_tests": {
+      "status": "pass",
+      "passed": 14,
+      "failed": 0,
+      "duration_seconds": 20.34
+    },
+    "l9_full_python_collection": {
+      "status": "pass",
+      "collected": 4088,
+      "collection_errors": 0,
+      "duration_seconds": 7.15,
+      "full_execution_claimed": false
+    },
+    "actual_v0b_receipt_benchmark": {
+      "receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-product-similarity-critical-regions-r9-20260907.json",
+      "cold_seconds": 153.779,
+      "warm_seconds": 0.66,
+      "cold_status": "pass",
+      "warm_status": "pass",
+      "cold_error_count": 0,
+      "warm_error_count": 0,
+      "visual_similarity_pass_count": 36,
+      "runtime_compatibility_required": true
+    },
+    "full_central_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "duration_seconds": 170.049,
+      "valid_execution_receipts": 21,
+      "completion_state": "incomplete"
+    },
+    "pip_check": "pass"
+  },
+  "known_open_validation_boundary": {
+    "full_l9_execution_green_claimed": false,
+    "representative_historical_direct_verifier_failure_reconfirmed": "O0A-P1 backup ADR retains historical AGENTS and SBE hashes",
+    "historical_receipts_or_contracts_overwritten": false,
+    "validated_successor_compatibility_bypassed": false
+  },
+  "authority_bindings": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "packet_catalog_sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98",
+    "validation_ladder_sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915",
+    "completion_matrix_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "current_checkpoint_pointer_sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2",
+    "sbe_contract_audit_input_sha256": "sha256:4fbbf741aece1a5ee3ddd6e24479b3662dd76d04ed10566e642e300360ceedc7"
+  },
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1"
+  },
+  "claims": {
+    "historical_evidence_overwritten": false,
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "full_regression_green_claimed": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:f24733166dd166704c59e17aa46cda745b12f9ae3b6bf70fbda81e95a31c2374"
+}

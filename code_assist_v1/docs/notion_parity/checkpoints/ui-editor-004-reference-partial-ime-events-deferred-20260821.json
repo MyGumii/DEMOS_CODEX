@@ -1,0 +1,153 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T23:14:59.2079830+09:00",
+  "run_id": "ui8-editor-004-reference-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "previous_partial_observation": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-003-reference-partial-clipboard-deferred-20260821.json",
+    "sha256": "sha256:bf623c81ce1bc1cae908aac6e237c5f855f1501907a6f20d19bc3edc8c9c482a",
+    "semantic_status": "unpromoted_clipboard_reference_pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-EDITOR-004",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "handoff_ref_free_a"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-EDITOR-004",
+    "status": "reference_partial_ime_intermediate_events_deferred",
+    "review_required": true,
+    "promotion_allowed": false,
+    "incomplete_requirement": "reference_intermediate_composition_and_save_count"
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 3,
+    "reference_partially_observed": 2,
+    "reference_unobserved": 15,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa",
+      "canonical_sha256": "sha256:a2c1a94be54f255cac128a4810a66ed1e0dd85f9762f2ecc850df0cc21ba0cf7"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    }
+  ],
+  "reference_intake": {
+    "worksheet_sha256": "sha256:3120abd7114789ae4115a18f1669127cd88226560f916fae5c49c4509fd709e6",
+    "c0_status": "pass",
+    "c0_sha256": "sha256:3d89731f668cd89aacad54e5bcd4d62cd50c4dba48bcd2e56bf092ff961a7609",
+    "action_log_sha256": "sha256:d5c3f3a73990db2296c3540cfaa0d72ba10008c3299fc0f094cf13d4522af688",
+    "capture_validation_errors": 0,
+    "operator_review": {
+      "status": "not_requested_incomplete_ime_event_requirement",
+      "scope": "redacted_summary_only"
+    }
+  },
+  "reference_action_capture": {
+    "UI-EDITOR-004-A01": {
+      "sha256": "sha256:feb46f977e901347e9cc1154a840b418340803d9efcb7d83301b81bcea18271f",
+      "state": {"count": 1, "state": "committed"},
+      "keyboard": {"result": "pass"},
+      "focus": {"name": "PAGE-EDITOR-GROUP", "state": "focused"},
+      "a11y": {"name": "PAGE-EDITOR-GROUP", "role": "GROUP"},
+      "semantic_visual": {"region": "PAGE-ROOT", "state": "visible"},
+      "error_recovery": {"result": "unchanged"},
+      "geometry": {
+        "EDITOR-BLOCK": {"height": 28, "width": 708, "x": 741, "y": 226}
+      },
+      "latency_ms": 1740
+    }
+  },
+  "reference_exact_results": {
+    "synthetic_korean_string_committed_exactly": true,
+    "synthetic_korean_string_occurrence_count_after_reload": 1,
+    "synthetic_korean_string_round_trip_after_reload_exact": true,
+    "intermediate_composition_events_observed": false,
+    "intermediate_reference_save_count_observed": false,
+    "synthetic_page_moved_to_trash": true,
+    "synthetic_tree_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_action_capture": {
+    "UI-EDITOR-004-A01": {
+      "sha256": "sha256:5e77622eb356d24d183bcaf1d7ea1b7ef5730c5ef9900930eca61a919fd3b1a4",
+      "state": {"count": 1, "state": "committed"},
+      "keyboard": {"result": "pass"},
+      "focus": {"name": "EDITOR-BLOCK", "state": "focused"},
+      "a11y": {"name": "EDITOR-BLOCK", "role": "TEXTBOX"},
+      "semantic_visual": {"region": "PAGE-ROOT", "state": "visible"},
+      "geometry": {
+        "EDITOR-BLOCK": {"height": 32, "width": 760, "x": 475, "y": 287}
+      }
+    }
+  },
+  "partial_differential": {
+    "status": "incomplete",
+    "promotion_allowed": false,
+    "comparison": {
+      "UI-EDITOR-004-A01": {
+        "difference_count": 2,
+        "differences": ["a11y", "focus"]
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "missing_evidence": ["reference_composition_intermediate_state", "reference_intermediate_save_count"],
+    "interpretation": "Reference and local final Korean string durability agree. Reference visible focus settles on the page editor group while local reports the block textbox. Only local evidence proves one composition block, zero intermediate saves, and one committed save."
+  },
+  "verification": {
+    "isolated_local_browser_test": "1 passed in 24.73s",
+    "local_block_count_during_composition": 1,
+    "local_intermediate_save_count": 0,
+    "local_committed_save_count": 1,
+    "local_second_brain_item_delta": 0,
+    "local_second_brain_revision_delta": 0,
+    "reference_capture_validation": "1 partial capture, 0 errors"
+  },
+  "stop_reason": {
+    "code": "REFERENCE_IME_INTERMEDIATE_EVENTS_UNOBSERVABLE",
+    "description": "The connected browser text-input surface proves final Unicode text entry but does not expose trusted compositionstart, compositionupdate, compositionend, or intermediate save-count evidence."
+  },
+  "claims": {
+    "ui_editor_004_reference_partially_observed": true,
+    "ui_editor_004_reference_observed": false,
+    "ui_editor_004_reference_characterized": false,
+    "ui_editor_004_differential_passed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Keep UI-EDITOR-004 unpromoted. Complete a trusted composition-event observation only if the connected browser exposes it without raw personal data, otherwise continue with another independent Core Free scenario."
+}

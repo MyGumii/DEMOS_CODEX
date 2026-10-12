@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_authority_baseline.v1",
+  "packet_id": "A0B-P1",
+  "recorded_at": "2026-08-24T17:25:00+09:00",
+  "status": "implemented_and_locally_gate_verified_default_off",
+  "workspace_schema_lineage": {
+    "source_version": 2026081317,
+    "source_name": "notion_workspace_v2_np2c_lifecycle_subtree_finalize_authority",
+    "source_checksum": "sha256:6cb890ccc026435715a1c9171b4d1fd0f74ae6896f63d3cdf66a27b6eec5b61b",
+    "source_actual_schema_sha256": "sha256:650a031ff1f7d1794bde06d9f9479794d0c89fa2faba8e07762badfe3c500aad",
+    "parallel_reserved_version": 2026081318,
+    "target_version": 2026082401,
+    "target_name": "notion_workspace_v2_collaboration_canonical_authority",
+    "target_checksum": "sha256:13f018dfe76330241c022dc9dd2b052f8612deefd8701f6a20ed526c13cd3d11",
+    "target_actual_schema_sha256": "sha256:d2145ebaf231a9592684a5b80f5f4962dcf2413f949203a7c266265a050d5d88",
+    "source_object_count": 179,
+    "target_object_count": 213,
+    "historical_schema_or_migration_modified": false,
+    "parallel_2026081318_reused": false,
+    "source_rebase_rule": "fail_exact_source_and_rebase_if_2026081318_or_any_other_head_lands_before_apply"
+  },
+  "migration_contract": {
+    "forward_only": true,
+    "single_explicit_migrator": true,
+    "application_request_path_may_apply": false,
+    "exact_dry_run_checksum_required": true,
+    "exact_offline_backup_required": true,
+    "catalog_quiescence_required": true,
+    "source_and_target_object_contracts_exact": true,
+    "idempotent_already_current_plan": true,
+    "schema_downgrade_for_code_rollback": false,
+    "migration_cli": "code_assist_v1/tools/migrate_notion_workspace_collaboration.py"
+  },
+  "canonical_authority_contract": {
+    "database": "one_Notion_owned_workspace_SQLite",
+    "separate_from_central_SBE_database": true,
+    "service_layer_only_mutations": true,
+    "transaction_effects": [
+      "commit_time_access_and_epoch_revalidation",
+      "canonical_document_block_comment_or_IAM_mutation",
+      "immutable_revision_when_content_changes",
+      "durable_document_sequence_event",
+      "actor_action_operation_id_and_request_hash_result",
+      "audit_event",
+      "outbox_event"
+    ],
+    "all_effects_commit_or_rollback_together": true,
+    "same_operation_same_hash": "current_authorization_then_original_durable_result",
+    "same_operation_different_hash": "reject_without_mutation",
+    "workspace_epoch": "existing_workspaces.security_epoch",
+    "document_epoch": "workspace_collaboration_documents.access_epoch",
+    "revoke_fence": "authoritative_send_time_epoch_check",
+    "post_revoke_old_epoch_protected_payload_count": 0,
+    "request_time_directory_scan_count": 0,
+    "legacy_source_database_open_count": 0,
+    "dual_write_count": 0,
+    "canonical_domains": [
+      "documents",
+      "blocks",
+      "comments",
+      "database_properties_rows_cells",
+      "page_grants",
+      "revisions",
+      "operations",
+      "events",
+      "audit",
+      "outbox",
+      "import_receipts",
+      "development_cutover_receipts"
+    ]
+  },
+  "legacy_import_contract": {
+    "mode": "offline_explicit_manifest_only",
+    "accepted_root": "new_marker_bound_sanitized_direct_child_of_OS_temporary_parent",
+    "source_database_or_user_data_root_parameter": false,
+    "canonical_json_and_exact_file_set": true,
+    "manifest_content_and_high_water_hashes_required": true,
+    "parent_first_deterministic_order": true,
+    "same_operation_replay_exact": true,
+    "source_bytes_immutable": true,
+    "source_and_canonical_content_set_hash_equal": true,
+    "live_source_import": false
+  },
+  "cutover_and_projection_contract": {
+    "aggregate_default_off": true,
+    "configuration_is_explicit_and_does_not_read_environment": true,
+    "development_realm_only": true,
+    "exact_subject_and_workspace_canary": true,
+    "exact_deployment_generation_and_schema_gate": true,
+    "legacy_fallback_inside_candidate_resolver": false,
+    "legacy_compatibility_projection": "create_only_hash_bound_rebuildable_JSON_from_canonical_revision",
+    "compatibility_dual_write": false,
+    "before_first_runtime_candidate_write_rollback": "disable_candidate_and_return_to_unchanged_legacy",
+    "after_first_runtime_candidate_write_rollback": "roll_forward_or_restore_candidate_never_overlay_from_legacy",
+    "additive_forward_compatible_workspace_adapter": true,
+    "production_cutover_authorized": false
+  },
+  "required_schema_objects": [
+    "workspace_collaboration_documents",
+    "workspace_collaboration_blocks",
+    "workspace_collaboration_comments",
+    "workspace_collaboration_page_grants",
+    "workspace_collaboration_databases",
+    "workspace_collaboration_database_properties",
+    "workspace_collaboration_database_rows",
+    "workspace_collaboration_database_cells",
+    "workspace_collaboration_revisions",
+    "workspace_collaboration_operations",
+    "workspace_collaboration_events",
+    "workspace_collaboration_audit_events",
+    "workspace_collaboration_outbox",
+    "workspace_collaboration_imports",
+    "workspace_collaboration_cutovers",
+    "trg_collab_operations_immutable_update",
+    "trg_collab_events_immutable_update",
+    "trg_collab_audit_immutable_update",
+    "trg_collab_outbox_immutable_update",
+    "trg_collab_revisions_immutable_update",
+    "trg_collab_imports_immutable_update"
+  ],
+  "artifact_sha256": {
+    "code_assist_v1/notion_workspace_collaboration_migration.py": "sha256:f1fa3c6b0fc47d1fe4c0c896503c906cdc65715cb5169debbf7109803283edbb",
+    "code_assist_v1/notion_collaboration/canonical_authority.py": "sha256:6c5a0c28a451028c6ea59f61d44b87711b7d70aeaf66fe62a661ff4f1b2510a3",
+    "code_assist_v1/notion_collaboration/legacy_snapshot.py": "sha256:d805b7f0e625835c32e32a75ed9f434937c20d6d9e1f7ff6252869e8fb428090",
+    "code_assist_v1/notion_collaboration/cutover.py": "sha256:addd10703cf524582754655389b1d8b42293be002d5ebef55d82b45a3b49c285",
+    "code_assist_v1/tools/migrate_notion_workspace_collaboration.py": "sha256:a7e77de237150470d7c12d89aaf58949dcb1204a03cba8e2bc0574dc8bef9366",
+    "code_assist_v1/tests/notion_collaboration/test_canonical_authority_migration.py": "sha256:7d500b9fd15a03c5d255e0b8777f3cf6b65c89277a2b7671eea6d3bf4ed5bfe9",
+    "code_assist_v1/tests/notion_collaboration/test_canonical_authority_runtime.py": "sha256:8c223e6727f25dd9b7f507dbcbb82634c6cae41a046854236ea36f91f9831e95",
+    "code_assist_v1/tests/notion_collaboration/test_legacy_snapshot_cutover.py": "sha256:2e5bce169d42f33dbb65d2f8094d96dc59029183c4cffb35ae8e886108c69e47"
+  },
+  "validation_contract": {
+    "validation_ids": [
+      "L2-WORKSPACE-SUBSTRATE-BASELINE",
+      "L2-FORWARD-MIGRATION-BASELINE",
+      "L2-COLLAB-AUTHORITY"
+    ],
+    "workspace_and_forward_regression": {
+      "passed": 225,
+      "failed": 0,
+      "errors": 0,
+      "duration_seconds": 394.31
+    },
+    "prototype_and_versioned_authority": {
+      "passed": 31,
+      "failed": 0,
+      "errors": 0,
+      "duration_seconds": 42.40,
+      "includes_versioned_A0B_tests": 14,
+      "includes_real_multiprocess_replay": true
+    },
+    "initial_wrong_interpreter_collection_attempt": {
+      "product_failure": false,
+      "reason": "system_Python_lacked_Flask; authoritative_ladder_rerun_used_project_venv"
+    },
+    "synthetic_temporary_databases_only": true,
+    "live_or_existing_database_count": 0,
+    "service_or_port_start_count": 0
+  },
+  "matrix_closure": {
+    "row_ids": ["DATA-001", "DATA-002"],
+    "gate_ids": ["A0-GATE-001"],
+    "DATA_001": {
+      "request_time_directory_scan_count_zero": true,
+      "one_exact_locator_resolver": true,
+      "dev_cutover_restart_and_rollback_proof": true
+    },
+    "DATA_002": {
+      "one_separate_notion_canonical_authority": true,
+      "operation_id_request_hash_replay": true,
+      "audit_and_outbox_atomic": true,
+      "forward_only_checksummed_single_migrator": true,
+      "no_dual_write_or_request_time_directory_scan": true
+    }
+  },
+  "claims": {
+    "A0B_P1_implemented": true,
+    "A0B_P1_locally_gate_verified": true,
+    "migration_applied_only_to_synthetic_temporary_catalogs": true,
+    "actual_10111_or_10112_identity_import_executed": false,
+    "actual_dev_pair_cutover_enabled": false,
+    "live_workspace_schema_changed": false,
+    "runtime_or_feature_enabled": false,
+    "service_or_port_started": false,
+    "production_changed": false,
+    "product_complete": false
+  }
+}

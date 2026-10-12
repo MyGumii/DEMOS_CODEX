@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-INVITE-IDENTITY-MISMATCH-STOP-20260826",
+  "recorded_at": "2026-08-26T11:27:39+09:00",
+  "checkpoint_kind": "fail_closed_identity_mismatch_after_permission_submission",
+  "packet_id": "V0R-P1",
+  "packet_status": "execution_stopped_pending_corrective_permission_confirmation",
+  "purpose": "Record the immediate fail-closed stop after post-submission cross-context verification proved that the account granted REF-FREE-A workspace-owner access is not the account currently authenticated in the designated REF-COLLABORATOR Chrome context. No later V0R action was started. The unintended owner grant must be revoked before any correct invitation or further capture work.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-invite-identity-mismatch-stop-20260826.json"
+  ],
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-workspace-invite-role-gate-20260826.json",
+    "sha256": "sha256:1b50feb4926ceeed178c350a0a34e9a72c66510c2f182f26c69af2228b9d150a"
+  },
+  "confirmation_context": {
+    "user_approved_temporary_workspace_owner_role_for_REF_COLLABORATOR": true,
+    "user_approved_persistent_inherited_permissions_in_the_product_being_built": true,
+    "reference_cleanup_contract_still_requires_final_external_Notion_revoke": true,
+    "non_target_identity_owner_grant_authorized": false
+  },
+  "mismatch_observation": {
+    "submitted_action_id": "V0R-WORKSPACE-INVITE",
+    "submitted_workspace": "REF-FREE-A",
+    "submitted_role": "workspace_owner",
+    "owner_member_list_shows_submitted_identity_active": true,
+    "designated_collaborator_context_shows_REF_FREE_A": false,
+    "submitted_identity_equals_authenticated_REF_COLLABORATOR": false,
+    "raw_identifier_persisted": false,
+    "non_alias_personal_label_persisted": false,
+    "classification": "unintended_non_target_owner_grant"
+  },
+  "containment": {
+    "later_operator_action_started": false,
+    "page_share_started": false,
+    "comment_reaction_or_mention_started": false,
+    "additional_reference_screenshot_saved": false,
+    "payment_or_plan_change_executed": false,
+    "public_publish_or_public_link_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "corrective_boundary": {
+    "required_first_action": "revoke_unintended_non_target_workspace_owner_from_REF_FREE_A",
+    "permission_change_confirmation_required": true,
+    "permission_change_confirmation_received": false,
+    "correct_REF_COLLABORATOR_reinvite_may_begin_only_after_clean_state_verified": true
+  },
+  "evidence_denominator": {
+    "screenshot_file_count": 2,
+    "expected_screenshot_count": 36,
+    "completed_capture_state_count": 1,
+    "completed_action_count": 3,
+    "action_4_passed": false,
+    "cleanup_required_now": true
+  },
+  "claims": {
+    "V0R_WORKSPACE_INVITE_passed": false,
+    "V0R_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Obtain action-time confirmation, revoke the unintended non-target REF-FREE-A workspace-owner grant, verify the clean member state, then separately bind the authenticated collaborator identity before any re-invite."
+}

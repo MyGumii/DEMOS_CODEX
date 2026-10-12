@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-POST-TOGGLE-BLOCK-RHYTHM-E1-SCENARIO-RETRY24-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T16:35:09.9035711+09:00",
+  "checkpoint_kind": "fresh_36_capture_editor_block_rhythm_and_e1_scenario_alignment_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Adopt the generic post-toggle block rhythm correction and align the E1 state-010 harness with the named simultaneous existing-block edit scenario after bounded C0/E1 evidence and a fresh 36-capture run, without overstating the remaining exact-pixel, Core25, or performance gates.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-workspace-modal-backdrop-pinned-chrome-retry23-progress-20260828.json",
+    "sha256": "sha256:58af02adb79a1f6bf0f5f060a5ec9de78fd83cd32f79dc04974bbf680be36d67"
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:dd5ffd1e492a38d34ef7afe37e2dd8032e4d591d162b67955d408e84db4fb8c5",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:f5eaab5980b6a6ff7dee75835adfbc54ab9b7bb43b8a542631fb1043a864f6a5"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:7403e360992fe3926994f184ba591d83e09b53c17b49e4ea379ecc1b5573d0d4"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:aa742086137a1cb7e2a29d1b6ae6c51574894d2e066ecaea85421dcf6b3bcda4"
+      }
+    ],
+    "regression_test_file": {
+      "path": "code_assist_v1/tests/test_notion_navigation_ui.js",
+      "sha256": "sha256:a1201d33dde59c3bca627864625644d5f497bc1b300ed11b82974694b8445f0b"
+    }
+  },
+  "adopted_corrections": {
+    "post_toggle_block_rhythm": {
+      "kind": "generic_editor_layout",
+      "selector": ".block-row[data-type=toggle] ~ .block-row",
+      "implementation": "Subsequent sibling blocks receive a 12px top margin while the existing direct toggle-to-child-page rule retains its 50px special spacing by cascade order.",
+      "state_id_or_capture_specific_selector_used": false,
+      "focus_specific_styling_used": false,
+      "affected_named_states": [
+        "V0R-MU-007",
+        "V0R-MU-008",
+        "V0R-MU-009",
+        "V0R-MU-010"
+      ]
+    },
+    "e1_state_010_existing_block_alignment": {
+      "kind": "evidence_harness_semantic_correction",
+      "expected_state": "simultaneous_block_edit_converged",
+      "root_cause": "The E1 V0B harness seeded eight blocks, then pushed a ninth paragraph duplicating the already-seeded final base block before state 010. The reference state contains the existing final base block being jointly edited, not an extra duplicate row.",
+      "implementation": "Assert the eight-block projection and jointly append both principals' edits to the existing last durable paragraph; do not push a duplicate paragraph.",
+      "product_runtime_changed": false,
+      "permission_semantics_changed": false,
+      "final_projection_sha256": "sha256:83aa4c1a3564a90dd3880635574a8e87efb3f097146bcaa0ef2701255ecf1363"
+    }
+  },
+  "harness_binding": {
+    "product_runtime_source_build_includes_harness": false,
+    "e1_p2_browser": {
+      "path": "code_assist_v1/notion_collaboration/e1_p2_browser.py",
+      "sha256": "sha256:ac47ada4e1c46d1a15616ebd56ae4c13342f875434052f2c9cb8c8f1e9bfb6d1"
+    },
+    "pinned_browser": {
+      "version": "151.0.7922.173",
+      "executable_path": ".dev/browser-tools/chrome-for-testing-151.0.7922.173/extracted/chrome-win64/chrome.exe",
+      "executable_sha256": "sha256:5f24a7d74d204ca419f8fbdfd565dc98135b44382ccf9bb40ebfb2db0b998951"
+    },
+    "python_compile": "pass"
+  },
+  "bounded_c0_evidence": {
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry18/receipt.json",
+    "receipt_sha256": "sha256:7b6c3922483798d7f8923f8a6ab8c3973697b2493cb317e84d65f9c737a25f7b",
+    "capture_count": 8,
+    "accessibility_pass_count": 8,
+    "interaction_pass_count": 8,
+    "unmasked_difference_count": 1234519,
+    "masked_difference_count": 109416,
+    "delta_from_retry17_unmasked": -46,
+    "journey_status": "pass",
+    "measurements_ms": {
+      "comment_delivery": 1710,
+      "presence_delivery": 312,
+      "presence_ttl_expiry": 15073,
+      "reaction_delivery": 1265,
+      "reconnect": 1285
+    },
+    "browser_closed": true,
+    "test_page_moved_to_trash": true,
+    "synthetic_member_absent_after_cleanup": true
+  },
+  "bounded_e1_evidence": {
+    "intermediate_duplicate_scenario": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260828-retry2/receipt.json",
+      "receipt_sha256": "sha256:c5f22171f441eac2e0801c917a991b91330192e46e04b983be156dba6187dd71",
+      "capture_count": 6,
+      "unmasked_difference_count": 1339367,
+      "delta_from_retry23_same_captures": -11283,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "The generic spacing improved the aggregate, but inspection exposed the ninth duplicate block in the state-010 evidence harness."
+    },
+    "accepted_existing_block_scenario": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260828-retry3/receipt.json",
+      "receipt_sha256": "sha256:7d72d7ccb9fb205d020aa0ff1975a4861b7937640e7ab029bdaa2108248d6873",
+      "capture_count": 6,
+      "accessibility_pass_count": 6,
+      "interaction_pass_count": 6,
+      "unmasked_difference_count": 1334876,
+      "masked_difference_count": 9456,
+      "delta_from_retry23_same_captures": -15774,
+      "delta_from_intermediate_duplicate_scenario": -4491,
+      "journey_status": "pass",
+      "browser_closed": true,
+      "test_page_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "page_error_count": 0,
+      "accepted": true
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry24",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry24/receipt.json",
+    "receipt_sha256": "sha256:8a199cec3d9c6d925c3fe14fcdb3d33002f8e52893390b6b059467ba2dbadf29",
+    "ui_source_build_sha256": "sha256:dd5ffd1e492a38d34ef7afe37e2dd8032e4d591d162b67955d408e84db4fb8c5",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_version": "151.0.7922.173",
+    "journey_count": 4,
+    "journey_statuses": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "state_count": 18,
+    "viewport_count": 2,
+    "capture_count": 36,
+    "interaction_pass_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "component_cleanup_verified": true,
+    "active_fixture_root_count": 0,
+    "active_test_grant_count": 0,
+    "active_test_member_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "gate_passed": false
+  },
+  "pixel_summary": {
+    "metric": "sum_of_unmasked_differing_pixel_count_across_36_full_candidate_captures",
+    "baseline_difference_count": 16116120,
+    "predecessor_retry16_difference_count": 6689505,
+    "predecessor_retry20_difference_count": 6625236,
+    "predecessor_retry23_difference_count": 6268490,
+    "current_retry24_difference_count": 6253151,
+    "masked_difference_count": 250732,
+    "raw_difference_count": 6503883,
+    "change_from_retry23_count": -15339,
+    "change_from_retry23_percent": -0.24,
+    "change_from_retry20_count": -372085,
+    "change_from_retry20_percent": -5.62,
+    "change_from_retry16_count": -436354,
+    "change_from_retry16_percent": -6.52,
+    "reduction_from_baseline_count": 9862969,
+    "reduction_from_baseline_percent": 61.20,
+    "primary_capture_deltas_from_retry23": {
+      "V0R-MU-007__1280x800": 218,
+      "V0R-MU-007__1440x900": -700,
+      "V0R-MU-008__1280x800": -874,
+      "V0R-MU-008__1440x900": -702,
+      "V0R-MU-009__1280x800": -2102,
+      "V0R-MU-009__1440x900": -4192,
+      "V0R-MU-010__1280x800": -5134,
+      "V0R-MU-010__1440x900": -2295
+    },
+    "secondary_dynamic_or_shared_raster_net_delta": 442,
+    "conclusion": "Every E1 capture improved against retry23, and the full 36-capture aggregate improved by 15339 pixels while all functional and cleanup evidence remained green."
+  },
+  "largest_remaining_state_aggregates": [
+    {"state_id": "V0R-MU-002", "unmasked_difference_count": 489469},
+    {"state_id": "V0R-MU-001", "unmasked_difference_count": 478075},
+    {"state_id": "V0R-MU-010", "unmasked_difference_count": 465535},
+    {"state_id": "V0R-MU-009", "unmasked_difference_count": 447836},
+    {"state_id": "V0R-MU-008", "unmasked_difference_count": 421980},
+    {"state_id": "V0R-MU-007", "unmasked_difference_count": 385763}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "receipt_sha256": "sha256:8a199cec3d9c6d925c3fe14fcdb3d33002f8e52893390b6b059467ba2dbadf29",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "release_candidate_binding_error_count": 0,
+    "runtime_candidate_binding_error_count": 0,
+    "reference_binding_error_count": 0,
+    "capture_or_diff_binding_error_count": 0,
+    "accessibility_error_count": 0,
+    "cleanup_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "verification": {
+    "json_parse": "pass",
+    "harness_python_compile": "pass",
+    "pinned_browser_version_probe": "151.0.7922.173",
+    "navigation_and_share_ui_test": "pass",
+    "C0_P2_bounded_regression": "8/8 pass",
+    "E1_P2_bounded_regression": "6/6 pass",
+    "full_36_capture_current_build": "pass",
+    "interaction_matrix": "36/36 pass",
+    "accessibility_matrix": "36/36 pass",
+    "component_journeys": "4/4 pass",
+    "cleanup": "pass",
+    "independent_verifier_truthfulness": "pass_expected_gate_fail"
+  },
+  "inherited_open_gates": {
+    "exact_pixel": {
+      "passed": 0,
+      "required": 36,
+      "status": "open"
+    },
+    "core25": {
+      "source": "inherited_preflight_not_fresh_gate_evidence",
+      "passed": 20,
+      "failed": 1,
+      "failed_scenario": "UI-COLLAB-001",
+      "fresh_current_build_gate_evidence": false
+    },
+    "performance": {
+      "source": "busy_host_preflight_not_fresh_gate_evidence",
+      "observed_p95_ms": 4514.289,
+      "approved_budget_ms": 1370,
+      "quiet_host_verified": false,
+      "status": "fail"
+    }
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "persistent_or_signed_in_browser_profile_used": false,
+    "user_chrome_touched": false,
+    "system_chrome_modified": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "all_adopted_multiuser_states_captured": true,
+    "accessibility_evidence_complete": true,
+    "component_cleanup_complete": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "O1B_entry_allowed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue exact-pixel convergence from retry24. Prioritize cross-state shell parity shared by V0R-MU-007 through V0R-MU-010 and the remaining internal workspace-modal residuals in V0R-MU-001 and V0R-MU-002. Apply only generic, cross-viewport-safe corrections. After 36/36 exact convergence, run fresh current-build Core25 and quiet-host performance gates. Do not enter O1B until every V0B gate passes."
+}

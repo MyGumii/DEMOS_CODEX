@@ -1,0 +1,106 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-23T02:09:54+09:00",
+  "run_id": "ui71-unified-capabilities-dev-pair-rebase-20260823",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-collaboration-pixel-internal-scope-rebase-20260823.json",
+    "sha256": "sha256:16422d2c4b6000b40c8b5dab00c12631f2675b9b2b28e387cfb3cd86860d98ab",
+    "semantic_status": "internal_collaboration_pixel_and_recovery_required"
+  },
+  "scope_corrections": {
+    "plan_tiers_in_product": false,
+    "feature_entitlements_by_plan": false,
+    "per_user_or_workspace_product_quotas": false,
+    "plan_dependent_file_limits": false,
+    "same_adopted_capabilities_for_all_active_internal_users": true,
+    "physical_capacity_and_security_guards_remain": true,
+    "mobile_and_native_deferred": true,
+    "formal_external_legal_brand_gate": false
+  },
+  "identity_contract": {
+    "account_authority": "shared_second_brain_auth_store",
+    "separate_notion_account_creation": false,
+    "workspace_and_page_principals": "existing_internal_subject_ids",
+    "production_pair": {
+      "agent_port": 10011,
+      "notion_port": 10012,
+      "shared_auth_and_data_root": true
+    },
+    "development_pair": {
+      "agent_port": 10111,
+      "notion_port": 10112,
+      "shared_auth_and_data_root": true,
+      "reuse_existing_temporary_development_users": true,
+      "create_or_mutate_production_users": false
+    }
+  },
+  "observed_current_constraints": {
+    "agent_cookie_name": "session",
+    "notion_cookie_name": "session",
+    "cookies_are_host_scoped_not_port_scoped": true,
+    "notion_to_agent_link_hardcodes_port": 10011,
+    "agent_to_notion_links_hardcode_port": 10012,
+    "agent_max_content_length_mib": 50,
+    "notion_max_content_length_mib": 100,
+    "development_pair_safe_without_changes": false
+  },
+  "first_phase": {
+    "id": "D0-paired-development-host-isolation",
+    "requirements": [
+      "validated_environment_controlled_cookie_name",
+      "one_cookie_namespace_shared_by_10111_and_10112_only",
+      "strict_configurable_peer_origins",
+      "one_exact_marker_bound_development_data_root",
+      "independent_two_browser_sessions_for_two_existing_development_users",
+      "no_10011_or_10012_data_or_cookie_mutation",
+      "all_collaboration_flags_default_off"
+    ],
+    "acceptance": [
+      "login_on_10111_authenticates_same_user_on_10112",
+      "second_development_user_is_independent",
+      "10111_and_10112_links_never_escape_to_10011_or_10012",
+      "development_and_production_cookie_names_do_not_collide",
+      "development_and_production_data_roots_do_not_overlap",
+      "csrf_and_logout_are_pair_scoped",
+      "no_production_account_is_created"
+    ]
+  },
+  "promotion_policy": {
+    "development_users_promoted": false,
+    "development_content_promoted": false,
+    "reviewed_code_schema_and_static_assets_only": true,
+    "production_backup_before_migration": true,
+    "production_copy_rehearsal_before_live_apply": true,
+    "default_off_deploy": true,
+    "named_user_and_workspace_canary": true,
+    "kill_switch_required": true
+  },
+  "authority": {
+    "current_scope_document": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_SCOPE_V2.md",
+      "sha256": "sha256:5dda1cc37c4aa8ea968b13227503c0eb27467aacaa25c92baa4186c0ea7cc7d9"
+    },
+    "next_dependency_order": "D0_then_C0_then_C1_then_C2_then_C3_then_C4_then_C5_then_C6_then_C7"
+  },
+  "safety": {
+    "product_code_changed": false,
+    "auth_store_changed": false,
+    "production_or_development_account_created": false,
+    "service_started_or_restarted": false,
+    "feature_flag_enabled": false,
+    "live_or_personal_data_accessed": false,
+    "operational_migration_or_restore_run": false,
+    "git_commit_claimed": false
+  },
+  "claims": {
+    "scope_rebased": true,
+    "development_pair_isolated": false,
+    "sharing_lifecycle_complete": false,
+    "real_time_collaboration_complete": false,
+    "pixel_exact_complete": false,
+    "operational_recovery_complete": false,
+    "internal_product_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Audit the exact active 10111 marker-bound root and process without reading personal content, then implement D0 configuration and tests under explicit ownership of the protected app_code/auth boundary before launching 10112."
+}

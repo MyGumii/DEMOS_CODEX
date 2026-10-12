@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CORRECTED-LINEAGE-BLOCKED-20260827",
+  "recorded_at": "2026-08-27T01:48:32+09:00",
+  "checkpoint_kind": "final_candidate_corrected_two_workspace_lineage_failure",
+  "packet_id": "V0B-P1",
+  "packet_status": "blocked_not_gate_passed",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "hot_shared_contracts_modified": false,
+  "purpose": "Record the corrected REF-FREE-A workspace-member and REF-FREE-B direct-page-guest lineage without promoting the superseded one-workspace diagnostic or claiming MU005, exact-pixel, Core 25, performance, or V0B success.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-preflight-20260826.json"
+  },
+  "V0R_reference_binding": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "verifier_status": "pass",
+    "action_count": 11,
+    "capture_count": 36,
+    "cleanup_complete": true,
+    "reexecuted": false
+  },
+  "release_candidate_source_binding": {
+    "build_sha256": "sha256:cca0f2abec53fdc5b7fc806b0f5b7d96d520abf6bee92e851d2a77e72d77d132",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:30e187c87680e9a2e3f78166136abce78f327ba969111cdf786c0c17501ede00"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:d0ce0564a04bfbb5fb5911600f65621c06f278eca809d37705b6b921817f7992"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:1f62384a110d145d8d75b20577814031eac7fab74fbfae3e17e38f84095d3f0e"
+      }
+    ]
+  },
+  "superseded_full_diagnostic": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-l6-final-candidate-20260826.json",
+    "sha256": "sha256:a0b4e4ad189e5045daf2daf8889b7083085d85d9e3ee525148d89998e7bed8fc",
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "V0B_P1_gate_passed": false,
+    "accepted_by_current_verifier": false,
+    "reason": "The receipt predates runtime_binding enforcement and its IAM journey mixed the A workspace membership lineage with the B direct-page guest lineage."
+  },
+  "corrected_lineage_execution": {
+    "runtime_root": "code_assist_v1/.runtime/v0b-iam-slice-retry10",
+    "result": "fail",
+    "failure_code": "V0B_IAM_DIRECT_PAGE_EDIT_CAPABILITY_MISMATCH",
+    "observed_state": {
+      "iam_role": "edit_content",
+      "active_page_can_edit": false,
+      "title_disabled": true,
+      "editor_contenteditable": "false"
+    },
+    "capture_count": 10,
+    "capture_state_ids": [
+      "V0R-MU-001",
+      "V0R-MU-002",
+      "V0R-MU-003",
+      "V0R-MU-004",
+      "V0R-MU-006"
+    ],
+    "viewports": [
+      "1440x900",
+      "1280x800"
+    ],
+    "accessibility_pass_count": 10,
+    "exact_pixel_pass_count": 0,
+    "expected_capture_denominator": 36,
+    "candidate_screenshot_manifest_sha256": "sha256:c9f39a95f77256de50942d0b7284859716f2e2ed8381843f6eba16ce5b88da67",
+    "diff_screenshot_manifest_sha256": "sha256:0462454fa2ad4ee7cff22def39b25cd992501630669f6924761abbd464cec745",
+    "candidate_screenshots": [
+      {"path": "code_assist_v1/.runtime/v0b-iam-slice-retry10/screenshots/V0R-MU-001__1280x800.png", "sha256": "sha256:03badcaa2ffbb2fb11fa10a98284165563d62bcbd74cf84c2981208327c40873"},
+      {"path": "code_assist_v1/.runtime/v0b-iam-slice-retry10/screenshots/V0R-MU-001__1440x900.png", "sha256": "sha256:ac1b661a4daa03676b116f5bd9430fc334a968a25e12fd9bdf254860746765d5"},
+      {"path": "code_assist_v1/.runtime/v0b-iam-slice-retry10/screenshots/V0R-MU-002__1280x800.png", "sha256": "sha256:85b3787a4616e361edb96da8a1a3ffa1afaa706a25abb4302836ab503fefb6db"},
+      {"path": "code_assist_v1/.runtime/v0b-iam-slice-retry10/screenshots/V0R-MU-002__1440x900.png", "sha256": "sha256:1c4f4540d8151459763f716c8fc7c1d5f98b1fa65142550683dbe88009578991"},
+      {"path": "code_assist_v1/.runtime/v0b-iam-slice-retry10/screenshots/V0R-MU-003__1280x800.png", "sha256": "sha256:18bcd0709f11146322ff7a92f386a60c0d071ac3fbacb578bda3c641898330a2"},
+      {"path": "code_assist_v1/.runtime/v0b-iam-slice-retry10/screenshots/V0R-MU-003__1440x900.png", "sha256": "sha256:937b60298b7c55e139188627915fe2307934e68bfb79699b9359887aa30ae50d"},
+      {"path": "code_assist_v1/.runtime/v0b-iam-slice-retry10/screenshots/V0R-MU-004__1280x800.png", "sha256": "sha256:3a3f0b529cced5e1f96ac75bceb5055ca0677e01981e836e1985ffa357647e95"},
+      {"path": "code_assist_v1/.runtime/v0b-iam-slice-retry10/screenshots/V0R-MU-004__1440x900.png", "sha256": "sha256:f8c731d4e112860cd3bfbab3c5480a8d620c07cf41634de208ddf8191333af9f"},
+      {"path": "code_assist_v1/.runtime/v0b-iam-slice-retry10/screenshots/V0R-MU-006__1280x800.png", "sha256": "sha256:e3f7d2dff7da5151558459c9b4c826ab272d9ff61c5bbccfc2b73e9011712702"},
+      {"path": "code_assist_v1/.runtime/v0b-iam-slice-retry10/screenshots/V0R-MU-006__1440x900.png", "sha256": "sha256:f267a856c376e3409445909e547bafd97eb7f5af222f63095e15be2569b32876"}
+    ]
+  },
+  "cleanup_audit": {
+    "database_path_class": "approved_development_gateway_catalog",
+    "query_mode": "sqlite_read_only",
+    "workspace_alias_scope": [
+      "REF-FREE-A",
+      "REF-FREE-B"
+    ],
+    "active_page_tree_nodes": 0,
+    "active_user01_workspace_memberships": 0,
+    "active_user01_workspace_guests": 0,
+    "active_user01_page_grants": 0,
+    "latest_retry10_fixture_rows_checked": 2,
+    "cleanup_complete": true
+  },
+  "remaining_gates": {
+    "Core_25_fresh_full_run": "not_passed",
+    "UI_PERF_001_quiet_host_run": "not_run_host_busy",
+    "current_host_cpu_percent_samples": [80.1, 80.2, 79.5, 70.7, 58.9],
+    "current_host_cpu_percent_average": 73.9,
+    "all_36_corrected_lineage_captures": "not_complete",
+    "zero_unmasked_RGBA_difference": "fail",
+    "accessibility_36_of_36": "not_complete"
+  },
+  "scope_attestation": {
+    "external_reference_reexecuted": false,
+    "production_or_second_brain_changed": false,
+    "personal_content_accessed": false,
+    "hot_shared_contracts_modified": false,
+    "synthetic_cleanup_only": true
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "V0B_P1_gate_passed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Correct the candidate edit-capability mapping so a direct REF-FREE-B page guest with iam_role edit_content can edit without workspace membership, then rerun the corrected IAM slice and rebind all V0B evidence to the resulting source build before any O1B work."
+}

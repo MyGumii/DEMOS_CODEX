@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_crdt_candidate_matrix.v1",
+  "matrix_id": "E0-P1-CRDT-CANDIDATE-MATRIX-001",
+  "recorded_at": "2026-08-23T08:25:00Z",
+  "packet_id": "E0-P1",
+  "status": "frozen_for_isolated_spike_no_winner",
+  "authority_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+      "sha256": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+      "sha256": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_authority_adr.v1.json",
+      "sha256": "sha256:0dfa4ad9fd30a8daf50d42e9fe60ea0126928a2f4a73c8a51d7b518d28c439c2"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:60c35c589563c49730e6bfca7017a29d41a1a7fee2aff2a36e09cb850c2548da"
+    },
+    {
+      "path": "code_assist_v1/requirements-runtime.lock",
+      "sha256": "sha256:fc5522dcbf576d8dcfbbf51d6349dbc007bc5438dcc396cba913f54aa22f0bd0"
+    }
+  ],
+  "target_environment": {
+    "operating_system": "Windows 10 19045 x64",
+    "python": "CPython 3.14.3",
+    "node": "24.14.1",
+    "npm": "11.11.0",
+    "current_product_transport": "Flask/Waitress WSGI without WebSocket or CRDT runtime",
+    "test_realm": "synthetic_isolated_new_temp_roots_only"
+  },
+  "source_observations": [
+    {
+      "package_id": "pycrdt",
+      "ecosystem": "pypi",
+      "observed_version": "0.14.3",
+      "license_spdx": "MIT",
+      "requires_runtime": ">=3.10",
+      "registry_url": "https://pypi.org/project/pycrdt/0.14.3/",
+      "repository_url": "https://github.com/y-crdt/pycrdt",
+      "target_artifact": "pycrdt-0.14.3-cp314-cp314-win_amd64.whl",
+      "target_artifact_integrity": "sha256:5f9c5fde46e7961b3595141833d96ce31badcc980c6256e5e62689e5b4d404bd",
+      "target_artifact_available": true,
+      "locally_installed": false
+    },
+    {
+      "package_id": "pycrdt-websocket",
+      "ecosystem": "pypi",
+      "observed_version": "0.16.4",
+      "license_spdx": "MIT",
+      "requires_runtime": ">=3.10",
+      "registry_url": "https://pypi.org/project/pycrdt-websocket/0.16.4/",
+      "repository_url": "https://github.com/y-crdt/pycrdt-websocket",
+      "target_artifact": "pycrdt_websocket-0.16.4-py3-none-any.whl",
+      "target_artifact_integrity": "sha256:5c1612ea4e8743c4eb9d46b938b9e727ddfc7aee0d20130627e0d6c1fcc083da",
+      "target_artifact_available": true,
+      "locally_installed": false
+    },
+    {
+      "package_id": "uvicorn",
+      "ecosystem": "pypi",
+      "observed_version": "0.52.4",
+      "license_spdx": "BSD-3-Clause",
+      "requires_runtime": ">=3.10",
+      "registry_url": "https://pypi.org/project/uvicorn/0.52.4/",
+      "repository_url": "https://github.com/Kludex/uvicorn",
+      "target_artifact": "uvicorn-0.52.4-py3-none-any.whl",
+      "target_artifact_integrity": "sha256:f86e41a149d7d05a9969337e3946a9c171c06a5d42680896daaba624aeac8da1",
+      "target_artifact_available": true,
+      "locally_installed": false
+    },
+    {
+      "package_id": "websockets",
+      "ecosystem": "pypi",
+      "observed_version": "17.0.1",
+      "license_spdx": "BSD-3-Clause",
+      "requires_runtime": ">=3.11",
+      "registry_url": "https://pypi.org/project/websockets/17.0.1/",
+      "repository_url": "https://github.com/python-websockets/websockets",
+      "target_artifact": "websockets-17.0.1-cp314-cp314-win_amd64.whl",
+      "target_artifact_integrity": "sha256:81ce19c6046ace11da7001781be7317bb1dc389f399af4b2ed962190f76f9add",
+      "target_artifact_available": true,
+      "locally_installed": false
+    },
+    {
+      "package_id": "yjs",
+      "ecosystem": "npm",
+      "observed_version": "13.6.32",
+      "license_spdx": "MIT",
+      "requires_runtime": "node>=16,npm>=8",
+      "registry_url": "https://www.npmjs.com/package/yjs/v/13.6.32",
+      "repository_url": "https://github.com/yjs/yjs",
+      "target_artifact": "yjs@13.6.32",
+      "target_artifact_integrity": "sha512:lfiJIIC4Xayt5ItynE407ehlE03pCjeOc4hkR4yxxvvNJ4kuiN25B0g+Qp8XagYz361LLL7DCzR5bvFJ81QKtQ==",
+      "target_artifact_available": true,
+      "locally_installed": false
+    },
+    {
+      "package_id": "@hocuspocus/server",
+      "ecosystem": "npm",
+      "observed_version": "4.6.0",
+      "license_spdx": "MIT",
+      "requires_runtime": "node>=22",
+      "registry_url": "https://www.npmjs.com/package/@hocuspocus/server/v/4.6.0",
+      "repository_url": "https://github.com/ueberdosis/hocuspocus",
+      "target_artifact": "@hocuspocus/server@4.6.0",
+      "target_artifact_integrity": "sha512:Ex4tka1vsm9NycHU1vPwxj3weQj+L2+736U8uentRyykAefUcYkHEh7Gfxiy9PHBholWcw1H+oYgZ3LP0ShTWQ==",
+      "target_artifact_available": true,
+      "locally_installed": false
+    }
+  ],
+  "candidates": [
+    {
+      "id": "PY_NATIVE_PYCRDT",
+      "architecture": "Python ASGI gateway with a Python-native Yrs/Yjs-compatible CRDT binding",
+      "package_ids": [
+        "pycrdt",
+        "pycrdt-websocket",
+        "uvicorn"
+      ],
+      "gateway_execution_owner": "python",
+      "crdt_execution_owner": "python",
+      "opaque_relay": false,
+      "wire_family": "Yjs-compatible updates subject to cross-runtime fixture proof",
+      "strengths": [
+        "single Python operational process family",
+        "CPython 3.14 Windows wheel is published",
+        "direct server-side document inspection and checkpoint candidate"
+      ],
+      "risks": [
+        "wire compatibility and compaction must be proven against the browser Yjs version",
+        "smaller operational ecosystem than Node-native Yjs",
+        "native wheel and restart behavior require target Windows evidence"
+      ],
+      "required_probe_ids": [
+        "COMMON_CORPUS",
+        "CROSS_RUNTIME_WIRE",
+        "WINDOWS_RESTART",
+        "COMPACTION_EQUIVALENCE",
+        "RESOURCE_COST"
+      ],
+      "eligibility": "eligible_for_isolated_spike_not_selected"
+    },
+    {
+      "id": "PY_OPAQUE_NODE_COMPACTOR",
+      "architecture": "Python ASGI opaque update relay with a separately verified Node/Yjs checkpoint and compaction worker",
+      "package_ids": [
+        "uvicorn",
+        "websockets",
+        "yjs"
+      ],
+      "gateway_execution_owner": "python",
+      "crdt_execution_owner": "node",
+      "opaque_relay": true,
+      "wire_family": "Yjs v1 updates stored and relayed opaquely by Python",
+      "strengths": [
+        "Python gateway never needs to interpret collaborative content",
+        "browser and compactor share the mature Yjs implementation",
+        "clear separation between transport authorization and CRDT semantics"
+      ],
+      "risks": [
+        "two managed process families and a cross-process checkpoint protocol",
+        "opaque relay cannot independently validate document semantics",
+        "backup and compaction need an explicit high-water handshake"
+      ],
+      "required_probe_ids": [
+        "COMMON_CORPUS",
+        "OPAQUE_RELAY_INTEGRITY",
+        "CROSS_PROCESS_RESTART",
+        "COMPACTION_EQUIVALENCE",
+        "RESOURCE_COST"
+      ],
+      "eligibility": "eligible_for_isolated_spike_not_selected"
+    },
+    {
+      "id": "NODE_YJS_HOCUSPOCUS",
+      "architecture": "Node-native Yjs/Hocuspocus gateway behind the canonical Python command and permission boundary",
+      "package_ids": [
+        "yjs",
+        "@hocuspocus/server"
+      ],
+      "gateway_execution_owner": "node",
+      "crdt_execution_owner": "node",
+      "opaque_relay": false,
+      "wire_family": "Yjs v1 updates with Hocuspocus transport lifecycle",
+      "strengths": [
+        "browser, gateway, and checkpoint worker use the same mature Yjs family",
+        "built-in collaboration lifecycle and backpressure controls",
+        "current Node 24 target satisfies the published Node 22 minimum"
+      ],
+      "risks": [
+        "separate Node service package and lifecycle are mandatory",
+        "authorization remains in canonical Python authority and must never drift into plugin hooks",
+        "persistence extensions cannot become a second content or permission authority"
+      ],
+      "required_probe_ids": [
+        "COMMON_CORPUS",
+        "PYTHON_COMMAND_BOUNDARY",
+        "WINDOWS_SERVICE_RESTART",
+        "COMPACTION_EQUIVALENCE",
+        "RESOURCE_COST"
+      ],
+      "eligibility": "eligible_for_isolated_spike_not_selected"
+    }
+  ],
+  "decision_criteria": [
+    {
+      "id": "ZERO_ACKNOWLEDGED_LOSS",
+      "kind": "mandatory_gate",
+      "measurement": "Every acknowledged grapheme survives exactly once unless a causal explicit delete names it."
+    },
+    {
+      "id": "DETERMINISTIC_CONVERGENCE",
+      "kind": "mandatory_gate",
+      "measurement": "All delivery permutations converge to one canonical document hash per candidate."
+    },
+    {
+      "id": "KOREAN_IME_FIDELITY",
+      "kind": "mandatory_gate",
+      "measurement": "Composition events publish only committed graphemes and preserve native selection and undo boundaries."
+    },
+    {
+      "id": "WINDOWS_REPRODUCIBILITY",
+      "kind": "mandatory_gate",
+      "measurement": "Clean isolated install, start, stop, crash, and restart pass on the target Windows/Python/Node toolchain."
+    },
+    {
+      "id": "WIRE_AND_REPLAY_STABILITY",
+      "kind": "mandatory_gate",
+      "measurement": "Duplicate, reordered, replayed, and cross-process updates preserve byte identity rules and semantic convergence."
+    },
+    {
+      "id": "IAM_FENCE_INTEGRATION",
+      "kind": "mandatory_gate",
+      "measurement": "The runtime accepts canonical epochs and never becomes an independent authorization authority."
+    },
+    {
+      "id": "CHECKPOINT_COMPACTION_BACKUP",
+      "kind": "mandatory_gate",
+      "measurement": "Snapshot, high-water, replay, and compaction remain verifiable and backup-safe."
+    },
+    {
+      "id": "BACKPRESSURE_AND_FAULTS",
+      "kind": "mandatory_gate",
+      "measurement": "Slow consumers, reconnect storms, gateway loss, and compactor loss fail boundedly without acknowledged loss."
+    },
+    {
+      "id": "RESOURCE_COST",
+      "kind": "measured_comparison",
+      "measurement": "State bytes, update bytes, operations per second, snapshot/replay time, and peak memory are recorded on identical corpus inputs."
+    },
+    {
+      "id": "LICENSE_AND_OPERATIONS",
+      "kind": "mandatory_gate",
+      "measurement": "Only approved permissive licenses, reproducible artifacts, explicit service ownership, and no hosted-service dependency are accepted."
+    }
+  ],
+  "license_policy": {
+    "allowed_spdx": [
+      "BSD-3-Clause",
+      "MIT"
+    ],
+    "hosted_service_required": false,
+    "license_review_result": "all_observed_direct_candidates_permissive_for_internal_use",
+    "transitive_license_audit_required_before_winner_pin": true
+  },
+  "spike_boundary": {
+    "common_corpus_required_for_every_candidate": true,
+    "same_source_and_toolchain_binding_required": true,
+    "candidate_install_root": "new_OS_temp_child_per_candidate",
+    "production_lockfile_modification": false,
+    "production_runtime_import": false,
+    "schema_migration_allocation": false,
+    "service_or_port_start": false,
+    "live_data_or_identity_access": false,
+    "candidate_failure_cleanup": "delete only the candidate-owned temporary root and owned processes",
+    "winner_selection_owner": "E0-P4"
+  },
+  "availability_conclusion": {
+    "every_candidate_dependency_locally_available": false,
+    "unavailable_package_ids": [
+      "@hocuspocus/server",
+      "pycrdt",
+      "pycrdt-websocket",
+      "uvicorn",
+      "websockets",
+      "yjs"
+    ],
+    "next_packet": "E0-P2",
+    "next_packet_requires_approval": true,
+    "required_approval_id": "AP-RUNTIME-SPIKE",
+    "approval_scope": "Download and install exact observed candidate artifacts only into isolated disposable spike roots; no product lockfile or runtime enablement."
+  },
+  "claims": {
+    "matrix_complete": true,
+    "candidate_winner_selected": false,
+    "dependency_downloaded_or_installed": false,
+    "production_dependency_pinned": false,
+    "runtime_implemented": false,
+    "product_complete": false
+  }
+}

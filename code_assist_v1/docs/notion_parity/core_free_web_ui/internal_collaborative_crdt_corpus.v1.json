@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_crdt_corpus.v1",
+  "corpus_id": "E0-P1-COMMON-CRDT-CORPUS-001",
+  "corpus_version": 1,
+  "recorded_at": "2026-08-23T08:25:00Z",
+  "packet_id": "E0-P1",
+  "status": "frozen_runtime_neutral_not_executed",
+  "authority_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+      "sha256": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+      "sha256": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_candidate_matrix.v1.json",
+      "sha256": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_authority_adr.v1.json",
+      "sha256": "sha256:0dfa4ad9fd30a8daf50d42e9fe60ea0126928a2f4a73c8a51d7b518d28c439c2"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:60c35c589563c49730e6bfca7017a29d41a1a7fee2aff2a36e09cb850c2548da"
+    }
+  ],
+  "canonical_document_contract": {
+    "model": "ordered block tree with CRDT rich-text leaves and server-sequenced typed structure/database commands",
+    "canonical_json": "UTF-8, NFC strings, sorted object keys, compact separators, integer numbers only",
+    "canonical_hash": "sha256 of canonical JSON bytes",
+    "included": [
+      "block ids, types, parent ids, sibling order and non-ephemeral properties",
+      "rich-text graphemes and marks",
+      "database schema, row ids, cell values and stable ordering"
+    ],
+    "excluded": [
+      "awareness and presence",
+      "cursor and selection",
+      "transport sequence and acknowledgement metadata",
+      "wall-clock timestamps",
+      "local undo stacks",
+      "projection-only page timestamps"
+    ],
+    "candidate_specific_binary_hash_is_product_hash": false
+  },
+  "acknowledgement_contract": {
+    "unit": "Unicode extended grapheme cluster after NFC normalization",
+    "ack_point": "canonical authority durably accepts a client operation id and request hash",
+    "zero_loss_rule": "Every acknowledged grapheme id appears exactly once in every converged visible state unless a causally authorized explicit delete names that exact id.",
+    "duplicate_rule": "Duplicate delivery of one operation id never duplicates a grapheme or structural effect.",
+    "delete_rule": "A structural conflict may retain, relocate, or tombstone a target according to the typed-command policy, but may not silently discard acknowledged rich text.",
+    "ime_rule": "compositionstart and compositionupdate are local ephemeral state; one compositionend produces one acknowledged commit and one local undo unit.",
+    "acknowledged_character_loss_budget": 0,
+    "convergence_mismatch_budget": 0,
+    "invalid_unicode_budget": 0
+  },
+  "actors": [
+    {"id": "owner", "stable_rank": 10},
+    {"id": "member", "stable_rank": 20},
+    {"id": "guest", "stable_rank": 30}
+  ],
+  "delivery_schedules": [
+    {
+      "id": "CAUSAL_FORWARD",
+      "rule": "Deliver every operation after all causally_after dependencies, then by actor stable_rank and operation id."
+    },
+    {
+      "id": "CONCURRENT_REVERSE",
+      "rule": "Within each causally ready set, deliver by descending actor stable_rank and descending operation id."
+    },
+    {
+      "id": "DUPLICATE_EVERY_UPDATE",
+      "rule": "Deliver every encoded update twice while preserving causal readiness."
+    },
+    {
+      "id": "DETERMINISTIC_OUT_OF_ORDER",
+      "rule": "Deliver a fixed non-causal wire order, buffer missing dependencies, then drain deterministically."
+    },
+    {
+      "id": "RESTART_AFTER_HALF",
+      "rule": "Persist the first deterministic half, close the process, reopen from durable state, and deliver the remainder."
+    },
+    {
+      "id": "COMPACT_THEN_TAIL_REPLAY",
+      "rule": "Verify and persist a checkpoint at the declared high-water, compact eligible history, then replay the tail twice."
+    }
+  ],
+  "assertion_definitions": [
+    {"id": "CONVERGED_CANONICAL_HASH", "rule": "Every replica and delivery schedule has one equal canonical document hash."},
+    {"id": "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "rule": "No acknowledged grapheme is absent without a causal explicit delete."},
+    {"id": "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "rule": "No acknowledged grapheme id is visible more than once."},
+    {"id": "NFC_AND_UNICODE_VALID", "rule": "All visible strings are NFC and contain valid Unicode scalar sequences."},
+    {"id": "TYPED_STRUCTURE_VALID", "rule": "The block tree and database model satisfy their typed structural invariants."},
+    {"id": "LOCAL_UNDO_PRESERVES_REMOTE", "rule": "Local undo removes only the local tracked origin and preserves concurrent remote effects."},
+    {"id": "IME_INTERMEDIATE_NOT_BROADCAST", "rule": "No compositionupdate value becomes a durable or remote operation."},
+    {"id": "IME_COMMIT_ONE_UNDO_UNIT", "rule": "Each compositionend commit is exactly one acknowledged local undo unit."},
+    {"id": "RESTART_REPLAY_EQUIVALENT", "rule": "Restarted replay equals uninterrupted replay and contains no duplicate durable operation."},
+    {"id": "COMPACTION_EQUIVALENT", "rule": "Checkpoint plus tail replay equals full-history replay."}
+  ],
+  "scenarios": [
+    {
+      "id": "TEXT-001",
+      "category": "same_block_text",
+      "description": "Concurrent inserts at the same rich-text anchor.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": "협업"}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "text001-owner", "actor": "owner", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": "은 빠르고"}, "acknowledged_graphemes": [{"id": "t1o1", "value": "은"}, {"id": "t1o2", "value": " "}, {"id": "t1o3", "value": "빠"}, {"id": "t1o4", "value": "르"}, {"id": "t1o5", "value": "고"}], "explicit_delete_ids": []},
+        {"id": "text001-member", "actor": "member", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 안전해야 한다"}, "acknowledged_graphemes": [{"id": "t1m1", "value": " "}, {"id": "t1m2", "value": "안"}, {"id": "t1m3", "value": "전"}, {"id": "t1m4", "value": "해"}, {"id": "t1m5", "value": "야"}, {"id": "t1m6", "value": " "}, {"id": "t1m7", "value": "한"}, {"id": "t1m8", "value": "다"}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE", "DETERMINISTIC_OUT_OF_ORDER"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID"],
+      "expected_visible_fragments": ["협업", "은 빠르고", " 안전해야 한다"]
+    },
+    {
+      "id": "TEXT-002",
+      "category": "same_block_text",
+      "description": "Concurrent insert and explicit delete over stable grapheme ids.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": "문서 편집"}]},
+      "initial_graphemes": [{"id": "base-pyeon", "value": "편"}, {"id": "base-jip", "value": "집"}],
+      "operations": [
+        {"id": "text002-owner", "actor": "owner", "kind": "text_insert", "target": "b1:start", "causally_after": [], "payload": {"text": "공동 "}, "acknowledged_graphemes": [{"id": "t2o1", "value": "공"}, {"id": "t2o2", "value": "동"}, {"id": "t2o3", "value": " "}], "explicit_delete_ids": []},
+        {"id": "text002-member", "actor": "member", "kind": "text_delete", "target": "b1:stable_ids", "causally_after": [], "payload": {}, "acknowledged_graphemes": [], "explicit_delete_ids": ["base-pyeon", "base-jip"]}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID"],
+      "expected_visible_fragments": ["공동 ", "문서"]
+    },
+    {
+      "id": "FORMAT-001",
+      "category": "rich_text_format",
+      "description": "Concurrent text insertion and mark range update.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": "중요 내용", "marks": []}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "format001-owner", "actor": "owner", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 확인"}, "acknowledged_graphemes": [{"id": "f1o1", "value": " "}, {"id": "f1o2", "value": "확"}, {"id": "f1o3", "value": "인"}], "explicit_delete_ids": []},
+        {"id": "format001-member", "actor": "member", "kind": "mark_set", "target": "b1:0..2", "causally_after": [], "payload": {"mark": "bold", "value": true}, "acknowledged_graphemes": [], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "TYPED_STRUCTURE_VALID"],
+      "expected_visible_fragments": ["중요 내용", " 확인"]
+    },
+    {
+      "id": "BLOCK-001",
+      "category": "block_tree",
+      "description": "Independent edits in different blocks.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "heading", "text": "계획"}, {"id": "b2", "type": "paragraph", "text": "초안"}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "block001-owner", "actor": "owner", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 2026"}, "acknowledged_graphemes": [{"id": "b1o1", "value": " "}, {"id": "b1o2", "value": "2"}, {"id": "b1o3", "value": "0"}, {"id": "b1o4", "value": "2"}, {"id": "b1o5", "value": "6"}], "explicit_delete_ids": []},
+        {"id": "block001-member", "actor": "member", "kind": "text_insert", "target": "b2:end", "causally_after": [], "payload": {"text": " 검토"}, "acknowledged_graphemes": [{"id": "b1m1", "value": " "}, {"id": "b1m2", "value": "검"}, {"id": "b1m3", "value": "토"}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "TYPED_STRUCTURE_VALID"],
+      "expected_visible_fragments": ["계획 2026", "초안 검토"]
+    },
+    {
+      "id": "BLOCK-002",
+      "category": "block_tree",
+      "description": "Move a block concurrently with a rich-text edit inside it.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": "첫째"}, {"id": "b2", "type": "paragraph", "text": "둘째"}, {"id": "b3", "type": "paragraph", "text": "셋째"}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "block002-owner", "actor": "owner", "kind": "block_move", "target": "b2", "causally_after": [], "payload": {"after_block_id": "b3"}, "acknowledged_graphemes": [], "explicit_delete_ids": []},
+        {"id": "block002-member", "actor": "member", "kind": "text_insert", "target": "b2:end", "causally_after": [], "payload": {"text": " 수정"}, "acknowledged_graphemes": [{"id": "b2m1", "value": " "}, {"id": "b2m2", "value": "수"}, {"id": "b2m3", "value": "정"}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE", "DETERMINISTIC_OUT_OF_ORDER"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "TYPED_STRUCTURE_VALID"],
+      "expected_visible_fragments": ["둘째", " 수정"]
+    },
+    {
+      "id": "BLOCK-003",
+      "category": "block_tree",
+      "description": "Delete a block concurrently with an edit; text must be preserved in a deterministic recovery tombstone when delete wins.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": "보존 대상"}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "block003-owner", "actor": "owner", "kind": "block_delete", "target": "b1", "causally_after": [], "payload": {"conflict_policy": "tombstone_with_recovery_payload"}, "acknowledged_graphemes": [], "explicit_delete_ids": []},
+        {"id": "block003-member", "actor": "member", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 새 기록"}, "acknowledged_graphemes": [{"id": "b3m1", "value": " "}, {"id": "b3m2", "value": "새"}, {"id": "b3m3", "value": " "}, {"id": "b3m4", "value": "기"}, {"id": "b3m5", "value": "록"}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE", "DETERMINISTIC_OUT_OF_ORDER"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "TYPED_STRUCTURE_VALID"],
+      "expected_visible_fragments": [" 새 기록"]
+    },
+    {
+      "id": "DB-001",
+      "category": "database",
+      "description": "Concurrent writes to distinct database cells.",
+      "initial_document": {"database": {"properties": [{"id": "p1", "type": "text"}, {"id": "p2", "type": "number"}], "rows": [{"id": "r1", "cells": {"p1": "초안", "p2": 1}}]}},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "db001-owner", "actor": "owner", "kind": "cell_set", "target": "r1:p1", "causally_after": [], "payload": {"value": "승인"}, "acknowledged_graphemes": [{"id": "d1o1", "value": "승"}, {"id": "d1o2", "value": "인"}], "explicit_delete_ids": []},
+        {"id": "db001-member", "actor": "member", "kind": "cell_set", "target": "r1:p2", "causally_after": [], "payload": {"value": 2}, "acknowledged_graphemes": [], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "TYPED_STRUCTURE_VALID"],
+      "expected_visible_fragments": ["승인"]
+    },
+    {
+      "id": "DB-002",
+      "category": "database",
+      "description": "Schema rename concurrently with a cell update addressed by stable property id.",
+      "initial_document": {"database": {"properties": [{"id": "p1", "name": "상태", "type": "text"}], "rows": [{"id": "r1", "cells": {"p1": "대기"}}]}},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "db002-owner", "actor": "owner", "kind": "property_rename", "target": "p1", "causally_after": [], "payload": {"name": "진행 상태"}, "acknowledged_graphemes": [], "explicit_delete_ids": []},
+        {"id": "db002-member", "actor": "member", "kind": "cell_set", "target": "r1:p1", "causally_after": [], "payload": {"value": "완료"}, "acknowledged_graphemes": [{"id": "d2m1", "value": "완"}, {"id": "d2m2", "value": "료"}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE", "DETERMINISTIC_OUT_OF_ORDER"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "TYPED_STRUCTURE_VALID"],
+      "expected_visible_fragments": ["진행 상태", "완료"]
+    },
+    {
+      "id": "IME-001",
+      "category": "korean_ime",
+      "description": "Native Korean composition commits 한글 once while a remote insert arrives.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": ""}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "ime001-owner", "actor": "owner", "kind": "ime_commit", "target": "b1:start", "causally_after": [], "payload": {"text": "한글"}, "acknowledged_graphemes": [{"id": "i1o1", "value": "한"}, {"id": "i1o2", "value": "글"}], "explicit_delete_ids": []},
+        {"id": "ime001-member", "actor": "member", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 협업"}, "acknowledged_graphemes": [{"id": "i1m1", "value": " "}, {"id": "i1m2", "value": "협"}, {"id": "i1m3", "value": "업"}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE", "DETERMINISTIC_OUT_OF_ORDER"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "IME_INTERMEDIATE_NOT_BROADCAST", "IME_COMMIT_ONE_UNDO_UNIT"],
+      "expected_visible_fragments": ["한글", " 협업"],
+      "ime_trace": {"actor": "owner", "events": [{"type": "compositionstart", "data": ""}, {"type": "compositionupdate", "data": "ㅎ"}, {"type": "compositionupdate", "data": "하"}, {"type": "compositionupdate", "data": "한"}, {"type": "compositionupdate", "data": "한ㄱ"}, {"type": "compositionupdate", "data": "한그"}, {"type": "compositionupdate", "data": "한글"}, {"type": "compositionend", "data": "한글"}], "committed_operation_id": "ime001-owner", "expected_committed_text": "한글"}
+    },
+    {
+      "id": "IME-002",
+      "category": "korean_ime",
+      "description": "Final consonant and following particle remain intact across composition boundaries.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": ""}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "ime002-owner", "actor": "owner", "kind": "ime_commit", "target": "b1:start", "causally_after": [], "payload": {"text": "값과"}, "acknowledged_graphemes": [{"id": "i2o1", "value": "값"}, {"id": "i2o2", "value": "과"}], "explicit_delete_ids": []},
+        {"id": "ime002-member", "actor": "member", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 품질"}, "acknowledged_graphemes": [{"id": "i2m1", "value": " "}, {"id": "i2m2", "value": "품"}, {"id": "i2m3", "value": "질"}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "IME_INTERMEDIATE_NOT_BROADCAST", "IME_COMMIT_ONE_UNDO_UNIT"],
+      "expected_visible_fragments": ["값과", " 품질"],
+      "ime_trace": {"actor": "owner", "events": [{"type": "compositionstart", "data": ""}, {"type": "compositionupdate", "data": "ㄱ"}, {"type": "compositionupdate", "data": "가"}, {"type": "compositionupdate", "data": "갑"}, {"type": "compositionupdate", "data": "값"}, {"type": "compositionupdate", "data": "값ㄱ"}, {"type": "compositionupdate", "data": "값과"}, {"type": "compositionend", "data": "값과"}], "committed_operation_id": "ime002-owner", "expected_committed_text": "값과"}
+    },
+    {
+      "id": "IME-003",
+      "category": "korean_ime",
+      "description": "Korean text, whitespace, and a supplementary-plane emoji commit without surrogate corruption.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": ""}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "ime003-owner", "actor": "owner", "kind": "ime_commit", "target": "b1:start", "causally_after": [], "payload": {"text": "회의록 🧠"}, "acknowledged_graphemes": [{"id": "i3o1", "value": "회"}, {"id": "i3o2", "value": "의"}, {"id": "i3o3", "value": "록"}, {"id": "i3o4", "value": " "}, {"id": "i3o5", "value": "🧠"}], "explicit_delete_ids": []},
+        {"id": "ime003-member", "actor": "member", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 저장"}, "acknowledged_graphemes": [{"id": "i3m1", "value": " "}, {"id": "i3m2", "value": "저"}, {"id": "i3m3", "value": "장"}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE", "RESTART_AFTER_HALF"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "IME_INTERMEDIATE_NOT_BROADCAST", "IME_COMMIT_ONE_UNDO_UNIT", "RESTART_REPLAY_EQUIVALENT"],
+      "expected_visible_fragments": ["회의록 🧠", " 저장"],
+      "ime_trace": {"actor": "owner", "events": [{"type": "compositionstart", "data": ""}, {"type": "compositionupdate", "data": "회"}, {"type": "compositionupdate", "data": "회의"}, {"type": "compositionupdate", "data": "회의록"}, {"type": "compositionupdate", "data": "회의록 🧠"}, {"type": "compositionend", "data": "회의록 🧠"}], "committed_operation_id": "ime003-owner", "expected_committed_text": "회의록 🧠"}
+    },
+    {
+      "id": "UNDO-001",
+      "category": "undo_redo",
+      "description": "Local undo removes only the local origin and preserves the remote edit.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": "기준"}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "undo001-owner-insert", "actor": "owner", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 임시"}, "acknowledged_graphemes": [{"id": "u1o1", "value": " "}, {"id": "u1o2", "value": "임"}, {"id": "u1o3", "value": "시"}], "explicit_delete_ids": []},
+        {"id": "undo001-member", "actor": "member", "kind": "text_insert", "target": "b1:start", "causally_after": [], "payload": {"text": "공유 "}, "acknowledged_graphemes": [{"id": "u1m1", "value": "공"}, {"id": "u1m2", "value": "유"}, {"id": "u1m3", "value": " "}], "explicit_delete_ids": []},
+        {"id": "undo001-owner-undo", "actor": "owner", "kind": "undo_local_origin", "target": "undo001-owner-insert", "causally_after": ["undo001-owner-insert"], "payload": {}, "acknowledged_graphemes": [], "explicit_delete_ids": ["u1o1", "u1o2", "u1o3"]}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "CONCURRENT_REVERSE", "DUPLICATE_EVERY_UPDATE"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "LOCAL_UNDO_PRESERVES_REMOTE"],
+      "expected_visible_fragments": ["공유 ", "기준"]
+    },
+    {
+      "id": "NET-001",
+      "category": "network_replay",
+      "description": "Offline edits reconnect through duplicate and out-of-order delivery.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": "온라인"}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "net001-owner", "actor": "owner", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 변경"}, "acknowledged_graphemes": [{"id": "n1o1", "value": " "}, {"id": "n1o2", "value": "변"}, {"id": "n1o3", "value": "경"}], "explicit_delete_ids": []},
+        {"id": "net001-member-offline", "actor": "member", "kind": "text_insert", "target": "b1:start", "causally_after": [], "payload": {"text": "오프라인 "}, "acknowledged_graphemes": [{"id": "n1m1", "value": "오"}, {"id": "n1m2", "value": "프"}, {"id": "n1m3", "value": "라"}, {"id": "n1m4", "value": "인"}, {"id": "n1m5", "value": " "}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "DETERMINISTIC_OUT_OF_ORDER", "DUPLICATE_EVERY_UPDATE", "RESTART_AFTER_HALF"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "RESTART_REPLAY_EQUIVALENT"],
+      "expected_visible_fragments": ["오프라인 ", "온라인", " 변경"]
+    },
+    {
+      "id": "RECOVERY-001",
+      "category": "restart_replay",
+      "description": "Crash after durable acknowledgement and before peer broadcast replays exactly once.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": "재시작"}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "recovery001-owner", "actor": "owner", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 안전"}, "acknowledged_graphemes": [{"id": "r1o1", "value": " "}, {"id": "r1o2", "value": "안"}, {"id": "r1o3", "value": "전"}], "explicit_delete_ids": []},
+        {"id": "recovery001-member", "actor": "member", "kind": "text_insert", "target": "b1:end", "causally_after": ["recovery001-owner"], "payload": {"text": " 확인"}, "acknowledged_graphemes": [{"id": "r1m1", "value": " "}, {"id": "r1m2", "value": "확"}, {"id": "r1m3", "value": "인"}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "DUPLICATE_EVERY_UPDATE", "RESTART_AFTER_HALF"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "RESTART_REPLAY_EQUIVALENT"],
+      "expected_visible_fragments": ["재시작 안전 확인"]
+    },
+    {
+      "id": "COMPACT-001",
+      "category": "compaction",
+      "description": "Verified checkpoint plus replay tail equals full event replay.",
+      "initial_document": {"blocks": [{"id": "b1", "type": "paragraph", "text": "압축"}]},
+      "initial_graphemes": [],
+      "operations": [
+        {"id": "compact001-owner", "actor": "owner", "kind": "text_insert", "target": "b1:end", "causally_after": [], "payload": {"text": " 전"}, "acknowledged_graphemes": [{"id": "c1o1", "value": " "}, {"id": "c1o2", "value": "전"}], "explicit_delete_ids": []},
+        {"id": "compact001-checkpoint", "actor": "owner", "kind": "checkpoint", "target": "document", "causally_after": ["compact001-owner"], "payload": {"verified_high_water_operation_id": "compact001-owner"}, "acknowledged_graphemes": [], "explicit_delete_ids": []},
+        {"id": "compact001-member", "actor": "member", "kind": "text_insert", "target": "b1:end", "causally_after": ["compact001-checkpoint"], "payload": {"text": " 후"}, "acknowledged_graphemes": [{"id": "c1m1", "value": " "}, {"id": "c1m2", "value": "후"}], "explicit_delete_ids": []}
+      ],
+      "schedule_ids": ["CAUSAL_FORWARD", "DUPLICATE_EVERY_UPDATE", "RESTART_AFTER_HALF", "COMPACT_THEN_TAIL_REPLAY"],
+      "assertion_ids": ["CONVERGED_CANONICAL_HASH", "ZERO_ACKNOWLEDGED_GRAPHEME_LOSS", "NO_DUPLICATE_ACKNOWLEDGED_GRAPHEME", "NFC_AND_UNICODE_VALID", "RESTART_REPLAY_EQUIVALENT", "COMPACTION_EQUIVALENT"],
+      "expected_visible_fragments": ["압축 전 후"]
+    }
+  ],
+  "required_metrics": [
+    "acknowledged_grapheme_count",
+    "acknowledged_character_loss_count",
+    "convergence_mismatch_count",
+    "invalid_unicode_count",
+    "duplicate_effect_count",
+    "encoded_update_bytes",
+    "checkpoint_state_bytes",
+    "operations_per_second",
+    "snapshot_duration_ms",
+    "replay_duration_ms",
+    "peak_process_rss_bytes"
+  ],
+  "adapter_contract": {
+    "input": "One immutable scenario plus one declared delivery schedule.",
+    "output": "Canonical document JSON/hash, per-replica hashes, grapheme ledger, durable operation ledger, update/checkpoint bytes, timing, and memory metrics.",
+    "all_candidates_execute_identical_corpus": true,
+    "candidate_specific_expected_result_edit_forbidden": true,
+    "browser_native_ime_evidence_still_required_later": true,
+    "candidate_binary_update_hash_may_differ": true,
+    "canonical_semantic_hash_must_converge_within_candidate": true
+  },
+  "claims": {
+    "corpus_complete": true,
+    "candidate_adapter_implemented": false,
+    "candidate_execution_performed": false,
+    "candidate_winner_selected": false,
+    "native_browser_ime_proven_by_this_corpus": false,
+    "runtime_implemented": false,
+    "product_complete": false
+  }
+}

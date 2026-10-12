@@ -1,0 +1,180 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T22:38:59.2106290+09:00",
+  "run_id": "ui5-editor-001-reference-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "parallel_pending_observation": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-shell-001-reference-observed-review-pending-20260821.json",
+    "sha256": "sha256:293b71d6184f60308cbd21b17196692941087066d802c1188af662328bebae5e",
+    "semantic_status": "awaiting_workspace_owner_summary_approval"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-EDITOR-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_count": 0,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "trash_only_recoverable",
+    "final_tab_state": "handoff_ref_free_a"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-EDITOR-001",
+    "status": "reference_observed_review_pending_three_focus_fields",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_pending": 20,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa",
+      "canonical_sha256": "sha256:a2c1a94be54f255cac128a4810a66ed1e0dd85f9762f2ecc850df0cc21ba0cf7"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    }
+  ],
+  "owned_outputs": [
+    {
+      "path": "code_assist_v1/tools/notion_parity/ui_redaction.py",
+      "sha256": "sha256:53786e722ea65bde0fb962003facac290285c8f09e191bff9b401d0874fa036f"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_evidence_harness.py",
+      "sha256": "sha256:f38dd7f4ee89c90d329609e284f7e720ebf8c63c95328913283c2e8320add9a7"
+    }
+  ],
+  "reference_intake": {
+    "worksheet_sha256": "sha256:c630955f6f5ca25fc0ad446877751e210e2d64e642360d573c5120d1c33b215b",
+    "c0_status": "pass",
+    "c0_sha256": "sha256:58af7275cacc1533d613164db0f727ee01495a76e1f7dd735049e043fd458dbd",
+    "action_log_sha256": "sha256:3955e72a1614f4cdd734b620c266a5a2a732ccbf041cfe630aaad45d42c5841b",
+    "operator_review": {
+      "status": "pending",
+      "scope": "redacted_summary_only"
+    }
+  },
+  "reference_action_captures": {
+    "UI-EDITOR-001-A03": {
+      "sha256": "sha256:343cb1cd86391cc69b9d2244a5d808a360f58de7fad6982487dbd33fd31a7868",
+      "state": {"count": 1, "state": "committed"},
+      "keyboard": {"result": "pass"},
+      "focus": {"name": "PAGE-EDITOR-GROUP", "state": "focused"},
+      "a11y": {"name": "PAGE-EDITOR-GROUP", "role": "GROUP"},
+      "geometry": {
+        "PAGE-TITLE": {"height": 48, "width": 720, "x": 735, "y": 156},
+        "EDITOR-BLOCK": {"height": 28, "width": 708, "x": 741, "y": 226}
+      },
+      "latency_ms": 7415
+    },
+    "UI-EDITOR-001-A04": {
+      "sha256": "sha256:cf5b2b16f591a32a8348c7b9a4d4a9016e91a52db960e426ac556e25b9073538",
+      "state": {"count": 1, "state": "restored"},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"name": "PAGE-CANVAS", "state": "not_focused"},
+      "a11y": {"name": "PAGE-CANVAS", "role": "MAIN"},
+      "geometry": {
+        "PAGE-CANVAS": {"height": 875, "width": 1650, "x": 270, "y": 44},
+        "EDITOR-BLOCK": {"height": 28, "width": 708, "x": 741, "y": 226}
+      },
+      "latency_ms": 4264
+    }
+  },
+  "reference_exact_results": {
+    "new_page_type_selected": true,
+    "korean_title_round_trip_exact": true,
+    "korean_paragraph_round_trip_exact": true,
+    "initial_root_edit_attempt_invalidated": true,
+    "ref_free_a_root_title_restored": true,
+    "ref_free_a_root_empty_body_restored": true,
+    "synthetic_page_moved_to_trash": true,
+    "permanent_delete_used": false
+  },
+  "local_action_captures": {
+    "UI-EDITOR-001-A03": {
+      "sha256": "sha256:b8cea2a097342c38371a19e1052c8a388b19a63a57df615402c07be75e727e0d",
+      "state": {"count": 1, "state": "committed"},
+      "focus": {"name": "EDITOR-BLOCK", "state": "focused"},
+      "a11y": {"name": "EDITOR-BLOCK", "role": "TEXTBOX"},
+      "geometry": {
+        "PAGE-TITLE": {"height": 48, "width": 760, "x": 715, "y": 191},
+        "EDITOR-BLOCK": {"height": 32, "width": 760, "x": 715, "y": 287}
+      }
+    },
+    "UI-EDITOR-001-A04": {
+      "sha256": "sha256:2a1c510b0b7c094c3f176aac7a6f4f8207a9c6edc333886c3b7779268ace5e55",
+      "state": {"count": 1, "state": "restored"},
+      "focus": {"name": "PAGE-CANVAS", "state": "focused"},
+      "a11y": {"name": "PAGE-CANVAS", "role": "MAIN"},
+      "geometry": {
+        "PAGE-CANVAS": {"height": 168, "width": 760, "x": 715, "y": 151},
+        "EDITOR-BLOCK": {"height": 32, "width": 760, "x": 715, "y": 287}
+      }
+    }
+  },
+  "precalibration_differential": {
+    "status": "fail",
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-EDITOR-001-A03": {
+        "difference_count": 2,
+        "differences": ["a11y", "focus"]
+      },
+      "UI-EDITOR-001-A04": {
+        "difference_count": 1,
+        "differences": ["focus"]
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "interpretation": "Reference and local content durability match exactly. The reference settles focus on the editor group after save and leaves the canvas unfocused after reload, while local preserves block focus and explicitly focuses the canvas."
+  },
+  "redaction_harness_correction": {
+    "reason": "planned normalized capture states were previously rejected by the evidence redactor",
+    "added_safe_literals": ["not_focused", "restored"],
+    "privacy_boundary_broadened": false,
+    "verification": "16 passed in 4.24s"
+  },
+  "redacted_review_summary": {
+    "reference_profile": "Chrome desktop Free owner ko-KR",
+    "reference_workspace": "REF-FREE-A",
+    "result": "A newly created synthetic page retained its Korean title and paragraph exactly after reload. After save, reference focus settled on the page editor group; after reload, the page canvas was visible but not focused.",
+    "cleanup": "The first invalid root-edit attempt was fully restored and discarded. The valid synthetic page was moved to Trash and remains recoverable.",
+    "privacy": "No personal workspace/page, raw DOM, network payload, cookies, screenshot, public posting, invitation, or permanent delete was used."
+  },
+  "claims": {
+    "ui_editor_001_reference_observed": true,
+    "ui_editor_001_reference_characterized": false,
+    "ui_editor_001_differential_passed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain workspace-owner approval of the redacted UI-EDITOR-001 summary together with the pending UI-SHELL-001 summary. Then seal receipts and implement the smallest reviewed focus-state parity corrections."
+}

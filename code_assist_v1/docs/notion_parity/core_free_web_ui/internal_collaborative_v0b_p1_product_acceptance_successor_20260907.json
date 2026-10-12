@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.product_acceptance_successor.v1",
+  "recorded_at": "2026-09-07T06:50:00+09:00",
+  "packet_id": "V0B-P1",
+  "status": "adopted",
+  "supersedes_candidate_acceptance": "exact_candidate_RGBA_identity",
+  "does_not_supersede": [
+    "immutable_V0R_lossless_reference_transport",
+    "feature_and_interaction_parity",
+    "accessibility_requirements",
+    "Core_21_semantic_scenarios",
+    "quiet_host_performance_budget",
+    "cleanup_and_isolation_contracts"
+  ],
+  "acceptance": {
+    "functionality_and_user_interaction": "strict",
+    "visual_candidate": "reviewed_strict_similarity",
+    "pixel_identity_required": false,
+    "required_state_viewport_rows": 36,
+    "required_regions_per_row": [
+      "WHOLE-VIEWPORT",
+      "APP-CHROME",
+      "PRIMARY-CONTENT",
+      "SIDEBAR",
+      "STATE-SPECIFIC-CRITICAL"
+    ],
+    "exact_candidate_RGBA": "truthful_diagnostic_only",
+    "reference_transport_exactness": "mandatory"
+  },
+  "policy": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_v0b_p1_visual_similarity_policy.v2.json",
+    "policy_id": "V0B-P1-STRICT-SIMILARITY-CRITICAL-R2-20260907",
+    "canonical_sha256": "sha256:8b05efac4c107c7a681ba4e1f124e6784eeaf04cb108e3c2c5e8a783a7b714d0"
+  },
+  "evidence_lineage": {
+    "preserved_predecessor": ".runtime/v0b-p1-product-similarity-r8-20260907/final-receipt.json",
+    "current_successor": ".runtime/v0b-p1-product-similarity-critical-r9-20260907/final-receipt.json",
+    "historical_receipts_overwritten": false
+  },
+  "claims": {
+    "V0B_P1_gate_may_close_on_strict_similarity": true,
+    "V0R_P1_exact_gate_remains_required": true,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-T0B-P3-CROSS-PROCESS-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-24T11:40:00Z",
+  "checkpoint_kind": "packet_pre_edit_ownership_and_lineage",
+  "packet_id": "T0B-P3",
+  "packet_status": "in_progress",
+  "purpose": "Reserve the real selected WebSocket gateway, owned Node/Yjs compactor, cross-process launcher, ephemeral Chrome transport tests, verifier, and status integration. Every dependency install, database, PID, browser context, and OS-assigned port is test-owned and disposable; no development pair, fixed port, live identity, or production capability is touched.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p2-runtime-gateway-20260824.json",
+    "sha256": "sha256:b0686343517e49e940e125ca822d3f9fcee2d824a085decb8ae745c4753f01b9",
+    "packet_id": "T0B-P2",
+    "receipt_id": "T0B-P2-L3-RUNTIME-GATEWAY-20260824"
+  },
+  "owned_existing_files": [
+    "code_assist_v1/notion_collaboration/gateway_service.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py"
+  ],
+  "planned_new_product_files": [
+    "code_assist_v1/collaboration_runtime/node/compactor.mjs",
+    "code_assist_v1/notion_collaboration/node_compactor.py",
+    "code_assist_v1/notion_collaboration/cross_process_gateway.py",
+    "code_assist_v1/tools/verify_internal_collaborative_cross_process_gateway.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_cross_process_gateway.v1.json"
+  ],
+  "planned_new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_cross_process.py",
+    "code_assist_v1/tests/notion_collaboration/browser/test_runtime_gateway_browser_transport.py"
+  ],
+  "read_only_authority_inputs": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/notion_collaboration/runtime_gateway.py": "sha256:b165e0ec2f7bdf908463dee3dee64dfaaa0cfa0e60671eccf65b5758b548fec1",
+    "code_assist_v1/notion_collaboration/durable_transport.py": "sha256:1d0f0328445b63eac8a05d75be1c54522ec853932980ab525db3ce2b004fdb7d",
+    "code_assist_v1/notion_collaboration/selected_runtime_contract.py": "sha256:31947c8739e5555875e6df8c0e604e987299299726684f2cf3220d11dd1f79fa",
+    "code_assist_v1/collaboration_runtime/python-requirements.lock": "sha256:2910510df5c434104778c4a78f40a6b2368204513c8ac29824c5a1cb13db7c65",
+    "code_assist_v1/collaboration_runtime/node/package.json": "sha256:19296e28baa32d70748e7dd5d006246366bc181934321eaf9fee6dd21aae1f51",
+    "code_assist_v1/collaboration_runtime/node/package-lock.json": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3"
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/notion_collaboration/gateway_service.py": "sha256:8b107e0b8efc6768170a1a5cfb36e8d7e8a38c3dde37512e6ece0f649fe780dd",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:c31df8f77d66a369665f77815b798d37516da5203c6ef70d834a6070a4cc037a",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:4b8f53f33478af2301f3134995f240b106c2344dc237d73e5088ae01ddb4ec16",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:2882a824ac9acb3acfe08bedd317da6f17f195835cc6072cc3963297549915af",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:78e28663e8ffa090e094017669f48da5034c2261a5f1447093a36a0950bc0c65",
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:38d69a44f9cca5eaaf3f9647ce96e0f0e19669365e4f56ed697a5f9a7732f036",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:94d1f9ab61c2302a18048cbc382459510f852a39eb186ae93ee5f754028417d7"
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked",
+    "tool_status_observed": "blocked_stale_after_prior_pause",
+    "user_resume_authority": "The user instructed continued development and functional verification against the approved target behavior.",
+    "goal_status_mutated_by_packet": false
+  },
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-24T11:40:00Z",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:87d4b24e32a8eb5725f44eb2b19f3df96211b64c6a96aeeac59b0d3510b04129",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_active_packet": "SBE-2.3",
+    "sbe_status_sha256": "sha256:ae8b81f3e6739a423d700abb65bfa21bc12f47cecf02650979e429ba8d0901a9",
+    "sbe_backlog_sha256": "sha256:761743ea761e10468ff9b761a78d5f41a43334ea0c6e8adf6f224feaf530efae",
+    "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+    "exact_path_collision_observed": false,
+    "sbe_hot_contracts_owned_or_modified": false
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-T0B-P3-ROOT-20260824",
+    "owner_agent": "/root",
+    "status": "active",
+    "acquired_at": "2026-08-24T11:40:00Z",
+    "expires_at": "2026-08-25T11:40:00Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "execution_boundary": {
+    "AP_RUNTIME_SPIKE_status": "consumed",
+    "dependency_install_roots": "pytest_or_runner_owned_temporary_only",
+    "temporary_SQLite_only": true,
+    "loopback_OS_assigned_ports_only": true,
+    "ephemeral_browser_context_only": true,
+    "persistent_signed_in_profile_forbidden": true,
+    "literal_10011_10012_10111_10112_10113_forbidden": true,
+    "live_identity_import_allowed": false,
+    "actual_dev_pair_mutation_allowed": false,
+    "production_mutation_allowed": false
+  },
+  "rollback_or_cleanup": "Before gate closure, remove only test-owned temporary Python and Node installs, SQLite roots, browser contexts, child PIDs, and OS-assigned ports. Source rollback is limited to the exact reserved files and the recorded pre-edit hashes. No live, development-pair, or production cleanup is authorized or expected."
+}

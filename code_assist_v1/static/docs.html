@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Brain Agent 사용자 가이드</title>
+<link rel="stylesheet" href="app.css?v=20260619c">
+<style>
+  body { overflow-y: auto; }
+  .docs-root { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 100vh; }
+  .docs-toc { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 16px 0; background: var(--bg-2); border-right: 1px solid var(--border); }
+  .docs-toc h2 { margin: 4px 0 10px; padding: 0 16px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
+  .docs-toc a { display: block; padding: 7px 16px; color: var(--text-2); text-decoration: none; border-left: 2px solid transparent; font-size: 13px; }
+  .docs-toc a:hover { background: var(--card); color: var(--text); }
+  .docs-main { min-width: 0; }
+  .docs-topbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 10px; padding: 8px 18px; background: var(--bg-1); border-bottom: 1px solid var(--border); }
+  .docs-topbar .home { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 13px; }
+  .docs-topbar .spacer { flex: 1; }
+  .docs-body { max-width: 980px; margin: 0 auto; padding: 34px 56px 80px; line-height: 1.7; }
+  .docs-body h1 { margin: 0 0 8px; color: var(--text); font-size: 30px; letter-spacing: 0; }
+  .docs-body h2 { margin: 38px 0 12px; padding-bottom: 7px; border-bottom: 1px solid var(--border); color: var(--text); font-size: 22px; }
+  .docs-body h3 { margin: 24px 0 8px; color: var(--text); font-size: 16px; }
+  .docs-body p { margin: 0 0 12px; color: var(--text-2); }
+  .docs-body strong { color: var(--text); }
+  .docs-body code { padding: 1px 6px; border-radius: 4px; background: var(--inline-bg); font-family: var(--mono); font-size: .92em; }
+  .docs-body ul, .docs-body ol { margin: 8px 0 14px; padding-left: 24px; color: var(--text-2); }
+  .docs-body li { margin-bottom: 5px; }
+  .docs-body table { width: 100%; margin: 14px 0; border-collapse: collapse; font-size: 13.5px; }
+  .docs-body th, .docs-body td { padding: 9px 12px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+  .docs-body th { background: var(--card); color: var(--text); font-weight: 600; }
+  .lead { max-width: 780px; color: var(--text-2); font-size: 15px; }
+  .callout { margin: 16px 0; padding: 12px 14px; border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 6px; background: var(--card); }
+  .callout.warn { border-left-color: var(--warn); }
+  .kbd { display: inline-block; padding: 0 6px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 4px; background: var(--card); color: var(--text); font-size: 12px; }
+  @media (max-width: 820px) {
+    .docs-root { grid-template-columns: 1fr; }
+    .docs-toc { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+    .docs-body { padding: 24px 18px 64px; }
+  }
+</style>
+</head>
+<body>
+<div class="docs-root">
+  <aside class="docs-toc">
+    <h2>사용자 가이드</h2>
+    <a href="#overview">개요</a>
+    <a href="#account">계정과 접속</a>
+    <a href="#chat">채팅</a>
+    <a href="#sessions">세션</a>
+    <a href="#harness-memory">Harness와 장기기억</a>
+    <a href="#models">모델</a>
+    <a href="#second-brain">Second Brain</a>
+    <a href="#knowledge">지식 등록</a>
+    <a href="#external-md">외부 Markdown</a>
+    <a href="#workspace">Workspace</a>
+    <a href="#skills">스킬</a>
+    <a href="#notion">Notion Workspace</a>
+    <a href="#notion-edit">Notion 편집</a>
+    <a href="#share">공유와 연결</a>
+    <a href="#workflow">권장 흐름</a>
+    <a href="#accounts">계정별 적용</a>
+    <a href="#trouble">문제 해결</a>
+  </aside>
+
+  <main class="docs-main">
+    <div class="docs-topbar">
+      <a class="home" href="/">채팅으로 돌아가기</a>
+      <span class="spacer"></span>
+      <button id="docsThemeBtn" title="다크/라이트">테마</button>
+      <button id="docsPrintBtn" title="인쇄">인쇄</button>
+    </div>
+
+    <article class="docs-body">
+      <h1>Second Brain Agent 사용자 가이드</h1>
+      <p class="lead">Second Brain Agent는 대화, 문서, 코드 파일, 개인 지식 저장소, Notion 스타일 문서 작업공간을 함께 사용하는 지식 기반 작업 에이전트입니다.</p>
+
+      <h2 id="overview">개요</h2>
+      <table>
+        <tr><th>서비스</th><th>기본 주소</th><th>역할</th></tr>
+        <tr><td>Second Brain Agent</td><td><code>http://localhost:10011</code></td><td>채팅, 지식 검색, 문서 업로드, 세션 관리</td></tr>
+        <tr><td>Notion Workspace</td><td><code>http://localhost:10012</code></td><td>개인 문서 작성, 공유 페이지, 채팅/지식 연결</td></tr>
+      </table>
+      <p>답변에는 대화 기록, Second Brain, Workspace 파일, Notion 페이지 context가 필요에 따라 함께 들어갑니다.</p>
+      <div class="callout"><strong>중요</strong><p>계정별 데이터는 분리됩니다. 다른 사용자의 채팅, Notion 문서, Second Brain source는 기본적으로 보이지 않습니다.</p></div>
+
+      <h2 id="account">계정과 접속</h2>
+      <ul>
+        <li>10011과 10012는 같은 로그인 계정을 사용합니다.</li>
+        <li>쿠키는 호스트 기준으로 공유됩니다. <code>localhost:10011</code>로 로그인했다면 <code>localhost:10012</code>로 여세요.</li>
+        <li>처음 사용하는 Notion 계정은 <strong>Second Brain 템플릿 만들기</strong>로 기본 페이지를 만들 수 있습니다.</li>
+      </ul>
+
+      <h2 id="chat">채팅</h2>
+      <ol>
+        <li>모델을 선택합니다. 잘 모르면 기본값을 사용합니다.</li>
+        <li>필요한 경우 스킬, Second Brain, Workspace 파일을 켭니다.</li>
+        <li>질문을 입력하고 <span class="kbd">Enter</span>로 전송합니다. 줄바꿈은 <span class="kbd">Shift</span> + <span class="kbd">Enter</span>입니다.</li>
+        <li>응답을 멈추려면 <span class="kbd">Esc</span> 또는 중단 버튼을 사용합니다.</li>
+      </ol>
+      <p>수식은 읽기 쉬운 Unicode/일반 표기로 표현되고, 수식 덩어리는 하이라이트와 줄바꿈으로 렌더링됩니다.</p>
+
+      <h2 id="sessions">세션</h2>
+      <table>
+        <tr><th>명령</th><th>동작</th></tr>
+        <tr><td><code>/status</code></td><td>모델, context window, 추정 토큰, 남은 context를 표시합니다.</td></tr>
+        <tr><td><code>/compact</code></td><td>오래된 대화를 summary로 압축하고 최근 메시지만 유지합니다.</td></tr>
+        <tr><td><code>/clear</code></td><td>현재 화면과 대화 context를 비웁니다. 저장된 과거 세션 삭제와는 다릅니다.</td></tr>
+      </table>
+      <h3>세션 명령 상세</h3>
+      <p><code>/status</code>는 지금 세션이 모델 context를 얼마나 쓰고 있는지 확인할 때 사용합니다. 모델명, context window, 추정 토큰, 남은 토큰, compact 권장 상태, compact summary 사용 여부를 보여줍니다. 답변이 길어지거나 파일/Notion/Second Brain context를 많이 붙인 상태에서 먼저 확인하면 좋습니다.</p>
+      <p><code>/compact</code>는 대화가 길어졌을 때 오래된 메시지를 요약본으로 압축합니다. 이후 요청에는 <code>compact summary + 최근 메시지</code>가 들어가므로 context window를 아낄 수 있습니다. 원본 세션 기록을 삭제하는 기능은 아니며, 오래된 대화의 세부 문장보다 결정사항과 진행 맥락을 유지하는 데 목적이 있습니다.</p>
+      <p><code>/clear</code>는 현재 화면과 모델에 전달되는 대화 context를 비우고 새 대화 상태로 돌아갑니다. 저장된 과거 세션, Second Brain 지식, Workspace 파일, 장기기억을 삭제하지 않습니다. 주제가 완전히 바뀌었거나 이전 대화가 답변에 섞이면 안 될 때 사용합니다.</p>
+      <p>자동 compact는 context 65% 이상 경고, 75% 이상 후보, 85% 이상 강제 기준으로 동작합니다.</p>
+
+      <h2 id="harness-memory">Harness와 장기기억</h2>
+      <p>Second Brain Agent는 공식 지식, 장기기억, Workspace 임시 인덱스를 분리해서 사용합니다.</p>
+      <table>
+        <tr><th>계층</th><th>역할</th><th>저장 위치</th></tr>
+        <tr><td>Second Brain</td><td>공식 지식, 승인 source, 업무 규칙, 문서 근거</td><td><code>code_assist_v1/knowledge/&lt;user&gt;/wiki/</code></td></tr>
+        <tr><td>장기기억</td><td>사용자 선호, 프로젝트 관습, 반복되는 작업 방식</td><td><code>code_assist_v1/user_data/&lt;user&gt;/memory/</code></td></tr>
+        <tr><td>Workspace 임시 인덱스</td><td>현재 세션/프로젝트에 올린 임시 문서 검색</td><td><code>code_assist_v1/user_data/&lt;user&gt;/projects/</code></td></tr>
+      </table>
+      <p>장기기억은 공식 지식이 아닙니다. Second Brain source, 스펙, 원문 근거와 충돌하면 Second Brain이 우선합니다.</p>
+      <h3>장기기억</h3>
+      <p>장기기억은 Mem0와 비슷한 흐름으로 동작합니다. 모든 대화를 통째로 외우는 기능이 아니라, 반복해서 쓸 사용자 선호, 프로젝트 관습, 결정사항, 오류 대응 규칙만 작게 저장하고 질문과 관련 있을 때만 꺼내 쓰는 방식입니다.</p>
+      <ol>
+        <li>사용자의 입력에서 저장 신호를 찾습니다.</li>
+        <li>저장할 만한 문장이면 <code>preference</code>, <code>project</code>, <code>decision</code>, <code>lesson</code> 같은 유형으로 분류합니다.</li>
+        <li>계정별 장기기억 파일에 JSONL 형태로 저장합니다.</li>
+        <li>다음 질문을 받을 때 현재 질문과 관련 있는 기억만 검색합니다.</li>
+        <li>검색된 기억은 낮은 우선순위 context로 답변에 들어갑니다.</li>
+        <li>Second Brain source, 스펙, 원문 근거와 충돌하면 장기기억보다 공식 지식이 우선합니다.</li>
+      </ol>
+      <pre><code>code_assist_v1/user_data/&lt;user&gt;/memory/
+  memories.jsonl
+  events.jsonl</code></pre>
+      <p><code>memories.jsonl</code>에는 현재 사용할 수 있는 기억이 저장되고, <code>events.jsonl</code>에는 저장/수정/삭제 같은 이력이 남습니다. 입력창의 <strong>기억</strong> 버튼은 이번 답변에 장기기억을 참고할지 결정하며, 끄더라도 저장된 기억은 삭제되지 않습니다.</p>
+      <h3>어떻게 기억시키나</h3>
+      <p>장기기억에 저장하고 싶은 내용은 평소처럼 말하되, 저장 의도가 드러나게 쓰는 것이 가장 안정적입니다.</p>
+      <table>
+        <tr><th>입력 방식</th><th>예시</th><th>결과</th></tr>
+        <tr><td>명시 저장</td><td><code>기억해. 나는 답변을 짧고 실무적으로 받는 걸 선호해.</code></td><td>사용자 선호로 저장됩니다.</td></tr>
+        <tr><td>앞으로의 규칙</td><td><code>앞으로 논문 설명은 수식, 변수 정의, 직관을 같이 정리해줘.</code></td><td>반복 답변 규칙으로 저장됩니다.</td></tr>
+        <tr><td>항상 적용</td><td><code>항상 포트는 10011을 먼저 확인해.</code></td><td>프로젝트/작업 관습으로 저장될 수 있습니다.</td></tr>
+        <tr><td>프로젝트 규칙</td><td><code>이 프로젝트에서는 Notion 초안은 확정 후 Second Brain으로 보낸다.</code></td><td>프로젝트 기억으로 저장됩니다.</td></tr>
+        <tr><td>결정사항</td><td><code>오늘 결정: 문서 업로드 후 sources를 정본으로 사용한다.</code></td><td>결정 기억으로 저장됩니다.</td></tr>
+        <tr><td>교훈/주의</td><td><code>다음부터 WinError 2가 나면 실행 파일 경로를 먼저 확인한다.</code></td><td>반복 오류 대응 기억으로 저장됩니다.</td></tr>
+      </table>
+      <p>저장 신호로 인식되는 대표 표현은 <code>기억해</code>, <code>remember</code>, <code>저장해</code>, <code>앞으로</code>, <code>항상</code>, <code>기본적으로</code>입니다. 질문이나 일회성 명령은 기본적으로 저장하지 않습니다.</p>
+      <h3>어떻게 사용되나</h3>
+      <p>장기기억은 답변 전에 현재 질문과 관련 있는 항목만 검색되어 context에 들어갑니다. 예를 들어 PDF 논문 설명을 요청했을 때, 과거에 논문 설명은 수식과 변수 정의를 같이 정리하라고 저장했다면 그 기억이 함께 들어갈 수 있습니다.</p>
+      <p>응답 하단 메타에 <code>기억=1</code>처럼 표시되면 이번 답변에 1개의 장기기억이 참고된 것입니다. <code>기억+active</code>처럼 보이면 새 기억이 저장된 것입니다.</p>
+      <table>
+        <tr><th>좋은 기억 후보</th><th>저장하지 않는 것이 좋은 내용</th></tr>
+        <tr><td>답변 언어/길이 선호, 프로젝트 포트/명령, 반복되는 오류 대응, 검증된 작업 규칙</td><td>단발성 질문, 임시 테스트, 이번 턴에서만 필요한 UI 취향, 검증되지 않은 추측</td></tr>
+      </table>
+      <p>기억하지 않게 하려면 <code>이건 기억하지마</code>, <code>저장하지마</code>처럼 명시하세요. 잘못된 기억은 <code>이전 규칙은 취소하고 앞으로는 ...</code>처럼 새 규칙으로 덮어쓰는 방식이 안전합니다.</p>
+      <p>장기기억과 Second Brain은 용도가 다릅니다. 문서 근거가 필요한 지식은 Second Brain source로 저장하고, 답변 방식이나 반복 작업 선호는 장기기억에 저장하는 것이 좋습니다.</p>
+      <h3>Agent Harness</h3>
+      <p>Agent Harness는 사용자가 직접 다루는 버튼이 아니라, 매 요청마다 실행되는 내부 계획 레이어입니다. 질문을 보고 <code>coding</code>, <code>second_brain</code>, <code>spec_driven</code>, <code>memory_aware</code> 모드를 조합합니다.</p>
+      <p>Harness는 현재 채팅, Workspace 파일, 검색된 Second Brain source, graph 관계, 장기기억, 활성 스킬 순서로 context를 정리합니다. 응답 완료 메타에 <code>project=2</code>, <code>기억=1</code>, <code>mode=coding+second_brain</code>처럼 표시되면 어떤 보조 context가 들어갔는지 알 수 있습니다.</p>
+
+      <h2 id="models">모델</h2>
+      <p>API 모델과 로컬 GGUF 모델을 사용할 수 있습니다. GGUF는 <code>code_assist_v1/MODEL_GGUF/</code>의 <code>.gguf</code> 파일을 자동 인식합니다.</p>
+      <p>GGUF는 128000 context를 목표로 로드하고, 메모리 상황에 따라 65536, 32768, 8192 순서로 fallback합니다. 실제 값은 <code>/status</code>에서 확인합니다.</p>
+
+      <h2 id="second-brain">Second Brain</h2>
+      <p>Second Brain은 장기적으로 재사용할 업무 지식을 저장하는 canonical knowledge 저장소입니다.</p>
+      <pre><code>knowledge/&lt;user&gt;/wiki/
+  index.md
+  log.md
+  sources/
+  assets/
+  graph/
+    graph.json
+    backlinks.json
+    pending_diffs.json
+  wiki_index.sqlite</code></pre>
+      <table>
+        <tr><th>항목</th><th>의미</th></tr>
+        <tr><td><code>sources/</code></td><td>업로드, 대화 지식화, Notion publish 결과가 저장되는 source markdown</td></tr>
+        <tr><td><code>assets/</code></td><td>PDF/PPTX/DOCX 등에서 추출한 이미지와 페이지 asset</td></tr>
+        <tr><td><code>index.md</code></td><td>지식 지도</td></tr>
+        <tr><td><code>log.md</code></td><td>업로드, graph update, 품질 점검 이력</td></tr>
+        <tr><td><code>graph.json</code></td><td>승인된 source 간 관계</td></tr>
+      </table>
+      <p>현재 정본은 <code>sources/</code>입니다. <code>pages/</code>는 legacy 호환용이며 새 지식 흐름에서는 사용하지 않습니다.</p>
+
+      <h2 id="knowledge">지식 등록</h2>
+      <table>
+        <tr><th>방법</th><th>절차</th></tr>
+        <tr><td>문서 업로드</td><td>지식 탭에서 자료 업로드</td></tr>
+        <tr><td>복수 문서 업로드</td><td>여러 파일을 선택하면 각 파일이 단건 업로드처럼 순차 처리됩니다.</td></tr>
+        <tr><td>대화 지식화</td><td>현재 세션에서 재사용 가능한 개념, 수식, 절차, 결정을 source markdown으로 정리합니다.</td></tr>
+        <tr><td>Notion publish</td><td>Notion 페이지의 <strong>Second Brain</strong> 버튼으로 preview 확인 후 승인합니다.</td></tr>
+      </table>
+      <p>지원 파일은 Markdown, TXT, source code, PDF, PPTX, DOCX, XLSX, Notebook입니다. 이미지와 슬라이드/페이지 asset은 <code>assets/</code>에 저장되고 source markdown에 링크됩니다.</p>
+      <p>Graph는 내부 LLM curator가 의미 관계를 판단한 뒤 충분히 강한 edge만 저장합니다. <code>keyword overlap</code>, <code>tag overlap</code>, <code>term overlap</code> 같은 약한 이유는 자동 저장하지 않습니다.</p>
+
+      <h2 id="external-md">외부 도구에서 Markdown 만들어 가져오기</h2>
+      <p>Google NotebookLM 같은 외부 도구에서 원문을 먼저 읽히고, Second Brain Agent에 올릴 Markdown을 만들 수 있습니다. 목표는 보기 좋은 요약이 아니라, source markdown, index, graph 판단에 잘 맞는 구조화 문서입니다.</p>
+      <p>NotebookLM이 <code>canonical source markdown</code> 같은 내부 용어를 완전히 이해할 필요는 없습니다. 중요한 것은 원문 근거, 핵심 주장, 용어, 수식, 표/그림, 출처 단서를 분리해서 Markdown으로 출력하게 만드는 것입니다.</p>
+      <div class="callout"><strong>원칙</strong><p>원문 근거를 유지하고, 제목, 요약, 핵심 주장, 용어, 수식, 표, 출처를 분리하세요. 문서 간 연결 후보는 원문에서 명시된 선행 연구, 비교 대상, 참조 문서, 데이터셋, 표준, 방법론이 있을 때만 적습니다.</p></div>
+      <p>NotebookLM에 아래 프롬프트를 사용할 수 있습니다.</p>
+      <pre><code>너는 원문 문서를 구조화된 Markdown 지식 문서로 정제하는 문서 정제자다.
+이 Markdown은 Second Brain Agent에 업로드할 canonical source로 사용된다.
+
+목표:
+- 원문 문서의 핵심 지식, 근거, 용어, 수식, 표, 결정사항을 Second Brain Agent가 검색하고 graph 관계를 판단하기 좋은 Markdown으로 변환한다.
+- 단순 요약이 아니라, 나중에 다른 문서와 연결될 수 있는 source markdown을 만든다.
+- 원문에 없는 사실은 추가하지 않는다.
+
+출력 형식:
+
+# &lt;문서의 명확한 제목&gt;
+
+---
+source_type: external_markdown
+original_title: &lt;원문 제목&gt;
+original_author_or_org: &lt;알 수 있으면 작성, 모르면 unknown&gt;
+original_date: &lt;알 수 있으면 YYYY-MM-DD, 모르면 unknown&gt;
+created_for: Second Brain Agent import
+verification_status: source_derived
+---
+
+## 1. Executive Summary
+- 문서 전체를 5~8개 bullet로 요약한다.
+- 각 bullet은 원문에서 확인 가능한 내용만 쓴다.
+
+## 2. Key Concepts
+| Concept | Definition | Source Evidence |
+|---|---|---|
+| 핵심 용어 | 원문 기반 정의 | 페이지/섹션/문단 단서 |
+
+## 3. Core Claims
+| Claim | Evidence | Caveat |
+|---|---|---|
+| 주장 | 원문 근거 | 조건, 한계, 예외 |
+
+## 4. Methods / Process / Architecture
+- 절차, 알고리즘, 시스템 구조, workflow가 있으면 단계별로 정리한다.
+- 입력, 처리, 출력, 의존성을 분리한다.
+
+## 5. Equations and Formal Definitions
+- 수식은 Unicode/일반 표기로 읽기 쉽게 작성한다.
+- 각 변수의 의미와 단위를 바로 아래에 설명한다.
+- 원문 LaTeX가 중요하면 별도 줄에 `Original notation:`으로 보존한다.
+
+## 6. Tables, Figures, and Assets
+- 원문 figure/table을 빠뜨리지 말고 설명한다.
+- 이미지를 직접 첨부할 수 없으면 `Figure &lt;번호&gt;: &lt;내용과 의미&gt;` 형식으로 남긴다.
+- 표는 가능한 Markdown table로 재구성한다.
+
+## 7. Decisions / Rules / Reusable Knowledge
+- 업무 규칙, 설계 결정, 반복 사용 가능한 패턴을 bullet로 정리한다.
+- 임시 의견과 확정 사실을 구분한다.
+
+## 8. Related Topics and Graph Hints
+다음은 Second Brain Agent가 graph 후보를 판단할 때 참고할 힌트다.
+단일 문서만 보고 알 수 있는 범위에서만 작성한다.
+원문에 선행 연구, 비교 대상, 참조 문서, 데이터셋, 표준, 방법론, 충돌 주장 등이 명시된 경우만 적는다.
+확실하지 않으면 `No reliable graph hint from this single source.`라고 쓴다.
+
+| Related Topic | Possible Relation | Reason |
+|---|---|---|
+| 관련 주제/문서명 | extends/supports/contradicts/related 중 하나 | 원문 기반 이유 |
+
+## 9. Open Questions
+- 원문만으로 확인되지 않는 부분
+- 추가 문서가 필요한 부분
+- 모호한 용어
+
+## 10. Source Trace
+- 가능한 경우 페이지, 섹션, 슬라이드 번호, 표 번호, figure 번호를 남긴다.
+- 정확한 페이지 번호를 모르면 원문 내 heading이나 주변 문구를 남긴다.
+
+작성 규칙:
+- 원문에 없는 내용을 만들지 마라.
+- 광고성 표현이나 중복 문장은 제거하라.
+- 너무 짧은 bullet만 나열하지 말고, 재사용 가능한 지식 단위로 정리하라.
+- 숫자, 날짜, 모델명, 논문명, 변수명은 원문과 다르게 바꾸지 마라.
+- 한국어로 작성하되, 고유명사와 기술 용어는 원문 표기를 함께 유지하라.
+- 최종 출력은 Markdown 본문만 제공하라.</code></pre>
+      <p>이렇게 만든 <code>.md</code> 파일을 지식 업로드에 올리면, Agent는 다시 source 저장, index/log 갱신, graph 후보 검색, 내부 LLM curator 판단을 수행합니다. 외부 도구가 만든 관련 주제 표는 확정 graph가 아니라 판단 힌트로만 취급됩니다.</p>
+      <p>단일 문서만 NotebookLM에 넣는 경우, 기존 Second Brain 전체 지식과의 관계를 NotebookLM이 알 수 없습니다. 따라서 Related Topics는 문서 내부에서 명시적으로 드러난 관계만 적고, 실제 graph 연결은 Second Brain Agent의 내부 curator가 기존 source들과 비교해 다시 판단합니다.</p>
+
+      <h2 id="workspace">Workspace</h2>
+      <p>Workspace는 현재 세션에서 참고할 파일을 올리는 곳입니다. 문서형 파일은 현재 세션 검색용 임시 인덱스로도 들어갑니다.</p>
+      <ul>
+        <li>파일 업로드: 입력창 파일 버튼 또는 우측 Workspace의 <strong>+</strong></li>
+        <li>다중 업로드: 여러 파일을 한 번에 선택</li>
+        <li>파일 클릭: 미리보기</li>
+        <li>첨부 토글: 현재 질문 context에 포함할지 선택</li>
+      </ul>
+      <div class="callout warn"><strong>구분</strong><p>Workspace는 Second Brain이 아닙니다. 현재 작업에 필요한 임시 자료는 Workspace에 두고, 장기 지식만 Second Brain으로 승격하세요.</p></div>
+
+      <h2 id="skills">스킬</h2>
+      <p>스킬은 LLM에게 붙이는 작업 매뉴얼입니다. 특정 업무를 할 때 매번 같은 절차, 검증 기준, 출력 형식을 반복해서 설명하지 않도록 만드는 기능입니다.</p>
+      <h3>스킬 선택</h3>
+      <table>
+        <tr><th>방법</th><th>설명</th></tr>
+        <tr><td>좌측 <strong>스킬</strong> 탭</td><td>사용할 스킬을 클릭하면 활성화되고 입력창 위에 칩으로 표시됩니다. 다시 클릭하거나 칩의 <strong>x</strong>를 누르면 비활성화됩니다.</td></tr>
+        <tr><td>입력창 <code>/</code></td><td>입력창 맨 앞에서 <code>/</code>를 입력하면 세션 명령과 스킬 자동완성이 뜹니다. <span class="kbd">Tab</span>, <span class="kbd">↑↓</span>, <span class="kbd">Enter</span>로 선택할 수 있습니다.</td></tr>
+        <tr><td><code>/skill-id 요청</code></td><td>특정 스킬을 이번 요청에만 명시 적용합니다. 예: <code>/backend-development 이 API 구조 리뷰해줘</code></td></tr>
+        <tr><td><strong>Auto</strong></td><td>질문 내용을 보고 관련 스킬을 자동 선택합니다. 명시 선택한 스킬이 있으면 함께 적용됩니다.</td></tr>
+      </table>
+      <p><code>/status</code>, <code>/compact</code>, <code>/clear</code>는 세션 명령입니다. 스킬 ID와 같은 방식으로 자동완성에 뜨지만, 모델 답변을 부르는 것이 아니라 현재 세션 상태를 제어합니다.</p>
+      <h3>Skill Creator</h3>
+      <p>새 스킬은 <strong>스킬</strong> 탭의 <strong>+</strong>, 입력창의 <strong>Skill+</strong>, 또는 <code>/skill-creator 만들고 싶은 스킬 설명</code>으로 만들 수 있습니다. <code>skill-creater</code>, <code>skillcreator</code>, <code>create-skill</code>, <code>new-skill</code>도 같은 별칭으로 처리됩니다.</p>
+      <p>Skill Creator는 사용자가 입력한 목적, 현재 대화 내용, 고정된 Second Brain 노드, 자동 선택 설명, 태그, 도메인, 서비스, 필요한 도구, <code>when_to_use</code>, <code>when_not_to_use</code>를 바탕으로 사용자 스킬 초안을 만듭니다.</p>
+      <pre><code>사용자 스킬:
+code_assist_v1/user_data/&lt;user&gt;/skills/&lt;skill_id&gt;/SKILL.md
+
+공용 스킬:
+code_assist_v1/skills/&lt;skill_id&gt;/SKILL.md</code></pre>
+      <p>공용 스킬을 수정하면 현재 계정의 사용자 사본으로 덮어쓰는 흐름이 안전합니다. 삭제는 사용자 스킬에 대해서만 사용하는 것을 권장합니다.</p>
+      <h3>좋은 스킬 작성 기준</h3>
+      <p>스킬은 길게 쓰는 것보다 언제 켜지고, 무엇을 보고, 어떤 순서로, 어떻게 검증하는지가 명확해야 합니다. <code>description</code>과 <code>when_to_use</code>는 Auto Skill이 스킬을 고르는 핵심 단서입니다.</p>
+      <pre><code>---
+name: backend-api-review
+description: Use when reviewing backend API design, routing, validation, error handling, and tests.
+metadata:
+  tags: [backend, api, review]
+  when_to_use: Backend API 구조, validation, error response, test coverage를 검토할 때
+  when_not_to_use: 단순 UI 문구 수정이나 일반 설명 요청
+  tool_dependencies: [rg, shell]
+  allow_implicit_invocation: true
+---
+
+# Backend API Review
+
+## Workflow
+
+1. 요청 범위와 관련 파일을 확인한다.
+2. route, schema, validation, error handling, auth 경계를 본다.
+3. 테스트 누락과 회귀 위험을 우선 찾는다.
+4. 수정이 필요하면 가장 작은 변경으로 제안한다.
+5. 실행 가능한 검증 명령을 제시한다.</code></pre>
+
+      <h2 id="notion">Notion Workspace</h2>
+      <p>Notion Workspace는 개인 문서, 이미지 포함 노트, 공유 페이지, Second Brain publish 전 초안 정리에 사용합니다.</p>
+      <table>
+        <tr><th>영역</th><th>설명</th></tr>
+        <tr><td>최근 항목</td><td>최근 수정한 페이지</td></tr>
+        <tr><td>공유된 페이지</td><td>다른 사용자가 나에게 공유한 페이지</td></tr>
+        <tr><td>개인 페이지</td><td>내가 소유한 페이지</td></tr>
+        <tr><td>휴지통</td><td>삭제 페이지 복원 또는 영구 삭제</td></tr>
+      </table>
+      <p>워크스페이스 이름에 마우스를 올리면 현재 워크스페이스와 공유받은 게스트 워크스페이스가 표시됩니다. 공유받은 페이지가 없으면 게스트 워크스페이스는 표시되지 않습니다.</p>
+
+      <h2 id="notion-edit">Notion 편집</h2>
+      <table>
+        <tr><th>동작</th><th>방법</th></tr>
+        <tr><td>새 페이지</td><td>왼쪽 상단 새 페이지 버튼</td></tr>
+        <tr><td>하위 페이지 추가</td><td>페이지 행 오른쪽 <strong>+</strong></td></tr>
+        <tr><td>페이지 메뉴</td><td>페이지 행 오른쪽 <strong>...</strong> 또는 상단 <strong>...</strong></td></tr>
+        <tr><td>위치 이동</td><td>페이지를 드래그해서 위/아래 또는 다른 페이지 안으로 drop</td></tr>
+        <tr><td>최상위 이동</td><td>개인 페이지 목록의 빈 영역으로 drag/drop</td></tr>
+      </table>
+      <p>자기 자신의 하위 페이지 안으로 이동하는 순환 구조는 자동 차단됩니다.</p>
+      <p><strong>...</strong> 메뉴에서는 즐겨찾기, 링크 복사, 복제, 이름 변경, 옮기기, 휴지통, Second Brain 보내기, 새 탭, 사이드 보기를 사용할 수 있습니다.</p>
+      <p>본문에서는 <strong>+</strong>로 새 블록을 만들고, <strong>::</strong>로 전환, 색, 블록 링크 복사, 복제, 이동, 삭제, AI 질문을 처리합니다. 이미지/파일 블록은 hover 시 댓글, 캡션, 다운로드, AI 질문, 더보기 툴바가 표시됩니다.</p>
+
+      <h2 id="share">공유와 연결</h2>
+      <table>
+        <tr><th>기능</th><th>용도</th></tr>
+        <tr><td>내부 공유</td><td>사용자에게 view/comment/edit 권한 부여</td></tr>
+        <tr><td>웹 공개 링크</td><td>읽기 전용 공개 페이지 공유</td></tr>
+        <tr><td>Chat에 추가</td><td>특정 채팅 세션에 Notion 페이지를 일시 context로 연결</td></tr>
+        <tr><td>Second Brain</td><td>preview 승인 후 source markdown으로 저장</td></tr>
+      </table>
+      <p>초안은 Notion에 두고, 확정된 내용만 Second Brain으로 보내는 흐름을 권장합니다.</p>
+
+      <h2 id="workflow">권장 흐름</h2>
+      <h3>문서를 읽고 질문하기</h3>
+      <ol>
+        <li>Workspace에 문서를 업로드합니다.</li>
+        <li>필요한 경우 Second Brain 토글을 켭니다.</li>
+        <li>질문합니다.</li>
+        <li>재사용할 내용은 대화 지식화 또는 Notion으로 정리합니다.</li>
+      </ol>
+      <h3>Notion에서 정리 후 지식화</h3>
+      <ol>
+        <li>Notion에 초안 페이지를 작성합니다.</li>
+        <li>이미지, 파일, 표, 캘린더, 하위 페이지를 정리합니다.</li>
+        <li>필요한 사용자에게 공유합니다.</li>
+        <li>세션에서만 쓸 때는 <strong>Chat에 추가</strong>를 사용합니다.</li>
+        <li>장기 지식으로 확정되면 <strong>Second Brain</strong>으로 보냅니다.</li>
+      </ol>
+
+      <h2 id="accounts">계정별 적용</h2>
+      <p>모든 UI 기능과 backend 처리는 계정 공통 코드로 동작합니다. admin에서 검증한 Notion 메뉴, 하위 페이지, drag/drop, 공유, Second Brain publish, 문서 업로드, 세션 명령은 다른 계정에서도 같은 방식으로 적용됩니다.</p>
+      <ul>
+        <li>admin의 페이지는 다른 사용자에게 자동으로 보이지 않습니다.</li>
+        <li>새 계정이 처음 접속했을 때 페이지가 없다면 정상입니다.</li>
+        <li>새 계정은 자기 계정에서 <strong>Second Brain 템플릿 만들기</strong>를 눌러 페이지를 생성합니다.</li>
+        <li>다른 사용자가 페이지를 공유하면 <strong>공유된 페이지</strong>와 게스트 워크스페이스가 표시됩니다.</li>
+      </ul>
+
+      <h2 id="trouble">문제 해결</h2>
+      <table>
+        <tr><th>증상</th><th>확인할 것</th></tr>
+        <tr><td>페이지 목록이 비어 보임</td><td>브라우저 캐시가 오래된 JS를 잡고 있을 수 있습니다. <code>Ctrl + F5</code>로 강력 새로고침하세요.</td></tr>
+        <tr><td>처음 쓰는 계정에 페이지가 없음</td><td><strong>Second Brain 템플릿 만들기</strong>를 눌러 기본 페이지를 만드세요.</td></tr>
+        <tr><td>공유 워크스페이스가 보이지 않음</td><td>실제 공유받은 페이지가 있을 때만 표시됩니다.</td></tr>
+        <tr><td>문서 업로드가 멈춘 것처럼 보임</td><td>지식 탭의 job 진행 상태를 확인하세요. PDF/PPTX/DOCX는 시간이 걸릴 수 있습니다.</td></tr>
+        <tr><td>GGUF 답변이 끝에서 잘림</td><td>출력 한도입니다. 질문을 나누거나 <code>/compact</code> 후 다시 요청하세요.</td></tr>
+        <tr><td>graph가 이상하게 연결됨</td><td>reason과 confidence를 확인하세요. 약한 keyword overlap 관계는 자동 저장하지 않는 것이 원칙입니다.</td></tr>
+        <tr><td>장기기억이 반영되지 않음</td><td>입력창의 <strong>기억</strong> 버튼이 켜져 있는지 확인하세요. 장기기억은 공식 지식보다 낮은 우선순위입니다.</td></tr>
+        <tr><td>임시 자료가 장기 지식처럼 답변됨</td><td>Workspace 파일인지 Second Brain source인지 확인하세요. 현재 세션용 자료는 Workspace에 두고, 공식 지식만 Second Brain에 올리세요.</td></tr>
+      </table>
+    </article>
+  </main>
+</div>
+
+<script>
+const key = "codeAssistTheme";
+const applyTheme = () => {
+  const theme = localStorage.getItem(key) || "dark";
+  document.body.classList.toggle("light", theme === "light");
+};
+applyTheme();
+document.getElementById("docsThemeBtn").addEventListener("click", () => {
+  const next = document.body.classList.contains("light") ? "dark" : "light";
+  localStorage.setItem(key, next);
+  applyTheme();
+});
+document.getElementById("docsPrintBtn").addEventListener("click", () => window.print());
+</script>
+</body>
+</html>

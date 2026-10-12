@@ -1,0 +1,236 @@
+{
+  "contract": "code_assist.notion.core_free_ui_checkpoint.v2",
+  "recorded_at": "2026-08-15T06:10:12+09:00",
+  "run_id": "ui-db-003-local-multi-view-green-20260815",
+  "model": {
+    "implementation_profile": "gpt-5.6-sol-xhigh",
+    "planning_contract": "gpt-5.6-sol-ultra"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-db-002-local-view-state-green-reference-pending-20260815.json",
+    "sha256": "sha256:5ef1571dbf7c30ce1574e01da3635fd62258ee1faae1b8673728a297067809e2",
+    "semantic_status": "historical parent; UI-DB-001 and UI-DB-002 local real-Chrome green, reference pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T05:48:00+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": 25,
+    "conditional_scenarios": 6,
+    "extension_scenarios": 5,
+    "synthetic_only": true,
+    "business_enterprise_archive_conditional": true,
+    "excluded": [
+      "personal Notion workspaces and content",
+      "live user_data, knowledge, .runtime, and sessions",
+      "trial, payment, invite, and public posting",
+      "operational migration and live feature flags",
+      "continuous consumer and resolver cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI-DB-003-MULTI-VIEW-CANONICAL-ROWS",
+    "status": "local-real-browser-green-reference-pending",
+    "acceptance_ids": [
+      "FIVE-VIEWS-RENDERED",
+      "CANONICAL-ROW-IDENTITIES-PRESERVED",
+      "CANONICAL-ROW-VALUES-PRESERVED",
+      "ROW-CREATE-DELETE-ZERO-AFTER-SETUP",
+      "ACTIVE-VIEW-RESTORED-AFTER-RELOAD",
+      "ACTIVE-TAB-FOCUS-RESTORED",
+      "TABLIST-SEMANTICS",
+      "SECOND-BRAIN-ZERO-DELTA",
+      "LOCAL-REPEATABILITY",
+      "SYNTHETIC-ONLY"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "pre_sha256": "sha256:f30946f1aa75ca42782207332ccadba1be91cf502e45848252fe0fbd158c5702",
+        "post_sha256": "sha256:174b107275ce894675aa1f0dba32a75675fbbdefc59f79ebf43f12c7268629e0"
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_ui_runtime.js",
+        "pre_sha256": "sha256:eea1f7dc403ce18fb3f7e2805f5774bfda6d458f6428f7a93d64370358b68b47",
+        "post_sha256": "sha256:5ff2aa2b8b74ce04e03feba8611ecf5655975d8c79cd2d3a0ce9622ea5232a3b"
+      },
+      {
+        "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+        "pre_sha256": "sha256:3fe232860f1f6cffad3f156202d18aec49686b46d6b2488ff9f54c24d1a1a85f",
+        "post_sha256": "sha256:babb425bf122a1401a758101f0827c329286d98f4272d4583908422aa4240f10"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_003_LOCAL_MULTI_VIEW_RESULT_20260815.md",
+        "pre_sha256": null,
+        "post_sha256": "sha256:e24c12d1926592c4995e97333125ce2dbbe2bb5909a46d69ba574d70d83ca9e8"
+      },
+      {
+        "path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:8507fb76b760e92eab7759452591d5cdf933a3febdbd3fe100869eac179ce38c",
+        "post_sha256": "sha256:69c7af43010b54f262557fb6e5fcb300df67bbf21720b72332d5e2c26c0ffef6"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:9060288a28fac2d4a03d87e5f2f49df8b28bc1ded208848bbed51c8889b76146",
+        "post_sha256": "sha256:d0e46d575fcc02a0ce1fad0d8a9b849adb8451383d93ad6bbf8d7f54b36229c7"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:649f5a028190a8aa6cf9b68e98104c297112b73bf52ba98b5b2f01ade2698ee6",
+        "post_sha256": "sha256:569cba8433559e84ed349a9fbaff313494fa0e8d2e7e4663aee00ab659275160"
+      }
+    ],
+    "read_dependencies": [
+      {
+        "path": "code_assist_v1/AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion_editor_core.js",
+        "sha256": "sha256:4e1e7b6c216314b58e4b6aa0f27ed2932ce9834385d99022d7fc8bd78841db18"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:6688786efc8b6b8e216ef3acae778bad61e16aefcfba3755b1d5441c5fe72243"
+      }
+    ],
+    "protected_unchanged": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/app_code.py",
+      "code_assist_v1/auth.py",
+      "code_assist_v1/config.py",
+      "code_assist_v1/tests/conftest.py",
+      "code_assist_v1/docs/knowledge_spaces/**",
+      "code_assist_v1/knowledge_core/**",
+      "code_assist_v1/tests/knowledge_spaces/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_accessed": false,
+    "reference_workspace_accessed": false,
+    "live_mutation": false,
+    "flags_unchanged": true,
+    "git_provenance_available": false
+  },
+  "evidence": {
+    "source_ui_build_sha256": "sha256:64bd8acf056c0c1aada8937134adbd013ee95b9adcce53ed0ca39ef9553e7ec8",
+    "scenario_plan_sha256": "sha256:391d9b33265b565ca8962b0652e5fee96f8ba469f0b2eefe54e649903ee8e4d8",
+    "local": {
+      "UI-DB-003-A01": "sha256:d9ff63edbe163d01ca41815326dab28c72f0c08ebd70c8add43e60260632101e"
+    },
+    "reference": null,
+    "differential": null,
+    "redaction": "pass",
+    "result_document": "docs/notion_parity/core_free_web_ui/UI_DB_003_LOCAL_MULTI_VIEW_RESULT_20260815.md"
+  },
+  "commands": [
+    {
+      "selection": "UI-DB-003 product red",
+      "result": "active view tab lost focus after database rerender; 1 failed, 14 deselected in 22.84s",
+      "exit_code": 1
+    },
+    {
+      "selection": "UI-DB-003 stale-block focus lookup red",
+      "result": "normalized block reference no longer resolved the rerendered row; 1 failed, 14 deselected in 22.41s",
+      "exit_code": 1
+    },
+    {
+      "selection": "UI-DB-003 capture allowlist red",
+      "result": "new tablist evidence value rejected until narrowly allowlisted; 1 failed, 14 deselected in 22.72s",
+      "exit_code": 1
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py::test_ui_db_003_database_views_preserve_canonical_rows_and_focus final",
+      "result": "1 passed, 14 deselected in 46.10s",
+      "exit_code": 0
+    },
+    {
+      "selection": "combined UI-DB-001 through UI-DB-003 repeated browser journeys",
+      "result": "3 passed, 12 deselected in 95.25s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py full current-source run",
+      "result": "15 passed in 327.28s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six Node UI/editor/navigation/publication/atomic-save/CSRF scripts",
+      "result": "6 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion route, atomic-save compatibility, and publication adapter",
+      "result": "25 passed in 11.13s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication/job restart and chat characterization",
+      "result": "5 passed in 4.78s",
+      "exit_code": 0
+    },
+    {
+      "selection": "plan, fixture, evidence harness, packet, evidence policy, differential, and reference guard",
+      "result": "90 passed in 23.94s",
+      "exit_code": 0
+    },
+    {
+      "selection": "compact Core Free UI plan verifier",
+      "result": "pass with 25 required scenarios and zero promotions",
+      "exit_code": 0
+    },
+    {
+      "selection": "pre-slice text search",
+      "result": "Windows 0xC0000409 twice; recorded as repeated host-process failure and not a product result",
+      "exit_code": -1073740791
+    }
+  ],
+  "tests": {
+    "local_real_chrome": "15 passed",
+    "database_real_chrome": "3 passed",
+    "node_contracts": "6 passed",
+    "notion_routes_and_storage": "25 passed",
+    "second_brain": "5 passed",
+    "evidence_and_reference_guards": "90 passed",
+    "scenario_verifier": "pass"
+  },
+  "claims": {
+    "h3_local_implementation_green": true,
+    "h3_complete": false,
+    "h4_local_scenario_set_green": true,
+    "h4_complete": false,
+    "h5_local_scenario_set_green": true,
+    "h5_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "owned_file_drift": false,
+    "personal_content_exposure": false,
+    "live_data_access": false,
+    "protected_file_edit": false,
+    "auth_or_csrf_regression": false,
+    "second_brain_regression": false,
+    "purchase_invite_or_public_post_required": false,
+    "repeated_host_failure": "recorded for pre-slice text search only; all canonical verification commands subsequently passed"
+  },
+  "remaining": [
+    "recover signed-in Chrome control and run identifier-free C0 against synthetic REF-FREE-A/B only",
+    "capture and seal reference differentials for all local-green scenarios",
+    "continue H6 with UI-SEARCH-002, UI-COLLAB-001, and UI-SHARE-001",
+    "complete H7 Second Brain hard journeys, H8 responsive/a11y/performance, and H9 pilot/rollback gates"
+  ],
+  "next_exact_command": "if safe signed-in Chrome C0 remains unavailable, inspect and implement UI-SEARCH-002 in-page find plus synthetic page-link/backlink navigation as a repeated isolated real-Chrome slice; otherwise prioritize synthetic REF-FREE-A/B reference capture without opening personal workspaces"
+}

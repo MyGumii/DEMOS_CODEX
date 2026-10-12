@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-APP-TEXT-STABLE-PRESENCE-R934-PROGRESS-20260904",
+  "recorded_at": "2026-09-04T16:12:59.3018129+09:00",
+  "checkpoint_kind": "bounded_compact_app_typography_and_capture_nondeterminism_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "goal_complete": false,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-nav-presence-hover-r923-progress-20260903.json",
+    "sha256": "sha256:29e960cad78f3497269b18203dc959098a8958837b7b023a6ca1db525e094b76"
+  },
+  "retained_candidate": {
+    "label": "r934",
+    "supersedes": "r923",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260904-r934-app-text-stable-presence/receipt.json",
+    "receipt_sha256": "sha256:5330e5de35bf5ece5417c96ecfb958183ce38f0d01d96f66071ead16113d47d1",
+    "release_source_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 1685698,
+    "masked_difference_count": 68418,
+    "total_difference_count": 1754116,
+    "delta_from_r923_unmasked": -2728,
+    "delta_from_r923_masked": 0,
+    "delta_from_r923_total": -2728,
+    "improved_capture_count_from_r923": 11,
+    "unchanged_capture_count_from_r923": 25,
+    "regressed_capture_count_from_r923": 0,
+    "changed_capture_deltas_from_r923_unmasked": {
+      "V0R-MU-004@1280": -77,
+      "V0R-MU-007@1440": -265,
+      "V0R-MU-007@1280": -265,
+      "V0R-MU-008@1440": -265,
+      "V0R-MU-008@1280": -265,
+      "V0R-MU-009@1440": -265,
+      "V0R-MU-009@1280": -265,
+      "V0R-MU-010@1440": -265,
+      "V0R-MU-010@1280": -266,
+      "V0R-MU-012@1440": -265,
+      "V0R-MU-012@1280": -265
+    },
+    "component_journeys": {
+      "C0-P2": "pass",
+      "I0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "run_started_at": "2026-09-04T07:00:53.976374Z",
+    "run_ended_at": "2026-09-04T07:06:30.205356Z",
+    "duration_ms": 336228,
+    "cleanup": {
+      "status": "complete",
+      "synthetic_only": true,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "active_fixture_root_count": 0,
+      "component_cleanup_verified": true,
+      "browser_closed": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:b831e10029c4c7a2864a6a5bcc038fdc97d4ec52d1d2d77063ce82befd987727"
+    }
+  },
+  "implemented_progress": {
+    "compact_app_typography": {
+      "states": [
+        "V0R-MU-007",
+        "V0R-MU-008",
+        "V0R-MU-009",
+        "V0R-MU-010",
+        "V0R-MU-012"
+      ],
+      "change": "Use reference-matching 500 weight for compact Notion app labels while preserving icon weight 400.",
+      "targeted_evidence": "r925 and r926 typography sweeps selected the single weight-500 variant; r927 and r930 confirmed the shared reduction with accessibility and cleanup passing."
+    },
+    "presence_and_remote_overlay_determinism": {
+      "state_004": "Collapse the hidden presence container during capture so late participant changes cannot move the page edit-time label.",
+      "state_010": "Hide late websocket remote caret and selection overlays only during the adopted converged-state screenshot.",
+      "states_003_006_013_014": "Maintain the reference two-avatar child structure with a scoped MutationObserver through screenshot capture and disconnect it immediately afterward.",
+      "targeted_evidence": {
+        "r929_i0": "V0R-MU-004@1440 returned byte-for-byte to r923 and V0R-MU-004@1280 improved by 77 pixels.",
+        "r931_e1": "V0R-MU-010 improved by 265 pixels at 1440 and 266 pixels at 1280 relative to r923.",
+        "r933_i0": "V0R-MU-006 returned to r923 at both viewports after a late A/U-to-k/I participant replacement was prevented."
+      }
+    },
+    "discarded_candidates": {
+      "r928": "Not retained because a late remote caret regressed V0R-MU-010@1440 and a dynamic hidden presence width regressed V0R-MU-004@1440.",
+      "r932": "Not retained because a late participant renderer replaced V0R-MU-006@1280 with A/U avatars, regressing that capture by 337 pixels."
+    }
+  },
+  "regression_validation": {
+    "python_compile": {
+      "status": "pass",
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py"
+    },
+    "pytest": {
+      "status": "pass",
+      "passed": 23,
+      "skipped": 1,
+      "failed": 0,
+      "scope": [
+        "test_v0b_p1_workspace_realm_budget.py",
+        "test_v0b_p1_i0_semantic_diagnostic.py",
+        "test_v0b_p1_capture_matte.py",
+        "test_internal_collaborative_v0b_p1_receipt.py",
+        "browser/test_f0_p5_adopted_surface.py"
+      ]
+    },
+    "official_receipt_verifier": {
+      "status": "expected_fail_open_gates_only",
+      "exit_code": 1,
+      "reference_paths_explicit": true,
+      "error_count": 39,
+      "expected_error_counts": {
+        "EXACT_PIXEL_GATE": 36,
+        "CORE_25_GATE": 1,
+        "PERFORMANCE_GATE": 1,
+        "CLAIMS_GATE": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:5330e5de35bf5ece5417c96ecfb958183ce38f0d01d96f66071ead16113d47d1"
+    }
+  },
+  "approved_dev_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r908-20260903",
+    "manager_session_id": 81902,
+    "manager_session_live": true,
+    "launch_id": "0d2298f2e16e4a65b43384f7e2d03c1a",
+    "root_id": "3c14ef7f-625d-4cae-84e3-34f25e77548d",
+    "run_marker_path": ".dev/notion-collaboration-10111-10113-clean-r908-20260903/runs/0d2298f2e16e4a65b43384f7e2d03c1a/run-marker.json",
+    "run_marker_sha256": "sha256:ed2af2fa01c3ed12a422b02ccdc662d278766a7092b1ff6d697230265d2566e1",
+    "workspace_count": 54,
+    "reference_workspace_count": 52,
+    "reference_active_page_binding_count": 77,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "rotation_threshold": 64
+  },
+  "modified_sources": {
+    "code_assist_v1/notion_collaboration/v0b_p1_capture.py": "sha256:5253b23c1468c9b0689c5fa8e7c0870f47061c4d44022d79b5e370f039589ef1",
+    "code_assist_v1/notion_collaboration/f0_p5_browser.py": "sha256:2bac7d82d8e91e4f256626a425c6a6195ba9f74df36b44b9686cec408ca457a3"
+  },
+  "protected_hot_contracts": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "code_assist_v1/notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "protected_hot_contracts_modified": false,
+    "final_product_or_sbe_gate_run": false
+  },
+  "next_cursor": {
+    "action": "Rotate the approved dev realm before further diagnostics, then continue V0B exact-pixel residual reduction from retained r934.",
+    "priority": [
+      "Preserve the r934 receipt and checkpoint as immutable evidence.",
+      "Start a fresh approved local three-service realm before the current workspace count reaches 64; do not delete the r908 realm.",
+      "Use cross-state residual clustering to select the next shared structural correction.",
+      "Retain only full candidates with all four journeys passing, cleanup complete, accessibility and interaction 36/36, and zero regressed captures against r934.",
+      "Do not run final Core-25, performance, product, or SBE closure gates before exact 36/36."
+    ]
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "exact_36_of_36": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

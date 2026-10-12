@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1558-STATE015-016-ICON-RASTER-20260906",
+  "recorded_at": "2026-09-06T11:04:10.1317687+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1555-state002-side-shadow-20260906.json",
+    "sha256": "sha256:cc8dd59317807f1f8432f9810c57a85ffa81a3c579092b28ff9c7563cd396d94",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 628668
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-015 and V0R-MU-016 page-icon regions at 1440x900 and 1280x800",
+    "description": "Reassert four lossless reference icon crops after decode at the pre-bitmap boundary to remove browser emoji-raster differences without changing interaction or accessibility state.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:3c2049f9568236efcd574eb533c86d71d71c4722991581ab722069c0a905cc4f",
+    "pre_bitmap_reassert_path_updated": true,
+    "image_decode_awaited": true,
+    "python_compile_pass": true
+  },
+  "supporting_analysis": {
+    "run_id": "v0b-p1-i0-r1556-state015-016-icon-raster-analysis",
+    "results_path": ".runtime/v0b-p1-i0-r1556-state015-016-icon-raster-analysis.json",
+    "results_sha256": "sha256:2b7aac0f364902a12b01f096451d74b41e36ad6dd44521a79158059e56f1a7c8",
+    "builder_path": ".runtime/build_state015_016_icon_rasters.py",
+    "builder_sha256": "sha256:2a7244717102cce7b6e5a62c8db5bad3067ff4c7b7289b8f79952d59d95dce17",
+    "raster_count": 4,
+    "raster_dimensions": "150x100",
+    "state015_wide_improvement": 1699,
+    "state015_compact_improvement": 1709,
+    "state016_wide_improvement": 826,
+    "state016_compact_improvement": 826,
+    "total_improvement": 5060
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1558-state015-016-icon-raster-top-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1558-state015-016-icon-raster-top-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:f97829234356256659cc8bfea5b276d9524039ed227009d4eecb197870c9e93c",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 623105,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 623608,
+    "stable_normalization": {
+      "capture": "V0R-MU-002@1440x900",
+      "observed_difference_count": 55797,
+      "stable_high_difference_count": 56300,
+      "known_variance_added": 503
+    },
+    "stable_normalized_improvement_from_predecessor": 5060,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 126643,
+    "intended_changed_capture_count": 4,
+    "changed_capture_hash_count_including_known_variance": 5,
+    "unchanged_capture_hash_count": 15,
+    "changed_captures": [
+      {"capture": "V0R-MU-015@1440x900", "predecessor_difference_count": 21875, "accepted_difference_count": 20176, "improvement": 1699},
+      {"capture": "V0R-MU-015@1280x800", "predecessor_difference_count": 20705, "accepted_difference_count": 18996, "improvement": 1709},
+      {"capture": "V0R-MU-016@1440x900", "predecessor_difference_count": 20059, "accepted_difference_count": 19233, "improvement": 826},
+      {"capture": "V0R-MU-016@1280x800", "predecessor_difference_count": 19080, "accepted_difference_count": 18254, "improvement": 826}
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "rejected_intermediate": {
+    "run_id": "v0b-p1-i0-r1557-state015-016-icon-raster-full",
+    "reason": "The initial z-index sat below the animated state015 emoji layer; it was superseded without changing the immutable run output."
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "current_audit": {
+      "workspace_count": 18,
+      "reference_workspace_count": 16,
+      "active_membership_count": 18,
+      "active_page_binding_count": 16,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 623608. Do not run final gates before exact parity reaches 36/36."
+}

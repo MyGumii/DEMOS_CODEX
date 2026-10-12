@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_backup_adr.v1",
+  "adr_id": "O0A-P1-COORDINATED-BACKUP-ADR-001",
+  "recorded_at": "2026-08-23T09:40:12Z",
+  "status": "accepted_design_contract_current_runtime_unchanged",
+  "packet_id": "O0A-P1",
+  "authority_inputs": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+    },
+    "planning_documents": [
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+        "sha256": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+        "sha256": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+      }
+    ],
+    "sbe_instruction_manifest": [
+      ["code_assist_v1/docs/knowledge_spaces/README.md", "sha256:090d886640ea2dc38e8d015a55530c17f4eaf9dd99c1ddf2ae57e5da358320ea"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/README.md", "sha256:56fd256f6aed116eed9e7c3d1b4d03f8cd83146ea376874be32c25740c7ed34b"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/PRODUCT_CONTRACT.md", "sha256:55fdc53dbf591d9974cf92d4042b6b4849d2e5a0c155bad4960f0a5acb33218c"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md", "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md", "sha256:5883c6955430e04b4149cd69c0b96839fc4a5c7281748b001c4214197e46d15e"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/ACCEPTANCE.md", "sha256:bfd769be8757740f80e534fda6a9d50e7ae0652830e82b7b4e8472f809cb36bb"],
+      ["code_assist_v1/docs/knowledge_spaces/DECISIONS.md", "sha256:f764bec2b35730fc0b012415400059e61787d38f43b78914d46af9bca94ca7db"],
+      ["code_assist_v1/docs/knowledge_spaces/ARCHITECTURE.md", "sha256:bb8552653b0f02128302d7bf1cb7d75f65000215f01e138398be8b81c62520aa"],
+      ["code_assist_v1/docs/knowledge_spaces/SCHEMA_V1.md", "sha256:15de58b4ba6f7dd4c9f77087bed795ba3ab07cb9fbdada36a92e6d7164c91e21"],
+      ["code_assist_v1/docs/knowledge_spaces/API_UI_CONTRACT.md", "sha256:731d920ccf1e72926ca3d5cfbb34e0ff2720bb57a73353ef89c50c32528d9411"],
+      ["code_assist_v1/docs/knowledge_spaces/CURRENT_SYSTEM_INVENTORY.md", "sha256:bdf39d05337d918917e34b9d68187bfeb4799920d871b1688ece9d488735c55d"],
+      ["code_assist_v1/docs/knowledge_spaces/MIGRATION_ROLLOUT.md", "sha256:0008ded180852070f2d9d3a555052695b704651dd72a98c54979c10311354f0f"],
+      ["code_assist_v1/docs/knowledge_spaces/TEST_OPERATIONS.md", "sha256:fa429c36bc5034818fbcd18a79fa66e36a8af863837afb263b4d1258a20fbc5b"],
+      ["code_assist_v1/docs/knowledge_spaces/DEVELOPMENT_BASELINE.md", "sha256:608792faa9998740b5009aa721260b56ad15a6affab7420abbe0b0ecab8a9edc"],
+      ["code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md", "sha256:6c11b28e21f7f38b12e99243cc675e8716b3d32e68fe83d3db0529164b04fd5e"],
+      ["code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md", "sha256:995fb1ecbe83a1e320e6ae2858a69b51c66fa53bbc6c0a9f72414d704ab73735"],
+      ["code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json", "sha256:46ce12ad70e424dc1c381d496dfb71cc9f7955606fe9945a72bff1ccf2d2d71b"],
+      ["code_assist_v1/docs/knowledge_spaces/STATUS.md", "sha256:8159896bafae8bba05c0bfca6f4d7eb530570dabaa7fa2c984cf402c95346f49"]
+    ],
+    "p7_4_implementation_documents": [
+      {
+        "path": "code_assist_v1/knowledge_core/backup_manifest.py",
+        "sha256": "sha256:a7e4695aad59d02f3fb8aae82ee3308b1c4943bc89936a82d562ad47612a856a"
+      },
+      {
+        "path": "code_assist_v1/knowledge_core/services/backup.py",
+        "sha256": "sha256:744f2f8c602518f538e5a292e7eb841aedc7a4bb28a432eb4b5373777935048f"
+      },
+      {
+        "path": "code_assist_v1/knowledge_core/services/restore.py",
+        "sha256": "sha256:3ea7b1477451959e7a58da10a951067c8c388da1992f5158b672042f4142e0cd"
+      }
+    ],
+    "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+    "sbe_contract_audit": {
+      "status": "pass",
+      "input_sha256": "sha256:284d70c452fa1b742212d12286d5d3c7da9b7e9a2014d9b29163df2a805c9cf0",
+      "goal_count": 20,
+      "mandatory_scenario_count": 284,
+      "error_count": 0
+    }
+  },
+  "current_state": {
+    "p7_4_baseline": {
+      "status": "verified_existing_disabled_synthetic_baseline",
+      "capabilities": [
+        "online_sqlite_snapshot",
+        "exact_immutable_blob_manifest",
+        "blob_gc_hold",
+        "atomic_verified_manifest_publication",
+        "isolated_new_root_restore",
+        "full_projection_rebuild"
+      ],
+      "retention_generations": {
+        "hourly": 96,
+        "daily": 30,
+        "monthly": 12
+      },
+      "does_not_close": [
+        "aggregate_G_12",
+        "successor_SBE_7_1",
+        "target_restore_SBE_7_2",
+        "collaborative_notion_coordinated_backup",
+        "production_recovery_decisions"
+      ]
+    },
+    "sbe_successor_ownership": {
+      "SBE-7.1": "not_started_owner_of_integrated_successor_backup_and_SBEOPS_010",
+      "SBE-7.2": "not_started_owner_of_target_handoff_and_SBEOPS_018",
+      "sbe_documents_modified_by_O0A_P1": false
+    },
+    "collaborative_backup_runtime_implemented": false,
+    "backup_or_restore_executed_by_this_adr": false,
+    "live_root_or_database_accessed": false
+  },
+  "authority_boundary": {
+    "notion_authority": "one Notion-owned canonical database plus its referenced immutable blobs and durable collaboration log",
+    "second_brain_authority": "one separately governed SBE canonical database plus its referenced immutable blobs",
+    "identity_authority": "the shared Agent identity registry remains external to both content databases",
+    "notion_and_sbe_database_authorities_separate": true,
+    "notion_and_sbe_schema_lineages_separate": true,
+    "cross_database_atomic_transaction_claimed": false,
+    "coordinator_role": "record independently verified authority snapshots and one agreed publication/high-water boundary in a self-hashed generation manifest",
+    "generation_publication_rule": "publish verified only after every mandatory component and every authority record verifies; otherwise retain an incomplete non-restorable generation",
+    "projection_as_sole_truth_allowed": false,
+    "identity_snapshot_includes_password_hashes_and_stable_subject_ids": true,
+    "identity_snapshot_includes_live_sessions_tokens_or_secret_material": false
+  },
+  "component_inventory": {
+    "mandatory_non_rebuildable": [
+      {"id": "notion_canonical_database", "authority_domain": "notion", "restore_rule": "independently verify schema lineage, integrity, logical counts, and high-water markers"},
+      {"id": "sbe_canonical_database", "authority_domain": "second_brain", "restore_rule": "preserve the SBE-owned backup format and independently verify schema lineage, integrity, and publication revisions"},
+      {"id": "shared_identity_registry", "authority_domain": "identity", "restore_rule": "preserve stable subject IDs and password hashes but exclude every session, token, cookie, and signing secret"},
+      {"id": "notion_immutable_blobs", "authority_domain": "notion", "restore_rule": "restore the exact content-addressed manifest referenced by the Notion snapshot"},
+      {"id": "sbe_immutable_blobs", "authority_domain": "second_brain", "restore_rule": "restore the exact content-addressed manifest referenced by the SBE snapshot"},
+      {"id": "collaboration_event_log", "authority_domain": "notion", "restore_rule": "preserve contiguous document sequence and operation-id deduplication state through the recorded high-water"},
+      {"id": "collaboration_snapshots_and_checkpoints", "authority_domain": "notion", "restore_rule": "verify snapshot content hash, covered event high-water, and replay compatibility"},
+      {"id": "legacy_cutover_sources", "authority_domain": "migration", "restore_rule": "retain immutable source manifests until an explicitly signed retirement packet makes them dispensable"},
+      {"id": "authority_schema_and_config_markers", "authority_domain": "coordinator", "restore_rule": "bind exact schema catalogs, migration checksums, runtime source IDs, and safe configuration versions"},
+      {"id": "encrypted_key_metadata", "authority_domain": "security", "restore_rule": "retain algorithm, version, and external key reference only; never copy plaintext key material"},
+      {"id": "audit_outbox_and_publication_high_water", "authority_domain": "coordinator", "restore_rule": "bind per-authority audit/outbox/event/publication boundaries without claiming a cross-database transaction"}
+    ],
+    "rebuildable": [
+      {"id": "notion_compatibility_projections", "rebuild_source": "notion canonical database and immutable blobs"},
+      {"id": "sbe_markdown_index_log_graph_and_backlinks", "rebuild_source": "SBE canonical database and immutable blobs"},
+      {"id": "fts_vector_and_search_caches", "rebuild_source": "authorized canonical content using the restored schema/config marker"},
+      {"id": "derived_inbox_and_notification_views", "rebuild_source": "canonical audit/outbox/event state"},
+      {"id": "generated_previews_and_thumbnails", "rebuild_source": "verified immutable blobs and canonical metadata"},
+      {"id": "materialized_collaboration_client_views", "rebuild_source": "verified collaboration snapshot plus contiguous event replay"}
+    ],
+    "never_restore": [
+      {"id": "sessions_csrf_tokens_tickets_and_bearer_tokens", "reason": "restored credentials could silently revive pre-incident authority"},
+      {"id": "session_signing_secrets_cookie_keys_and_plaintext_encryption_keys", "reason": "restore requires fresh secret material from the approved external secret authority"},
+      {"id": "ephemeral_presence_typing_and_cursor_state", "reason": "presence is non-durable and is rebuilt from new authenticated connections"},
+      {"id": "gateway_connections_queues_and_backpressure_counters", "reason": "transport state is discarded and clients replay from canonical durable boundaries"},
+      {"id": "browser_service_worker_and_local_caches", "reason": "client caches are never an authority and may contain stale authorization"},
+      {"id": "temporary_staging_partial_generations_and_unverified_exports", "reason": "only a verified finalized generation is eligible for restore"}
+    ],
+    "classification_rule": "every generated component ID must appear exactly once in mandatory_non_rebuildable, rebuildable, or never_restore; an unclassified component blocks finalization"
+  },
+  "coordinated_generation_manifest_contract": {
+    "format_id": "internal-collaborative-coordinated-generation-v1",
+    "manifest_is_self_hashed": true,
+    "allowed_states": ["preparing", "incomplete", "verified"],
+    "required_authority_records": ["notion", "second_brain", "identity"],
+    "required_top_level_fields": [
+      "format_id",
+      "generation_id",
+      "state",
+      "created_at",
+      "completed_at",
+      "write_barrier_id",
+      "coordinator_config_sha256",
+      "component_inventory_sha256",
+      "publication_boundary",
+      "authority_records",
+      "component_records",
+      "manifest_sha256"
+    ],
+    "required_authority_record_fields": [
+      "authority_domain",
+      "snapshot_id",
+      "snapshot_sha256",
+      "snapshot_size_bytes",
+      "schema_version",
+      "schema_lineage_sha256",
+      "blob_manifest_sha256",
+      "high_water",
+      "quick_check",
+      "foreign_key_violation_count",
+      "logical_inventory_sha256",
+      "verification_state"
+    ],
+    "required_high_water_fields": [
+      "audit_id",
+      "outbox_id",
+      "document_sequence",
+      "event_sequence",
+      "snapshot_event_sequence",
+      "publication_revision"
+    ],
+    "required_component_record_fields": [
+      "component_id",
+      "authority_domain",
+      "content_sha256",
+      "size_bytes",
+      "verification_state"
+    ],
+    "unavailable_high_water_rule": "record explicit null plus a stable not_applicable reason; omission is invalid",
+    "secret_material_allowed": false,
+    "each_authority_snapshot_independently_verified": true,
+    "cross_database_transaction_claimed": false,
+    "verified_requires_all_mandatory_components": true,
+    "incomplete_generation_is_restorable": false,
+    "publication_boundary_semantics": "the greatest coordinated boundary for which every independently captured authority record and mandatory component verifies; it is recovery evidence, not a cross-database SQLite commit"
+  },
+  "write_barrier_contract": {
+    "ordered_states": [
+      "declare_generation_intent",
+      "acquire_per_authority_backup_and_blob_gc_holds",
+      "stop_accepting_new_mutations",
+      "drain_inflight_mutations_to_configured_deadline",
+      "capture_per_authority_high_waters",
+      "snapshot_each_authority_independently",
+      "copy_and_verify_mandatory_non_rebuildable_components",
+      "revalidate_no_mutation_crossed_the_recorded_boundaries",
+      "finalize_self_hashed_verified_generation_after_all_checks",
+      "release_holds_and_resume_mutations"
+    ],
+    "new_mutation_admission_during_barrier": "fail_closed_or_retry_after_without_partial_commit",
+    "drain_timeout_source": "pending_G0_U_recovery_decision",
+    "timeout_action": "mark_generation_incomplete_release_holds_without_verified_publication",
+    "writer_or_copy_failure_action": "mark_generation_incomplete_preserve_diagnostics_without_secret_or_content_leak_and_never_claim_success",
+    "authority_unavailable_action": "abort_generation_without_verified_publication",
+    "blob_gc_during_generation": "blocked_by_per_authority_hold_until_manifest_finalization_or_abort",
+    "partial_generation_reuse": "only deterministic resume after every staged fact is reverified; otherwise discard from restore eligibility",
+    "write_crossing_boundary_allowed": false,
+    "false_completion_allowed": false
+  },
+  "restore_contract": {
+    "target": "new_empty_runner_owned_root_only",
+    "existing_or_live_root_overwrite_allowed": false,
+    "outbound_integrations_enabled_during_restore": false,
+    "mutation_traffic_enabled_during_restore": false,
+    "ordered_steps": [
+      "verify_generation_manifest_self_hash_state_and_complete_component_denominator",
+      "verify_each_authority_snapshot_hash_schema_lineage_quick_check_and_foreign_keys",
+      "verify_logical_inventory_blob_references_and_event_snapshot_continuity",
+      "restore_notion_second_brain_and_identity_authorities_independently_into_new_root",
+      "discard_all_restored_sessions_tokens_tickets_transport_state_and_secret_material",
+      "provision_new_session_signing_secret_and_rotate_relevant_key_versions",
+      "force_reauthentication_for_every_subject",
+      "rebuild_every_projection_and_cache_from_canonical_authorities",
+      "verify_logical_counts_high_waters_replay_and_projection_zero_mismatch",
+      "emit_restore_receipt_without_enabling_traffic_or_production_mutations"
+    ],
+    "required_integrity_checks": [
+      "manifest_hashes",
+      "schema_and_migration_lineage",
+      "sqlite_quick_check",
+      "foreign_key_check",
+      "logical_inventory_counts_and_hashes",
+      "immutable_blob_manifest_and_references",
+      "audit_and_outbox_high_waters",
+      "event_sequence_continuity",
+      "snapshot_replay_equivalence",
+      "projection_zero_canonical_mismatch"
+    ],
+    "session_policy": "rotate_session_signing_secret_and_force_reauthentication",
+    "copied_session_registry_may_revive_sessions": false,
+    "traffic_activation_requires_separate_approval_and_later_gate": true,
+    "restore_failure_claims_success": false
+  },
+  "event_snapshot_compaction_contract": {
+    "event_deletion_allowed_only_after": [
+      "snapshot_is_verified_and_self_hashed",
+      "snapshot_covers_an_exact_event_high_water",
+      "coordinated_verified_backup_generation_contains_the_snapshot_and_required_replay_tail",
+      "replay_from_snapshot_to_current_head_has_zero_gap_duplicate_or_state_mismatch",
+      "configured_minimum_event_and_page_history_retention_is_satisfied",
+      "no_active_recovery_or_backup_hold_requires_the_candidate_events"
+    ],
+    "event_high_water_monotonic_no_reuse": true,
+    "compaction_below_unverified_snapshot_allowed": false,
+    "compaction_invalidates_immutable_sbe_publication_revision": false,
+    "page_revision_auto_delete_allowed": false,
+    "page_history_compaction_policy_source": "pending_G0_U_recovery_decision",
+    "compaction_failure_action": "retain_events_and_leave_the_previous_verified_snapshot_and_generation_authoritative"
+  },
+  "recovery_decision_boundary": {
+    "decision_id": "G0-U",
+    "status": "pending",
+    "must_freeze_before_production_rehearsal": [
+      "rpo",
+      "rto",
+      "write_drain_timeout",
+      "backup_retention",
+      "page_history_retention",
+      "external_destination",
+      "restore_secret_policy",
+      "external_key_owner"
+    ],
+    "existing_sbe_baseline_objectives_not_product_freeze": {
+      "rpo_minutes": 60,
+      "rto_minutes": 240
+    },
+    "provisional_engineering_targets_not_product_freeze": {
+      "rpo_minutes": 15,
+      "rto_minutes": 60,
+      "write_drain_timeout_seconds": 60
+    },
+    "retention_destination_and_key_owner_selected": false,
+    "production_recovery_contract_frozen_by_O0A_P1": false
+  },
+  "validation_contract": {
+    "validation_id": "L7-KNOWLEDGE-BACKUP-BASELINE",
+    "existing_baseline_tests": [
+      {"path": "code_assist_v1/tests/knowledge_spaces/unit/test_backup_service.py", "sha256": "sha256:ea1eada7e5020626de1016d8c470d6f478e82aaad23a1107212822649748e68b"},
+      {"path": "code_assist_v1/tests/knowledge_spaces/unit/test_backup_retention.py", "sha256": "sha256:b1d891e5fb43d4d4cf89006484e17a175b8a707030455968819b10cc89c4a8c7"},
+      {"path": "code_assist_v1/tests/knowledge_spaces/unit/test_backup_repository.py", "sha256": "sha256:5846a636b28a0000b9e84120083cab1dee0143ced31c2ba1486ed644d2c922c0"},
+      {"path": "code_assist_v1/tests/knowledge_spaces/unit/test_backup_manifest.py", "sha256": "sha256:bf3eef54413cbb15918329c831a0a230d27974c127f1d70a89c2e18402a52ab3"},
+      {"path": "code_assist_v1/tests/knowledge_spaces/unit/test_online_sqlite_backup.py", "sha256": "sha256:85a58ae951e4627eb09c400583d6b694c8ce1dcbd28b963b05fc3f961db1d558"},
+      {"path": "code_assist_v1/tests/knowledge_spaces/integration/test_backup_restore_cli.py", "sha256": "sha256:b12c1822ce03361faf00f138382f8eaeda03437c8454b8becb816e0c6f2557df"},
+      {"path": "code_assist_v1/tests/knowledge_spaces/integration/test_backup_multiprocess.py", "sha256": "sha256:55eea556c404fee7b610815fa66be229048c05bd8c4beb2330a75c0f88e1102c"},
+      {"path": "code_assist_v1/tests/knowledge_spaces/integration/test_restore_drill.py", "sha256": "sha256:ba7090a1a8cdbddf0697468eab4f6f0d33c791e83ce76241fa81731b986ac304"}
+    ],
+    "packet_contract_test": "code_assist_v1/tests/notion_collaboration/test_backup_inventory_contract.py",
+    "future_collaborative_restore_tests_owned_by_O0A_P2": [
+      "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py",
+      "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py",
+      "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py"
+    ],
+    "sbe_baseline_scenarios": ["OPS-001", "OPS-002", "OPS-003", "OPS-004", "OPS-005", "OPS-006"],
+    "sbe_successor_restore_scenarios": ["SBEOPS-010", "SBEOPS-018"],
+    "target_restore_required_for_product_closure": true
+  },
+  "claims": {
+    "coordinated_backup_design_contract_accepted": true,
+    "component_denominator_frozen_for_O0A_P2": true,
+    "existing_p7_4_baseline_reused_read_only": true,
+    "collaborative_backup_runtime_implemented": false,
+    "coordinated_backup_executed": false,
+    "new_root_collaborative_restore_executed": false,
+    "target_restore_executed": false,
+    "production_recovery_contract_frozen": false,
+    "sbe_successor_backup_format_modified": false,
+    "production_schema_route_store_runtime_or_data_root_modified": false,
+    "product_complete": false
+  }
+}

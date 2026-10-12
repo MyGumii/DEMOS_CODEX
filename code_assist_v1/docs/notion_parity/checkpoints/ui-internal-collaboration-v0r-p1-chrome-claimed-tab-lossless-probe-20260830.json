@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0r_p1.chrome_claimed_tab_lossless_probe.v1",
+  "checkpoint_id": "V0R-P1-CHROME-CLAIMED-TAB-LOSSLESS-PROBE-20260830",
+  "recorded_at": "2026-08-30T17:36:27.2601007+09:00",
+  "status": "exact_reference_transport_unavailable_in_selected_chrome_surface",
+  "summary": "A fresh claim of the existing V0R-A Notion tab confirmed that the explicitly selected Chrome surface does not expose the CDP capability and returns JPEG/JFIF bytes even when screenshot type png is requested. The default and png-requested results were byte-identical. This probe is read-only and does not change Notion content or permissions.",
+  "selected_surface": {
+    "browser_family": "chrome",
+    "selection_reason": "explicit_user_request",
+    "fallback_surface_used": false,
+    "tab": {
+      "title": "V0R-A-ROOT | Notion",
+      "origin": "https://app.notion.com",
+      "claimed_from_current_open_tabs": true
+    }
+  },
+  "capability_probe": {
+    "cdp": {
+      "available": false,
+      "error": "Capability is not available: cdp"
+    },
+    "pageAssets": {
+      "available": true,
+      "lossless_viewport_capture_supported": false,
+      "note": "pageAssets inventories and bundles page assets; it is not a rendered viewport screenshot transport."
+    }
+  },
+  "screenshot_probe": {
+    "default_request": {
+      "byte_length": 33729,
+      "prefix_hex": "ffd8ffe000104a464946000101000001",
+      "jpeg_soi": true,
+      "png_signature": false,
+      "sha256": "sha256:82b387dd02a0b07c2a12070846a360b90910d29b7af829f23e8b32a8e6d30dcd"
+    },
+    "png_type_request": {
+      "requested_options": {
+        "type": "png"
+      },
+      "byte_length": 33729,
+      "prefix_hex": "ffd8ffe000104a464946000101000001",
+      "jpeg_soi": true,
+      "png_signature": false,
+      "sha256": "sha256:82b387dd02a0b07c2a12070846a360b90910d29b7af829f23e8b32a8e6d30dcd"
+    },
+    "byte_identical": true,
+    "raw_probe_capture_persisted": false
+  },
+  "lineage": {
+    "semantic_exact_gate_separation_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-semantic-exact-gate-separation-20260830.json",
+      "sha256": "sha256:3d0643099461aad66dfaebd911e5304aba3b5efe07115e9cff3f58d0b0678173"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "gate_result": {
+    "semantic_reference_gate_passed": true,
+    "exact_reference_gate_passed": false,
+    "exact_reference_transport_eligible": false,
+    "reason_codes": [
+      "CHROME_CDP_CAPABILITY_UNAVAILABLE",
+      "CHROME_SCREENSHOT_RETURNED_JPEG",
+      "CHROME_PNG_REQUEST_IGNORED_BY_TRANSPORT"
+    ]
+  },
+  "scope_attestation": {
+    "external_notion_content_mutated": false,
+    "external_notion_permissions_mutated": false,
+    "external_notion_messages_or_invites_sent": false,
+    "local_product_source_changed": false,
+    "raw_screenshot_written": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "source_lossless_png_transport": "blocked_on_selected_chrome_surface",
+    "corrected_V0R_MU_004_reference": "pending",
+    "corrected_V0R_MU_006_reference": "pending",
+    "exact_pixel_36_of_36": "not_run",
+    "core_25": "not_run",
+    "performance": "not_run",
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Keep the semantic receipt as valid semantic evidence. Do not admit it to exact comparison. A different explicitly approved capture surface with source-lossless PNG output is required before recapturing the full 36-state reference set, including corrected postcondition timing for V0R-MU-004 and V0R-MU-006."
+}

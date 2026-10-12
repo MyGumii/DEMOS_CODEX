@@ -1,0 +1,59 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T13:46:04.4196455+09:00",
+  "run_id": "ui35-editor-003-session-clipboard-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-003-r4-skip-link-current-source-green-20260822.json",
+    "sha256": "sha256:ebe28635953829d5b2bc4f03cc3fe4e4e1c17cda6225a15b8308f5f37a7a59a6",
+    "semantic_status": "supplemented_by_safe_reference_clipboard_observation"
+  },
+  "goal": {"thread_id":"019ff607-9116-78a1-9f40-c580c87c0038","tool_status_observed":"active","user_resume_received":true},
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-EDITOR-003",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_or_live_data_accessed": false,
+    "os_clipboard_or_history_read": false,
+    "browser_session_clipboard_write_only": true,
+    "external_side_effect_attempted": false
+  },
+  "slice": {
+    "status": "reference_partially_observed_current_source_green",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "reference_observation": {
+    "known_plaintext_written": "UI-EDITOR-003 PASTE",
+    "executable_markup_written": false,
+    "paste_plaintext_block_count": 1,
+    "undo_plaintext_block_count": 0,
+    "redo_plaintext_block_count": 1,
+    "focus_remained_in_editor_flow": true,
+    "cleanup": {
+      "synthetic_paste_residual_count": 0,
+      "synthetic_baseline_residual_count": 0,
+      "reload_verified": true,
+      "restored_textbox_shape": ["REF-FREE-A", "REF-FREE-A", ""]
+    },
+    "raw_dom_network_screenshot_stored": false
+  },
+  "protected_inputs": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/notion_static/index.html","sha256":"sha256:2771c9fd9975fdf6306b11f6cd4cab85d6fc1cfe88eb12d16c9cdda7035584c8"},
+    {"path":"code_assist_v1/notion_static/notion.css","sha256":"sha256:4288697c676f9913a614a2b8e0c6095de58638e5b12df8f01528d46af9f6986f"},
+    {"path":"code_assist_v1/notion_static/notion.js","sha256":"sha256:0d8d52313f7e1bb8920348af4be3407d2ca80daca6c3b71afeca3fd03e7b7102"},
+    {"path":"code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py","sha256":"sha256:683159022d00e32c367e348f19c4df9977177431959730abda0f7f09c345f3cd"}
+  ],
+  "verification": [{"selection":"UI-EDITOR-003 plus adjacent R4 browser scenarios","result":"5 passed in 105.76s"}],
+  "claims": {
+    "trusted_reference_plaintext_paste_observed": true,
+    "undo_redo_deterministic": true,
+    "os_clipboard_inspected": false,
+    "reference_summary_owner_reviewed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain owner review of the redacted session-clipboard paste/undo/redo summary before any reference-category promotion."
+}

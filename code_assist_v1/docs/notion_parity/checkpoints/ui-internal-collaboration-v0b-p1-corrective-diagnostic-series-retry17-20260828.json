@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CORRECTIVE-DIAGNOSTIC-SERIES-RETRY17-20260828",
+  "recorded_at": "2026-08-28T05:07:31.0294886Z",
+  "status": "diagnostic_series_closed_unaccepted",
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-full-retry16-progress-20260828.json",
+    "sha256": "sha256:a5e4da36f9642bcb3c2d89c77ae3547c7254c3a6b51b98b00ff8df801b5d8624",
+    "remains_current_accepted_checkpoint": true
+  },
+  "accepted_baseline": {
+    "full_receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry16/receipt.json",
+    "full_receipt_sha256": "sha256:484759474ca00a7b9e332d9af0fa95ece4a64f7b758ccc901f3d13ac35ed1e1d",
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "journey_pass_count": 4,
+    "unmasked_difference_count": 6689505,
+    "masked_difference_count": 250732,
+    "exact_pixel_pass_count": 0,
+    "bounded_c0_unmasked_difference_count": 1236796,
+    "bounded_e1_unmasked_difference_count": 1351125
+  },
+  "diagnostic_receipts": [
+    {
+      "label": "C0-retry6-canonical-member-refresh",
+      "path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry6/receipt.json",
+      "sha256": "sha256:dd48b673c8d91d2406ab5a46d403e118907badee05bed1532ccb32124476f088",
+      "capture_count": 8,
+      "unmasked_difference_count": 1252202,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "The canonical icon refresh improved one comment state but regressed later reconnect states."
+    },
+    {
+      "label": "C0-retry7-real-database-first-layout",
+      "path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry7/receipt.json",
+      "sha256": "sha256:521d8e7ddd3e97db454eb2fad899cffe9a964ae2b7b5501c0fcb973977c72c03",
+      "capture_count": 8,
+      "unmasked_difference_count": 1393265,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "The real canonical database was semantically closer but the first layout attempt regressed the bounded aggregate."
+    },
+    {
+      "label": "C0-retry8-single-title-property-database",
+      "path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry8/receipt.json",
+      "sha256": "sha256:f31d9b20ebcb9813bc0a0cf140e682f65b77cac73ff58e9de5994d20114a0c4c",
+      "capture_count": 8,
+      "unmasked_difference_count": 1381831,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "The title-only canonical table reduced retry7 but remained above the accepted C0 baseline."
+    },
+    {
+      "label": "C0-retry9-semantic-comment-affordance-selector",
+      "path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry9/receipt.json",
+      "sha256": "sha256:13aeacb890ab650114e3476680961eb984c2423597c801bc285a94127c61539e",
+      "capture_count": 8,
+      "unmasked_difference_count": 1352718,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "The selector correction improved retry8 but the canonical database still regressed the accepted aggregate."
+    },
+    {
+      "label": "C0-retry10-database-row-geometry",
+      "path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry10/receipt.json",
+      "sha256": "sha256:ad3a3956030bfdb118634f2e65ed5aff9beee5b3e705897b05669107dd06ba57",
+      "capture_count": 8,
+      "unmasked_difference_count": 1359502,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "The 37px row geometry improved reconnect captures but regressed inbox captures and the aggregate."
+    },
+    {
+      "label": "C0-retry11-page-icon-offset",
+      "path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry11/receipt.json",
+      "sha256": "sha256:086b8df4790b08b5391640a9fc84a93db5be3eab4578462648652f3f19fab5b9",
+      "capture_count": 8,
+      "unmasked_difference_count": 1234765,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "The C0 aggregate improved slightly, but the global icon offset required cross-journey verification."
+    },
+    {
+      "label": "C0-retry12-ineffective-low-height-selector",
+      "path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry12/receipt.json",
+      "sha256": "sha256:eaff02eb845b5c4dee901650e1a5b6ee556b96e9c4624bf105c8085322434f13",
+      "capture_count": 8,
+      "unmasked_difference_count": 1234709,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "The low-height rule did not reach state 007 because a higher-specificity landing selector won."
+    },
+    {
+      "label": "C0-retry13-high-specificity-low-height-selector",
+      "path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry13/receipt.json",
+      "sha256": "sha256:168163c6ce0bd5700e58c0b2622835e13c51496cc577d143adc6887f6f97546b",
+      "capture_count": 8,
+      "unmasked_difference_count": 1229651,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "The C0-only measurement improved, but the selector also matched editor journeys."
+    },
+    {
+      "label": "C0-retry14-viewport-and-icon-geometry",
+      "path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry14/receipt.json",
+      "sha256": "sha256:f8f6187d79ff93f984e0f045b72dc4df690996de1dc998c6f9fb38ea45c51c90",
+      "capture_count": 8,
+      "unmasked_difference_count": 1226769,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "C0 improved by 10027 versus retry5, but the same source regressed bounded E1 by 26788."
+    },
+    {
+      "label": "E1-retry12-cross-journey-check",
+      "path": "code_assist_v1/.runtime/v0b-p1-editor-diagnostic-20260828-retry12/receipt.json",
+      "sha256": "sha256:d298af796eedf7276b59945ae4c1db4df4d1c2a4ca554d0da460b40df8f3c97b",
+      "capture_count": 6,
+      "unmasked_difference_count": 1377913,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "The C0 viewport correction caused a cross-journey regression over the accepted E1 baseline."
+    },
+    {
+      "label": "C0-retry15-selector-mismatch-diagnostic",
+      "path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry15/receipt.json",
+      "sha256": "sha256:10f26c0c3292cda6756ced667e3dbbfac27b7f9e781c346e8d893188a09c214f",
+      "capture_count": 8,
+      "unmasked_difference_count": 1226857,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "A short restoration patch matched the skip-link transform instead of the page icon transform; the source was invalid for adoption."
+    },
+    {
+      "label": "E1-retry13-selector-mismatch-diagnostic",
+      "path": "code_assist_v1/.runtime/v0b-p1-editor-diagnostic-20260828-retry13/receipt.json",
+      "sha256": "sha256:11479783ed47c06b0b64ea5c740158803c747bbed2fd2018a5ed786cb033d038",
+      "capture_count": 6,
+      "unmasked_difference_count": 1376494,
+      "journey_status": "pass",
+      "accepted": false,
+      "reason": "This confirmed the cross-journey regression and exposed the selector mismatch; it is diagnostic only."
+    }
+  ],
+  "incomplete_full_attempt": {
+    "run_root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry17",
+    "receipt_written": false,
+    "capture_artifact_count": 32,
+    "failure": "E1 admin wait_for_function timed out after 15000ms while waiting for the collaborator block suffix.",
+    "classification": "one_time_live_sync_timeout",
+    "bounded_recheck": "E1 retry12 and retry13 both passed the same functional path with 6/6 captures and complete cleanup.",
+    "accepted": false
+  },
+  "cleanup_audit": {
+    "mode": "read_only_SQLite_scoped_to_REF_FREE_A_workspaces_created_after_retry16_cutoff_1787889104",
+    "workspace_count": 19,
+    "source_page_count": 35,
+    "legacy_active_page_count": 0,
+    "legacy_recoverable_trash_page_count": 35,
+    "legacy_missing_page_count": 0,
+    "active_user01_workspace_membership_count": 0,
+    "active_user01_workspace_guest_count": 0,
+    "active_user01_canonical_access_grant_count": 0,
+    "active_user01_page_grant_count": 0,
+    "active_user01_legacy_page_share_count": 0,
+    "permanent_delete_used": false,
+    "status": "complete"
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:f057a5cbc40cb46ce95ccda55b6062c2a1a8cdb431af1ce555113368bd13f20d",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:f5eaab5980b6a6ff7dee75835adfbc54ab9b7bb43b8a542631fb1043a864f6a5"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:942e8be757eddae85117ad75ace3973397f61a48c49dc2aeee954c96abb5039b"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:8a5a7a0511748763c02938b053e5639dfe5c8a3847f8a3a92aad8d448bb6e3fb"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/c0_p2_browser.py",
+        "sha256": "sha256:1bd475f17d79c50fbc1cab754a39c16962dc224dd82ae2efe6ea0807c769552a"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:1514917e4d64b00106b719b160e1c22c9ff29c1119c93ca6a6a1b096c003d882"
+      }
+    ],
+    "restored_to_retry16": true
+  },
+  "conclusions": {
+    "canonical_database_experiment_rejected": true,
+    "cross_journey_viewport_experiment_rejected": true,
+    "screenshot_specific_focus_or_state_id_styling_used": false,
+    "current_accepted_evidence_reexecuted": false,
+    "current_accepted_evidence_verified_and_inherited": true,
+    "V0B_P1_gate_passed": false,
+    "PIX_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "performance_gate_closed": false,
+    "O1B_entry_allowed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

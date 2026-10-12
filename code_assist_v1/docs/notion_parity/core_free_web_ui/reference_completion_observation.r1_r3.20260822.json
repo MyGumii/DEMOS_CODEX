@@ -1,0 +1,116 @@
+{
+  "contract": "code_assist.notion.core_free_ui.reference_completion_observation.v1",
+  "recorded_at": "2026-08-22T20:34:39.3932957+09:00",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "approval": {
+    "receipt_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/pending_approval_receipt.r1_r3.20260822.json",
+    "receipt_sha256": "sha256:90bbbe185470af6493c272c9d8a2a2520053ef5dd51d013e27c04cbfdaa1190f",
+    "execution_permit_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/reference_execution_permit.r1_r3.20260822.json"
+  },
+  "scope": {
+    "workspace_aliases": ["REF-FREE-A", "REF-FREE-B"],
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_count": 0,
+    "public_publish_or_invite_used": false,
+    "permanent_delete_used": false
+  },
+  "preflight": {
+    "c0_status": "pass",
+    "exact_alias_count_ref_free_a": 1,
+    "exact_alias_count_ref_free_b": 1,
+    "other_workspace_raw_labels_persisted": false
+  },
+  "supplemental_observable_fields": {
+    "UI-SHELL-001": {
+      "UI-SHELL-001-A01": {
+        "keyboard": {"result": "not_applicable"},
+        "error_recovery": {"result": "unchanged"}
+      },
+      "UI-SHELL-001-A02": {
+        "keyboard": {"result": "not_applicable"},
+        "error_recovery": {"result": "unchanged"}
+      }
+    },
+    "UI-EDITOR-001": {
+      "UI-EDITOR-001-A03": {
+        "semantic_visual": {"region": "PAGE-ROOT", "state": "visible"},
+        "error_recovery": {"result": "unchanged"}
+      },
+      "UI-EDITOR-001-A04": {
+        "semantic_visual": {"region": "PAGE-ROOT", "state": "restored"},
+        "error_recovery": {"result": "unchanged"}
+      }
+    },
+    "UI-EDITOR-002": {
+      "UI-EDITOR-002-A01": {
+        "error_recovery": {"result": "pass"}
+      },
+      "UI-EDITOR-002-A02": {
+        "error_recovery": {"result": "pass"}
+      }
+    },
+    "UI-SEARCH-002": {
+      "UI-SEARCH-002-A01": {
+        "a11y": {"name": "PAGE-FIND-INPUT", "role": "searchbox"}
+      },
+      "UI-SEARCH-002-A02": {
+        "keyboard": {"result": "pass"},
+        "focus": {"sequence": ["PAGE-CANVAS"]},
+        "a11y": {"name": "PAGE-CANVAS", "role": "region"},
+        "error_recovery": {"result": "pass"}
+      }
+    }
+  },
+  "fresh_observations": {
+    "workspace_switch_round_trip": true,
+    "cross_workspace_synthetic_fixture_leak_count": 0,
+    "korean_title_and_paragraph_persisted_after_reload": true,
+    "slash_menu_opened": true,
+    "heading_block_persisted": true,
+    "page_find_surface": "notion_page_find",
+    "page_find_exact_match_count": 1,
+    "page_find_escape_closed_surface": true,
+    "synthetic_page_link_committed": true,
+    "synthetic_page_link_navigation_succeeded": true,
+    "approved_prior_backlink_observation_reused": true
+  },
+  "recovered_setup_incidents": [
+    {
+      "code": "SYNTHETIC_ROOT_CREATE_MISROUTE",
+      "disposition": "existing REF-FREE-A synthetic title restored exactly before continuing",
+      "residual_mutation": false
+    },
+    {
+      "code": "SLASH_MENU_AI_TEMPLATE_MISACTIVATION",
+      "disposition": "synthetic template insertion immediately undone; recording never started",
+      "residual_mutation": false
+    },
+    {
+      "code": "C0_RAW_SWITCHER_SNAPSHOT_DISCARDED",
+      "disposition": "first C0 rejected and not persisted; replacement C0 used exact alias counts only",
+      "residual_persisted_private_data": false
+    }
+  ],
+  "cleanup": {
+    "mode": "trash_only_recoverable",
+    "ref_free_a_root_subtree_active_residual_count": 0,
+    "ref_free_a_child_active_residual_count": 0,
+    "ref_free_b_marker_active_residual_count": 0,
+    "permanent_delete_used": false,
+    "status": "complete"
+  },
+  "claims": {
+    "reference_mutation_executed": true,
+    "cleanup_executed": true,
+    "normalized_evidence_sealed": true,
+    "all_differentials_zero": true,
+    "completion_matrix_changed": true,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

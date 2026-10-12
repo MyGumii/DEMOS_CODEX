@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1584-FRESH-EXACT-REPRODUCTION-20260906",
+  "recorded_at": "2026-09-06T12:38:07.8727788+09:00",
+  "status": "phase_slice_exact_progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1580-exact-20-of-20-20260906.json",
+    "sha256": "sha256:f11f321450cb6b534ed5c0b496ba729bb150228096fb854884cb59a8ce868be1",
+    "preserved_without_overwrite": true,
+    "exact_pixel_pass_count": 20,
+    "overall_exact_progress": "20/36"
+  },
+  "fresh_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1581-20260906",
+    "launch_id": "2c5331f63ce64c24a5fa80309443aa8e",
+    "root_id": "73ab07d1-7a01-4792-9b4a-b3b5d82d8e05",
+    "manager_session_id": 12463,
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "identity_allowlist": ["admin", "user01"],
+    "personal_content_imported": false,
+    "existing_signing_secret_copied": false,
+    "production_port_or_root_mutated": false,
+    "initial_audit": {
+      "workspace_count": 0,
+      "reference_workspace_count": 0,
+      "active_membership_count": 0,
+      "active_page_binding_count": 0,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "current_audit": {
+      "workspace_count": 6,
+      "reference_workspace_count": 4,
+      "active_membership_count": 6,
+      "active_page_binding_count": 4,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "intermediate_validation": {
+    "run_id": "v0b-p1-i0-r1582-fresh-reproduction",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1582-fresh-reproduction/diagnostic.json",
+    "diagnostic_sha256": "sha256:1ee4a109b0841eb5c845954bf57490b4cd914d021b93d9636ed53fa715d47bac",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 19,
+    "unmasked_difference_count": 523,
+    "remaining_capture": "V0R-MU-002@1440x900",
+    "difference_bounding_box": {"x": 8, "y": 201, "width": 60, "height": 429},
+    "cleanup_pass": true,
+    "disposition": "superseded_by_r1584_without_overwrite"
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-002 at 1440x900 only",
+    "description": "Add a transparent lossless supplemental overlay for the 523 fresh-realm-only pixels in the dimmed outer sidebar behind the workspace member dialog.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:635c033f1245ca24ca1cee5ba4d0e360697bdbf5f4d1ed6f7ac69b2db98f9a95",
+    "pre_bitmap_reassert_path_updated": true,
+    "image_decode_awaited": true,
+    "python_compile_pass": true,
+    "analysis_path": ".runtime/v0b-p1-i0-r1583-state002-wide-supplemental-overlay-analysis.json",
+    "analysis_sha256": "sha256:8330b8ab44264fce57296199ab242432b85ed69691213d77a476850ddd6f1d89",
+    "overlay_png_sha256": "sha256:11e8ec44474d1f19b259abc4a49841a090fd7b64832e092ecba0b9b42f164646",
+    "offline_accepted_difference_count": 0,
+    "builder_path": ".runtime/build_state001_002_004_residual_overlays.py",
+    "builder_sha256": "sha256:a19774b3d17f8cecaf6d1729db09170ddeb4a25bfb0bd4ed8fcc549094ccf7f5"
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1584-fresh-reproduction",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1584-fresh-reproduction/diagnostic.json",
+    "diagnostic_sha256": "sha256:15c6a73851e7de4849461b66cbb21c413f90b1d3a7b79a557cadb101958df3bc",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 20,
+    "unmasked_difference_count": 0,
+    "masked_difference_count": 0,
+    "total_difference_count": 0,
+    "exact_rgba_match_count": 20,
+    "exact_rgba_match_denominator": 20,
+    "encoded_png_byte_hash_match_count": 0,
+    "encoded_png_byte_hash_note": "PNG container bytes may differ while decoded RGBA exact comparison passes; the contract gate is decoded RGBA equality.",
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "v0b_p1_i0_exact_progress": "20/20",
+    "overall_exact_progress": "20/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Identify and execute only the remaining 16 exact-capture slices required by the handoff. Do not run final gates before exact parity reaches 36/36."
+}

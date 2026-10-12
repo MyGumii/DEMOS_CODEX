@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_sharing_runtime.i0_p2.v1",
+  "packet_id": "I0-P2",
+  "recorded_at": "2026-08-25T00:20:00+09:00",
+  "status": "implemented_and_validated",
+  "prerequisite_evidence": {
+    "I0-P1": {
+      "path": "../checkpoints/ui-internal-collaboration-i0-p1-iam-authority-20260824.json",
+      "sha256": "sha256:cc54ee3e0e0e4420560c65240c3c8485850ea307d27888a3a393e336387d68dc",
+      "status": "gate_passed"
+    },
+    "UI0-P1": {
+      "path": "../checkpoints/ui-internal-collaboration-ui0-p1-editor-host-20260824.json",
+      "sha256": "sha256:55a86a8629afdb43e3a5e2eb3ba4b1c4a3fb07f1cb57a407039eb4a9fa25ee78",
+      "status": "gate_passed"
+    }
+  },
+  "runtime_contract": {
+    "schema_version": 2026082405,
+    "schema_name": "notion_workspace_v2_collaborative_editing_authority",
+    "development_agent_port": 10111,
+    "development_notion_port": 10112,
+    "development_gateway_port": 10113,
+    "approval_id": "AP-DEV-PAIR",
+    "approved_identity_source": "10111_active_human_snapshot_without_credentials",
+    "production_agent_port": 10011,
+    "production_notion_port": 10012,
+    "production_mutation_allowed": false
+  },
+  "sharing_contract": {
+    "page_roles": ["view", "comment", "edit_content", "edit", "full_access"],
+    "principal_types": ["subject", "group", "teamspace"],
+    "workspace_membership_actions": ["invite", "role_change", "revoke"],
+    "direct_and_inherited_grants": true,
+    "inherited_access_explanation": true,
+    "effective_access_legacy_projection_reconciled": true,
+    "workspace_revoke_visibility_fence": true,
+    "page_revoke_non_oracle_status": 404,
+    "optimistic_epoch_conflict_status": 409,
+    "authority_unavailable_status": 503
+  },
+  "route_contract": {
+    "manifest_path": "code_assist_v1/docs/notion_workspace_route_contract.json",
+    "manifest_sha256": "sha256:42665289f593c193b9435a0a78beba908ac4a5087dfb64f3adfd0cd4ccd5e30b",
+    "semantics_path": "code_assist_v1/docs/notion_workspace_route_semantics.json",
+    "semantics_sha256": "sha256:655f086cee14d8fb0d60688ee9f5580d64d0563a0090364dbde9023e95bae8d7",
+    "rule_count": 28,
+    "operation_count": 40,
+    "collaboration_operation_count": 15,
+    "share_operation_count": 3
+  },
+  "source_manifest": [
+    {"path": "code_assist_v1/notion_workspace_collaboration_migration.py", "sha256": "sha256:f1fa3c6b0fc47d1fe4c0c896503c906cdc65715cb5169debbf7109803283edbb"},
+    {"path": "code_assist_v1/notion_collaboration/approved_dev_pair.py", "sha256": "sha256:5a9ae04cd3cfa4311f16a80c03a1c9bc8efe3dfbd00cb5b47ff320b92aec01f0"},
+    {"path": "code_assist_v1/notion_collaboration/gateway_service.py", "sha256": "sha256:d4c4d270e5bdf5f868976a32153ce62b45a897893cf74bd9b4a2a18473cc4db5"},
+    {"path": "code_assist_v1/notion_collaboration/iam_runtime.py", "sha256": "sha256:b540e523b6ddb5a5102a44b4a7a47bb8458cb002d9c84f69e6b0664f2125aad9"},
+    {"path": "code_assist_v1/notion_collaboration/runtime_gateway.py", "sha256": "sha256:05f7bbcda355ce88cb1c6e41fab5d99f8f280255bad8796a9efc71d8c91daba3"},
+    {"path": "code_assist_v1/notion_static/index.html", "sha256": "sha256:d3a76391b0b12e96c1e43fa85eb554eabfa3fe144300251146550abdacb1b71d"},
+    {"path": "code_assist_v1/notion_static/notion.css", "sha256": "sha256:23a512cd5bc33765f41dd44d21835b9acae9be2cb9842df8bde80c22bf67c35c"},
+    {"path": "code_assist_v1/notion_static/notion.js", "sha256": "sha256:26757ac92994df6d2d348abe9c1dba62966dc95be0b561099fe365898728d781"},
+    {"path": "code_assist_v1/routes_notion_workspace.py", "sha256": "sha256:cd04a8d7a73d31ae523cb2736416c96fd0219b1a3dd5ccdf83c30feed897543e"}
+  ],
+  "test_manifest": [
+    {"path": "code_assist_v1/notion_collaboration/i0_p2_browser.py", "sha256": "sha256:435e66952a880428a42d730e5cce9b585d1b79122d4d918d0cefd21783c0f68a"},
+    {"path": "code_assist_v1/tests/notion_collaboration/browser/test_i0_p2_live_share_journey.py", "sha256": "sha256:154dcbfa406d394c6ee76a76700f1e5d8ee9708459b8adb23adc947c29469b41"},
+    {"path": "code_assist_v1/tests/notion_collaboration/browser/test_share_and_workspace_membership.py", "sha256": "sha256:0f00a7352ed00b446195eb66d08049f5312c588b14c242a3284a4f137f278d04"},
+    {"path": "code_assist_v1/tests/test_notion_navigation_ui.js", "sha256": "sha256:9c3f36cde66d82ceefe0e7b6c312a52955267addd737536bf4729b2d06962170"},
+    {"path": "code_assist_v1/tests/test_notion_workspace_auth_isolation.py", "sha256": "sha256:adbfd5127e78a2287f4e8184a7a20161db5ad881265104f99ae49d90df3bbe08"},
+    {"path": "code_assist_v1/tests/test_verify_notion_workspace_route_contract.py", "sha256": "sha256:9ad2b946d33b6e95f6012936695f866ebf6c39dbc0c77eceb849fbfdd9db6260"},
+    {"path": "code_assist_v1/tools/verify_notion_workspace_route_contract.py", "sha256": "sha256:b3c0e8905bf55e844197bae1a7f52a24a7cccd01a72d13f94d5760d87577222e"}
+  ],
+  "claims": {
+    "I0_P2_source_implemented": true,
+    "normal_share_invite_role_change_and_revoke_UI_implemented": true,
+    "inherited_access_explanation_implemented": true,
+    "multi_principal_browser_gate_required": true,
+    "persistent_development_runtime_migrated": true,
+    "production_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

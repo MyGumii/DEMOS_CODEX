@@ -1,0 +1,140 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T21:55:00+09:00",
+  "run_id": "ui61-approved-evidence-modes-23-of-25-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-r1-r3-reference-completion-differential-16-of-25-green-20260822.json",
+    "sha256": "sha256:a9059d3b7ad53059b294f3126e3fa230e3331d97ff674be5ba8fb9b20271b722",
+    "semantic_status": "reference_differential_16_of_25_green"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "the user explicitly said to continue",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "evidence_modes": [
+      "reference_differential",
+      "reference_observable_outcome",
+      "local_second_brain_contract",
+      "reference_measurement_local_budget"
+    ],
+    "newly_satisfied_scenario_ids": [
+      "UI-EDITOR-003",
+      "UI-EDITOR-004",
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-SB-003",
+      "UI-A11Y-001",
+      "UI-RESP-001"
+    ],
+    "remaining_scenario_ids": [
+      "UI-EDITOR-006",
+      "UI-PERF-001"
+    ],
+    "product_code_changed": false,
+    "live_or_personal_data_accessed": true
+  },
+  "evidence": {
+    "mode_packet": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+      "sha256": "sha256:a9f6113b3f89796724c7ff032e6e0f799baa215ba63f559bbc9ffd234a7b8b61"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:e3a58d7a9d79535352940049d133478431fd42147e621040105e6ba631eb2a37"
+    },
+    "review_gate": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:a33f89f57d09b1dbc36eb377dd3a18198f62a324ef312d4da9137d8c5c84cb92"
+    },
+    "review_queue": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json",
+      "sha256": "sha256:03342c991079e43895eb169de7eedc47b278d0cd38d06550d00eced262c8575b"
+    },
+    "performance_failure": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-current-budget-failed-no-promotion-20260822.json",
+      "sha256": "sha256:94d32515dda3ddafee3736369bb733ca36f5cf9e574379155f20854d8a4ae994"
+    }
+  },
+  "owned_files": [
+    {"path": "code_assist_v1/tools/notion_core_free_ui_remaining_evidence.py", "sha256": "sha256:c2f81f9303fb1517ab9cc834dadebd32c819f00eaeb311b8c1421b8b9281441d"},
+    {"path": "code_assist_v1/tools/verify_notion_core_free_ui_completion.py", "sha256": "sha256:7a01271d535631634dee34f3acf382d5013ec700d334552836e9bde3823c3340"},
+    {"path": "code_assist_v1/tools/verify_notion_core_free_ui_pending_approval_batch.py", "sha256": "sha256:4f7f4359dda6479aa6abdf5a3d9ac436ccce9ec57a1872416bd8badaa81e676e"},
+    {"path": "code_assist_v1/tools/verify_notion_core_free_ui_review_gate.py", "sha256": "sha256:f8731b8f3a3efac0466daf27581a7c6efe2673d267ad39028e139e95f20dd523"},
+    {"path": "code_assist_v1/tests/test_notion_ui_completion_matrix.py", "sha256": "sha256:78e142d3146eea458869926a1d7c2e165d2f8dec53541f8f6bf6fc8e84ef4cc6"},
+    {"path": "code_assist_v1/tests/test_notion_ui_review_gate.py", "sha256": "sha256:d40fe28b585196ac4a5ee4434e7ff2293e22fc13f97a1111d2a24c63ba2d7c91"}
+  ],
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    }
+  ],
+  "verification": [
+    {"selection": "completion/review/pending/manifest verifier tests", "result": "24 passed in 37.63s"},
+    {"selection": "approval queue/receipt and IME receipt tests", "result": "23 passed in 7.66s"},
+    {"selection": "performance budget/proposal unit tests", "result": "7 passed in 2.56s"},
+    {"selection": "UI-EDITOR-006 exact isolated browser regression", "result": "1 passed in 29.99s"},
+    {"selection": "approved browser journeys", "result": "5 passed; UI-EDITOR-004 focus assertion failed once, then exact isolated retry passed 1 in 21.07s"},
+    {"selection": "UI-PERF-001 exact isolated performance gate", "result": "failed: shell_ready_ms p95 1961.939ms > 1370ms"},
+    {"selection": "UI-PERF-001 diagnostic six-sample rerun", "result": "shell_ready_ms p95 2073.366ms remained over budget; every other budgeted metric passed"},
+    {"selection": "UI-PERF-001 one-root three-sample probe", "result": "shell_ready_ms samples 924.206, 790.104, and 1166.683ms were all within budget, confirming cross-root host variance without clearing the six-sample gate"},
+    {"selection": "six Node UI/editor/publication/save/CSRF suites", "result": "all passed"},
+    {"selection": "Notion route/workspace/auth regressions", "result": "66 passed in 58.82s"},
+    {"selection": "Second Brain publication/job-restart/chat regressions", "result": "5 passed in 5.11s"},
+    {"selection": "four machine verifiers", "result": "all passed; completion evidence_satisfied 23 of 25"},
+    {"selection": "completion matrix fail-closed evidence-mode tests after final hash update", "result": "8 passed in 8.84s"},
+    {"selection": "final checkpoint path/SHA binding audit", "result": "13 bindings checked; 0 mismatches"},
+    {"selection": "four changed production evidence tools py_compile", "result": "passed after one host-error split retry"}
+  ],
+  "host_incidents": [
+    {"code": "0xC0000409", "phase": "initial broad scenario search", "resolution": "narrow read-only search passed"},
+    {"code": "0xC0000409", "phase": "broad evidence pytest bundle", "resolution": "split serial bundles produced explicit pass/fail results"},
+    {"code": "0xC0000409", "phase": "combined route and Second Brain regression bundle", "resolution": "split serial bundles passed 66 plus 5 tests"},
+    {"code": "0xC0000409", "phase": "combined production and test py_compile", "resolution": "four changed production tools passed in one smaller retry; changed tests were already collected by passing pytest"}
+  ],
+  "safety": {
+    "synthetic_only": true,
+    "trusted_os_temp_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "live_local_data_accessed": true,
+    "live_local_data_incident": "A read-only rg search for UI-PERF-001 omitted a user_data exclusion and returned existing code_assist project index snippets under code_assist_v1/user_data. No Notion page/database, credential, personal workspace, or live file was opened directly or mutated; performance investigation stopped immediately and the command output was not persisted as evidence.",
+    "reference_workspace_mutated": false,
+    "external_publish_invite_or_message_executed": false,
+    "permanent_delete_executed": false,
+    "knowledge_status_delta": "N/A: no Knowledge source, status, traceability, or live fixture changed"
+  },
+  "vcs": {
+    "available": false,
+    "observation": "git rev-parse --is-inside-work-tree failed because the workspace is not a Git repository",
+    "commit_claimed": false
+  },
+  "claims": {
+    "required_scenario_count": 25,
+    "evidence_satisfied_count": 23,
+    "reference_characterized_count": 21,
+    "differential_passed_count": 20,
+    "local_second_brain_contract_passed_count": 3,
+    "measurement_contract_passed_count": 0,
+    "promotion_allowed": false,
+    "h8_complete": false,
+    "h9_complete": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "remaining": [
+    {
+      "scenario_id": "UI-EDITOR-006",
+      "gate": "Safe official failed-save and stale-revision recovery evidence remains unavailable through normal UI; local recovery regression is green."
+    },
+    {
+      "scenario_id": "UI-PERF-001",
+      "gate": "Current shell_ready_ms p95 exceeds the approved isolated-local budget; investigate and rerun before evidence satisfaction."
+    }
+  ],
+  "next_exact_action": "Investigate UI-PERF-001 shell-ready measurement variance and implementation cost without changing the approved budget; keep UI-EDITOR-006 unpromoted until safe official reference evidence or a separately reviewed inapplicable-reference policy exists."
+}

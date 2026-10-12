@@ -1,0 +1,145 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T02:04:52.5331008+09:00",
+  "run_id": "ui23-search-002-backlink-reference-observed-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-search-002-reference-partial-native-find-backlink-deferred-20260822.json",
+    "sha256": "sha256:03b7d85bd372f66bf09ebc7dd1ba715c30d1288b4b0c7338391e475d6da6386b",
+    "semantic_status": "superseded_for_backlink_only_native_find_remains_open"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "Continue the approved Core Free desktop UI characterization and implementation plan."
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-SEARCH-002",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_source_alias": "UI-PARITY-RUN-BACKLINK-SOURCE-001",
+    "synthetic_target_alias": "UI-PARITY-RUN-BACKLINK-TARGET-001",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "source_and_target_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-SEARCH-002-BACKLINK-SUPPLEMENT",
+    "status": "backlink_reference_observed_native_find_partial",
+    "review_required": true,
+    "promotion_allowed": false,
+    "closed_requirements": [
+      "reference_page_link_creation",
+      "reference_backlink_count_control",
+      "reference_exact_backlink_navigation"
+    ],
+    "incomplete_requirements": [
+      "trusted_chrome_native_find_input",
+      "trusted_chrome_native_find_match_highlight",
+      "trusted_chrome_native_find_escape_focus_restoration"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "certified_differential_passed": 5,
+    "reference_observed_review_pending": 10,
+    "local_integration_review_pending": 3,
+    "reference_partially_observed": 7,
+    "reference_unobserved": 0,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    }
+  ],
+  "reference_backlink_observation": {
+    "block_insert_control_opened": true,
+    "page_link_option_label": "페이지 링크",
+    "exact_target_choice_count": 1,
+    "exact_target_link_committed_count": 1,
+    "target_link_opened_exact_target": true,
+    "backlink_control_label": "1개의 백링크",
+    "exact_source_backlink_count": 1,
+    "source_backlink_opened_exact_source": true,
+    "other_workspace_or_personal_content_opened": false,
+    "synthetic_source_moved_to_trash": true,
+    "synthetic_target_moved_to_trash": true,
+    "synthetic_source_residual_count": 0,
+    "synthetic_target_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "native_find_observation": {
+    "ctrl_f_surface_is_chrome_native": true,
+    "connected_page_dom_can_authenticate_input": false,
+    "trusted_query_value_observed": false,
+    "trusted_match_highlight_observed": false,
+    "trusted_escape_focus_restoration_observed": false,
+    "status": "deferred_without_failure"
+  },
+  "local_evidence": {
+    "selection": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py::test_ui_search_002_in_page_find_link_and_backlink_stay_workspace_scoped",
+    "result": "1 passed in 24.85s",
+    "command_exit_code": 0,
+    "focus_sequence": [
+      "PAGE-FIND-INPUT",
+      "EDITOR-BLOCK",
+      "PAGE-CANVAS"
+    ],
+    "workspace_scope_leak_count": 0,
+    "page_mutation_count_after_setup": 0,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "synthetic_only": true
+  },
+  "partial_differential": {
+    "status": "backlink_matched_find_incomplete",
+    "promotion_allowed": false,
+    "matched_contracts": [
+      "workspace_scoped_page_link_creation",
+      "target_backlink_count_visibility",
+      "target_to_source_backlink_navigation"
+    ],
+    "missing_evidence": [
+      "reference_chrome_native_find_input",
+      "reference_chrome_native_find_match_count_and_highlight",
+      "reference_chrome_native_find_escape_focus"
+    ],
+    "interpretation": "The official synthetic page-link and backlink journey is now exact and cleanup-safe. The Chrome-native find surface remains outside the authenticated page transport, so the scenario remains partial and the completion matrix is unchanged."
+  },
+  "claims": {
+    "ui_search_002_backlink_reference_observed": true,
+    "ui_search_002_reference_partially_observed": true,
+    "ui_search_002_reference_characterized": false,
+    "ui_search_002_differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Keep UI-SEARCH-002 unpromoted until a trusted Chrome-native find observation channel exists. Continue with owner review for the ten reference-observed scenarios and the three local-only Second Brain integration contracts."
+}

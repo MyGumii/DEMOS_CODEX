@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P3-BENCHMARK-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-23T17:26:40Z",
+  "checkpoint_kind": "pre_edit",
+  "packet_id": "E0-P3",
+  "packet_status": "in_progress_preparation_only",
+  "purpose": "Bind the approval-free E0-P3 benchmark harness preparation before any candidate reinstall, candidate execution, status integration, or product mutation.",
+  "owner_agent": "/root",
+  "owned_existing_files": [],
+  "new_product_files": [
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark.py",
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark_executor.py",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_benchmark_adapter.py",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_benchmark_relay_adapter.py",
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_benchmark_adapter.cjs",
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_benchmark_adapter.cjs"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark.py",
+    "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark_executor.py"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark.py": null,
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark_executor.py": null,
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_benchmark_adapter.py": null,
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_benchmark_relay_adapter.py": null,
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_benchmark_adapter.cjs": null,
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_benchmark_adapter.cjs": null,
+    "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark_executor.py": null
+  },
+  "authority_bindings": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:9bbde1679002c122cd054413cad5c6dfd9ee77b2e28be218d216547c6755736c",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:1d67ebbbd9832785ad64eb70c8287936db0948c1148b19cf32fae156a3d54c0e",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_candidate_matrix.v1.json": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_corpus.v1.json": "sha256:9be012b8150b3db48c66f743369a2b9905e234582056e28e427d77f311fca8b2",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:11de6d0b8618480e4cdebc475eb0c1f7d2974d20622dc598d1e14b6294806c05",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-runtime-spike-20260824.json": "sha256:cc097d5d7265c72ffe228a854254649d8d0f2ffcca26b7248e62c288f947aba6",
+    "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md": "sha256:6cb9abe671b87401196e33acf3d2fd2c16d4c951ae0c90dc8c6331a64f1be7fc",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md": "sha256:62e4aa857461c3cc5eb3b4f7c73dbdb5e1f59fec21f043d454b07e4305db7015"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-runtime-spike-20260824.json",
+    "sha256": "sha256:cc097d5d7265c72ffe228a854254649d8d0f2ffcca26b7248e62c288f947aba6",
+    "packet_id": "E0-P2"
+  },
+  "ownership_lease": {
+    "lease_id": "E0-P3-SPIKE-HARNESS-20260824",
+    "lane": "SPIKE",
+    "owner_agent": "/root",
+    "status": "active_preparation_only",
+    "acquired_at": "2026-08-23T17:26:40Z",
+    "expires_at": "2026-08-24T17:26:40Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "runtime_availability_observation": {
+    "observed_at": "2026-08-23T17:24:00Z",
+    "npm_yjs_13_6_32_cached": true,
+    "npm_hocuspocus_server_4_6_0_cached": true,
+    "python_pycrdt_0_14_3_available": false,
+    "python_pycrdt_websocket_0_16_4_available": false,
+    "python_uvicorn_0_52_4_available": false,
+    "python_websockets_17_0_1_available": false,
+    "prior_approval_receipt_single_use": true,
+    "prior_approval_consumed_by": "E0-P2",
+    "candidate_execution_allowed_now": false,
+    "preparation_without_candidate_import_or_execution_allowed": true
+  },
+  "protected_dependencies": {
+    "modified_by_this_preparation": false,
+    "paths": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/docs/knowledge_spaces",
+      "code_assist_v1/notion_static",
+      "code_assist_v1/app_notion.py",
+      "code_assist_v1/routes_notion.py",
+      "code_assist_v1/routes_notion_workspace.py",
+      "code_assist_v1/notion_store.py",
+      "code_assist_v1/notion_workspace_store.py",
+      "code_assist_v1/user_data",
+      "code_assist_v1/knowledge",
+      "code_assist_v1/.runtime"
+    ]
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked_stale_after_explicit_resume",
+    "resumed_by_user": true,
+    "goal_completion_claimed": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "rollback_or_cleanup": "Remove only the eight new E0-P3 harness/adapter/test paths and this checkpoint if preparation is rejected. Do not touch the E0-P2 chain, package caches, services, ports, product locks, schemas, identities, workspaces, browser profiles, or protected data roots."
+}

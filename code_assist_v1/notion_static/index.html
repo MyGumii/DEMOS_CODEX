@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notion Workspace</title>
+  <link rel="stylesheet" href="/notion_static/notion.css?v=20261003-ui386-peek-toolbar">
+  <link rel="stylesheet" href="/notion_static/vendor/katex-0.18.7/katex.min.css">
+  <link rel="stylesheet" href="/notion_static/notion_document_extras.css?v=20260928-ui5-plus-options-cleanup">
+  <link rel="stylesheet" href="/notion_static/notion_ai_notes.css?v=20260912-pair1">
+  <link rel="stylesheet" href="/notion_static/notion_document_ai.css?v=20260912-document-ai1">
+  <link rel="stylesheet" href="/notion_static/notion_ai_home.css?v=20261008-deep-research7">
+  <link rel="stylesheet" href="/notion_static/notion_ui_refinement.css?v=20261001-ui102-block-search-groups">
+  <link rel="stylesheet" href="/notion_static/notion_icons.css?v=20260928-ui12-workspace-unread">
+  <link rel="stylesheet" href="/notion_static/notion_personal_workspace.css?v=20260915-ui4-personal1">
+</head>
+<body>
+  <a id="skipToContent" class="skip-link" href="#workspaceMain">콘텐츠로 건너뛰기</a>
+  <button id="sidebarRestoreBtn" class="sidebar-restore" type="button" title="사이드바 열기" aria-label="사이드바 열기">☰</button>
+  <button id="mobileSidebarBackdrop" class="mobile-sidebar-backdrop" type="button" aria-label="사이드바 닫기" tabindex="-1" hidden></button>
+
+  <div class="notion-root" inert>
+    <aside class="sidebar">
+      <div id="workspaceSidebarGroup" role="group" tabindex="0" aria-label="워크스페이스 사이드바">
+        <div class="workspace-header">
+        <button type="button" class="workspace-name" id="workspaceName" aria-label="워크스페이스 전환" aria-haspopup="dialog" aria-expanded="false" aria-controls="workspacePopover">
+          <span class="workspace-avatar" aria-hidden="true">
+            <span class="notion-cube">N</span>
+          </span>
+          <span id="workspaceTitle">admin의 Notion</span>
+          <svg class="workspace-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4.5 6 3.5 3.5L11.5 6"/></svg>
+        </button>
+          <button id="collapseBtn" type="button" title="사이드바 접기" aria-label="사이드바 접기"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m11 6-6 6 6 6m7-12-6 6 6 6"/></svg></button>
+          <div id="workspacePopover" class="workspace-popover" role="dialog" aria-label="워크스페이스 메뉴">
+            <div id="workspaceHoverPages" class="popover-list"></div>
+
+          </div>
+        </div>
+      </div>
+
+      <nav class="quick-icons" aria-label="워크스페이스 탐색">
+        <div class="sidebar-tabs" role="tablist" aria-label="사이드바 목록">
+        <button type="button" class="icon-nav active" id="homeNavBtn" role="tab" data-sidebar-tab="pages" aria-controls="sidebarPagePanel" aria-selected="true" title="홈" aria-label="홈"><span class="ni ni-home" aria-hidden="true"></span><span class="nav-label">홈</span></button>
+        <button type="button" class="icon-nav" id="sidebarChatNavBtn" role="tab" data-sidebar-tab="chat" aria-controls="aiHomeSidebar" aria-selected="false" tabindex="-1" title="채팅" aria-label="채팅"><span class="ni ni-chat" aria-hidden="true"></span><span class="nav-label">채팅</span></button>
+        <button type="button" class="icon-nav" id="sidebarMeetingsNavBtn" role="tab" data-sidebar-tab="meetings" aria-controls="sidebarMeetingsPanel" aria-selected="false" tabindex="-1" title="회의" aria-label="회의"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 19H5V3h11v6M8 7h5M8 11h3M8 15h2"/><rect x="14" y="10" width="4" height="7" rx="2"/><path d="M12 15v1a4 4 0 0 0 8 0v-1M16 20v2m-3 0h6"/></svg><span class="nav-label">회의</span></button>
+          <button type="button" class="icon-nav inbox-nav" id="inboxNavBtn" role="tab" data-sidebar-tab="inbox" title="수신함" aria-label="수신함" aria-controls="inboxOverlay" aria-selected="false" tabindex="-1"><span class="ni ni-inbox" aria-hidden="true"></span><span class="nav-label">수신함</span><span id="inboxBadge" class="inbox-badge" hidden>0</span></button>
+        </div>
+        <button type="button" class="icon-nav" id="sidebarSearchBtn" title="검색" aria-label="검색"><span class="ni ni-search" aria-hidden="true"></span></button>
+      </nav>
+      <section id="inboxOverlay" class="sidebar-inbox" role="tabpanel" aria-labelledby="inboxNavBtn" hidden>
+        <div class="inbox-head">
+          <h2>수신함</h2>
+          <button id="inboxRefreshBtn" type="button" title="새로고침" aria-label="수신함 새로고침">↻</button>
+          <button id="inboxReadAllBtn" type="button" title="모두 읽음" aria-label="모두 읽음"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></button>
+          <button id="inboxFilterBtn" type="button" title="알림 필터" aria-label="알림 필터" aria-haspopup="menu" aria-expanded="false"><svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18M6 12h12M9 18h6"/></svg></button>
+          <select id="inboxFilter" aria-label="알림 필터 값" hidden><option value="all">모든 알림</option><option value="due">읽지 않음</option><option value="upcoming">예정된 리마인더</option><option value="mention">멘션</option></select>
+        </div>
+        <p id="inboxStatus" class="inbox-status" role="status" aria-live="polite"></p>
+        <div id="inboxList" class="inbox-list"></div>
+      </section>
+      <section id="aiHomeSidebar" class="ai-home-sidebar" role="tabpanel" aria-labelledby="sidebarChatNavBtn" hidden>
+        <div id="aiHomeHistoryHeading" class="ai-history-heading"><h2 id="aiHomeHistoryTitle">오늘</h2><div class="ai-history-tools"><button id="aiHomeHistorySearchBtn" type="button" aria-label="채팅 검색" title="채팅 검색" aria-expanded="false" aria-controls="aiHomeHistorySearchBox"><span class="ni ni-search" aria-hidden="true"></span></button><button id="aiHomeHistoryNewBtn" type="button" aria-label="새 채팅" title="새 채팅">＋</button></div></div>
+        <div id="aiHomeHistorySearchBox" class="ai-history-search" hidden><span class="ni ni-search" aria-hidden="true"></span><input id="aiHomeHistorySearch" type="search" maxlength="200" aria-label="채팅 검색" placeholder="채팅 검색"><button id="aiHomeHistorySearchClose" type="button" aria-label="채팅 검색 닫기" title="검색 닫기">×</button></div>
+        <label class="ai-history-archive-filter"><input id="aiHomeArchived" type="checkbox"> 보관함</label>
+        <div id="aiHomeHistory"></div>
+        <button id="aiHomeHistoryMore" type="button" hidden>대화 더 보기</button>
+        <p id="aiHomeHistoryStatus" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="sidebarMeetingsPanel" class="sidebar-mode sidebar-meetings" role="tabpanel" aria-labelledby="sidebarMeetingsNavBtn" hidden>
+        <div class="sidebar-panel-heading"><h2 id="sidebarMeetingsTitle">회의 노트</h2><button id="sidebarMeetingRefreshBtn" type="button" aria-label="회의 목록 새로고침" title="새로고침">↻</button></div>
+        <input id="sidebarMeetingSearch" type="search" maxlength="200" placeholder="회의 노트 검색" aria-label="사이드바 회의 노트 검색">
+        <button id="sidebarMeetingNewBtn" type="button" class="nav-pill">＋ 새 회의 노트</button>
+        <button id="sidebarMeetingsOpenBtn" type="button" class="nav-pill">모든 회의 노트 열기</button>
+        <div id="sidebarMeetingList" class="sidebar-meeting-list"></div>
+        <button id="sidebarMeetingListMore" type="button" class="sidebar-more-pages" hidden>더 보기</button>
+        <p id="sidebarMeetingListStatus" role="status"></p>
+      </section>
+
+      <div id="sidebarPagePanel" class="sidebar-mode" role="tabpanel" aria-labelledby="homeNavBtn">
+        <section id="sidebarSectionsEditor" class="sidebar-sections-editor" aria-label="홈 섹션 사용자 지정" hidden></section>
+        <div id="navigationSyncStatus" class="navigation-sync-status" role="status" aria-live="polite" hidden></div>
+
+        <div class="sidebar-scroll">
+          <div id="navigationSections">
+            <div class="sidebar-section" id="favoritesSection" data-navigation-section="favorites" hidden>
+              <button class="section-label" type="button" data-navigation-toggle="favorites" data-navigation-focus="toggle-favorites" aria-controls="favoritePages" aria-label="즐겨찾기 접기"><span>즐겨찾기</span><span class="section-chevron" aria-hidden="true">⌄</span></button>
+              <div id="favoritePages" class="page-list"></div>
+              <button id="favoritePagesMore" class="sidebar-more-pages" type="button" aria-controls="favoritePages" aria-expanded="false" hidden></button>
+            </div>
+            <div class="sidebar-section" id="recentSection" data-navigation-section="recents">
+              <button class="section-label" type="button" data-navigation-toggle="recents" data-navigation-focus="toggle-recents" aria-controls="recentPages" aria-label="최근 항목 접기"><span>최근 항목</span><span class="section-chevron" aria-hidden="true">⌄</span></button>
+              <div id="recentPages" class="page-list"></div>
+              <button id="recentPagesToggle" class="sidebar-more-pages" type="button" aria-controls="recentPages" aria-expanded="false" hidden></button>
+            </div>
+
+            <div class="sidebar-section" id="teamspacesSection" data-navigation-section="teamspaces" hidden>
+              <button class="section-label" type="button" data-navigation-toggle="teamspaces" data-navigation-focus="toggle-teamspaces" aria-controls="teamspacePages" aria-label="팀스페이스 접기"><span>팀스페이스</span><span class="section-chevron" aria-hidden="true">⌄</span></button>
+              <div id="teamspacePages" class="page-list"></div>
+            </div>
+
+            <div class="sidebar-section" id="sharedSection" data-navigation-section="shared">
+              <button class="section-label" type="button" data-navigation-toggle="shared" data-navigation-focus="toggle-shared" aria-controls="sharedPages" aria-label="공유된 페이지 접기"><span>공유된 페이지</span><span class="section-chevron" aria-hidden="true">⌄</span></button>
+              <div id="sharedPages" class="page-list"></div>
+              <button id="sharedPagesMore" class="sidebar-more-pages" type="button" aria-controls="sharedPages" aria-expanded="false" hidden></button>
+            </div>
+
+            <div class="sidebar-section" id="privateSection" data-navigation-section="private">
+              <button class="section-label" type="button" data-navigation-toggle="private" data-navigation-focus="toggle-private" aria-controls="ownPages" aria-label="개인 페이지 접기"><span>개인 페이지</span><span class="section-chevron" aria-hidden="true">⌄</span></button>
+              <div id="ownPages" class="page-list"></div>
+              <button id="ownPagesMore" class="sidebar-more-pages" type="button" aria-controls="ownPages" aria-expanded="false" hidden></button>
+            </div>
+          </div>
+
+          <div class="sidebar-section legacy-sidebar-tools">
+            <div class="section-label">도구</div>
+            <button id="workspaceHomeBtn" type="button" class="nav-pill workspace-home-link"><span class="ni ni-home" aria-hidden="true"></span>워크스페이스 홈</button>
+            <details class="sidebar-filter" id="sidebarFilter">
+              <summary><span class="ni ni-search" aria-hidden="true"></span>페이지 목록 필터<span id="pageFilterIndicator" hidden>적용 중</span></summary>
+              <div class="search-row">
+                <input id="pageSearch" type="search" placeholder="페이지 제목으로 필터" aria-label="페이지 목록 필터">
+                <button id="navigationSettingsBtn" type="button" title="사이드바 설정" aria-label="사이드바 설정" hidden>⚙</button>
+              </div>
+            </details>
+            <button id="helpBtn" type="button" class="nav-pill"><span class="ni ni-help"></span>도움말</button>
+            <button id="trashBtn" type="button" class="nav-pill"><span class="ni ni-trash"></span>휴지통</button>
+            <a id="codeAgentLink" class="nav-pill app-link" href="/code/">↗ Second Brain Agent</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="sidebarAgentPanel" class="sidebar-mode agent-sidebar" hidden>
+        <div class="sidebar-section">
+          <div class="section-label">에이전트</div>
+          <div class="agent-sidebar-title">Notion AI와 채팅하기</div>
+          <p class="panel-help">현재 페이지와 관련 페이지를 맥락으로 사용합니다.</p>
+          <textarea id="sidebarAiQuestion" class="ai-question" placeholder="이 페이지에서 핵심만 정리해줘"></textarea>
+          <button id="sidebarAiAskBtn" type="button">질문하기</button>
+          <div id="sidebarAiAnswer" class="ai-answer"></div>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="aiHomeNewChatBtn" type="button"><span class="ni ni-chat" aria-hidden="true"></span><span>새 채팅</span><small>Ctrl+O</small></button>
+        <button id="sidebarNewBtn" type="button" title="새 페이지" aria-label="새 페이지" aria-haspopup="menu"><span class="ni ni-edit" aria-hidden="true"></span></button>
+      </div>
+      <div id="sidebarResize" class="sidebar-resize" role="separator" aria-orientation="vertical" aria-label="사이드바 너비 조절" tabindex="0"></div>
+    </aside>
+
+    <main id="workspaceMain" class="workspace-main" tabindex="-1">
+      <header class="topbar">
+        <div class="topbar-page-context">
+        <div class="breadcrumb-wrap" id="breadcrumbWrap">
+          <div class="breadcrumb" id="breadcrumb">홈</div>
+          <div class="breadcrumb-popover">
+            <div class="popover-title">페이지 바로가기</div>
+            <div id="breadcrumbHoverPages" class="popover-list"></div>
+          </div>
+        </div>
+        <button id="pageLocationBtn" class="page-location-button" type="button" aria-haspopup="dialog" aria-controls="movePageMenu" aria-expanded="false" hidden></button>
+        <button id="pageLockBtn" class="page-lock-button" type="button" aria-label="페이지 잠금 상태" aria-haspopup="menu" aria-controls="pageMenu" aria-expanded="false" hidden></button>
+        </div>
+        <div class="top-actions">
+          <button id="pageEditTime" type="button" class="page-edit-time" title="페이지 기록" hidden></button>
+          <div class="page-collaboration-actions">
+            <div id="presenceAvatars" class="presence-avatars" role="status" aria-live="polite" aria-label="현재 페이지 참여자" hidden></div>
+            <button id="commentDrawerBtn" class="topbar-icon-action" type="button" title="페이지 댓글" aria-label="페이지 댓글"><span class="ni ni-chat" aria-hidden="true"></span></button>
+          </div>
+          <button id="shareDrawerBtn" type="button">공유</button>
+          <div id="shareAccessTooltip" class="share-access-tooltip" role="dialog" aria-label="페이지 액세스" hidden>페이지 액세스</div>
+          <section id="archivedDatabaseSharePopover" class="archived-database-share-popover" role="dialog" aria-label="데이터베이스 공유" tabindex="-1" hidden>
+            <header><div class="database-share-tabs" role="tablist" aria-label="데이터베이스 공유 옵션"><button type="button" role="tab" aria-selected="true">공유</button><button type="button" role="tab" aria-selected="false" title="데이터베이스 게시 기능은 아직 제공되지 않습니다." disabled>게시</button></div><button id="archivedDatabaseShareCloseBtn" type="button" aria-label="공유 창 닫기">×</button></header>
+            <p id="databaseShareScopeNote">이 데이터베이스는 휴지통에 있습니다. 공유 설정은 복원한 뒤 변경할 수 있습니다.</p>
+            <div id="archivedDatabaseShareAccess" role="status" aria-live="polite"></div>
+            <footer><button id="databaseParentShareBtn" type="button" hidden>부모 페이지 공유 설정</button><button id="archivedDatabaseShareCopyBtn" type="button">링크 복사</button></footer>
+          </section>
+          <button id="pageCopyLinkBtn" class="topbar-icon-action" type="button" title="링크 복사" aria-label="링크 복사"><span class="ni ni-link" aria-hidden="true"></span></button>
+          <button id="favoritePageBtn" class="topbar-icon-action" type="button" title="즐겨찾기에 추가" aria-label="즐겨찾기에 추가">☆</button>
+          <button id="pageMoreBtn" class="topbar-icon-action" type="button" title="페이지 옵션" aria-label="페이지 옵션" aria-haspopup="menu">…</button>
+        </div>
+        <div id="pageActionBindings" hidden>
+          <button id="contextDrawerBtn" type="button" title="현재 페이지를 Second Brain Agent 채팅 세션에 일시 첨부">Chat에 추가</button>
+          <button id="documentAiDrawerBtn" type="button" aria-label="문서 AI" title="현재 페이지 요약·선택 문장 편집">✦ 문서 AI</button>
+          <button id="filesDrawerBtn" type="button" title="현재 페이지에 첨부된 이미지와 파일">첨부파일</button>
+          <button id="publishBtn" type="button" class="publish-btn">Second Brain</button>
+          <button id="pageTrashBtn" type="button" title="현재 페이지를 휴지통으로 이동"><span class="ni ni-trash"></span></button>
+          <button id="logoutBtn" type="button">로그아웃</button>
+        </div>
+      </header>
+
+      <div id="pageLifecycleStatus" class="collaboration-recovery-banner" role="status" aria-live="polite" hidden></div>
+      <div id="pageCopyStatus" class="collaboration-recovery-banner" role="status" aria-live="polite" hidden></div>
+      <div id="databaseCopyStatus" class="collaboration-recovery-banner" role="status" aria-live="polite" hidden></div>
+      <div id="databaseRelationPairStatus" class="collaboration-recovery-banner" role="status" aria-live="polite" hidden></div>
+      <div id="databaseMoveStatus" class="collaboration-recovery-banner" role="status" aria-live="polite" hidden></div>
+      <div id="databaseTrashStatus" class="collaboration-recovery-banner" role="status" aria-live="polite" hidden></div>
+      <div id="databaseRowTrashStatus" class="collaboration-recovery-banner" role="status" aria-live="polite" hidden></div>
+      <div id="databaseRowMoveStatus" class="collaboration-recovery-banner" role="status" aria-live="polite" hidden></div>
+      <div id="syncedDetachStatus" class="collaboration-recovery-banner" role="status" aria-live="polite" hidden></div>
+      <div id="syncedLegacyStatus" class="collaboration-recovery-banner" role="status" aria-live="polite" hidden></div>
+
+      <section id="meetingsView" class="meetings-view" aria-labelledby="meetingsTitle" hidden>
+        <div class="meetings-heading"><h1 id="meetingsTitle" tabindex="-1">회의</h1><button id="meetingNewBtn" type="button" class="primary-btn">새 회의 노트</button></div>
+        <p class="meetings-description">회의 메모와 녹음·번역 기록을 한곳에서 확인하세요.</p>
+        <div class="meetings-tools"><input id="meetingSearch" type="search" maxlength="200" placeholder="회의 노트 검색" aria-label="회의 노트 검색"><button id="meetingRefreshBtn" type="button">새로고침</button></div>
+        <div id="meetingList" class="meeting-list"></div>
+        <p id="meetingListStatus" class="meetings-description" role="status"></p>
+        <button id="meetingListMore" type="button" hidden>더 보기</button>
+      </section>
+
+      <div id="workspaceLandingBanner" class="workspace-landing-banner" hidden>
+        <span>모든 워크스페이스 멤버를 위한 사용자 지정 랜딩 페이지를 설정하세요.</span>
+        <button id="workspaceLandingSetupBtn" type="button">페이지 설정하기</button>
+        <button id="workspaceLandingBannerCloseBtn" class="workspace-landing-banner-close" type="button" aria-label="랜딩 페이지 안내 닫기">×</button>
+      </div>
+
+      <div id="guestAccessBanner" class="guest-access-banner" hidden>
+        <span><strong id="guestAccessWorkspace">워크스페이스</strong>의 게스트이십니다. 내 워크스페이스에서 Notion에 대한 전체 사용 권한을 얻으세요.</span>
+        <button id="guestWorkspaceCreateBtn" type="button">워크스페이스 생성하기</button>
+        <button id="guestAccessBannerCloseBtn" class="guest-access-banner-close" type="button" aria-label="게스트 안내 닫기">×</button>
+      </div>
+
+      <section id="homeView" class="home-view" role="region" aria-label="홈" tabindex="-1"></section>
+      <section id="archivedPageNotice" class="archived-page-notice" role="region" aria-label="휴지통에 있는 페이지" tabindex="-1" hidden>
+        <div class="archived-page-notice-bar">
+          <p id="archivedPageMessage">이 페이지는 휴지통에 있습니다.</p>
+          <button id="archivedPageRestoreBtn" type="button">↶&nbsp; 페이지 복원</button>
+        </div>
+        <div class="archived-page-content"><h1 id="archivedPageTitle">페이지</h1>
+          <div id="archivedDatabasePreview" class="archived-database-preview" hidden></div>
+        </div>
+      </section>
+      <section id="aiHomeView" class="ai-home" role="region" aria-label="AI 채팅 홈" tabindex="-1" hidden>
+        <header class="ai-home-heading"><span id="aiHomeTitle">새 채팅</span><button id="aiHomeNewInline" type="button">새 채팅</button></header>
+        <div id="aiHomeScroll" class="ai-home-scroll">
+          <div id="aiHomeHero" class="ai-home-hero"><div aria-hidden="true">✦</div><h1>무엇을 도와드릴까요?</h1><p>질문하고, 자료를 연결하고, 결과를 만들어 보세요.</p></div>
+          <div id="aiHomeMessages" class="ai-home-messages" aria-label="AI 대화 내용"></div>
+        </div>
+        <form id="aiHomeComposer" class="ai-home-composer">
+          <label class="sr-only" for="aiHomeInput">AI 채팅 메시지</label>
+          <textarea id="aiHomeInput" aria-label="AI 채팅 메시지" placeholder="AI로 무엇이든 시도해 보세요…" maxlength="12000" rows="3"></textarea>
+          <div class="ai-home-composer-tools">
+            <details id="aiHomeContextPicker"><summary aria-label="파일 및 옵션 추가하기" title="파일 및 옵션 추가하기">＋</summary>
+              <div class="ai-home-context-panel" role="menu" aria-label="AI 출처 및 옵션">
+                <button id="aiHomeReferenceOptions" type="button" class="ai-source-row" role="menuitem" aria-expanded="false"><span data-notion-icon="file" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z M14 3v5h5 M8 12h8 M8 16h6"/></svg></span><span>참고 자료 선택</span><span class="ai-source-chevron" aria-hidden="true">›</span></button>
+                <div class="ai-source-row"><span data-notion-icon="globe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18 M6 7h.1 M9 7h.1"/></svg></span><span>웹 <span class="ai-source-badge">베타</span></span><button id="aiHomeWebSwitch" type="button" role="switch" aria-label="웹 검색" aria-checked="false" class="ai-source-switch"><span></span></button></div>
+                <div class="ai-source-row"><span data-notion-icon="search" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg></span><span>내 자료 검색</span><button id="aiHomeNotionSwitch" type="button" role="switch" aria-label="내 자료 검색" aria-checked="true" class="ai-source-switch"><span></span></button></div>
+                <p id="aiHomeWebStatus" class="ai-source-connection"></p>
+                <div id="aiHomeReferencePanel" class="ai-home-reference-panel" hidden>
+                <p>참고 범위를 바꾸면 새 대화가 시작됩니다. 기존 대화는 기록에 남습니다.</p>
+                <label>페이지 찾기<input id="aiHomePageFilter" placeholder="페이지 제목으로 검색" type="search"></label>
+                <div id="aiHomePageChoices"></div>
+                <label>Second Brain Wiki · 개인 / 파트 / 팀 / 담당<select id="aiHomeWiki" aria-label="AI 참고 Wiki"><option value="">참고하지 않음</option></select></label>
+                <button id="aiHomeWikiMore" type="button" hidden>Wiki 더 불러오기</button>
+                <p id="aiHomeKnowledgeStatus"></p>
+                </div>
+              </div>
+            </details>
+            <select id="aiHomeModel" aria-label="AI 채팅 모델"><option value="">자동</option></select>
+            <button id="aiHomeSend" type="submit" aria-label="AI 메시지 보내기">↑ 보내기</button>
+          </div>
+          <div id="aiHomeScope" class="ai-home-scope"></div>
+        </form>
+        <div id="aiHomeModes" class="ai-home-modes" aria-label="AI 작업 선택">
+          <button type="button" data-ai-home-mode="chat" aria-pressed="true">✦ 채팅</button>
+          <button type="button" data-ai-home-mode="slides" aria-pressed="false">▦ 슬라이드 생성</button>
+          <button type="button" data-ai-home-mode="spreadsheet" aria-pressed="false">▤ 스프레드시트</button>
+          <button type="button" data-ai-home-mode="research" aria-pressed="false">⌕ 자료 리서치</button>
+          <button type="button" data-ai-home-mode="visualization" aria-pressed="false">▥ 시각화하기</button>
+        </div>
+        <p id="aiHomeModeHelp" class="ai-home-help">Enter로 전송 · Shift+Enter로 줄바꿈</p>
+        <div id="aiHomeStatus" class="ai-home-status" role="status" aria-live="polite"></div>
+        <p class="ai-home-storage-note">대화는 본인 계정의 호스트 기록에 저장됩니다. 참고 자료의 권한이 사라지면 해당 대화를 열 수 없습니다.</p>
+      </section>
+
+      <section id="pageView" class="page-view" role="region" aria-label="Page canvas" tabindex="-1" hidden>
+        <div id="pageCover" class="page-cover" hidden>
+          <button id="changeCoverBtn" type="button">커버 변경</button>
+          <button id="removeCoverBtn" type="button">제거</button>
+        </div>
+        <div class="page-head">
+          <div class="page-hover-actions">
+            <button id="addIconBtn" type="button">아이콘 추가</button>
+            <button id="addCoverBtn" type="button">커버 추가</button>
+            <button id="addCommentBtn" type="button">댓글 추가</button>
+          </div>
+          <button id="pageIconBtn" class="page-icon-button" type="button" title="페이지 아이콘" hidden></button>
+          <textarea id="pageTitle" class="page-title" rows="1" autocomplete="off" spellcheck="false" placeholder="제목 없음" aria-label="페이지 제목"></textarea>
+          <div id="pageMeta" class="page-meta"></div>
+          <div id="pageCommentAffordance" class="page-comment-affordance" hidden>
+            <div id="pageCommentPreview" class="page-comment-preview"></div>
+            <div class="page-comment-composer">
+              <span id="pageCommentAffordanceAvatar" aria-hidden="true"></span>
+              <button id="pageCommentAffordanceBtn" type="button">댓글 추가</button>
+            </div>
+          </div>
+          <section id="pageInlineDiscussion" class="page-inline-discussion" aria-label="페이지 토론" hidden><button id="inlineCommentsClose" type="button" aria-label="페이지 토론 닫기">닫기</button></section>
+          <button id="pageBacklinksBtn" class="page-backlinks" type="button" hidden></button>
+        </div>
+        <div id="pageEditorGroup" class="page-editor-group" role="group" aria-label="페이지 편집기" tabindex="-1">
+          <div id="blocks" class="blocks"></div>
+        </div>
+      </section>
+      <section id="independentDatabaseView" class="page-view database-full-page independent-database-view" role="region" aria-label="공유 데이터베이스" tabindex="-1" hidden>
+        <div id="independentDatabaseAccessStatus" class="independent-database-cell-status" role="alert" hidden></div>
+        <div id="independentDatabaseCellStatus" class="independent-database-cell-status" role="status" aria-live="polite" hidden></div>
+        <div id="independentDatabaseRowStatus" class="independent-database-cell-status" role="status" aria-live="polite" hidden></div>
+        <div id="independentDatabaseContent" class="blocks"></div>
+      </section>
+    </main>
+
+    <aside id="inspector" class="inspector" role="dialog" aria-modal="false" aria-labelledby="drawerTitle" tabindex="-1" hidden>
+      <div class="drawer-head">
+        <strong id="drawerTitle">페이지 옵션</strong>
+        <button id="drawerCloseBtn" type="button" title="닫기" aria-label="닫기"><span class="drawer-close-glyph">×</span><svg class="drawer-close-panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M13.5 5v14"/></svg></button>
+      </div>
+
+      <div id="sharePanel" class="panel">
+        <p id="databaseParentShareLegacyNotice" hidden>이 공유 설정을 변경하면 부모 페이지와 그 하위 콘텐츠의 권한이 함께 바뀝니다.</p>
+        <section id="pageInheritedSharePrompt" class="page-inherited-share-prompt" aria-label="페이지 공유" tabindex="-1" hidden>
+          <div class="page-inherited-share-tabs">
+            <strong id="pageInheritedShareHeading">공유</strong>
+            <span>게시</span>
+            <span class="page-inherited-share-help">ⓘ&nbsp; 공유 기능 사용법</span>
+          </div>
+          <p id="databaseParentShareNotice" hidden>여기서 변경하면 부모 페이지와 그 하위 콘텐츠의 권한이 함께 바뀝니다.</p>
+          <div class="page-inherited-share-invite">
+            <select id="pageInheritedShareUser" aria-label="공유할 사용자"></select>
+            <select id="pageInheritedShareRole" aria-label="공유 권한">
+              <option value="view">보기</option>
+              <option value="comment">댓글</option>
+              <option value="edit_content" selected>콘텐츠 편집</option>
+              <option value="edit">편집</option>
+              <option value="full_access">전체 권한</option>
+            </select>
+            <button id="pageInheritedShareInviteBtn" type="button">초대</button>
+          </div>
+          <div id="pageInheritedSharePeople" class="page-inherited-share-people" aria-live="polite"></div>
+          <div class="page-inherited-share-workspace">
+            <span class="page-inherited-share-home" aria-hidden="true">◆</span>
+            <span><strong id="pageInheritedShareMemberLabel">워크스페이스의 멤버</strong><small>팀스페이스 · 1명의 사용자</small></span>
+            <span id="pageInheritedShareWorkspaceRole" class="page-inherited-share-role">전체 허용</span>
+          </div>
+          <div class="page-inherited-share-general-label">일반 사용 권한</div>
+          <div class="page-inherited-share-general">
+            <span id="pageInheritedShareWorkspaceIcon" class="page-inherited-share-workspace-icon">R</span>
+            <span id="pageInheritedShareGeneralLabel">워크스페이스의 모든 사용자</span>
+            <span id="pageInheritedShareEffectiveRole" class="page-inherited-share-role">보기</span>
+          </div>
+          <div class="page-inherited-share-advanced">
+            <button id="pageInheritedShareAdvancedBtn" type="button">⚙&nbsp; 고급</button>
+            <button id="pageInheritedShareCopyBtn" type="button">🔗&nbsp; 링크 복사</button>
+          </div>
+          <div id="pageInheritedShareDetails" class="page-inherited-share-details" hidden></div>
+        </section>
+        <div id="pageGuestUpgradePrompt" class="page-guest-upgrade-prompt" aria-hidden="true" hidden>
+          <span class="page-guest-upgrade-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" focusable="false">
+              <circle cx="20" cy="20" r="19.25"></circle>
+              <circle class="page-guest-upgrade-avatar" cx="20" cy="16" r="4"></circle>
+              <path class="page-guest-upgrade-avatar" d="M12.5 28c.7-5 3.2-7.5 7.5-7.5s6.8 2.5 7.5 7.5"></path>
+            </svg>
+            <span class="page-guest-upgrade-arrow">↑</span>
+          </span>
+          <strong class="page-guest-upgrade-title">게스트 1명을 멤버로 업그레이드하시겠습니까?</strong>
+          <span id="pageGuestUpgradeIdentity" class="page-guest-upgrade-identity">협력자는 이미 이 페이지의 게스트입니다.</span>
+          <span class="page-guest-upgrade-feature"><span aria-hidden="true">♙</span>개인 페이지와 전용 생성</span>
+          <span class="page-guest-upgrade-feature"><span aria-hidden="true">▤</span>워크스페이스의 모든 공개 페이지에 액세스</span>
+          <span class="page-guest-upgrade-feature"><span aria-hidden="true">♧</span>다른 사용자와 무제한으로 공동 작업</span>
+          <span class="page-guest-upgrade-actions">
+            <span>건너뛰기</span>
+            <span>멤버로 업그레이드</span>
+          </span>
+        </div>
+        <div class="panel-title">공유</div>
+        <section id="publicShareSection" hidden aria-hidden="true">
+          <div class="panel-subtitle">웹 게시</div>
+          <p class="panel-help">링크가 있는 사람은 로그인 없이 읽기 전용 웹 페이지로 볼 수 있습니다. 편집 권한은 포함되지 않습니다.</p>
+          <div id="publicShareStatus" class="public-share-status">확인 중...</div>
+          <input id="publicShareUrl" class="public-share-url" type="text" readonly hidden>
+          <div class="public-share-actions">
+            <button id="publicShareEnableBtn" type="button">웹에 게시</button>
+            <button id="publicShareCopyBtn" type="button" hidden>링크 복사</button>
+            <button id="publicShareDisableBtn" type="button" hidden>게시 중지</button>
+          </div>
+          <label id="publicShareDuplicateOption" class="public-share-option" hidden>
+            <input id="publicShareAllowDuplicate" type="checkbox">
+            <span>템플릿으로 복제 허용</span>
+          </label>
+          <div class="panel-divider"></div>
+        </section>
+        <section id="workspaceMemberSection" class="collaboration-access-section" hidden>
+          <nav class="workspace-settings-nav" aria-label="워크스페이스 설정" hidden>
+            <strong>계정</strong>
+            <span class="workspace-settings-identity">워크스페이스</span>
+            <span data-icon="≋">기본 설정</span>
+            <span data-icon="♧">알림</span>
+            <span data-icon="✉">이메일 및 캘린더</span>
+            <strong>워크스페이스</strong>
+            <span data-icon="⚙">일반</span>
+            <span class="active" data-icon="♧">사람</span>
+            <span data-icon="↓">가져오기</span>
+            <strong>기능</strong>
+            <span data-icon="↗">Notion AI</span>
+            <span data-icon="⌘">연결</span>
+            <span data-icon="⌘">Notion MCP</span>
+            <span data-icon="◎">공개 페이지</span>
+            <span data-icon="☺">이모지</span>
+            <span data-icon="{}">개발자</span>
+            <strong>관리자</strong>
+            <span data-icon="▦">팀스페이스</span>
+            <span data-icon="♧">보안</span>
+            <span data-icon="◇">신원</span>
+            <strong>사용 권한 및 청구</strong>
+            <span class="workspace-settings-upgrade" data-icon="↑">요금제 업그레이드</span>
+          </nav>
+          <div class="workspace-invite-intro" hidden>
+            <span class="workspace-invite-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" focusable="false">
+                <circle cx="13" cy="9" r="4.5"></circle>
+                <path d="M5.5 24.5c.7-5.1 3.2-7.7 7.5-7.7s6.8 2.6 7.5 7.7"></path>
+                <path d="M23 13.5v8M19 17.5h8"></path>
+              </svg>
+            </span>
+            <strong>멤버 추가하기</strong>
+            <p>아래 이메일에 쉼표로 구분하여 입력하거나 붙여 넣기</p>
+          </div>
+          <div class="panel-subtitle workspace-members-subtitle">워크스페이스에 있는 사람과 역할을 관리하세요 <span>자세히 알아보기</span></div>
+          <p class="panel-help">구성원을 초대하면 이 워크스페이스가 계정의 전환 목록에 나타납니다. 페이지 권한은 별도로 설정합니다.</p>
+          <div class="workspace-members-overview" aria-hidden="true">
+            <span class="workspace-member-directory">사람 디렉토리 보기↗</span>
+            <div class="workspace-member-link-copy">
+              <strong>링크로 멤버 추가</strong>
+              <p>이 워크스페이스에 멤버를 초대할 수 있는 권한이 있는 사용자만 이 링크를 볼 수 있습니다. 새로운 링크를 생성할 수도 있습니다.</p>
+              <span class="workspace-member-copy-action">링크 복사</span>
+              <span class="workspace-member-link-toggle"></span>
+            </div>
+            <div class="workspace-member-tabs">
+              <span>게스트</span>
+              <strong>멤버 <small id="workspaceMemberCount">0</small></strong>
+              <span>그룹</span>
+              <span>연락처</span>
+            </div>
+            <div class="workspace-member-columns">
+              <span>사용자 ↑</span>
+              <span>팀스페이스</span>
+              <span>그룹</span>
+              <span>역할</span>
+            </div>
+          </div>
+          <div id="workspaceMemberList" class="share-list" aria-live="polite"></div>
+          <div class="share-form collaboration-share-form">
+            <select id="workspaceMemberUser" aria-label="초대할 사용자"></select>
+            <label class="workspace-invite-role-label" for="workspaceMemberRole">역할 선택</label>
+            <div class="workspace-invite-role-control">
+              <select id="workspaceMemberRole" aria-label="워크스페이스 역할">
+                <option value="member">구성원</option>
+                <option value="restricted_member">제한된 구성원</option>
+                <option value="membership_admin">구성원 관리자</option>
+                <option value="owner" selected>소유자</option>
+              </select>
+              <span class="workspace-invite-role-card" aria-hidden="true">
+                <span class="workspace-invite-role-icon">
+                  <svg viewBox="0 0 32 32" focusable="false">
+                    <circle cx="13" cy="9" r="4.5"></circle>
+                    <path d="M5.5 24.5c.7-5.1 3.2-7.7 7.5-7.7s6.8 2.6 7.5 7.7"></path>
+                    <path d="M23 13.5v8M19 17.5h8"></path>
+                  </svg>
+                </span>
+                <span><strong>워크스페이스 소유자</strong><small>워크스페이스 설정 변경 및 이 워크스페이스에 신규 멤버 초대 허용</small></span>
+                <span class="workspace-invite-role-chevron">⌄</span>
+              </span>
+            </div>
+            <label class="workspace-invite-message-label" for="workspaceInviteMessage" hidden>메시지</label>
+            <textarea id="workspaceInviteMessage" class="workspace-invite-message" aria-label="초대 메시지" placeholder="초대에 메모 추가..." hidden></textarea>
+            <button id="workspaceMemberBtn" type="button">초대 보내기</button>
+            <button id="workspaceInviteCancelBtn" class="workspace-invite-cancel" type="button" hidden>취소</button>
+          </div>
+          <div class="panel-divider"></div>
+        </section>
+        <div class="panel-subtitle">페이지 액세스</div>
+        <div id="shareAccessExplanation" class="share-access-explanation" aria-live="polite"></div>
+        <div id="shareList" class="share-list"></div>
+        <div id="pageShareForm" class="share-form collaboration-share-form">
+          <select id="sharePrincipalType" aria-label="공유 대상 유형">
+            <option value="subject">사용자</option>
+            <option value="group">그룹</option>
+            <option value="teamspace">팀스페이스</option>
+          </select>
+          <select id="shareUser" aria-label="공유할 사용자"></select>
+          <select id="shareRole" aria-label="공유 권한">
+            <option value="view">보기</option>
+            <option value="comment">댓글</option>
+            <option value="edit_content">콘텐츠 편집</option>
+            <option value="edit">편집</option>
+            <option value="full_access">전체 권한</option>
+          </select>
+          <label class="share-inherit-option"><input id="shareInherit" type="checkbox"><span>하위 페이지 포함</span></label>
+          <button id="shareBtn" type="button">추가</button>
+        </div>
+      </div>
+
+      <div id="contextPanel" class="panel" role="region" aria-label="Second Brain 세션 컨텍스트" tabindex="-1">
+        <div class="panel-title">세션에 일시 첨부</div>
+        <p class="panel-help">지식으로 저장하지 않고 선택한 Second Brain Agent 세션에만 현재 페이지를 붙입니다. 해당 세션의 다음 답변부터 이 페이지 Markdown이 임시 컨텍스트로 들어갑니다.</p>
+        <select id="sessionSelect"></select>
+        <button id="attachBtn" type="button">선택 세션에 추가</button>
+        <div id="attachedPages" class="attached-list"></div>
+      </div>
+
+      <div id="filesPanel" class="panel">
+        <div class="panel-title">첨부파일</div>
+        <p class="panel-help">이 페이지의 이미지/파일 블록에 연결된 파일입니다.</p>
+        <div id="fileList" class="file-list"></div>
+      </div>
+
+      <div id="aiPanel" class="panel document-ai-panel" hidden>
+        <div class="panel-title">문서 AI</div>
+        <p id="documentAiContext" class="panel-help"></p>
+        <p class="panel-help">현재 페이지의 저장된 본문만 참고합니다. 다른 페이지·Second Brain·첨부파일은 검색하지 않습니다.</p>
+        <label class="document-ai-field">모델<select id="documentAiModel" aria-label="문서 AI 모델"><option value="">자동 선택</option></select></label>
+        <div id="documentAiCapabilities" class="panel-help" role="status"></div>
+        <button id="documentAiReconnect" type="button">연결 새로 확인</button>
+        <div class="document-ai-prompts" aria-label="문서 AI 빠른 작업">
+          <button type="button" data-document-ai-prompt="summary">페이지 요약</button>
+          <button type="button" data-document-ai-prompt="tasks">할 일 추출</button>
+          <button type="button" data-document-ai-prompt="draft">초안 작성</button>
+        </div>
+        <div id="documentAiSelection" hidden>
+          <div class="panel-title">선택한 글</div>
+          <pre id="documentAiSource"></pre>
+          <div class="document-ai-prompts">
+            <button type="button" data-document-ai-edit="improve">글 다듬기</button>
+            <button type="button" data-document-ai-edit="spelling">맞춤법</button>
+            <button type="button" data-document-ai-edit="shorter">짧게</button>
+            <button type="button" data-document-ai-edit="longer">길게</button>
+            <button type="button" data-document-ai-edit="professional">업무 문체</button>
+          </div>
+          <label class="document-ai-field">번역 언어<input id="documentAiLanguage" aria-label="문서 AI 번역 언어" list="documentAiLanguages" value="영어" maxlength="80"></label>
+          <datalist id="documentAiLanguages"><option value="한국어"><option value="영어"><option value="일본어"></datalist>
+          <button type="button" data-document-ai-edit="translate">선택한 글 번역</button>
+          <button id="documentAiPageScope" type="button">현재 페이지로 전환</button>
+        </div>
+        <div id="documentAiHistory" aria-label="이 페이지의 AI 대화"></div>
+        <label for="aiQuestion">질문 또는 작성 지침</label>
+        <textarea id="aiQuestion" class="ai-question" maxlength="4000" placeholder="이 페이지를 요약해줘 · Ctrl+Enter로 요청"></textarea>
+        <div class="document-ai-buttons"><button id="aiAskBtn" type="button">보내기</button><button id="documentAiClear" type="button">대화 비우기</button></div>
+        <div id="documentAiStatus" role="status" aria-live="polite"></div>
+        <div id="aiAnswer" class="ai-answer" aria-label="문서 AI 답변"></div>
+        <div id="aiResultActions" class="ai-result-actions" hidden>
+          <button type="button" data-ai-result-action="replace">선택한 글 바꾸기</button>
+          <button type="button" data-ai-result-action="insert">아래에 삽입</button>
+          <button type="button" data-ai-result-action="retry">다시 시도</button>
+          <button type="button" data-ai-result-action="discard">버리기</button>
+        </div>
+      </div>
+
+      <span id="commentsPanelHome" hidden></span>
+      <div id="commentsPanel" class="panel">
+        <div class="panel-title panel-title-row"><span class="comment-filter-controls"><select id="commentPersonFilterSelect"><option value="">모든 사람</option></select><select id="commentFilterSelect"><option value="open">열린 댓글</option><option value="resolved">해결됨</option><option value="all">전체</option></select></span></div>
+        <div id="commentList" class="comment-list"></div>
+        <div id="commentReplyContext" class="comment-reply-context" hidden><span></span><button id="commentReplyCancelBtn" aria-label="답글 대상 취소" type="button">×</button></div>
+        <p id="commentComposerNotice" role="status" hidden></p>
+        <span id="selectedCommentAvatar" class="selected-comment-avatar" aria-hidden="true"></span>
+        <textarea id="commentInput" class="comment-input" placeholder="댓글을 입력하세요"></textarea>
+        <div class="comment-composer-tools"><button id="commentAttachBtn" type="button" title="파일 첨부 (페이지 편집 권한 필요)" aria-label="댓글 파일 첨부"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m21.4 11.1-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg></button><button id="commentMentionBtn" type="button" title="사용자 언급" aria-label="사용자 언급">@</button><input id="commentFileInput" type="file" hidden><button id="commentSubmitBtn" type="button">보내기</button></div>
+      </div>
+
+      <div id="historyPanel" class="panel">
+        <div class="panel-title">페이지 기록</div>
+        <p class="panel-help">자동 저장된 최근 버전을 확인하고 복원합니다.</p>
+        <div id="historyList" class="history-list"></div>
+      </div>
+
+      <div id="pageUpdatesPanel" class="panel" hidden>
+        <div class="database-updates-tabs" role="tablist" aria-label="페이지 활동">
+          <button type="button" role="tab" aria-selected="true">업데이트</button>
+          <button type="button" role="tab" aria-selected="false" title="애널리틱스는 아직 제공되지 않습니다." disabled>애널리틱스</button>
+        </div>
+        <div id="pageUpdatesList" class="database-updates-list" role="status" aria-live="polite"></div>
+        <div id="pageUpdatesError" class="page-updates-error" role="status" hidden></div>
+        <button id="pageUpdatesMoreBtn" class="database-updates-more" type="button" hidden>더 보기</button>
+      </div>
+
+      <div id="databaseUpdatesPanel" class="panel" hidden>
+        <div class="database-updates-tabs" role="tablist" aria-label="데이터베이스 활동">
+          <button type="button" role="tab" aria-selected="true">업데이트</button>
+          <button type="button" role="tab" aria-selected="false" title="애널리틱스는 아직 제공되지 않습니다." disabled>애널리틱스</button>
+        </div>
+        <div id="databaseUpdatesList" class="database-updates-list" role="status" aria-live="polite"></div>
+        <button id="databaseUpdatesMoreBtn" class="database-updates-more" type="button" hidden>더 보기</button>
+      </div>
+
+      <div id="status" class="status">Ready</div>
+    </aside>
+  </div>
+
+  <aside id="linkedItemPeek" class="side-peek linked-item-peek" role="region" aria-label="연결된 데이터베이스 항목" hidden>
+    <div class="linked-item-resize" data-linked-item-resize role="separator" tabindex="0" aria-label="항목 상세 너비 조절" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" aria-valuenow="52"></div>
+    <div class="side-peek-head linked-item-head">
+      <button type="button" data-linked-item-close title="닫기 (Esc)" aria-label="항목 상세 닫기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 6 6-6 6m7-12 6 6-6 6"/></svg></button>
+      <button type="button" data-linked-item-full title="전체 페이지로 열기" aria-label="전체 페이지로 열기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 5H5v14h14v-5"/></svg></button>
+      <button type="button" data-linked-item-source title="원본 데이터베이스 열기" aria-label="원본 데이터베이스 열기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 5H5v14h14v-5"/></svg></button>
+      <span class="linked-item-head-divider" aria-hidden="true"></span>
+      <button type="button" data-linked-item-previous title="이전 항목 (Ctrl+K)" aria-label="이전 항목"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button>
+      <button type="button" data-linked-item-next title="다음 항목 (Ctrl+J)" aria-label="다음 항목"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 10 6 6 6-6"/></svg></button>
+      <span data-linked-item-position class="linked-item-position" aria-live="polite"></span>
+      <button type="button" data-linked-item-refresh title="새로고침" aria-label="항목 새로고침"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M20 12a8 8 0 1 0-2 5"/></svg></button>
+    </div>
+    <div data-linked-item-status class="linked-item-save-status" role="status" hidden><span data-linked-item-message></span><span data-linked-item-pending class="linked-pending-values"></span><button type="button" data-linked-item-retry hidden>다시 시도</button><button type="button" data-linked-item-discard title="이 브라우저에 보관한 요청만 지우며, 원본의 저장된 값은 되돌리지 않습니다." hidden>보관한 입력 지우기</button></div>
+    <div class="side-peek-body" data-linked-item-body tabindex="-1"></div>
+  </aside>
+  <button id="sidePeekBackdrop" class="side-peek-backdrop" type="button" tabindex="-1" aria-label="사이드 보기 닫기" hidden></button>
+  <aside id="sidePeek" class="side-peek" role="region" aria-label="사이드 보기" hidden>
+    <div class="side-peek-head">
+      <button id="sidePeekCloseBtn" type="button" title="닫기" aria-label="사이드 보기 닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 6 6-6 6m7-12 6 6-6 6"/></svg></button>
+      <button id="sidePeekFullBtn" type="button" title="전체 페이지로 열기" aria-label="전체 페이지로 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v5m11 11h5v-5M4 4l6 6m10 10-6-6"/></svg></button>
+      <button id="sidePeekPrevBtn" type="button" title="이전 데이터베이스 페이지 (Ctrl+K)" hidden>↑</button>
+      <button id="sidePeekNextBtn" type="button" title="다음 데이터베이스 페이지 (Ctrl+J)" hidden>↓</button>
+      <strong id="sidePeekCrumb">Side peek</strong>
+      <button id="sidePeekShareBtn" class="side-peek-share-action" type="button" title="공유" aria-label="공유"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="8.5" width="11" height="8" rx="1.5"/><path d="M7 8.5V6a3 3 0 0 1 6 0v2.5"/></svg><span>공유</span></button>
+      <button id="sidePeekCopyLinkBtn" type="button" title="링크 복사" aria-label="링크 복사"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.2 12.1 11.8 8.5M7.1 6.6l1.5-1.5a3 3 0 0 1 4.2 4.2l-1.5 1.5M12.9 13.4l-1.5 1.5a3 3 0 1 1-4.2-4.2l1.5-1.5"/></svg></button>
+      <button id="sidePeekFavoriteBtn" type="button" title="즐겨찾기에 추가" aria-label="즐겨찾기에 추가" aria-pressed="false"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 2.7 2.2 4.6 5.1.7-3.7 3.6.9 5.1-4.5-2.4-4.5 2.4.9-5.1L2.7 8l5.1-.7L10 2.7Z"/></svg></button>
+      <button id="sidePeekNewTabBtn" type="button" title="새 탭에서 열기" aria-label="새 탭에서 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M19 14v6H4V5h6"/></svg></button>
+      <button id="sidePeekMoreBtn" type="button" title="페이지 옵션" aria-label="페이지 옵션"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg></button>
+    </div>
+    <div id="sidePeekSharePopover" class="side-peek-share-popover" role="dialog" aria-label="페이지 공유" hidden>
+      <div class="side-peek-share-head"><strong>공유</strong><button id="sidePeekShareCloseBtn" type="button" aria-label="공유 창 닫기">×</button></div>
+      <div id="sidePeekShareInvite" class="side-peek-share-invite">
+        <div class="side-peek-share-search-row">
+          <input id="sidePeekShareSearch" type="text" role="combobox" aria-label="공유할 사용자 또는 그룹 검색" aria-autocomplete="list" aria-controls="sidePeekShareSuggestions" aria-expanded="false" placeholder="이름, 이메일 또는 그룹 검색" autocomplete="off" spellcheck="false">
+          <button id="sidePeekShareAddBtn" type="button" disabled>초대</button>
+        </div>
+        <div id="sidePeekShareSuggestions" class="side-peek-share-suggestions" role="listbox" aria-label="공유 대상 검색 결과" hidden></div>
+        <div id="sidePeekShareOptions" class="side-peek-share-options" hidden>
+          <select id="sidePeekShareRole" aria-label="공유 권한"><option value="view">보기</option><option value="comment">댓글</option><option value="edit_content" selected>콘텐츠 편집</option><option value="edit">편집</option><option value="full_access">전체 권한</option></select>
+          <label class="side-peek-share-inherit"><input id="sidePeekShareInherit" type="checkbox">하위 페이지 포함</label>
+        </div>
+      </div>
+      <div id="sidePeekShareStatus" class="side-peek-share-status" role="status" aria-live="polite"></div>
+      <div id="sidePeekSharePeople" class="side-peek-share-people"></div>
+      <div class="side-peek-share-general"><span>일반 사용 권한</span><div><span class="side-peek-share-lock" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5.1" y="8.5" width="9.8" height="8" rx="1.7"/><path d="M7.5 8.5V6a2.5 2.5 0 0 1 5 0v2.5"/></svg></span><strong id="sidePeekShareGeneral">확인 중…</strong></div></div>
+      <div class="side-peek-share-foot"><button id="sidePeekShareFullPageBtn" type="button">고급</button><button id="sidePeekShareCopyBtn" type="button">링크 복사</button></div>
+    </div>
+    <div id="sidePeekArchivedNotice" class="side-peek-archived-notice" hidden>
+      <div class="side-peek-archived-bar"><p id="sidePeekArchivedMessage"></p><button id="sidePeekArchivedRestoreBtn" type="button">페이지 복원</button></div>
+      <h1 id="sidePeekArchivedTitle" class="side-peek-archived-title"></h1>
+    </div>
+    <div id="sidePeekBody" class="side-peek-body" role="region" aria-label="사이드 보기 페이지" tabindex="-1"></div>
+    <div id="sidePeekCreateStarter" class="side-peek-create-starter" role="group" aria-label="새 페이지 시작하기" hidden>
+      <span class="side-peek-create-starter-label">시작하기</span>
+      <div class="side-peek-create-starter-actions">
+        <button type="button" data-peek-starter="ai_notes"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="6" height="9" rx="3"/><path d="M4.5 8.5a5.5 5.5 0 0 0 11 0M10 14v3m-3 0h6"/></svg>AI 노트</button>
+        <button type="button" data-peek-starter="table"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="3.5" width="15" height="13" rx="1.7"/><path d="M2.5 8h15M7.5 8v8.5m5-8.5v8.5"/></svg>데이터베이스</button>
+      </div>
+    </div>
+    <div id="sidePeekEditorStatus" class="side-peek-editor-status" hidden><span role="status"></span><button type="button" hidden>다시 저장</button></div>
+    <div id="sidePeekEditorProperties"></div>
+    <div id="sidePeekEditorSlot" class="side-peek-editor-slot" hidden></div>
+  </aside>
+
+  <div id="blockMenu" class="block-menu" role="dialog" aria-label="블록 메뉴" hidden></div>
+  <div id="mentionMenu" class="block-menu mention-menu" hidden></div>
+  <div id="inlineToolbar" class="inline-toolbar" role="toolbar" aria-label="텍스트 서식" hidden>
+    <button type="button" class="inline-toolbar-heading" data-inline-format="type" aria-label="블록 유형 전환" aria-haspopup="menu" aria-expanded="false" aria-controls="inlineFormatPopover"><span aria-hidden="true">T</span><span id="inlineToolbarTypeLabel">일반 텍스트</span><span aria-hidden="true">›</span></button>
+    <div class="inline-toolbar-formats" role="group" aria-label="문자 서식">
+      <div class="inline-toolbar-format-row">
+        <button type="button" data-inline-format="color" aria-label="텍스트 색상" title="텍스트 색상" aria-haspopup="menu" aria-expanded="false" aria-controls="inlineFormatPopover"><span class="inline-color-preview" aria-hidden="true">A</span></button>
+        <button type="button" data-inline-format="bold" aria-label="굵게" aria-pressed="false" title="굵게 (Ctrl+B)"><strong aria-hidden="true">B</strong></button>
+        <button type="button" data-inline-format="italic" aria-label="기울임꼴" aria-pressed="false" title="기울임꼴 (Ctrl+I)"><em aria-hidden="true">I</em></button>
+        <button type="button" data-inline-format="underline" aria-label="밑줄" aria-pressed="false" title="밑줄 (Ctrl+U)"><u aria-hidden="true">U</u></button>
+        <button type="button" data-inline-format="removeFormat" aria-label="서식 지우기" title="서식 지우기"><span aria-hidden="true">T<sub>×</sub></span></button>
+      </div>
+      <div class="inline-toolbar-format-row">
+        <button type="button" data-inline-format="link" aria-label="링크 추가" title="링크 추가" aria-haspopup="dialog" aria-expanded="false" aria-controls="inlineLinkPopover"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 13 4-4m-6 6-2 2a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m4 2 2-2a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" data-inline-format="strikeThrough" aria-label="취소선" aria-pressed="false" title="취소선"><s aria-hidden="true">S</s></button>
+        <button type="button" data-inline-format="code" aria-label="인라인 코드" aria-pressed="false" title="인라인 코드"><span class="inline-code-icon" aria-hidden="true">&lt;/&gt;</span></button>
+      </div>
+    </div>
+    <div class="inline-toolbar-actions" role="group" aria-label="선택한 글 작업">
+      <button type="button" data-inline-format="comment" aria-label="선택한 글에 댓글 작성" title="선택한 글에 댓글 작성"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14v10H9l-4 3zM8 9h8m-8 3h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>댓글</span></button>
+    </div>
+    <div class="inline-toolbar-ai" role="group" aria-label="AI 편집">
+      <div class="inline-toolbar-label">AI</div>
+      <button type="button" data-inline-format="ai" aria-label="선택한 글 AI 편집" title="선택한 글 AI 편집"><span aria-hidden="true">✦</span><span>AI로 편집</span></button>
+    </div>
+  </div>
+  <div id="inlineFormatPopover" class="inline-format-popover" role="menu" tabindex="-1" hidden></div>
+  <div id="inlineLinkPopover" class="inline-link-popover" role="dialog" aria-label="링크 추가" hidden>
+    <input id="inlineLinkSearch" type="text" role="combobox" aria-label="링크 붙여넣기 또는 페이지 검색" aria-autocomplete="list" aria-controls="inlineLinkOptions" aria-expanded="true" autocomplete="off" placeholder="링크 붙여넣기 또는 페이지 검색">
+    <div id="inlineLinkLabel" class="inline-link-label">최근 페이지</div>
+    <div id="inlineLinkOptions" role="listbox" aria-label="링크 대상"></div>
+    <div id="inlineLinkStatus" class="inline-link-status" role="status" hidden></div>
+    <button type="button" id="inlineLinkRetry" class="inline-link-retry" hidden>다시 검색</button>
+  </div>
+  <div id="pageMenu" class="block-menu page-menu" role="menu" aria-label="페이지 옵션" hidden></div>
+  <section id="pageCustomizePopover" class="page-customize-popover" role="dialog" aria-label="페이지 사용자 지정" tabindex="-1" hidden>
+    <button type="button" data-customize-setting="show_page_comments" role="switch"><span>페이지 댓글</span><span class="menu-switch" aria-hidden="true"></span></button>
+    <button type="button" data-customize-setting="show_outline" role="switch"><span>목차</span><span class="menu-switch" aria-hidden="true"></span></button>
+    <div class="page-customize-choice"><span>인라인 댓글</span><button type="button" id="pageInlineCommentStyle" aria-haspopup="listbox" aria-expanded="false" aria-controls="pageInlineCommentOptions">기본</button></div>
+    <div id="pageInlineCommentOptions" class="page-customize-options" role="listbox" aria-label="인라인 댓글 표시" hidden>
+      <button type="button" role="option" data-inline-comment-style="default">기본</button>
+      <button type="button" role="option" data-inline-comment-style="minimized">최소화</button>
+    </div>
+  </section>
+  <div id="databaseCopyMenu" class="block-menu page-menu" role="menu" aria-label="데이터베이스 복제 방식" hidden></div>
+  <div id="newPageMenu" class="block-menu page-menu" role="menu" aria-label="새 페이지 유형" hidden></div>
+  <div id="sidebarTabMenu" class="block-menu page-menu sidebar-tab-menu" role="menu" aria-label="탭 설정" hidden></div>
+  <div id="movePageMenu" class="block-menu page-menu" role="dialog" aria-label="페이지 옮길 곳 선택" hidden></div>
+  <div id="blockPageLocationMenu" class="block-menu page-menu block-page-location-menu" role="dialog" aria-label="페이지 위치 선택" hidden></div>
+  <div id="moveDatabaseMenu" class="block-menu page-menu" role="dialog" aria-label="데이터베이스 옮길 곳 선택" hidden></div>
+  <div id="linkPopover" class="link-popover" hidden></div>
+
+  <div id="inboxFilterMenu" class="block-menu page-menu" role="menu" aria-label="알림 필터" hidden></div>
+
+  <div id="searchOverlay" class="search-overlay" hidden>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-label="Notion 검색">
+      <div class="search-head">
+        <span class="search-icon">⌕</span>
+        <input id="globalSearchInput" type="search" placeholder="Notion에서 검색 또는 질문" autocomplete="off">
+        <button id="searchPreviewToggle" type="button" title="미리보기 숨기기" aria-label="미리보기 표시 전환" aria-controls="searchPreview" aria-pressed="true"></button>
+        <button id="searchFiltersToggle" type="button" title="필터 숨기기" aria-label="검색 필터 표시 전환" aria-controls="searchFilters" aria-pressed="true"></button>
+        <button id="searchCloseBtn" type="button" title="닫기">×</button>
+      </div>
+      <div id="searchFilters" class="search-filters">
+        <button id="searchTitleOnlyBtn" type="button" class="filter-chip" aria-pressed="false">Aa 제목만</button>
+        <select id="searchCreatorSelect" class="filter-select" title="생성자" aria-label="생성자">
+          <option value="">생성자</option>
+        </select>
+        <select id="searchScopeSelect" class="filter-select" title="검색 범위" aria-label="검색 범위">
+          <option value="all">검색 범위</option>
+          <option value="own">개인 페이지</option>
+          <option value="shared">공유된 페이지</option>
+        </select>
+        <select id="searchDateSelect" class="filter-select" title="최종 편집일">
+          <option value="all">최종 편집일</option>
+          <option value="today">오늘</option>
+          <option value="week">지난 1주</option>
+          <option value="month">지난 1개월</option>
+          <option value="year">지난 1년</option>
+        </select>
+        <select id="searchSortSelect" class="filter-select" title="정렬">
+          <option value="relevance">관련성 높은 순</option>
+          <option value="updated_desc">최종 편집 최신 순</option>
+          <option value="created_desc">생성 최신 순</option>
+        </select>
+        <button id="searchFilterBtn" type="button" class="filter-chip">＋ 필터</button>
+      </div>
+      <div class="search-body">
+        <div id="searchResults" class="search-results" role="listbox" aria-label="검색 결과"></div>
+        <aside id="searchPreview" class="search-preview" aria-label="문서 미리보기"></aside>
+      </div>
+      <div class="search-foot">Ctrl+Enter 새 탭에서 열기</div>
+    </div>
+  </div>
+
+  <div id="pageFindBar" class="page-find-bar" role="search" aria-label="현재 페이지에서 찾기" hidden>
+    <input id="pageFindInput" type="search" placeholder="현재 페이지에서 찾기" autocomplete="off">
+    <span id="pageFindCount" aria-live="polite">0/0</span>
+    <button id="pageFindPrev" type="button" title="이전 일치">↑</button>
+    <button id="pageFindNext" type="button" title="다음 일치">↓</button>
+    <button id="pageFindClose" type="button" title="닫기">×</button>
+  </div>
+
+  <div id="modalBg" class="modal-bg" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <div class="modal-head">
+        <strong id="modalTitle"></strong>
+        <button id="modalClose" type="button" aria-label="닫기">닫기</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+      <div id="modalActions" class="modal-actions"></div>
+    </div>
+  </div>
+
+  <div id="trashOverlay" class="trash-overlay" hidden>
+    <div class="trash-dialog" role="dialog" aria-modal="true" aria-label="휴지통">
+      <input id="trashSearchInput" type="search" placeholder="휴지통 검색" aria-label="휴지통 검색">
+      <div class="trash-filters">
+        <select id="trashEditorFilter">
+          <option value="">최종 편집자</option>
+          <option value="me">나</option>
+        </select>
+        <select id="trashScopeFilter">
+          <option value="all">검색 범위</option>
+          <option value="workspace">팀스페이스</option>
+          <option value="private">개인 공간</option>
+        </select>
+      </div>
+      <div id="trashResults" class="trash-results"></div>
+      <div class="trash-foot">
+        <span id="trashRetentionText">페이지는 휴지통에 30일 동안 보관 후 자동으로 삭제됩니다.</span>
+        <button id="trashHelpBtn" type="button">?</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="helpOverlay" class="help-overlay" hidden>
+    <div class="help-dialog" role="dialog" aria-modal="true" aria-label="도움말">
+      <div class="modal-head">
+        <strong>Notion Workspace 도움말</strong>
+        <button id="helpCloseBtn" type="button">닫기</button>
+      </div>
+      <div class="help-body">
+        <button type="button" data-help-action="search"><span class="ni ni-search"></span><strong>검색</strong><small>왼쪽 상단 검색 아이콘 또는 Ctrl+K로 페이지와 본문을 찾습니다.</small></button>
+        <button type="button" data-help-action="blocks"><span class="ni ni-plus"></span><strong>블록</strong><small>+는 새 블록, ::는 전환/색/복제/삭제 메뉴입니다.</small></button>
+        <button type="button" data-help-action="publish"><span class="ni ni-upload"></span><strong>Second Brain</strong><small>상단 Second Brain 버튼으로 Markdown preview 확인 후 지식으로 보냅니다.</small></button>
+      </div>
+    </div>
+  </div>
+
+  <section id="accessBoundaryView" class="access-boundary-view" aria-label="페이지 액세스 경계" hidden>
+    <div class="access-boundary-brand" aria-label="Notion">
+      <span class="notion-cube" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+          <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.98-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08V21.19c0 .747.373 1.027 1.214.98l14.523-.84c.84-.046.933-.56.933-1.166V6.354c0-.606-.233-.933-.746-.887l-15.177.887c-.56.047-.747.327-.747.934zm14.337.747c.093.42 0 .84-.42.886l-.7.14v10.265c-.607.327-1.167.513-1.634.513-.746 0-.933-.233-1.493-.933l-4.573-7.187v6.81l1.447.327s0 .84-1.167.84l-3.22.187c-.093-.187 0-.654.327-.747l.84-.233v-9.01L7.83 9.968c-.093-.42.14-1.026.793-1.073l3.453-.233 4.667 7.187V9.48l-1.213-.14c-.093-.513.28-.887.747-.933zM1.936 1.034l13.308-.98c1.634-.14 2.054-.047 3.08.7l4.247 2.987c.7.513.934.653.934 1.213v16.377c0 1.027-.374 1.634-1.68 1.727L6.28 23.975c-1.027.047-1.54-.093-2.1-.793L1.05 19.12c-.56-.747-.793-1.307-.793-1.96V2.668c0-.84.374-1.54 1.68-1.634z" />
+        </svg>
+      </span>
+      <strong>Notion</strong>
+    </div>
+    <div class="access-boundary-skeleton" aria-hidden="true">
+      <span class="skeleton-title"></span>
+      <span class="skeleton-kicker"></span>
+      <span></span><span></span><span class="short"></span><span class="short"></span><span class="mid"></span><span></span>
+      <span class="skeleton-kicker lower"></span>
+      <span></span><span></span><span></span><span class="mid"></span><span></span><span class="short"></span><span></span><span></span>
+      <span class="skeleton-kicker trailing"></span>
+      <span></span><span></span><span class="short"></span><span class="short"></span><span class="mid"></span><span></span>
+    </div>
+    <div id="accessBoundaryDialog" class="access-boundary-dialog" role="dialog" aria-modal="true" aria-labelledby="accessBoundaryTitle" tabindex="-1">
+      <span class="access-boundary-workspace-icon" aria-hidden="true">R</span>
+      <strong id="accessBoundaryTitle"><span id="accessBoundaryWorkspaceAlias">워크스페이스</span>에서 이 페이지에 대한 사용 권한 없음</strong>
+      <p>소유자가 승인할 수 있도록 이 페이지에 대한 사용 권한을 요청하세요.</p>
+      <button id="accessBoundaryRequestBtn" type="button">사용 권한 요청</button>
+    </div>
+    <div class="access-boundary-account">계정으로 로그인됨 · 계정 추가하기</div>
+    <button class="access-boundary-help" type="button" aria-label="도움말">?</button>
+  </section>
+
+  <input id="fileInput" type="file" hidden>
+  <input id="markdownInput" type="file" accept=".md,.markdown,.txt,.csv,text/markdown,text/plain,text/csv" hidden>
+  <div id="workspaceToast" class="workspace-toast" role="status" hidden><span></span><button type="button" aria-label="알림 닫기">×</button></div>
+  <div id="pageVersionOverlay" class="page-version-overlay" hidden>
+    <section class="page-version-dialog" role="dialog" aria-modal="true" aria-label="버전 기록" tabindex="-1">
+      <main id="pageVersionDocument" class="page-version-document" aria-live="polite"></main>
+      <aside class="page-version-sidebar" aria-label="저장된 버전">
+        <header><strong>버전 기록</strong><button id="pageVersionCloseBtn" type="button" aria-label="버전 기록 닫기">×</button></header>
+        <div id="pageVersionList" class="page-version-list"></div>
+        <footer><span id="pageVersionNotice" role="status"></span><button id="pageVersionRestoreBtn" type="button" disabled>복원</button></footer>
+      </aside>
+    </section>
+  </div>
+  <script src="/notion_static/notion_editor_core.js?v=20260925-ui1-heading4"></script>
+  <script src="/notion_static/notion_block_layout.js?v=20260923-ui4-columns1"></script>
+  <script src="/notion_static/notion_block_structure.js?v=20260928-ui5-plus-before"></script>
+  <script src="/notion_static/notion_database_bridge.js?v=20260929-ui10-group-sort-board"></script>
+  <script src="/notion_static/notion_database_range_history.js?v=20260924-ui4-undo-availability1"></script>
+  <script src="/notion_static/vendor/yjs-13.6.32.bundle.js?v=20260825e1"></script>
+  <script src="/notion_static/notion_collaboration_editor.js?v=20260924-ui4-lock-seed1"></script>
+  <script src="/notion_static/notion_file_upload.js?v=20260825f1"></script>
+  <script src="/static/knowledge_core_transport.js?v=20260814e"></script>
+  <script src="/static/knowledge_publication.js?v=20260814b"></script>
+  <script src="/notion_static/notion_publication.js?v=20260814a"></script>
+  <script src="/notion_static/vendor/katex-0.18.7/katex.min.js"></script>
+  <script src="/notion_static/notion_math.js?v=20260911a"></script>
+  <script src="/notion_static/notion_equation_editor.js?v=20260911b"></script>
+  <script src="/notion_static/notion_slash_menu.js?v=20261001-ui6-search-label-aliases"></script>
+  <script src="/notion_static/notion_html_embed.js?v=20260911b"></script>
+  <script src="/notion_static/notion_page_outline.js?v=20260927-ui2-outline-toggle"></script>
+  <script src="/notion_static/notion_meeting_audio.js?v=20260913-speech-boundary"></script>
+  <script src="/notion_static/notion_notes_translation.js?v=20260913-speech-fixed12"></script>
+  <script src="/notion_static/notion_ai_notes.js?v=20260914-ui2-final"></script>
+  <script src="/notion_static/notion_document_ai.js?v=20260912-document-ai1"></script>
+  <script src="/notion_static/notion_ai_chat_transport.js?v=20261007-stream1"></script>
+  <script src="/notion_static/notion_ai_answer.js?v=20261007-searx-research3"></script>
+  <script src="/notion_static/notion_ai_home.js?v=20261008-common-web2"></script>
+  <script src="/notion_static/notion_meetings.js?v=20261001-ui5-entry-scope"></script>
+  <script src="/notion_static/notion_page_draft.js?v=20260915-ui4"></script>
+  <script src="/notion_static/notion_embedded_editor.js?v=20261001-ui5-bounded-flush"></script>
+  <script src="/notion_static/notion_page_rename.js?v=20260915-ui4-rename4"></script>
+  <script src="/notion_static/notion_page_copy.js?v=20260916-ui4-copy-recovery2"></script>
+  <script src="/notion_static/notion_database_copy.js?v=20260925-ui1-db-copy"></script>
+  <script src="/notion_static/notion_database_relation_pair.js?v=20260927-ui1-pair-recovery"></script>
+  <script src="/notion_static/notion_database_move.js?v=20260926-ui1-db-move"></script>
+  <script src="/notion_static/notion_database_trash.js?v=20260926-ui4-db-row-batch-restore"></script>
+  <script src="/notion_static/notion_database_row_icon_batch.js?v=20260926-ui2-row-icon-gate"></script>
+  <script src="/notion_static/notion_database_row_duplicate.js?v=20260926-ui1-row-duplicate"></script>
+  <script src="/notion_static/notion_database_row_move.js?v=20260926-ui3-cross-page-move"></script>
+  <script src="/notion_static/notion_database_row_to_page.js?v=20260927-ui1-row-page"></script>
+  <script src="/notion_static/notion_page_to_database_row.js?v=20260927-ui4-other-db-sequences"></script>
+  <script src="/notion_static/notion_icons.js?v=20260928-ui15-page-doc"></script>
+  <script src="/notion_static/notion_ui_interaction.js?v=20261001-ui15-block-actions-left"></script>
+  <script src="/notion_static/notion_grid_selection.js?v=20260926-ui13-row-move-menu"></script>
+  <script src="/notion_static/notion_metadata_sync.js?v=20260915-ui4-native-create1"></script>
+  <script src="/notion_static/notion_page_activity.js?v=20260923-ui4-page-menu-editor2"></script>
+  <script src="/notion_static/notion_document_preview.js?v=20260925-ui1-heading4"></script>
+  <script src="/notion_static/notion_personal_workspace.js?v=20260915-ui4-personal1"></script>
+  <script src="/notion_static/notion_synced_live.js?v=20260916-ui4-synced-live1"></script>
+  <script src="/notion_static/notion_synced_clipboard.js?v=20261003-ui1-synced-clipboard"></script>
+  <script src="/notion_static/notion_synced_row_clipboard.js?v=20261003-ui1-row-paste"></script>
+  <script src="/notion_static/notion_synced_actions.js?v=20261003-ui6-synced-clipboard-refresh"></script>
+  <script src="/notion_static/notion_synced_references.js?v=20261003-ui5-after-save-read"></script>
+  <script src="/notion_static/notion_synced_detach.js?v=20261003-ui3-body-receipt"></script>
+  <script src="/notion_static/notion_synced_legacy_adoption.js?v=20261002-ui4-legacy-adoption1"></script>
+  <script src="/notion_static/notion_synced_legacy_ui.js?v=20261002-ui4-legacy-adoption-ui3-join"></script>
+  <script src="/notion_static/notion_title_editor.js?v=20260916-ui4-title-layout1"></script>
+  <script src="/notion_static/notion_linked_database_cells.js?v=20260924-ui4-undo-availability1"></script>
+  <script src="/notion_static/notion_linked_database_rows.js?v=20260930-ui2-row-templates"></script>
+  <script src="/notion_static/notion_linked_database_templates.js?v=20261003-ui3-base-version"></script>
+  <script src="/notion_static/notion_independent_database_cells.js?v=20260930-ui3-inflight-access-recovery"></script>
+  <script src="/notion_static/notion_independent_database_rows.js?v=20260930-ui4-inflight-access-recovery"></script>
+  <script src="/notion_static/notion_linked_database_items.js?v=20260924-ui4-date-fence1"></script>
+  <script src="/notion_static/notion_database_item_body.js?v=20260930-ui6-direct-recovery"></script>
+  <script src="/notion_static/notion_database_item_comments.js?v=20260930-ui7-direct-recovery"></script>
+  <script src="/notion_static/notion_database_item_comments_view.js?v=20260930-ui7-direct-comment-mentions"></script>
+  <script src="/notion_static/notion_database_item_appearance.js?v=20260922-ui4-item-appearance1"></script>
+  <script src="/notion_static/notion_database_item_appearance_view.js?v=20260922-ui4-item-appearance1"></script>
+  <script src="/notion_static/notion_block_clipboard.js?v=20260923-ui4-columns1"></script>
+  <script src="/notion_static/notion_database_item_blocks.js?v=20260923-ui4-item-tabs1"></script>
+  <script src="/notion_static/notion_database_item_tabs.js?v=20260923-ui4-item-tabs1"></script>
+  <script src="/notion_static/notion_database_item_resources.js?v=20260923-ui4-item-resources2"></script>
+  <script src="/notion_static/notion_block_style.js?v=20260923-ui4-item-style2"></script>
+  <script src="/notion_static/notion_synced_content.js?v=20260923-ui4-column-readability1"></script>
+  <script src="/notion_static/notion_synced_text.js?v=20260925-ui1-heading4"></script>
+  <script src="/notion_static/notion_synced_owner_scope.js?v=20261003-ui2-wait-owner"></script>
+  <script src="/notion_static/notion_synced_body_view.js?v=20261003-ui9-original-menu-focus"></script>
+  <script src="/notion_static/notion_database_item_editor.js?v=20261003-ui11-body-readonly"></script>
+  <script src="/notion_static/notion_time_zones.js?v=20260924-ui4-zone-alias1"></script>
+  <script src="/notion_static/notion_database_dates.js?v=20260928-ui9-time-format-menu"></script>
+  <script src="/notion_static/notion_timeline_hour_window.js?v=20260926-ui1-continuous-hour"></script>
+  <script src="/notion_static/notion_linked_databases.js?v=20261001-ui38-linked-menu-refresh"></script>
+  <script src="/notion_static/notion_relation_display.js?v=20261001-ui2-linked-relation-display"></script>
+  <script src="/notion_static/notion_personal_linked_views.js?v=20261001-ui49-linked-relation-icons"></script>
+  <script src="/notion_static/notion_teamspace_settings.js?v=20260916-ui4-teamspace-settings4"></script>
+  <script src="/notion_static/notion_creation_chooser.js?v=20260916-ui4-creation-chooser4"></script>
+  <script src="/notion_static/notion_sidebar_tab_settings.js?v=20260922-ui4-sidebar-settings1"></script>
+  <script src="/notion_static/notion_sidebar_page_groups.js?v=20260923-ui4-sidebar-depth3"></script>
+  <script src="/notion_static/notion.js?v=20261007-searx-research1"></script>
+</body>
+</html>

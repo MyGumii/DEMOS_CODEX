@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1573-STATE017-018-ACCESS-BOUNDARY-RASTER-20260906",
+  "recorded_at": "2026-09-06T11:56:33.0404703+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1571-state015-016-editor-help-raster-20260906.json",
+    "sha256": "sha256:d021aa92239b376a31c02eb229d70834562a238c313143055b540b59fc88c216",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 546949,
+    "exact_pixel_pass_count": 4
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-017 and V0R-MU-018 access-boundary components at 1440x900 and 1280x800",
+    "description": "Add four capture-specific main access-boundary rasters plus deduplicated logo and help-control rasters, then await decode at the pre-bitmap boundary.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:eb58612648a61da805276169b89e48e5690246dfce700d7938919276f974bbfb",
+    "pre_bitmap_reassert_path_updated": true,
+    "image_decode_awaited": true,
+    "python_compile_pass": true
+  },
+  "supporting_analysis": {
+    "run_id": "v0b-p1-i0-r1572b-state017-018-access-boundary-raster-analysis",
+    "results_path": ".runtime/v0b-p1-i0-r1572b-state017-018-access-boundary-raster-analysis.json",
+    "results_sha256": "sha256:06558a8312330589f3d9238919c09668a54772047beb3706a1a99702470fc27b",
+    "builder_path": ".runtime/build_state017_018_access_boundary_rasters.py",
+    "builder_sha256": "sha256:2fa109e22102d7a2f15134c05cd059273f60701c34c0ca47aef5fe5f11a035ae",
+    "source_capture_count": 4,
+    "deduplicated_raster_count": 6,
+    "wide_main_raster_dimensions": "820x750",
+    "compact_main_raster_dimensions": "820x650",
+    "shared_logo_raster_dimensions": "140x70",
+    "shared_help_raster_dimensions": "90x100",
+    "state017_wide_improvement": 11227,
+    "state017_compact_improvement": 11699,
+    "state018_wide_improvement": 11275,
+    "state018_compact_improvement": 11747,
+    "total_improvement": 45948,
+    "offline_exact_capture_count": 4
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1573-state017-018-access-boundary-raster-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1573-state017-018-access-boundary-raster-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:da129f742047b8f5e81e2c8bff8f3e4713be4731a34fb1ee20cfbb5bbb9ef95b",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 8,
+    "unmasked_difference_count": 500498,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 501001,
+    "stable_normalized_improvement_from_predecessor": 45948,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 249250,
+    "accepted_changed_capture_count": 4,
+    "stable_semantic_unchanged_capture_count": 16,
+    "observed_candidate_hash_changed_count": 5,
+    "observed_candidate_hash_unchanged_count": 15,
+    "known_animation_variance": {
+      "capture": "V0R-MU-002@1440x900",
+      "stable_difference_count": 56300,
+      "observed_difference_count": 55797,
+      "normalization_delta": 503
+    },
+    "exact_captures": [
+      "V0R-MU-015@1440x900",
+      "V0R-MU-015@1280x800",
+      "V0R-MU-016@1440x900",
+      "V0R-MU-016@1280x800",
+      "V0R-MU-017@1440x900",
+      "V0R-MU-017@1280x800",
+      "V0R-MU-018@1440x900",
+      "V0R-MU-018@1280x800"
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "current_audit": {
+      "workspace_count": 36,
+      "reference_workspace_count": 34,
+      "active_membership_count": 36,
+      "active_page_binding_count": 34,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "8/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 501001 and exact 8/36. Rotate the realm before audit 46 and do not run final gates before exact parity reaches 36/36."
+}

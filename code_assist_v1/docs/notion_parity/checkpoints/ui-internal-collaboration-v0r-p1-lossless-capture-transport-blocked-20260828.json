@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-LOSSLESS-CAPTURE-TRANSPORT-BLOCKED-20260828",
+  "recorded_at": "2026-08-28T22:55:55.0180083+09:00",
+  "checkpoint_kind": "lossless_reference_capture_blocked_before_permission_mutation",
+  "packet_id": "V0R-P1",
+  "packet_status": "lossless_fixtures_ready_capture_transport_failed_closed",
+  "purpose": "Record the fail-closed lossless capture transport check after fresh A/B fixture creation and before any invite or page grant. The Chrome extension screenshot API returned JFIF/JPEG bytes for the required 1440x900 state and ignored both type=png and format=png options. Native Computer Use remained unavailable after its documented recovery sequence. No returned lossy bytes were persisted, and no permission mutation started.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-capture-transport-blocked-20260828.json"
+  ],
+  "hot_shared_contracts_modified": false,
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-fixtures-created-20260828.json",
+    "sha256": "sha256:ef23e055d11d63c13f2858634536b0ab5161178375a6ac68e4a95ded1704f8c7"
+  },
+  "capture_attempt": {
+    "state_id": "V0R-MU-001",
+    "expected_state": "invite_ready_no_raw_identifier_visible",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "raw_identifier_pattern_count": 0,
+    "personal_page_list_collapsed": true,
+    "browser_api": "Chrome extension tab.screenshot",
+    "default_payload_length_bytes": 47324,
+    "default_magic_hex_prefix": "ffd8ffe000104a464946000101000001",
+    "detected_encoding": "JFIF_JPEG",
+    "type_png_option_magic_hex_prefix": "ffd8ffe000104a46",
+    "format_png_option_magic_hex_prefix": "ffd8ffe000104a46",
+    "png_signature_required": "89504e470d0a1a0a",
+    "lossless_contract_satisfied": false,
+    "screenshot_file_persisted": false,
+    "runtime_screenshot_file_count": 0
+  },
+  "alternative_capture_checks": {
+    "native_computer_use_available": false,
+    "native_computer_use_documented_recovery_attempts_exhausted": true,
+    "chrome_playwright_element_screenshot_supported": false,
+    "chrome_tab_screenshot_exposes_encoding_parameter": false,
+    "lossless_authenticated_capture_surface_available": false
+  },
+  "fixture_state": {
+    "V0R-A-ROOT": "ready_in_REF-FREE-A_HQ",
+    "V0R-B-ROOT": "ready_in_REF-FREE-B_private_page_space",
+    "cleanup_required_if_run_is_abandoned": true,
+    "cleanup_not_started": true
+  },
+  "scope_attestation": {
+    "workspace_or_page_invitation_sent": false,
+    "permission_or_role_changed": false,
+    "comment_reaction_or_mention_sent": false,
+    "reference_screenshot_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "resume_condition": "Provide an authenticated dedicated REF test capture surface that emits native PNG bytes for both required viewports, or restore the native Computer Use transport and verify its screenshot payload starts with the PNG signature before any V0R-WORKSPACE-INVITE or V0R-PAGE-SHARE mutation.",
+  "claims": {
+    "V0R_P1_lossless_fixtures_ready": true,
+    "V0R_P1_lossless_capture_started": false,
+    "V0R_P1_lossless_gate_passed": false,
+    "V0_GATE_001_closed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

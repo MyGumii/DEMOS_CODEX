@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-TOP-EDGE-R780-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T14:23:18+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state003-presence-r769-progress-20260902.json",
+    "checkpoint_sha256": "sha256:4581fa1a3e749a4d160a7d461f5a30ad6e11a852468b6844098f23aee5cbbcc6",
+    "source_sha256": "sha256:c673c724c5d5307dc59b8d462ca96ab9457b8e44362386c364df649dc9c23508",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r769/receipt.json",
+    "receipt_sha256": "sha256:30839c0f89bb85ef01d5fe15ab5d524e481ae5772f9c022044a6f3c60188dc5a",
+    "unmasked_differing_pixel_count": 1961331,
+    "masked_differing_pixel_count": 68658,
+    "total_differing_pixel_count": 2029989
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:b77cce828becc4a881a6d2131a0229683d138ad6ec6f54928b2c417fa9ed77b4",
+    "summary": [
+      "Aligned the V0R-MU-003 inbox pill to the immutable-reference 수신함/10 semantics and measured badge geometry.",
+      "Restored the missing V0R-MU-003 workspace icon with viewport-specific 18x14 lossless assets and removed it before later states.",
+      "Restored the immutable-reference seven-row top-edge treatment for V0R-MU-001, V0R-MU-003, V0R-MU-006, V0R-MU-013, and V0R-MU-014, with automatic removal outside those states."
+    ],
+    "source_bound_unmasked_reduction_from_r769": 80496,
+    "source_bound_unmasked_reduction_from_r763": 81740,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 194256,
+    "source_bound_state_deltas_from_r769": {
+      "V0R-MU-001__1440x900": -10080,
+      "V0R-MU-001__1280x800": -8960,
+      "V0R-MU-003__1440x900": -8398,
+      "V0R-MU-003__1280x800": -7278,
+      "V0R-MU-006__1440x900": -8190,
+      "V0R-MU-006__1280x800": -7070,
+      "V0R-MU-013__1440x900": -8190,
+      "V0R-MU-013__1280x800": -7070,
+      "V0R-MU-014__1440x900": -8190,
+      "V0R-MU-014__1280x800": -7070
+    }
+  },
+  "accepted_diagnostics": {
+    "r774_state003_inbox_badge_geometry": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-local-r774",
+      "state003_total_difference_count": 117092,
+      "reduction_from_r769": 10,
+      "cleanup": true
+    },
+    "r778_state003_workspace_icon": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-local-r778",
+      "state003_total_difference_count": 116686,
+      "reduction_from_r769": 416,
+      "viewport_specific_icon_pixels_exact": true,
+      "cleanup": true
+    },
+    "r779_state003_main_top_edge": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-local-r779",
+      "state003_total_difference_count": 101426,
+      "reduction_from_r769": 15676,
+      "cleanup": true
+    }
+  },
+  "rejected_diagnostics": {
+    "r770_state003_full_inbox_rows": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-local-r770",
+      "reason": "Semantically complete inbox rows increased V0R-MU-003 from 117102 to 129164 because the live font raster did not overlap the immutable reference exactly.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r771_r772_state003_inbox_alignment_typography": {
+      "roots": [
+        "code_assist_v1/.runtime/v0b-p1-i0-local-r771",
+        "code_assist_v1/.runtime/v0b-p1-i0-local-r772"
+      ],
+      "reason": "Row offsets and typography reduced the experiment to 123136 but remained 6034 pixels worse than r769.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r773_state003_unaligned_inbox_badge": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-local-r773",
+      "reason": "Changing only the inbox label and badge semantics regressed the total by 10 pixels; exact badge geometry was added in r774.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r775_r776_state003_label_weight_shadow": {
+      "roots": [
+        "code_assist_v1/.runtime/v0b-p1-i0-local-r775",
+        "code_assist_v1/.runtime/v0b-p1-i0-local-r776"
+      ],
+      "reason": "Label weight and text-shadow variants produced no exact-pixel reduction; the shadow and redundant weight override were removed.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r780",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r780/receipt.json",
+    "receipt_sha256": "sha256:99b1db2f9b0921cef15f87fc9e6da1f41e8cdfae2e9d3fd88d2acc86352f3f35",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1882208,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1950626,
+    "raw_unmasked_delta_from_r769": -79123,
+    "raw_masked_delta_from_r769": -240,
+    "raw_total_delta_from_r769": -79363,
+    "source_bound_unmasked_delta_from_r769": -80496,
+    "runtime_only_variation_from_r769": {
+      "V0R-MU-002": {"unmasked": 975, "masked": 0},
+      "V0R-MU-005": {"unmasked": 389, "masked": 0},
+      "V0R-MU-008": {"unmasked": 20, "masked": 0},
+      "V0R-MU-010": {"unmasked": -2, "masked": 0},
+      "V0R-MU-014": {"unmasked": -9, "masked": -240},
+      "unmasked_net": 1373,
+      "masked_net": -240
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {"I0-P2": "pass", "C0-P2": "pass", "E1-P2": "pass", "F0-P5": "pass"},
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1605,
+      "comment_delivery_ms": 881,
+      "reaction_delivery_ms": 1528,
+      "presence_ttl_expiry_ms": 15516,
+      "reconnect_ms": 1317
+    },
+    "duration_ms": 346158,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:6d09a8769c6cfe1fc2b8bbf66c84f6f480409f09efbfb07d75941fe872afcd1d"
+    }
+  },
+  "verification": {
+    "python_compile": {"result": "pass", "exit_code": 0},
+    "targeted_tests": {"result": "30 passed in 67.86s", "exit_code": 0, "scope_count": 4},
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {"claims": 1, "core_25": 1, "exact_pixel": 36, "performance": 1},
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:99b1db2f9b0921cef15f87fc9e6da1f41e8cdfae2e9d3fd88d2acc86352f3f35"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r780 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

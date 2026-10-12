@@ -1,0 +1,87 @@
+# GGUF 모델 (별도 관리)
+*.gguf
+
+# Python 캐시
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# 하네스 세션 데이터
+.harness_sessions/
+
+# 업로드 파일 (사용자 데이터)
+uploads/
+
+# OS/IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 복사본 파일
+*복사본*
+
+# Microsoft Graph OAuth runtime secrets
+code_assist_v1/.runtime/outlook_graph.key
+code_assist_v1/user_data/*/outlook/*.enc
+
+# Agent integration runtime/credentials and local development backups
+.dev/agent-integrations-20260907/
+**/agent_integrations.db
+**/agent_integrations.db-wal
+**/agent_integrations.db-shm
+**/second-brain-*.token
+
+# Portable Codex conversation history (carry with the drive, never commit)
+/.codex-session-store/
+/.codex-notion-handover/
+/Notion-handover-transfer.zip
+/Notion-handover-transfer.zip.part
+/.tools/codex-portable/schema/
+
+# Public repository: local credentials, user data and generated files
+.env
+.env.*
+!.env.example
+**/api_config.json
+**/users.json
+TOKEN.TXT
+**/TOKEN.TXT
+*.key
+*.token
+*.enc
+*.db
+*.db-*
+*.sqlite*
+venv/
+.venv/
+node_modules/
+.runtime/
+.private/
+.dev/
+.audit_tmp/
+.tmp*/
+tmp*/
+backups/
+capture/
+output/
+work/
+workspace-feature-evidence/
+user_data/
+workspace/
+knowledge/
+logs/
+recordings/
+artifacts/
+generated_skills/
+saved-prompts/
+*.log
+*.out
+*.err
+.coverage
+*.zip
+*.gguf
+hermes_config.yaml
+hermes_config_*.yaml
+settings.local.json

@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/schemas/notion-core-free-web-ui-v1.json",
+  "title": "Core Free Web UI scenario overlay",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract",
+    "primary_profile",
+    "required_scenarios",
+    "extension_scenarios",
+    "conditional_scenarios",
+    "excluded_capabilities",
+    "artifact_contract",
+    "policy_refs",
+    "source_refs",
+    "generated_counts"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "contract": { "const": "notion_core_free_web_ui_scenarios_v1" },
+    "primary_profile": { "$ref": "#/$defs/profile" },
+    "required_scenarios": {
+      "type": "array",
+      "minItems": 25,
+      "maxItems": 25,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/scenario" }
+    },
+    "extension_scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/deferredScenario" }
+    },
+    "conditional_scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/deferredScenario" }
+    },
+    "excluded_capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "artifact_contract": { "$ref": "#/$defs/artifactContract" },
+    "policy_refs": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/policyRef" }
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/sourceRef" }
+    },
+    "generated_counts": { "$ref": "#/$defs/counts" }
+  },
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_id",
+        "plan",
+        "role",
+        "platform",
+        "locale",
+        "browser",
+        "reference_workspaces",
+        "personal_workspace"
+      ],
+      "properties": {
+        "profile_id": { "const": "core_free_owner_chrome_desktop_ko_kr" },
+        "plan": { "const": "free" },
+        "role": { "const": "workspace_owner" },
+        "platform": { "const": "desktop_web" },
+        "locale": { "const": "ko-KR" },
+        "browser": { "const": "chrome" },
+        "reference_workspaces": {
+          "type": "array",
+          "prefixItems": [
+            { "const": "REF-FREE-A" },
+            { "const": "REF-FREE-B" }
+          ],
+          "items": false
+        },
+        "personal_workspace": { "const": "forbidden" }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scenario_id",
+        "phase",
+        "outcome",
+        "profile_id",
+        "fixture_aliases",
+        "actions",
+        "exact_assertions",
+        "tolerance_assertions",
+        "negative_assertions",
+        "second_brain_hard_gate_ids",
+        "evidence_state",
+        "non_goals"
+      ],
+      "properties": {
+        "scenario_id": { "type": "string", "pattern": "^UI-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$" },
+        "phase": { "enum": ["H3", "H4", "H5", "H6", "H7", "H8"] },
+        "outcome": { "type": "string", "minLength": 1 },
+        "profile_id": { "const": "core_free_owner_chrome_desktop_ko_kr" },
+        "fixture_aliases": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^(?:REF-FREE-[AB]|UI-PARITY-RUN-[A-Z0-9]+(?:-[A-Z0-9]+)*)$" }
+        },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/action" }
+        },
+        "exact_assertions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/assertion" }
+        },
+        "tolerance_assertions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/assertion" }
+        },
+        "negative_assertions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "second_brain_hard_gate_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^SB-[A-Z0-9]+(?:-[A-Z0-9]+)*$" }
+        },
+        "evidence_state": {
+          "enum": [
+            "planned",
+            "exists",
+            "contract-tested",
+            "live-characterized",
+            "differential-passed",
+            "unknown",
+            "blocked"
+          ]
+        },
+        "non_goals": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_id",
+        "scenario_id",
+        "surface",
+        "verb",
+        "target_alias",
+        "input_alias",
+        "expected_state_id",
+        "expected_focus_alias",
+        "capture_after",
+        "mutation_class",
+        "recovery_action_id"
+      ],
+      "properties": {
+        "action_id": { "type": "string", "pattern": "^UI-[A-Z0-9]+(?:-[A-Z0-9]+)*-A[0-9]{2}$" },
+        "scenario_id": { "type": "string", "pattern": "^UI-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$" },
+        "surface": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "verb": {
+          "enum": [
+            "open_surface",
+            "click",
+            "press",
+            "type_synthetic",
+            "wait_visible",
+            "assert_visible",
+            "assert_hidden",
+            "assert_focus",
+            "assert_synthetic_text",
+        "capture_region",
+        "reload",
+        "switch_workspace_alias",
+        "select_synthetic",
+        "drag"
+          ]
+        },
+        "target_alias": { "type": "string", "pattern": "^[A-Z][A-Z0-9_-]*$" },
+        "input_alias": { "type": ["string", "null"], "pattern": "^[A-Z][A-Z0-9_-]*$" },
+        "expected_state_id": { "type": ["string", "null"], "pattern": "^STATE-[A-Z0-9]+(?:-[A-Z0-9]+)*$" },
+        "expected_focus_alias": { "type": ["string", "null"], "pattern": "^[A-Z][A-Z0-9_-]*$" },
+        "capture_after": { "type": "boolean" },
+        "mutation_class": { "enum": ["read_only", "synthetic_mutation", "local_second_brain_mutation"] },
+        "recovery_action_id": { "type": ["string", "null"], "pattern": "^UI-[A-Z0-9]+(?:-[A-Z0-9]+)*-A[0-9]{2}$" }
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assertion_id", "channel", "expected"],
+      "properties": {
+        "assertion_id": { "type": "string", "pattern": "^A[0-9]+$" },
+        "channel": {
+          "enum": [
+            "state",
+            "keyboard",
+            "focus",
+            "a11y",
+            "semantic_visual",
+            "error_recovery",
+            "workspace_isolation",
+            "second_brain",
+            "geometry",
+            "latency"
+          ]
+        },
+        "expected": { "type": "string", "minLength": 1 }
+      }
+    },
+    "deferredScenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scenario_id", "status", "outcome"],
+      "properties": {
+        "scenario_id": { "type": "string", "pattern": "^UI-(?:EXT|COND)-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$" },
+        "status": { "enum": ["extension", "conditional"] },
+        "outcome": { "type": "string", "minLength": 1 }
+      }
+    },
+    "artifactContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_artifacts_in_repository",
+        "raw_capture_root",
+        "synthetic_allowlist_required",
+        "forbidden_artifacts",
+        "required_capture_sections"
+      ],
+      "properties": {
+        "raw_artifacts_in_repository": { "const": false },
+        "raw_capture_root": { "const": "repository_external_trusted_temp" },
+        "synthetic_allowlist_required": { "const": true },
+        "forbidden_artifacts": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "required_capture_sections": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "policyRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "status", "purpose"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^code_assist_v1/docs/notion_parity/[A-Za-z0-9_./-]+\\.json$" },
+        "status": { "enum": ["historical_not_adopted_for_core", "active_measurement_only", "approved"] },
+        "purpose": { "type": "string", "minLength": 1 }
+      }
+    },
+    "sourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "purpose"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^code_assist_v1/[A-Za-z0-9_./-]+$" },
+        "sha256": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+        "purpose": { "type": "string", "minLength": 1 }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_core_scenarios",
+        "planned_count",
+        "exists_count",
+        "contract_tested_count",
+        "live_characterized_count",
+        "differential_passed_count",
+        "unknown_count",
+        "blocked_count",
+        "extension_count",
+        "conditional_count"
+      ],
+      "properties": {
+        "required_core_scenarios": { "type": "integer", "minimum": 0 },
+        "planned_count": { "type": "integer", "minimum": 0 },
+        "exists_count": { "type": "integer", "minimum": 0 },
+        "contract_tested_count": { "type": "integer", "minimum": 0 },
+        "live_characterized_count": { "type": "integer", "minimum": 0 },
+        "differential_passed_count": { "type": "integer", "minimum": 0 },
+        "unknown_count": { "type": "integer", "minimum": 0 },
+        "blocked_count": { "type": "integer", "minimum": 0 },
+        "extension_count": { "type": "integer", "minimum": 0 },
+        "conditional_count": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

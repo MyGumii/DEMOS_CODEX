@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.z0.receipt_only_completion_pre_edit_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-Z0-RECEIPT-ONLY-COMPLETION-PRE-EDIT-20260909",
+  "recorded_at": "2026-09-09T00:26:28+09:00",
+  "status": "verified_checkpoint_only_bypass_for_dedicated_evidence_packets",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-r0-r1-central-promotion-revalidation-aligned-20260909.json",
+    "sha256": "sha256:d4db5e1f08558b534265ad2aac563682fd2b2368d525980a1cfb43ecbf5d9b5a",
+    "record_sha256": "sha256:7766c7b2259a21108df3d10332092f7615208880906a86424158f3dc7490595a"
+  },
+  "pre_edit_bindings": {
+    "central_validation": {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:db37900d9f2d6481aaabe643041a5dbee9ffa7f8ea12da8ce4ad2d74d3fca771"
+    },
+    "harness_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+      "sha256": "sha256:55c3694ced82e3466ed59bf0203bf0a3ca70c01d9b484b993a710e5dc65902a3"
+    }
+  },
+  "observed_gap": {
+    "already_receipt_only": ["V0R-P1", "V0B-P1"],
+    "checkpoint_only_bypassable": [
+      "O1B-P1",
+      "Q0-P1",
+      "R0A-P1",
+      "R0B-P1",
+      "R1-P1",
+      "Z0-P1"
+    ],
+    "impact": "a gate-passed checkpoint could satisfy packet receipt state without dedicated external or final completion evidence"
+  },
+  "authorized_local_correction": {
+    "require_valid_execution_receipt_for_all_dedicated_evidence_packets": true,
+    "add_completion_state_false_green_regression": true,
+    "external_action_allowed": false,
+    "central_catalog_ladder_matrix_pointer_change_allowed": false
+  },
+  "claims": {
+    "external_system_mutated": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "historical_evidence_overwritten": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:885605e171e0324c0d1d419d61a75df47b6e66ebadaf3df7036c56b8f3beb425"
+}

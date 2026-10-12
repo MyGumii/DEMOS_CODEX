@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-LOSSLESS-FIXTURES-CREATED-20260828",
+  "recorded_at": "2026-08-28T22:46:44.7003458+09:00",
+  "checkpoint_kind": "lossless_synthetic_fixtures_created_before_permission_mutation",
+  "packet_id": "V0R-P1",
+  "packet_status": "lossless_execution_in_progress_awaiting_action_time_permission_confirmation",
+  "purpose": "Record completion of the two fresh synthetic fixtures for the lossless superseding reference run. Notion's built-in A starter body and cover were removed under the user's action-time approval; the exact A fixture was rebuilt and moved into REF-FREE-A HQ. No invitation, page grant, role change, comment, reaction, mention, capture, revoke, or Trash action has started.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-fixtures-created-20260828.json"
+  ],
+  "hot_shared_contracts_modified": false,
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-fixture-create-partial-20260828.json",
+    "sha256": "sha256:e7e92cf166e5e5221043b5f40b3cf58581623ac8d1b0d2ec208dc811ca2f72db"
+  },
+  "completed_actions": [
+    {
+      "order": 1,
+      "action_id": "V0R-PREFLIGHT",
+      "status": "passed"
+    },
+    {
+      "order": 2,
+      "action_id": "V0R-CREATE-A",
+      "workspace": "REF-FREE-A",
+      "actor": "REF-OWNER",
+      "status": "passed",
+      "required_result": "V0R-A-ROOT_created",
+      "fixture": {
+        "page_alias": "V0R-A-ROOT",
+        "opaque_page_id": "8259e69c1dfb83d8b25401f1c44c198c",
+        "placement": "REF-FREE-A HQ teamspace",
+        "exact_text_markers": [
+          "V0R-A-TEXT-BASE",
+          "V0R-A-BLOCK-BASE"
+        ],
+        "database_alias": "V0R-A-DB",
+        "database_row_alias": "V0R-A-ROW-BASE",
+        "notion_built_in_starter_body_remaining": false,
+        "notion_built_in_starter_cover_remaining": false
+      }
+    },
+    {
+      "order": 3,
+      "action_id": "V0R-CREATE-B",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "status": "passed",
+      "required_result": "V0R-B-ROOT_created",
+      "fixture": {
+        "page_alias": "V0R-B-ROOT",
+        "opaque_page_id": "3ca0f3fc29e8801c8774eb9c45fd16b3",
+        "placement": "REF-FREE-B private page space",
+        "exact_text_marker": "V0R-B-ROLE-BASE"
+      }
+    }
+  ],
+  "starter_clear_approval": {
+    "received": true,
+    "exact_user_text": "V0R-A starter blocks 삭제 승인",
+    "applied_only_to_new_synthetic_V0R_A_ROOT": true,
+    "page_itself_deleted": false,
+    "personal_content_deleted": false
+  },
+  "evidence_denominator": {
+    "completed_action_count": 3,
+    "expected_action_count": 11,
+    "persisted_reference_screenshot_count": 0,
+    "expected_reference_screenshot_count": 36,
+    "cleanup_required_now": true
+  },
+  "scope_attestation": {
+    "external_notion_mutation_executed": true,
+    "synthetic_fixture_created": true,
+    "workspace_or_page_invitation_sent": false,
+    "permission_or_role_changed": false,
+    "comment_reaction_or_mention_sent": false,
+    "reference_screenshot_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_content_mutated": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "confirmation_boundary": {
+    "confirmation_required_before_next_actions": true,
+    "next_action_ids": [
+      "V0R-WORKSPACE-INVITE",
+      "V0R-PAGE-SHARE"
+    ],
+    "confirmation_received_for_next_actions": false,
+    "next_actions_started": false
+  },
+  "claims": {
+    "V0R_P1_lossless_execution_started": true,
+    "V0R_P1_lossless_fixture_creation_complete": true,
+    "V0R_P1_lossless_gate_passed": false,
+    "V0_GATE_001_closed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "V0R-WORKSPACE-INVITE"
+}

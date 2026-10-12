@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-EVIDENCE-REVOCATION-STATUS-VERIFIED-20260907",
+  "recorded_at": "2026-09-07T02:05:47.2634474+09:00",
+  "status": "verified_truthful_incomplete",
+  "packet_id": "V0B-P1",
+  "packet_status": "implemented_unverified",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "pre_edit_checkpoints": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-corrective-lineage-rebind-pre-edit-20260907.json",
+      "sha256": "sha256:e96d2038cc7726fd659b57131d3f7172e61e845840c7d1b8475ceb7420c22f87"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-adopted-verifier-corrective-pre-edit-20260907.json",
+      "sha256": "sha256:37e202cd31cacb54111485e8a1b7140ff11802c503575db237af7f44e298e2d6"
+    }
+  ],
+  "post_edit_sha256": {
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:6452f040cccba8750b980d48bcf3d8d67a6e68e5626a52ec332b0347bd33089e",
+    "code_assist_v1/tools/verify_internal_collaborative_adopted_surface.py": "sha256:5be651dfbad36e24bdf4e53ce3cfd640963122ca866da48316dd29e99b6bf500",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:049a7a772982de77fed5ddcfc24a3ccf835f37db2afec56b5259b03056e10293",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json": "sha256:d77b4379170ab397c07af9e40c7ea6baaa11210815072d85d4d9ded265883ad2",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json": "sha256:8c692bbfa94dad76f23b02b59e68ac5ede156321a7af5571760d0cd182ecf4f4",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:96d7f4493b687816f24563e54c1aab3401713e2d65056b62726b664d2f5b9275",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:28ef02fd42dec55597b92b41a97b63319d8540efd86d1dc5f8d433feb053bcd4",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:3103ee646cbb0dbb72be91c358567a228211f9aadf00642c26a7724b23c8ec10"
+  },
+  "verification": {
+    "syntax": "pass",
+    "focused_failure_rechecks": "3 passed, 53 deselected in 22.32s",
+    "combined_harness_and_capture_integrity": "73 passed in 107.43s",
+    "adopted_surface_contract": {
+      "status": "pass",
+      "error_count": 0,
+      "adopted_feature_count": 15,
+      "source_count": 21,
+      "test_count": 11
+    },
+    "database_successor_sample": {
+      "status": "pass",
+      "error_count": 0
+    },
+    "local_backup_restore_contract": {
+      "status": "pass",
+      "error_count": 0,
+      "full_target_restore_lane_closed": false
+    },
+    "central_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "completion_state": "incomplete",
+      "required_packets": 50,
+      "gate_passed_required_packets": 42,
+      "closed_matrix_rows": 18,
+      "closed_phase_gates": 14,
+      "valid_execution_receipts": 19
+    },
+    "strict_completion_gate": {
+      "status": "expected_fail",
+      "error_count": 1,
+      "only_error_code": "STRICT_COMPLETION_INCOMPLETE"
+    }
+  },
+  "evidence_policy": {
+    "historical_v0_receipts_preserved": true,
+    "old_generic_execution_credit_active": false,
+    "new_product_only_capture_pipeline_required": true,
+    "V0R_P1_gate_passed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "ownership_leases": {
+    "corrective_lineage_rebind": "released_verified",
+    "adopted_verifier_corrective": "released_verified"
+  },
+  "protected_state": {
+    "product_source_changed_by_status_correction": false,
+    "historical_receipt_overwritten": false,
+    "SBE_hot_contract_changed": false,
+    "runtime_service_started": false,
+    "external_or_production_mutation": false
+  },
+  "next_action": "Rebind the independently passing V0R receipt as its own closing evidence, then start a separately scoped fresh product-only V0B 36-state capture run."
+}

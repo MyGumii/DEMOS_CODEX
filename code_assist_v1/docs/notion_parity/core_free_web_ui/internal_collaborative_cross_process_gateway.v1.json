@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_cross_process_gateway.v1",
+  "contract_id": "T0B-P3-CROSS-PROCESS-GATEWAY-001",
+  "recorded_at": "2026-08-24T12:30:00Z",
+  "packet_id": "T0B-P3",
+  "status": "gate_passed",
+  "selected_runtime": {
+    "gateway": "CPython_3.14.3_uvicorn_0.52.4_websockets_17.0.1",
+    "compactor": "Node_24.14.1_Yjs_13.6.32",
+    "wire_format": "Yjs_v1_update_bytes"
+  },
+  "runtime_topology": {
+    "gateway_process_count": 1,
+    "compactor_process_count_per_gateway": 1,
+    "compactor_opens_listener": false,
+    "listener_host": "127.0.0.1",
+    "listener_port_assignment": "OS_port_zero",
+    "graceful_marker_bound_restart": true
+  },
+  "process_and_dependency_ownership": {
+    "python_dependencies": "hash_locked_temporary_target",
+    "node_dependencies": "package_lock_offline_temporary_node_modules",
+    "gateway_owns_node_stdin_stdout_and_lifecycle": true,
+    "launcher_owns_gateway_stdin_PID_port_and_runtime_root": true,
+    "startup_requires_exact_python_node_yjs_versions": true,
+    "startup_requires_runtime_binding_and_node_handshake": true,
+    "descriptor_binds_launch_instance_gateway_PID_compactor_PID_and_port": true,
+    "stdin_EOF_or_exact_STOP_instance_requests_graceful_shutdown": true
+  },
+  "transport_guarantees": {
+    "ticket_consumption_is_canonical_one_time": true,
+    "canonical_commit_precedes_ACK_and_broadcast": true,
+    "duplicate_operation_returns_original_ACK_without_rebroadcast": true,
+    "out_of_order_client_sequence_is_rejected": true,
+    "slow_consumer_is_fenced_after_durable_commit": true,
+    "restart_replays_durable_updates": true,
+    "selected_Yjs_compactor_publishes_hash_bound_snapshot": true,
+    "send_time_authority_revalidation": true,
+    "revoked_or_old_epoch_delivery_bytes": 0,
+    "origin_ticket_and_WebSocket_origin_must_match": true
+  },
+  "test_boundary": {
+    "temporary_dependency_install_only": true,
+    "temporary_SQLite_only": true,
+    "ephemeral_browser_tab_only": true,
+    "signed_in_profile_data_read": false,
+    "fixed_operator_port_accessed": false,
+    "development_pair_changed": false,
+    "production_changed": false
+  },
+  "successor_extension_boundary": {
+    "packet_id": "D0B-P1",
+    "approval_id": "AP-DEV-PAIR",
+    "fixed_gateway_port": 10113,
+    "legacy_default_remains": "OS_port_zero",
+    "unapproved_fixed_ports_rejected": true,
+    "t0b_test_boundary_unchanged": true
+  },
+  "source_manifest": [
+    {
+      "path": "code_assist_v1/collaboration_runtime/node/compactor.mjs",
+      "sha256": "sha256:f7c69deab9b5d7e15e063e19b9fb7bc03781e38b7022841a94ac92b87895954b"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/node_compactor.py",
+      "sha256": "sha256:331013f65ce78cf1cddf504014e42ea4eb72ed1970691deef743a35ece894c18"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/cross_process_gateway.py",
+      "sha256": "sha256:6e6eea7514cfc0837c4e207c89a328c74bd8b21c0971d92294864d0943c371b0"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/gateway_service.py",
+      "sha256": "sha256:d4c4d270e5bdf5f868976a32153ce62b45a897893cf74bd9b4a2a18473cc4db5"
+    }
+  ],
+  "test_manifest": [
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_cross_process.py",
+      "sha256": "sha256:1571ac9dfeedb99f24a2f8bdd161e755421ccb8623883d7da5603900a6200dac"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/browser/test_runtime_gateway_browser_transport.py",
+      "sha256": "sha256:7d10e0704bdfa41789636c443e2ebd81ed953c3e45c08d9cf64164364011b182"
+    }
+  ],
+  "browser_evidence": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_browser/t0b-p3-manual-browser-20260824.json",
+    "sha256": "sha256:10c57f5e29bcfeb61381c96517495395cfe9a666b33e7baab036647f96e0a7ff"
+  },
+  "verification": {
+    "real_gateway_process": true,
+    "real_node_yjs_process": true,
+    "real_websocket_clients": 2,
+    "real_browser_websocket": true,
+    "duplicate_idempotency": true,
+    "out_of_order_rejection": true,
+    "backpressure_fence": true,
+    "restart_replay": true,
+    "yjs_compaction_snapshot": true,
+    "revocation_old_epoch_delivery_bytes": 0,
+    "owned_process_port_and_root_cleanup": true
+  },
+  "claims": {
+    "T0B_P3_gate_passed": true,
+    "RT_001_closed": true,
+    "runtime_or_feature_enabled": false,
+    "development_pair_changed": false,
+    "production_target_changed": false,
+    "product_complete": false
+  }
+}

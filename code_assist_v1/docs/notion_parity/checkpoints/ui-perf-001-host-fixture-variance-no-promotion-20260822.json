@@ -1,0 +1,121 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T23:20:05+09:00",
+  "run_id": "ui62-perf-host-fixture-variance-no-promotion-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-approved-evidence-modes-23-of-25-perf-budget-open-20260822.json",
+    "sha256": "sha256:b5e2990cdb9a7950ad960c67d4ad4f2ee65ca2891c3e596fdcc776efd5cb43c2",
+    "semantic_status": "evidence_satisfied_23_of_25_perf_open"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "the user explicitly said to continue",
+    "goal_complete": false
+  },
+  "scenario": {
+    "scenario_id": "UI-PERF-001",
+    "profile": "free-owner-chrome-desktop-ko-KR",
+    "evidence_mode": "reference_measurement_local_budget",
+    "state": "evidence_pending",
+    "classification": "host_or_fixture_variance_unresolved",
+    "promotion_allowed": false,
+    "approved_budget_changed": false,
+    "product_code_changed": false
+  },
+  "inputs": [
+    {"path": "code_assist_v1/AGENTS.md", "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path": "code_assist_v1/tests/browser/test_notion_ui_performance.py", "sha256": "sha256:17cad4942917ad41e13501c05ec1dd085de82343852eeb4772ad9e62b93b6761"},
+    {"path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py", "sha256": "sha256:c51e1b001cb9e90d5f92cd4aada22f261007d50237ef25d3e68690faf8242da3"},
+    {"path": "code_assist_v1/tools/notion_parity/ui_local_fixture.py", "sha256": "sha256:0476cee2511c219a3cdbf965c8ab8f362356f5252708441c378f5751bc08eded"},
+    {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/performance_budget.v1.json", "sha256": "sha256:e142c76f6464a4b15869805eb82eeb1478f7e4d96d1fdbba4b0588a87a962e03"},
+    {"path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-current-budget-failed-no-promotion-20260822.json", "sha256": "sha256:94d32515dda3ddafee3736369bb733ca36f5cf9e574379155f20854d8a4ae994"},
+    {"path": "code_assist_v1/auth.py", "sha256": "sha256:4185e74b9ddd8826b7a115bee87fa3965bb440fe10b1ea14d77cbd8bbffe8bc2"},
+    {"path": "code_assist_v1/notion_static/index.html", "sha256": "sha256:1891bf66529a3b24ba119ebf327dfe687eb407cb1da3d922c6e05c4a95a5bd50"},
+    {"path": "code_assist_v1/notion_static/notion.css", "sha256": "sha256:52127fe8dc6dd0e97fe254dc04bb44d91a77606aa9069720163740022226fa0f"},
+    {"path": "code_assist_v1/notion_static/notion.js", "sha256": "sha256:f001846798fba1cfb5e3f025a8f15dea90e072a3fa06056d0d79b06c23ecfc05"}
+  ],
+  "approved_budget": {
+    "metric": "shell_ready_ms",
+    "percentile": "p95",
+    "sample_count": 6,
+    "budget_ms": 1370,
+    "nearest_rank_effect": "with six samples p95 equals the maximum sample"
+  },
+  "observations": [
+    {
+      "kind": "exact_gate_retry",
+      "result": "fail",
+      "shell_ready_p95_ms": 1807.472,
+      "reason": "approved shell budget exceeded after the complete synthetic journey ran"
+    },
+    {
+      "kind": "raw_six_sample_diagnostic",
+      "result": "all_approved_metric_budgets_green",
+      "shell_ready_samples_ms": [1129.63, 824.056, 734.48, 1024.012, 975.615, 809.095],
+      "shell_ready_p95_ms": 1129.63,
+      "metric_p95_ms": {
+        "editor_input_ack_ms": 34.382,
+        "page_ready_ms": 195.026,
+        "reload_ready_ms": 389.286,
+        "save_ready_ms": 1418.882,
+        "search_open_ms": 96.901,
+        "search_result_ms": 19.192,
+        "second_brain_preview_ready_ms": 920.084
+      }
+    },
+    {
+      "kind": "synthetic_http_auth_fixture",
+      "result": "6_of_6_logged_in",
+      "duration_seconds": 19.9
+    },
+    {
+      "kind": "playwright_environment",
+      "result": "unstable",
+      "details": [
+        "one exact run failed before browser initialization because the Playwright driver connection closed",
+        "two segmented browser diagnostics observed an invalid synthetic login after successful fixture registration",
+        "one browser diagnostic timed out waiting for data-notion-ready",
+        "one temporary fixture cleanup observed a transient Windows lock on a synthetic wiki_index.sqlite"
+      ]
+    }
+  ],
+  "decision": {
+    "reason": "The same immutable UI and budget produced both a failing 1807.472 ms shell p95 and a passing 1129.63 ms shell p95, while browser fixture lifecycle failures occurred independently of product assertions. There is no stable product bottleneck to patch without risking an evidence-driven but incorrect optimization.",
+    "actions": [
+      "keep UI-PERF-001 evidence pending",
+      "do not relax or recalibrate the approved budget",
+      "do not change product UI, authentication, or Second Brain code",
+      "do not promote H8 or release readiness"
+    ]
+  },
+  "safety": {
+    "isolated_os_temp_only": true,
+    "synthetic_accounts_only": true,
+    "personal_notion_content_accessed": false,
+    "live_notion_database_accessed": false,
+    "live_local_data_accessed_in_this_resume": false,
+    "external_action_executed": false,
+    "files_mutated_outside_docs": false,
+    "parent_read_only_search_incident_acknowledged": true
+  },
+  "claims": {
+    "required_scenario_count": 25,
+    "evidence_satisfied_count": 23,
+    "unresolved_count": 2,
+    "ui_perf_001_complete": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "verification": {
+    "completion_verifier": "pass: evidence_satisfied 23, unresolved 2, measurement_contract_passed 0",
+    "review_gate_verifier": "pass: certified 23, reference_partially_observed 2",
+    "input_hash_audit": "11 bindings, 0 mismatches before final checkpoint annotation"
+  },
+  "next_exact_action": "On a quiet host, add non-persisted per-phase timing diagnostics to the existing isolated test invocation and reproduce the exact six-sample gate. Change product code only after one phase is consistently over budget; otherwise treat the repeated browser fixture lifecycle failures as a harness stabilization slice before remeasurement.",
+  "vcs": {
+    "available": false,
+    "commit_claimed": false,
+    "observation": "the workspace is not a valid Git repository"
+  }
+}

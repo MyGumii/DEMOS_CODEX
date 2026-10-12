@@ -1,0 +1,229 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-15T04:17:47+09:00",
+  "run_id": "ui-editor-005-local-surface-parity-green-20260815",
+  "model": {
+    "planning": "gpt-5.6-sol-ultra",
+    "implementation": "gpt-5.6-sol-xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-editor-003-local-selection-clipboard-history-green-reference-pending-20260815.json",
+    "sha256": "sha256:c33ad98c901cc99caffad0a6920cfec24a661516f5e07d550f11151452277527",
+    "semantic_status": "historical-parent-preserved"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T03:47:00+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": ["UI-EDITOR-005"],
+    "conditional": ["Business", "Enterprise", "Archive"],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "official-reference-parity-claim",
+      "center-peek",
+      "trial-or-payment",
+      "invite-or-public-posting",
+      "operational-migration",
+      "live-feature-flag",
+      "continuous-consumer",
+      "resolver-cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI-EDITOR-005-MAIN-FULL-SIDE-PEEK-PARITY",
+    "status": "local-real-browser-green-reference-pending",
+    "acceptance_ids": [
+      "NAMED-SIDE-PEEK-DIALOG-AND-REGION",
+      "SIDE-PEEK-ENTRY-FOCUS",
+      "SHARED-CTRL-S-PERSISTENCE",
+      "SIDE-PEEK-SAVE-CARET-RESTORATION",
+      "DIRTY-SAFE-FULL-PAGE-TRANSITION",
+      "SIDE-PEEK-OVERLAY-CLEARED",
+      "FULL-PAGE-CANVAS-FOCUS",
+      "TWO-SAVES-EXACT-RELOAD",
+      "SECOND-BRAIN-ZERO-DELTA",
+      "LOCAL-REPEATABILITY",
+      "SYNTHETIC-ONLY"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "notion_static/notion.js",
+        "pre_sha256": "sha256:4036233ba8ceccad22c7e089dfb50d66233d5f944c5358c366f10bc0b0cc5f00",
+        "post_sha256": "sha256:842d19f74d247858dcf17968ca24f8ffe55aa6f125ed2284668d0d997833cb44",
+        "change": "side-peek entry focus, shared save shortcut, post-save caret restoration, and dirty-safe full-page transition"
+      },
+      {
+        "path": "notion_static/index.html",
+        "pre_sha256": "sha256:da219d0b212183471d1a3b784b164409153b66056d5d39c9f0a4851cb59bba3c",
+        "post_sha256": "sha256:9de2ea9a8ffa403a0b632b844654367e984867ab003218761e151d724d3e006d",
+        "change": "named side-peek dialog and focusable page region"
+      },
+      {
+        "path": "tests/test_notion_ui_runtime.js",
+        "pre_sha256": "sha256:20f2ad9859e5ad14a4455154fe2984b689f52f2ee2ae9b9b417208be7434080d",
+        "post_sha256": "sha256:eb0c2f7501f56dc78359aa7deeae27d8eaad4c1ae6b145e2c5e4274c1d64deee",
+        "change": "side-peek semantics, focus restoration, and full-page transition guards"
+      },
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "pre_sha256": "sha256:a433a91aff9a8ed30861f1fa9dc2d0024ea6207ca51bd8f3c473fb5269123c3a",
+        "post_sha256": "sha256:38dfdc9e08635db81b9ef0512f9bb2ac2173699892ccfc0d677d047f4b224293",
+        "change": "repeated installed-Chrome main, side-peek, full-page, persistence, focus, and zero-delta journey"
+      },
+      {
+        "path": "docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:58ac5aca6d5421c1b1f243325bcb9430d03cea5b6d36692fd9c5acc7bebb62c0",
+        "post_sha256": "sha256:d37370b58fd35035caf81da6e4cad42ecea154606bf85c49698e3eceaf748375",
+        "change": "current UI-EDITOR-005 evidence and UI-EDITOR-006 continuation"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:990055faabdff9944fcda7b1358752a9190aa211e0acfb4d5f5d286a117d31e6",
+        "post_sha256": "sha256:0bf48621613a5596a8eb02de39be5ee9433e96803126d728ec0e0a508b0a0f67",
+        "change": "current surface-parity evidence and continuation command"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:1f3f1a73b1b54e3d24ba1ccca68a520248412d6f7b02d72e904d97a4729ed107",
+        "post_sha256": "sha256:b7cfa7e86ed005a713fe4378b193082a03b1abacad2b6f6de191dce6e5c287d5",
+        "change": "current authoritative plan and harness source hashes"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI_EDITOR_005_LOCAL_SURFACE_PARITY_RESULT_20260815.md",
+        "post_sha256": "sha256:ff0d9ec1e8523a92671509899caf9a0743aa44059a67badf54ba5530b5ef958a",
+        "change": "new identifier-free local UI-EDITOR-005 result"
+      }
+    ],
+    "read_dependencies": [
+      "docs/notion_parity/checkpoints/ui-editor-003-local-selection-clipboard-history-green-reference-pending-20260815.json",
+      "notion_static/notion.css",
+      "notion_static/notion_editor_core.js",
+      "tools/notion_parity/ui_capture.py",
+      "tools/notion_parity/ui_local_fixture.py"
+    ],
+    "protected_unchanged": [
+      {"path": "AGENTS.md", "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"},
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "persistent_browser_profile_reused": false,
+    "local_browser": "installed-stable-chrome-ephemeral-playwright-context"
+  },
+  "evidence": {
+    "source_build_sha256": "sha256:d7a57fd4ce6e2255ecf503abd19102f35c3217e2bd303785347fd14a4d809d21",
+    "plan_sha256": "sha256:5538baa590192b549e995edfdea685a5962f12f1301c01829daa127a21ca696d",
+    "reference": [],
+    "local": [
+      {
+        "scenario_id": "UI-EDITOR-005",
+        "action_id": "UI-EDITOR-005-A01",
+        "capture_sha256": "sha256:285760f540c0ac1066257bdecd5f2c916deb85c659d2e424fcbd0af4249e2bb8",
+        "redaction": "pass",
+        "repeat_runs": 2
+      },
+      {
+        "scenario_id": "UI-EDITOR-005",
+        "action_id": "UI-EDITOR-005-A02",
+        "capture_sha256": "sha256:c17e86d5da50990b9456898283286dd4e4c1273b62a0e009cff131f75074fa95",
+        "redaction": "pass",
+        "repeat_runs": 2
+      }
+    ],
+    "differential": [],
+    "focus_sequence": ["SIDE-PEEK-CANVAS", "PAGE-CANVAS"],
+    "reference_status": {
+      "state": "blocked-before-browser-or-tab-selection",
+      "stage": "browser-runtime-initialization",
+      "error_code": "kernel-assets-path-not-found-os-error-3",
+      "content_accessed": false,
+      "parity_promoted": false,
+      "retry_in_same_environment": false
+    }
+  },
+  "commands": [
+    {
+      "selection": "UI-EDITOR-005 first focus red",
+      "result": "failed as expected: side peek visible but page region inactive; 1 failed in 13.79s",
+      "exit_code": 1
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py::test_ui_editor_005_main_full_and_side_peek_share_one_persistence_model final",
+      "result": "1 passed in 18.11s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py full current-source run",
+      "result": "11 passed in 216.96s",
+      "exit_code": 0
+    },
+    {"selection": "six Node UI/editor/navigation/publication/atomic-save/CSRF scripts", "result": "6 passed", "exit_code": 0},
+    {"selection": "Notion route, atomic-save compatibility, and publication adapter", "result": "25 passed in 12.10s", "exit_code": 0},
+    {"selection": "Second Brain publication/job restart and chat characterization", "result": "5 passed in 5.11s", "exit_code": 0},
+    {"selection": "plan, local fixture, evidence harness, packet, and reference guard", "result": "68 passed in 20.68s", "exit_code": 0},
+    {"selection": "compact Core Free UI plan verifier", "result": "pass with 25 required scenarios and zero promotions", "exit_code": 0}
+  ],
+  "tests": {
+    "side_peek_entry": "pass-named-dialog-region-focus",
+    "shared_save_command": "pass-control-s",
+    "save_focus": "pass-control-and-caret-restored",
+    "full_page_transition": "pass-draft-flushed-overlay-cleared-page-focused",
+    "save_reload": "pass-two-saves-exact-reload",
+    "second_brain_delta": "pass-zero-items-zero-revisions",
+    "local_repeatability": "pass-twice",
+    "full_browser_regression": "pass-eleven",
+    "reference_c0": "blocked-before-browser-selection"
+  },
+  "claims": {
+    "h3_local_implementation_green": true,
+    "h3_complete": false,
+    "h4_editor_001_local_green": true,
+    "h4_editor_002_local_green": true,
+    "h4_editor_003_local_green": true,
+    "h4_editor_004_local_green": true,
+    "h4_editor_005_local_green": true,
+    "h4_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_or_production_content_exposed": false,
+    "live_local_data_accessed": false,
+    "protected_file_edit_required": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false,
+    "trial_payment_invite_public_action_required": false
+  },
+  "remaining": [
+    "recover signed-in Chrome control and run identifier-free C0 against synthetic REF-FREE-A/B only",
+    "capture and seal reference differentials for the local-green H3 and H4 scenarios",
+    "complete UI-EDITOR-006 local and differential gates",
+    "continue H5-H9 through evidence-bound cohesive vertical slices"
+  ],
+  "next_exact_command": "if safe signed-in Chrome C0 is unavailable, begin UI-EDITOR-006 autosave failure, retry, stale revision, and draft recovery with a repeated isolated real-Chrome red/green journey; otherwise prioritize synthetic REF-FREE-A/B reference capture without opening personal workspaces"
+}

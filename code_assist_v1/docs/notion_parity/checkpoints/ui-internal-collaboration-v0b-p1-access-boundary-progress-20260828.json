@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-ACCESS-BOUNDARY-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T05:41:59.5501612+09:00",
+  "checkpoint_kind": "bounded_access_boundary_exact_pixel_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Bind the reference-derived guest banner geometry and access-boundary colors, their fresh isolated I0-P2 evidence, and the final recoverable cleanup audit without changing immutable reference receipts or claiming the V0B gate.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-guest-role-progress-20260828.json",
+    "sha256": "sha256:e3a34979f3faa2edceb007d846a63e533c450c8924d1a3fadeccbda31d184edd"
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:dcfea49cef8d1b91b92a6d451367bb5789869feeee0f181ba928198c48cb7e2a",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:2b0c648477eb78adb941a0a31e6d47b931bcc991aa1aa8d23f2725a1548c0b2e"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:88f451afaf83c461f68700c7486bec339272e695addb92a0be1db5e7462ff7cf"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:223c15cccf9978bbc9c1624f4893b05bb10cd52f0512ca332aa2ab8b05346e53"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:e94d976f4273c3cfa76b185dddbd3b987b2d3346e109418325002a01e42acbba"
+      }
+    ]
+  },
+  "implementation": {
+    "guest_banner": {
+      "reference_group_offset_x_px": -12,
+      "reference_gap_px": 16,
+      "reference_action_width_px": 160,
+      "reference_text_letter_spacing_px": 0.18,
+      "css_cache_key": "20260828v19"
+    },
+    "access_boundary": {
+      "reference_skeleton_rgb": [241, 240, 238],
+      "prior_skeleton_rgb": [241, 241, 239],
+      "reference_request_button_rgb": [40, 131, 222],
+      "prior_request_button_rgb": [35, 131, 226],
+      "focus_visible_indicator_preserved": true
+    },
+    "non_adopted_diagnostics": [
+      {
+        "attempt": "five-block live fixture seed",
+        "receipt_created": false,
+        "failure_modes": ["RECONNECT_THROTTLED", "PROTOCOL_REJECTED"],
+        "source_and_harness_reverted": true,
+        "restored_iam_harness_sha256": "sha256:e94d976f4273c3cfa76b185dddbd3b987b2d3346e109418325002a01e42acbba"
+      },
+      {
+        "attempt": "retry19",
+        "receipt_created": false,
+        "screenshot_count": 20,
+        "diff_count": 20,
+        "reason": "one-off runner attempted to recreate the collector-created output directory after the successful journey",
+        "artifacts_preserved_without_overwrite": true
+      }
+    ]
+  },
+  "diagnostic_evidence": {
+    "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry21",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry21/receipt.json",
+    "receipt_sha256": "sha256:78e91d0965b88c0510a469923b22b271c1af33f1a0d54a9e57c1292715e9b3e9",
+    "journey": "I0-P2",
+    "state_count": 10,
+    "viewport_count": 2,
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "journey_status": "pass",
+    "browser_closed": true,
+    "synthetic_member_absent_after_cleanup": true,
+    "test_roots_moved_to_trash": true,
+    "gate_passed": false
+  },
+  "pixel_summary": {
+    "metric": "sum_of_unmasked_differing_pixel_count_across_20_I0_P2_captures",
+    "baseline_slice_difference_count": 8853501,
+    "prior_full_candidate_slice_difference_count": 7020519,
+    "retry18_slice_difference_count": 4443237,
+    "retry20_slice_difference_count": 4443208,
+    "current_retry21_slice_difference_count": 4355991,
+    "reduction_from_retry20_count": 87217,
+    "reduction_from_retry18_count": 87246,
+    "reduction_from_prior_full_candidate_count": 2664528,
+    "reduction_from_prior_full_candidate_percent": 37.95,
+    "reduction_from_baseline_count": 4497510,
+    "reduction_from_baseline_percent": 50.80,
+    "access_boundary_state_changes_from_retry20": [
+      {"state_id": "V0R-MU-017", "prior": 525582, "current": 481817, "delta": -43765},
+      {"state_id": "V0R-MU-018", "prior": 518676, "current": 474931, "delta": -43745}
+    ]
+  },
+  "cleanup_audit": {
+    "audit_mode": "isolated_product_API_cleanup_plus_read_only_source_and_authority_SQLite",
+    "audited_recent_source_root_count": 14,
+    "audited_recent_active_source_root_count": 0,
+    "audited_recent_recoverable_trash_root_count": 14,
+    "audited_authority_workspace_count": 14,
+    "active_user01_workspace_membership_count": 0,
+    "active_user01_workspace_guest_count": 0,
+    "active_user01_canonical_page_grant_count": 0,
+    "active_user01_legacy_page_grant_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "status": "complete"
+  },
+  "verification": {
+    "node_syntax_check": "pass",
+    "python_compile_check": "pass",
+    "share_and_workspace_membership_tests": "4 passed",
+    "reference_color_assertions": "pass",
+    "I0_P2_browser_journey": "pass",
+    "accessibility_matrix_slice": "20/20 pass",
+    "cleanup": "pass"
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "I0_P2_journey_passed": true,
+    "I0_P2_accessibility_passed": true,
+    "I0_P2_cleanup_passed": true,
+    "access_boundary_color_progress_bound": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Run a fresh 36-capture full current-build candidate, then continue exact-pixel convergence. Do not enter O1B until exact-pixel, fresh Core25, accessibility, and quiet-host performance gates all pass."
+}

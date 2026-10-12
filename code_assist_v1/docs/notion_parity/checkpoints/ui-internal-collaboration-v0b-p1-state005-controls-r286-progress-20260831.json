@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-STATE005-CONTROLS-R286-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T20:52:58.2518289+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r286 Chrome 153 full candidate uses the immutable lossless-exact-v4 browser reference, captures all 18 named states at both adopted viewports, passes all 36 accessibility captures and all four component journeys, and completes synthetic cleanup. V0R-MU-005 now renders the three unchecked todo controls with reference-shaped custom borders, vertically aligns them by todo index, horizontally aligns the indented third todo, and applies the retained reference-near toggle glyph placement. The four changed control regions reproduce an exact 423 pixel reduction, matching the full V0R-MU-005 reduction from r279. Unrelated repeat-run variability in V0R-MU-002 and one V0R-MU-014 pixel leaves the r286 full unmasked total 551 pixels above r279 and is not attributed to the source correction. Exact RGBA remains 0/36, so r286 is a mutable progress candidate only and is not immutable V0B evidence, a phase-gate claim, or a product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified_by_this_packet": false,
+      "conflicting_change_detected": false
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state005-first-todo-r279-progress-20260831.json",
+      "sha256": "sha256:1e8624b59a09b623c2cf97cb23849c8bd426815cf11f5b69e48361049bd7993d"
+    },
+    "previous_candidate": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r279/receipt.json",
+      "receipt_sha256": "sha256:a97ad6d50541624dc204d6d0e06a2d4ce1954caccc1e358faa0252247e4a7875",
+      "unmasked_difference_count": 2243932,
+      "masked_difference_count": 70240,
+      "raw_difference_count": 2314172
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:f0f25b60a2100eb7b0f86f98f41a3d6f7b4f927cbe9daa86215dde1d16733171",
+        "changes": [
+          "retain all r279 state-bounded capture corrections",
+          "render only unchecked V0R-MU-005 todo inputs with appearance none, a one-pixel #383836 border, two-pixel radius, and white background",
+          "move the unchecked todo controls down by their todo index times two pixels",
+          "move the indented third todo control eight pixels right and four pixels down",
+          "render the V0R-MU-005 toggle glyph at 12 pixels and translate it one pixel left and four pixels down",
+          "leave checked-todo styling, text content, successor states, and product runtime source unchanged"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:b9fd7185d0b81d5c5b3faff110125bc1595f3d4147e98c3ccd5e9c592b3bc4c3"
+      }
+    ],
+    "isolated_experiment_series": {
+      "r280": "rejected a 78 by 78 page-icon image override after the fixed icon regions worsened by 72 pixels wide and 68 pixels compact; the override was fully removed",
+      "r281": "rejected a 30-pixel minimum height on all block rows because it only redistributed the V0R-MU-005 difference and returned the state total to 64,138 pixels; the override was fully removed",
+      "r282": "retained the custom unchecked-checkbox border and indexed vertical placement after isolated I0 validation",
+      "r283": "retained the indented third-checkbox eight-pixel horizontal correction; reverted the experimental 13-pixel toggle font because the compact toggle region worsened",
+      "retained_configuration": "r283 third-checkbox placement combined with the r282 toggle configuration",
+      "all_runs_capture_count": 20,
+      "all_runs_accessibility_pass_count": 20,
+      "all_runs_cleanup_status": "complete"
+    },
+    "fixed_region_reproduction": {
+      "region_description": "V0R-MU-005 three unchecked todo controls and toggle glyph at both adopted viewports",
+      "changed_candidate_pixel_count": {
+        "1440x900": 399,
+        "1280x800": 399
+      },
+      "reference_difference_delta": {
+        "1440x900": -279,
+        "1280x800": -144,
+        "combined": -423
+      },
+      "full_state_delta": -423,
+      "fixed_region_and_full_state_delta_match": true,
+      "state_leak_detected": false
+    },
+    "discarded_environment_runs": {
+      "r284": "not adopted: the CLI defaults selected the older corrective reference requiring Chrome 151 while system Chrome 153 was active; capture failed closed at the first browser-major comparison and no receipt was written",
+      "r285": "not adopted: pinned Chrome 151 completed against the older corrective reference, but that lineage is not comparable to retained lossless-exact-v4 candidates",
+      "preservation": "both diagnostic runtime directories remain preserved and neither result was promoted"
+    },
+    "repeat_run_variability_not_claimed": {
+      "V0R-MU-002_1440x900_delta": 975,
+      "V0R-MU-014_1280x800_delta": -1,
+      "all_other_non_state005_capture_delta": 0,
+      "net_unmasked_delta_outside_state005": 974
+    }
+  },
+  "retained_r286_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r286",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r286/receipt.json",
+    "receipt_sha256": "sha256:3c165ac4c968ec09d267908db83eb6a386cf10081a92f034dcdab34fd850fd94",
+    "source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 391389,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2244483,
+    "masked_difference_count": 70240,
+    "raw_difference_count": 2314723,
+    "unmasked_delta_from_r279": 551,
+    "masked_delta_from_r279": 0,
+    "raw_delta_from_r279": 551,
+    "unmasked_state_totals": {
+      "V0R-MU-001": 197776,
+      "V0R-MU-002": 189531,
+      "V0R-MU-003": 137453,
+      "V0R-MU-004": 125086,
+      "V0R-MU-005": 63462,
+      "V0R-MU-006": 189974,
+      "V0R-MU-007": 113094,
+      "V0R-MU-008": 115338,
+      "V0R-MU-009": 131745,
+      "V0R-MU-010": 117642,
+      "V0R-MU-011": 113001,
+      "V0R-MU-012": 110620,
+      "V0R-MU-013": 143500,
+      "V0R-MU-014": 171717,
+      "V0R-MU-015": 71922,
+      "V0R-MU-016": 70874,
+      "V0R-MU-017": 90943,
+      "V0R-MU-018": 90805
+    },
+    "source_reproduced_evidence": {
+      "V0R-MU-005_1440x900_delta_from_r279": -279,
+      "V0R-MU-005_1280x800_delta_from_r279": -144,
+      "V0R-MU-005_full_state_delta_from_r279": -423,
+      "V0R-MU-005_fixed_region_delta_from_r279": -423
+    },
+    "c0_p2_measurements_ms": {
+      "presence_delivery_ms": 1438,
+      "comment_delivery_ms": 1921,
+      "reaction_delivery_ms": 1235,
+      "presence_ttl_expiry_ms": 15641,
+      "reconnect_ms": 1375
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:d5e9180bcf54f1ddd909b981c955bfebcd29f0457c40104623c964adbdda4993"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_i0_semantic_diagnostic.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "16 passed in 14.99s",
+      "exit_code": 0
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:3c165ac4c968ec09d267908db83eb6a386cf10081a92f034dcdab34fd850fd94"
+    },
+    "full_candidate": {
+      "component_journey_statuses": {
+        "I0-P2": "pass",
+        "C0-P2": "pass",
+        "E1-P2": "pass",
+        "F0-P5": "pass"
+      },
+      "all_adopted_multiuser_states_captured": true,
+      "accessibility_evidence_complete": true,
+      "zero_unmasked_RGBA_difference": false
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from the retained r286 mutable candidate. Preserve the V0R-MU-005 checked-todo correction, unchecked-checkbox borders and indexed placement, indented-third-checkbox correction, retained toggle placement, and the earlier V0R-MU-005/V0R-MU-015 responsive alignment corrections. Do not restore the rejected 78-pixel page-icon override, 30-pixel all-row minimum height, 13-pixel toggle experiment, later-editor letter-spacing transform, V0R-MU-015 Korean display-string substitution, or V0R-MU-016 title transform. Prioritize another reproducible state-bounded structural or rendering difference, and do not run fresh Core 25 or quiet-host performance gates until the 36/36 exact gate closes."
+}

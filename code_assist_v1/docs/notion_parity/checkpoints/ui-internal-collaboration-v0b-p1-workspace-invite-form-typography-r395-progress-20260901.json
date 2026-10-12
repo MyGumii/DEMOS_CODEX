@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_checkpoint.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-WORKSPACE-INVITE-FORM-TYPOGRAPHY-R395-20260901",
+  "recorded_at": "2026-09-01T09:31:10.0351047+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "r395 retains r387 and applies measured workspace-invite cancel, search placeholder, field-label, textarea placeholder, intro-icon, and submit-label corrections. The source-bound V0R-MU-001 residual decreases by 814 unmasked pixels. All four component journeys, all 36 accessibility checks, all 36 interaction checks, targeted tests, and synthetic cleanup pass. Exact parity remains 0/36 and no completion claim is made.",
+  "immutable_lineage": {
+    "lossless_exact_v4_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+    },
+    "previous_retained_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-workspace-invite-role-row-r387-progress-20260901.json",
+      "sha256": "sha256:fecf355b5bd4c268b0bb7734f240aea1db8fba283b37a64090a6d29409d4284f"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified": false
+    },
+    "main_agent_handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "retained_source_binding": [
+    {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:da11393f39cd2af2725abf6e27e05fe483ae326234ae4ae0f8000683a5464964",
+      "changes_in_r388_r395": []
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+      "changes_in_r388_r395": []
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.css",
+      "sha256": "sha256:fe8b8b71521437076979f97d927601a8b78f2e2acbecd8b3a50a8c698f6c824e",
+      "changes": [
+        "align the workspace-invite cancel label one pixel left and two pixels up",
+        "match the workspace-invite search placeholder width with state-scoped letter spacing",
+        "match the role and message field-label widths",
+        "match the invitation-message placeholder width",
+        "match the measured workspace-invite intro icon color and raster bounds",
+        "match the disabled invite-button label width without moving the button boundary"
+      ]
+    }
+  ],
+  "isolated_validation": [
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r388",
+      "change": "cancel label position",
+      "previous": {"1440x900": 103543, "1280x800": 93191},
+      "current": {"1440x900": 103479, "1280x800": 93127},
+      "delta": {"1440x900": -64, "1280x800": -64},
+      "accepted": true
+    },
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r389",
+      "change": "search placeholder letter spacing",
+      "previous": {"1440x900": 103479, "1280x800": 93127},
+      "current": {"1440x900": 103227, "1280x800": 92979},
+      "delta": {"1440x900": -252, "1280x800": -148},
+      "accepted": true
+    },
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r390",
+      "change": "role-label letter spacing",
+      "previous": {"1440x900": 103227, "1280x800": 92979},
+      "current": {"1440x900": 103208, "1280x800": 92960},
+      "delta": {"1440x900": -19, "1280x800": -19},
+      "accepted": true
+    },
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r391",
+      "change": "message-label letter spacing",
+      "previous": {"1440x900": 103208, "1280x800": 92960},
+      "current": {"1440x900": 103193, "1280x800": 92945},
+      "delta": {"1440x900": -15, "1280x800": -15},
+      "accepted": true
+    },
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r392",
+      "change": "message textarea placeholder letter spacing",
+      "previous": {"1440x900": 103193, "1280x800": 92945},
+      "current": {"1440x900": 103161, "1280x800": 92913},
+      "delta": {"1440x900": -32, "1280x800": -32},
+      "accepted": true
+    },
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r393",
+      "change": "intro icon color and measured scale",
+      "previous": {"1440x900": 103161, "1280x800": 92913},
+      "current": {"1440x900": 103143, "1280x800": 92895},
+      "delta": {"1440x900": -18, "1280x800": -18},
+      "accepted": true
+    },
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r394",
+      "change": "disabled invite-button label letter spacing",
+      "previous": {"1440x900": 103143, "1280x800": 92895},
+      "current": {"1440x900": 103084, "1280x800": 92836},
+      "delta": {"1440x900": -59, "1280x800": -59},
+      "accepted": true
+    }
+  ],
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r395",
+    "receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r395/receipt.json",
+      "sha256": "sha256:dd55ebd6e3053538bbc7d64f8025dbeb369e21ffb70618aecfba569851f6491a"
+    },
+    "browser": {
+      "channel": "chrome",
+      "version": "153.0.8010.12",
+      "independent_ephemeral_contexts": 2
+    },
+    "duration_ms": 399500,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2197485,
+    "masked_difference_count": 70240,
+    "total_difference_count": 2267725,
+    "journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:73ed5a4fc4c5af2cb5e69dec6326eb2a41fca3ec8be077b3f6f5e13b98731d75"
+    }
+  },
+  "comparison_to_r387": {
+    "r387_unmasked_difference_count": 2198916,
+    "r395_unmasked_difference_count": 2197485,
+    "aggregate_delta": -1431,
+    "source_bound_state_delta": {
+      "state_id": "V0R-MU-001",
+      "previous": 196734,
+      "current": 195920,
+      "delta": -814
+    },
+    "known_variable_state_deltas": [
+      {"state_id": "V0R-MU-002", "delta": -975},
+      {"state_id": "V0R-MU-004", "delta": 106},
+      {"state_id": "V0R-MU-005", "delta": 253},
+      {"state_id": "V0R-MU-008", "delta": -1}
+    ],
+    "all_other_state_deltas": 0
+  },
+  "verification": {
+    "targeted_tests": {
+      "result": "17 passed in 24.67s",
+      "exit_code": 0
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:dd55ebd6e3053538bbc7d64f8025dbeb369e21ffb70618aecfba569851f6491a"
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from retained r395. Preserve r387 plus the r388-r394 workspace-invite cancel, search placeholder, field-label, textarea placeholder, intro-icon, and disabled-button-label corrections. Continue to pass the immutable lossless-exact-v4 reference receipt, screenshots, and masks explicitly. Treat V0R-MU-002 -975 and V0R-MU-004/V0R-MU-005/V0R-MU-008 small deltas as established run variability unless a source-bound cause is proven. Prefer another measured state-bounded element in V0R-MU-001 or V0R-MU-002. Do not run fresh Core 25 or quiet-host performance gates before exact parity reaches 36/36, and do not mark the product or shared goal complete before all final gates close."
+}

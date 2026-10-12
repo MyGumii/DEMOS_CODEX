@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-COMMENT-THREAD-PARITY-RETRY45-20260829",
+  "recorded_at": "2026-08-29T18:36:42.5807448+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry45 retains the accepted invite, share, remote-caret, and collaborative-editor focus fixes, then aligns the comment thread inspector and visible page title more closely to the lossless reference. All four journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. Unmasked differences decreased by 7,474 from retry44 to 3,701,486. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {"path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json", "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"},
+    "previous_v0b_checkpoint": {"path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-editor-focus-parity-retry44-progress-20260829.json", "sha256": "sha256:3fb8a03082e1179600b026570b044f0ae461b8a40b7c1e095c97c58352d4335b"},
+    "agents_md": {"path": "code_assist_v1/AGENTS.md", "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249", "modified": false},
+    "handoff": {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md", "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77", "modified": false}
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:ba77f8c6a99bb4a803bb724edc7e41073271d6a825fc0c898f6f52d25c5093db",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {"path": "code_assist_v1/notion_static/index.html", "sha256": "sha256:7ffdae48dc0b4c3619d8e1933d62f965053b42c5fad989f25c15b3c9c2320a8d"},
+      {"path": "code_assist_v1/notion_static/notion.css", "sha256": "sha256:67555e922e48e9d33a6979750c808a0840baf866cc53ef10752226f7800d76a9"},
+      {"path": "code_assist_v1/notion_static/notion.js", "sha256": "sha256:af8062453ee987c70b6a4075f7cef4696294a4c8a6145b0eace919ee42b5e45c"},
+      {"path": "code_assist_v1/notion_collaboration/e1_p2_browser.py", "sha256": "sha256:920ab0d323a98f9ce56410b1b0b04c7426df0b686e9fe8d4f5a4cb58a458f9c0"}
+    ]
+  },
+  "accepted_changes": {
+    "comment_thread_geometry": "The comments inspector is aligned to the reference top, left, width, and height and the editor group offset is preserved behind it.",
+    "comment_page_title": "The disabled title remains visibly readable and is translated to the reference title position without changing its accessible value.",
+    "retained_editor_and_share_parity": "Accepted workspace invite, direct and inherited sharing, remote-caret start, scoped remote label, and focused collaborative block visuals remain bound to this candidate."
+  },
+  "bounded_diagnostics": {
+    "c0_comment_thread_geometry": {"root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260829-comment-thread-geometry", "capture_count": 8, "state_012_unmasked_difference_count": 244905, "delta_from_retry44_state_012": -2066, "accessibility_pass_count": 8, "interaction_pass_count": 8, "cleanup_verified": true, "accepted": true},
+    "c0_comment_title_parity": {"root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260829-comment-title-parity", "capture_count": 8, "state_012_unmasked_difference_count": 239477, "delta_from_comment_thread_geometry": -5428, "accessibility_pass_count": 8, "interaction_pass_count": 8, "cleanup_verified": true, "accepted": true},
+    "reference_candidate_title_geometry": {"reference_rows": "269..297", "candidate_rows": "270..298", "remaining_vertical_offset_px": 1}
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry45-lossless-comment-thread-parity",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry45-lossless-comment-thread-parity/receipt.json",
+    "receipt_sha256": "sha256:6b74c7bfc60b3fa9fdeccaa0a0996b942df7fbc0f0741d49042b17f3a04e5337",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {"I0-P2": 124878, "C0-P2": 87758, "E1-P2": 56504, "F0-P5": 42832},
+    "unmasked_difference_count": 3701486,
+    "masked_difference_count": 211278,
+    "raw_difference_count": 3912764,
+    "delta_from_retry44_unmasked": -7474,
+    "cleanup": {"status": "complete", "browser_closed": true, "active_fixture_root_count": 0, "active_test_grant_count": 0, "active_test_member_count": 0, "permanent_delete_used": false, "cleanup_receipt_sha256": "sha256:0e6f706310e1b5b6408c2f9703fbcd847dd4fde3625ce1dd2a909761800c371b"}
+  },
+  "state_deltas_from_retry44": [
+    {"state_id": "V0R-MU-012", "previous_unmasked_difference_count": 246971, "current_unmasked_difference_count": 239513, "delta": -7458},
+    {"state_id": "V0R-MU-015", "delta": 1090},
+    {"state_id": "V0R-MU-016", "delta": -1027},
+    {"state_id": "V0R-MU-017", "delta": -79}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "receipt_sha256": "sha256:6b74c7bfc60b3fa9fdeccaa0a0996b942df7fbc0f0741d49042b17f3a04e5337",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {"EXACT_PIXEL_GATE": 36, "CORE_25_GATE": 1, "PERFORMANCE_GATE": 1, "CLAIMS_GATE": 1},
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "next_focus": {
+    "largest_states": [
+      {"state_id": "V0R-MU-002", "unmasked_difference_count": 359181},
+      {"state_id": "V0R-MU-001", "unmasked_difference_count": 352835},
+      {"state_id": "V0R-MU-006", "unmasked_difference_count": 273845},
+      {"state_id": "V0R-MU-003", "unmasked_difference_count": 242996},
+      {"state_id": "V0R-MU-012", "unmasked_difference_count": 239513}
+    ],
+    "primary": "Continue bounded diagnostics on workspace member content, workspace invite content, inherited-share content, and remaining comment-thread pixels.",
+    "full_candidate_policy": "Do not rerun Core25 or performance until exact pixel is 36/36."
+  },
+  "open_gates": {"exact_pixel": {"passed": 0, "required": 36, "status": "open"}, "core_25": {"status": "not_run_until_exact_36_of_36"}, "performance": {"status": "not_run_until_exact_36_of_36"}, "claims": {"status": "open"}, "V0B_P1_gate_passed": false, "product_complete": false, "active_shared_goal_complete": false},
+  "scope_attestation": {"production_changed": false, "second_brain_changed": false, "user_chrome_touched": false, "persistent_browser_profile_used": false, "public_publish_or_link_used": false, "personal_workspace_or_page_used": false, "permanent_delete_used": false, "reference_receipts_modified": false, "agents_md_modified": false, "other_sbe_hot_contract_modified": false}
+}

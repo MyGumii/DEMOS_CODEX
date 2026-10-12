@@ -1,0 +1,81 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T17:48:45.5719017+09:00",
+  "run_id": "ui51-approval-batch-v2-resolved-performance-budget-active-ime-review-sealed-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-approval-batch-v2-ready-20260822.json",
+    "sha256": "sha256:da9dbcea60da230d8be150b819b457147a84d09d8fda4d12969e6d4c052ab5d4",
+    "semantic_status": "two_non_mutating_owner_decisions_waiting_for_exact_text"
+  },
+  "approval": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_receipt.v2.20260822.json",
+    "sha256": "sha256:6d5ef719306499ca6e672081d2c91c180f20786064a22d99e1fb4c6ce46b81e7",
+    "resolved_entry_count": 2,
+    "external_action_executed": false
+  },
+  "ime_summary": {
+    "receipt": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/manual_ime_summary_approval_receipt.20260822.json",
+      "sha256": "sha256:70befa928e5a9c616544be94c0de710c7e839cc1d3f58f2a24fdb0983a14fe2b"
+    },
+    "status": "owner_approved_observable_summary",
+    "reference_observed": true,
+    "differential_passed": false,
+    "remaining_difference": "reference semantic focus/a11y resolved to PAGE-EDITOR-GROUP/GROUP while local evidence reports EDITOR-BLOCK/TEXTBOX",
+    "internal_composition_or_save_events_claimed": false
+  },
+  "performance_budget": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/performance_budget.v1.json",
+    "sha256": "sha256:e142c76f6464a4b15869805eb82eeb1478f7e4d96d1fdbba4b0588a87a962e03",
+    "state": "active_local_precalibration",
+    "budgeted_metric_count": 8,
+    "measurement_only_unbudgeted_metrics": ["create_page_ready_ms"],
+    "notion_reference_timing_claimed": false,
+    "production_slo_claimed": false
+  },
+  "implementation": {
+    "approval_compiler": {
+      "path": "code_assist_v1/tools/notion_core_free_ui_approval_batch_v2.py",
+      "sha256": "sha256:8caf2aeecc73bdb5bb99f996c12c39f44cf541767f5869c63f48eeb963dfda66"
+    },
+    "approval_tests": {
+      "path": "code_assist_v1/tests/test_notion_ui_approval_batch_receipt_v2.py",
+      "sha256": "sha256:aff2c570b823b5b726c088201eea25937e7981b1860629d4aa941ad77d5a6a76"
+    },
+    "budget_verifier": {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_performance_budget.py",
+      "sha256": "sha256:bd43dd9e6444cc23c21d7371ad0ca6b6ebd264eb0fadaf549bdec56e2efe0bb0"
+    },
+    "budget_tests": {
+      "path": "code_assist_v1/tests/test_notion_ui_performance_budget.py",
+      "sha256": "sha256:73e947f2e3c71216979ffb5ea8b2f2d6efd48b1dccd89738cbfa1375569b8560"
+    },
+    "browser_performance_test": {
+      "path": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+      "sha256": "sha256:17cad4942917ad41e13501c05ec1dd085de82343852eeb4772ad9e62b93b6761"
+    }
+  },
+  "verification": [
+    {"selection":"v2 approval compiler and queue","result":"8 passed in 3.74s","exit_code":0},
+    {"selection":"active budget, proposal, and approval receipt unit tests","result":"11 passed in 3.54s","exit_code":0},
+    {"selection":"UI-PERF-001 isolated browser performance with approved budgets","result":"1 passed in 61.24s","exit_code":0}
+  ],
+  "safety": {
+    "product_code_changed": false,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "live_local_data_accessed": false,
+    "external_action_executed": false,
+    "completion_matrix_scenario_promoted": false
+  },
+  "claims": {
+    "ime_summary_approved": true,
+    "local_performance_budget_active": true,
+    "ui_editor_004_differential_passed": false,
+    "ui_perf_001_reference_characterized": false,
+    "h8_complete": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  }
+}

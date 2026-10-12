@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-ACCESS-BOUNDARY-R850-PROGRESS-20260903",
+  "recorded_at": "2026-09-03T04:42:07+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state005-body-topbar-r847-progress-20260903.json",
+    "checkpoint_sha256": "sha256:fe0a4e46f4be600430263d16e43b6f7356145a72d24f72984c1f74be0c262ea1",
+    "source_sha256": "sha256:eb3881b4295a558862f05a7df8d277478b66e244384e718ed15a20616104e725",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r847/receipt.json",
+    "receipt_sha256": "sha256:827da914d930b6a461e21364a9bc38e12b0bf0b27eb3cd8b04eeb7a43450a82f",
+    "unmasked_differing_pixel_count": 1802329,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1870747,
+    "V0R_MU_017_018_unmasked_differing_pixel_count": 181200
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:94bcb0683842ba3ed367842581cfe85cf054de74ed29ed53eaaa55e7826364bd",
+    "release_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "summary": [
+      "Replaced the V0R-MU-017/018 access-boundary dialog shadow with viewport-specific measured layers after isolating the dialog as the largest shared residual region.",
+      "Kept the wide skeleton transform unchanged and replaced only the compact access-boundary skeleton transform with a measured zoom-based layout at 0.9058 and an exactly compensated top offset.",
+      "Applied both corrections before and after the keyboard-focus path so the final capture cannot lose the state-specific presentation.",
+      "Did not change AGENTS.md, notion_static/index.html, notion_static/notion.css, the accepted reference receipt, or any Second Brain hot contract."
+    ],
+    "source_bound_V0R_MU_017_018_reduction_from_r847": 45900,
+    "source_bound_state_deltas_from_r847": {
+      "V0R-MU-017__1440x900": -11754,
+      "V0R-MU-017__1280x800": -11196,
+      "V0R-MU-018__1440x900": -11754,
+      "V0R-MU-018__1280x800": -11196
+    }
+  },
+  "accepted_diagnostics": {
+    "r848_dialog_shadow_vertical_offset": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260903-r848",
+      "capture_count": 20,
+      "V0R_MU_017_018_unmasked_differing_pixel_count": 154366,
+      "reduction_from_r847": 26834,
+      "viewport_counts": {
+        "V0R-MU-017__1440x900": 26089,
+        "V0R-MU-017__1280x800": 51163,
+        "V0R-MU-018__1440x900": 26020,
+        "V0R-MU-018__1280x800": 51094
+      },
+      "journey_status": "pass",
+      "cleanup_completed_by_journey": true,
+      "accessibility_status": "pass"
+    },
+    "r849_dialog_shadow_layers": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260903-r849",
+      "capture_count": 20,
+      "V0R_MU_017_018_unmasked_differing_pixel_count": 137660,
+      "reduction_from_r848": 16706,
+      "reduction_from_r847": 43540,
+      "viewport_counts": {
+        "V0R-MU-017__1440x900": 21593,
+        "V0R-MU-017__1280x800": 47306,
+        "V0R-MU-018__1440x900": 21524,
+        "V0R-MU-018__1280x800": 47237
+      },
+      "journey_status": "pass",
+      "cleanup_completed_by_journey": true,
+      "accessibility_status": "pass"
+    },
+    "r850_compact_skeleton_zoom": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260903-r850",
+      "capture_count": 20,
+      "V0R_MU_017_018_unmasked_differing_pixel_count": 135300,
+      "reduction_from_r849": 2360,
+      "reduction_from_r847": 45900,
+      "viewport_counts": {
+        "V0R-MU-017__1440x900": 21593,
+        "V0R-MU-017__1280x800": 46126,
+        "V0R-MU-018__1440x900": 21524,
+        "V0R-MU-018__1280x800": 46057
+      },
+      "journey_status": "pass",
+      "cleanup_completed_by_journey": true,
+      "accessibility_status": "pass"
+    }
+  },
+  "diagnostic_measurements": {
+    "r847_region_partition": {
+      "wide_per_state": {
+        "dialog": 26898,
+        "skeleton_top": 266,
+        "skeleton_sides": 2081,
+        "skeleton_bottom": 2700,
+        "brand": 391,
+        "account": 0,
+        "help": 1011
+      },
+      "compact_per_state": {
+        "dialog": 29893,
+        "skeleton_top": 3898,
+        "skeleton_sides": 7693,
+        "skeleton_bottom": 14436,
+        "brand": 391,
+        "account": 0,
+        "help": 1011
+      }
+    },
+    "static_chrome_correlation": {
+      "dialog_shadow_prediction_matched_live_capture": true,
+      "r848_predicted_and_observed_wide_reduction_per_state": 7258,
+      "r848_predicted_and_observed_compact_reduction_per_state": 6159,
+      "r849_predicted_and_observed_wide_reduction_per_state": 4496,
+      "r849_predicted_and_observed_compact_reduction_per_state": 3857,
+      "r850_predicted_and_observed_compact_reduction_per_state": 1180
+    }
+  },
+  "rejected_or_neutral_diagnostics": {
+    "compact_transform_scale_sweep": {
+      "root": "code_assist_v1/.runtime/access-skeleton-scale-r849",
+      "result": "existing_transform_scale_was_local_optimum",
+      "range": {
+        "scale_x": "0.9030 through 0.9066",
+        "scale_y": "0.9030 through 0.9066"
+      },
+      "reason": "Every alternative transform scale regressed the reference comparison; no transform-scale change was accepted."
+    },
+    "explicit_horizontal_dimensions": {
+      "root": "code_assist_v1/.runtime/access-skeleton-modes-r849",
+      "result": "regression",
+      "reason": "Replacing transform-based horizontal scaling with explicit rounded widths increased the exact-pixel residual and was not applied."
+    },
+    "combined_shadow_extremes": {
+      "roots": [
+        "code_assist_v1/.runtime/access-shadow-combo-y-r848",
+        "code_assist_v1/.runtime/access-shadow-coordinate-r848",
+        "code_assist_v1/.runtime/access-shadow-coordinate2-r848"
+      ],
+      "result": "only independently revalidated viewport minima accepted",
+      "reason": "Several individually favorable shadow changes regressed when combined; only the combinations whose static deltas matched live I0 captures exactly were retained."
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r850",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r850/receipt.json",
+    "receipt_sha256": "sha256:c3de095cc92c34821e22664f9d7bf74e8b18d692680a60cc255a34666ab1335d",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1755651,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1824069,
+    "raw_unmasked_delta_from_r847": -46678,
+    "raw_masked_delta_from_r847": 0,
+    "raw_total_delta_from_r847": -46678,
+    "source_bound_V0R_MU_017_018_delta_from_r847": -45900,
+    "run_to_run_non_target_variation_from_r847": {
+      "V0R-MU-002__1440x900": -975,
+      "V0R-MU-004__1440x900": -138,
+      "V0R-MU-008__1280x800": -1,
+      "V0R-MU-010__1440x900": 3,
+      "V0R-MU-013__1280x800": 333,
+      "unmasked_net": -778,
+      "masked_net": 0
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "duration_ms": 343147,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:695add9280c5a3d9c7c9a7f7d53dd5cd883258bec193def1f58773c481074ecc"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_i0_semantic_diagnostic.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+        "code_assist_v1/tests/notion_collaboration/browser/test_f0_p5_adopted_surface.py"
+      ],
+      "result": "17 passed in 32.26s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:c3de095cc92c34821e22664f9d7bf74e8b18d692680a60cc255a34666ab1335d"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r850 source and immutable receipt. Preserve the accepted V0R-MU-017/018 dialog-shadow and compact-skeleton corrections plus all r847 and earlier accepted corrections; reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

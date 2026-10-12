@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-D0B-P1-DEVELOPMENT-PAIR-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-24T12:58:08Z",
+  "checkpoint_kind": "packet_pre_edit_with_operator_approval_and_exclusive_handoff",
+  "packet_id": "D0B-P1",
+  "packet_status": "in_progress",
+  "owner_agent": "/root",
+  "ownership_lane": "RUNTIME",
+  "approval_receipt": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_operator/ap-dev-pair-user-approval-20260824.json",
+  "exclusive_handoff_receipt": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_operator/xg-10111-exclusive-handoff-d0b-p1-20260824.json",
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p3-cross-process-browser-20260824.json",
+    "sha256": "sha256:c5974881ac412104e6685a4aa570efab9e90a1c38e45f13404d481ad281097a7",
+    "packet_id": "T0B-P3"
+  },
+  "approved_identity_import": {
+    "source_path": "G:/AI_Agent/DEMOS_CODEX/.tmp/second-brain-full-preview-10111/.runtime/users.json",
+    "source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "allowlist": [
+      "admin",
+      "user01"
+    ],
+    "copied_fields_must_be_identity_only": true,
+    "personal_content_sessions_tokens_cookies_and_existing_secret_forbidden": true
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/AGENTS.md": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "code_assist_v1/config.py": "sha256:262c747d10f8b40d91b8c48eb606be81768d9fccf7526ed9b07420047ee8a1d2",
+    "code_assist_v1/auth.py": "sha256:4185e74b9ddd8826b7a115bee87fa3965bb440fe10b1ea14d77cbd8bbffe8bc2",
+    "code_assist_v1/app_code.py": "sha256:e125cb9ba71ede6bb260afc042b2bd1d048288b0d464e8e1ea79488a3130d592",
+    "code_assist_v1/app_notion.py": "sha256:49c2345c6eeef710e655e37b3ca7cff3821d900f175a585fb6a2ab7f9acaf4f2",
+    "code_assist_v1/notion_collaboration/dev_pair_runtime.py": "sha256:acfbd87a72efc3e266318e11b2c0d291350c114ecde5ae1d38e38708788a2292",
+    "code_assist_v1/notion_collaboration/browser_isolation_harness.py": "sha256:0919f855708f2ae356b2899223ad5ed9e854ddf54c6ae8082922bfa182819044",
+    "code_assist_v1/notion_collaboration/cross_process_gateway.py": "sha256:72da87d47c355c3475da5083a450edd1f1cd53ef1180248c923ec9cdd19895ee",
+    "code_assist_v1/notion_collaboration/gateway_service.py": "sha256:0781844d1ff063860c393514b8addf74e138c2c9f30943c358e1e9590161c200",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:27c803d3363d2439a0d0dfa105589271a5f839cbde73333b5c8f85a9be24e2cc",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:2531695608c4e056f55a05b8d5bba260d81f4c3878c1f56f1a42d12bd09d5d0f"
+  },
+  "cross_stream_snapshot": {
+    "forward_schema_sha256": "sha256:915c2b57235a52ff8d67996789da01bd415a0d6a981fdedeb673e3fab46308a3",
+    "status_sha256": "sha256:43a0b6eedaa08f7ecc54788fcc516df1c4f5772818cc912e51454e6d00018c8a",
+    "backlog_sha256": "sha256:b18137ee8f9ac5cda427d450cf18ef6c1b6932c7bf2a0a54ffaf3c6c92264ddd",
+    "AGENTS_md_is_read_only": true,
+    "SBE_hot_contracts_owned_by_D0B": false
+  },
+  "port_state": {
+    "10111": "not_listening",
+    "10112": "not_listening",
+    "10113": "not_listening"
+  },
+  "planned_new_files": [
+    "code_assist_v1/notion_collaboration/approved_dev_pair.py",
+    "code_assist_v1/tests/notion_collaboration/test_approved_dev_pair.py"
+  ],
+  "protected_boundaries": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/knowledge/",
+    "code_assist_v1/user_data/",
+    "code_assist_v1/.runtime/ except the approved read-only identity registry source",
+    "ports 10011 and 10012",
+    "production roots services sessions cookies secrets and personal content"
+  ],
+  "claims": {
+    "operator_approval_recorded": true,
+    "exclusive_10111_handoff_recorded": true,
+    "identity_import_executed": false,
+    "development_service_started": false,
+    "production_or_personal_content_mutated": false,
+    "D0B_P1_gate_passed": false,
+    "product_complete": false
+  }
+}

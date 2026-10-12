@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "receipt_id": "E1-P1-L4-CANONICAL-EDITING-20260825",
+  "run_id": "e1-p1-l4-canonical-editing-20260825",
+  "rung_id": "L4-MULTI-PRINCIPAL-LIVE",
+  "lane_id": "L4-REAL-MULTIPROCESS-COLLAB",
+  "packet_ids": [
+    "E1-P1"
+  ],
+  "matrix_row_ids": [
+    "EDIT-001",
+    "EDIT-002",
+    "HIST-001"
+  ],
+  "scenario_ids": [],
+  "evidence_type": "multiprocess_canonical_editing_authority",
+  "mode": "gate",
+  "release_candidate_id": "sha256:5d86c46d6b1ea0005dde9a281751126494382c800032fe0e4db1824006691856",
+  "realm_id": "approved_development_pair_10111_10113",
+  "realm_config_fingerprint": "sha256:eeefe62865ebdd6755869f422d27769eb70f1a16ba4673c4391fd04c36472304",
+  "source_manifest_sha256": "sha256:a0ee2ffd13d7874ff34cc585b0d98b5a1770ffcf7141099d6cbff720e4d69221",
+  "validation_manifest_sha256": "sha256:17f9b750d9bab24175a1b01bacb316700c5cdab0a1233407134a35a46d6aba59",
+  "schema_catalog_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+  "current_schema_lineage_sha256": "sha256:915c2b57235a52ff8d67996789da01bd415a0d6a981fdedeb673e3fab46308a3",
+  "agents_md_sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+  "goal_observation_sha256": "sha256:55dda9a9e1c082bcaf72fa15a693649f67fda11ca8d21b3570f1206357804e9a",
+  "goal_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+  "goal_status_observed": "active_continued_implementation_E1_P1",
+  "cross_catalog_ownership_snapshot_sha256": "sha256:861b126f8e8ab7dbaf08e8e1a56761af8c076082631c305cb75b393b6d301fe0",
+  "working_directory": ".",
+  "argv": [
+    ".\\venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "code_assist_v1/tests/notion_collaboration/test_collaborative_editing_authority.py",
+    "code_assist_v1/tests/test_notion_workspace_auth_isolation.py",
+    "code_assist_v1/tests/test_verify_notion_workspace_route_contract.py"
+  ],
+  "environment_class": "approved_persistent_development_pair_real_gateway_websocket_node_compactor",
+  "tool_versions": {
+    "python": "3.14.3",
+    "pytest": "9.0.3",
+    "node": "24.14.1",
+    "uvicorn": "0.52.4",
+    "websockets": "17.0.1",
+    "yjs": "13.6.32",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "toolchain_fingerprint": "sha256:c2b3f8fc3fa26f44994ecaf69caf7c8d4caede4c320163ac2ddfb011e8f5547a",
+  "temp_root_id": null,
+  "recorded_at": "2026-08-25T02:14:00+09:00",
+  "started_at": "2026-08-25T02:12:47+09:00",
+  "ended_at": "2026-08-25T02:14:00+09:00",
+  "duration_ms": 72840,
+  "exit_code": 0,
+  "exit_code_signed": 0,
+  "exit_code_hex": "0x00000000",
+  "passed": 46,
+  "failed": 0,
+  "errors": [],
+  "skipped": 0,
+  "xfailed": 0,
+  "result": "passed",
+  "attempt": 1,
+  "retry_class": "none",
+  "source_pre_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:a0ee2ffd13d7874ff34cc585b0d98b5a1770ffcf7141099d6cbff720e4d69221",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:17f9b750d9bab24175a1b01bacb316700c5cdab0a1233407134a35a46d6aba59",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "source_post_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:a0ee2ffd13d7874ff34cc585b0d98b5a1770ffcf7141099d6cbff720e4d69221",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:17f9b750d9bab24175a1b01bacb316700c5cdab0a1233407134a35a46d6aba59",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "isolation_attestation": {
+    "approval_id": "AP-DEV-PAIR",
+    "principal_count": 2,
+    "persistent_development_schema_before": 2026082404,
+    "persistent_development_schema_after": 2026082405,
+    "persistent_development_runtime_changed": true,
+    "production_10011_10012_changed": false,
+    "protected_personal_roots_accessed": false,
+    "personal_content_accessed": false,
+    "python_parsed_yjs_payload": false,
+    "presence_persisted": false
+  },
+  "artifact_hashes": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editing_authority.v1.json": "sha256:5d86c46d6b1ea0005dde9a281751126494382c800032fe0e4db1824006691856",
+    "code_assist_v1/tools/verify_internal_collaborative_editing_authority.py": "sha256:d6f1f9f86b5578468274a754885533d7e582009798e2543d22b53bf3802b21db",
+    "code_assist_v1/notion_workspace_editing_authority_migration.py": "sha256:d6c17ebb71c3ae9301f9f1e77a4bdc0008c4afbc3ba27ab46dffc7bdcfc385f4",
+    "code_assist_v1/notion_collaboration/editing_authority.py": "sha256:22e87fd566f161a44bed277c6f4cf8c35a0e9826fbd0486a8c4d60f99892962b",
+    "code_assist_v1/notion_collaboration/durable_transport.py": "sha256:40604fdb0c5e8611222d3c98998ecd13ed1a555e2a5972acf4abd0d1c16a1d04",
+    "code_assist_v1/routes_notion_workspace.py": "sha256:985d5983f297c923c4eb5775d03be4bcb6ba62dfc1c6ef7f2ad190adb3113dc4",
+    "code_assist_v1/docs/notion_workspace_route_contract.json": "sha256:42665289f593c193b9435a0a78beba908ac4a5087dfb64f3adfd0cd4ccd5e30b",
+    "code_assist_v1/docs/notion_workspace_route_semantics.json": "sha256:655f086cee14d8fb0d60688ee9f5580d64d0563a0090364dbde9023e95bae8d7",
+    "approved_development_before_2405_backup": "sha256:0794ea4b8674449142b7db4d724899cc4dedd2d91bff41f722e437753209f010"
+  },
+  "owned_runtime": {
+    "approval_id": "AP-DEV-PAIR",
+    "launch_id": "75a4a6d1b1234be4b3262d6674f09454",
+    "manager_pid": 42332,
+    "service_process_ids": [
+      1980,
+      6040,
+      43412
+    ],
+    "node_compactor_pid": 34612,
+    "ports": [
+      10111,
+      10112,
+      10113
+    ],
+    "status": "running_ready",
+    "production_10011_10012_changed": false
+  },
+  "owned_process_cleanup": {
+    "approved_persistent_development_services_intentionally_running": true,
+    "ephemeral_cross_process_clients_closed": true,
+    "unrelated_processes_targeted": false
+  },
+  "cleanup_attestation": {
+    "source_hashes_unchanged_during_final_validation": true,
+    "ephemeral_test_roots_disposed_by_pytest": true,
+    "persistent_development_pair_left_ready": true,
+    "production_catalog_unchanged": true
+  },
+  "redaction_summary": {
+    "raw_stdout_recorded": false,
+    "raw_stderr_recorded": false,
+    "identity_credentials_recorded": false,
+    "session_cookie_or_signing_secret_recorded": false,
+    "persistent_browser_profile_data_recorded": false,
+    "personal_content_or_file_names_recorded": false
+  },
+  "claims": {
+    "E1_P1_gate_passed": true,
+    "typed_structure_and_database_commands_verified": true,
+    "role_boundary_verified": true,
+    "fault_rollback_and_uncompacted_checkpoint_block_verified": true,
+    "real_gateway_websocket_node_compactor_restart_verified": true,
+    "revision_identity_layers_separated": true,
+    "production_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

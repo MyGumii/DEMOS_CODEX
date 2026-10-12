@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.rejected_diagnostic.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-SHARE-INVITE-LABEL-R354-REJECTED-20260901",
+  "recorded_at": "2026-08-31T19:57:54.6890200Z",
+  "status": "rejected_reverted",
+  "summary": "The V0R-MU-006-only invite-label 14px experiment was rejected. Although its measured bounding box resembled the reference, the isolated r354 I0 run increased exact-pixel differences by 10 pixels at each adopted viewport. Accessibility, interaction, cleanup, and browser closure still passed. The font-size change was reverted, the r354 diagnostic root is preserved, and the retained implementation and candidate remain exactly r353.",
+  "lineage": {
+    "retained_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-share-invite-button-r353-progress-20260901.json",
+      "sha256": "sha256:da966c7b716ff01cb82943573a30662cd1fcd38f2ae0fcdd7d323150cc81fb3a"
+    },
+    "retained_candidate": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r353/receipt.json",
+      "sha256": "sha256:8c05dbea616f2bb0208803aa9f1a19c737fcfb7a1833443cd73c93a09652b198"
+    },
+    "immutable_reference": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    }
+  },
+  "rejected_r354_i0": {
+    "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r354",
+    "change": "set only the V0R-MU-006 invite-label font size from inherited 13px to 14px",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "V0R_MU_006_retained_unmasked_difference_count": 168694,
+    "V0R_MU_006_experimental_unmasked_difference_count": 168714,
+    "delta": 20,
+    "per_viewport_delta": {
+      "1440x900": 10,
+      "1280x800": 10
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    },
+    "accepted": false,
+    "reverted": true
+  },
+  "post_revert": {
+    "capture_harness_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "capture_harness_sha256": "sha256:e868fae1a750b84f84439e80c2a2257e69b0b34745ad81318b53a24e7ea92cbb",
+    "matches_retained_r353_implementation": true,
+    "product_sources_modified": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue from retained r353. Do not restore the rejected r354 14px invite-label font size. Preserve all r353 corrections, the immutable reference, and all earlier rejected diagnostics. Continue with a different reproducible state-bounded difference."
+}

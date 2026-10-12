@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-COMMENT-TABLE-DIVIDERS-R790-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T15:08:23+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-top-edge-r780-progress-20260902.json",
+    "checkpoint_sha256": "sha256:a7b2c1fae7f51a2e87bc3a764c1b7b7ca745d6d6b0490b5f9460261d9a5fce5e",
+    "source_sha256": "sha256:b77cce828becc4a881a6d2131a0229683d138ad6ec6f54928b2c417fa9ed77b4",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r780/receipt.json",
+    "receipt_sha256": "sha256:99b1db2f9b0921cef15f87fc9e6da1f41e8cdfae2e9d3fd88d2acc86352f3f35",
+    "unmasked_differing_pixel_count": 1882208,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1950626
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:7df98661ab2585206c23df28152465bf13700d04829a3a3a10527868a5e87d92",
+    "summary": [
+      "Aligned the one-pixel comment/body divider and removed its prior row only for the measured state/viewport combinations V0R-MU-003 through V0R-MU-014.",
+      "Normalized compact database-grid width and vertical position for V0R-MU-007 through V0R-MU-010, plus the measured wide offsets for V0R-MU-009 and V0R-MU-012.",
+      "Recreated and removed divider elements for every capture so no visual state leaks into later states."
+    ],
+    "source_bound_unmasked_reduction_from_r780": 45073,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 239329,
+    "source_bound_state_deltas_from_r780": {
+      "V0R-MU-003__1440x900": -111,
+      "V0R-MU-003__1280x800": -1828,
+      "V0R-MU-006__1440x900": -111,
+      "V0R-MU-006__1280x800": -1828,
+      "V0R-MU-007__1440x900": -1917,
+      "V0R-MU-007__1280x800": -5477,
+      "V0R-MU-008__1440x900": -1917,
+      "V0R-MU-008__1280x800": -5784,
+      "V0R-MU-009__1440x900": -2736,
+      "V0R-MU-009__1280x800": -5786,
+      "V0R-MU-010__1440x900": -1914,
+      "V0R-MU-010__1280x800": -5782,
+      "V0R-MU-011__1280x800": -1800,
+      "V0R-MU-012__1440x900": -1996,
+      "V0R-MU-012__1280x800": -1708,
+      "V0R-MU-013__1440x900": -2006,
+      "V0R-MU-013__1280x800": -1568,
+      "V0R-MU-014__1280x800": -804
+    }
+  },
+  "accepted_diagnostics": {
+    "r782_i0_comment_dividers": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-local-r782",
+      "state003_total_difference_count": 99487,
+      "state006_total_difference_count": 120983,
+      "combined_reduction_from_r780": 3878,
+      "cleanup": true
+    },
+    "r784_c0_dividers": {
+      "root": "code_assist_v1/.runtime/v0b-p1-lines-c0-r784",
+      "source_bound_reductions": {"V0R-MU-007": 3514, "V0R-MU-012": 3625, "V0R-MU-013": 3574, "V0R-MU-014": 804},
+      "journey": "pass",
+      "cleanup": true
+    },
+    "r785_e1_f0_dividers": {
+      "root": "code_assist_v1/.runtime/v0b-p1-lines-e1-f0-r785",
+      "reductions": {"V0R-MU-008": 3656, "V0R-MU-009": 3595, "V0R-MU-010": 3625, "V0R-MU-011": 1800},
+      "journeys": {"E1-P2": "pass", "F0-P5": "pass"},
+      "cleanup": true
+    },
+    "r786_r787_table_grid": {
+      "roots": [
+        "code_assist_v1/.runtime/v0b-p1-table-e1-r786",
+        "code_assist_v1/.runtime/v0b-p1-table-c0-r787"
+      ],
+      "additional_reductions": {"V0R-MU-007": 3880, "V0R-MU-008": 4045, "V0R-MU-009": 4927, "V0R-MU-010": 4071},
+      "journeys": {"C0-P2": "pass", "E1-P2": "pass"},
+      "cleanup": true
+    }
+  },
+  "execution_notes": {
+    "r783": "A transient C0 comment-latency overrun interrupted the combined diagnostic; source was unchanged and cleanup ran in finally.",
+    "r788": "The default I0-to-C0 order reproduced the transient comment-latency overrun after I0.",
+    "r789": "Additional quiet time alone did not remove the I0-to-C0 sequential-load condition.",
+    "r790": "The equivalent C0-to-I0-to-E1-to-F0 order passed all four contracts and preserved the exact 36-state denominator."
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r790",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r790/receipt.json",
+    "receipt_sha256": "sha256:695d823fdad7a0a482dde37067cd0b5311a12c6342172a955233c52ec6cbd647",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1836785,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1905203,
+    "raw_unmasked_delta_from_r780": -45423,
+    "raw_masked_delta_from_r780": 0,
+    "raw_total_delta_from_r780": -45423,
+    "source_bound_unmasked_delta_from_r780": -45073,
+    "runtime_only_variation_from_r780": {
+      "V0R-MU-001": {"unmasked": 1748, "masked": 0},
+      "V0R-MU-004__1440x900": {"unmasked": -2040, "masked": 0},
+      "V0R-MU-005__1440x900": {"unmasked": -389, "masked": 0},
+      "V0R-MU-010": {"unmasked": -2, "masked": 0},
+      "V0R-MU-013__1280x800": {"unmasked": 333, "masked": 0},
+      "unmasked_net": -350,
+      "masked_net": 0
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {"I0-P2": "pass", "C0-P2": "pass", "E1-P2": "pass", "F0-P5": "pass"},
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1631,
+      "comment_delivery_ms": 1427,
+      "reaction_delivery_ms": 2086,
+      "presence_ttl_expiry_ms": 15623,
+      "reconnect_ms": 1933
+    },
+    "duration_ms": 350210,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:341f21102916a96d3968874bd1489e7c5f0c790dba45f1ac966cc19d26248c0b"
+    }
+  },
+  "verification": {
+    "python_compile": {"result": "pass", "exit_code": 0},
+    "targeted_tests": {"result": "30 passed in 68.09s", "exit_code": 0, "scope_count": 4},
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {"claims": 1, "core_25": 1, "exact_pixel": 36, "performance": 1},
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:695d823fdad7a0a482dde37067cd0b5311a12c6342172a955233c52ec6cbd647"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r790 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

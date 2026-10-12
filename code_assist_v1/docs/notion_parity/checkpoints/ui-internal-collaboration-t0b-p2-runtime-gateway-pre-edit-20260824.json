@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-T0B-P2-RUNTIME-GATEWAY-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-24T10:25:00Z",
+  "checkpoint_kind": "packet_pre_edit_ownership_and_lineage",
+  "packet_id": "T0B-P2",
+  "packet_status": "in_progress",
+  "purpose": "Reserve the dedicated Python gateway kernel, ephemeral loopback service lifecycle, redaction/metrics contract, verifier, tests, and internal status contracts. The selected Node/Yjs runtime is not installed or enabled, literal development ports are forbidden, and all network/database evidence must use test-owned temporary roots and OS-assigned ports.",
+  "owner_agent": "/root",
+  "ownership_lane": "RUNTIME",
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p1-durable-transport-20260824.json",
+    "sha256": "sha256:3a837a302f1cb00f812ac6b0e90bc4fff39daa06a31883c34c2c1a21a64afcdb",
+    "packet_id": "T0B-P1",
+    "receipt_id": "T0B-P1-L3-DURABLE-TRANSPORT-20260824"
+  },
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py"
+  ],
+  "planned_new_product_files": [
+    "code_assist_v1/notion_collaboration/runtime_gateway.py",
+    "code_assist_v1/notion_collaboration/gateway_service.py",
+    "code_assist_v1/tools/verify_internal_collaborative_runtime_gateway.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_runtime_gateway.v1.json"
+  ],
+  "planned_new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_runtime_gateway.py",
+    "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_redaction.py",
+    "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_lifecycle.py"
+  ],
+  "planned_evidence_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p2-runtime-gateway-20260824.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/t0b-p2-l3-runtime-gateway-20260824.json"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:5341cf3cdb28aed5bed7553ec6ef28cd16fec7a4e1fe7ceb5a85863e845e62c8",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:28319e5c234cc0b2252ef2dd993c03a23fa2502b98c9b66be2851caf6914948e",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:c740909d314bf576089c901f0c3a5708ad65dbf84821555b2f2023fab28b5a31",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:bf36ed4155d33fc9200ecd60f1a0c2e5cd942b5102b51936236d8cb812c21dd9",
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:cb5a3029f5453c18da81bf584a18da5f77fb18e81fbcf01d193a8818419ff439",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:32ca8d27f61c47aef1fa8400ef1c1b229dc46f825d51c1c51b1f7ba4691bce35"
+  },
+  "read_only_authority_inputs": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/notion_collaboration/durable_transport.py": "sha256:1d0f0328445b63eac8a05d75be1c54522ec853932980ab525db3ce2b004fdb7d",
+    "code_assist_v1/notion_collaboration/transport_gateway_prototype.py": "sha256:d760e9941fc340f5e7a99097ce352e3b4cae3baca3fc5ec1d8a28aad3c03427c",
+    "code_assist_v1/notion_collaboration/selected_runtime_contract.py": "sha256:31947c8739e5555875e6df8c0e604e987299299726684f2cf3220d11dd1f79fa",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_topology_adr.v1.json": "sha256:ac102389d11e7270d8bb3bacbff37482da81c8cfe0f7389838a9a0f42ee5770f"
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked",
+    "tool_status_observed": "blocked_stale_after_prior_pause",
+    "user_resume_authority": "The user approved the complete G0-U recommendation and instructed continued execution.",
+    "goal_status_mutated_by_packet": false
+  },
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-24T10:25:00Z",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:87d4b24e32a8eb5725f44eb2b19f3df96211b64c6a96aeeac59b0d3510b04129",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_active_packet": "SBE-2.3",
+    "sbe_status_sha256": "sha256:ae8b81f3e6739a423d700abb65bfa21bc12f47cecf02650979e429ba8d0901a9",
+    "sbe_backlog_sha256": "sha256:761743ea761e10468ff9b761a78d5f41a43334ea0c6e8adf6f224feaf530efae",
+    "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+    "exact_path_collision_observed": false,
+    "sbe_hot_contracts_owned_or_modified": false
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-T0B-P2-ROOT-20260824",
+    "owner_agent": "/root",
+    "status": "active",
+    "acquired_at": "2026-08-24T10:25:00Z",
+    "expires_at": "2026-08-25T10:25:00Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "execution_boundary": {
+    "temporary_sqlite_fixtures_only": true,
+    "loopback_OS_assigned_ports_only": true,
+    "literal_10011_10012_10111_10112_10113_forbidden": true,
+    "selected_node_runtime_install_or_enable_allowed": false,
+    "live_identity_import_allowed": false,
+    "actual_dev_pair_mutation_allowed": false,
+    "production_mutation_allowed": false
+  }
+}

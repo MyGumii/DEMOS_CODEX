@@ -1,0 +1,111 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-23T00:56:56+09:00",
+  "run_id": "ui66-perf-high-host-load-retry-failed-no-promotion-20260823",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-busy-host-pass-fail-no-promotion-20260823.json",
+    "sha256": "sha256:a90754cf12da776b49665fc2ad2b123ed24553ae3d13c306647554f657c5bd20",
+    "semantic_status": "ui_perf_001_busy_host_pass_fail_no_promotion"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "the user explicitly requested another execution",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-PERF-001",
+    "synthetic_only": true,
+    "isolated_os_temp_only": true,
+    "personal_or_live_data_accessed": false
+  },
+  "slice": {
+    "status": "exact_retry_failed_under_high_host_load",
+    "review_required": true,
+    "promotion_allowed": false,
+    "approved_budget_changed": false,
+    "product_code_changed": false
+  },
+  "measurement": {
+    "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\browser\\test_notion_ui_performance.py::test_ui_perf_001_measurements_are_isolated_bounded_and_precalibration_only -q",
+    "exit_code": 1,
+    "result": "1 failed in 66.50s",
+    "failed_metric": "shell_ready_ms",
+    "observed_p95_ms": 1543.893,
+    "approved_budget_ms": 1370,
+    "over_budget_ms": 173.893,
+    "classification": "high_host_load_correlated_budget_failure"
+  },
+  "host_preflight": {
+    "total_cpu_percent_samples": [
+      66.721,
+      78.37,
+      73.74,
+      87.392,
+      63.717
+    ],
+    "minimum_percent": 63.717,
+    "maximum_percent": 87.392,
+    "classification": "busy",
+    "process_identity_persisted": false,
+    "user_process_changed": false
+  },
+  "approved_budget": {
+    "metric": "shell_ready_ms",
+    "percentile": "p95",
+    "sample_count": 6,
+    "budget_ms": 1370,
+    "nearest_rank_effect": "with six samples p95 equals the maximum sample"
+  },
+  "decision": {
+    "reason": "The exact unchanged gate failed while the host remained substantially loaded. This confirms that the required quiet-host reproducibility condition was not met and does not authorize a budget, product, or completion change.",
+    "actions": [
+      "keep UI-PERF-001 evidence pending",
+      "do not relax or recalibrate the approved budget",
+      "do not change product UI, authentication, or Second Brain code",
+      "do not terminate or modify user processes",
+      "do not promote H8 or release readiness"
+    ]
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+      "sha256": "sha256:17cad4942917ad41e13501c05ec1dd085de82343852eeb4772ad9e62b93b6761"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/performance_budget.v1.json",
+      "sha256": "sha256:e142c76f6464a4b15869805eb82eeb1478f7e4d96d1fdbba4b0588a87a962e03"
+    }
+  ],
+  "safety": {
+    "live_local_data_accessed": false,
+    "personal_notion_content_accessed": false,
+    "reference_workspace_mutated": false,
+    "external_action_executed": false,
+    "product_code_changed": false,
+    "user_process_changed": false
+  },
+  "claims": {
+    "required_scenario_count": 25,
+    "evidence_satisfied_count": 24,
+    "unresolved_count": 1,
+    "reference_measurement_observed": true,
+    "local_budget_approved": true,
+    "current_local_budget_green": false,
+    "ui_perf_001_evidence_satisfied": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Wait until the host is demonstrably quiet, then rerun this unchanged exact six-sample gate. Retain fail-closed 24-of-25 until a reproducible result is obtained.",
+  "vcs": {
+    "available": false,
+    "commit_claimed": false,
+    "observation": "the workspace is not a valid Git repository"
+  }
+}

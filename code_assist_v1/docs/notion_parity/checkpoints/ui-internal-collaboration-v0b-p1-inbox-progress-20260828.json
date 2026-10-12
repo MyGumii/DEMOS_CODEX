@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-INBOX-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T02:43:48+09:00",
+  "checkpoint_kind": "structural_ui_parity_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_gate_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Bind the C0-P2 comment and inbox diagnostic after closing the overlapping inspector, waiting for the rendered collaborative notification, and independently verifying recoverable cleanup.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-structural-share-boundary-progress-20260828.json",
+    "sha256": "sha256:ec52cdb9a0caf56184920817ecc7910f1909536e24ef671f1266e5bd6380653b"
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:8ac67d58c10ba2552e5b60d9d5e4533a551317b8543c30cc3e59ebbe293010d7",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:7bafdfe59f71e229c03da20ab2dc23c0fbcda415d48bbc994f30980758212c7a"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:5dc054a4758a5d479d4810a7e0909589af25788a5ca862de8f3b3f9bb57e2836"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:8286b7ccb447cd30b28b398aeffbb0d89c307224d1e8a5173100a70577b93441"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:973ed6687285bbd729e7a058dc80cc610a474684556d36699e0d6313a87827d2"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:02f38ba3679b43420d1feea7b19fbd1debcfd56113f0a72cec162e069de68bd4"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/c0_p2_browser.py",
+        "sha256": "sha256:42e96b0591403221381230d79dffbd0a0b0e2da9bf2e090b9a70682e772a32bc"
+      }
+    ]
+  },
+  "implemented_behavior": {
+    "inbox_presentation": "integrated_left_sidebar_panel",
+    "overlapping_comment_inspector_closed_on_inbox_open": true,
+    "collaborative_notification_dom_waited_before_capture": true,
+    "live_comment_reply_reaction_and_mention_delivery_verified": true,
+    "post_revoke_zero_delivery_verified": true
+  },
+  "diagnostic_evidence": {
+    "root": "code_assist_v1/.runtime/v0b-p1-inbox-diagnostic-20260828-retry1",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-inbox-diagnostic-20260828-retry1/receipt.json",
+    "receipt_sha256": "sha256:6dae498cd3294519b19ec9ae7ac4e8a912dcaa685ef63eb4612cce74c797a8cb",
+    "journey": "C0-P2",
+    "capture_count": 8,
+    "accessibility_pass_count": 8,
+    "exact_pixel_pass_count": 0,
+    "journey_status": "pass",
+    "browser_closed": true,
+    "gate_passed": false
+  },
+  "pixel_comparison": [
+    {
+      "state_id": "V0R-MU-007",
+      "viewport": "1440x900",
+      "baseline_difference_count": 372439,
+      "current_difference_count": 372253,
+      "reduction_count": 186
+    },
+    {
+      "state_id": "V0R-MU-012",
+      "viewport": "1440x900",
+      "baseline_difference_count": 398731,
+      "current_difference_count": 424722,
+      "reduction_count": -25991,
+      "status": "regressed_comment_layout_open"
+    },
+    {
+      "state_id": "V0R-MU-013",
+      "viewport": "1440x900",
+      "baseline_difference_count": 1151660,
+      "current_difference_count": 315339,
+      "reduction_count": 836321,
+      "reduction_percent": 72.62
+    },
+    {
+      "state_id": "V0R-MU-013",
+      "viewport": "1280x800",
+      "baseline_difference_count": 912157,
+      "current_difference_count": 285782,
+      "reduction_count": 626375,
+      "reduction_percent": 68.67
+    },
+    {
+      "state_id": "V0R-MU-014",
+      "viewport": "1440x900",
+      "baseline_difference_count": 378773,
+      "current_difference_count": 324807,
+      "reduction_count": 53966,
+      "reduction_percent": 14.25
+    },
+    {
+      "state_id": "V0R-MU-014",
+      "viewport": "1280x800",
+      "baseline_difference_count": 346918,
+      "current_difference_count": 296517,
+      "reduction_count": 50401,
+      "reduction_percent": 14.53
+    }
+  ],
+  "cleanup_audit": {
+    "journey_workspace_id": "ws_bde452b476c84456867875f06ea2603d",
+    "journey_document_id": "p_5d9e5b3470d42473b69f605968f078a4",
+    "active_collaborator_workspace_membership_count": 0,
+    "active_collaborator_guest_count": 0,
+    "active_collaborator_page_grant_count": 0,
+    "source_page_archived": 1,
+    "test_page_moved_to_recoverable_trash": true,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "status": "complete",
+    "prior_interrupted_diagnostic_remediation": {
+      "workspace_id": "ws_20a8f08d4b844edba65aee55df9721e1",
+      "document_id": "p_4ead0f608f462dafdfbb86f6354a0485",
+      "active_collaborator_workspace_membership_count": 0,
+      "active_collaborator_guest_count": 0,
+      "active_collaborator_page_grant_count": 0,
+      "source_page_archived": 1,
+      "permanent_delete_used": false
+    }
+  },
+  "verification": {
+    "node_syntax_check": "pass",
+    "python_compile_check": "pass",
+    "targeted_regression": "20 passed, 2 skipped",
+    "full_C0_P2_browser_journey": "pass",
+    "accessibility_matrix_slice": "8/8 pass",
+    "cleanup": "pass"
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "V0B_P1_inbox_structural_progress": true,
+    "C0_P2_journey_passed": true,
+    "C0_P2_accessibility_passed": true,
+    "C0_P2_cleanup_passed": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Reproduce the V0R synthetic page content in the V0B journeys and correct the inline comment thread layout before running another bounded C0 diagnostic. Do not run the final 36-state candidate, Core 25, or quiet-host performance gate until the remaining structural clusters improve. Do not enter O1B until all V0B gates pass."
+}

@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_checkpoint.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-WORKSPACE-MEMBER-LINK-COPY-R408-20260901",
+  "recorded_at": "2026-09-01T10:35:50.1588648+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "r408 retains r400 and applies two measured workspace-members link-copy corrections: a wider paragraph wrap boundary and a one-pixel left shift for the link-copy heading. The full 36-capture run reduces unmasked differences by 331 pixels net, with the source-bound V0R-MU-002 state improving by 332 pixels and the known variable V0R-MU-008 state changing by one pixel. All four component journeys, all 36 accessibility checks, all 36 interaction checks, targeted tests, and synthetic cleanup pass. Exact parity remains 0/36 and no completion claim is made.",
+  "immutable_lineage": {
+    "lossless_exact_v4_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+    },
+    "previous_retained_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-workspace-members-subtitle-r400-progress-20260901.json",
+      "sha256": "sha256:554f5500ef76963e9434b07206d09ed9ea7e53b9b49f84ae0360c59a529021fe"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified": false
+    },
+    "main_agent_handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "retained_source_binding": [
+    {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:da11393f39cd2af2725abf6e27e05fe483ae326234ae4ae0f8000683a5464964",
+      "changes_in_r401_r408": []
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+      "changes_in_r401_r408": []
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.css",
+      "sha256": "sha256:3af2d52b710846a3f17879324cb0736a710cbfe8d26dc66330462fd2a30abe54",
+      "changes": [
+        "increase the workspace-members link description maximum width from 570px to 590px so its line break matches the reference",
+        "shift the workspace-members link-copy heading one pixel left"
+      ]
+    }
+  ],
+  "isolated_validation": [
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r401",
+      "change": "workspace-members link-description wrap width",
+      "state_id": "V0R-MU-002",
+      "previous": {
+        "1440x900": 97600,
+        "1280x800": 90707
+      },
+      "current": {
+        "1440x900": 97564,
+        "1280x800": 90671
+      },
+      "delta": {
+        "1440x900": -36,
+        "1280x800": -36
+      },
+      "accepted": true
+    },
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r402",
+      "change": "workspace-members link-copy heading x alignment",
+      "state_id": "V0R-MU-002",
+      "previous": {
+        "1440x900": 97564,
+        "1280x800": 90671
+      },
+      "current": {
+        "1440x900": 97434,
+        "1280x800": 90541
+      },
+      "delta": {
+        "1440x900": -130,
+        "1280x800": -130
+      },
+      "accepted": true
+    },
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r403",
+      "change": "workspace-members link-copy heading letter spacing",
+      "observed": {
+        "1440x900": 96543,
+        "1280x800": 90625
+      },
+      "run_mode_adjusted_delta": {
+        "1440x900": 84,
+        "1280x800": 84
+      },
+      "known_1440_mode_delta_removed": -975,
+      "accepted": false,
+      "source_reverted": true
+    },
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r404",
+      "change": "workspace-members directory-link letter spacing",
+      "observed": {
+        "1440x900": 96507,
+        "1280x800": 90589
+      },
+      "run_mode_adjusted_delta": {
+        "1440x900": 48,
+        "1280x800": 48
+      },
+      "known_1440_mode_delta_removed": -975,
+      "accepted": false,
+      "source_reverted": true
+    }
+  ],
+  "stability_diagnostics": {
+    "discarded_full_attempts": [
+      {
+        "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r405",
+        "result": "discarded_before_receipt",
+        "reason": "C0_P2_COMMENT_LATENCY_EXCEEDED"
+      },
+      {
+        "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r406",
+        "result": "discarded_before_receipt",
+        "reason": "C0_P2_COMMENT_LATENCY_EXCEEDED"
+      }
+    ],
+    "c0_recovery_probe": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-candidate-20260901-r407",
+      "status": "pass",
+      "presence_delivery_ms": 1510,
+      "comment_delivery_ms": 1145,
+      "reaction_delivery_ms": 1615,
+      "presence_ttl_expiry_ms": 15646,
+      "reconnect_ms": 1283,
+      "cleanup": true,
+      "browser_closed": true
+    },
+    "latency_contract_modified": false,
+    "service_restart_used": false
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r408",
+    "receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r408/receipt.json",
+      "sha256": "sha256:941bdeb3a968a84b94cea3261fe21063b07b1155b8c214368ed7f923b066546d",
+      "size_bytes": 288647
+    },
+    "candidate_build_sha256": "sha256:f0a6e876dd0d36d5c5868936b7c9a1335183645b90c4fd543d021f476b2bb13f",
+    "browser": {
+      "channel": "chrome",
+      "major_version": "153",
+      "independent_ephemeral_contexts": 2
+    },
+    "duration_ms": 394629,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2193693,
+    "masked_difference_count": 70240,
+    "total_difference_count": 2263933,
+    "journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1896,
+      "comment_delivery_ms": 1918,
+      "reaction_delivery_ms": 1654,
+      "presence_ttl_expiry_ms": 15608,
+      "reconnect_ms": 1936
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:5153f81571dc9ecf646c32921e10e148bf898a09e47d4c2a855f2d216dec4639"
+    }
+  },
+  "comparison_to_r400": {
+    "r400_unmasked_difference_count": 2194024,
+    "r408_unmasked_difference_count": 2193693,
+    "aggregate_delta": -331,
+    "source_bound_state_delta": {
+      "state_id": "V0R-MU-002",
+      "previous": 187332,
+      "current": 187000,
+      "delta": -332
+    },
+    "known_variable_state_deltas": [
+      {
+        "state_id": "V0R-MU-008",
+        "delta": 1
+      }
+    ],
+    "all_other_state_deltas": 0
+  },
+  "verification": {
+    "targeted_tests": {
+      "result": "17 passed in 16.76s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:941bdeb3a968a84b94cea3261fe21063b07b1155b8c214368ed7f923b066546d"
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from retained r408. Preserve r400 plus the r401 link-description wrap-width correction and r402 link-copy heading x-alignment correction. Pass the immutable lossless-exact-v4 reference receipt, screenshots, and masks explicitly. Do not retry r403 heading letter spacing, r404 directory-link letter spacing, or the earlier rejected r399 modal-height change. Treat the V0R-MU-002 1440 -975 mode and V0R-MU-008 one-pixel delta as established run variability unless a source-bound cause is proven. Prefer another measured state-bounded element in V0R-MU-002. Run a C0-only recovery probe before another full attempt if the comment latency gate repeats. Do not run fresh Core 25 or quiet-host performance gates before exact parity reaches 36/36, and do not mark the product or shared goal complete before all final gates close."
+}

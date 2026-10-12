@@ -1,0 +1,238 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-14T23:30:41+09:00",
+  "run_id": "ui1-evidence-packet-local-green-20260814",
+  "model": {
+    "planning": "ultra",
+    "implementation": "gpt-5.6-sol-xhigh-goal-profile"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui1-local-canonical-publication-focus-green-reference-blocked-20260814.json",
+    "sha256": "sha256:3c5416da6d1f0e01845393f51e4cfc7670577659a42f06cde6ccbb4e25e6d827",
+    "semantic_status": "historical-parent-local-browser-result"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-14T23:22:00+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": [
+      "UI-SHELL-002",
+      "UI-SEARCH-001",
+      "UI-EDITOR-001",
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-A11Y-001"
+    ],
+    "extension": [],
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "production-publication-rollout",
+      "operational-migration"
+    ]
+  },
+  "slice": {
+    "id": "UI1-SEALED-EVIDENCE-PACKET",
+    "status": "local-green-reference-browser-transport-blocked",
+    "acceptance_ids": [
+      "UI1-PACKET-ISOLATED-ROOT",
+      "UI1-PACKET-CANONICAL-JSON",
+      "UI1-PACKET-EXACT-FILE-SET",
+      "UI1-PACKET-DIGEST-LINKS",
+      "UI1-PACKET-DUPLICATE-KEY-REJECTION",
+      "UI1-PACKET-LINK-REJECTION",
+      "UI1-PACKET-PATH-FREE-RECEIPT",
+      "UI1-LOCAL-REAL-CHROME-REGRESSION",
+      "UI1-SECOND-BRAIN-HARD-GATE"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "tools/notion_parity/ui_evidence_packet.py",
+        "sha256": "sha256:cac523afd52efd1c28f44085edfe3f7e62442f00755e31c7b839b403d6282942"
+      },
+      {
+        "path": "tests/test_notion_ui_evidence_packet.py",
+        "sha256": "sha256:be7a838b7fd26fbf16c3a1dfce6d301893a1d7924e80ef98047bc5624ec2c40a"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "sha256": "sha256:b031c7c056b6f2e6c4b087df8b7a7b66112f99d424e3e852932bfe627ad829c9"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI1_EVIDENCE_PACKET_RESULT_20260814.md",
+        "sha256": "sha256:27c9a3342a6c5a017bd14b850af97c6135d764c70ac1e9aa10623f2a20ade45a"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "sha256": "sha256:3fa2a9b53ec4c15311769e197f5597326bd2c560724fb2f7e1bd34d7e1c04f08"
+      }
+    ],
+    "stable_local_dependencies": [
+      {
+        "path": "notion_static/notion.js",
+        "sha256": "sha256:eea72622814b44480e28fa4740f39e6dd17d8d02e8b9fa51d3e92793cde3c01b"
+      },
+      {
+        "path": "tools/notion_parity/ui_local_fixture.py",
+        "sha256": "sha256:d014f949e6859da8a943ccf199887e3c9fbc7a3cae3ca4d07dea75bd6d713cd1"
+      },
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "sha256": "sha256:25380a9d3628ab383e81c7db4140144020b0a8de23aa74d6f766eca8eb5e9174"
+      }
+    ],
+    "protected_unchanged": [
+      "AGENTS.md",
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ],
+    "agents_sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "raw_evidence_committed": false,
+    "test_packet_persisted_outside_pytest_temp": false
+  },
+  "evidence": {
+    "packet_contract": {
+      "status": "contract-tested",
+      "exact_file_set": true,
+      "canonical_json": true,
+      "hash_recomputed": true,
+      "cross_links_verified": true,
+      "tamper_tests": true,
+      "path_free_receipt": true
+    },
+    "reference": [],
+    "local": [
+      {
+        "scenario_id": "UI-SHELL-002",
+        "capture_sha256": "sha256:e1264295173e4c39994aff5b8e6785e4395ac8b0a5f16ac7c4ec030459a79785",
+        "redaction": "pass"
+      },
+      {
+        "scenario_id": "UI-SEARCH-001",
+        "capture_sha256": "sha256:a920c1c018b1ec3d5a9e08296959760ef8605c4632500155dd3a674423c857e0",
+        "redaction": "pass"
+      },
+      {
+        "scenario_id": "UI-EDITOR-001",
+        "capture_sha256": "sha256:2a0fda9dcc026a7a2e22ae3563ceb13e36d645de9d55a49a180236982cf7c575",
+        "redaction": "pass"
+      }
+    ],
+    "differential": [],
+    "second_brain": {
+      "status": "pass",
+      "cancel_item_delta": 0,
+      "cancel_revision_delta": 0,
+      "approve_item_delta": 1,
+      "approve_revision_delta": 1,
+      "replay_item_delta": 0,
+      "replay_revision_delta": 0,
+      "source_snapshot_matches": true
+    },
+    "reference_blocker": {
+      "stage": "browser-runtime-initialization-before-selection",
+      "error_code": "kernel-assets-path-not-found-os-error-3",
+      "attempted_surfaces": [
+        "in-app-browser",
+        "computer-use"
+      ],
+      "application_listed": false,
+      "window_selected": false,
+      "content_accessed": false
+    }
+  },
+  "commands": [
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "tests/test_notion_ui_evidence_packet.py",
+      "result": "5 passed in 2.23s",
+      "exit_code": 0
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "H1 evidence harness + packet + plan verifier + local fixture",
+      "result": "40 passed in 14.80s",
+      "exit_code": 0
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py",
+      "result": "2 passed in 30.49s",
+      "exit_code": 0
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "py_compile ui_evidence_packet.py and focused test",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "direct file invocation of verify_notion_core_free_ui_plan.py",
+      "result": "invocation error: module search path unavailable",
+      "exit_code": 1
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "python -m code_assist_v1.tools.verify_notion_core_free_ui_plan --compact",
+      "result": "pass: 25 required, 6 UI1, 0 errors",
+      "exit_code": 0
+    },
+    {
+      "selection": "Computer Use shared JavaScript-kernel reset and initialization before application listing",
+      "result": "host failure: kernel-assets-path-not-found-os-error-3; no application or content observed",
+      "exit_code": null
+    }
+  ],
+  "claims": {
+    "h1_local_harness_green": true,
+    "h1_reference_complete": false,
+    "h1_differential_complete": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "archive_business_complete": false,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_content_exposed": false,
+    "live_local_path_accessed": false,
+    "protected_file_edit_required": false,
+    "production_mutation_required": false,
+    "browser_transport_available": false
+  },
+  "remaining": [
+    "restart or repair the desktop Browser/Computer Use runtime, then recover signed-in Chrome control and run C0 without opening personal workspaces",
+    "capture matching REF-FREE-A/B scenarios with synthetic content",
+    "seal reference and local artifacts with the tested packet contract",
+    "produce the first reference/local differential",
+    "continue H2-H9 through one reviewed cohesive slice at a time"
+  ],
+  "next_exact_command": "after desktop Browser/Computer Use runtime restart, initialize Chrome control and run C0 read-only confirmation before any REF-FREE-A/B mutation or capture"
+}

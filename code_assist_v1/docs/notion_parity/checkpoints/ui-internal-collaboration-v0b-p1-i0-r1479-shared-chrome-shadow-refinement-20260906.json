@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1479-SHARED-CHROME-SHADOW-REFINEMENT-20260906",
+  "recorded_at": "2026-09-06T05:35:57.3222739+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1468-access-boundary-refinement-20260906.json",
+    "sha256": "sha256:8d8ae94efd72f21d6053f77e3c4dd9a91bfd599ca2f6c1c548e1daa902b04a04",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 769176
+  },
+  "refinement": {
+    "scope": [
+      "V0R-MU-001",
+      "V0R-MU-002"
+    ],
+    "changes": [
+      {
+        "target": "shared workspace title, breadcrumb, and sidebar application gap",
+        "setting": "title translateX(-1px); breadcrumb translate(-8px,-1px); state-specific third application gap",
+        "stable_difference_reduction": 3159
+      },
+      {
+        "target": "workspace-members inspector shadow",
+        "setting": "second shadow alpha .165",
+        "stable_difference_reduction": 3490
+      },
+      {
+        "target": "shared home icon, state001 inbox icon and home label",
+        "setting": "reference-aligned icon sizing and subpixel transforms",
+        "stable_difference_reduction": 195
+      },
+      {
+        "target": "shared translation pill typography",
+        "setting": "font-size 11px; letter-spacing .2px",
+        "stable_difference_reduction": 16
+      }
+    ],
+    "stable_difference_reduction": 6860,
+    "overall_exact_progress": "0/36"
+  },
+  "reproduction": {
+    "run_id": "v0b-p1-i0-r1479-shared-chrome-shadow-receipt",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1479-shared-chrome-shadow-receipt/diagnostic.json",
+    "diagnostic_sha256": "sha256:ce9bb48c88e6de7884dbbad4d7a32b5b05cdaf7520e7ccc27cc051a6de6d2027",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 762307,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 762316,
+    "normalization": {
+      "V0R-MU-004__1440x900": {
+        "observed_low": 44160,
+        "observed_high": 44169,
+        "stable_value": 44169
+      }
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "capture_source": {
+    "path": "notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:b72870a90e85ff9b13c31d367e4af4984dae2fe0d69679f2c0f36051b3676317",
+    "python_compile_pass": true
+  },
+  "fresh_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1457-20260906",
+    "launch_id": "57bee8e772c74c2ca23eb2d8be49341b",
+    "root_id": "6c06432c-2f10-4de9-b923-093a23985fec",
+    "manager_session_id": 86671,
+    "current_audit": {
+      "workspace_count": 46,
+      "reference_workspace_count": 44,
+      "active_membership_count": 46,
+      "active_page_binding_count": 44,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Rotate the isolated development realm, reproduce this checkpoint on the fresh realm, and continue exact residual reduction from stable normalized total 762316. Do not run final gates before exact parity reaches 36/36."
+}

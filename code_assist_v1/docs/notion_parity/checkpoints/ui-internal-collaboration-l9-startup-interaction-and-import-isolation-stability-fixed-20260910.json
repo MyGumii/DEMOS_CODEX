@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.l9.startup_interaction_and_import_isolation_stability_fix.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-L9-STARTUP-INTERACTION-AND-IMPORT-ISOLATION-STABILITY-FIXED-20260910",
+  "recorded_at": "2026-09-10T11:15:39.0504796+09:00",
+  "status": "fixed_repeated_green_and_visually_revalidated",
+  "immutable_after_recording": true,
+  "pre_fix_full_l9": {
+    "command": ".\\venv\\Scripts\\python.exe -E -m pytest -c code_assist_v1\\pytest.ini -q -p no:debugging -p no:cacheprovider code_assist_v1\\tests",
+    "passed": 4917,
+    "failed": 2,
+    "skipped": 7,
+    "subtests_passed": 5,
+    "duration_seconds": 8037.55,
+    "failures": [
+      "code_assist_v1/tests/browser/test_notion_ui_pilot_recovery.py::test_h9_isolated_opt_in_canary_kill_switch_and_copy_on_write_recovery",
+      "code_assist_v1/tests/test_notion_legacy_page_duplicate_trash_restore.py::test_lifecycle_modules_import_without_app_or_filesystem_side_effects"
+    ]
+  },
+  "diagnosis": {
+    "startup_interaction": "the workspace shell was visible after DOM parsing before notion.js had attached click handlers, so an immediate sidebar New page click could be accepted by the browser but lost by the application",
+    "import_isolation": "the exact full-workspace before/after file inventory ran inside the child process timeout, so transient filesystem latency could consume the 60-second import budget even though focused runs were fast",
+    "authorization_or_data_contract_changed": false,
+    "steady_state_visual_layout_changed": false
+  },
+  "source_bindings": [
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "before_sha256": "sha256:d3a76391b0b12e96c1e43fa85eb554eabfa3fe144300251146550abdacb1b71d",
+      "sha256": "sha256:ed666cc28783d10c838394014262d77e7b31304b1e07c86745d90fdb6a7354c7",
+      "classification": "product_source"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "before_sha256": "sha256:8948bed5b27146b67fb4c837dbc22e85f507d24cfb59ed59e70621419448102f",
+      "sha256": "sha256:2174054317d61fe95f4ff69031de021a3a52b75e27fa2964652556ff7030294c",
+      "classification": "product_source"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_legacy_page_duplicate_trash_restore.py",
+      "before_sha256": "sha256:e73dc227358d4ed54e34a089ad68c2c8dd1cdca682c49319467ef0c15a3d4a0e",
+      "sha256": "sha256:3249d07523cfcdf0d3509ff874a5cd2178bdf786e93c0b8e114270621a2f12d8",
+      "classification": "validation_source"
+    }
+  ],
+  "fix_contract": {
+    "workspace_shell_inert_until_event_handlers_attached": true,
+    "startup_ready_and_home_navigation_generation_preserved": true,
+    "full_workspace_inventory_scope_preserved": true,
+    "filesystem_inventory_moved_outside_child_import_timeout": true,
+    "child_import_timeout_seconds_unchanged": 60,
+    "source_cache_buster_advanced": true
+  },
+  "verification": {
+    "javascript_syntax_check_passed": true,
+    "javascript_contract_commands_passed": 3,
+    "h9_recovery_journey_runs_passed": 5,
+    "h9_recovery_journey_runs_failed": 0,
+    "h9_recovery_journey_durations_seconds": [
+      30.99,
+      31.21,
+      31.94,
+      30.59,
+      31.94
+    ],
+    "import_side_effect_runs_passed": 5,
+    "import_side_effect_runs_failed": 0,
+    "import_side_effect_run_durations_seconds": [
+      13.78,
+      13.74,
+      13.71,
+      14.29,
+      13.72
+    ],
+    "full_browser_golden_journeys_passed": 21,
+    "full_browser_golden_journeys_failed": 0,
+    "full_browser_golden_duration_seconds": 567.42,
+    "isolated_performance_test_passed": 1,
+    "isolated_performance_test_failed": 0,
+    "isolated_performance_duration_seconds": 62.35
+  },
+  "fresh_v0b_diagnostic": {
+    "path": "code_assist_v1/.runtime/v0b-p1-startup-interaction-v11-20260910/receipt.json",
+    "sha256": "sha256:6d7f39bcf848ed67ccebd47ca581db4f35f267e9dc5bff1d2b91810b4959221f",
+    "source_build_sha256": "sha256:7bbe085f2695323242ad37f4a87d301085cbed93640fe11e282b034af22432fb",
+    "runtime_build_sha256": "sha256:cec7a11d3f633405655516566b22ec05354605a3f8def57c3ddada94bf71a0c1",
+    "component_journeys_passed": 4,
+    "capture_count": 36,
+    "strict_visual_similarity_passed": 36,
+    "accessibility_passed": 36,
+    "exact_pixel_passed": 0,
+    "exact_pixel_differing_pixel_total": 4334676,
+    "gate_passed": false,
+    "gate_false_reason": "diagnostic run inherits non-quiet preflight performance and does not reexecute external final gates",
+    "create_only": true
+  },
+  "cleanup": {
+    "approved_dev_pair_root": "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113-v0b-startup-interaction-v11-20260910",
+    "approved_identity_ids": [
+      "admin",
+      "user01"
+    ],
+    "owned_host_processes_stopped": true,
+    "owned_gateway_processes_stopped": true,
+    "operator_ports_closed": true,
+    "active_run_record_removed": true,
+    "active_test_grant_count": 0,
+    "active_test_member_count": 0,
+    "active_fixture_root_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "source_compatibility_predecessor": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-source-compatibility-inheritance-v37-20260910.json",
+      "sha256": "sha256:2976c18bf70ab4f4a92cebe11494fe6eaec10bdcdf32b93f7210d3f0a7b3d2d5"
+    },
+    "current_ui_compatibility_predecessor": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-q0-current-ui-compatibility-v6-20260910.json",
+      "sha256": "sha256:52fb928c4e6eb09e3c975bbcff37562911faf3242671e99fa7f75ae4412eec9e"
+    }
+  },
+  "claims": {
+    "historical_receipt_overwritten": false,
+    "central_catalog_ladder_matrix_or_pointer_modified": false,
+    "protected_sbe_source_or_contract_modified": false,
+    "external_target_or_production_action_executed": false,
+    "packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:2d6f778e256592be73d448f83650a9d85a3c4468be0fcd6efea81d4c01a068cd"
+}

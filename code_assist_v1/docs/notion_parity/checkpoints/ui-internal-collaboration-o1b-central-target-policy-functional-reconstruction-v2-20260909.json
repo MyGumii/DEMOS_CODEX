@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b.central_target_policy_functional_reconstruction_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-CENTRAL-TARGET-POLICY-FUNCTIONAL-RECONSTRUCTION-V2-20260909",
+  "recorded_at": "2026-09-09T00:01:06+09:00",
+  "status": "central_v4_target_evidence_functional_reconstruction_regression_green_external_execution_deferred",
+  "immutable_after_recording": true,
+  "packet_id": "O1B-P1",
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-central-target-policy-functional-reconstruction-20260908.json",
+    "sha256": "sha256:f93343d2ca6f2ce9ab1bb6435d605ca7cf2135eee3a93beb5fbfd321f6ad3834",
+    "record_sha256": "sha256:5229422eed6796e26a4bf37f2b169dae1cd059e1b200dad8d33b320d733a9962"
+  },
+  "bindings": {
+    "central_validation": {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:fb6862d8cf598a712c0f25415161fe0cc562a3ca3cac4042024a3bc60ca70043"
+    },
+    "target_policy": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v4.json",
+      "sha256": "sha256:f6ba450334eb337782f57e5c2e1d8a8956d43953f6e9cfd577901a9c3332896d"
+    },
+    "source_compatibility": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-source-compatibility-inheritance-v14-20260908.json",
+      "sha256": "sha256:31e4a8b2bc74400bd8a2df2eb6b0139c911a04c0f5397afc032a1be84a0a0f26",
+      "record_sha256": "sha256:1b1b93ba79521294dd850961fcabfd86a8c1730f2f3a8effba0ff15926d31c4f"
+    },
+    "target_gate_test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_gate_runner.py",
+      "sha256": "sha256:4951f1913308f7cc363f90cd14f1276557af18702631fe35c78aad58724d9a6a"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "status": "pass",
+      "files": [
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_gate_runner.py"
+      ]
+    },
+    "target_restore_policy_and_gate_group": {
+      "status": "pass",
+      "passed": 82,
+      "failed": 0,
+      "duration_seconds": 25.71
+    }
+  },
+  "claims": {
+    "central_v4_target_evidence_path_functionally_exercised": true,
+    "external_target_evidence_created": false,
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "historical_evidence_overwritten": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:7b98659be5679eaf37e9451e18a7b1ddb5d1f2b238e3b8d12a66c340b242d53c"
+}

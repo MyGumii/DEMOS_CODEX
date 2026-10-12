@@ -1,0 +1,65 @@
+{
+  "claims": {
+    "core_ui_complete": false,
+    "destructive_confirmation_count": 1,
+    "external_action_executed_count": 0,
+    "human_evidence_approval_count": 2,
+    "manual_input_resolved_count": 0,
+    "overall_goal_complete": false,
+    "resolved_entry_count": 3
+  },
+  "contract": "code_assist.notion.core_free_ui.approval_batch_receipt.v1",
+  "excluded_entries": [
+    "UI-EDITOR-004-NATIVE-IME-INPUT"
+  ],
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "queue": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v1.json",
+    "sha256": "sha256:0c6a80362249a71378f01ac9f6c6f7b12fa8944f381fb7b8ae6ff1f3a9952598"
+  },
+  "recorded_at": "2026-08-22T07:54:59Z",
+  "resolved_entries": [
+    {
+      "authorization_effect": "summary_receipt_sealing_allowed",
+      "entry_id": "UI-A11Y-001-UI-EDITOR-003-SUMMARY-REVIEW",
+      "external_action_executed": false,
+      "kind": "human_evidence_acceptance",
+      "scenario_ids": [
+        "UI-A11Y-001",
+        "UI-EDITOR-003"
+      ]
+    },
+    {
+      "authorization_effect": "summary_receipt_sealing_allowed",
+      "entry_id": "UI-RESP-001-MULTIVIEWPORT-SUMMARY-REVIEW",
+      "external_action_executed": false,
+      "kind": "human_evidence_acceptance",
+      "scenario_ids": [
+        "UI-RESP-001"
+      ]
+    },
+    {
+      "authorization_effect": "action_time_confirmation_recorded_for_next_exact_action",
+      "entry_id": "UI-PERF-001-REFERENCE-CREATE-TRASH",
+      "external_action_executed": false,
+      "kind": "destructive_external_action",
+      "scenario_ids": [
+        "UI-PERF-001"
+      ]
+    }
+  ],
+  "safety": {
+    "browser_control_used": false,
+    "completion_matrix_mutated": false,
+    "external_action_executed": false,
+    "live_local_data_access_allowed": false,
+    "personal_workspace_access_allowed": false,
+    "queue_mutated": false,
+    "receipt_creation_only": true
+  },
+  "source": {
+    "exact_text": "UI-A11Y-001, UI-EDITOR-003 요약 승인; UI-RESP-001 다중 뷰포트 요약 승인; UI-PERF-001-REFERENCE-CREATE 휴지통 이동 승인",
+    "kind": "exact_user_message"
+  },
+  "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038"
+}

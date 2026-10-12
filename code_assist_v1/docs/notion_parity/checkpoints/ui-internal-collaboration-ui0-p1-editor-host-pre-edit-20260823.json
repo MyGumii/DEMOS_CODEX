@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-UI0-P1-EDITOR-HOST-PRE-EDIT-20260823",
+  "recorded_at": "2026-08-23T14:51:24Z",
+  "checkpoint_kind": "packet_pre_edit_ownership",
+  "packet_id": "UI0-P1",
+  "packet_status": "in_progress",
+  "purpose": "Freeze an exact, collision-checked UI ownership boundary before adding a behavior-preserving editor host adapter to the already loaded editor core and connecting only existing main-editor mutation, composition, selection, projection, and focus boundaries. No collaboration runtime, transport, CRDT, backend, stylesheet, index, live service, port, identity, protected data, or SBE contract is in scope.",
+  "owner_agent": "/root",
+  "ownership_lease": {
+    "lease_id": "UI0-P1-UI-20260823-145124Z",
+    "lane": "UI",
+    "owner_agent": "/root",
+    "status": "active",
+    "acquired_at": "2026-08-23T14:51:24Z",
+    "expires_at": "2026-08-23T22:51:24Z",
+    "released_at": null,
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "ownership_amendments": [
+    {
+      "recorded_at": "2026-08-23T15:29:08Z",
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "pre_edit_sha256": "sha256:c51e1b001cb9e90d5f92cd4aada22f261007d50237ef25d3e68690faf8242da3",
+      "reason": "The declared browser lane exposed nondeterministic synthetic-account authentication before any product journey assertion. UI0-P1 therefore owns one fail-fast, cookie-less login-readiness precondition in the already isolated fixture; no retry, product authentication change, live identity, or protected data is in scope."
+    },
+    {
+      "recorded_at": "2026-08-23T15:52:00Z",
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "reason": "A 100-sample direct Werkzeug scrypt generate/check diagnostic reproduced one mismatch, and a subsequent fail-until-observed diagnostic reproduced an unverifiable fresh scrypt hash after 255 attempts; a 50-sample PBKDF2 diagnostic had zero mismatches. The L4 UI fixture now pre-seeds only its isolated temporary registry with Werkzeug PBKDF2-SHA256-1000000 and still verifies the real cookie-less login route before browser launch. This removes registration KDF reliability from the UI lane without changing production auth.py, retrying a failed identity, or claiming the open scrypt runtime finding is resolved."
+    }
+  ],
+  "owned_existing_files": [
+    "code_assist_v1/notion_static/notion_editor_core.js",
+    "code_assist_v1/notion_static/notion.js",
+    "code_assist_v1/tests/test_notion_editor_core.js",
+    "code_assist_v1/tests/test_notion_ui_runtime.js",
+    "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json"
+  ],
+  "planned_new_product_files": [],
+  "planned_new_test_files": [],
+  "pre_edit_sha256": {
+    "code_assist_v1/notion_static/notion_editor_core.js": "sha256:4e1e7b6c216314b58e4b6aa0f27ed2932ce9834385d99022d7fc8bd78841db18",
+    "code_assist_v1/notion_static/notion.js": "sha256:f001846798fba1cfb5e3f025a8f15dea90e072a3fa06056d0d79b06c23ecfc05",
+    "code_assist_v1/tests/test_notion_editor_core.js": "sha256:91f619a0b4e3d03de5925f11e28015030fac9c7b2546b93487ac3448fbbdb3db",
+    "code_assist_v1/tests/test_notion_ui_runtime.js": "sha256:85f73680f7c0c03ede069851d72dbfefdd65a35fd4f46d8b04b0010ce41280ba",
+    "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py": "sha256:c51e1b001cb9e90d5f92cd4aada22f261007d50237ef25d3e68690faf8242da3",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:8f7026c7c461d15a74930fab178702dfc783cd01eb8878a55d7cfdffeff4c325",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:d4b1c33493a987a15db974fad5ef6dfabe56c308c29efdfb5d3950d4183af4a1",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:a20dfb88b924bdc1554e290eb7189f63ff3316ff301072ce540773d83bf18672",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:266a51bd2932662d719d89cd492222603ee5528fc0ce4316623609e699d5a83f"
+  },
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o0a-p2-synthetic-restore-20260823.json",
+    "sha256": "sha256:480c90c05ffb4b0cd713abab7578f6eef554b926d57696183199c71f56a74629",
+    "packet_id": "O0A-P2"
+  },
+  "cross_catalog_ownership_snapshot": {
+    "u0a_p2_checkpoint_sha256": "sha256:64abae55cbf7fb39d7d770b4df969d84db80252510dd40497e97dc8208a85d33",
+    "sbe_contract_audit_input_sha256": "sha256:284d70c452fa1b742212d12286d5d3c7da9b7e9a2014d9b29163df2a805c9cf0",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "exact_path_collision_observed": false,
+    "observation": "The original four product/test paths retained their exact hashes across the packet preflight and both overlong browser attempts. The browser golden-journey test was subsequently acquired at its unchanged pre-edit hash solely for the isolated fixture readiness precondition recorded in ownership_amendments. No active cross-stream checkpoint or post-2026-08-22 write was observed for these exact paths. AGENTS.md and all SBE hot contracts remain read-only."
+  },
+  "sbe_contract_audit": {
+    "status": "pass",
+    "error_count": 0,
+    "input_sha256": "sha256:284d70c452fa1b742212d12286d5d3c7da9b7e9a2014d9b29163df2a805c9cf0",
+    "goal_count": 20,
+    "mandatory_scenario_count": 284,
+    "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+    "ordered_instruction_documents_read": 18
+  },
+  "pre_edit_validation": {
+    "node_lanes": {
+      "status": "pass",
+      "passed": 6,
+      "failed": 0,
+      "validation_ids": [
+        "L3-NODE-EDITOR-CORE",
+        "L3-NODE-UI-RUNTIME",
+        "L3-NODE-NAVIGATION",
+        "L3-NODE-PUBLICATION",
+        "L3-NODE-ATOMIC-SAVE",
+        "L3-NODE-CSRF"
+      ]
+    },
+    "browser_lane": {
+      "validation_id": "L4-EXISTING-GOLDEN-JOURNEY",
+      "status": "overlong_not_pass",
+      "full_file_attempts": [
+        {"result": "operator_interrupted_overlong", "approximate_duration_seconds": 540},
+        {"result": "operator_interrupted_overlong", "approximate_duration_seconds": 9120}
+      ],
+      "historical_single_journey_attempt": {
+        "node_id": "test_ui1_local_chrome_shell_search_and_editor_are_repeatable_and_isolated",
+        "result": "operator_interrupted_overlong",
+        "approximate_duration_seconds": 5400
+      },
+      "claim": "No browser pass is claimed. UI0-P1 cannot become gate_passed until the declared browser lane produces a clean completion."
+    }
+  },
+  "approval_state": {
+    "packet_approval_required": false,
+    "dependency_download_or_install_allowed": false,
+    "actual_service_or_port_start_allowed": false,
+    "production_schema_identity_or_data_root_mutation_allowed": false
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "paths": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/docs/knowledge_spaces",
+      "code_assist_v1/notion_static/index.html",
+      "code_assist_v1/notion_static/notion.css",
+      "code_assist_v1/app_notion.py",
+      "code_assist_v1/routes_notion.py",
+      "code_assist_v1/routes_notion_workspace.py",
+      "code_assist_v1/user_data",
+      "code_assist_v1/knowledge",
+      "code_assist_v1/.runtime"
+    ]
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "Resume the interrupted implementation goal.",
+    "status": "active",
+    "observed_at": "2026-08-23T14:51:24Z",
+    "goal_completion_claimed": false
+  },
+  "execution_cursor": {
+    "current_packet": "UI0-P1",
+    "current_state": "implementation_authorized_with_browser_gate_open",
+    "next_action": "Add and bind the narrow editor host adapter, run all six Node lanes, then retry the historical browser lane without claiming a pass from any overlong attempt."
+  },
+  "rollback_or_cleanup": "Revert only the four declared product/test files to their recorded pre-edit hashes and delete this pre-edit checkpoint if the implementation is abandoned. Catalog, ladder, harness, and current pointer remain unchanged until the packet has evidence suitable for integration. No service, port, identity, browser profile, live database, protected data root, or SBE contract is in scope."
+}

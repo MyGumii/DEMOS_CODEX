@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1332-PROGRESS-ROTATION-20260905",
+  "recorded_at": "2026-09-05T20:19:26.8101813+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1306-progress-rotation-20260905.json",
+    "sha256": "sha256:95c6b14529515f1edaf3849ff0e2493d4ce4e6b6c0132c027f3d5e899af389bf"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1331-state002-row-geometry-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1331-state002-row-geometry-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:f18cbad1266b01c976ae8d4548ca8559fd40ab255d769525d87d04ecab16839b",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:7e84b96236f15739a93d61f722fa967b1e92b2697d3527f32190f1d3d9a9ff08",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 781046,
+    "masked_difference_count": 0,
+    "total_difference_count": 781046,
+    "stable_normalized_total_difference_count": 781055,
+    "runtime_variance": {
+      "V0R-MU-002": 0,
+      "V0R-MU-004": 9,
+      "normalization_basis": "known V0R-MU-004 alternating state at its higher stable count"
+    },
+    "overall_exact_progress": "0/36"
+  },
+  "improvement_since_r1306": {
+    "stable_normalized_total_difference_delta": -2193,
+    "retained_changes": [
+      "Make V0R-MU-003 and V0R-MU-006 comment preview capture deterministic when the asynchronous comment state arrives late.",
+      "Match the workspace-members subtitle parent and link typography independently.",
+      "Match the directory link and member-tab typography with viewport-stable raster values.",
+      "Match the four workspace-member column labels with viewport-specific typography.",
+      "Match the two member rows with element-specific typography and quarter-pixel geometry."
+    ],
+    "source_bound_reduction_breakdown": {
+      "workspace_members_subtitle": -40,
+      "workspace_members_link_description": -31,
+      "workspace_members_directory": -66,
+      "workspace_members_tabs": -186,
+      "workspace_members_column_labels": -184,
+      "workspace_members_row_typography": -183,
+      "workspace_members_row_geometry": -1503
+    }
+  },
+  "rejected_diagnostics": [
+    {
+      "run_id": "v0b-p1-i0-r1310-state002-heading-raster",
+      "reason": "Every tested heading stroke, size, weight, and scale variant was worse than the retained baseline."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1317-state002-link-title-raster",
+      "reason": "The best title-weight change reduced only one pixel per viewport and was not retained as a meaningful stable change."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1321-state002-directory-standard",
+      "reason": "The apparent full-run regression was isolated to a late V0R-MU-003 comment-preview race, not the directory change; a deterministic page-local capture fallback corrected the race without backend mutation."
+    }
+  ],
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1308-20260905",
+    "launch_id": "88aed637eba8406b957e4538501c9e70",
+    "root_id": "4c51b655-f42f-4a11-b9e0-131386dff8b1",
+    "manager_session_id": 96085,
+    "manager_session_live": true,
+    "final_audit_before_rotation": {
+      "workspace_count": 48,
+      "reference_workspace_count": 46,
+      "active_membership_count": 48,
+      "active_page_binding_count": 46,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64,
+    "filesystem_preservation_required": true
+  },
+  "verification": {
+    "standard_capture": "20 captures, 20 accessibility passes, 20 interaction passes",
+    "python_compile": "pass",
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Preserve and stop the r1308 realm, start a fresh approved development realm from the same read-only identity registry, reproduce retained r1331, then continue lossless exact residual reduction. Do not run final gates before exact parity reaches 36/36."
+}

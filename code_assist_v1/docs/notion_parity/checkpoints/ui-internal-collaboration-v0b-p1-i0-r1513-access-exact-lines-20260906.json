@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1513-ACCESS-EXACT-LINES-20260906",
+  "recorded_at": "2026-09-06T07:57:52.1511473+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1504-fresh-reproduction-20260906.json",
+    "sha256": "sha256:aab19648b1d51f500ae9c61e726ee7c2275eedfbc9488b63c5381531d19b4fb9",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 759969
+  },
+  "accepted_refinements": [
+    {
+      "run_id": "v0b-p1-i0-r1506-state004-panel-shadow-receipt",
+      "diagnostic_path": ".runtime/v0b-p1-i0-r1506-state004-panel-shadow-receipt/diagnostic.json",
+      "diagnostic_sha256": "sha256:3eec7fb1d7f4bef8641b03f8b04a0455c38bd77f94ab76eab4d516d406794054",
+      "change": "V0R-MU-004 share-panel wide primary and compact secondary shadow refinement",
+      "stable_normalized_total_difference_count": 759443
+    },
+    {
+      "run_id": "v0b-p1-i0-r1509-state005-compact-block3-stroke-receipt",
+      "diagnostic_path": ".runtime/v0b-p1-i0-r1509-state005-compact-block3-stroke-receipt/diagnostic.json",
+      "diagnostic_sha256": "sha256:d3bd09e8e3b0d009348563808765bed4bbcf54e37f8d1636359e390031fc9977",
+      "change": "V0R-MU-005 compact fourth editor text stroke 0.175px",
+      "stable_normalized_total_difference_count": 759441
+    },
+    {
+      "run_id": "v0b-p1-i0-r1513-access-compact-exact-lines-receipt",
+      "diagnostic_path": ".runtime/v0b-p1-i0-r1513-access-compact-exact-lines-receipt/diagnostic.json",
+      "diagnostic_sha256": "sha256:33fcabf6f6118063dc3a953fe2bc8c83203cae8a58fbaa32f0de898d71568018",
+      "change": "V0R-MU-017 and V0R-MU-018 compact skeleton exact center-line reconstruction",
+      "stable_normalized_total_difference_count": 757089
+    }
+  ],
+  "supporting_sweeps": [
+    {
+      "path": ".runtime/v0b-p1-i0-r1508-state005-remaining-block-stroke-sweep/state005-block-stroke-sweep-results.json",
+      "sha256": "sha256:77bf66dd851089e73b54c772dde599fbea1c010cf0a002846980744137313e32"
+    },
+    {
+      "path": ".runtime/v0b-p1-i0-r1512-state017-compact-skeleton-exact-lines-layer-sweep/compact-skeleton-exact-lines-results.json",
+      "sha256": "sha256:14f1479407f9f22d1a1f426221210c08230cca05a7075f326ce797780a71cbd6"
+    }
+  ],
+  "reproduction": {
+    "run_id": "v0b-p1-i0-r1513-access-compact-exact-lines-receipt",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1513-access-compact-exact-lines-receipt/diagnostic.json",
+    "diagnostic_sha256": "sha256:33fcabf6f6118063dc3a953fe2bc8c83203cae8a58fbaa32f0de898d71568018",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 757089,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 757089,
+    "known_mode_normalization": {
+      "V0R-MU-002__1440x900": {
+        "lower": 83353,
+        "higher": 84136,
+        "normalization": "higher"
+      },
+      "V0R-MU-004__1440x900": {
+        "lower": 43876,
+        "higher": 43885,
+        "normalization": "higher"
+      }
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "capture_source": {
+    "path": "notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:43b4a1000fa34aa98f042a8d7d05d6534371dcd83282c7639c843e74efbd0196",
+    "python_compile_pass": true
+  },
+  "fresh_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1503-20260906",
+    "launch_id": "f01f7045a4be434c97127a4d6ece23a0",
+    "root_id": "ae126545-61d4-48be-9b1e-7f14d6963e02",
+    "manager_session_id": 33882,
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "initial_audit": {
+      "workspace_count": 0,
+      "reference_workspace_count": 0,
+      "active_membership_count": 0,
+      "active_page_binding_count": 0,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "current_audit": {
+      "workspace_count": 22,
+      "reference_workspace_count": 20,
+      "active_membership_count": 22,
+      "active_page_binding_count": 20,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes": {
+    "AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue exact residual reduction from stable total 757089. Do not run final gates before exact parity reaches 36/36."
+}

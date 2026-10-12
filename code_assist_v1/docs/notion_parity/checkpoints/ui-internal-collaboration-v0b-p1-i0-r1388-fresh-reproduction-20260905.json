@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1388-FRESH-REPRODUCTION-20260905",
+  "recorded_at": "2026-09-05T23:27:07.9160783+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1385-page-share-panel-refinement-20260905.json",
+    "sha256": "sha256:d954b7fc63aa7b85ea9a404dc7fde0690cb08ec8385e18f33d3807646775cffb",
+    "preserved_without_overwrite": true
+  },
+  "fresh_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1386-20260905",
+    "launch_id": "db28df7113e2432c86b61d411dc56857",
+    "root_id": "9b9e3075-c30b-4c6b-99fd-cdf961985983",
+    "manager_session_id": 21417,
+    "cookie_name": "ca_dev_pair_6b62eca9fef063999e46",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "ports_open": [10111, 10112, 10113],
+    "initial_audit_all_zero": true,
+    "audit_after_reproduction": {
+      "workspace_count": 4,
+      "reference_workspace_count": 2,
+      "active_membership_count": 4,
+      "active_page_binding_count": 2,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    }
+  },
+  "fresh_reproduction": {
+    "run_id": "v0b-p1-i0-r1387-fresh-realm-r1384-reproduction",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1387-fresh-realm-r1384-reproduction/diagnostic.json",
+    "diagnostic_sha256": "sha256:e3767859d1701bd3c3fab44f26d49884504f3497af639417baaae862fd7a8f8a",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 777251,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 777251,
+    "runtime_variance_observation": {
+      "delta_from_r1384": 0,
+      "V0R-MU-002_1440x900_mode": "higher",
+      "V0R-MU-004_1440x900_mode": "higher",
+      "all_capture_deltas": 0
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    },
+    "overall_exact_progress": "0/36"
+  },
+  "capture_source": {
+    "path": "notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:157415b754d7e7bf48dbfa0aebc4adb04adfe1c3b843a09f488ed328ae617438",
+    "python_compile_pass": true
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue source-bound exact residual reduction from the independently reproduced stable normalized total of 777251. Do not run final gates before exact parity reaches 36/36."
+}

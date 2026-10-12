@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.selected_runtime_backup_benchmark.o0a_p3.v1",
+  "packet_id": "O0A-P3",
+  "recorded_at": "2026-08-24T00:05:31Z",
+  "status": "pass",
+  "realm_id": "synthetic_isolated",
+  "runtime_binding_sha256": "sha256:99b8e01015bbf92c385493bebbc08b6600add4b43afd2ab6e1746a6bb8e74057",
+  "selected_candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+  "host": {
+    "operating_system": "Windows-10-10.0.19045-SP0",
+    "python": "3.14.3",
+    "node": "24.14.1",
+    "yjs": "13.6.32"
+  },
+  "offline_install": {
+    "status": "pass",
+    "network_allowed": false,
+    "offline": true,
+    "ignore_scripts": true,
+    "duration_ms": 4000.018,
+    "package_json_sha256": "sha256:19296e28baa32d70748e7dd5d006246366bc181934321eaf9fee6dd21aae1f51",
+    "package_lock_sha256": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3",
+    "adapter_sha256": "sha256:84b2164906976def32387dd4af9e46680f5132700907699d9df5a68e6338df92",
+    "installed_yjs_version": "13.6.32"
+  },
+  "denominators": {
+    "iteration_count": 5,
+    "ordered_update_count_per_iteration": 3,
+    "ordered_update_bytes_per_iteration": 92,
+    "successful_compaction_count": 5,
+    "successful_new_root_restore_count": 5,
+    "successful_application_replay_count": 5,
+    "forced_compactor_crash_count": 1,
+    "distinct_child_process_count": 12
+  },
+  "crash_restart": {
+    "forced_crash_pid": 33732,
+    "forced_crash_returncode": 91,
+    "restart_compactor_pids": [
+      26848,
+      29180,
+      31884,
+      32012,
+      38816
+    ],
+    "application_validator_pids": [
+      38468,
+      35780,
+      21952,
+      35404,
+      38500
+    ],
+    "canonical_update_replay_after_restart": true,
+    "acknowledged_update_loss_count": 0,
+    "convergence_mismatch_count": 0
+  },
+  "measurements": {
+    "compaction_duration_ms": {
+      "p50": 154.651,
+      "p95": 161.549,
+      "p99": 162.027,
+      "max": 162.147
+    },
+    "coordinated_generation_duration_ms": {
+      "p50": 405.72,
+      "p95": 417.285,
+      "p99": 418.573,
+      "max": 418.895
+    },
+    "write_barrier_upper_bound_ms": {
+      "p50": 405.72,
+      "p95": 417.285,
+      "p99": 418.573,
+      "max": 418.895
+    },
+    "new_root_restore_to_application_validated_ms": {
+      "p50": 594.868,
+      "p95": 624.634,
+      "p99": 628.878,
+      "max": 629.939
+    },
+    "peak_selected_process_rss_bytes": 57634816,
+    "sqlite_busy_count": 0,
+    "queue_lag_sequences_after_restore": 0,
+    "projection_lag_sequences_after_restore": 0,
+    "observed_rpo_seconds": 0
+  },
+  "provisional_engineering_targets": {
+    "rpo_seconds": 900,
+    "rto_seconds": 3600,
+    "write_drain_timeout_seconds": 60,
+    "rpo_passed": true,
+    "rto_passed": true,
+    "write_drain_passed": true,
+    "product_freeze_claimed": false,
+    "target_or_production_restore_claimed": false
+  },
+  "bindings": {
+    "fixture_expected_text_sha256": "sha256:25e0dbe5d0b1bd0a0568bf7486ec4f2766f3c4626a0b35205d8e90d4706a620e",
+    "ordered_update_sha256": [
+      "sha256:2f06bf367a3b4f5183e81488296ee1006e30e0e631eb0f57dac8f9cdf92e4305",
+      "sha256:f537527a11a77c06baab5bd800274ff80d18fc89fad48ee11572373a6f3c1264",
+      "sha256:feebb8ae93a369310e450005ede0e843e1c25dcc57f50afb6030c25bd5628e1e"
+    ],
+    "generation_manifest_sha256": [
+      "sha256:cd9482619e777d70b77e46b3006f9c6be727ba351bb9700fe5f63786e74cf96b",
+      "sha256:29541ebae1bb9d2d214aea7331e7a1d0e05e6815bb9ec134f9b287e2248d8569",
+      "sha256:2510ef6472ff787ee03fb661f48a2cc5b538f32dea360426f3963c7ed9abc6e1",
+      "sha256:6ae910f1677dc8d8364142a9b9f1890178d7888eb28b894647d77629d6aee597",
+      "sha256:5be347fd2c14149dab104e8883f766ef634ed510baa59d1a8b5fd5daf7ed1d43"
+    ],
+    "snapshot_sha256": [
+      "sha256:6ed432198957265b58c730de6bec6efa499b079d1d900101b128e6aab537183c",
+      "sha256:6ed432198957265b58c730de6bec6efa499b079d1d900101b128e6aab537183c",
+      "sha256:6ed432198957265b58c730de6bec6efa499b079d1d900101b128e6aab537183c",
+      "sha256:6ed432198957265b58c730de6bec6efa499b079d1d900101b128e6aab537183c",
+      "sha256:6ed432198957265b58c730de6bec6efa499b079d1d900101b128e6aab537183c"
+    ]
+  },
+  "safety": {
+    "network_listener_started": false,
+    "port_bound": false,
+    "live_or_existing_preview_root_accessed": false,
+    "target_or_production_restore_executed": false,
+    "schema_or_migration_allocated": false,
+    "feature_flag_changed": false,
+    "global_runtime_lock_modified": false,
+    "plaintext_content_in_receipt": false
+  },
+  "claims": {
+    "selected_update_snapshot_compaction_backup_binding_passed": true,
+    "crash_restart_replay_and_new_root_restore_benchmark_passed": true,
+    "provisional_rpo_rto_and_write_drain_measurement_recorded": true,
+    "full_target_restore_lane_closed": false,
+    "production_recovery_contract_frozen": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "cleanup": {
+    "owned_root_removed": true,
+    "removed_file_count": 1240,
+    "removed_bytes": 7550810,
+    "runner_owned_process_count_after_cleanup": 0,
+    "listener_count_after_cleanup": 0
+  },
+  "receipt_sha256": "sha256:bf39fab79e094a88e695d4f232d4660fa0ee0f2f967c894bdc6a727a0a64b26f"
+}

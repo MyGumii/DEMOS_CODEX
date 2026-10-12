@@ -1,0 +1,60 @@
+{
+  "contract": "code_assist.notion.core_free_ui.approval_batch_queue.v3",
+  "recorded_at": "2026-08-22T23:23:27+09:00",
+  "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "prior_batch": {
+    "queue": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v2.json",
+      "sha256": "sha256:a1153a7f60fd0f84dab9c40f29f746292c696ced86255176c5cb3eb519fab489"
+    },
+    "approval_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_receipt.v2.20260822.json",
+      "sha256": "sha256:6d5ef719306499ca6e672081d2c91c180f20786064a22d99e1fb4c6ce46b81e7"
+    },
+    "resolved_entry_count": 2
+  },
+  "policy": {
+    "mode": "accumulate_then_process_serially",
+    "approval_is_never_inferred": true,
+    "external_action_authorized": false,
+    "personal_workspace_access_allowed": false,
+    "live_local_data_access_allowed": false,
+    "completion_matrix_mutation_allowed_by_receipt_alone": false
+  },
+  "entries": [
+    {
+      "entry_id": "UI-EDITOR-006-LOCAL-RECOVERY-EVIDENCE-POLICY",
+      "kind": "human_policy_acceptance",
+      "status": "pending_user_approval",
+      "scenario_ids": ["UI-EDITOR-006"],
+      "required_user_text": "UI-EDITOR-006 공식 실패 유도 제외 및 로컬 회복 계약 승인",
+      "external_state_change": false,
+      "may_be_batched": true,
+      "authorization_effect": "allow_ui_editor_006_local_failure_recovery_evidence_satisfaction",
+      "evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/editor006_local_recovery_evidence_policy_proposal.v1.json",
+        "sha256": "sha256:2178944df71b104cc487df8ee9b3497489f2deaa544d8afa83149581322f922c"
+      }
+    }
+  ],
+  "batch_execution": {
+    "status": "waiting_for_exact_user_text",
+    "exact_user_text": "UI-EDITOR-006 공식 실패 유도 제외 및 로컬 회복 계약 승인",
+    "entry_ids": ["UI-EDITOR-006-LOCAL-RECOVERY-EVIDENCE-POLICY"],
+    "processing_order": [
+      "seal_editor006_policy_receipt",
+      "revalidate_exact_local_recovery_evidence",
+      "apply_only_the_authorized_local_failure_recovery_evidence_mode",
+      "rerun_completion_review_and_editor006_browser_verifiers"
+    ]
+  },
+  "claims": {
+    "pending_entry_count": 1,
+    "pending_human_policy_approval_count": 1,
+    "external_action_pending_count": 0,
+    "approval_inferred_count": 0,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

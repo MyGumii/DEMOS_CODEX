@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PREFLIGHT-20260826",
+  "recorded_at": "2026-08-26T23:41:45+09:00",
+  "checkpoint_kind": "final_candidate_core25_pixel_accessibility_preflight",
+  "packet_id": "V0B-P1",
+  "packet_status": "execution_in_progress_not_gate_passed",
+  "purpose": "Bind the final local UI source and the verifier-passed V0R reference receipt, execute the existing Core 25 and exact-pixel foundations, and record current retryable host-timing evidence without a false V0 gate claim.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-cleanup-gate-pass-20260826.json",
+    "sha256": "sha256:7805ca7b717acbce8f83a0de4d28d5229aef7451034fb88b9d3701b4d1fdf3a3"
+  },
+  "V0R_reference_binding": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "verifier_status": "pass",
+    "verifier_error_count": 0,
+    "action_count": 11,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "cleanup_complete": true
+  },
+  "release_candidate": {
+    "source_build_sha256": "sha256:cca0f2abec53fdc5b7fc806b0f5b7d96d520abf6bee92e851d2a77e72d77d132",
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:30e187c87680e9a2e3f78166136abce78f327ba969111cdf786c0c17501ede00"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:d0ce0564a04bfbb5fb5911600f65621c06f278eca809d37705b6b921817f7992"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:1f62384a110d145d8d75b20577814031eac7fab74fbfae3e17e38f84095d3f0e"
+      }
+    ],
+    "packet_catalog_sha256": "sha256:b0f964b42f6bed61b180e70db3017346f51d9de33f9008945adc4c9f50c0a5fa",
+    "validation_ladder_sha256": "sha256:a503e03221d5082c5d9cac2e2d17bd3022f5c00de2017cbb6bdd574e6d0963a5",
+    "completion_matrix_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "execution_results": {
+    "core25_golden_journey_full_run": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m pytest code_assist_v1\\tests\\browser\\test_notion_ui1_golden_journey.py -q",
+      "passed": 20,
+      "failed": 1,
+      "duration_seconds": 1043.17,
+      "failure": "UI-COLLAB-001 title-save response wait exceeded 20000 ms during the long aggregate run",
+      "classification": "retryable_host_timing_not_product_assertion_failure"
+    },
+    "collaboration_isolated_recheck": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m pytest code_assist_v1\\tests\\browser\\test_notion_ui1_golden_journey.py::test_ui_collab_001_comment_thread_create_resolve_reopen_round_trip -q",
+      "passed": 1,
+      "failed": 0,
+      "duration_seconds": 47.29,
+      "two_independent_internal_runs": true,
+      "status": "pass"
+    },
+    "exact_pixel_engine": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m pytest code_assist_v1\\tests\\notion_collaboration\\browser\\test_exact_pixel_parity.py -q",
+      "passed": 1,
+      "failed": 0,
+      "duration_seconds": 22.17,
+      "viewports": [
+        "1440x900",
+        "1280x800"
+      ],
+      "status": "pass"
+    },
+    "performance_current_run": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m pytest code_assist_v1\\tests\\browser\\test_notion_ui_performance.py -q",
+      "passed": 0,
+      "failed": 1,
+      "duration_seconds": 117.66,
+      "metric": "shell_ready_ms",
+      "observed_p95_ms": 4514.289,
+      "approved_budget_ms": 1370,
+      "classification": "busy_host_no_promotion"
+    },
+    "host_observation_after_performance_run": {
+      "cpu_percent_samples": [
+        58,
+        63,
+        69,
+        66,
+        77
+      ],
+      "average_cpu_percent": 66.6,
+      "logical_processor_count": 6,
+      "classification": "not_quiet",
+      "recorded_at": "2026-08-26T23:41:11+09:00"
+    },
+    "quiet_host_monitor": {
+      "sample_interval_seconds": 5,
+      "sample_count": 60,
+      "required_quiet_threshold_percent": 30,
+      "required_consecutive_quiet_samples": 5,
+      "periodic_cpu_percent_samples": [
+        96,
+        97,
+        76,
+        100,
+        31,
+        79,
+        43,
+        99,
+        77,
+        87
+      ],
+      "quiet_condition_reached": false,
+      "result": "retry_deferred_without_budget_or_product_change"
+    }
+  },
+  "scope_attestation": {
+    "isolated_os_temp_only": true,
+    "external_reference_reexecuted": false,
+    "external_service_mutated": false,
+    "production_or_second_brain_changed": false,
+    "personal_content_accessed": false,
+    "hot_shared_contracts_modified": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "V0B_P1_preflight_started": true,
+    "V0B_P1_gate_passed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "When host load is quiet, rerun the full Core 25 and UI-PERF-001 gates, then execute the final-candidate multi-user two-viewport capture and exact-RGBA/accessibility receipt without replaying V0R."
+}

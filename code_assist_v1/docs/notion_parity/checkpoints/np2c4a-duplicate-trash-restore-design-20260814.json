@@ -1,0 +1,158 @@
+{
+  "checkpoint_version": 1,
+  "run_id": "np2c4a-duplicate-trash-restore-design-20260814",
+  "recorded_at": "2026-08-14T11:45:41+09:00",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "observed_goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "resume 현재 우리가 작성한 개발 문서와 계획을 확인하고 goal resume을 해서 목표 확인 후 다시 개발 진행해.",
+    "completion_changed": false
+  },
+  "slice": "NP2C-4a-duplicate-trash-restore-contract-design",
+  "status": "contract_designed_candidate_1316_pending_not_implemented",
+  "scope": {
+    "workspace_current_schema_version": 2026081315,
+    "workspace_current_schema_name": "notion_workspace_v2_np2c_structural_finalize_authority",
+    "workspace_current_schema_checksum": "sha256:a57f73b41a834c42edcdfbacbbf2aa1fc30dd34366d98d7c40a42337b4f0e932",
+    "workspace_current_actual_schema_sha256": "sha256:33eaed5b16671104d53443c7cd4b09b3471eabbce805161608a114e4528f5d82",
+    "workspace_current_schema_object_count": 159,
+    "candidate_workspace_schema_version": 2026081316,
+    "candidate_schema_required": true,
+    "candidate_schema_implemented": false,
+    "source_adapter_implemented": false,
+    "catalog_finalizer_implemented": false,
+    "exact_sentinel_rehearsal_implemented": false,
+    "official_archive_unarchive_implemented": false,
+    "route_or_runtime_registration_added": false,
+    "runtime_commands_enabled": false,
+    "resolver_cutover_enabled": false,
+    "public_duplicate_enabled": false,
+    "permanent_delete_enabled": false,
+    "continuous_worker_enabled": false,
+    "destructive_watermark_ack_enabled": false,
+    "live_migration_applied": false
+  },
+  "terminology": {
+    "legacy_archive_page_semantics": "trash compatibility",
+    "legacy_restore_page_semantics": "restore from Trash compatibility",
+    "official_archive_unarchive": "distinct future source lifecycle gate",
+    "permanent_delete_term": "purge",
+    "public_duplicate_phase": "NP2E"
+  },
+  "behavioral_contract": {
+    "source_actions": {
+      "duplicate": "legacy.page_lifecycle.duplicate",
+      "trash": "legacy.page_lifecycle.trash",
+      "restore": "legacy.page_lifecycle.restore"
+    },
+    "source_result_contracts": {
+      "duplicate": "np2c_legacy_page_duplicate_receipt_v1",
+      "trash": "np2c_legacy_page_trash_receipt_v1",
+      "restore": "np2c_legacy_page_restore_receipt_v1"
+    },
+    "initial_actor_scope": "same source owner and workspace admin only",
+    "duplicate_identity": "domain-separated deterministic page, block and file mappings",
+    "file_publish_protocol": "catalog command prepared; exact source size/hash; contained exclusive staging; flush/reverify; atomic no-overwrite publish or exact existing hash; source transaction revalidates rows and commits source-v3 receipt",
+    "trash_scope": "exact transition cohort captured and committed atomically at the source",
+    "restore_scope": "exact prior Trash command/cohort, same incarnation, no silent ancestors, original exact placement or explicit reviewed fallback",
+    "cross_database_exactly_once_claimed": false,
+    "runtime_parity_claimed": false,
+    "formal_live_characterization_claimed": false,
+    "formal_differential_parity_claimed": false
+  },
+  "bounds": {
+    "request_bytes": 65536,
+    "subtree_pages": 1000,
+    "subtree_depth": 256,
+    "siblings": 10000,
+    "duplicate_blocks": 50000,
+    "files": 5000,
+    "aggregate_file_bytes": 268435456,
+    "metadata_bytes": 268435456,
+    "parent_blocks": 5000,
+    "result_bytes": 16777216
+  },
+  "official_reference_snapshot": {
+    "checked_at": "2026-08-14",
+    "archive": "https://www.notion.com/help/archive-pages",
+    "delete_recycle_bin_restore": "https://www.notion.com/en-gb/help/duplicate-delete-and-restore-content",
+    "enterprise_retention_restore": "https://www.notion.com/help/custom-data-retention-settings",
+    "public_duplicate": "https://www.notion.com/en-gb/help/duplicate-public-pages",
+    "inference": "Legacy HTTP delete plus /trash restore is modeled as Trash compatibility; official Archive remains a distinct future gate."
+  },
+  "protected_inputs": {
+    "AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "AGENTS.md_modified": false,
+    "shared_knowledge_status_modified": false,
+    "shared_knowledge_traceability_modified": false,
+    "protected_app_auth_config_routes_modified": false,
+    "product_code_or_schema_modified": false,
+    "live_paths_accessed": false
+  },
+  "owned_or_observed_file_hashes": {
+    "notion_store.py": "06c5680d0d73f775787ac5d793f7bc1ffdfc36fcd6e37e1db75d0d566f00cb02",
+    "notion_workspace_store.py": "238244c69d98e1dc2766b1a64b016a410e576cd23b81a5e2e641972f8658c49d",
+    "notion_legacy_page_structural.py": "680f454aa8de8ef0b2ba19c949b3945f5f422a7b2808be47dd4d176b592c18e9",
+    "notion_workspace_page_structural_rehearsal.py": "198bddfe6e0be08eb9526f62d014a6ca60c69b5699832ca80d29ac091e424a56",
+    "docs/NOTION_PARITY_MASTER_PLAN.md": "ef81dedce95e613c7d14375b747a66860966141210b0be1ddb8a3775d7732ede",
+    "docs/NOTION_PARITY_ROADMAP.md": "452f1600de469246e7eff9cc2800cd09487707a2b6d8379ecdb45d3588498c29",
+    "docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "84f545586be69866952f1f5d7c8a0168834975181b514d2c4991e9b83c32720f",
+    "docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "64d7e3d93dcac238bf63efcd98a375cfe17b6eff732240266759b4f9dd55f0eb",
+    "docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "e631a18ba99009dde08c0764a922fe0508578d57cddd4686783bb987114448e7",
+    "docs/notion_parity/NP2C_DUPLICATE_TRASH_RESTORE_DESIGN.md": "f9137eff40a3bb458008977c59fa29a4bca031e6162c3a910793310d2ecc796c",
+    "docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "af4f62df12a464aef37a0b06064f90c1d58cd8befd0800aeea62e67e9579be02",
+    "tools/verify_notion_np2c_page_tree_contract.py": "44dce0d2f034ba0cf721757b5118dd61a29996a6fbe4ae619000de7b6a9ea79d",
+    "tests/test_verify_notion_np2c_page_tree_contract.py": "f474970131c529da69c1f2b81548ab0ea0fb1622fd6d3299984ba48863e9fad2"
+  },
+  "evidence": [
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_page_tree_contract",
+      "exit_code": 0,
+      "result": "valid=true; contract_version=14; status=duplicate_trash_restore_contract_designed_candidate_1316_pending; current_schema=1315; candidate_schema=1316; implementation flags false"
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q",
+      "exit_code": 0,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 0.72
+    }
+  ],
+  "claims": {
+    "live_source_accessed": false,
+    "live_catalog_accessed": false,
+    "live_data_mutated": false,
+    "feature_flags_changed": false,
+    "routes_changed": false,
+    "app_or_second_brain_boundary_changed": false,
+    "shared_knowledge_boundary_changed": false,
+    "git_repository_available": false,
+    "git_commit_claimed": false,
+    "candidate_1316_implemented": false,
+    "formal_live_characterization": false,
+    "formal_differential_parity": false
+  },
+  "status_delta": {
+    "shared_status_update_required": false,
+    "reason": "NP2C is independent from the protected Shared Knowledge development stream; no shared STATUS or TRACEABILITY file was edited.",
+    "notion_status": "NP2C-4a design and machine contract v14 are complete. Current runtime remains frozen 1315; candidate 1316 and NP2C-4b/4c/4d implementation remain pending and default-off."
+  },
+  "next_slice": {
+    "name": "NP2C-4b-route-unregistered-source-v3-adapters-and-file-recovery",
+    "objective": "Implement only explicitly approved route-unregistered source-v3 duplicate, Trash and restore adapters with deterministic identity mapping and exact contained file staging, publish, replay and cleanup recovery.",
+    "automatically_authorized": false,
+    "requires_fresh_hash_and_ownership_audit": true,
+    "candidate_1316_schema_change_allowed": false,
+    "route_or_runtime_registration_allowed": false,
+    "official_archive_unarchive_allowed": false,
+    "public_duplicate_allowed": false,
+    "live_data_allowed": false,
+    "destructive_ack_allowed": false,
+    "resolver_cutover_allowed": false,
+    "next_exact_command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q"
+  },
+  "stop_reason": "NP2C-4a design boundary reached; NP2C-4b requires separate implementation approval."
+}

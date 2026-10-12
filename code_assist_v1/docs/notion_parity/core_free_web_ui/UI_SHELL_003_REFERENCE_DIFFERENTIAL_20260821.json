@@ -1,0 +1,208 @@
+{
+  "contract": "code_assist.notion.core_free_ui.reference_differential.v1",
+  "recorded_at": "2026-08-21T00:29:14+09:00",
+  "scenario_id": "UI-SHELL-003",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "review": {
+    "approved": true,
+    "approved_by": "workspace_owner",
+    "approval_scope": "redacted_summary_only"
+  },
+  "scope": {
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "external_side_effect_attempted": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "screenshot_count": 0
+  },
+  "reference": {
+    "browser": "chrome-signed-in",
+    "submission_file_sha256": "sha256:4d7756c1539269bfd662d0f9397b1187c1f6e7fd2619c9637e341f0df88f4c53",
+    "receipt_file_sha256": "sha256:762d24c5dc808593f6f9f39f9d7d56db4cd58cc65d94003edd2a36679d408c1f",
+    "receipt": {
+      "action_log_sha256": "sha256:ad4116f4c2ebab79638ac0062346e435477ad22e92545447deaec7b86ae57c5a",
+      "c0_sha256": "sha256:12d24831304542f021fd6592f45521fbbb04ebf028c23cad6cd2ad0b12988a67",
+      "capture_count": 2,
+      "captures_sha256": "sha256:325ea40ced14fd54711dec9b4005e92a7e9cd02d196f5c3d02fdc0934d53ee8c",
+      "contract": "notion_core_free_ui_manual_reference_receipt_v1",
+      "external_side_effect_attempted": false,
+      "path_disclosed": false,
+      "personal_page_accessed": false,
+      "personal_workspace_accessed": false,
+      "profile": "free-owner-chrome-desktop-ko-KR",
+      "promotion_allowed": false,
+      "run_id": "ui1-shell-003-reference-20260821",
+      "scenario_id": "UI-SHELL-003",
+      "screenshot_count": 0,
+      "status": "accepted_reference_observation",
+      "worksheet_sha256": "sha256:210116193ed73e69726a243b7952dde162e6766a197f21b0776a8818516e6f06"
+    },
+    "captures": {
+      "UI-SHELL-003-A01": {
+        "a11y": {"name": "HOME", "role": "TAB", "selected": true},
+        "action_log_sha256": "sha256:ad4116f4c2ebab79638ac0062346e435477ad22e92545447deaec7b86ae57c5a",
+        "capture_schema_version": 1,
+        "error_recovery": {"result": "unchanged"},
+        "focus": {"name": "HOME-MAIN", "state": "blurred"},
+        "geometry": {
+          "HOME-MAIN": {"height": 819, "width": 1650, "x": 270, "y": 44},
+          "SIDEBAR": {"height": 863, "width": 270, "x": 0, "y": 0},
+          "TOPBAR": {"height": 44, "width": 1650, "x": 270, "y": 0}
+        },
+        "keyboard": {"result": "not_applicable"},
+        "latency_ms": 1318,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {"rule_set": "core-free-ui-v1", "status": "pass"},
+        "scenario_id": "UI-SHELL-003",
+        "screenshot_sha256": null,
+        "semantic_visual": {"region": "HOME-MAIN", "state": "visible"},
+        "side": "reference",
+        "source_build_sha256": "sha256:697228a08c9045ffd62defc66edd7a0b51f55e5f16547b6b71d0fd94860ca431",
+        "state": {"selected": true, "visible": true},
+        "viewport": {"height": 863, "scale": 1, "width": 1920}
+      },
+      "UI-SHELL-003-A02": {
+        "a11y": {"name": "UI-PARITY-RUN-ROOT", "role": "TREEITEM", "selected": true},
+        "action_log_sha256": "sha256:ad4116f4c2ebab79638ac0062346e435477ad22e92545447deaec7b86ae57c5a",
+        "capture_schema_version": 1,
+        "error_recovery": {"result": "unchanged"},
+        "focus": {"name": "PAGE-CANVAS", "state": "blurred"},
+        "geometry": {
+          "BREADCRUMB": {"height": 17, "width": 72, "x": 485, "y": 14},
+          "PAGE-CANVAS": {"height": 819, "width": 1650, "x": 270, "y": 44},
+          "SIDEBAR": {"height": 863, "width": 270, "x": 0, "y": 0},
+          "TOPBAR": {"height": 44, "width": 1650, "x": 270, "y": 0}
+        },
+        "keyboard": {"result": "not_applicable"},
+        "latency_ms": 1303,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {"rule_set": "core-free-ui-v1", "status": "pass"},
+        "scenario_id": "UI-SHELL-003",
+        "screenshot_sha256": null,
+        "semantic_visual": {"region": "BREADCRUMB", "state": "visible"},
+        "side": "reference",
+        "source_build_sha256": "sha256:697228a08c9045ffd62defc66edd7a0b51f55e5f16547b6b71d0fd94860ca431",
+        "state": {"active": true, "count": 0},
+        "viewport": {"height": 863, "scale": 1, "width": 1920}
+      }
+    }
+  },
+  "local": {
+    "browser": "chrome-ephemeral-headless",
+    "isolated_data_root": true,
+    "capture_sha256": {
+      "UI-SHELL-003-A01": "sha256:c7023268648420ad9ae5ca60c15e5bea4f913e576751a741e1db415502bd8eb6",
+      "UI-SHELL-003-A02": "sha256:d78c2e3cd04ca5f5f5f1e14232e914d1deed90cfc79bb9df078ddf16f77131b5"
+    },
+    "captures": {
+      "UI-SHELL-003-A01": {
+        "a11y": {"name": "HOME", "role": "TAB", "selected": true},
+        "action_log_sha256": "sha256:d2736d865a9af6314552341248d0f8472dde074194427977a8e4e6b606713f2c",
+        "capture_schema_version": 1,
+        "error_recovery": {"result": "unchanged"},
+        "focus": {"name": "HOME-MAIN", "state": "blurred"},
+        "geometry": {
+          "HOME-MAIN": {"height": 1239, "width": 900, "x": 630, "y": 79},
+          "SIDEBAR": {"height": 863, "width": 240, "x": 0, "y": 0},
+          "TOPBAR": {"height": 45, "width": 1680, "x": 240, "y": 0}
+        },
+        "keyboard": {"result": "not_applicable"},
+        "latency_ms": 75,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {"rule_set": "core-free-ui-v1", "status": "pass"},
+        "scenario_id": "UI-SHELL-003",
+        "screenshot_sha256": null,
+        "semantic_visual": {"region": "HOME-MAIN", "state": "visible"},
+        "side": "local",
+        "source_build_sha256": "sha256:12c830cfe9e8a7afeda853cd93379ff38fc67b18ce2935d91a10c8a7d66935cc",
+        "state": {"selected": true, "visible": true},
+        "viewport": {"height": 863, "scale": 1, "width": 1920}
+      },
+      "UI-SHELL-003-A02": {
+        "a11y": {"name": "UI-PARITY-RUN-ROOT", "role": "TREEITEM", "selected": true},
+        "action_log_sha256": "sha256:d2736d865a9af6314552341248d0f8472dde074194427977a8e4e6b606713f2c",
+        "capture_schema_version": 1,
+        "error_recovery": {"result": "unchanged"},
+        "focus": {"name": "PAGE-CANVAS", "state": "blurred"},
+        "geometry": {
+          "BREADCRUMB": {"height": 32, "width": 123, "x": 258, "y": 6},
+          "PAGE-CANVAS": {"height": 168, "width": 760, "x": 700, "y": 151},
+          "SIDEBAR": {"height": 863, "width": 240, "x": 0, "y": 0},
+          "TOPBAR": {"height": 45, "width": 1680, "x": 240, "y": 0}
+        },
+        "keyboard": {"result": "not_applicable"},
+        "latency_ms": 58,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {"rule_set": "core-free-ui-v1", "status": "pass"},
+        "scenario_id": "UI-SHELL-003",
+        "screenshot_sha256": null,
+        "semantic_visual": {"region": "BREADCRUMB", "state": "visible"},
+        "side": "local",
+        "source_build_sha256": "sha256:12c830cfe9e8a7afeda853cd93379ff38fc67b18ce2935d91a10c8a7d66935cc",
+        "state": {"active": true, "count": 0},
+        "viewport": {"height": 863, "scale": 1, "width": 1920}
+      }
+    }
+  },
+  "differential": {
+    "policy_state": "precalibration",
+    "all_actions_passed": true,
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-SHELL-003-A01": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:8938dcc27bb61d5cc6608748b10929c3f28b80dc95e2ca13d37e7801b32cf62d",
+        "candidate_sha256": "sha256:c7023268648420ad9ae5ca60c15e5bea4f913e576751a741e1db415502bd8eb6",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "HOME-MAIN": {"height": 819, "width": 1650, "x": 270, "y": 44},
+            "SIDEBAR": {"height": 863, "width": 270, "x": 0, "y": 0},
+            "TOPBAR": {"height": 44, "width": 1650, "x": 270, "y": 0}
+          },
+          "candidate_geometry": {
+            "HOME-MAIN": {"height": 1239, "width": 900, "x": 630, "y": 79},
+            "SIDEBAR": {"height": 863, "width": 240, "x": 0, "y": 0},
+            "TOPBAR": {"height": 45, "width": 1680, "x": 240, "y": 0}
+          },
+          "reference_latency_ms": 1318,
+          "candidate_latency_ms": 75
+        }
+      },
+      "UI-SHELL-003-A02": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:62c1a5dd1e70d77464543a7b61cc0be14740ddcf02274324120764040feedf70",
+        "candidate_sha256": "sha256:d78c2e3cd04ca5f5f5f1e14232e914d1deed90cfc79bb9df078ddf16f77131b5",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "BREADCRUMB": {"height": 17, "width": 72, "x": 485, "y": 14},
+            "PAGE-CANVAS": {"height": 819, "width": 1650, "x": 270, "y": 44},
+            "SIDEBAR": {"height": 863, "width": 270, "x": 0, "y": 0},
+            "TOPBAR": {"height": 44, "width": 1650, "x": 270, "y": 0}
+          },
+          "candidate_geometry": {
+            "BREADCRUMB": {"height": 32, "width": 123, "x": 258, "y": 6},
+            "PAGE-CANVAS": {"height": 168, "width": 760, "x": 700, "y": 151},
+            "SIDEBAR": {"height": 863, "width": 240, "x": 0, "y": 0},
+            "TOPBAR": {"height": 45, "width": 1680, "x": 240, "y": 0}
+          },
+          "reference_latency_ms": 1303,
+          "candidate_latency_ms": 58
+        }
+      }
+    }
+  }
+}

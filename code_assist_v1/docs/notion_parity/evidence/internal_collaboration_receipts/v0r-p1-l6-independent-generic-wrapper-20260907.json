@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "receipt_id": "V0R-P1-L6-INDEPENDENT-GENERIC-WRAPPER-20260907",
+  "run_id": "v0r-p1-l6-independent-generic-wrapper-20260907",
+  "rung_id": "L6-VISUAL-ACCESSIBILITY",
+  "lane_id": "L6-EXACT-RGBA",
+  "packet_ids": [
+    "V0R-P1"
+  ],
+  "matrix_row_ids": [],
+  "scenario_ids": [
+    "V0R-P1-LOSSLESS-EXACT-V4"
+  ],
+  "evidence_type": "exact_pixel",
+  "mode": "gate",
+  "release_candidate_id": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+  "realm_id": "approved_external_reference_capture_reverification",
+  "realm_config_fingerprint": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+  "source_manifest_sha256": "sha256:23b4b1aae469654f0a29b693f6fb11aa594f5e8806164ee1f95358d494cadf00",
+  "validation_manifest_sha256": "sha256:8982b39296e799709ab2a547c9db870c2fda715f618fc91d6153f489244dc89a",
+  "schema_catalog_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+  "current_schema_lineage_sha256": "sha256:b31ec2d1801e80e0410a1decdd126f2d53f1bf72729fecf3703492fb7e61da31",
+  "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+  "goal_observation_sha256": "sha256:c904eca8afa63f2636a762daa223811b09ca6bef9629b4d3e764db1334892738",
+  "goal_thread_id": "01a0399e-4edc-7792-9c0c-9c050b30e177",
+  "goal_status_observed": "active",
+  "cross_catalog_ownership_snapshot_sha256": "sha256:a30f7f6674c00b30f7a3207329c8c7a5e25edef02d3b38738ba7ea969b2155f9",
+  "working_directory": ".",
+  "argv": [
+    ".\\venv\\Scripts\\python.exe",
+    "-E",
+    "-m",
+    "code_assist_v1.tools.verify_internal_collaborative_reference_multiuser_receipt",
+    "--receipt",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+    "--screenshot-root",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/screenshots",
+    "--mask-root",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/masks",
+    "--compact"
+  ],
+  "environment_class": "immutable_external_reference_reverification",
+  "tool_versions": {
+    "python": "3.14.3",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "browser_capture": "preserved_lossless_chrome_reference"
+  },
+  "toolchain_fingerprint": "sha256:e6fbcd6d5be060c0cf41f1305614a234539feb36e13e82a0f9bfe6dbad526867",
+  "temp_root_id": null,
+  "started_at": "2026-09-07T02:07:05+09:00",
+  "ended_at": "2026-09-07T02:08:17+09:00",
+  "duration_ms": 72000,
+  "exit_code": 0,
+  "exit_code_signed": 0,
+  "exit_code_hex": "0x00000000",
+  "passed": 36,
+  "failed": 0,
+  "errors": [],
+  "skipped": 0,
+  "xfailed": 0,
+  "result": "passed",
+  "attempt": 1,
+  "retry_class": "none",
+  "source_pre_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:23b4b1aae469654f0a29b693f6fb11aa594f5e8806164ee1f95358d494cadf00",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:8982b39296e799709ab2a547c9db870c2fda715f618fc91d6153f489244dc89a",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "source_post_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:23b4b1aae469654f0a29b693f6fb11aa594f5e8806164ee1f95358d494cadf00",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:8982b39296e799709ab2a547c9db870c2fda715f618fc91d6153f489244dc89a",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "isolation_attestation": {
+    "shell_used_by_test_runner": false,
+    "live_roots_accessed": false,
+    "persistent_browser_profile_data_read": false,
+    "external_account_mutated_by_reverification": false,
+    "development_pair_changed": false,
+    "production_changed": false
+  },
+  "owned_process_cleanup": {
+    "complete": true,
+    "unrelated_processes_targeted": false,
+    "services_started": false,
+    "ports_opened": false
+  },
+  "cleanup_attestation": {
+    "reference_cleanup_previously_completed": true,
+    "source_hashes_unchanged": true,
+    "historical_receipts_overwritten": false
+  },
+  "artifact_hashes": {
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "redaction_summary": {
+    "raw_stdout_recorded": false,
+    "raw_stderr_recorded": false,
+    "raw_user_agent_recorded": false,
+    "raw_ticket_session_or_identifiers_recorded": false,
+    "personal_content_recorded": false
+  },
+  "v0r_reference_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+    "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "receipt_id": "V0R-P1-L6-REFERENCE-MULTIUSER-LOSSLESS-EXACT-V4-BROWSER-20260830"
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "V0B_P1_gate_passed": false,
+    "historical_V0B_execution_credit_restored": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.crdt_candidate_benchmark_reinstall_approval_request.v1",
+  "approval_id": "AP-RUNTIME-SPIKE-E0-P3-REINSTALL",
+  "status": "pending",
+  "recorded_at": "2026-08-23T17:39:51Z",
+  "packet_id": "E0-P3",
+  "reason": "The exact E0-P2 single-use approval was consumed and its disposable candidate root was completely removed before E0-P3. The npm artifacts remain cached, but the exact Python candidate wheel set is unavailable and cannot be reinstalled from the frozen corpus without a fresh narrow approval.",
+  "scope_sha256": "sha256:f9245d712751e874ac24e35f37ef66be9dea3b706a8aa4af5712c1019d0283d0",
+  "scope_descriptor_owner": {
+    "path": "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark_executor.py",
+    "sha256": "sha256:bbf4f9e92d91d444541b3e329df20c1e4a07812dcf46aa788545d4cebd623c84",
+    "function": "scope_descriptor"
+  },
+  "authority_bindings": {
+    "matrix_sha256": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57",
+    "corpus_sha256": "sha256:9be012b8150b3db48c66f743369a2b9905e234582056e28e427d77f311fca8b2",
+    "prior_approval_receipt_sha256": "sha256:1da0b899f891191533ec52af8556290f5012da06a5d23269e9aae61573d78b29",
+    "e0_p2_checkpoint_sha256": "sha256:cc097d5d7265c72ffe228a854254649d8d0f2ffcca26b7248e62c288f947aba6"
+  },
+  "exact_denominators": {
+    "candidate_count": 3,
+    "scenario_count": 15,
+    "case_count_per_candidate": 53,
+    "total_candidate_case_count": 159,
+    "python_wheel_count": 12,
+    "npm_direct_package_count": 2,
+    "new_marker_bound_os_temp_root_count": 1,
+    "persistent_listener_or_port_count": 0
+  },
+  "allowed_effect_summary": [
+    "Create one new marker-bound direct OS-temporary E0-P3 child.",
+    "Download only twelve exact filename/version/SHA-256-bound Python wheels and install them into two isolated virtual environments.",
+    "Install exact yjs 13.6.32 and @hocuspocus/server 4.6.0 plus lock-bound transitives from the existing npm cache in offline mode into two isolated roots.",
+    "Execute the frozen 53-case corpus for exactly three candidates and the opaque relay without a listener or port.",
+    "Preserve redacted integrity, convergence, restart, compaction, fault, and resource receipts; retain the owned root for no more than 24 hours only if E0-P4 immediately consumes it, otherwise clean it in the same turn."
+  ],
+  "forbidden_effect_summary": [
+    "No product dependency, lockfile, runtime, service, listener, port, firewall, startup entry, schema, or migration change.",
+    "No identity, workspace, browser profile, live knowledge, user_data, .runtime, per-user Notion database, or protected-root access.",
+    "No candidate winner selection, product enablement, or unbound artifact use."
+  ],
+  "single_use": true,
+  "user_approval_phrase": "AP-RUNTIME-SPIKE-E0-P3-REINSTALL 승인"
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0r_p1.lossless_capture_ingest_preflight.v1",
+  "checkpoint_id": "V0R-P1-LOSSLESS-CAPTURE-INGEST-PREFLIGHT-20260830",
+  "recorded_at": "2026-08-30T17:46:03.5765396+09:00",
+  "status": "fail_closed_ingest_ready_capture_surface_pending",
+  "summary": "A new source-lossless capture ingest verifier closes the gap between a capture surface returning bytes and evidence files merely being stored with a .png suffix. It requires the exact 18-state by two-viewport denominator, a PNG transport declaration, valid bounded sRGB PNG bytes, declared and measured hashes, safe paths, and byte-identical source-to-evidence copies before exact-reference transport is eligible.",
+  "implementation": {
+    "verifier": {
+      "path": "code_assist_v1/tools/verify_v0r_p1_lossless_capture_ingest.py",
+      "sha256": "sha256:1379687e016e7343e86e68c397d4aa565cd597219c7c68a514648bfd2bf96754",
+      "contract": "code_assist.notion.v0r_p1.lossless_capture_ingest_manifest.v1",
+      "audit_contract": "code_assist.notion.v0r_p1.lossless_capture_ingest_audit.v1",
+      "requirements": [
+        "exactly V0R-MU-001 through V0R-MU-018 at 1280x800 and 1440x900",
+        "browser_capture_returned_codec equals png globally and for every capture",
+        "source and stored files have safe root-confined .png paths",
+        "source and stored bytes match their declared sha256 values",
+        "source and stored files have PNG signatures",
+        "source PNG decodes under the bounded sRGB RGBA8 exact-pixel contract",
+        "decoded geometry matches the declared viewport",
+        "stored screenshot bytes are identical to capture-returned source bytes",
+        "source_encoding_lossless and zero_RGBA_equivalence_claimed are true"
+      ]
+    },
+    "tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_v0r_p1_lossless_capture_ingest.py",
+      "sha256": "sha256:123904f1eb7c5c0597faa61934a33de4957727f22b11b98a9bce356f4dd883a5",
+      "covered_failures": [
+        "JPEG transport declaration",
+        "re-encoded stored PNG",
+        "JPEG bytes renamed with a .png suffix",
+        "missing denominator row",
+        "source path traversal",
+        "screenshot path traversal",
+        "duplicate JSON keys"
+      ]
+    }
+  },
+  "verification": {
+    "focused_ingest_tests": {
+      "result": "8 passed in 2.16s",
+      "exit_code": 0
+    },
+    "integrated_reference_and_v0b_regression": {
+      "result": "35 passed in 67.47s",
+      "exit_code": 0,
+      "test_files": [
+        "code_assist_v1/tests/notion_collaboration/test_v0r_p1_lossless_capture_ingest.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_receipt.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py"
+      ]
+    },
+    "python_compile": {
+      "status": "pass",
+      "exit_code": 0
+    },
+    "actual_v2_receipt_recheck": {
+      "exit_code": 0,
+      "status": "pass",
+      "semantic_reference_gate_passed": true,
+      "exact_reference_gate_passed": false,
+      "capture_count": 36,
+      "capture_state_count": 18,
+      "viewport_count": 2,
+      "cleanup_complete": true,
+      "supersession_chain_valid": true,
+      "supersession_link_count": 3,
+      "exact_reference_transport_reason_codes": [
+        "SOURCE_CODEC_NOT_PNG",
+        "SOURCE_ENCODING_NOT_LOSSLESS",
+        "ZERO_RGBA_EQUIVALENCE_NOT_DECLARED"
+      ]
+    }
+  },
+  "lineage": {
+    "chrome_lossless_probe": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-chrome-claimed-tab-lossless-probe-20260830.json",
+      "sha256": "sha256:79c49c27c409066f58f83618538d6423e097f78f2e5b0ac87c503a3883a36172"
+    },
+    "v2_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+      "sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa",
+      "modified": false
+    },
+    "reference_receipt_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py",
+      "sha256": "sha256:6a56bcf50aaa233c8e4890594733046315de8532c581b129d8b7977635b8cb67"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "scope_attestation": {
+    "external_notion_mutation": false,
+    "external_notion_permission_change": false,
+    "reference_receipt_modified": false,
+    "reference_screenshot_modified": false,
+    "local_product_source_changed": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "approved_source_lossless_capture_surface": "pending",
+    "fresh_36_capture_ingest_manifest": "pending",
+    "corrected_V0R_MU_004_reference": "pending",
+    "corrected_V0R_MU_006_reference": "pending",
+    "exact_pixel_36_of_36": "not_run",
+    "core_25": "not_run",
+    "performance": "not_run",
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "After an explicit capture-surface switch is approved, create the fresh lossless manifest while capturing all 36 states, run this ingest verifier before sealing any receipt, and correct V0R-MU-004 and V0R-MU-006 at their contracted postconditions."
+}

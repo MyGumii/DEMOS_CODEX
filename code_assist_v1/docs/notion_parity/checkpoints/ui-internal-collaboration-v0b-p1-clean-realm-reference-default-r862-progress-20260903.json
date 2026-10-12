@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CLEAN-REALM-REFERENCE-DEFAULT-R862-PROGRESS-20260903",
+  "recorded_at": "2026-09-03T06:30:59.3440957+09:00",
+  "checkpoint_kind": "clean_marker_bound_realm_and_current_reference_full_candidate_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Preserve the first current-reference 36-capture candidate after isolating the accumulated synthetic-workspace performance confounder, restoring the original live-sync cadence, binding the runner defaults to the current immutable reference lineage, and adding a fail-closed realm-rotation budget.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-invite-label-live-sync-r855-progress-20260903.json",
+    "sha256": "sha256:49165b8690d0481dcadc1a3ee23f48c03349d311df8634269bf1a5b3dd44675e"
+  },
+  "reference_lineage": {
+    "receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+    "receipt_sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "screenshot_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/screenshots",
+    "mask_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/masks",
+    "browser_major_version": "153",
+    "immutable_reference_modified": false
+  },
+  "development_realm_recovery": {
+    "diagnosis": "The prior approved development realm contained 947 workspaces, including 944 REF-FREE-A or REF-FREE-B workspaces. Browser journeys moved synthetic pages to Trash and revoked external access but intentionally retained immutable workspace, operation, audit, and outbox lineage, so repeated candidates accumulated workspace rows and distorted page-load and collaboration latency.",
+    "prior_root": ".dev/notion-collaboration-10111-10113-r437",
+    "prior_root_action": "stopped_with_marker_bound_approved_dev_pair_contract_and_preserved_in_place",
+    "prior_root_deleted": false,
+    "new_root": ".dev/notion-collaboration-10111-10113-clean-20260903",
+    "new_root_marker_sha256": "sha256:736e16cc24455b6e73d0f85471e53b3d987180a51fe00977a44c113ef156d67e",
+    "new_active_run_sha256_at_checkpoint": "sha256:6ff98bad5206bad73f4f6dc1268b153f56fe38e264bc7dcae2338b0cc267ccc9",
+    "initial_workspace_count_before_browser_runs": 0,
+    "r862_initial_workspace_count": 13,
+    "post_validation_workspace_count": 19,
+    "post_validation_ref_workspace_count": 16,
+    "post_validation_active_external_membership_count": 0,
+    "post_validation_active_guest_count": 0,
+    "personal_content_imported": false,
+    "production_port_or_root_mutated": false
+  },
+  "live_sync_cadence_audit": {
+    "candidate_325_ms_clean_realm_probe": {
+      "status": "pass",
+      "presence_delivery_ms": 907,
+      "comment_delivery_ms": 1181,
+      "reaction_delivery_ms": 1355,
+      "presence_ttl_expiry_ms": 15207,
+      "reconnect_ms": 981,
+      "duration_ms": 40306,
+      "cleanup_verified": true
+    },
+    "restored_650_ms_clean_realm_probe": {
+      "status": "pass",
+      "presence_delivery_ms": 1185,
+      "comment_delivery_ms": 794,
+      "reaction_delivery_ms": 1066,
+      "presence_ttl_expiry_ms": 15415,
+      "reconnect_ms": 1299,
+      "duration_ms": 41186,
+      "cleanup_verified": true
+    },
+    "decision": "Restore 650 ms because it passes every latency budget on the clean realm and the 325 ms experiment is not needed to meet the product contract.",
+    "notion_js_path": "code_assist_v1/notion_static/notion.js",
+    "notion_js_sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "harness_hardening": {
+    "runner_default_reference_change": "The V0B runner now defaults to the current lossless-exact-v4 receipt and the receipt-declared lossless-exact-v3 screenshot and mask roots.",
+    "workspace_realm_rotation_threshold": 64,
+    "workspace_realm_rotation_behavior": "I0 reads and validates the exact workspace list before creating either fixture and fails with V0B_WORKSPACE_REALM_ROTATION_REQUIRED when the threshold is exceeded.",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_browser.py",
+        "sha256": "sha256:7cf22b851e82cd1932c956f05f52a5449f493c762f7a3dc97f5c680a347c3c40"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:06e935af4eb5a4aeb481cc1a37d149de38d68cd5e49af6a47d26eed57d74e995"
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/test_v0b_p1_workspace_realm_budget.py",
+        "sha256": "sha256:2c83932e4db8f7e43dd1e5e1adb5b3874ef9377b0a56ec5a8d7958984ff771c3"
+      }
+    ]
+  },
+  "retained_candidate": {
+    "label": "r862",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r862/receipt.json",
+    "receipt_sha256": "sha256:a65dc210a333c1edfed7e52cdc1e99234b4cc2dba26574b77775f51062978271",
+    "release_source_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "capture_harness_sha256": "sha256:256263375a310d9248b9a5175f1c0315d6a27a0671ebe47b56591cb416e114d1",
+    "browser_major_version": "153",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 1755511,
+    "masked_difference_count": 68658,
+    "raw_difference_count": 1824169,
+    "delta_from_r855_unmasked": -1269,
+    "delta_from_r855_raw": -1029,
+    "nonzero_state_deltas_from_r855_unmasked": {
+      "V0R-MU-002": -1196,
+      "V0R-MU-003": -337,
+      "V0R-MU-008": 19,
+      "V0R-MU-014": 8,
+      "V0R-MU-016": 237
+    },
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery": 1469,
+      "comment_delivery": 634,
+      "reaction_delivery": 1268,
+      "presence_ttl_expiry": 15555,
+      "reconnect": 1284
+    },
+    "duration_ms": 309007,
+    "cleanup": {
+      "status": "complete",
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "active_fixture_root_count": 0,
+      "component_cleanup_verified": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "validation": {
+    "focused_and_receipt_tests": {
+      "status": "pass",
+      "passed": 24,
+      "failed": 0,
+      "duration_seconds": 29.24
+    },
+    "official_receipt_verifier": {
+      "status": "expected_fail_open_gates_only",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_error_counts": {
+        "EXACT_PIXEL_GATE": 36,
+        "CORE_25_GATE": 1,
+        "PERFORMANCE_GATE": 1,
+        "CLAIMS_GATE": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:a65dc210a333c1edfed7e52cdc1e99234b4cc2dba26574b77775f51062978271"
+    }
+  },
+  "rejected_or_diagnostic_runs": [
+    {
+      "label": "r860",
+      "classification": "functional_pass_but_pixel_comparison_not_adopted",
+      "reason": "The old runner default selected the superseded 20260828 reference lineage.",
+      "capture_count": 36,
+      "all_component_journeys_passed": true,
+      "cleanup_verified": true
+    },
+    {
+      "label": "r861",
+      "classification": "expected_fail_closed_browser_lineage_mismatch",
+      "reason": "Chrome 151 was supplied while the current immutable reference requires Chrome 153.",
+      "receipt_written": false,
+      "cleanup_path_executed": true
+    }
+  ],
+  "protected_boundary": {
+    "agents_md_modified": false,
+    "index_html_modified": false,
+    "notion_css_modified": false,
+    "handoff_modified": false,
+    "other_sbe_hot_contract_modified": false,
+    "production_changed": false,
+    "second_brain_changed": false,
+    "user_chrome_profile_touched": false,
+    "permanent_delete_used": false,
+    "protected_hashes": {
+      "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+      "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    }
+  },
+  "gate_truth": {
+    "V0R_P1_reference_gate_passed": true,
+    "V0B_P1_exact_RGBA_gate_passed": false,
+    "V0B_P1_core25_gate_passed": false,
+    "V0B_P1_performance_gate_passed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": {
+    "state_id": "V0R-MU-002",
+    "task": "Continue bounded workspace-members visual residual reduction against r862 while keeping the clean realm below the enforced rotation threshold, then repeat the current-reference 36-capture gate before any Core-25 or performance closure claim."
+  }
+}

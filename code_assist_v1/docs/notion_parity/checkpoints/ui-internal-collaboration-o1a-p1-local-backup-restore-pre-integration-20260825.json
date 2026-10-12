@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1A-P1-LOCAL-BACKUP-RESTORE-PRE-INTEGRATION-20260825",
+  "recorded_at": "2026-08-25T21:40:26+09:00",
+  "checkpoint_kind": "hot_contract_pre_integration",
+  "packet_id": "O1A-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "CANONICAL",
+  "purpose": "Freeze the exact shared Notion packet catalog, validation ladder, completion matrix, current pointer, dynamic AGENTS.md instruction, predecessor checkpoint, and implemented O1A source/test hashes before the O1A-P1 status integrator changes only the packet status and later advances the current checkpoint pointer.",
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "lease_id": "UI-INTERNAL-COLLABORATION-O1A-P1-ROOT-20260825",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json"
+    ],
+    "approval_implies_ownership": false,
+    "exact_paths_only": true
+  },
+  "contract_integrator_exact_paths": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py"
+  ],
+  "pre_integration_sha256": {
+    "code_assist_v1/AGENTS.md": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:022ddb78e90c566b1850b6bc6f2cc8de300ed96c21ab3e76bf6a9a1427fdc1cf",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:7ecbdb18c0a1f8512575e44b7bcb670ebdf2f0f7ed899ed2dceb776e4fe1121e",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:5e5baf3ed6b64783700fea0d7b98f67f9e49e5c86219284074951eb011d9edd1",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-f0-p5-adopted-surface-20260825.json": "sha256:767b8d7fa3bd18285239ec1f1e4c54297ea3598d91aef53a4e63e751fbcca7a8",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json": "sha256:acb449fd88e67759bf0fd5b57405bf301afc296a0691f852fdac5f17294f5781",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json": "sha256:54c664f13c5790856b3a92dbfe4c5ed19e935675ca1c6651f8d528061db699b5",
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:82ce839cca3cc7327b33a38651e415d4296cc9d7555bfb106d4f5e9d49892c2d",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:3462ea997520751f96ce924a27e570fbeb394a17130b28ec882420293482b4b6",
+    "code_assist_v1/notion_collaboration/coordinated_workspace_backup.py": "sha256:3e9eb6828d9f14e21531868ad197377be2c31b7bc5053080b40774d74f5ec9b8",
+    "code_assist_v1/tests/notion_collaboration/o1a_p1_backup_fixture.py": "sha256:6ad1012888c20623a7f414901ab01832bd056660a7888ce9006dcff9814505d0",
+    "code_assist_v1/tests/notion_collaboration/second_brain_publication_fixture.py": "sha256:923c815233c513e6ad9445219c5ea0f00624d2e2aa7b3098b011706474cb0b21",
+    "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py": "sha256:cff2f1b0bb6e12118dce0abd0ffc5d6f8e99560476e044991f9ec0cf54ab5c1f",
+    "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py": "sha256:019175c50ed2f9628435de792e769a13f229ea4b84aa13da45985416e0820f27",
+    "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py": "sha256:817ffee1582540be3c28a170013b2099032b6532ab7045594d28bb847ba96043"
+  },
+  "observed_truth": {
+    "packet_catalog_status_before": "planned",
+    "local_L7_test_count": 30,
+    "local_L7_failed": 0,
+    "local_L7_duration_seconds": 152.33,
+    "sbe_P7_4_baseline_test_count": 45,
+    "sbe_P7_4_baseline_failed": 0,
+    "sbe_P7_4_baseline_duration_seconds": 60.42,
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:0beefd78448cdd19767be0e0276fdbf6951ff417c39c135105e7754d755df494",
+    "target_restore_executed": false,
+    "full_L7_lane_closed": false,
+    "production_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-GUEST-BANNER-ACCESS-EPOCH-RACE-RETRY20-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T15:12:06.6777987+09:00",
+  "checkpoint_kind": "fresh_36_capture_guest_banner_and_access_epoch_race_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Adopt the generic guest-access banner raster correction and the product-level access-epoch/outbox ordering fix after bounded IAM/C0 checks and a fresh 36-capture run, while preserving honest open-gate, immutable-reference, and recoverable-cleanup truth.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessors": {
+    "accepted_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-full-retry16-progress-20260828.json",
+      "sha256": "sha256:a5e4da36f9642bcb3c2d89c77ae3547c7254c3a6b51b98b00ff8df801b5d8624"
+    },
+    "closed_diagnostic_series": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-corrective-diagnostic-series-retry17-20260828.json",
+      "sha256": "sha256:1d37584ebe87eb151da58ec9e5cc00133027ffe459a6f9502f774a36651736f0"
+    }
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:d543c1e7e0a56a1ff2eeac95389cb0b2e6173df709e7bee7e70bac755f0bff38",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:f5eaab5980b6a6ff7dee75835adfbc54ab9b7bb43b8a542631fb1043a864f6a5"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:d43469b0be3ac175cfd5670ca2256d93290cba8674976cdddabef968eade9e63"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:aa742086137a1cb7e2a29d1b6ae6c51574894d2e066ecaea85421dcf6b3bcda4"
+      }
+    ],
+    "regression_test_file": {
+      "path": "code_assist_v1/tests/test_notion_navigation_ui.js",
+      "sha256": "sha256:a1201d33dde59c3bca627864625644d5f497bc1b300ed11b82974694b8445f0b"
+    }
+  },
+  "adopted_corrections": {
+    "guest_access_banner": {
+      "kind": "generic_product_surface_raster",
+      "selector": ".guest-access-banner",
+      "implementation": "A content-independent vertical background gradient reproduces the shared top separator, guest banner fill, bottom transition, and white page boundary.",
+      "affected_named_states": [
+        "V0R-MU-005",
+        "V0R-MU-015",
+        "V0R-MU-016"
+      ],
+      "state_id_or_capture_specific_selector_used": false,
+      "focus_specific_styling_used": false
+    },
+    "access_epoch_outbox_ordering": {
+      "kind": "product_race_fix",
+      "root_cause": "removeCollaborativeOperation removed the acknowledged envelope from memory before its chained IndexedDB deletion had necessarily finished. sharePage could then create a new document access epoch, and an immediate reopen could classify the stale durable envelope as a new-epoch offline edit and enter recovery-only mode.",
+      "implementation": "sharePage awaits the existing liveCollaboration.persistenceChain before issuing the access grant that changes the document epoch.",
+      "permission_semantics_changed": false,
+      "data_retention_expanded": false,
+      "recovery_only_false_positive_removed": true
+    }
+  },
+  "bounded_iam_evidence": [
+    {
+      "label": "retry52-css-only-first-observation",
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry52/receipt.json",
+      "receipt_sha256": "sha256:a0e4414d1191e8ad062868c4b213ca99a023e989244555437f6838c006276303",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "unmasked_difference_count": 3685778,
+      "masked_difference_count": 129676,
+      "journey_status": "pass",
+      "cleanup_complete": true,
+      "accepted": false,
+      "reason": "The guest states improved, but state V0R-MU-004 at 1280x800 exposed a transient recovery-only banner worth treating as a product race rather than accepting as pixel variance."
+    },
+    {
+      "label": "retry53-css-only-repeat",
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry53/receipt.json",
+      "receipt_sha256": "sha256:03f72c1cc22bd9f71630c20be58e0090dfb95fda8fa2d1cdd3c1c30b9d870548",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "unmasked_difference_count": 3685556,
+      "masked_difference_count": 129676,
+      "journey_status": "pass",
+      "cleanup_complete": true,
+      "accepted": false,
+      "reason": "The state-004 banner did not recur, confirming timing sensitivity but not removing the underlying ordering race."
+    },
+    {
+      "label": "retry54-css-plus-access-epoch-fix",
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry54/receipt.json",
+      "receipt_sha256": "sha256:2ca991e269d04644b86e8a4fee279c42762d83d339db3e6e438ee8a90680bc1d",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "unmasked_difference_count": 3685177,
+      "masked_difference_count": 129676,
+      "journey_status": "pass",
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "accepted": true,
+      "delta_from_retry51_unmasked": -61573,
+      "non_target_capture_delta_count": 0,
+      "target_capture_deltas": {
+        "V0R-MU-005__1280x800": -7649,
+        "V0R-MU-005__1440x900": -9231,
+        "V0R-MU-015__1280x800": -10502,
+        "V0R-MU-015__1440x900": -11797,
+        "V0R-MU-016__1280x800": -10597,
+        "V0R-MU-016__1440x900": -11797
+      }
+    }
+  ],
+  "transient_full_attempt": {
+    "run_root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry18",
+    "receipt_written": false,
+    "capture_artifact_count": 22,
+    "failure": "C0_P2_COMMENT_LATENCY_EXCEEDED",
+    "classification": "one_time_comment_delivery_latency_spike",
+    "accepted": false,
+    "cleanup_audit": {
+      "audit_mode": "read_only_SQLite_scoped_to_retry18_source_cutoff_1787895703",
+      "workspace_count": 3,
+      "source_page_count": 4,
+      "legacy_recoverable_trash_page_count": 4,
+      "legacy_active_page_count": 0,
+      "active_user01_workspace_membership_count": 0,
+      "active_user01_workspace_guest_count": 0,
+      "active_user01_canonical_access_grant_count": 0,
+      "active_user01_page_grant_count": 0,
+      "active_user01_legacy_page_share_count": 0,
+      "permanent_delete_used": false,
+      "status": "complete"
+    }
+  },
+  "bounded_c0_recheck": {
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry16/receipt.json",
+    "receipt_sha256": "sha256:3bb0ed7658a0216fc6f63b06cf6f97b7d71b0a3551e503867adac10b3218baa4",
+    "capture_count": 8,
+    "accessibility_pass_count": 8,
+    "unmasked_difference_count": 1234958,
+    "masked_difference_count": 109416,
+    "journey_status": "pass",
+    "measurements_ms": {
+      "comment_delivery": 1228,
+      "presence_delivery": 383,
+      "presence_ttl_expiry": 15162,
+      "reaction_delivery": 1727,
+      "reconnect": 2027
+    },
+    "browser_closed": true,
+    "test_page_moved_to_trash": true,
+    "synthetic_member_absent_after_cleanup": true,
+    "conclusion": "The retry18 C0 failure was a non-reproducing latency spike; the current product path remains functionally green."
+  },
+  "intermediate_full_retry19": {
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry19/receipt.json",
+    "receipt_sha256": "sha256:d36ec1561cf9beeabe54fddd45ba074d642bdb8097977c7442b735d0fc3215b6",
+    "ui_source_build_sha256": "sha256:193714da97c989729389a888db39a0e5171bd05a1e52dc1d01941eb494f479ab",
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "journey_pass_count": 4,
+    "unmasked_difference_count": 6625045,
+    "masked_difference_count": 250732,
+    "raw_difference_count": 6875777,
+    "component_cleanup_verified": true,
+    "browser_closed": true,
+    "accepted": false,
+    "reason": "The CSS-only run reproduced a +22286 V0R-MU-004__1280x800 recovery-only banner, exposing the access-epoch/outbox ordering race later fixed before retry20."
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry20",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry20/receipt.json",
+    "receipt_sha256": "sha256:707dc01c500752b5878f23107126ce2eb3442420cf2cf4880dccaa5011cacf48",
+    "ui_source_build_sha256": "sha256:d543c1e7e0a56a1ff2eeac95389cb0b2e6173df709e7bee7e70bac755f0bff38",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "journey_count": 4,
+    "journey_statuses": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "state_count": 18,
+    "viewport_count": 2,
+    "capture_count": 36,
+    "interaction_pass_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "component_cleanup_verified": true,
+    "active_fixture_root_count": 0,
+    "active_test_grant_count": 0,
+    "active_test_member_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "gate_passed": false
+  },
+  "pixel_summary": {
+    "metric": "sum_of_unmasked_differing_pixel_count_across_36_full_candidate_captures",
+    "baseline_difference_count": 16116120,
+    "predecessor_retry16_difference_count": 6689505,
+    "current_retry20_difference_count": 6625236,
+    "masked_difference_count": 250732,
+    "raw_difference_count": 6875968,
+    "change_from_retry16_count": -64269,
+    "change_from_retry16_percent": -0.96,
+    "reduction_from_baseline_count": 9490884,
+    "reduction_from_baseline_percent": 58.89,
+    "state_deltas_from_retry16": {
+      "V0R-MU-001": 0,
+      "V0R-MU-002": 0,
+      "V0R-MU-003": 0,
+      "V0R-MU-004": 0,
+      "V0R-MU-005": -17259,
+      "V0R-MU-006": 0,
+      "V0R-MU-007": 0,
+      "V0R-MU-008": 0,
+      "V0R-MU-009": 0,
+      "V0R-MU-010": -475,
+      "V0R-MU-011": 0,
+      "V0R-MU-012": -46,
+      "V0R-MU-013": 0,
+      "V0R-MU-014": -1796,
+      "V0R-MU-015": -22299,
+      "V0R-MU-016": -22394,
+      "V0R-MU-017": 0,
+      "V0R-MU-018": 0
+    },
+    "race_regression_check": "V0R-MU-004 returns exactly to the retry16 aggregate while every intended guest-access state improves."
+  },
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "receipt_sha256": "sha256:707dc01c500752b5878f23107126ce2eb3442420cf2cf4880dccaa5011cacf48",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "release_candidate_binding_error_count": 0,
+    "runtime_candidate_binding_error_count": 0,
+    "reference_binding_error_count": 0,
+    "capture_or_diff_binding_error_count": 0,
+    "cleanup_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "verification": {
+    "json_parse": "pass",
+    "node_syntax_check": "pass",
+    "navigation_and_share_ui_test": "pass",
+    "share_and_workspace_membership_browser_tests": "4 passed in 22.44s",
+    "I0_P2_bounded_regression": "20/20 pass",
+    "C0_P2_bounded_regression": "8/8 pass",
+    "full_36_capture_current_build": "pass",
+    "interaction_matrix": "36/36 pass",
+    "accessibility_matrix": "36/36 pass",
+    "component_journeys": "4/4 pass",
+    "cleanup": "pass",
+    "independent_verifier_truthfulness": "pass_expected_gate_fail"
+  },
+  "inherited_open_gates": {
+    "exact_pixel": {
+      "passed": 0,
+      "required": 36,
+      "status": "open"
+    },
+    "core25": {
+      "source": "inherited_preflight_not_fresh_gate_evidence",
+      "passed": 20,
+      "failed": 1,
+      "failed_scenario": "UI-COLLAB-001",
+      "fresh_current_build_gate_evidence": false
+    },
+    "performance": {
+      "source": "busy_host_preflight_not_fresh_gate_evidence",
+      "observed_p95_ms": 4514.289,
+      "approved_budget_ms": 1370,
+      "quiet_host_verified": false,
+      "status": "fail"
+    }
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "persistent_or_signed_in_browser_profile_used": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "all_adopted_multiuser_states_captured": true,
+    "accessibility_evidence_complete": true,
+    "component_cleanup_complete": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "O1B_entry_allowed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue exact-pixel convergence from retry20. Prioritize the largest remaining shared-shell residuals V0R-MU-001 workspace_share_dialog and V0R-MU-002 workspace_member_list, using cross-viewport and cross-journey-safe corrections only. After 36/36 exact convergence, run fresh current-build Core25 and quiet-host performance gates. Do not enter O1B until every V0B gate passes."
+}

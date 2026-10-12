@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-FULL-RETRY15-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T12:42:02.4176124+09:00",
+  "checkpoint_kind": "fresh_36_capture_crdt_reference_shape_and_presence_scoped_geometry_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Bind retry15 after replacing the concatenated collaborative reference seed with distinct durable CRDT blocks and limiting the collaboration page offset to active remote-presence states, while preserving honest open-gate and cleanup truth.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-full-retry13-progress-20260828.json",
+    "sha256": "sha256:2f62baae8b85ae3edb54d87ea19cc6c557ec9f37e7df957bc999b29656b84ed3"
+  },
+  "intermediate_candidate": {
+    "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry14/receipt.json",
+    "sha256": "sha256:cdffdedfb5e1a84032ebe3adf154c73f64e2b7b382ebd792b2c24e9c43f15a89",
+    "preserved": true,
+    "adopted_as_current": false,
+    "reason": "The unscoped collaboration page offset improved remote-presence states but regressed IAM background pages; retry15 narrows the selector and supersedes it."
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:cf686ea97689e5f47a2760fb5e7740c7ee683da810761acd42d492f95524a0f2",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:8903a53cdd7f93164162a02151b6ede72992a4280a1c8fae7ca77ae1eb47dff2"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:ee94750195bb5fa9906ca098cad3e7371cfb6a2f409ae066519da3f5d19f75bd"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:8a5a7a0511748763c02938b053e5639dfe5c8a3847f8a3a92aad8d448bb6e3fb"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/c0_p2_browser.py",
+        "sha256": "sha256:1bd475f17d79c50fbc1cab754a39c16962dc224dd82ae2efe6ea0807c769552a"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/e1_p2_browser.py",
+        "sha256": "sha256:e7f64d9eabb404d4252304ce5631c42c5cf5154af9fc13089c1e055175de0f5a"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:a8fa63391a092be6d079ba2046c93a44db5af4c7f2aedd91fc81551baeeb4a67"
+      }
+    ]
+  },
+  "implementation": {
+    "distinct_reference_crdt_blocks": {
+      "prior_defect": "Adjacent Python string literals produced one combined todo containing onboarding, toggle, text, and block markers.",
+      "canonical_block_count": 8,
+      "canonical_types": [
+        "todo_checked",
+        "todo",
+        "indented_todo",
+        "todo",
+        "toggle",
+        "paragraph_text_base",
+        "child_page",
+        "paragraph_block_base"
+      ],
+      "stored_through_collaborative_CRDT": true,
+      "pending_envelopes_drained": true,
+      "E1_real_child_page_created": true,
+      "simultaneous_text_edit_uses_fresh_canonical_block_at_reference_position": true
+    },
+    "presence_scoped_page_geometry": {
+      "non_guest_only": true,
+      "remote_presence_required": true,
+      "collaboration_landing_margin_top_px": 62,
+      "ordinary_page_icon_margin_top_px": 80,
+      "guest_edit_comment_view_rules_preserved": true,
+      "IAM_non_presence_pixels_restored": true
+    }
+  },
+  "bounded_regression_evidence": [
+    {
+      "kind": "IAM",
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry51/receipt.json",
+      "receipt_sha256": "sha256:006caafeb5002b05335f79c77cd51ae0baf47fc036aeffe46ba0b5e65122215f",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "unmasked_difference_count": 3746750,
+      "journey_status": "pass",
+      "browser_closed": true,
+      "cleanup_status": "pass"
+    },
+    {
+      "kind": "C0",
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry4/receipt.json",
+      "receipt_sha256": "sha256:8be2bd8963b84ec3016a549e65da50f0d0af6346e5f460cd10ea23363cc58b78",
+      "capture_count": 8,
+      "accessibility_pass_count": 8,
+      "unmasked_difference_count": 1238130,
+      "journey_status": "pass",
+      "browser_closed": true,
+      "cleanup_status": "pass"
+    },
+    {
+      "kind": "E1",
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-editor-diagnostic-20260828-retry9/receipt.json",
+      "receipt_sha256": "sha256:83536fe46daf229dab6af26a68b8443805b8f831f902aa0f05e0160113cc1672",
+      "capture_count": 6,
+      "accessibility_pass_count": 6,
+      "unmasked_difference_count": 1356194,
+      "journey_status": "pass",
+      "browser_closed": true,
+      "cleanup_status": "pass"
+    }
+  ],
+  "full_candidate_evidence": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry15",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry15/receipt.json",
+    "receipt_sha256": "sha256:275b3350827bdb366de53ded9cf7553e2df08cb3adc99782b48de6914cbff0dc",
+    "journey_count": 4,
+    "journey_statuses": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "state_count": 18,
+    "viewport_count": 2,
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "component_cleanup_verified": true,
+    "browser_closed": true,
+    "gate_passed": false
+  },
+  "pixel_summary": {
+    "metric": "sum_of_unmasked_differing_pixel_count_across_36_full_candidate_captures",
+    "baseline_difference_count": 16116120,
+    "prior_full_retry13_difference_count": 6749614,
+    "intermediate_full_retry14_difference_count": 6736267,
+    "current_full_retry15_difference_count": 6696475,
+    "change_from_retry13_count": -53139,
+    "change_from_retry13_percent": -0.79,
+    "reduction_from_baseline_count": 9419645,
+    "reduction_from_baseline_percent": 58.45,
+    "improved_states_from_retry13": {
+      "V0R-MU-003": -379,
+      "V0R-MU-005": -379,
+      "V0R-MU-008": -52609,
+      "V0R-MU-009": -6942,
+      "V0R-MU-010": -538,
+      "V0R-MU-013": -530
+    },
+    "small_regressions_from_retry13": {
+      "V0R-MU-007": 7096,
+      "V0R-MU-012": 15,
+      "V0R-MU-014": 1127
+    },
+    "semantic_convergence_note": "The small 007/012/014 raster increases are retained because the page now exposes distinct durable reference blocks instead of one accidental concatenated todo; aggregate unmasked difference still decreases by 53,139."
+  },
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "receipt_sha256": "sha256:275b3350827bdb366de53ded9cf7553e2df08cb3adc99782b48de6914cbff0dc",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "inherited_open_gates": {
+    "core25": {
+      "source": "inherited_preflight_not_fresh_gate_evidence",
+      "passed": 20,
+      "failed": 1,
+      "failed_scenario": "UI-COLLAB-001",
+      "fresh_current_build_gate_evidence": false
+    },
+    "performance": {
+      "source": "busy_host_preflight_not_fresh_gate_evidence",
+      "observed_p95_ms": 4514.289,
+      "approved_budget_ms": 1370,
+      "quiet_host_verified": false,
+      "status": "fail"
+    }
+  },
+  "cleanup_audit": {
+    "audit_mode": "component_product_API_cleanup_plus_read_only_source_and_authority_SQLite",
+    "retry15_source_cutoff_epoch": 1787887882,
+    "current_retry15_workspace_count": 5,
+    "current_retry15_authority_document_count": 7,
+    "current_retry15_root_document_count": 5,
+    "current_retry15_child_document_count": 2,
+    "current_retry15_source_active_page_count": 0,
+    "current_retry15_source_recoverable_trash_page_count": 7,
+    "current_retry15_source_missing_page_count": 0,
+    "active_user01_workspace_membership_count": 0,
+    "active_user01_workspace_guest_count": 0,
+    "active_user01_canonical_grant_count": 0,
+    "active_user01_page_grant_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "status": "complete"
+  },
+  "verification": {
+    "json_parse": "pass",
+    "node_syntax_check": "pass",
+    "python_compile": "pass",
+    "share_and_workspace_membership_tests": "4 passed in 23.26s",
+    "I0_P2_bounded_regression": "20/20 pass",
+    "C0_P2_bounded_regression": "8/8 pass",
+    "E1_P2_bounded_regression": "6/6 pass",
+    "full_36_capture_current_build": "pass",
+    "accessibility_matrix": "36/36 pass",
+    "component_journeys": "4/4 pass",
+    "cleanup": "pass",
+    "read_only_cleanup_audit": "pass",
+    "independent_verifier_truthfulness": "pass_expected_gate_fail"
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "all_adopted_multiuser_states_captured": true,
+    "accessibility_evidence_complete": true,
+    "component_cleanup_complete": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue exact-pixel convergence from retry15, prioritizing the remaining workspace-share dialog and navigation-shell differences without regressing the corrected CRDT block semantics. After exact convergence, run fresh current-build Core25 and quiet-host performance gates. Do not enter O1B until every V0B gate passes."
+}

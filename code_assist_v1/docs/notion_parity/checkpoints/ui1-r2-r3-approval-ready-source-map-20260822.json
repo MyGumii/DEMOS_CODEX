@@ -1,0 +1,125 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T03:13:03.8984318+09:00",
+  "run_id": "ui27-r2-r3-approval-ready-source-map-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-r1-local-action-capture-completeness-verified-20260822.json",
+    "sha256": "sha256:cbae5c1b4bba2e658d83355f3232a42bb2acafdd823827c0fd94dc3149bda5c3",
+    "semantic_status": "r1_capture_complete_r2_r3_read_only_source_map_added"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_ids": [
+      "UI-SHELL-001",
+      "UI-EDITOR-001",
+      "UI-EDITOR-002",
+      "UI-EDITOR-005",
+      "UI-SEARCH-001"
+    ],
+    "audit_mode": "read_only",
+    "product_ui_changed": false,
+    "test_changed": false,
+    "completion_matrix_changed": false,
+    "personal_or_live_data_accessed": false
+  },
+  "slice": {
+    "id": "R2-R3-APPROVAL-READY-SOURCE-MAP",
+    "status": "implementation_map_ready_owner_approval_pending",
+    "review_required": true,
+    "promotion_allowed": false,
+    "behavior_change_allowed": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:f45662268617f8a3d65cbfb9a4f7dfa8688cfea95f2d65bf44268e37567f0853"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json",
+      "sha256": "sha256:a358c7726c5e0522d35b290c68b8ade0c431d0e7c1ee2dae901a84bbb9ed1483"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/R2_R3_APPROVAL_READY_PATCH_MAP_20260822.md",
+      "sha256": "sha256:64a17f90292330c2d2d0ea48e15e8cbc9cfe87a17df08a9edc164888a01a9573"
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:791a3a1663aad171a4661365b8b0ca9f56ef61ac1526bca5b782fee3026997ba"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.css",
+      "sha256": "sha256:7f7b723aa10cbbb425e47227c6863c59efc0970d87e018a22850dc2e53bdad1d"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "sha256": "sha256:112da8b087393b236499f7bc02e1a04c43ced7793fa59b1702fb3b98d7eaadc1"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:297d5f164d63d8dfe4b153717e9f1f6b4661831b478856627d53607ad5f38e76"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_runtime.js",
+      "sha256": "sha256:c9ccd1f49edd81c54af6e5f831312eed33cb1c47a3a307f93c3064dae0c100cc"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_navigation_ui.js",
+      "sha256": "sha256:84c3260fb1cb2f775356af6bbbf8e12c8f4e09b1fd0af0410c555830d8cb3945"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_publication_ui.js",
+      "sha256": "sha256:d8602d926108869be2638a94a40c54871f35ba152d2e562bb1aba80ffc5de567"
+    }
+  ],
+  "source_boundaries": {
+    "workspace_switch_focus": [
+      "index.html:14",
+      "notion.js:2835",
+      "notion.js:10156-10167"
+    ],
+    "page_open_focus": [
+      "index.html:118",
+      "notion.js:3513",
+      "notion.js:3557-3560"
+    ],
+    "slash_transform_focus": [
+      "notion.js:4913-4926",
+      "notion.js:8022-8051",
+      "notion.js:8390-8491"
+    ],
+    "side_peek_focus_and_role": [
+      "index.html:219-229",
+      "notion.js:3661-3716",
+      "notion.js:4149-4157",
+      "test_notion_ui_runtime.js:250-251"
+    ]
+  },
+  "decisions": {
+    "global_focus_flip_allowed": false,
+    "replace_operable_target_with_generic_group_allowed": false,
+    "explicit_entry_context_required": true,
+    "explicit_focus_policy_before_behavior_change": true,
+    "one_cohesive_slice_at_a_time": true,
+    "second_brain_hard_gate_required_each_slice": true
+  },
+  "claims": {
+    "approval_ready_patch_map_written": true,
+    "product_behavior_changed": false,
+    "reference_receipts_sealed": false,
+    "differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "After exact owner approval, rehash the owned files and execute R2-1-WORKSPACE-FOCUS only. Stop without editing if complete recapture shows the group difference is a transport alias."
+}

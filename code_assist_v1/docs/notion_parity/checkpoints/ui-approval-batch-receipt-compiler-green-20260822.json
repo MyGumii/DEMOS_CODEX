@@ -1,0 +1,98 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T16:50:10.089527+09:00",
+  "run_id": "ui44-approval-batch-receipt-compiler-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-approval-batch-and-resp-001-independent-work-green-20260822.json",
+    "sha256": "sha256:6b5116697292923fe5ac90b3b7d746067712cc5343384dd0ea4c625977c12bb7",
+    "semantic_status": "approval_batch_verified_and_safe_independent_reference_work_recorded"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective": "Accumulate approval-dependent work, process it as a batch, and continue every safe independent development step first.",
+    "goal_complete": false
+  },
+  "slice": {
+    "id": "UI-APPROVAL-BATCH-RECEIPT-COMPILER",
+    "status": "implemented_and_verified",
+    "product_code_changed": false,
+    "browser_or_external_action_executed": false,
+    "completion_matrix_mutation_allowed": false
+  },
+  "implementation": {
+    "compiler": {
+      "path": "code_assist_v1/tools/notion_core_free_ui_approval_batch.py",
+      "sha256": "sha256:fea4325e5d48369d4b74c7376550187dca437073b639630e58ef63a02fa19aa8"
+    },
+    "tests": {
+      "path": "code_assist_v1/tests/test_notion_ui_approval_batch_receipt.py",
+      "sha256": "sha256:74072cf2e26959892c632a1b07103c4634e8a16a71c39890920dd0b5e33b4beb"
+    },
+    "contract": "code_assist.notion.core_free_ui.approval_batch_receipt.v1",
+    "properties": [
+      "exact queued batch text required",
+      "manual IME input excluded from approval resolution",
+      "create-only output with byte-identical replay",
+      "different existing output cannot be overwritten",
+      "queue SHA and exact resolved entry set are bound",
+      "receipt creation never uses browser control or executes an external action",
+      "tampered external_action_executed claims fail verification"
+    ]
+  },
+  "approval_queue": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v1.json",
+    "sha256": "sha256:0c6a80362249a71378f01ac9f6c6f7b12fa8944f381fb7b8ae6ff1f3a9952598",
+    "pending_entry_count": 4,
+    "batchable_entry_count": 3,
+    "manual_input_entry_count": 1,
+    "approval_receipt_created": false,
+    "reason": "The exact user batch text has not yet been supplied."
+  },
+  "verification": [
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_approval_batch_receipt.py code_assist_v1\\tests\\test_notion_ui_approval_batch_queue.py -q",
+      "exit_code": 0,
+      "result": "10 passed in 3.84s"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_approval_batch_receipt.py code_assist_v1\\tests\\test_notion_ui_approval_batch_queue.py code_assist_v1\\tests\\test_notion_ui_review_gate.py code_assist_v1\\tests\\test_notion_ui_completion_matrix.py -q",
+      "exit_code": 0,
+      "result": "24 passed in 12.33s"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_approval_batch --compact",
+      "exit_code": 0,
+      "result": "pass; pending=4; human_approval=2; manual_input=1; destructive_external_action=1"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_review_gate --compact",
+      "exit_code": 0,
+      "result": "pass; certified=5; reference_observed_review_pending=11; local_integration_review_pending=3; reference_partially_observed=6"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_completion --compact",
+      "exit_code": 0,
+      "result": "pass with completion_state=incomplete; reference_characterized=5; differential_passed=5; promoted=0"
+    }
+  ],
+  "protected_inputs": [
+    {"path": "code_assist_v1/AGENTS.md", "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md", "sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9"},
+    {"path": "code_assist_v1/tools/verify_notion_core_free_ui_approval_batch.py", "sha256": "sha256:830c78c7e88623c93e08ae875eb4ce0523ec690daafd1fc0880fdb94ee6984a9"},
+    {"path": "code_assist_v1/tests/test_notion_ui_approval_batch_queue.py", "sha256": "sha256:aec18f63a89397b07f668827f37f51dcf2707b1126933d19b5226b9da3687659"},
+    {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json", "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"}
+  ],
+  "claims": {
+    "approval_batch_receipt_compiler_ready": true,
+    "approval_receipt_created_without_user_text": false,
+    "approval_inferred_count": 0,
+    "external_action_executed_count": 0,
+    "completion_matrix_changed": false,
+    "safe_independent_work_remaining_for_current_reference_state": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next_exact_action": "On the exact queued batch user text, compile and verify a create-only receipt, seal the two summary approvals, then revalidate the exact synthetic page immediately before the confirmed Trash action. Handle UI-EDITOR-004 only after the separate manual IME input."
+}

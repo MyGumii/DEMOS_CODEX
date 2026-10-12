@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b.detached_authority_assembly_readiness_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-DETACHED-AUTHORITY-ASSEMBLY-READY-20260908",
+  "recorded_at": "2026-09-07T16:55:49.2843630Z",
+  "status": "detached_signature_authority_assembler_verified_external_signatures_still_required",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-canonical-signing-requests-ready-20260908.json",
+    "sha256": "sha256:cfca977dcff3882fa490ac3815baf25fbfac40e4a61bda8276562b8b8eb27e6e"
+  },
+  "implementation_bindings": {
+    "authority_assembler": {
+      "path": "code_assist_v1/tools/assemble_internal_collaborative_target_authority.py",
+      "sha256": "sha256:8ce71519a5764a6ab626d1f03545a61bb152afb63ca22c95e643ed818e8e49e2"
+    },
+    "signing_request_compiler": {
+      "path": "code_assist_v1/tools/compile_internal_collaborative_target_signing_requests.py",
+      "sha256": "sha256:32af2ab2773e9b1dc8bf3ade827674cba17b48cc5aae9655a46369adc1603745"
+    },
+    "execution_plan_compiler": {
+      "path": "code_assist_v1/tools/compile_internal_collaborative_target_execution_plan.py",
+      "sha256": "sha256:dc28d4522d5f595bc97aaea5a2c60b9c5eecc50f16ef15c87ad0da8d4e81fbeb"
+    },
+    "pre_execution_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_target_restore.py",
+      "sha256": "sha256:e2bbde1fadd3ed577042d88cdeafcd49d79e46c8c0b265fe22cf241dd56f7bcf"
+    },
+    "target_restore_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_restore.py",
+      "sha256": "sha256:f2f009f26089cc9359cded8a9141a727d20272d12cc9e18717ad312d8592b860"
+    }
+  },
+  "authority_assembly_contract": {
+    "caller_pinned_policy_and_signing_request_required": true,
+    "detached_approval_signature_verified": true,
+    "detached_handoff_signature_verified": true,
+    "policy_bound_public_keys_required": true,
+    "sealed_approval_reverified": true,
+    "sealed_handoff_reverified": true,
+    "create_only_output_directory": true,
+    "existing_output_preserved": true,
+    "private_key_loaded": false,
+    "nonce_consumed": false,
+    "external_action_started": false,
+    "target_action_executed": false,
+    "gate_closed": false
+  },
+  "verification": {
+    "python_compile": "pass",
+    "target_restore_focused_tests": {
+      "status": "pass",
+      "passed": 64,
+      "failed": 0,
+      "duration_seconds": 23.6
+    },
+    "o1b_through_z0_readiness_tests": {
+      "status": "pass",
+      "passed": 114,
+      "failed": 0,
+      "duration_seconds": 38.24
+    },
+    "full_central_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "valid_execution_receipts": 21,
+      "completion_state": "incomplete"
+    }
+  },
+  "authority_bindings": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "packet_catalog_sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98",
+    "validation_ladder_sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915",
+    "completion_matrix_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "current_checkpoint_pointer_sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2",
+    "sbe_contract_audit_input_sha256": "sha256:4fbbf741aece1a5ee3ddd6e24479b3662dd76d04ed10566e642e300360ceedc7"
+  },
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1"
+  },
+  "remaining_external_prerequisites": [
+    "reviewed target-specific policy and exact code pin",
+    "external Ed25519 signatures for AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF",
+    "approved encrypted off-host backup destination",
+    "approved distinct Windows target host",
+    "durable single-use nonce ledger and external target evidence systems"
+  ],
+  "claims": {
+    "real_authority_artifacts_assembled": false,
+    "approval_inferred": false,
+    "approval_or_handoff_consumed": false,
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:f325a02ba7e868c4b3ece23e7d1853226448b671079dc62a83e298b49a7345c2"
+}

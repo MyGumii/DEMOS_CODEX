@@ -1,0 +1,67 @@
+{
+  "contract": "code_assist.notion.core_free_ui.release_readiness.v1",
+  "recorded_at": "2026-08-23T01:38:01+09:00",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "status": "development_evidence_complete_release_pending",
+  "inputs": {
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:03d803f90d4adfa0d96a6f621919ff7558d38ca26ed26d4629fde81e144927ba"
+    },
+    "evidence_review_gate": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:dcd210e259501f9eff112058130c78b08c2e952943be69760405c4312b8bfe38"
+    },
+    "performance_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-quiet-host-two-consecutive-green-20260823.json",
+      "sha256": "sha256:30ae6501a9f88470a5bbe553df81f0a17c11d048b832675838de50a532b3e1e9"
+    },
+    "isolated_h9_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-h9-isolated-pilot-recovery-green-live-pending-20260815.json",
+      "sha256": "sha256:6dbce80ad2ed476dc55471aca9832d0e660dde9a02447e107cd6bdb461bdc7ff"
+    },
+    "navigation_contract": {
+      "path": "code_assist_v1/docs/notion_parity/np2b_navigation_contract.json",
+      "sha256": "sha256:3aa56722ad329e311f6ae107907b6506b6207f2da2126cddac8d2e35e80640fd"
+    },
+    "pilot_control": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/core_ui_pilot_control.v1.json",
+      "sha256": "sha256:3dd50e87a1e4324368ba163c57aa65861a00bfcb7f1d4983352dcbb22fc2c7b4"
+    },
+    "pilot_runbook": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/CORE_FREE_WEB_UI_RELEASE_READINESS_RUNBOOK.md",
+      "sha256": "sha256:70e9637338939d57c8c951ea6f3a71c3c6a8ab2eaa68db20b3ff5b4e4158be8f"
+    }
+  },
+  "gates": {
+    "scenario_evidence": "passed_25_of_25",
+    "performance_budget": "passed_isolated_local_precalibration",
+    "isolated_h9_recovery": "passed_copy_on_write",
+    "second_brain_hard_journeys": "passed_local",
+    "formal_accessibility_review": "pending_human_review",
+    "legal_brand_review": "pending_human_review",
+    "production_default_off": "implemented_contract_tested_not_enabled",
+    "operational_backup_restore": "isolated_rehearsal_only",
+    "live_canary": "not_authorized_not_run"
+  },
+  "authorization": {
+    "live_feature_enable_authorized": false,
+    "live_canary_authorized": false,
+    "operational_restore_authorized": false,
+    "external_release_authorized": false
+  },
+  "claims": {
+    "development_evidence_complete": true,
+    "release_ready": false,
+    "h8_complete": false,
+    "h9_complete": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_actions": [
+    "obtain an identified human accessibility review without self-certification",
+    "obtain legal and brand review for the shipped surface and wording",
+    "authorize and execute an operational backup/restore rehearsal on one explicitly named non-personal target",
+    "authorize one allowlisted live canary and record rollback or promotion"
+  ]
+}

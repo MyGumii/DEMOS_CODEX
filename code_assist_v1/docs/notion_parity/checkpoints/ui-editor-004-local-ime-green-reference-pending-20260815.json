@@ -1,0 +1,244 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-15T03:17:13+09:00",
+  "run_id": "ui-editor-004-local-ime-green-20260815",
+  "model": {
+    "planning": "gpt-5.6-sol-ultra",
+    "implementation": "gpt-5.6-sol-xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-tree-003-local-lifecycle-green-reference-pending-20260815.json",
+    "sha256": "sha256:014beeb91f4cdb2625a100f361fc65b4d03d51f3e09abab89d2a620b5b442b1c",
+    "semantic_status": "historical-parent-preserved"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T03:17:13+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": [
+      "UI-EDITOR-004"
+    ],
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "os-ime-candidate-window-claim",
+      "trial-or-payment",
+      "invite-or-public-posting",
+      "operational-migration",
+      "live-feature-flag",
+      "continuous-consumer",
+      "resolver-cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI-EDITOR-004-KOREAN-IME-COMPOSITION",
+    "status": "local-real-browser-green-reference-pending",
+    "acceptance_ids": [
+      "COMPOSITION-INTERMEDIATE-SAVE-ZERO",
+      "COMPOSITION-KEYDOWN-NO-BLOCK-SPLIT",
+      "COMPOSITION-END-ONE-COMMIT",
+      "KOREAN-TEXT-EXACT-RELOAD",
+      "POST-SAVE-BLOCK-BINDING-STABLE",
+      "EDITOR-FOCUS-STABLE",
+      "SECOND-BRAIN-ZERO-DELTA",
+      "LOCAL-REPEATABILITY",
+      "SYNTHETIC-ONLY"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "notion_static/notion.js",
+        "pre_sha256": "sha256:9a2f5a32326c9dd2ed6c1c7eb8d0d7d963a132955a517a33722c54b80de144b1",
+        "post_sha256": "sha256:3766990ac062c861c497f9a6dcdd6f0be8b945353676f3bee54663e4e0acf51c",
+        "change": "composition-aware edit commit and in-place canonical autosave block reconciliation"
+      },
+      {
+        "path": "tests/test_notion_ui_runtime.js",
+        "post_sha256": "sha256:77c69490840ee358524f41a3129baf26dbffa9ee60dcfa4e4ccf1352ac91c17e",
+        "change": "IME keydown must not split blocks or invoke editor shortcuts"
+      },
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "pre_sha256": "sha256:1e5e93be0b99c00c32ec190b05014923652d0ef7441a8bdf3f79c80d95b0c34a",
+        "post_sha256": "sha256:562278fcaadf15cd30fee86634084a5dd42a5f1007c01a89580c54954fc9eac3",
+        "change": "repeated installed-Chrome composition, save-count, reload, focus, and Second Brain capture"
+      },
+      {
+        "path": "docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:4572f21ec6ca810f79a44756b51280b876595c698925cbc3a72938b5f952a4a8",
+        "post_sha256": "sha256:a56546ce10ff0108510b31218ce909414e1fddf5814cecd85b25444a852da036",
+        "change": "latest UI-EDITOR-004 checkpoint and non-promotion state"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:aed5a62c9c9e522cfa21c1f741358ef4607cd2a965c6487362f0c2278ef0395c",
+        "post_sha256": "sha256:9ed0bb4afef6b6aa01720120015b63bcc86e3a5c09f6c989eaff027479db9dcf",
+        "change": "current composition event evidence and OS-IME/reference limitation"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:bae4f6457eb043925ecc1d02d2745e42f5fd0cfc7e130dcb6aeea3d2f4272eed",
+        "post_sha256": "sha256:053ec764ed0662c267f02b8eb7bfbad2cc9a49be13b2adb2faf9e240d1c583c1",
+        "change": "current authoritative plan and harness source hashes"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI_EDITOR_004_LOCAL_IME_RESULT_20260815.md",
+        "post_sha256": "sha256:2f689c934834d575866eb8fbe8a50d83336c15efa46a57b24999b9086e12a8db",
+        "change": "new identifier-free local Korean composition result"
+      }
+    ],
+    "read_dependencies": [
+      "docs/notion_parity/checkpoints/ui-tree-003-local-lifecycle-green-reference-pending-20260815.json",
+      "notion_static/editor_core.js",
+      "tools/notion_parity/ui_capture.py",
+      "tools/notion_parity/ui_local_fixture.py"
+    ],
+    "protected_unchanged": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      },
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "persistent_browser_profile_reused": false,
+    "local_browser": "installed-stable-chrome-ephemeral-playwright-context",
+    "composition_driver": "browser-dom-composition-and-input-events"
+  },
+  "evidence": {
+    "source_build_sha256": "sha256:3f46d39f0d0322df6c2df95801b0cdddc41c42abad20962d06e4ad977a85cc4f",
+    "reference": [],
+    "local": [
+      {
+        "scenario_id": "UI-EDITOR-004",
+        "capture_sha256": "sha256:2554f1d4a22f64d7fa9dee2adfee03b2e1ac95170b3ea30d920aafc7793b4a70",
+        "redaction": "pass",
+        "repeat_runs": 2
+      }
+    ],
+    "differential": [],
+    "focus_sequence": [
+      "EDITOR-BLOCK",
+      "PAGE-CANVAS"
+    ],
+    "reference_status": {
+      "state": "blocked-before-browser-or-tab-selection",
+      "stage": "browser-runtime-initialization",
+      "error_code": "kernel-assets-path-not-found-os-error-3",
+      "content_accessed": false,
+      "parity_promoted": false,
+      "retry_in_same_environment": false
+    }
+  },
+  "commands": [
+    {
+      "selection": "UI-EDITOR-004 first composition red",
+      "result": "failed as expected: one save occurred during 1.2 second active composition",
+      "exit_code": 1
+    },
+    {
+      "selection": "UI-EDITOR-004 second composition red",
+      "result": "failed as expected: post-autosave listener retained a stale block object and reload returned empty content",
+      "exit_code": 1
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py -k ui_editor_004 final",
+      "result": "1 passed, 7 deselected in 19.05s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py full current-source run",
+      "result": "8 passed in 165.27s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six Node UI/editor/navigation/publication/atomic-save/CSRF scripts",
+      "result": "6 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "test_notion_atomic_save_compat.py and test_notion_publication_adapter.py serial runs",
+      "result": "22 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication/job restart and chat characterization serial runs",
+      "result": "5 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "test_verify_notion_core_free_ui_plan.py after source-ref synchronization",
+      "result": "13 passed in 4.11s",
+      "exit_code": 0
+    },
+    {
+      "selection": "test_notion_ui_runtime.js first post-change run",
+      "result": "stub editor lacked dataset; optional dataset access added and final run passed",
+      "exit_code": 1,
+      "classification": "test-double-compatibility-red-fixed"
+    }
+  ],
+  "tests": {
+    "composition_intermediate_save": "pass-zero",
+    "composition_keydown_block_split": "pass-zero",
+    "composition_commit": "pass-exactly-one-save",
+    "korean_text_reload": "pass-exact",
+    "post_save_block_binding": "pass-in-place-reconciled",
+    "second_brain_delta": "pass-zero-items-zero-revisions",
+    "local_repeatability": "pass-twice",
+    "reference_c0": "blocked-before-browser-selection"
+  },
+  "claims": {
+    "h3_local_implementation_green": true,
+    "h3_complete": false,
+    "h4_editor_001_local_green": true,
+    "h4_editor_004_local_green": true,
+    "h4_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_or_production_content_exposed": false,
+    "live_local_data_accessed": false,
+    "protected_file_edit_required": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false,
+    "trial_payment_invite_public_action_required": false
+  },
+  "remaining": [
+    "recover signed-in Chrome control and run identifier-free C0 against synthetic REF-FREE-A/B only",
+    "capture and seal the UI-EDITOR-004 reference differential including real OS IME behavior",
+    "complete UI-EDITOR-002, UI-EDITOR-003, UI-EDITOR-005, and UI-EDITOR-006 local and differential gates",
+    "continue H5-H9 through evidence-bound cohesive vertical slices"
+  ],
+  "next_exact_command": "if safe signed-in Chrome C0 is unavailable, begin UI-EDITOR-002 slash-menu transformation with a repeated isolated real-Chrome red/green journey; otherwise prioritize synthetic REF-FREE-A/B reference capture without opening personal workspaces"
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.i0_progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-I0-SIDEBAR-GRID-HQ-R86-20260830",
+  "recorded_at": "2026-08-30T11:57:14.545340+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Bounded I0 correction r86 is the accepted focused IAM diagnostic. The 20 adopted I0 captures completed with the synthetic A/B roots moved to Trash, the synthetic collaborator absent after cleanup, and the browser closed. Unmasked differences decreased from r81 953,616 to 945,705 (-7,911). Exact parity remains 0/20 in the bounded I0 denominator; the full 36-capture candidate, Core25, and performance were intentionally not run.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-sidebar-schema-ghost-retry55-progress-20260830.json",
+      "sha256": "sha256:7321dd20607185e84018fc5624281f41bff0aa8fe5c1a711861f48da0df2b5dc"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:f300b84d5766df030802e0e8099097b18c9234c94c68ce7853f44dfd2e041c0b",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {"path":"code_assist_v1/notion_static/index.html","sha256":"sha256:1efe4dd5b5c31cb06390b338bf47c7ef5bde7ab49666390bd747579d2752e0a1"},
+      {"path":"code_assist_v1/notion_static/notion.css","sha256":"sha256:75b1f856dd345bfd69148b5c082ba18a9c6492127d5c5e3c8a2f5dfc3c721b42"},
+      {"path":"code_assist_v1/notion_static/notion.js","sha256":"sha256:a69c908a9d6ba1dea8257f3716424616db89ae5f90d1f5dcded0499ecbc71e18"},
+      {"path":"code_assist_v1/notion_static/assets/emoji/1f3e0.svg","sha256":"sha256:fd04bb778ab22836385a4c19971ffc3282024e0cbb7eabe4d6edd6287527882d"},
+      {"path":"code_assist_v1/notion_static/assets/emoji/1f44b.svg","sha256":"sha256:eaced9544876442d06a117570c6f9da91f08d758e1f4b0161b0b018c81235bc7"},
+      {"path":"code_assist_v1/notion_static/assets/emoji/TWEMOJI_ATTRIBUTION.md","sha256":"sha256:4cf8d4fe49c77a9b7a3caa2b24452d56ddae0675d73d067f98b6820326bb665d"}
+    ]
+  },
+  "accepted_bounded_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260830-hq-r86",
+    "browser_version": "151.0.7922.173",
+    "journey": "I0-P2",
+    "journey_status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "viewport_count": 2,
+    "exact_pixel_pass_count": 0,
+    "raw_difference_count": 1056713,
+    "masked_difference_count": 111008,
+    "unmasked_difference_count": 945705,
+    "delta_from_r81_unmasked": -7911,
+    "screenshot_set_sha256": "sha256:d6dbc64cb8360ece491db93cfe96d68942aa2490f7b6b9d40a40d50ffa6ecb24",
+    "diff_set_sha256": "sha256:34dd121b2c2b6de8f4a810acab167727cebd46c7cb43b40b5b9a955e2efc61e4",
+    "cleanup": {
+      "synthetic_roots_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "state_totals": [
+    {"state_id":"V0R-MU-001","raw":162141,"masked":0,"unmasked":162141},
+    {"state_id":"V0R-MU-002","raw":234666,"masked":32844,"unmasked":201822},
+    {"state_id":"V0R-MU-003","raw":90985,"masked":0,"unmasked":90985},
+    {"state_id":"V0R-MU-004","raw":89814,"masked":13956,"unmasked":75858},
+    {"state_id":"V0R-MU-005","raw":34260,"masked":0,"unmasked":34260},
+    {"state_id":"V0R-MU-006","raw":128236,"masked":0,"unmasked":128236},
+    {"state_id":"V0R-MU-015","raw":34416,"masked":2048,"unmasked":32368},
+    {"state_id":"V0R-MU-016","raw":31012,"masked":0,"unmasked":31012},
+    {"state_id":"V0R-MU-017","raw":127277,"masked":31080,"unmasked":96197},
+    {"state_id":"V0R-MU-018","raw":123906,"masked":31080,"unmasked":92826}
+  ],
+  "accepted_corrections": [
+    "Workspace member modal title, link-copy, search control, tab, and second-row alignment were corrected with no retained I0 regression.",
+    "Collaborative sidebar application text columns now preserve icon alignment while matching the reference text origin.",
+    "Teamspace child-page indentation is scoped to the home and inherited-share surfaces.",
+    "The member-invite footer card now uses its intended grid instead of being overridden by the generic sidebar flex rule.",
+    "The home and inherited-share HQ row uses one reference-like home icon and the reference title origin.",
+    "The current workspace-invite, page-popover, and access-boundary shadows were retained after bounded sweeps confirmed the current values as local minima."
+  ],
+  "rejected_probes": [
+    {"probe":"r82/r83 workspace-member font and position sweeps","reason":"regressed the I0 total; only individually verified inverse-direction corrections were retained"},
+    {"probe":"r87 workspace-invite shadow sweep","candidate_count":200,"result":"current 23px/49px/0.23 long shadow remained the two-viewport minimum"},
+    {"probe":"r88 home edit-time insertion","candidate_count":50,"result":"all candidates exceeded the r86 baseline; no source change retained"}
+  ],
+  "next_focus": {
+    "largest_states": [
+      {"state_id":"V0R-MU-002","unmasked_difference_count":201822},
+      {"state_id":"V0R-MU-001","unmasked_difference_count":162141},
+      {"state_id":"V0R-MU-006","unmasked_difference_count":128236},
+      {"state_id":"V0R-MU-017","unmasked_difference_count":96197},
+      {"state_id":"V0R-MU-018","unmasked_difference_count":92826},
+      {"state_id":"V0R-MU-003","unmasked_difference_count":90985}
+    ],
+    "primary": "Separate immutable-reference OS-pointer pixels from product-render pixels before any further source correction. Do not hardcode an OS cursor and do not broaden approved immutable masks.",
+    "full_candidate_policy": "Do not run the full 36-capture candidate, Core25, or performance until the bounded I0 exact gate is materially ready."
+  },
+  "open_gates": {
+    "bounded_I0_exact_pixel":{"passed":0,"required":20,"status":"open"},
+    "full_exact_pixel":{"status":"not_run_after_r86"},
+    "core_25":{"status":"not_run_until_exact_36_of_36"},
+    "performance":{"status":"not_run_until_exact_36_of_36"},
+    "claims":{"status":"open"},
+    "V0B_P1_gate_passed":false,
+    "product_complete":false,
+    "active_shared_goal_complete":false
+  },
+  "scope_attestation": {
+    "production_changed":false,
+    "second_brain_changed":false,
+    "user_chrome_touched":false,
+    "persistent_browser_profile_used":false,
+    "public_publish_or_link_used":false,
+    "personal_workspace_or_page_used":false,
+    "permanent_delete_used":false,
+    "reference_receipts_modified":false,
+    "agents_md_modified":false,
+    "other_sbe_hot_contract_modified":false
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-23T01:41:54+09:00",
+  "run_id": "ui69-h9-core-ui-pilot-control-default-off-20260823",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-h8-h9-release-readiness-gate-20260823.json",
+    "sha256": "sha256:440c58d8af035c55d874804f192dd8d79d20f03f2fb71d74bc63a3d66e905648",
+    "semantic_status": "development_evidence_complete_with_five_release_gates_pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "the user explicitly requested the next implementation stage",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "slice": "H9-CORE-UI-PILOT-CONTROL",
+    "gated_surface": "canonical_workspace_shell_navigation_and_page_tree_mutations",
+    "product_code_changed": true,
+    "application_routes_changed": true,
+    "schema_changed": false,
+    "feature_flags_changed": false,
+    "feature_flags_enabled": false,
+    "live_or_personal_data_accessed": false
+  },
+  "outcome": {
+    "status": "pilot_control_implemented_contract_tested_not_enabled",
+    "default_off": true,
+    "subject_allowlist_required": true,
+    "workspace_allowlist_required": true,
+    "independent_kill_switch": true,
+    "identifier_free_readiness": true,
+    "disabled_preflight_catalog_io_count": 0,
+    "release_ready": false,
+    "pending_gates": [
+      "formal_accessibility_review",
+      "legal_brand_review",
+      "operational_backup_restore",
+      "live_canary"
+    ]
+  },
+  "implementation": [
+    {
+      "path": "code_assist_v1/notion_core_ui_pilot.py",
+      "sha256": "sha256:4b42be045bd6272f4482c21f1e48064b425004e2dbdc1790727163b312cf6c36",
+      "change": "new side-effect-free exact environment parser, allowlist evaluator, and identifier-free decision"
+    },
+    {
+      "path": "code_assist_v1/routes_notion_workspace.py",
+      "sha256": "sha256:f4e71833b4b1b01fea2b0508a1323a3609a19a00014eac967efebf4be8ae5cb8",
+      "change": "composed the legacy navigation gate with the Core pilot and added authenticated no-store readiness"
+    },
+    {
+      "path": "code_assist_v1/tools/notion_parity/ui_local_fixture.py",
+      "sha256": "sha256:a56f200115dfea7d01c36897d8f8c99b65e47e0088e65dc730d42e7b4753ed38",
+      "change": "isolated synthetic fixture alone receives exact subject and seeded-workspace allowlists"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_core_ui_pilot.py",
+      "sha256": "sha256:06448ad97f6cabfeef79fdc152b936770f9c0e5528cf6723befde4d968adc14e",
+      "change": "new default-off, malformed configuration, allowlist, substrate, and redaction tests"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_workspace_navigation_routes.py",
+      "sha256": "sha256:f1e9c71c16aa6a865bf7c7fe7cbf5560a476c5aea8ba59742113542a590f790e",
+      "change": "route capability, authenticated readiness, no-I/O preflight, and legacy-flag insufficiency regressions"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_workspace_pages.py",
+      "sha256": "sha256:3c0a01a4976df06e899f9e7d35d58ef2c6a5a39437e176b277abd02edcc53cc3",
+      "change": "page mutation route tests now prove both nested gates"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_local_fixture.py",
+      "sha256": "sha256:e4d5b879c5401a6860deaa725119ead96a6fb6d396c8ae299374e651c8397a58",
+      "change": "inherited pilot controls are scrubbed and synthetic fixture controls remain explicit"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/core_ui_pilot_control.v1.json",
+      "sha256": "sha256:3dd50e87a1e4324368ba163c57aa65861a00bfcb7f1d4983352dcbb22fc2c7b4",
+      "change": "new frozen default-off pilot control contract"
+    },
+    {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_release_readiness.py",
+      "sha256": "sha256:9407b1c756de124d7a4599a998aff32d45f2e27a3a5dd692b45c3a6117481c99",
+      "change": "release verifier now binds and validates the pilot-control contract"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_release_readiness.py",
+      "sha256": "sha256:8c47454482d38ef51f2222728b33dcf72f833001e30c393b8954bdf73b35021e",
+      "change": "release pending-gate and pilot self-enable rejection coverage"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/CORE_FREE_WEB_UI_RELEASE_READINESS_RUNBOOK.md",
+      "sha256": "sha256:70e9637338939d57c8c951ea6f3a71c3c6a8ab2eaa68db20b3ff5b4e4158be8f",
+      "change": "operator boundary updated from five to four remaining release gates"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/release_readiness.v1.json",
+      "sha256": "sha256:9577b662f4c48f6ff3c0784a986eb09197a5e99210e5d11e95922a032a0375a3",
+      "change": "current hash-bound readiness snapshot records implemented but disabled control"
+    }
+  ],
+  "commands": [
+    {
+      "selection": "pilot module and navigation route focused tests",
+      "result": "16 passed in 22.74s",
+      "exit_code": 0
+    },
+    {
+      "selection": "workspace page routes and isolated local fixture",
+      "result": "14 passed in 18.59s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six focused Node editor, runtime, navigation, publication, atomic-save, and CSRF regressions",
+      "result": "6 scripts passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "workspace routes, navigation, auth isolation, pages, fixture, pilot, and release gate",
+      "result": "67 passed in 55.28s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication restart and chat characterization regressions",
+      "result": "5 passed in 4.14s",
+      "exit_code": 0
+    },
+    {
+      "selection": "release-readiness focused tests",
+      "result": "6 passed in 1.47s",
+      "exit_code": 0
+    },
+    {
+      "selection": "completion, evidence-review, and release-readiness machine verifiers",
+      "result": "all passed; 25/25 evidence; release_ready=false; four gates pending",
+      "exit_code": 0
+    },
+    {
+      "selection": "Python compilation",
+      "result": "pass",
+      "exit_code": 0
+    }
+  ],
+  "safety": {
+    "agents_md_sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572",
+    "agents_md_changed": false,
+    "knowledge_sources_changed": false,
+    "app_auth_config_changed": false,
+    "schema_or_migration_changed": false,
+    "live_pilot_environment_variables_observed": [],
+    "live_feature_enabled": false,
+    "live_canary_run": false,
+    "restore_run": false,
+    "external_action_run": false,
+    "git_commit_claimed": false
+  },
+  "claims": {
+    "development_evidence_complete": true,
+    "pilot_control_foundation_complete": true,
+    "release_ready": false,
+    "h8_complete": false,
+    "h9_complete": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Prepare bounded accessibility and legal-brand review packets, then obtain explicit target authorization before any operational restore or allowlisted live canary. Do not enable the pilot as part of preparation.",
+  "vcs": {
+    "available": false,
+    "commit_claimed": false,
+    "observation": "the workspace is not a valid Git repository"
+  }
+}

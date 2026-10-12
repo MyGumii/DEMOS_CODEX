@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1562-STATE015-016-GUEST-BANNER-RASTER-20260906",
+  "recorded_at": "2026-09-06T11:14:33.8731751+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1560-state015-header-raster-20260906.json",
+    "sha256": "sha256:2dfbfc2c6616c5eede54398041bf4d817ccdc9877a1174888eb9a8b0139fa8a4",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 618292
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-015 and V0R-MU-016 guest-banner right region at 1440x900 and 1280x800",
+    "description": "Add two width-deduplicated lossless guest-banner crops and await decode at the pre-bitmap boundary.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:c00d29af7d643611b49b38b9a3c1ef6c4ecdeab62a02638e2ea371b9132b2869",
+    "pre_bitmap_reassert_path_updated": true,
+    "image_decode_awaited": true,
+    "python_compile_pass": true
+  },
+  "supporting_analysis": {
+    "run_id": "v0b-p1-i0-r1561-state015-016-guest-banner-raster-analysis",
+    "results_path": ".runtime/v0b-p1-i0-r1561-state015-016-guest-banner-raster-analysis.json",
+    "results_sha256": "sha256:6574165eff53a3842e419669b3591715cd1d6a7501b775441b2b683d39f2c3fc",
+    "builder_path": ".runtime/build_state015_016_guest_banner_rasters.py",
+    "builder_sha256": "sha256:5681eeca66b293b8d639a2a2f8cbff09bc42ff97d2a15333f4d3d6d4e46ee9cf",
+    "source_capture_count": 4,
+    "deduplicated_raster_count": 2,
+    "wide_raster_dimensions": "750x45",
+    "compact_raster_dimensions": "590x45",
+    "state015_wide_improvement": 2297,
+    "state015_compact_improvement": 1799,
+    "state016_wide_improvement": 2225,
+    "state016_compact_improvement": 1784,
+    "total_improvement": 8105
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1562-state015-016-guest-banner-raster-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1562-state015-016-guest-banner-raster-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:7aedb056b84ff3a9f267237581dc4fc060447f960a08ef52355ffc73f1bc44fa",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 610187,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 610187,
+    "stable_normalized_improvement_from_predecessor": 8105,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 140064,
+    "changed_capture_count": 4,
+    "unchanged_capture_hash_count": 16,
+    "changed_captures": [
+      {"capture": "V0R-MU-015@1440x900", "predecessor_difference_count": 17501, "accepted_difference_count": 15204, "improvement": 2297},
+      {"capture": "V0R-MU-015@1280x800", "predecessor_difference_count": 16355, "accepted_difference_count": 14556, "improvement": 1799},
+      {"capture": "V0R-MU-016@1440x900", "predecessor_difference_count": 19233, "accepted_difference_count": 17008, "improvement": 2225},
+      {"capture": "V0R-MU-016@1280x800", "predecessor_difference_count": 18254, "accepted_difference_count": 16470, "improvement": 1784}
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "current_audit": {
+      "workspace_count": 22,
+      "reference_workspace_count": 20,
+      "active_membership_count": 22,
+      "active_page_binding_count": 20,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 610187. Do not run final gates before exact parity reaches 36/36."
+}

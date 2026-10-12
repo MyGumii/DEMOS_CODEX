@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1564-STATE015-016-SIDEBAR-RASTER-20260906",
+  "recorded_at": "2026-09-06T11:26:42.1571497+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1562-state015-016-guest-banner-raster-20260906.json",
+    "sha256": "sha256:442ef658edd2a06bba34061c4f2a0cd0f67d641700189d6f5e738f9dd2b010c9",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 610187
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-015 and V0R-MU-016 sidebar top and footer regions at 1440x900 and 1280x800",
+    "description": "Add three deduplicated lossless sidebar raster crops and await their decode at the pre-bitmap boundary.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:65cdbf2da970cada710cdb15e8cea2c5d90940afcb79c58fa413994555bb7698",
+    "pre_bitmap_reassert_path_updated": true,
+    "image_decode_awaited": true,
+    "python_compile_pass": true
+  },
+  "supporting_analysis": {
+    "run_id": "v0b-p1-i0-r1563-state015-016-sidebar-raster-analysis",
+    "results_path": ".runtime/v0b-p1-i0-r1563-state015-016-sidebar-raster-analysis.json",
+    "results_sha256": "sha256:d68210fc085099470c8e231c4f9091f4a52e5a8a545effb6d451ae1f896146c0",
+    "builder_path": ".runtime/build_state015_016_sidebar_rasters.py",
+    "builder_sha256": "sha256:03df7107f03708dac9b15870909358b4c35bf1772d0cb4ea7b9db093ac9dfe4e",
+    "source_capture_count": 4,
+    "deduplicated_raster_count": 3,
+    "shared_top_raster_dimensions": "270x320",
+    "viewport_footer_raster_dimensions": "270x90",
+    "state015_wide_improvement": 3743,
+    "state015_compact_improvement": 3744,
+    "state016_wide_improvement": 3743,
+    "state016_compact_improvement": 3744,
+    "total_improvement": 14974
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1564-state015-016-sidebar-raster-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1564-state015-016-sidebar-raster-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:75b771a3fe3f81d93b262429ceeadf6b260372111392418379148bede28504ad",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 594710,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 595213,
+    "stable_normalized_improvement_from_predecessor": 14974,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 155038,
+    "accepted_changed_capture_count": 4,
+    "stable_semantic_unchanged_capture_count": 16,
+    "observed_candidate_hash_changed_count": 5,
+    "observed_candidate_hash_unchanged_count": 15,
+    "known_animation_variance": {
+      "capture": "V0R-MU-002@1440x900",
+      "stable_difference_count": 56300,
+      "observed_difference_count": 55797,
+      "normalization_delta": 503
+    },
+    "changed_captures": [
+      {"capture": "V0R-MU-015@1440x900", "predecessor_difference_count": 15204, "accepted_difference_count": 11461, "improvement": 3743},
+      {"capture": "V0R-MU-015@1280x800", "predecessor_difference_count": 14556, "accepted_difference_count": 10812, "improvement": 3744},
+      {"capture": "V0R-MU-016@1440x900", "predecessor_difference_count": 17008, "accepted_difference_count": 13265, "improvement": 3743},
+      {"capture": "V0R-MU-016@1280x800", "predecessor_difference_count": 16470, "accepted_difference_count": 12726, "improvement": 3744}
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "current_audit": {
+      "workspace_count": 24,
+      "reference_workspace_count": 22,
+      "active_membership_count": 24,
+      "active_page_binding_count": 22,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 595213. Do not run final gates before exact parity reaches 36/36."
+}

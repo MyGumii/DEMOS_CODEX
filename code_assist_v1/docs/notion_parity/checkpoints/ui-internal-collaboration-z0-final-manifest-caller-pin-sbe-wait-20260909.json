@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.z0.final_manifest_caller_pin_sbe_wait_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-Z0-FINAL-MANIFEST-CALLER-PIN-SBE-WAIT-20260909",
+  "recorded_at": "2026-09-09T03:03:51.2587756+09:00",
+  "status": "caller_pinned_read_only_verifier_validated_dynamic_sbe_rebinding_deferred",
+  "immutable_after_recording": true,
+  "supersedes": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-z0-final-manifest-readonly-verifier-aligned-20260909.json",
+    "sha256": "sha256:6ab1c3c2e5edf25dc016ae396454e16c3750013e312419a1b705cfb6cbbdff56",
+    "record_sha256": "sha256:6a038b0c45720704a790c8d1213835c633313b198819761f653797f8133e5cd4"
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    }
+  },
+  "implementation_bindings": {
+    "read_only_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_z0_final_manifest.py",
+      "sha256": "sha256:5092e33cb4900f1945064732511364732ba340d16fb81d10c77a7e3a2f6ed28e"
+    },
+    "read_only_verifier_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_verify_internal_collaborative_z0_final_manifest.py",
+      "sha256": "sha256:246b86b5db4a3ed018d1f0e424067cbc6d082232ed765687cf01c45358212302"
+    },
+    "compiler": {
+      "path": "code_assist_v1/tools/compile_internal_collaborative_z0_final_manifest.py",
+      "sha256": "sha256:6289b61e870a780ff7e97c93bfa3618c2958adef1f65cb6514a3f2c4ef70e726"
+    }
+  },
+  "caller_pinning_contract": {
+    "expected_manifest_sha256_required_by_python_api": true,
+    "expected_manifest_sha256_required_by_cli": true,
+    "invalid_hash_rejected_before_evidence_reconstruction": true,
+    "valid_but_different_manifest_substitution_rejected": true,
+    "actual_manifest_sha256_reported": true,
+    "valid_pinned_cli_path_verified": true,
+    "receipt_created": false,
+    "operator_action_executed": false,
+    "rollout_enabled": false,
+    "packet_or_gate_credit_awarded": false
+  },
+  "verification": {
+    "python_compile": {
+      "status": "pass",
+      "source_count": 2
+    },
+    "verifier_compiler_and_z0_regression": {
+      "status": "pass",
+      "passed": 31,
+      "failed": 0,
+      "duration_seconds": 14.4
+    },
+    "verifier_compiler_z0_target_and_promotion_regression": {
+      "status": "pass",
+      "passed": 61,
+      "failed": 0,
+      "duration_seconds": 21.62
+    }
+  },
+  "dynamic_sbe_observation": {
+    "task_id": "019fec6f-60b0-7f53-876d-ba9b7acb0c51",
+    "task_title": "Second_Brain",
+    "task_status": "active",
+    "turn_status": "inProgress",
+    "same_workspace": true,
+    "waited_on_live_handle": true,
+    "current_contract_audit_status": "pass",
+    "current_contract_audit_error_count": 0,
+    "current_contract_audit_input_sha256": "sha256:210e949f99d95e137285afc64ed6cc777e884dc00372d23e6123df481fc93994",
+    "current_goal_count": 20,
+    "current_mandatory_scenario_count": 284,
+    "current_status_md_sha256": "sha256:d939d34fa365a6c2e4c45e3145a2c5a4331dbed4380bca48567f0e29b6256405",
+    "current_publication_py_sha256": "sha256:13e698b6f2e27e99f799a9c2050c615227e1e79a7d6322378490384f0f8488e5",
+    "notion_s0a_binding_sha256": "sha256:b4e89531ad31a24029a9d76a14e989eec77a91b2ee6ba67b501ce86961ec89c4",
+    "current_s0a_status": "fail_closed_on_active_dynamic_drift",
+    "current_s0a_error_count": 3,
+    "rebind_policy": "wait_for_active_sbe_turn_to_finish_then_capture_one_successor_audit_and_rebind_once",
+    "sbe_hot_contract_or_source_modified_by_this_lane": false
+  },
+  "remaining_boundaries": [
+    "The active Second_Brain task must finish before the final S0A dynamic binding is captured.",
+    "No exact O1B target identity, encrypted off-host destination, trust anchors, signed approval, or handoff exists.",
+    "No real Z0 final manifest exists yet.",
+    "O1B-P1, Q0-P1, R0A-P1, R0B-P1, R1-P1, and Z0-P1 remain uncredited.",
+    "The central packet catalog, ladder, completion matrix, and current checkpoint pointer remain unchanged."
+  ],
+  "claims": {
+    "historical_receipt_or_checkpoint_overwritten": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified_by_this_lane": false,
+    "protected_sbe_source_modified_by_this_lane": false,
+    "agents_md_modified": false,
+    "external_system_mutated": false,
+    "operator_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:20345c09cf3d2f8afdd72291dab646ac896e6edc8618406751c2a86412aa54c2"
+}

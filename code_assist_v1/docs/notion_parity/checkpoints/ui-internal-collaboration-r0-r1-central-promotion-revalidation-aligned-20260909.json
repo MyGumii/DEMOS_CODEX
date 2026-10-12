@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.r0_r1.central_promotion_revalidation_aligned_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-R0-R1-CENTRAL-PROMOTION-REVALIDATION-ALIGNED-20260909",
+  "recorded_at": "2026-09-09T00:22:21+09:00",
+  "status": "l9_runner_and_central_receipt_revalidation_aligned_local_regression_green_external_execution_deferred",
+  "immutable_after_recording": true,
+  "packet_ids": ["R0A-P1", "R0B-P1", "R1-P1"],
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-r0-r1-central-promotion-revalidation-pre-edit-20260909.json",
+    "sha256": "sha256:6c7fb0c94ac6b093df0f709865b6ed6f654a2090d60343b57c194c5e2d4ba88a",
+    "record_sha256": "sha256:ef58f98207851e7cf5b6b0fda3c31cc6df4f5ef6387febb7a5ba13934e8d38c9"
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    }
+  },
+  "source_compatibility": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-source-compatibility-inheritance-v15-20260909.json",
+    "sha256": "sha256:5581a400acc6b8bea45ee1e2df194fc9bf7d24cafec4f6d740d829c4facdf6a6",
+    "record_sha256": "sha256:e3ce35f0dd28009796676ff7888332a046f0aee22e7ccde0c5b6ae6ca83336fe",
+    "self_hash_verified": true
+  },
+  "sbe_dynamic_baseline": {
+    "path": "capture/o1b-p1-sbe-readiness-contract-audit-20260908-v4.json",
+    "sha256": "sha256:5b5e063cf39488ec3853e3ea22cf7b86698d6fc9aa4f13c3f2db74bb0e81ccb4",
+    "input_sha256": "sha256:4f3e995b27e6a1e2cb0b130212217c62dae9aae688785676b7daf8dd1e4b1e5b",
+    "status": "pass",
+    "error_count": 0,
+    "goal_count": 20,
+    "mandatory_scenario_count": 284,
+    "protected_sbe_changed": false
+  },
+  "post_edit_bindings": {
+    "central_validation": {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:db37900d9f2d6481aaabe643041a5dbee9ffa7f8ea12da8ce4ad2d74d3fca771"
+    },
+    "gate_runner": {
+      "path": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+      "sha256": "sha256:ef9635786663a32610805a9ccefdc0ef870290b937710d227d7673012e3cf9f4"
+    },
+    "promotion_verifier": {
+      "path": "code_assist_v1/notion_collaboration/realm_promotion.py",
+      "sha256": "sha256:afb53db9bd8afa1f30dea576166e96024b108bfd17a834fbba2171224c309810"
+    },
+    "promotion_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_realm_promotion.py",
+      "sha256": "sha256:b5154453d944d44cda123ac661a1fcc62f8f861258b8308390267a49f21d0125"
+    },
+    "s0a_contract": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json",
+      "sha256": "sha256:529fedc2669adc4fedaa666c904002ae019dad0d197329d05a923b01947fbbaa"
+    }
+  },
+  "correction": {
+    "runner_receipt_now_binds": [
+      "promotion_manifest_repository_relative_path",
+      "promotion_manifest_sha256",
+      "promotion_manifest_id"
+    ],
+    "central_validator_now_freshly_reconstructs": [
+      "exact_R0A_R0B_R1_packet_set",
+      "L9_lane_realm_matrix_and_action_denominator",
+      "promotion_manifest_path_hash_and_identity",
+      "release_candidate_and_deployment_generation",
+      "three_operator_action_receipts",
+      "approval_and_SBE_handoff_bindings",
+      "verifier_non_execution_and_no_rollout_attestations"
+    ],
+    "handcrafted_generic_receipt_without_bound_manifest_rejected": true
+  },
+  "verification": {
+    "python_compile": {
+      "status": "pass",
+      "file_count": 4
+    },
+    "focused_source_promotion_target_group": {
+      "status": "pass",
+      "passed": 53,
+      "failed": 0,
+      "duration_seconds": 14.46
+    },
+    "realm_promotion_group": {
+      "status": "pass",
+      "passed": 18,
+      "failed": 0,
+      "duration_seconds": 7.61
+    },
+    "source_harness_s0a_v0b_regression": {
+      "status": "expected_single_central_snapshot_failure",
+      "passed": 105,
+      "failed": 1,
+      "duration_seconds": 195.0,
+      "only_failure": "test_cli_audit_is_zero_and_gate_is_nonzero",
+      "only_error_code": "SBE_AUDIT_HASH_DRIFT"
+    },
+    "s0a_direct_verifier": {
+      "status": "pass",
+      "exit_code": 0,
+      "error_count": 0,
+      "gate_passed": true,
+      "scenario_count": 9,
+      "source_count": 14,
+      "test_count": 6
+    },
+    "o1b_readiness_verifier": {
+      "status": "pass",
+      "exit_code": 0,
+      "error_count": 0,
+      "readiness_contract_passed": true,
+      "gate_passed": false
+    },
+    "central_read_only_audit": {
+      "status": "expected_fail_closed_on_unpromoted_dynamic_sbe_snapshot",
+      "error_count": 1,
+      "error_code": "SBE_AUDIT_HASH_DRIFT",
+      "packet_progress": "44/50",
+      "completion_matrix_progress": "21/28",
+      "phase_gate_progress": "15/20",
+      "valid_execution_receipts": 21
+    }
+  },
+  "remaining_boundaries": [
+    "no promotion evidence root exists yet and no operator receipt was created",
+    "AP-PROD-REHEARSAL, AP-PROD-DEPLOY, and AP-PROD-CANARY remain ungranted",
+    "R0A-P1, R0B-P1, and R1-P1 remain uncredited until actual approved operator evidence is verified",
+    "central catalog, ladder, completion matrix, and current checkpoint remain unchanged"
+  ],
+  "claims": {
+    "central_l9_false_green_closed": true,
+    "historical_receipt_or_checkpoint_overwritten": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "external_system_mutated": false,
+    "operator_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:7766c7b2259a21108df3d10332092f7615208880906a86424158f3dc7490595a"
+}

@@ -1,0 +1,151 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T01:17:40.9967248+09:00",
+  "run_id": "ui18-sb-001-003-local-integration-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_ids": ["UI-SB-001", "UI-SB-002", "UI-SB-003"],
+    "synthetic_only": true,
+    "trusted_os_temporary_data_root": true,
+    "official_reference_mutation_executed": false,
+    "local_second_brain_mutation_executed": true,
+    "live_knowledge_accessed": false,
+    "live_user_data_accessed": false,
+    "live_runtime_accessed": false,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_persisted": false,
+    "cookie_token_or_password_persisted": false,
+    "external_request_count": 0
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-SB-001-003",
+    "status": "local_integration_observed_review_pending",
+    "review_required": true,
+    "promotion_allowed": false,
+    "reference_comparison_applicable": false,
+    "reference_comparison_reason": "The adopted scenario contract states that official Notion has no product-specific Second Brain control and these local effects are not compared to the reference product."
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 10,
+    "local_integration_review_pending": 3,
+    "reference_partially_observed": 4,
+    "reference_unobserved": 3,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI1_LOCAL_SIX_SCENARIO_FOCUS_RESULT_20260815.md",
+      "sha256": "sha256:c95ad221acb7e61a163324a68db76539bdbd259a23f6bef9103ab8e2c4fb8fc0"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SB_003_LOCAL_SESSION_CONTEXT_RESULT_20260815.md",
+      "sha256": "sha256:1ed7624608e673c943b660ac849c316df92507a7fe0a7b95d8b6a33b7f4ad78d"
+    }
+  ],
+  "current_verification": {
+    "browser_integration_selection": {
+      "command_summary": "pytest exact UI-SB-001/002 and UI-SB-003 browser integration nodes",
+      "result": "2 passed in 43.93s",
+      "isolated_temp_root": true,
+      "repeat_runs_per_journey": 2,
+      "exact_identifier_free_report_equality": true
+    },
+    "second_brain_regression_selection": {
+      "command_summary": "pytest publication/job-restart and chat-characterization regressions",
+      "result": "5 passed in 5.08s",
+      "isolated_temp_root": true
+    }
+  },
+  "scenario_observations": {
+    "UI-SB-001": {
+      "reference_applicability": "not_applicable_by_contract",
+      "preview_dialog_focus": true,
+      "cancel_item_delta": 0,
+      "cancel_revision_delta": 0,
+      "implicit_publication": false,
+      "historical_capture_sha256": "sha256:fe207785ed036bdad8018ed69838cac8e46e1aa09edf8681f4bf3389ca081c8e"
+    },
+    "UI-SB-002": {
+      "reference_applicability": "not_applicable_by_contract",
+      "approve_item_delta": 1,
+      "approve_revision_delta": 1,
+      "replay_item_delta": 0,
+      "replay_revision_delta": 0,
+      "source_snapshot_matches": 1,
+      "historical_capture_sha256": "sha256:f6c8b744785db2f8476cfaeabc33a2f8591f40abe57798cca06e9b796a0f5b7e"
+    },
+    "UI-SB-003": {
+      "reference_applicability": "not_applicable_by_contract",
+      "attachment_mutation_sequence": ["POST", "DELETE"],
+      "current_access_revalidated": true,
+      "focus_sequence": ["SESSION-CONTEXT", "SESSION-CONTEXT"],
+      "external_request_count": 0,
+      "second_brain_item_delta": 0,
+      "second_brain_revision_delta": 0,
+      "historical_capture_sha256": {
+        "UI-SB-003-A01": "sha256:cd507bac693773362572138616090f076f4352659179214abb4e30a992f33af8",
+        "UI-SB-003-A02": "sha256:1f4b90ace23df89c2939057b5084177ba6651b15e4597ae8bf39eceb270a9669"
+      }
+    }
+  },
+  "redaction_and_boundary": {
+    "report_contains_temp_path": false,
+    "report_contains_user_id": false,
+    "report_contains_password": false,
+    "report_contains_page_or_session_identifier": false,
+    "report_contains_message_content": false,
+    "production_flag_changed": false,
+    "route_schema_or_migration_changed": false,
+    "official_notion_behavior_claimed_for_second_brain": false
+  },
+  "review_decision_requested": {
+    "proposal": "Treat UI-SB-001/002/003 as local-only adopted product integration scenarios whose official reference dimension is not applicable, while still requiring the exact isolated hard-gate evidence recorded here.",
+    "completion_matrix_change_before_approval": false
+  },
+  "claims": {
+    "ui_sb_001_local_integration_observed": true,
+    "ui_sb_002_local_integration_observed": true,
+    "ui_sb_003_local_integration_observed": true,
+    "ui_sb_001_003_reference_characterized": false,
+    "ui_sb_001_003_differential_passed": false,
+    "ui_sb_001_003_review_pending": true,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "After owner approval of the local-only evidence policy, promote these three scenarios using their isolated hard-gate evidence without inventing an official Notion comparison. Until then, keep the completion matrix unchanged and continue with independent UI-EDITOR-006, UI-RESP-001, or UI-PERF-001 observation."
+}

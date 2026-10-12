@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-STATE015-RESPONSIVE-ALIGNMENT-R273-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T19:33:35.4241639+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r273 Chrome 153 full candidate captures all 18 named states at both adopted viewports, passes all 36 accessibility captures and all four component journeys, and completes synthetic cleanup. V0R-MU-015 now uses state-bounded responsive page positioning, a comment-only icon correction, and a one-pixel downward title/editor correction while leaving V0R-MU-016 unchanged. The isolated r272 run and the full r273 run both reproduce a 10,782 pixel V0R-MU-015 reduction. The r273 full unmasked total is 11,730 pixels lower than r271 and 105,812 pixels lower than r231. Exact RGBA remains 0/36, so r273 is a mutable progress candidate only and is not immutable V0B evidence, a phase-gate claim, or a product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified_by_this_packet": false,
+      "conflicting_change_detected": false
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state005-responsive-alignment-r271-progress-20260831.json",
+      "sha256": "sha256:15ee9ab2428d5dc582f404918175d77a35e15691c47168fcc84d3db5c8ec0160"
+    },
+    "baseline_candidate": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r231/receipt.json",
+      "receipt_sha256": "sha256:6def10297f8011749f51c81a1f439059bd20313beebc1d1f92e0878964c0cca4",
+      "unmasked_difference_count": 2349944,
+      "masked_difference_count": 72612,
+      "raw_difference_count": 2422556
+    },
+    "previous_candidate": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r271/receipt.json",
+      "receipt_sha256": "sha256:d5cb0eacfcdccd7e5ada3e86e1bf71910e85a57851d737fabfd2fc9cb38a393b",
+      "unmasked_difference_count": 2255862,
+      "masked_difference_count": 70240,
+      "raw_difference_count": 2326102
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:d78ef67bfcb8f319fb699dc135bbc9e789a89e911ca8e13c4aa0aff952c59adc",
+        "changes": [
+          "retain all r271 state-bounded capture corrections",
+          "change only V0R-MU-015 page margin-left from 464px to 465px wide and 458px compact",
+          "change only V0R-MU-015 page-icon transform from translate(4px, -10px) to translate(0, -10px)",
+          "apply a one-pixel downward V0R-MU-015 page-title translation",
+          "change only V0R-MU-015 editor-group vertical translation from 3px to 4px",
+          "preserve all V0R-MU-016 title, icon, editor, cursor, and access-boundary rules"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:b9fd7185d0b81d5c5b3faff110125bc1595f3d4147e98c3ccd5e9c592b3bc4c3"
+      }
+    ],
+    "isolated_r272_reproduction": {
+      "V0R-MU-015_1440x900_delta_from_r271": -1835,
+      "V0R-MU-015_1280x800_delta_from_r271": -8947,
+      "isolated_total_delta": -10782,
+      "isolated_state_total": 71922,
+      "full_r273_state_total": 71922,
+      "V0R-MU-017_delta": 0,
+      "V0R-MU-018_delta": 0,
+      "state_leak_detected": false,
+      "accessibility_pass_count": 20,
+      "cleanup_status": "complete"
+    },
+    "rejected_experiments_not_restored": {
+      "V0R-MU-015_Korean_display_string_substitution": false,
+      "V0R-MU-016_page_title_transform": false
+    },
+    "repeat_run_variability_not_claimed": {
+      "V0R-MU-005_1280x800_delta": -253,
+      "V0R-MU-008_1440x900_delta": 20,
+      "V0R-MU-008_1280x800_delta": -1,
+      "V0R-MU-010_1440x900_delta": -713,
+      "V0R-MU-014_1280x800_delta": -1
+    }
+  },
+  "retained_r273_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r273",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r273/receipt.json",
+    "receipt_sha256": "sha256:9c9207a3f2db536a59d5b25a211623f86c291cab1105a07a9e62ca68d620b8fe",
+    "source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "browser_major_version": "153",
+    "duration_ms": 427545,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2244132,
+    "masked_difference_count": 70240,
+    "raw_difference_count": 2314372,
+    "unmasked_delta_from_r271": -11730,
+    "masked_delta_from_r271": 0,
+    "raw_delta_from_r271": -11730,
+    "unmasked_delta_from_r268": -28507,
+    "masked_delta_from_r268": 0,
+    "raw_delta_from_r268": -28507,
+    "unmasked_delta_from_r264": -30392,
+    "masked_delta_from_r264": 16,
+    "raw_delta_from_r264": -30376,
+    "unmasked_delta_from_r258": -36392,
+    "masked_delta_from_r258": 0,
+    "raw_delta_from_r258": -36392,
+    "unmasked_delta_from_r253": -53171,
+    "masked_delta_from_r253": 0,
+    "raw_delta_from_r253": -53171,
+    "unmasked_delta_from_r248": -54289,
+    "masked_delta_from_r248": 0,
+    "raw_delta_from_r248": -54289,
+    "unmasked_delta_from_r231": -105812,
+    "masked_delta_from_r231": -2372,
+    "raw_delta_from_r231": -108184,
+    "unmasked_state_totals": {
+      "V0R-MU-001": 197776,
+      "V0R-MU-002": 188556,
+      "V0R-MU-003": 137453,
+      "V0R-MU-004": 125086,
+      "V0R-MU-005": 64779,
+      "V0R-MU-006": 189974,
+      "V0R-MU-007": 113094,
+      "V0R-MU-008": 115358,
+      "V0R-MU-009": 131745,
+      "V0R-MU-010": 116929,
+      "V0R-MU-011": 113001,
+      "V0R-MU-012": 110620,
+      "V0R-MU-013": 143500,
+      "V0R-MU-014": 171717,
+      "V0R-MU-015": 71922,
+      "V0R-MU-016": 70874,
+      "V0R-MU-017": 90943,
+      "V0R-MU-018": 90805
+    },
+    "source_reproduced_state_deltas_from_r271": {
+      "V0R-MU-015": -10782
+    },
+    "c0_p2_measurements_ms": {
+      "presence_delivery_ms": 561,
+      "comment_delivery_ms": 1530,
+      "reaction_delivery_ms": 1546,
+      "presence_ttl_expiry_ms": 15625,
+      "reconnect_ms": 1297
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:7a44607a076bc4ff765fcfee349787f5656734d1fd5aee99adc0fc5721c3f32d"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_i0_semantic_diagnostic.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "16 passed in 14.30s",
+      "exit_code": 0
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:9c9207a3f2db536a59d5b25a211623f86c291cab1105a07a9e62ca68d620b8fe"
+    },
+    "full_candidate": {
+      "component_journey_statuses": {
+        "I0-P2": "pass",
+        "C0-P2": "pass",
+        "E1-P2": "pass",
+        "F0-P5": "pass"
+      },
+      "all_adopted_multiuser_states_captured": true,
+      "accessibility_evidence_complete": true,
+      "zero_unmasked_RGBA_difference": false
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from the retained r273 mutable candidate. Do not restore the rejected V0R-MU-015 Korean display-string substitution or V0R-MU-016 title transform. Preserve the V0R-MU-005 and V0R-MU-015 responsive alignment corrections, prioritize another reproducible state-bounded structural difference, and do not run fresh Core 25 or quiet-host performance gates until the 36/36 exact gate closes."
+}

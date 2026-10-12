@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-REFERENCE-PIXEL-BASELINE-INVALID-20260827",
+  "recorded_at": "2026-08-27T02:45:01+09:00",
+  "checkpoint_kind": "immutable_reference_exact_pixel_contract_conflict",
+  "packet_id": "V0B-P1",
+  "packet_status": "awaiting_explicit_reference_supersession_direction",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Record why the sealed redacted V0R evidence remains valid as semantic reference evidence but cannot serve as a legitimate full-viewport exact-RGBA baseline under the current 2-percent content-independent mask contract.",
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-runtime-replay-fix-diagnostic-20260827.json",
+    "sha256": "sha256:36e5874c3aa53f76853253413faa4e0da35566171603553f87e84bdc6ad49600"
+  },
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "sealed_reference": {
+    "receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "verifier_status": "pass",
+    "semantic_action_count": 11,
+    "capture_count": 36,
+    "cleanup_complete": true,
+    "receipt_observation_policy": "Each capture interaction observation identifies the persisted artifact as redacted reference evidence.",
+    "reexecuted_or_modified": false
+  },
+  "machine_observed_baseline_conflict": {
+    "state_id": "V0R-MU-004",
+    "surface": "page_share_dialog",
+    "solid_region_rgba": [36, 36, 36, 255],
+    "region_origin": {"x": 0, "y": 0},
+    "viewports": [
+      {
+        "screenshot_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-004__1440x900.png",
+        "screenshot_sha256": "sha256:c5e54bca81b238c74dbcd1a957a8f61d24a9573f75ad19e3ad03e020856cc137",
+        "image": {"width": 1440, "height": 900},
+        "full_height_solid_region": {"width": 300, "height": 900, "pixel_count": 270000},
+        "image_ratio": 0.20833333333333334
+      },
+      {
+        "screenshot_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-004__1280x800.png",
+        "screenshot_sha256": "sha256:3cc8503102b42242117f6bd8000af0c138190b043ce1e114b423b958f1b51d43",
+        "image": {"width": 1280, "height": 800},
+        "full_height_solid_region": {"width": 300, "height": 800, "pixel_count": 240000},
+        "image_ratio": 0.234375
+      }
+    ],
+    "method": "The repository exact-pixel decoder read the sealed PNG as sRGB RGBA8, then every pixel in consecutive full-height columns from x=0 was compared with RGBA 36,36,36,255.",
+    "interpretation": "The full-height privacy-redacted region is part of the sealed PNG bytes and is far larger than any admissible dynamic-region mask. It is not a candidate product surface that can be reproduced without evidence-tailored fake UI."
+  },
+  "exact_pixel_contract": {
+    "path": "code_assist_v1/tools/notion_parity/exact_pixel.py",
+    "sha256": "sha256:4797cd46fe6aebc3b11c768ef58d29e62a175a8d07dba0f08e1928fedb3135c5",
+    "maximum_masked_pixel_ratio": 0.02,
+    "allowed_mask_reasons": ["avatar", "caret", "clock", "os_raster_noise"],
+    "content_independent_required": true,
+    "global_or_privacy_redaction_mask_allowed": false
+  },
+  "current_candidate": {
+    "receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-l6-final-candidate-20260826.json",
+    "receipt_sha256": "sha256:265b1afeaec15b5cb7f4f896584d6125c99d973c64dc0e18e8b25072a73b9ecd",
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "component_journeys_passed": 4,
+    "component_cleanup_proofs_passed": 4,
+    "independent_cleanup_counts": [0, 0, 0, 0],
+    "verifier_error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    }
+  },
+  "rejected_shortcuts": [
+    "Do not render the sealed screenshot or its privacy blocks as candidate product UI.",
+    "Do not add a content-dependent or catch-all mask to hide layout differences.",
+    "Do not overwrite, silently edit, or falsely relabel the sealed V0R receipt.",
+    "Do not weaken zero-unmasked-RGBA or advance to O1B without an explicit contract decision."
+  ],
+  "required_direction": {
+    "recommended": "Authorize a superseding V0R-P1 corrective reference run under a new immutable receipt and screenshot root. Preserve the existing sealed receipt as semantic evidence, but collect pixel-baseline-compatible screenshots with deterministic synthetic content and no large content-dependent privacy occlusion.",
+    "alternative": "Explicitly amend the frozen V0B contract to use semantic, geometry, accessibility, and bounded reviewed dynamic masks instead of full-viewport exact RGBA against the current redacted reference. This is a weaker gate and is not assumed.",
+    "authority_reason": "The handoff explicitly says not to rerun completed evidence. Superseding the sealed V0R baseline or weakening its gate is therefore a material contract change that requires user direction."
+  },
+  "scope_attestation": {
+    "reference_reexecuted": false,
+    "reference_modified": false,
+    "candidate_static_UI_modified_for_evidence": false,
+    "production_or_second_brain_changed": false,
+    "personal_content_accessed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false
+  },
+  "claims": {
+    "V0R_P1_semantic_receipt_still_valid": true,
+    "V0R_P1_pixel_baseline_valid": false,
+    "V0B_P1_gate_passed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Wait for explicit direction to supersede the immutable V0R pixel baseline or amend the frozen pixel contract; do not mutate external Notion or the candidate UI to simulate redaction before that direction."
+}

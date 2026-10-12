@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-P1-CRYPTOGRAPHIC-READINESS-20260907",
+  "recorded_at": "2026-09-07T08:52:12+09:00",
+  "checkpoint_kind": "fail_closed_pre_execution_readiness",
+  "packet_id": "O1B-P1",
+  "packet_status": "ready_for_target_specific_approval_and_handoff",
+  "purpose": "Preserve the completed offline O1B-P1 target backup/restore verification contract without claiming approval, target execution, gate passage, or product completion.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "packet_id": "V0B-P1",
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-strict-similarity-r9-green-20260907.json",
+    "checkpoint_sha256": "sha256:fedcd2208fd4a311ca8191adb31d240ca98fc9d092bc728a0cb6acfe1c716ab8",
+    "gate_passed": true
+  },
+  "artifacts": {
+    "readiness_policy": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v1.json",
+      "sha256": "sha256:345572f54a67af8ac853a64a78b2556bcb4d1298f3de21e871efa78036b90c15"
+    },
+    "verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_target_restore.py",
+      "sha256": "sha256:a3a692ad03465cb35e0949d4f2c3b3cdac999ad64c5bbfb555e155a1f952b85a"
+    },
+    "unit_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_restore.py",
+      "sha256": "sha256:735579c27f0c4ff5ab60cdd268c559f552fbccc2158b106becbd88517481cca0"
+    },
+    "fresh_sbe_contract_audit": {
+      "path": "capture/o1b-p1-sbe-readiness-contract-audit-20260907.json",
+      "sha256": "sha256:f82194fadb5498100426c2fe50d15a134c0e5de4856c3ba016ff11fe54b5bc30",
+      "input_sha256": "sha256:4fbbf741aece1a5ee3ddd6e24479b3662dd76d04ed10566e642e300360ceedc7",
+      "status": "pass",
+      "error_count": 0,
+      "source_file_count": 33,
+      "goal_count": 20,
+      "scenario_count": 284
+    },
+    "sbe_contract_auditor": {
+      "path": "code_assist_v1/tools/contract_audit.py",
+      "sha256": "sha256:b24a0f1da0c193ae499bddef1e8b5113020be14175bf31af736dafe190c7516d"
+    },
+    "dynamic_instructions": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified_by_this_packet": false
+    }
+  },
+  "verification": {
+    "compile_status": "pass",
+    "target_verifier_unit_tests": {
+      "status": "pass",
+      "passed": 50,
+      "failed": 0
+    },
+    "focused_restore_regression": {
+      "status": "pass",
+      "passed": 77,
+      "failed": 0,
+      "duration_seconds": 132.32,
+      "files": [
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_restore.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_local_restore.py",
+        "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py",
+        "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py",
+        "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py"
+      ]
+    },
+    "readiness_mode": {
+      "status": "pass",
+      "exit_code": 0,
+      "error_count": 0,
+      "readiness_contract_passed": true,
+      "gate_passed": false
+    },
+    "execution_required_mode": {
+      "status": "fail",
+      "exit_code": 1,
+      "error_code": "TARGET_EXECUTION_EVIDENCE_REQUIRED",
+      "gate_passed": false
+    }
+  },
+  "fail_closed_guarantees": {
+    "authorized_execution_policy_sha256": null,
+    "code_pinned_policy_activation_required": true,
+    "caller_pinned_exact_policy_hash_required": true,
+    "minimum_distinct_ed25519_key_count": 4,
+    "single_read_digest_binding_for_signed_inputs": true,
+    "signed_sanitized_evidence_index_required": true,
+    "sanitized_evidence_artifact_count": 21,
+    "evidence_root_containment_and_file_hash_verified": true,
+    "artifact_specific_source_system_binding": true,
+    "machine_identity_observation_binding": true,
+    "durable_nonce_ledger_compare_exchange_claim_binding": true,
+    "cross_receipt_execution_and_nonce_reuse_rejection_required_at_registration": true,
+    "incident_origin_rto_measurement": true,
+    "same_generation_manifest_snapshot_and_blob_binding": true,
+    "missing_or_malformed_evidence_returns_structured_failure": true,
+    "production_restore_authorized": false
+  },
+  "execution_truth": {
+    "AP_OPS_TARGET_granted": false,
+    "XG_SBE_TARGET_OPERATIONS_HANDOFF_accepted": false,
+    "target_specific_successor_policy_bound": false,
+    "target_action_executed": false,
+    "external_backup_created": false,
+    "target_restore_executed": false,
+    "O1B_P1_gate_passed": false,
+    "production_restore_executed": false
+  },
+  "central_state_preserved": {
+    "packet_catalog_sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98",
+    "validation_ladder_sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915",
+    "completion_matrix_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "current_checkpoint_pointer_sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2",
+    "gate_passed_required_packets": 44,
+    "required_packet_count": 50,
+    "closed_matrix_rows": 21,
+    "matrix_row_count": 28,
+    "closed_phase_gates": 15,
+    "phase_gate_count": 20,
+    "central_files_modified_by_this_readiness_checkpoint": false
+  },
+  "required_nonsecret_inputs_before_execution": [
+    "exact target Windows server identity and approved connection method",
+    "opaque source data/database/blob/projection locator bindings",
+    "encrypted off-host backup destination identity and opaque root binding",
+    "encryption key owner and non-secret key ID",
+    "empty new restore-root binding",
+    "approval, handoff, evidence-index, and reviewer Ed25519 public keys and key IDs",
+    "authorized reviewer, attestation system, trust policy, and durable nonce ledger IDs"
+  ],
+  "forbidden_chat_inputs": [
+    "password",
+    "access token",
+    "private key",
+    "raw credential",
+    "authorization header",
+    "session cookie"
+  ],
+  "resume_condition": "Create and independently review one target-specific bound successor policy, pin its exact SHA-256 in the verifier, obtain fresh AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF artifacts for one execution ID, and only then perform the isolated encrypted off-host backup and new-root target restore.",
+  "completion_truth": {
+    "V0R_P1_gate_passed": true,
+    "V0B_P1_gate_passed": true,
+    "O1B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "goal_complete": false
+}

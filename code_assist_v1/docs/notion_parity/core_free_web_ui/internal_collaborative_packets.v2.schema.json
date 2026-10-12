@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/schemas/internal-collaborative-packets-v2.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "contract", "recorded_at", "revised_at",
+    "predecessor_sha256", "catalog_state", "authority_inputs",
+    "integrity_binding", "status_values", "status_semantics",
+    "phase_order", "packet_contract", "authority_precedence",
+    "sbe_alignment_contract", "status_integrator_contract",
+    "ownership_lanes", "approval_registry", "external_gate_registry",
+    "goal_completion_contract", "phase_gates", "decision_freeze",
+    "packets", "matrix_closure_registry", "next_packet", "claims"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "contract": {"const": "code_assist.notion.internal_collaborative_packets.v2"},
+    "recorded_at": {"type": "string", "minLength": 1},
+    "revised_at": {"type": "string", "minLength": 1},
+    "predecessor_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "catalog_state": {"type": "string", "minLength": 1},
+    "authority_inputs": {"type": "object"},
+    "integrity_binding": {"type": "object"},
+    "status_values": {
+      "type": "array", "minItems": 6, "uniqueItems": true,
+      "items": {"enum": ["planned", "in_progress", "implemented_unverified", "gate_passed", "blocked", "superseded"]}
+    },
+    "status_semantics": {"type": "object"},
+    "phase_order": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "packet_contract": {"type": "object"},
+    "authority_precedence": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "sbe_alignment_contract": {"type": "object"},
+    "status_integrator_contract": {"type": "object"},
+    "ownership_lanes": {"type": "object"},
+    "approval_registry": {"type": "array", "items": {"$ref": "#/$defs/approval"}},
+    "external_gate_registry": {"type": "array", "items": {"$ref": "#/$defs/externalGate"}},
+    "goal_completion_contract": {"type": "object"},
+    "phase_gates": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/phaseGate"}},
+    "decision_freeze": {"type": "object"},
+    "packets": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/packet"}},
+    "matrix_closure_registry": {"type": "object"},
+    "next_packet": {"type": "string", "minLength": 1},
+    "claims": {"type": "object"}
+  },
+  "$defs": {
+    "stringList": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "approval": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "status", "scope"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^AP-[A-Z0-9-]+$"},
+        "status": {"type": "string", "minLength": 1},
+        "scope": {"type": "string", "minLength": 1}
+      }
+    },
+    "externalGate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "status", "rule"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^XG-[A-Z0-9-]+$"},
+        "status": {"type": "string", "minLength": 1},
+        "source_paths": {"$ref": "#/$defs/stringList"},
+        "related_sbe_packets": {"$ref": "#/$defs/stringList"},
+        "rule": {"type": "string", "minLength": 1}
+      }
+    },
+    "phaseGate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "phase", "exit"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Z0-9]+-GATE-[0-9]{3}$"},
+        "phase": {"type": "string", "minLength": 1},
+        "exit": {"type": "string", "minLength": 1}
+      }
+    },
+    "packetApproval": {
+      "type": ["object", "null"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^AP-[A-Z0-9-]+$"},
+        "required_when": {"$ref": "#/$defs/stringList"}
+      },
+      "required": ["id", "required_when"],
+      "additionalProperties": false
+    },
+    "packet": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "id", "phase", "status", "required", "prerequisites",
+        "conditional_prerequisites", "approval", "ownership_lane",
+        "deliverables", "validation_ids", "matrix_contributes_to",
+        "matrix_closes", "gate_ids"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Z0-9]+(?:-[A-Z0-9]+)+$"},
+        "phase": {"type": "string", "minLength": 1},
+        "status": {"enum": ["planned", "in_progress", "implemented_unverified", "gate_passed", "blocked", "superseded"]},
+        "required": {"type": "boolean"},
+        "prerequisites": {"$ref": "#/$defs/stringList"},
+        "conditional_prerequisites": {"type": "array"},
+        "approval": {"$ref": "#/$defs/packetApproval"},
+        "ownership_lane": {"type": "string", "minLength": 1},
+        "deliverables": {"$ref": "#/$defs/stringList"},
+        "validation_ids": {"$ref": "#/$defs/stringList"},
+        "matrix_contributes_to": {"$ref": "#/$defs/stringList"},
+        "matrix_closes": {"$ref": "#/$defs/stringList"},
+        "gate_ids": {"$ref": "#/$defs/stringList"},
+        "external_prerequisites": {"$ref": "#/$defs/stringList"},
+        "sbe_scenario_ids": {"$ref": "#/$defs/stringList"},
+        "sbe_evolution_scenario_ids": {"$ref": "#/$defs/stringList"},
+        "sbe_preflight_required": {"type": "boolean"},
+        "required_when": {"$ref": "#/$defs/stringList"},
+        "required_gate_inputs": {"$ref": "#/$defs/stringList"}
+      }
+    }
+  }
+}

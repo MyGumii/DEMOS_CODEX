@@ -1,0 +1,51 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-14T21:55:44+09:00",
+  "run_id": "ui1-packet-d-live-path-stop-20260814",
+  "status": "stopped_before_browser_after_live_path_read_boundary",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-packets-a-c-contract-foundation-20260814.json",
+    "sha256": "61c05e926929eb4558d2817e8c83d89360d165b492713e21c5eef063374d4efe",
+    "semantic_status": "packets_a_b_c_complete_packet_d_ready"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective_status": "in_progress",
+    "completion_claimed": false,
+    "blocked_claimed": false
+  },
+  "incident": {
+    "kind": "forbidden_live_local_path_read",
+    "cause": "A read-only source search named the tests directory as a broad recursive search root and traversed code_assist_v1/user_data/** before output truncation.",
+    "scope": "read-only command output; no repository evidence artifact contains the output",
+    "mutations": false,
+    "browser_accessed": false,
+    "network_accessed": false,
+    "external_message_or_publication": false,
+    "live_database_opened": false,
+    "personal_notion_workspace_accessed": false,
+    "sensitive_values_reproduced_in_checkpoint": false
+  },
+  "preserved_results": {
+    "packets_a_b_c_checkpoint": "valid and unaffected",
+    "ui_harness_focused": "15 passed in 3.38s",
+    "combined_contract_and_historical_compatibility": "49 passed in 11.90s"
+  },
+  "stop_conditions_evaluated": {
+    "live_local_data_access": true,
+    "personal_notion_content_exposure": false,
+    "owned_file_drift": false,
+    "protected_file_modification": false,
+    "operational_state_change": false,
+    "unredacted_repository_artifact": false
+  },
+  "resume_protocol": [
+    "Start a fresh execution run and rehash AGENTS.md plus the two authoritative UI plans and the Packet A-C checkpoint.",
+    "Use only explicit individual source files for local-startup inspection; never use code_assist_v1 or code_assist_v1/tests as recursive search roots.",
+    "Add explicit exclusions for user_data, knowledge, .runtime, sessions, and workspace to every non-exact search.",
+    "Create a unique trusted OS temporary data root before importing the application.",
+    "Do not begin Browser Packet D until the isolated process health endpoint proves that all mutable paths resolve under that root."
+  ],
+  "next_exact_action": "Rehash the authoritative inputs and Packet A-C checkpoint, inspect only exact config/app/auth source files, and build an isolated local-startup proof without traversing any live mutable directory."
+}

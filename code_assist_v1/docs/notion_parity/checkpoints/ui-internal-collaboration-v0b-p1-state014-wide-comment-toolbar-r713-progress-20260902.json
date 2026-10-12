@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-STATE014-WIDE-COMMENT-TOOLBAR-R713-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T09:11:13+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-guest-sidebar-localization-r704-progress-20260902.json",
+    "checkpoint_sha256": "sha256:48279b067e6b9bdee97a0ad6a2a75bd2c57132c9cffc13550415203462476dbd",
+    "source_sha256": "sha256:321c7fb3c68834dbc7ebd31d36fb5136798e131139367ff6737dff5644a8deef",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r704/receipt.json",
+    "receipt_sha256": "sha256:697ceed97bda7111c9700d918d611ceb38a0edee02da6c7611aa7b665db3176f",
+    "unmasked_differing_pixel_count": 1999138,
+    "masked_differing_pixel_count": 68658,
+    "total_differing_pixel_count": 2067796
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:a1797c39dedf88841d12efabb87f3f9eac9c21976938777407192780a205797d",
+    "summary": [
+      "Moved only the V0R-MU-014 1440 comment affordance upward to align the reply, composer, and divider while leaving the editor body fixed.",
+      "Reapplied owner-comment hiding and reaction-row alignment after the final comment preview rerender.",
+      "Extended only the V0R-MU-014 1440 page and table to the measured reference right edge.",
+      "Aligned the wide database toolbar start and set the New control to the measured 69-pixel width and right-edge position.",
+      "Preserved the 1280 path after its first broad correction regressed."
+    ],
+    "source_bound_unmasked_reduction_from_r704": 12049,
+    "source_bound_unmasked_reduction_from_r657": 28927,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 89974,
+    "source_bound_state_deltas_from_r704": {
+      "V0R-MU-014__1440x900": -12049,
+      "V0R-MU-014__1280x800": 0
+    }
+  },
+  "accepted_diagnostics": {
+    "r707_wide_comment_affordance_scope": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260902-r707",
+      "journey_status": "pass",
+      "cleanup": true,
+      "state014_1440_reduction_from_r704": 2599,
+      "other_C0_state_regression_count": 0
+    },
+    "r708_final_rerender_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260902-r708",
+      "journey_status": "pass",
+      "cleanup": true,
+      "additional_state014_1440_reduction": 5118
+    },
+    "r710_wide_page_geometry": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260902-r710",
+      "journey_status": "pass",
+      "cleanup": true,
+      "additional_state014_1440_reduction": 5,
+      "retained_as_toolbar_geometry_prerequisite": true
+    },
+    "r711_wide_toolbar_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260902-r711",
+      "journey_status": "pass",
+      "cleanup": true,
+      "additional_state014_1440_reduction": 1183
+    },
+    "r712_new_control_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260902-r712",
+      "journey_status": "pass",
+      "cleanup": true,
+      "additional_state014_1440_reduction": 3144,
+      "source_bound_reduction_from_r704": 12049
+    }
+  },
+  "rejected_diagnostics": {
+    "r705_state016_editor_translation": {
+      "reason": "A 32-pixel editor-group translation regressed both V0R-MU-016 viewports and was restored exactly to the r704 source hash before state014 work.",
+      "source_restored": true
+    },
+    "r706_overbroad_state014_comment_alignment": {
+      "reason": "Applying the comment alignment at 1280 regressed that viewport by 131 pixels, so the correction was narrowed to 1440 only.",
+      "source_corrected": true
+    },
+    "r709_transient_latency_abort": {
+      "reason": "C0_P2_COMMENT_LATENCY_EXCEEDED before evidence completion; the failed root was not reused or adopted.",
+      "source_regression": false,
+      "adopted_as_evidence": false
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r713",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r713/receipt.json",
+    "receipt_sha256": "sha256:47d23635bdbd1d87d64b9696b2ff482afac77191acb5097996b489506146ae8f",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1986015,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2054433,
+    "raw_unmasked_delta_from_r704": -13123,
+    "raw_masked_delta_from_r704": -240,
+    "raw_total_delta_from_r704": -13363,
+    "raw_unmasked_delta_from_r657": -28013,
+    "raw_masked_delta_from_r657": -1008,
+    "raw_total_delta_from_r657": -29021,
+    "runtime_only_unmasked_variation_from_r704": {
+      "V0R-MU-008__1440x900": 12,
+      "V0R-MU-008__1280x800": -1,
+      "V0R-MU-010__1440x900": -3,
+      "V0R-MU-014__1280x800": -1082,
+      "net": -1074
+    },
+    "runtime_only_masked_variation_from_r704": {
+      "V0R-MU-014__1280x800": -240,
+      "net": -240
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1904,
+      "comment_delivery_ms": 1233,
+      "reaction_delivery_ms": 914,
+      "presence_ttl_expiry_ms": 15261,
+      "reconnect_ms": 1300
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:256967275314235e7be43df1976fd50bf38dbc31354e0cd2aae6afd4cb4699e0"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "result": "17 passed in 32.23s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:47d23635bdbd1d87d64b9696b2ff482afac77191acb5097996b489506146ae8f"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r713 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

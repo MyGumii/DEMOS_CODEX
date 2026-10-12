@@ -1,0 +1,574 @@
+{
+  "contract": "code_assist.notion.core_free_ui.completion_matrix.v1",
+  "recorded_at": "2026-08-23T01:06:03+09:00",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "scenario_plan": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+    "file_sha256": "sha256:455de38d4ac91deb9de7df0a92fd94dcbcd234dd50569f8148ce3b4f80672a43",
+    "canonical_sha256": "sha256:3ff7de3c2f103eebbc55ecdc5ed10833a07dbcd708daeba5d502fe0061953442"
+  },
+  "latest_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-quiet-host-two-consecutive-green-20260823.json",
+    "sha256": "sha256:30ae6501a9f88470a5bbe553df81f0a17c11d048b832675838de50a532b3e1e9"
+  },
+  "summary": {
+    "required_scenarios": 25,
+    "local_real_browser_green": 24,
+    "local_measurement_green": 1,
+    "reference_characterized": 21,
+    "differential_passed": 20,
+    "local_integration_passed": 3,
+    "local_recovery_contract_passed": 1,
+    "measurement_contract_passed": 1,
+    "evidence_satisfied": 25,
+    "unresolved": 0,
+    "promoted": 0
+  },
+  "scenarios": [
+    {
+      "scenario_id": "UI-SHELL-001",
+      "phase": "H3",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_001_LOCAL_WORKSPACE_ISOLATION_RESULT_20260815.md",
+        "sha256": "sha256:c0656bd987c2db7c2b4f94a257504b86ddc0b92649253aa1855708069546b5b4"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:4548aa286245efe6b869c9badd92272627e56ce3209a81e41f5274d51bc76f0e"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:4548aa286245efe6b869c9badd92272627e56ce3209a81e41f5274d51bc76f0e"
+      }
+    },
+    {
+      "scenario_id": "UI-SHELL-002",
+      "phase": "H3",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_002_REFERENCE_DIFFERENTIAL_20260820.json",
+        "sha256": "sha256:bd1cb1e1e77179dfd74c582845cba63bb473295470684b17a283c1abe38963e9"
+      },
+      "reference_state": "reference_characterized",
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_002_REFERENCE_DIFFERENTIAL_20260820.json",
+        "sha256": "sha256:bd1cb1e1e77179dfd74c582845cba63bb473295470684b17a283c1abe38963e9"
+      },
+      "differential_state": "differential_passed",
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_002_REFERENCE_DIFFERENTIAL_20260820.json",
+        "sha256": "sha256:bd1cb1e1e77179dfd74c582845cba63bb473295470684b17a283c1abe38963e9"
+      },
+      "promotion_allowed": false
+    },
+    {
+      "scenario_id": "UI-SHELL-003",
+      "phase": "H3",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_003_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:af977c759a178a8c8aae39626ebddf3c677e4e54366f12d6e6238a691ec7e997"
+      },
+      "reference_state": "reference_characterized",
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_003_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:af977c759a178a8c8aae39626ebddf3c677e4e54366f12d6e6238a691ec7e997"
+      },
+      "differential_state": "differential_passed",
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_003_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:af977c759a178a8c8aae39626ebddf3c677e4e54366f12d6e6238a691ec7e997"
+      },
+      "promotion_allowed": false
+    },
+    {
+      "scenario_id": "UI-TREE-001",
+      "phase": "H3",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_001_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:fbc705e540513e1b6b4a0096de8adb24894883953ebc1efeb4e224444a38dc5f"
+      },
+      "reference_state": "reference_characterized",
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_001_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:fbc705e540513e1b6b4a0096de8adb24894883953ebc1efeb4e224444a38dc5f"
+      },
+      "differential_state": "differential_passed",
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_001_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:fbc705e540513e1b6b4a0096de8adb24894883953ebc1efeb4e224444a38dc5f"
+      },
+      "promotion_allowed": false
+    },
+    {
+      "scenario_id": "UI-TREE-002",
+      "phase": "H3",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_002_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:619268976c94831635e88d9c56d1d210886a4798f8ad6d759c735a8c2e227a80"
+      },
+      "reference_state": "reference_characterized",
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_002_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:619268976c94831635e88d9c56d1d210886a4798f8ad6d759c735a8c2e227a80"
+      },
+      "differential_state": "differential_passed",
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_002_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:619268976c94831635e88d9c56d1d210886a4798f8ad6d759c735a8c2e227a80"
+      },
+      "promotion_allowed": false
+    },
+    {
+      "scenario_id": "UI-TREE-003",
+      "phase": "H3",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_003_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:4fb28bcc951111cf251321dccaa93a91f424931772d4a7a1be24e16f48aeeca3"
+      },
+      "reference_state": "reference_characterized",
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_003_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:4fb28bcc951111cf251321dccaa93a91f424931772d4a7a1be24e16f48aeeca3"
+      },
+      "differential_state": "differential_passed",
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_003_REFERENCE_DIFFERENTIAL_20260821.json",
+        "sha256": "sha256:4fb28bcc951111cf251321dccaa93a91f424931772d4a7a1be24e16f48aeeca3"
+      },
+      "promotion_allowed": false
+    },
+    {
+      "scenario_id": "UI-EDITOR-001",
+      "phase": "H4",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI1_LOCAL_SIX_SCENARIO_FOCUS_RESULT_20260815.md",
+        "sha256": "sha256:c95ad221acb7e61a163324a68db76539bdbd259a23f6bef9103ab8e2c4fb8fc0"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:ea4f922f17162b54a6e3ff876c20a98695d288905f6a4e735c0b1020c35921a5"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:ea4f922f17162b54a6e3ff876c20a98695d288905f6a4e735c0b1020c35921a5"
+      }
+    },
+    {
+      "scenario_id": "UI-EDITOR-002",
+      "phase": "H4",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_002_LOCAL_SLASH_MENU_RESULT_20260815.md",
+        "sha256": "sha256:38f75a31c81d36db8bf5bf45c3e3ada291048a57f009fde4eed7dc19a359b6d2"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_002_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:20c661e37acb9380cedb55b8a4f243443ae016e38db6836c022247aada7a9a42"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_002_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:20c661e37acb9380cedb55b8a4f243443ae016e38db6836c022247aada7a9a42"
+      }
+    },
+    {
+      "scenario_id": "UI-EDITOR-003",
+      "phase": "H4",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_003_LOCAL_SELECTION_CLIPBOARD_HISTORY_RESULT_20260815.md",
+        "sha256": "sha256:7a5f3c5d9aeabd3194eafed345e5f38cb7f808e991171c97b52e76168c9df79a"
+      },
+      "evidence_mode": "reference_observable_outcome",
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      }
+    },
+    {
+      "scenario_id": "UI-EDITOR-004",
+      "phase": "H4",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_004_LOCAL_IME_RESULT_20260815.md",
+        "sha256": "sha256:2f689c934834d575866eb8fbe8a50d83336c15efa46a57b24999b9086e12a8db"
+      },
+      "evidence_mode": "reference_observable_outcome",
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      }
+    },
+    {
+      "scenario_id": "UI-EDITOR-005",
+      "phase": "H4",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_005_LOCAL_SURFACE_PARITY_RESULT_20260815.md",
+        "sha256": "sha256:ff0d9ec1e8523a92671509899caf9a0743aa44059a67badf54ba5530b5ef958a"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_005_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:c9619802b4037d9ce809cee0e37834ae131f48ca92fa06878aeeb31e9ec12e7c"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_005_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:c9619802b4037d9ce809cee0e37834ae131f48ca92fa06878aeeb31e9ec12e7c"
+      }
+    },
+    {
+      "scenario_id": "UI-EDITOR-006",
+      "phase": "H4",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_006_LOCAL_DRAFT_RECOVERY_RESULT_20260815.md",
+        "sha256": "sha256:b5379d61fea6102eb460f1f96c507d528a498a4f84bcccf529c6c80a6b80a7c1"
+      },
+      "evidence_mode": "local_failure_recovery_contract",
+      "reference_state": "safely_inapplicable_for_failure_injection",
+      "differential_state": "local_recovery_contract_passed",
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      },
+      "promotion_allowed": false
+    },
+    {
+      "scenario_id": "UI-DB-001",
+      "phase": "H5",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_001_LOCAL_TYPED_PROPERTY_RESULT_20260815.md",
+        "sha256": "sha256:7f73daf2c75fd038fc3e9b2c75377eee3bf1ad17a035301a49082171a6b3478a"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:ccc3890c4504d5fa743a370254e84321fbc9841faf53e7637d1e597e168fc3cd"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:ccc3890c4504d5fa743a370254e84321fbc9841faf53e7637d1e597e168fc3cd"
+      }
+    },
+    {
+      "scenario_id": "UI-DB-002",
+      "phase": "H5",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_002_LOCAL_VIEW_STATE_RESULT_20260815.md",
+        "sha256": "sha256:1f3d7bae304dc5e34aed053b7361f4308d0170de9406050d105eff29d5ddbba0"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_002_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:b067d84926ec97adbc8055ec5eedc0a93a2181e25b3e99dc44b524058b06727d"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_002_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:b067d84926ec97adbc8055ec5eedc0a93a2181e25b3e99dc44b524058b06727d"
+      }
+    },
+    {
+      "scenario_id": "UI-DB-003",
+      "phase": "H5",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_003_LOCAL_MULTI_VIEW_RESULT_20260815.md",
+        "sha256": "sha256:e24c12d1926592c4995e97333125ce2dbbe2bb5909a46d69ba574d70d83ca9e8"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_003_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:6bc15ecad64b97cf7c83972107f64ff5fadae9cf72ac39f79ccfc71dc125de2e"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_003_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:6bc15ecad64b97cf7c83972107f64ff5fadae9cf72ac39f79ccfc71dc125de2e"
+      }
+    },
+    {
+      "scenario_id": "UI-SEARCH-001",
+      "phase": "H6",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI1_LOCAL_SIX_SCENARIO_FOCUS_RESULT_20260815.md",
+        "sha256": "sha256:c95ad221acb7e61a163324a68db76539bdbd259a23f6bef9103ab8e2c4fb8fc0"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SEARCH_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:c38eb639115a70ee20bb9345e40f1c551cf5d8a4dd83012ee016350e70558627"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SEARCH_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:c38eb639115a70ee20bb9345e40f1c551cf5d8a4dd83012ee016350e70558627"
+      }
+    },
+    {
+      "scenario_id": "UI-SEARCH-002",
+      "phase": "H6",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SEARCH_002_LOCAL_FIND_LINK_BACKLINK_RESULT_20260815.md",
+        "sha256": "sha256:962f637a5b35d9747002d99d344bf8bfa03066454c376aeb69a3ea9d01b2dc0a"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SEARCH_002_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:72746475cb802e1f2e556c37fbb3581fa98a025a4d48d23a240ad8dcc2c4bf7b"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SEARCH_002_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:72746475cb802e1f2e556c37fbb3581fa98a025a4d48d23a240ad8dcc2c4bf7b"
+      }
+    },
+    {
+      "scenario_id": "UI-COLLAB-001",
+      "phase": "H6",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_COLLAB_001_LOCAL_COMMENT_RESULT_20260815.md",
+        "sha256": "sha256:1ad8824eb76a92277731615b0d566397ac323eab26d58d5bcff9cdc34a3b3967"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_COLLAB_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:3a5f0e5971faa0b427bd8ff1ffe08d1b0ccf1cc1813f84ff7f5ff293bf87090a"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_COLLAB_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:3a5f0e5971faa0b427bd8ff1ffe08d1b0ccf1cc1813f84ff7f5ff293bf87090a"
+      }
+    },
+    {
+      "scenario_id": "UI-SHARE-001",
+      "phase": "H6",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHARE_001_LOCAL_DIALOG_RESULT_20260815.md",
+        "sha256": "sha256:45c57349404193b433bafa79fc31bf46932a453c3f990643a8d43710151b32ba"
+      },
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHARE_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:935dd81b13a0f1f78a15624a6aa742ab942fd5ac8ceabe86d503098a856feb43"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHARE_001_REFERENCE_DIFFERENTIAL_20260822.json",
+        "sha256": "sha256:935dd81b13a0f1f78a15624a6aa742ab942fd5ac8ceabe86d503098a856feb43"
+      }
+    },
+    {
+      "scenario_id": "UI-SB-001",
+      "phase": "H7",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI1_LOCAL_SIX_SCENARIO_FOCUS_RESULT_20260815.md",
+        "sha256": "sha256:c95ad221acb7e61a163324a68db76539bdbd259a23f6bef9103ab8e2c4fb8fc0"
+      },
+      "evidence_mode": "local_second_brain_contract",
+      "reference_state": "not_applicable_local_integration",
+      "differential_state": "local_integration_passed",
+      "promotion_allowed": false,
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      }
+    },
+    {
+      "scenario_id": "UI-SB-002",
+      "phase": "H7",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI1_LOCAL_SIX_SCENARIO_FOCUS_RESULT_20260815.md",
+        "sha256": "sha256:c95ad221acb7e61a163324a68db76539bdbd259a23f6bef9103ab8e2c4fb8fc0"
+      },
+      "evidence_mode": "local_second_brain_contract",
+      "reference_state": "not_applicable_local_integration",
+      "differential_state": "local_integration_passed",
+      "promotion_allowed": false,
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      }
+    },
+    {
+      "scenario_id": "UI-SB-003",
+      "phase": "H7",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SB_003_LOCAL_SESSION_CONTEXT_RESULT_20260815.md",
+        "sha256": "sha256:1ed7624608e673c943b660ac849c316df92507a7fe0a7b95d8b6a33b7f4ad78d"
+      },
+      "evidence_mode": "local_second_brain_contract",
+      "reference_state": "not_applicable_local_integration",
+      "differential_state": "local_integration_passed",
+      "promotion_allowed": false,
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      }
+    },
+    {
+      "scenario_id": "UI-A11Y-001",
+      "phase": "H8",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_A11Y_001_LOCAL_ACCESSIBILITY_RESULT_20260815.md",
+        "sha256": "sha256:5ec048e23a82dae632207e8f080380266c5c8e29365e0e8f6cafb292df0522f5"
+      },
+      "evidence_mode": "reference_observable_outcome",
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      }
+    },
+    {
+      "scenario_id": "UI-RESP-001",
+      "phase": "H8",
+      "manifest_state": "planned",
+      "local_state": "local_real_browser_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_RESP_001_LOCAL_VIEWPORT_RESULT_20260815.md",
+        "sha256": "sha256:e21ba75cea89f5d55a489c5db7a17ed5fe2f8bb2e04b0ee65b0220018c74c1ff"
+      },
+      "evidence_mode": "reference_observable_outcome",
+      "reference_state": "reference_characterized",
+      "differential_state": "differential_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      }
+    },
+    {
+      "scenario_id": "UI-PERF-001",
+      "phase": "H8",
+      "manifest_state": "planned",
+      "local_state": "local_measurement_green",
+      "local_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_PERF_001_LOCAL_MEASUREMENT_RESULT_20260815.md",
+        "sha256": "sha256:a5d55fdfbf24922697fafa6c69ac28619636becb4a17a60b43766ed918f1cd19"
+      },
+      "evidence_mode": "reference_measurement_local_budget",
+      "reference_state": "reference_measurement_observed",
+      "differential_state": "measurement_contract_passed",
+      "promotion_allowed": false,
+      "reference_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      },
+      "differential_evidence": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+        "sha256": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed"
+      }
+    }
+  ],
+  "cross_phase_gates": {
+    "safe_signed_in_browser_control": "connected_synthetic_free_only",
+    "personal_workspace_accessed": false,
+    "reference_workspace_accessed": true,
+    "reference_characterization": "in_progress_21_of_25",
+    "differential_evidence": "in_progress_20_of_25",
+    "scenario_evidence": "complete",
+    "performance_budget": "approved_isolated_local_precalibration",
+    "formal_accessibility_review": "pending",
+    "legal_brand_review": "pending",
+    "production_default_off_flag": "not_authorized_not_implemented",
+    "live_canary": "not_authorized_not_run",
+    "operational_backup_restore": "not_authorized_not_run",
+    "isolated_h9_recovery": "green",
+    "second_brain_hard_journeys": "local_green",
+    "evidence_pytest_host_gate": "current_serial_targeted_green"
+  },
+  "completion_claims": {
+    "all_required_local_contracts_green": true,
+    "all_required_reference_characterized": true,
+    "all_required_differential_passed": true,
+    "all_required_evidence_satisfied": true,
+    "h8_complete": false,
+    "h9_complete": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

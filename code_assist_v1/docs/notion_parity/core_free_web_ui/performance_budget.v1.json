@@ -1,0 +1,47 @@
+{
+  "contract": "code_assist.notion.core_free_ui.performance_budget.v1",
+  "activated_at": "2026-08-22T17:44:45.4274740+09:00",
+  "scenario_id": "UI-PERF-001",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "state": "active_local_precalibration",
+  "proposal": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/performance_budget_proposal.v1.json",
+    "sha256": "sha256:069638d69cb57b4b15bf714ce43d97cd8ce1719f77c022c0c682678ad28ee7f5"
+  },
+  "approval_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_receipt.v2.20260822.json",
+    "sha256": "sha256:6d5ef719306499ca6e672081d2c91c180f20786064a22d99e1fb4c6ce46b81e7"
+  },
+  "approval_text": "UI-PERF-001 로컬 성능 예산 제안 승인",
+  "enforcement": {
+    "percentile": "p95",
+    "sample_count_per_metric": 6,
+    "metric_budgets_ms": {
+      "shell_ready_ms": 1370,
+      "page_ready_ms": 320,
+      "editor_input_ack_ms": 130,
+      "save_ready_ms": 2460,
+      "reload_ready_ms": 860,
+      "search_open_ms": 170,
+      "search_result_ms": 120,
+      "second_brain_preview_ready_ms": 1640
+    },
+    "measurement_only_unbudgeted_metrics": [
+      "create_page_ready_ms"
+    ],
+    "failure_effect": "fail_isolated_local_regression_test_only"
+  },
+  "claim_boundary": {
+    "notion_reference_timing_claimed": false,
+    "production_slo_claimed": false,
+    "h8_complete": false,
+    "release_promotion_allowed": false,
+    "completion_matrix_mutated": false
+  },
+  "safety": {
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_content_accessed": false,
+    "external_action_executed": false
+  }
+}

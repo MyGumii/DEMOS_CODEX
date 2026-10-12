@@ -1,0 +1,14 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const callbacks={},frames=[];
+const context={window:{innerWidth:1024,innerHeight:560,addEventListener:(event,handler)=>callbacks[event]=handler},requestAnimationFrame:fn=>(frames.push(fn),frames.length)};
+vm.createContext(context);vm.runInContext(fs.readFileSync(require.resolve('../notion_static/notion_ui_interaction'),'utf8'),context);
+const panel={isConnected:true,hidden:false,style:{},dataset:{},getClientRects:()=>[1],getBoundingClientRect:()=>({width:306,height:430})};
+const anchor={isConnected:true,getBoundingClientRect:()=>({left:970,right:990,top:8,bottom:36})};
+context.NotionUiInteraction.place(panel,anchor);
+assert.equal(panel.style.left,'710px');
+context.window.innerWidth=800;context.window.innerHeight=450;callbacks.resize();frames.shift()();
+assert.equal(panel.style.left,'486px');assert.equal(panel.style.top,'12px');
+context.window.innerWidth=390;context.window.innerHeight=600;callbacks.resize();frames.shift()();
+assert.equal(panel.style.left,'76px');
+panel.isConnected=false;callbacks.resize();frames.shift()();assert.equal(panel.style.left,'76px');
+console.log('UI-A1: open popups reflow on viewport resize and discard detached surfaces');

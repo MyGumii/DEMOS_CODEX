@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.l9.search_open_focus_latency_fix.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-L9-SEARCH-OPEN-FOCUS-LATENCY-FIXED-20260910",
+  "recorded_at": "2026-09-10T00:50:15.7939667+09:00",
+  "status": "fixed_and_repeated_green",
+  "immutable_after_recording": true,
+  "failure_observations": {
+    "full_l9_search_open_p95_ms": 179.1,
+    "grouped_reproduction_search_open_p95_ms": 173.781,
+    "approved_budget_ms": 170,
+    "budget_changed": false
+  },
+  "diagnosis": {
+    "timed_completion_contract": "search_overlay_visible_and_global_search_input_focused",
+    "cause": "search input focus was deferred to a separate zero-delay timer task after the overlay became visible",
+    "user_path_effect": "Windows task scheduling latency was added to every search-open interaction and could consume the approved p95 budget",
+    "search_request_or_result_latency_in_open_metric": false
+  },
+  "source_bindings": [
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "before_sha256": "sha256:3d7ff43bc34054cbfa9f0980b1f53dd7d822189ca5f853a492ab772119b6dad6",
+      "sha256": "sha256:3226ba6684849b8d055d513a24e970f5e89e048e222788f6d0c4ac60a9bf06cf",
+      "classification": "product_source"
+    }
+  ],
+  "fix_contract": {
+    "overlay_is_unhidden_before_focus": true,
+    "focus_is_synchronous": true,
+    "prevent_scroll_preserved": true,
+    "return_focus_contract_preserved": true,
+    "performance_budget_relaxed": false
+  },
+  "verification": {
+    "javascript_syntax_check_passed": true,
+    "isolated_performance_runs_passed": 4,
+    "isolated_performance_runs_failed": 0,
+    "isolated_performance_run_durations_seconds": [
+      74.03,
+      58.19,
+      58.18,
+      57.01
+    ],
+    "responsive_and_accessibility_browser_tests_passed": 2,
+    "responsive_and_accessibility_browser_tests_failed": 0,
+    "responsive_and_accessibility_duration_seconds": 49.41,
+    "identifier_free_observation": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-l9-search-open-performance-observation-20260910.json",
+      "sha256": "sha256:ea6e10fc516cb3e5404db42364c6a811ce06aa7114655e487de1460d811aaa82",
+      "measurement_report_sha256": "sha256:20e8360ed52a921dfd43575bbadeb135b1717c111acedced40eef6bec95f94cd"
+    },
+    "search_open_ms": {
+      "sample_count": 6,
+      "min": 62.5,
+      "p50": 80.025,
+      "p95": 113.184,
+      "p99": 113.184,
+      "max": 113.184,
+      "approved_budget": 170,
+      "p95_headroom": 56.816
+    }
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    }
+  },
+  "claims": {
+    "historical_receipt_overwritten": false,
+    "central_catalog_ladder_matrix_or_pointer_modified": false,
+    "protected_sbe_source_or_contract_modified": false,
+    "external_target_or_production_action_executed": false,
+    "packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:f82e7d2ef4f46c3b14359a6c4122626075624e619560509371d58e1ce59682f0"
+}

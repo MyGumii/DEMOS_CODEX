@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b.resumed_inspection_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-RESUMED-INSPECTION-20260908",
+  "recorded_at": "2026-09-07T15:22:01.2110304Z",
+  "status": "local_and_central_validation_pass_external_prerequisites_absent",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-external-infrastructure-blocker-revalidated-20260907.json",
+    "sha256": "sha256:795da5436488fec2b91b99b57bf99bdf91866886086a07bad46216c8ea3fc845"
+  },
+  "authority_bindings": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "packet_catalog_sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98",
+    "validation_ladder_sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915",
+    "completion_matrix_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "current_checkpoint_pointer_sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+  },
+  "read_only_environment_observation": {
+    "hyper_v_cmdlets_present": false,
+    "windows_sandbox_present": false,
+    "smb_mapping_available": false,
+    "physical_disk_count": 4,
+    "usb_disk_count": 1,
+    "usb_is_off_host_destination": false,
+    "wsl2_distribution_present": true,
+    "wsl2_is_distinct_windows_target": false,
+    "target_specific_bound_policy_present": false,
+    "actual_release_manifest_present": false
+  },
+  "verification": {
+    "pretarget_readiness_tests": {
+      "status": "pass",
+      "passed": 100,
+      "failed": 0,
+      "duration_seconds": 43.82
+    },
+    "full_central_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "valid_execution_receipts": 21,
+      "completion_state": "incomplete",
+      "product_complete": false
+    },
+    "sbe_contract_audit_input_sha256": "sha256:4fbbf741aece1a5ee3ddd6e24479b3662dd76d04ed10566e642e300360ceedc7"
+  },
+  "central_state": {
+    "gate_passed_required_packets": 44,
+    "required_packets": 50,
+    "closed_matrix_rows": 21,
+    "matrix_rows": 28,
+    "closed_phase_gates": 15,
+    "phase_gates": 20,
+    "next_packet": "O1B-P1"
+  },
+  "required_external_resolution": [
+    "approved encrypted off-host backup destination or explicit authority to provision one",
+    "approved distinct Windows target host and connection method or explicit authority to provision a compliant Windows VM",
+    "reviewed release identity and four distinct Ed25519 public trust anchors",
+    "fresh execution-specific AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF after target policy review"
+  ],
+  "claims": {
+    "source_or_contract_regression_detected": false,
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "approval_or_handoff_consumed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:a01e84ae4a160cb12a32062a42e349cb4bec097c2d30f30557e705aa14ae1422"
+}

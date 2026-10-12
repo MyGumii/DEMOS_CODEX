@@ -1,0 +1,198 @@
+{
+  "checkpoint_version": 1,
+  "run_id": "np2c4b-source-lifecycle-adapters-file-recovery-20260814",
+  "recorded_at": "2026-08-14T12:34:52+09:00",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "observed_goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "resume 현재 우리가 작성한 개발 문서와 계획을 확인하고 goal resume을 해서 목표 확인 후 다시 개발 진행해.",
+    "completion_changed": false
+  },
+  "slice": "NP2C-4b-route-unregistered-source-v3-adapters-and-file-recovery",
+  "status": "contract_tested_source_adapters_complete_candidate_1316_pending",
+  "scope": {
+    "workspace_current_schema_version": 2026081315,
+    "workspace_current_schema_name": "notion_workspace_v2_np2c_structural_finalize_authority",
+    "workspace_current_schema_checksum": "sha256:a57f73b41a834c42edcdfbacbbf2aa1fc30dd34366d98d7c40a42337b4f0e932",
+    "workspace_current_actual_schema_sha256": "sha256:33eaed5b16671104d53443c7cd4b09b3471eabbce805161608a114e4528f5d82",
+    "workspace_current_schema_object_count": 159,
+    "legacy_source_schema_version": 2026081303,
+    "candidate_workspace_schema_version": 2026081316,
+    "candidate_schema_required": true,
+    "candidate_schema_implemented": false,
+    "source_adapter_implemented": true,
+    "catalog_finalizer_implemented": false,
+    "exact_sentinel_rehearsal_implemented": false,
+    "official_archive_unarchive_implemented": false,
+    "route_or_runtime_registration_added": false,
+    "runtime_commands_enabled": false,
+    "resolver_cutover_enabled": false,
+    "public_duplicate_enabled": false,
+    "permanent_delete_enabled": false,
+    "continuous_worker_enabled": false,
+    "destructive_watermark_ack_enabled": false,
+    "live_migration_applied": false
+  },
+  "implemented_contract": {
+    "contract_module": "code_assist_v1.notion_legacy_page_duplicate_trash_restore_contract",
+    "adapter_module": "code_assist_v1.notion_legacy_page_duplicate_trash_restore",
+    "source_operation_consumer": "np2c.lifecycle",
+    "source_actions": {
+      "duplicate": "legacy.page_lifecycle.duplicate",
+      "trash": "legacy.page_lifecycle.trash",
+      "restore": "legacy.page_lifecycle.restore"
+    },
+    "source_result_contracts": {
+      "duplicate": "np2c_legacy_page_duplicate_receipt_v1",
+      "trash": "np2c_legacy_page_trash_receipt_v1",
+      "restore": "np2c_legacy_page_restore_receipt_v1"
+    },
+    "new_source_schema_added": false,
+    "h5e_source_v4_reservation_preserved": true,
+    "new_effect_requires_source_quiescence": true,
+    "exact_replay_precedes_quiescence_page_path_and_file_io": true,
+    "duplicate_identity": "domain-separated replay-derived page, block, file, version and adjacent parent-reference mappings",
+    "duplicate_scope": "bounded same-owner active subtree with exact destination sibling context",
+    "reference_policy": "internal references remapped; external references refused without write",
+    "file_protocol": "contained operation staging; exclusive create; flush and SHA-256 verification; atomic no-overwrite publish; exact-existing recovery; positively precommit cleanup; indeterminate preservation",
+    "trash_scope": "exact active transition cohort only; already inactive descendants excluded",
+    "restore_scope": "exact prior Trash receipt and same incarnation; no implicit ancestor restore; original exact or reviewed fallback placement",
+    "source_transaction": "domain mutation, watermark coalescing and immutable source-v3 receipt commit together",
+    "cross_database_exactly_once_claimed": false,
+    "runtime_parity_claimed": false,
+    "formal_live_characterization_claimed": false,
+    "formal_differential_parity_claimed": false
+  },
+  "bounds": {
+    "request_bytes": 65536,
+    "subtree_pages": 1000,
+    "subtree_depth": 256,
+    "siblings": 10000,
+    "duplicate_blocks": 50000,
+    "files": 5000,
+    "aggregate_file_bytes": 268435456,
+    "metadata_bytes": 268435456,
+    "parent_blocks": 5000,
+    "result_bytes": 16777216
+  },
+  "protected_inputs": {
+    "AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "AGENTS.md_modified": false,
+    "shared_knowledge_status_modified": false,
+    "shared_knowledge_traceability_modified": false,
+    "protected_app_auth_config_routes_modified": false,
+    "workspace_product_schema_modified": false,
+    "legacy_runtime_store_modified": false,
+    "live_paths_accessed": false
+  },
+  "owned_or_observed_file_hashes": {
+    "notion_store.py": "06c5680d0d73f775787ac5d793f7bc1ffdfc36fcd6e37e1db75d0d566f00cb02",
+    "notion_workspace_store.py": "238244c69d98e1dc2766b1a64b016a410e576cd23b81a5e2e641972f8658c49d",
+    "notion_legacy_page_structural.py": "680f454aa8de8ef0b2ba19c949b3945f5f422a7b2808be47dd4d176b592c18e9",
+    "notion_workspace_page_structural_rehearsal.py": "198bddfe6e0be08eb9526f62d014a6ca60c69b5699832ca80d29ac091e424a56",
+    "notion_legacy_page_duplicate_trash_restore_contract.py": "d8e48b1162e2b7e42d85311d9f893a2f06a8eeb909c06ead1b5ebea902d38101",
+    "notion_legacy_page_duplicate_trash_restore.py": "392c4ab4c9cba15e63583050ac35403fda7fc479f5af27bd61818528dda1ea55",
+    "tests/test_notion_legacy_page_duplicate_trash_restore.py": "67e8a4adee59051f885736b5276cdf930c7f04bcf8263f9ac9a4423930818d91",
+    "docs/NOTION_PARITY_MASTER_PLAN.md": "9f8371aefae7bbb3b6940679d618b4f4a78a5f05e838ad9b944169557f06deb0",
+    "docs/NOTION_PARITY_ROADMAP.md": "6705d6eb4bb139d4792d495733c1498b2a2024e0ef13aa3d7d75ac8763504173",
+    "docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "2fb73c0783b3367c7e2af5f9b435e2f90503b4cea53ef3edb37a00ed69cfdad9",
+    "docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "b943710771265ddec8b88d395bbc290d9376b4c67ac927d602df60d5c71fbcb1",
+    "docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "95fda2f8ac886da0d490d52e133453a392552996d64cc6ca3ad0670d6d247209",
+    "docs/notion_parity/NP2C_DUPLICATE_TRASH_RESTORE_DESIGN.md": "ca0481160a70f6239226c9aedd29b7f181a76dd64a1a2ab636899260839bb6ce",
+    "docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "3991ec3dd195eda091275ddf09e3b3c76c2caeb3ad23723677964305ba7b3f65",
+    "tools/verify_notion_np2c_page_tree_contract.py": "443e6bc12b94c894db167239ba7cfa36c90924f93c92828cc450be036dd50083",
+    "tests/test_verify_notion_np2c_page_tree_contract.py": "98c7bd1909d09cfe61c489454c5c05d30b8d681e1a25a03c73513b5e71e3d833"
+  },
+  "evidence": [
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m py_compile code_assist_v1\\notion_legacy_page_duplicate_trash_restore_contract.py code_assist_v1\\notion_legacy_page_duplicate_trash_restore.py code_assist_v1\\tests\\test_notion_legacy_page_duplicate_trash_restore.py",
+      "exit_code": 0
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_legacy_page_duplicate_trash_restore.py -q -x",
+      "exit_code": 0,
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 21.56
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_legacy_page_lifecycle.py code_assist_v1\\tests\\test_notion_legacy_page_structure.py code_assist_v1\\tests\\test_notion_legacy_page_structural.py -q -x",
+      "exit_code": 0,
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 20.58
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_migrate_notion_legacy_incarnations.py code_assist_v1\\tests\\test_migrate_notion_legacy_change_consumer.py code_assist_v1\\tests\\test_notion_legacy_change_consumer.py code_assist_v1\\tests\\test_notion_legacy_change_consumer_orchestration.py -q -x",
+      "exit_code": 0,
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 35.31
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q -x",
+      "exit_code": 0,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 0.73
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_page_tree_contract",
+      "exit_code": 0,
+      "result": "valid=true; contract_version=15; status=duplicate_trash_restore_source_adapters_and_file_recovery_contract_tested_candidate_1316_pending; current_schema=1315; candidate_schema=1316; runtime/permanent_delete=false"
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest <NP2C current 4b-source-adapter/1315-runtime regression lane> -q -x",
+      "exit_code": 0,
+      "passed": 97,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 157.95
+    }
+  ],
+  "host_notes": [
+    "Two exploratory rg/PowerShell pipelines exited with Windows status 0xc0000409; equivalent direct UTF-8 reads and all canonical Python verification commands succeeded.",
+    "An earlier focused pytest result cell was unavailable after conversation compaction; the current-tree suite was rerun and its 18-pass result is the only claimed focused evidence."
+  ],
+  "claims": {
+    "live_source_accessed": false,
+    "live_catalog_accessed": false,
+    "live_data_mutated": false,
+    "feature_flags_changed": false,
+    "routes_changed": false,
+    "app_or_second_brain_boundary_changed": false,
+    "shared_knowledge_boundary_changed": false,
+    "git_repository_available": false,
+    "git_commit_claimed": false,
+    "candidate_1316_implemented": false,
+    "formal_live_characterization": false,
+    "formal_differential_parity": false
+  },
+  "status_delta": {
+    "shared_status_update_required": false,
+    "reason": "NP2C is independent from the protected Shared Knowledge development stream; no shared STATUS or TRACEABILITY file was edited.",
+    "notion_status": "NP2C-4b route-unregistered duplicate/Trash/restore source-v3 adapters and file recovery are contract-tested. Current runtime remains frozen 1315; candidate 1316, catalog finalizers/rehearsal and runtime remain pending and default-off."
+  },
+  "next_slice": {
+    "name": "NP2C-4c-frozen-1315-to-1316-lifecycle-subtree-schema-and-guards",
+    "objective": "Design, independently audit and only then implement an explicit frozen 1315-to-1316 workspace migration with immutable duplicate/Trash/restore evidence, exact lifecycle authority, raw-SQL guards and deep-health correlation.",
+    "automatically_authorized": false,
+    "requires_fresh_hash_and_ownership_audit": true,
+    "frozen_1315_must_remain_independent": true,
+    "route_or_runtime_registration_allowed": false,
+    "catalog_finalizer_allowed_in_this_slice": false,
+    "official_archive_unarchive_allowed": false,
+    "public_duplicate_allowed": false,
+    "live_data_allowed": false,
+    "destructive_ack_allowed": false,
+    "resolver_cutover_allowed": false,
+    "next_exact_command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_legacy_page_duplicate_trash_restore.py code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q -x"
+  },
+  "stop_reason": "NP2C-4b source-adapter boundary reached; NP2C-4c schema/guard work requires a fresh ownership and DDL audit."
+}

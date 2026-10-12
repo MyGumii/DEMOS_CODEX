@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-T0A-P3-SELECTED-RUNTIME-BINDING-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-24T00:15:00Z",
+  "checkpoint_kind": "pre_edit",
+  "packet_id": "T0A-P3",
+  "packet_status": "in_progress",
+  "purpose": "Bind the approval-free selected gateway topology, health/lifecycle/rollback/observability contract, and Yjs opaque relay/compactor/epoch protocol plan before implementation or hot-contract integration.",
+  "owner_agent": "/root",
+  "owned_existing_files": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:6dc95a277830c8fb668e97535f5a9ef6b7bbb83df94d0c072ef8ebc1b9592917",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:eeca51b52f36ee1eedb72831e5e5d6d51ded63bb0df644ef4ca615192da2416a",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:48c4d3b9f87a2dbd5fce48ca4284d0387ed1ca2f6e93b47e890a14fa61f56779",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:8056d796e095278d4cfe2de61c50b31a079d7e5174eb39b4476901861743c92e",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:cac9c9aebb32d6aa754c4ab7cafb50b9caccca738167f4fa7ae0a0cd558e3626"
+  },
+  "new_product_files": [
+    "code_assist_v1/notion_collaboration/selected_runtime_contract.py",
+    "code_assist_v1/tools/verify_internal_collaborative_selected_runtime.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_topology_adr.v1.json"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_selected_runtime_contract.py",
+    "code_assist_v1/tests/notion_collaboration/test_selected_runtime_topology_adr.py"
+  ],
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_authority_adr.v1.json": "sha256:0dfa4ad9fd30a8daf50d42e9fe60ea0126928a2f4a73c8a51d7b518d28c439c2",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.json": "sha256:8bfa575854f409e648822f8e4b6e27433f14cab699ee6def6fb3f08698fd4e96",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_protocol_contract.v1.json": "sha256:c2ce4dcecebd4f7da459824f3f012a142ef8ef6d2fd08195490587ad4f954481",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_winner_adr.v1.json": "sha256:591b08a1cefcf5cf536b52a66e70ab6c1047133c8bcff99f27bdab90bef6a71a",
+    "code_assist_v1/collaboration_runtime/ARTIFACT_MANIFEST.json": "sha256:8059bf135ca66a49d67c0798d30b71ed48bf779e3f142cb20d94a1328354e584",
+    "code_assist_v1/collaboration_runtime/python-requirements.lock": "sha256:2910510df5c434104778c4a78f40a6b2368204513c8ac29824c5a1cb13db7c65",
+    "code_assist_v1/collaboration_runtime/node/package-lock.json": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p4-winner-selection-20260824.json",
+    "sha256": "sha256:6fa6752c37d71e46831165e0898807763840aaf37bc02d746e4bba7fea06746f",
+    "packet_id": "E0-P4",
+    "receipt_id": "E0-P4-L3-CRDT-WINNER-SELECTION-20260824"
+  },
+  "ownership_lease": {
+    "lease_id": "T0A-P3-SELECTED-RUNTIME-BINDING-20260824",
+    "lane": "SPIKE",
+    "owner_agent": "/root",
+    "status": "active",
+    "acquired_at": "2026-08-24T00:15:00Z",
+    "expires_at": "2026-08-25T00:15:00Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked_stale_after_explicit_user_resume",
+    "resumed_by_user": true,
+    "goal_completion_claimed": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-24T00:15:00Z",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:e42924c7d5d305dad8b483b76909eb86398c720626e90c99f37e60f682d49bc4",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_hot_contracts_modified_by_this_packet": false,
+    "exact_path_collision_observed": false,
+    "schema_migration_version_allocated": false,
+    "persistent_network_service_or_port_started": false,
+    "live_identity_or_data_root_mutated": false
+  },
+  "boundary": {
+    "actual_gateway_service_implemented": false,
+    "actual_compactor_service_implemented": false,
+    "service_or_port_start_allowed": false,
+    "production_lock_change_allowed": false,
+    "schema_allocation_allowed": false,
+    "contract_and_pure_state_machine_only": true
+  },
+  "rollback_or_cleanup": "Remove only the three new product/contract paths, two new tests, and T0A-P3 checkpoint evidence before integration if the contract fails. Restore only the five owned existing files after integration failure. Never touch SBE contracts, dependency locks, product roots, services, ports, schemas, identities, workspaces, browser profiles, or protected data."
+}

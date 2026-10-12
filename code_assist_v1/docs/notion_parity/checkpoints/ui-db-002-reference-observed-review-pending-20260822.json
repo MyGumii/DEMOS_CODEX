@@ -1,0 +1,165 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T00:01:16.4337029+09:00",
+  "run_id": "ui12-db-002-reference-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-DB-002",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_database_alias": "UI-PARITY-RUN-DB-002",
+    "synthetic_row_aliases": ["UI-ROW-A", "UI-ROW-B", "UI-ROW-C"],
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "transient_screenshot_used_for_visual_confirmation": true,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "database_and_rows_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-DB-002",
+    "status": "reference_observed_review_pending_six_semantic_fields",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 6,
+    "reference_partially_observed": 2,
+    "reference_unobserved": 12,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "input_snapshot": {
+    "agents_sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572",
+    "test_source_sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3",
+    "local_source_build_sha256": "sha256:8d0eb7ee6e24ed4824707ef3c788074d71843742a8a87b841e713f83504614f4",
+    "reference_source_build_sha256": "sha256:a38b080d126ae53d5b3342d62ac27c7d0c2723422e0a03a656017037947c39e2",
+    "action_log_sha256": "sha256:89e933aeb250720e41b689a2123119f13b4105ee3b223989da6ca0664166592f"
+  },
+  "reference_action_captures": {
+    "UI-DB-002-A01": {
+      "sha256": "sha256:b0c06f26e773f6ce319c0187974c28eb33daee875c336e482530188bae1deeda",
+      "capture_validation_errors": 0,
+      "state": {"count": 3, "result": "pass"},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"name": "DATABASE-GRID", "state": "not_focused"},
+      "a11y": {"name": "DATABASE-TABLE", "role": "NONE"},
+      "semantic_visual": {"region": "DATABASE-GROUP", "state": "visible"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {
+        "DATABASE-TABLE": {"height": 339, "width": 480, "x": 374, "y": 215}
+      },
+      "latency_ms": 1200
+    },
+    "UI-DB-002-A02": {
+      "sha256": "sha256:87684efb9bf4902dc11f9a6ec98fa799119229af1c75d32d967271d9a73ee2b4",
+      "capture_validation_errors": 0,
+      "state": {"count": 3, "result": "pass"},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"name": "DATABASE-GRID", "state": "not_focused"},
+      "a11y": {"name": "DATABASE-TABLE", "role": "NONE"},
+      "semantic_visual": {"region": "DATABASE-GROUP", "state": "visible"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {
+        "DATABASE-TABLE": {"height": 335, "width": 480, "x": 374, "y": 168}
+      },
+      "latency_ms": 1800
+    }
+  },
+  "reference_exact_results": {
+    "source_rows_created": 3,
+    "source_row_values": [
+      {"title": "UI-ROW-A", "status": "진행 중"},
+      {"title": "UI-ROW-B", "status": "완료"},
+      {"title": "UI-ROW-C", "status": "진행 중"}
+    ],
+    "filter_property": "이름",
+    "filter_operator": "값을 포함하는 데이터",
+    "filter_value": "UI-ROW",
+    "sort_property": "이름",
+    "sort_direction": "Z_TO_A",
+    "group_property": "상태",
+    "nonempty_group_order": ["진행 중", "완료"],
+    "visible_row_order_after_configuration": ["UI-ROW-C", "UI-ROW-A", "UI-ROW-B"],
+    "visible_row_order_after_reload": ["UI-ROW-C", "UI-ROW-A", "UI-ROW-B"],
+    "visible_status_order_after_reload": ["진행 중", "진행 중", "완료"],
+    "filter_restored_after_reload": true,
+    "sort_restored_after_reload": true,
+    "group_restored_after_reload": true,
+    "database_reload_focus_target": "BODY",
+    "database_accessibility_table_role_count": 0,
+    "database_accessibility_grid_role_count": 0,
+    "database_accessibility_row_role_count": 0,
+    "synthetic_database_and_rows_moved_to_trash": true,
+    "synthetic_tree_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_evidence": {
+    "current_exact_test": "1 passed in 36.41s",
+    "filter_sort_group_restored": true,
+    "source_rows_unchanged": true,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "synthetic_only": true,
+    "historical_capture_sha256": {
+      "UI-DB-002-A01": "sha256:3da04aa1af2c2df6b7e8f6030e77fddbabe40a2de82714e2ec8d98c4056448d6",
+      "UI-DB-002-A02": "sha256:3da04aa1af2c2df6b7e8f6030e77fddbabe40a2de82714e2ec8d98c4056448d6"
+    },
+    "current_capture_hash_status": "not_reextracted_after_current_source_build; exact current journey passed",
+    "host_observation": "one broad rg query ended with Windows 0xC0000409; one simpler canonical query succeeded"
+  },
+  "precalibration_differential": {
+    "status": "fail",
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-DB-002-A01": {
+        "difference_count": 3,
+        "differences": ["a11y", "focus", "keyboard"]
+      },
+      "UI-DB-002-A02": {
+        "difference_count": 3,
+        "differences": ["a11y", "focus", "keyboard"]
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "interpretation": "Both implementations restore the same three rows, title filter, descending title order, and status grouping. Official Free web leaves focus on the body and exposes no table/grid row semantics after configuration or reload; local explicitly focuses a semantic table."
+  },
+  "redacted_review_summary": {
+    "reference_profile": "Chrome desktop Free owner ko-KR",
+    "reference_workspace": "REF-FREE-A",
+    "result": "Three synthetic rows were filtered by title, sorted C-to-A, and grouped by status. After reload, the official Free web view restored the filter, descending order, two non-empty groups, and exact C-A-B row order. The table remained visually present but exposed no table/grid row roles and left focus on the body.",
+    "cleanup": "The synthetic database and all three rows were moved together to Trash; the REF-FREE-A tree has zero matching residual rows and no open dialog remains.",
+    "privacy": "No personal workspace/page, raw DOM, network payload, cookies or storage, persisted screenshot, public posting, invitation, permanent delete, or local live data was used."
+  },
+  "claims": {
+    "ui_db_002_reference_observed": true,
+    "ui_db_002_reference_characterized": false,
+    "ui_db_002_differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain workspace-owner approval of this redacted summary before sealing the receipt or changing local table focus/accessibility behavior. Preserve the 5/25 certified parent until corrected behavior and the full regression ladder pass."
+}

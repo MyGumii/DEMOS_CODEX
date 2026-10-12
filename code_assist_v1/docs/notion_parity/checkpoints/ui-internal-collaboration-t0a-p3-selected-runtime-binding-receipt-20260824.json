@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.selected_runtime_binding_receipt.v1",
+  "receipt_id": "T0A-P3-L3-SELECTED-RUNTIME-BINDING-20260824",
+  "packet_id": "T0A-P3",
+  "status": "pass",
+  "executed_at": "2026-08-24T00:24:00Z",
+  "authority_bindings": {
+    "e0_p4_checkpoint_sha256": "sha256:6fa6752c37d71e46831165e0898807763840aaf37bc02d746e4bba7fea06746f",
+    "winner_adr_sha256": "sha256:591b08a1cefcf5cf536b52a66e70ab6c1047133c8bcff99f27bdab90bef6a71a",
+    "protocol_contract_sha256": "sha256:c2ce4dcecebd4f7da459824f3f012a142ef8ef6d2fd08195490587ad4f954481",
+    "gateway_contract_sha256": "sha256:8bfa575854f409e648822f8e4b6e27433f14cab699ee6def6fb3f08698fd4e96",
+    "artifact_manifest_sha256": "sha256:8059bf135ca66a49d67c0798d30b71ed48bf779e3f142cb20d94a1328354e584",
+    "python_lock_sha256": "sha256:2910510df5c434104778c4a78f40a6b2368204513c8ac29824c5a1cb13db7c65",
+    "node_lock_sha256": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3",
+    "gateway_topology_adr_sha256": "sha256:ac102389d11e7270d8bb3bacbff37482da81c8cfe0f7389838a9a0f42ee5770f",
+    "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+  },
+  "runtime_binding": {
+    "candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+    "wire_format": "Yjs_v1_update_bytes",
+    "runtime_binding_sha256": "sha256:99b8e01015bbf92c385493bebbc08b6600add4b43afd2ab6e1746a6bb8e74057",
+    "authority_hash_count": 6,
+    "binding_validation_passed": true
+  },
+  "contract_results": {
+    "gateway_topology_ADR_complete": true,
+    "health_contract_complete": true,
+    "start_stop_contract_complete": true,
+    "rollback_and_kill_switch_contract_complete": true,
+    "observability_contract_complete": true,
+    "ticket_epoch_ACK_binding_complete": true,
+    "update_replay_binding_complete": true,
+    "compaction_high_water_protocol_complete": true,
+    "fail_closed_health_cases_passed": true,
+    "compaction_binding_tamper_cases_passed": true
+  },
+  "tests": {
+    "passed": 10,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "xfailed": 0,
+    "duration_seconds": 2.35
+  },
+  "isolation": {
+    "actual_gateway_listener_started": false,
+    "actual_compactor_process_started": false,
+    "port_bound": false,
+    "dependency_downloaded_or_installed": false,
+    "global_runtime_lock_modified": false,
+    "schema_or_migration_allocated": false,
+    "identity_workspace_browser_or_live_data_accessed": false,
+    "production_feature_flag_changed": false
+  },
+  "claims": {
+    "selected_runtime_binding_contract_complete": true,
+    "actual_gateway_transport_implemented": false,
+    "actual_compactor_service_implemented": false,
+    "runtime_enabled": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

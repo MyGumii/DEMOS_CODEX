@@ -1,0 +1,300 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T01:49:51+09:00",
+  "run_id": "ui-tree-002-clean-reference-review-pending-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-001-reference-differential-green-20260821.json",
+    "sha256": "sha256:0edecbe95ff9bc9d2cec96cf602614a658d996c2f69e5e330ab77cd8fa031ee5",
+    "semantic_status": "current_certified_parent"
+  },
+  "supersedes_probe_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-002-reference-observed-review-pending-20260821.json",
+    "sha256": "sha256:659435be5cd2c4931ac53fedfaab2ce9c3f39666a6090b4aa708b1b1e316a8ee",
+    "semantic_status": "historical_invalidated_probe"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "implement the adopted 25-scenario Core Free Web UI and Second Brain plan through reviewed reference and differential gates",
+    "observed_at": "2026-08-21T01:49:51+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "viewport": {"width": 1920, "height": 863},
+    "scenario_id": "UI-TREE-002",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "live_local_data_accessed": false,
+    "synthetic_reference_mutation_performed": true,
+    "prohibited_external_side_effect_attempted": false,
+    "screenshot_count": 0,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "cookie_or_storage_captured": false
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-TREE-002",
+    "status": "clean_reference_human_approved_c0_boundary_pending",
+    "implemented_corrections": [
+      "open a page-type menu before creating a new top-level page",
+      "use a searchable immediate move-target picker without a confirm button",
+      "restore focus to the active page-menu trigger after move completion",
+      "retain moved-row focus after sibling reorder",
+      "refuse descendant-cycle drag without changing tree order or active path",
+      "bind the A03, A07, A08, and A09 normalized local captures to the reference action IDs"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 3,
+    "differential_passed": 3,
+    "reference_observed_review_pending": 1,
+    "reference_clean_rerun_required": 0,
+    "promotion_allowed": 0,
+    "remaining_reference": 22,
+    "remaining_differential": 22,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    }
+  ],
+  "owned_inputs": [
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:791a3a1663aad171a4661365b8b0ca9f56ef61ac1526bca5b782fee3026997ba"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "sha256": "sha256:e63c557b1949df598ce8cd816e4c4f1a569a253473e67084c8b9d8a7d5da3217"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:5c5793940cefc93ab3b836ecb6726007dbb5aec5a40c3dbc2f70b3e277138c64"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_navigation_ui.js",
+      "sha256": "sha256:84c3260fb1cb2f775356af6bbbf8e12c8f4e09b1fd0af0410c555830d8cb3945"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:5324fe2a9a79d16377a72e1c5d81ca20ccce6366203db7be990d65e77921bbf9"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:51aa08705652ff8eeabc47fb3b50be6836625f07a9b45e5fff253cc5b9967b60"
+    }
+  ],
+  "reference_observation": {
+    "capture_reviewed_redacted": true,
+    "human_review_required": false,
+    "human_review": {
+      "approved_at": "2026-08-21T08:02:33+09:00",
+      "approval_source": "user",
+      "approved_summary_sha256": "sha256:d363ac369c61bee9de017b66046a2afb7bfa9dfa18a668feb17af8d982f39581"
+    },
+    "reference_transport_clean": true,
+    "reference_run_candidate_valid": true,
+    "official_reference_claim": false,
+    "reference_build_sha256": "sha256:a38b080d126ae53d5b3342d62ac27c7d0c2723422e0a03a656017037947c39e2",
+    "reference_static_asset_count": 27,
+    "redacted_action_log_sha256": "sha256:d363ac369c61bee9de017b66046a2afb7bfa9dfa18a668feb17af8d982f39581",
+    "started_at": "2026-08-21T01:42:57+09:00",
+    "ended_at": "2026-08-21T01:45:08+09:00",
+    "capture_count": 4,
+    "action_ids": [
+      "UI-TREE-002-A03",
+      "UI-TREE-002-A07",
+      "UI-TREE-002-A08",
+      "UI-TREE-002-A09"
+    ],
+    "captures": {
+      "UI-TREE-002-A03": {
+        "latency_ms": 1932,
+        "state": {"count": 1, "state": "committed"},
+        "focus": {"alias": "PAGE-TITLE", "focused": true, "proxy": "ancestor-contenteditable"},
+        "a11y": {"alias": "PAGE-TITLE", "role": "textbox", "contenteditable": "true"},
+        "semantic_visual": {"alias": "PAGE-TITLE", "visible": true},
+        "error_state": "unchanged",
+        "geometry": {"alias": "PAGE-TITLE", "x": 735, "y": 156, "width": 720, "height": 48}
+      },
+      "UI-TREE-002-A07": {
+        "latency_ms": 2014,
+        "state": {"count": 2, "state": "committed"},
+        "focus": {"alias": "PAGE-MENU", "focused": true},
+        "a11y": {"alias": "PAGE-MENU", "role": "button"},
+        "semantic_visual": {"alias": "PAGE-TREE", "visible": true},
+        "error_state": "unchanged",
+        "geometry": {"alias": "PAGE-TREE", "x": 8, "y": 160, "width": 254, "height": 124}
+      },
+      "UI-TREE-002-A08": {
+        "latency_ms": 2427,
+        "state": {"count": 2, "order": ["TREE-CHILD-B", "TREE-CHILD-A"], "state": "committed"},
+        "focus": {"alias": "TREE-CHILD-B", "focused": true},
+        "a11y": {"alias": "TREE-CHILD-B", "role": "treeitem"},
+        "semantic_visual": {"alias": "PAGE-TREE", "visible": true},
+        "error_state": "unchanged",
+        "geometry": {"alias": "PAGE-TREE", "x": 8, "y": 160, "width": 254, "height": 92}
+      },
+      "UI-TREE-002-A09": {
+        "latency_ms": 1934,
+        "state": {"active_path_unchanged": true, "count": 2, "cycle_refused": true, "order": ["TREE-CHILD-B", "TREE-CHILD-A"], "state": "unchanged"},
+        "focus": {"alias": "TREE-ROOT", "focused": true},
+        "a11y": {"alias": "TREE-ROOT", "role": "treeitem"},
+        "semantic_visual": {"alias": "PAGE-TREE", "visible": true},
+        "error_state": "unchanged",
+        "geometry": {"alias": "PAGE-TREE", "x": 8, "y": 160, "width": 254, "height": 92}
+      }
+    },
+    "non_capture_outcomes": {
+      "UI-TREE-002-A01": "page_type_menu_open",
+      "UI-TREE-002-A02": "new_page_editing",
+      "UI-TREE-002-A04": "page_menu_open",
+      "UI-TREE-002-A05": "move_picker_open",
+      "UI-TREE-002-A06": "exact_root_result"
+    },
+    "non_synthetic_workspace_label_returned": false,
+    "personal_workspace_opened": false,
+    "personal_page_opened": false,
+    "synthetic_cleanup": {
+      "probe_pages_moved_to_trash": 2,
+      "permanent_delete_used": false,
+      "recoverable": true
+    }
+  },
+  "c0_preflight": {
+    "run_id": "ui2-tree-002-clean-reference-20260821",
+    "status": "fail",
+    "failure_codes": ["synthetic_workspace_boundary_unconfirmed"],
+    "connection_verified": true,
+    "workspace_boundary_verified": false,
+    "read_only_verified": true,
+    "capture_allowed": false,
+    "ref_free_a_confirmed": true,
+    "ref_free_b_confirmed": false,
+    "other_workspace_label_text_returned": false,
+    "personal_workspace_opened": false,
+    "personal_page_opened": false,
+    "raw_label_disclosed": false,
+    "last_rechecked_at": "2026-08-21T08:02:33+09:00",
+    "cache_refresh_attempted": true,
+    "user_reported_ref_free_b_ready": true,
+    "user_reported_ref_free_b_tab_open": true,
+    "connected_second_notion_tab_claimed": true,
+    "connected_second_tab_path_category": "page",
+    "connected_second_tab_exposed_ref_free_b_alias": false,
+    "interpretation": "The clean UI-TREE-002 observation is human-approved, but the shared two-workspace manual-intake gate cannot pass because the currently connected Chrome switcher still does not expose the exact REF-FREE-B alias after refresh."
+  },
+  "local_comparison_preview": {
+    "policy_state": "human_review_pending_precalibration",
+    "local_source_build_sha256": "sha256:15b646fbd45fcd34ed9c8dde33e2920a9751e47024cda4c671885eb4626e419c",
+    "local_action_log_sha256": "sha256:40a10ef03761b515d5f769e79188980b560585d2580bf816ab027adc446049e4",
+    "local_action_capture_sha256": {
+      "UI-TREE-002-A03": "sha256:0980331540238f3640421c07fc15c6afecf654211e86a0b0faa7ef6715744ec8",
+      "UI-TREE-002-A07": "sha256:0863e16641a163810f28ac9ac7da9db4e017f6a8da0a71300eb92d0e947e8a87",
+      "UI-TREE-002-A08": "sha256:a58bb1dee794dfd37e9be145c30c7c9af529b72cd7dff1dad4c1f567acefb612",
+      "UI-TREE-002-A09": "sha256:ef03c0ea1f730df7a279ad1db18b3303d772796afc0d31bc861bd3b412b1a267"
+    },
+    "normalized_semantic_difference_count": 0,
+    "normalized_state_keyboard_focus_a11y_semantic_error_all_match": true,
+    "geometry_and_latency": "measurement_only_until_human_review_and_calibration",
+    "official_differential_claim": false
+  },
+  "commands": [
+    {
+      "selection": "allowlist-only Chrome UI-TREE-002 clean reference rerun",
+      "result": "9 actions completed; 4 normalized captures; zero prohibited labels or raw artifacts returned",
+      "exit_code": 0
+    },
+    {
+      "selection": "current-source isolated Chrome UI-TREE-002 journey",
+      "result": "1 passed in 24.47s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion navigation static interaction contract",
+      "result": "notion_navigation_ui: ok",
+      "exit_code": 0
+    },
+    {
+      "selection": "mistyped completion-matrix test path",
+      "result": "no tests ran; file not found: test_notion_core_free_ui_completion_matrix.py",
+      "exit_code": 1,
+      "classification": "operator_command_error_corrected_below"
+    },
+    {
+      "selection": "first manual C0 preflight command",
+      "result": "rejected before descriptor creation because the proposed run id did not match the required ui<digits>-... grammar",
+      "exit_code": 0,
+      "classification": "operator_command_error_corrected_below"
+    },
+    {
+      "selection": "corrected manual C0 preflight without an unverified REF-FREE-B assertion",
+      "result": "status fail; synthetic_workspace_boundary_unconfirmed; connection and read-only checks passed; no raw label disclosed",
+      "exit_code": 0,
+      "classification": "expected_fail_closed_external_mapping_gate"
+    },
+    {
+      "selection": "combined manual-intake, reference-guard, evidence-packet, and evidence-harness regression command",
+      "result": "Windows host terminated during stdout flush with OSError 22 and process status 0xC0000409",
+      "exit_code": -1073740791,
+      "classification": "host_failure_not_code_failure"
+    },
+    {
+      "selection": "four direct serial replacement runs after the host failure",
+      "result": "manual intake 17 passed; reference guard 26 passed; evidence packet 6 passed; evidence harness 15 passed; total 64 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "trusted-OS-temp UI-TREE-002 worksheet CLI preparation",
+      "result": "Windows host terminated with status 0xC0000409 before a worksheet result was returned; no retry performed",
+      "exit_code": -1073740791,
+      "classification": "host_dependent_gate_deferred_to_official_intake_run"
+    },
+    {
+      "selection": "post-approval Chrome C0 recheck after cache refresh",
+      "result": "REF-FREE-A confirmed; REF-FREE-B absent from the connected switcher and page text; no other label text returned; no personal workspace or page opened",
+      "exit_code": 0,
+      "classification": "expected_fail_closed_external_session_gate"
+    },
+    {
+      "selection": "user-opened second Notion tab C0 recheck",
+      "result": "second Notion page tab was discoverable and claimed, but its title, visible text, normalized text, and accessible attributes did not expose REF-FREE-B even after refresh and switcher expansion; no other label text returned",
+      "exit_code": 0,
+      "classification": "expected_fail_closed_alias_visibility_gate"
+    },
+    {
+      "selection": "Core Free UI plan and completion-matrix verifiers",
+      "result": "19 passed in 6.35s",
+      "exit_code": 0
+    }
+  ],
+  "claims": {
+    "fourth_reference_characterized": false,
+    "fourth_precalibration_differential_passed": false,
+    "local_reference_aligned": true,
+      "clean_reference_rerun_required": false,
+      "human_review_required": false,
+      "human_review_approved": true,
+      "manual_intake_c0_passed": false,
+    "core_ui_complete": false,
+    "second_brain_complete": false,
+    "overall_goal_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_content_exposed": false,
+    "live_local_data_accessed": false,
+    "prohibited_external_side_effect_attempted": false,
+    "non_synthetic_label_returned": false,
+    "redaction_failure": false,
+    "protected_file_modified": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false
+  },
+  "next_exact_action": "Ask the user to leave the workspace switcher open in the second connected Notion tab with the exact REF-FREE-B alias visibly selected or listed. Re-run C0 without reading any other label text; only after C0 passes may the approved intake be verified, the reference and differential packet sealed, and the matrix updated to 4 of 25."
+}

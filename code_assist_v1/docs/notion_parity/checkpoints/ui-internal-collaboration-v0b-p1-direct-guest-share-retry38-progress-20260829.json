@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-DIRECT-GUEST-SHARE-RETRY38-20260829",
+  "recorded_at": "2026-08-29T08:16:58.9408567+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry38 replaces the REF-FREE-B direct-edit guest upgrade prompt with the actual page-share panel, removes the inapplicable inherited teamspace row, and renders invite-only general access. All four live browser journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. Unmasked differences decreased by 22,863 from retry37 to 3,969,151; V0R-MU-004 decreased by 23,982. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-inbox-priority-retry37-progress-20260829.json",
+      "sha256": "sha256:b29de2387cf685f081b3c2d4d4f9487165b4454ff489f7b659f0ed1fbeb813ce"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:96f994b4d6d6ff84e5fac77061d3bdf77ede87f849f4898dd45011810a6b45f0",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:7ffdae48dc0b4c3619d8e1933d62f965053b42c5fad989f25c15b3c9c2320a8d"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:9ad32b48742c308a49b27f1b814a229e904c5ee143ed60afed2982b05a0ce0c3"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:f0a36163f9de1633f63ff86bfee0997a748a212f28f03da6e5eeab844291cb3d"
+      }
+    ]
+  },
+  "accepted_changes": {
+    "direct_guest_share": "A direct edit guest remains a page guest and the owner sees the page-share panel instead of a workspace-membership upgrade prompt.",
+    "direct_guest_scope": "The direct guest panel omits the inherited teamspace member row and labels general access as invite-only; REF-FREE-A inherited sharing is unchanged."
+  },
+  "bounded_diagnostics": {
+    "iam_retry82": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry82-lossless-direct-guest-share",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "unmasked_difference_count": 2379421,
+      "delta_from_retry81": -23982,
+      "V0R_MU_004_delta": -23982,
+      "all_other_IAM_state_delta": 0,
+      "cleanup_verified": true,
+      "accepted": true
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry38-lossless-direct-guest-share",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry38-lossless-direct-guest-share/receipt.json",
+    "receipt_sha256": "sha256:642fb8970192546311fd5b97aaedea0094ab650fd82c8643f59db454194c876d",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {
+      "I0-P2": 125088,
+      "C0-P2": 90643,
+      "E1-P2": 58007,
+      "F0-P5": 44279
+    },
+    "unmasked_difference_count": 3969151,
+    "masked_difference_count": 211220,
+    "raw_difference_count": 4180371,
+    "delta_from_retry37_unmasked": -22863,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:e660f471c1a90ce7e352c774258fda71b992e2a4e2a39fae03478a6b7e1692fa"
+    }
+  },
+  "state_deltas_from_retry37": [
+    {"state_id": "V0R-MU-004", "delta": -23982},
+    {"state_id": "V0R-MU-012", "delta": 42},
+    {"state_id": "V0R-MU-015", "delta": 1090},
+    {"state_id": "V0R-MU-017", "delta": -13}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "next_focus": {
+    "largest_states": [
+      {"state_id": "V0R-MU-001", "unmasked_difference_count": 372500},
+      {"state_id": "V0R-MU-002", "unmasked_difference_count": 359181},
+      {"state_id": "V0R-MU-006", "unmasked_difference_count": 297144},
+      {"state_id": "V0R-MU-004", "unmasked_difference_count": 278957},
+      {"state_id": "V0R-MU-008", "unmasked_difference_count": 262121}
+    ],
+    "primary": "Continue bounded diagnostics on the workspace-member and inherited page-share surfaces, accepting only measured reductions before another full run.",
+    "full_candidate_policy": "Do not rerun Core25 or performance until exact pixel is 36/36."
+  },
+  "open_gates": {
+    "exact_pixel": {"passed": 0, "required": 36, "status": "open"},
+    "core_25": {"status": "not_run_until_exact_36_of_36"},
+    "performance": {"status": "not_run_until_exact_36_of_36"},
+    "claims": {"status": "open"},
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "scope_attestation": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "user_chrome_touched": false,
+    "persistent_browser_profile_used": false,
+    "public_publish_or_link_used": false,
+    "personal_workspace_or_page_used": false,
+    "permanent_delete_used": false,
+    "reference_receipts_modified": false,
+    "agents_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  }
+}

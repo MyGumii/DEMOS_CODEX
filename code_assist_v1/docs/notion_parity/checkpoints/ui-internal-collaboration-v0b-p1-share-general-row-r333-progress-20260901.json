@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-SHARE-GENERAL-ROW-R333-20260901",
+  "recorded_at": "2026-08-31T17:24:22.3107706Z",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r333 Chrome 153 full candidate preserves the immutable lossless-exact-v4 browser reference, captures all 18 named states at both adopted viewports, passes all 36 accessibility and interaction captures plus all four component journeys, and completes synthetic cleanup. It retains the r331 V0R-MU-006 role, identity-bar, avatar-color, and identity-label corrections and moves only the V0R-MU-006 general-access row one pixel upward. The isolated r332 I0 run reduces the complete general-access row region from 1,922 to 1,762 nonexact pixels per viewport and lowers V0R-MU-006 by exactly 320 pixels. The same 320-pixel decrease is reproduced in r333. The full-run aggregate is 827 unmasked pixels below r331, 4,085 below r322, and 22,278 below r303. Exact RGBA remains 0/36, so r333 is mutable progress evidence only and is not an immutable receipt, phase-gate closure, or product-complete claim.",
+  "lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-share-identity-labels-r331-progress-20260901.json",
+      "sha256": "sha256:0ce51c43f214728755e95e4637c22cd8a3974872631f12cab1b290781c48b84c"
+    },
+    "previous_retained_candidate": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r331/receipt.json",
+      "sha256": "sha256:252de1c2d506ceafe77fd4d418936938745def381aaa04b5e4165829d78f7230"
+    },
+    "r322_comparison_candidate": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r322/receipt.json",
+      "sha256": "sha256:7b03782dcd5ae87e03a89b01726a8be49f15f1a9fcf2164935841aec2dd994f6"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "implementation": {
+    "capture_harness": {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:13e04776c62fadb02e4d9f275f6043e62e9ea235e35b0c528ed69105ef7c3216",
+      "changes": [
+        "preserve the V0R-MU-006-only -19px inherited-share role-column offset, +1px identity-bar offset, #455a64/#bf360c avatar colors, and +3px/+2px identity-label offsets",
+        "translate only the V0R-MU-006 general-access row from -6px to -7px without moving the exact divider, general-access label, workspace row, accessible names, or document flow"
+      ]
+    },
+    "unchanged_product_sources": {
+      "notion_css_sha256": "sha256:9f0d6d09ff14523d9522bec7e9f82ece06597af40939470111d2cacb6a29a07d",
+      "notion_js_sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1",
+      "release_source_build_sha256": "sha256:649004beed6722fa10f64546624279c33bbdf3a18e114fdd9fc74f1d1397dde4",
+      "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347"
+    },
+    "accepted_r332_general_access_row": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260901-r332",
+      "status": "pass",
+      "capture_count": 20,
+      "capture_state_count": 10,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "exact_pixel_pass_count": 0,
+      "cleanup": {
+        "test_root_moved_to_trash": true,
+        "synthetic_member_absent_after_cleanup": true,
+        "browser_closed": true,
+        "permanent_delete_used": false
+      },
+      "V0R_MU_006_previous_unmasked_difference_count": 173736,
+      "V0R_MU_006_current_unmasked_difference_count": 173416,
+      "delta": -320,
+      "per_viewport_general_access_row_nonexact": {
+        "1440x900_before": 1922,
+        "1440x900_after": 1762,
+        "1280x800_before": 1922,
+        "1280x800_after": 1762
+      },
+      "accepted": true
+    }
+  },
+  "retained_r333_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r333",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r333/receipt.json",
+    "receipt_sha256": "sha256:20fec2c39e083bf9fe7e849164a2ee01dbd5d478d41da400988e41cbb59a6287",
+    "source_build_sha256": "sha256:649004beed6722fa10f64546624279c33bbdf3a18e114fdd9fc74f1d1397dde4",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 394520,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2208845,
+    "masked_difference_count": 70240,
+    "raw_difference_count": 2279085,
+    "unmasked_delta_from_r331": -827,
+    "masked_delta_from_r331": 0,
+    "raw_delta_from_r331": -827,
+    "unmasked_delta_from_r322": -4085,
+    "masked_delta_from_r322": -16,
+    "raw_delta_from_r322": -4101,
+    "unmasked_delta_from_r303": -22278,
+    "masked_delta_from_r303": 0,
+    "raw_delta_from_r303": -22278,
+    "unmasked_state_deltas_from_r331": {
+      "V0R-MU-005": -506,
+      "V0R-MU-006": -320,
+      "V0R-MU-008": -1
+    },
+    "unmasked_state_deltas_from_r322": {
+      "V0R-MU-004": 2040,
+      "V0R-MU-005": -253,
+      "V0R-MU-006": -5872
+    },
+    "unmasked_state_totals": {
+      "V0R-MU-001": 197776,
+      "V0R-MU-002": 188556,
+      "V0R-MU-003": 137453,
+      "V0R-MU-004": 119382,
+      "V0R-MU-005": 56070,
+      "V0R-MU-006": 173416,
+      "V0R-MU-007": 113094,
+      "V0R-MU-008": 115338,
+      "V0R-MU-009": 131745,
+      "V0R-MU-010": 117642,
+      "V0R-MU-011": 113001,
+      "V0R-MU-012": 110620,
+      "V0R-MU-013": 143500,
+      "V0R-MU-014": 171717,
+      "V0R-MU-015": 69301,
+      "V0R-MU-016": 68486,
+      "V0R-MU-017": 90943,
+      "V0R-MU-018": 90805
+    },
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_p2_measurements_ms": {
+      "presence_delivery_ms": 1390,
+      "comment_delivery_ms": 1929,
+      "reaction_delivery_ms": 1445,
+      "presence_ttl_expiry_ms": 15228,
+      "reconnect_ms": 1282
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:b79ec19aa0d4ccbcae7af59ad316b0d1d01e7052ea4d7d0cc37de0f5db5e3fbc"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "result": "16 passed, 1 skipped in 12.92s",
+      "exit_code": 0
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:20fec2c39e083bf9fe7e849164a2ee01dbd5d478d41da400988e41cbb59a6287"
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from the retained r333 mutable candidate. Preserve the V0R-MU-006 -19px inherited-share role-column offset, +1px identity-bar offset, measured #455a64/#bf360c avatar colors, +3px/+2px identity-label offsets, and -7px general-access-row offset; preserve the invite-row position, #e6e5e3 inherited-share field border, #afafaf placeholder, exact share-tab geometry and content alignment, direct-guest vector lock, inherited-workspace row and deterministic home icon, canonical rich starter semantics, state-bounded indentation and chip geometry for V0R-MU-005/V0R-MU-015/V0R-MU-016, deterministic F0 reference-context restoration, and all earlier retained corrections. Preserve r323 as rejected diagnostic evidence and do not restore its workspace-member label alias. Do not restart development services without the separately named approval required by the handoff. Treat V0R-MU-001/V0R-MU-002/V0R-MU-004/V0R-MU-005/V0R-MU-008/V0R-MU-010/V0R-MU-014/V0R-MU-015 and masked-counter differences as run variability unless a source-bounded causal region is proven. Do not restore any previously rejected typography, modal, icon, row-height, display-string, or title-transform experiment. Prioritize another reproducible state-bounded structural or rendering difference, and do not run fresh Core 25 or quiet-host performance gates until the 36/36 exact gate closes."
+}

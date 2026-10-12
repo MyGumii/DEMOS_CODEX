@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.v0b_q0.runtime_compatibility_inheritance_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-Q0-RUNTIME-COMPATIBILITY-INHERITANCE-20260907",
+  "recorded_at": "2026-09-07T05:38:22.8767335Z",
+  "status": "validated_nonvisual_runtime_source_supersession",
+  "immutable_after_recording": true,
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    }
+  },
+  "evidence_binding": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-p1-local-readiness-20260907.json",
+    "sha256": "sha256:b6b3798acad616ea96545c277fa1cab84d72c915d40d12bb06e583be8ee51bb5"
+  },
+  "v0b_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-product-similarity-critical-regions-r9-20260907.json",
+    "sha256": "sha256:84c8626db11391e0e4c45877d5fb2a853551205954b9b8117417abf9486878db",
+    "receipt_id": "V0B-P1-L6-FINAL-CANDIDATE-FRESH-27F3DCFC709DC942"
+  },
+  "ui_source_binding": {
+    "build_sha256": "sha256:bd20668ccdd9233a886fc143689fa2bb73ac7d81e2748b5d499ec27d8c7d9dce",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:d3a76391b0b12e96c1e43fa85eb554eabfa3fe144300251146550abdacb1b71d"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:23a512cd5bc33765f41dd44d21835b9acae9be2cb9842df8bde80c22bf67c35c"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:26757ac92994df6d2d348abe9c1dba62966dc95be0b561099fe365898728d781"
+      },
+      {
+        "path": "code_assist_v1/notion_static/assets/emoji/1f3e0.svg",
+        "sha256": "sha256:fd04bb778ab22836385a4c19971ffc3282024e0cbb7eabe4d6edd6287527882d"
+      },
+      {
+        "path": "code_assist_v1/notion_static/assets/emoji/1f44b.svg",
+        "sha256": "sha256:eaced9544876442d06a117570c6f9da91f08d758e1f4b0161b0b018c81235bc7"
+      },
+      {
+        "path": "code_assist_v1/notion_static/assets/emoji/TWEMOJI_ATTRIBUTION.md",
+        "sha256": "sha256:4cf8d4fe49c77a9b7a3caa2b24452d56ddae0675d73d067f98b6820326bb665d"
+      }
+    ]
+  },
+  "runtime_before": {
+    "source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "source_files": [
+      {
+        "path": "code_assist_v1/routes_notion_workspace.py",
+        "sha256": "sha256:cd04a8d7a73d31ae523cb2736416c96fd0219b1a3dd5ccdf83c30feed897543e"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/canonical_authority.py",
+        "sha256": "sha256:340bc435f16ad7cbb2f7f78f3a9b1c70ebe40e54c8d3b080494c184c3042d504"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/iam_authority.py",
+        "sha256": "sha256:6d10955249c73e8e11f4944281c402743ef9da2986a870e9dd0d4e99bba54893"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/iam_runtime.py",
+        "sha256": "sha256:b540e523b6ddb5a5102a44b4a7a47bb8458cb002d9c84f69e6b0664f2125aad9"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/protocol_contract.py",
+        "sha256": "sha256:232f090471775e49dc4097911a409c3a45e0c47f0ece279f7452ad1d595e1fe8"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/durable_transport.py",
+        "sha256": "sha256:40604fdb0c5e8611222d3c98998ecd13ed1a555e2a5972acf4abd0d1c16a1d04"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/editing_authority.py",
+        "sha256": "sha256:36cb361d931f582ae6027425e1a72762faa9b8fd3d4c2ff65ad0106307a4c0d6"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/live_authority.py",
+        "sha256": "sha256:0ca14e88d970a36230f80023bc756e4e8f8329e9810a2928ec9341958da40617"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/database_features.py",
+        "sha256": "sha256:5d3dc977021a5c73ecf2b250dbf32670921c954b2a48dc4ee2888b0298680199"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/runtime_gateway.py",
+        "sha256": "sha256:05f7bbcda355ce88cb1c6e41fab5d99f8f280255bad8796a9efc71d8c91daba3"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/gateway_service.py",
+        "sha256": "sha256:d4c4d270e5bdf5f868976a32153ce62b45a897893cf74bd9b4a2a18473cc4db5"
+      }
+    ]
+  },
+  "runtime_after": {
+    "build_sha256": "sha256:cec7a11d3f633405655516566b22ec05354605a3f8def57c3ddada94bf71a0c1",
+    "files": [
+      {
+        "path": "code_assist_v1/routes_notion_workspace.py",
+        "sha256": "sha256:cd04a8d7a73d31ae523cb2736416c96fd0219b1a3dd5ccdf83c30feed897543e"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/canonical_authority.py",
+        "sha256": "sha256:340bc435f16ad7cbb2f7f78f3a9b1c70ebe40e54c8d3b080494c184c3042d504"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/iam_authority.py",
+        "sha256": "sha256:6d10955249c73e8e11f4944281c402743ef9da2986a870e9dd0d4e99bba54893"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/iam_runtime.py",
+        "sha256": "sha256:b540e523b6ddb5a5102a44b4a7a47bb8458cb002d9c84f69e6b0664f2125aad9"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/protocol_contract.py",
+        "sha256": "sha256:232f090471775e49dc4097911a409c3a45e0c47f0ece279f7452ad1d595e1fe8"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/durable_transport.py",
+        "sha256": "sha256:110760c7e4dff126d77dd125d4bd9aa913884cef01429132b95395f36d26edd4"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/editing_authority.py",
+        "sha256": "sha256:36cb361d931f582ae6027425e1a72762faa9b8fd3d4c2ff65ad0106307a4c0d6"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/live_authority.py",
+        "sha256": "sha256:0ca14e88d970a36230f80023bc756e4e8f8329e9810a2928ec9341958da40617"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/database_features.py",
+        "sha256": "sha256:5d3dc977021a5c73ecf2b250dbf32670921c954b2a48dc4ee2888b0298680199"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/runtime_gateway.py",
+        "sha256": "sha256:dffa67d625663730f08928751c1451bf9870fedd7c0afb6919bebf4b0b8047ff"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/gateway_service.py",
+        "sha256": "sha256:cb42805aa0bb7fade9a018ef02ca97e537caa0ab0f0ce582fca723c1f16e3eac"
+      }
+    ]
+  },
+  "changed_runtime_files": [
+    {
+      "path": "code_assist_v1/notion_collaboration/durable_transport.py",
+      "before_sha256": "sha256:40604fdb0c5e8611222d3c98998ecd13ed1a555e2a5972acf4abd0d1c16a1d04",
+      "sha256": "sha256:110760c7e4dff126d77dd125d4bd9aa913884cef01429132b95395f36d26edd4"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/gateway_service.py",
+      "before_sha256": "sha256:d4c4d270e5bdf5f868976a32153ce62b45a897893cf74bd9b4a2a18473cc4db5",
+      "sha256": "sha256:cb42805aa0bb7fade9a018ef02ca97e537caa0ab0f0ce582fca723c1f16e3eac"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/runtime_gateway.py",
+      "before_sha256": "sha256:05f7bbcda355ce88cb1c6e41fab5d99f8f280255bad8796a9efc71d8c91daba3",
+      "sha256": "sha256:dffa67d625663730f08928751c1451bf9870fedd7c0afb6919bebf4b0b8047ff"
+    }
+  ],
+  "validation_evidence": {
+    "completed_visual_capture_reexecution_performed": false,
+    "q0_local_regression_passed": 67,
+    "visual_similarity_receipt_freshly_reverified": true,
+    "semantic_visual_evidence_inherited": true
+  },
+  "claims": {
+    "ui_source_changed": false,
+    "runtime_drift_beyond_exact_three_files_accepted": false,
+    "visual_or_accessibility_result_rewritten": false,
+    "historical_receipt_overwritten": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:7233d355f7039e7b12d40f549aa4b791667077f29252e072b84f658f6bc691b5"
+}

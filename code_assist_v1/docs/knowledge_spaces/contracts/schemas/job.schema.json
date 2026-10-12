@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/contracts/job.schema.json",
+  "title": "Durable job API contract",
+  "$defs": {
+    "JobState": {
+      "type": "string",
+      "enum": ["queued", "claimed", "running", "retry", "succeeded", "failed", "cancelled", "dead"]
+    },
+    "JobResponse": {
+      "type": "object",
+      "required": [
+        "request_id", "job_id", "job_type", "handler_version", "state",
+        "attempt_count", "max_attempts", "cancellable", "cancel_requested",
+        "progress_permille", "created_at", "updated_at"
+      ],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "job_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "job_type": {"type": "string", "minLength": 1, "maxLength": 100},
+        "handler_version": {"type": "string", "minLength": 1, "maxLength": 80},
+        "state": {"$ref": "#/$defs/JobState"},
+        "attempt_count": {"type": "integer", "minimum": 0},
+        "max_attempts": {"type": "integer", "minimum": 1},
+        "cancellable": {"type": "boolean"},
+        "cancel_requested": {"type": "boolean"},
+        "progress_permille": {"type": "integer", "minimum": 0, "maximum": 1000},
+        "status_url": {"type": "string", "format": "uri-reference"},
+        "result": {"type": ["object", "null"]},
+        "error": {"type": ["object", "null"]},
+        "created_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "updated_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "completed_at": {
+          "anyOf": [
+            {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+            {"type": "null"}
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"state": {"const": "succeeded"}}, "required": ["state"]},
+          "then": {
+            "properties": {
+              "completed_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+              "result": {"type": "object"},
+              "error": {"type": "null"}
+            },
+            "required": ["completed_at", "result", "error"]
+          }
+        },
+        {
+          "if": {"properties": {"state": {"enum": ["failed", "dead"]}}, "required": ["state"]},
+          "then": {
+            "properties": {
+              "completed_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+              "result": {"type": "null"},
+              "error": {"type": "object"}
+            },
+            "required": ["completed_at", "result", "error"]
+          }
+        },
+        {
+          "if": {"properties": {"state": {"const": "cancelled"}}, "required": ["state"]},
+          "then": {
+            "properties": {
+              "completed_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+              "result": {"type": "null"},
+              "error": {"type": "null"}
+            },
+            "required": ["completed_at", "result", "error"]
+          }
+        },
+        {
+          "if": {"properties": {"state": {"enum": ["queued", "claimed", "running", "retry"]}}, "required": ["state"]},
+          "then": {
+            "properties": {
+              "completed_at": {"type": "null"},
+              "result": {"type": "null"},
+              "error": {"type": "null"}
+            },
+            "required": ["completed_at", "result", "error"]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "CancelJobRequest": {
+      "$ref": "common.schema.json#/$defs/OperationRequest"
+    },
+    "CancelJobResponse": {
+      "$ref": "common.schema.json#/$defs/MutationResponse"
+    }
+  }
+}

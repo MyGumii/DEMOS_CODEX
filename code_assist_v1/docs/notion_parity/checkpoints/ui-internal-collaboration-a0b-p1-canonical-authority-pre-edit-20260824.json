@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-A0B-P1-CANONICAL-AUTHORITY-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-24T08:12:00Z",
+  "checkpoint_kind": "packet_pre_edit_ownership_and_lineage_snapshot",
+  "packet_id": "A0B-P1",
+  "packet_status": "in_progress",
+  "purpose": "Freeze the exact 2026081317 workspace source lineage, preserve the parallel NP2C 2026081318 archive reservation, and declare the isolated files owned for the default-off 2026082401 collaborative authority migration, deterministic sanitized legacy-snapshot import, compatibility projection, and cross-process restart/replay/revoke/rollback rehearsal. This checkpoint authorizes no live database, identity, service, port, preview-root, feature-enable, or production action.",
+  "owner_agent": "/root",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/tools/internal_collaborative_validation.py"
+  ],
+  "new_product_files": [
+    "code_assist_v1/notion_workspace_collaboration_migration.py",
+    "code_assist_v1/notion_collaboration/canonical_authority.py",
+    "code_assist_v1/notion_collaboration/legacy_snapshot.py",
+    "code_assist_v1/notion_collaboration/cutover.py",
+    "code_assist_v1/tools/migrate_notion_workspace_collaboration.py",
+    "code_assist_v1/tools/verify_internal_collaborative_authority_baseline.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_authority_baseline.v1.json"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_canonical_authority_migration.py",
+    "code_assist_v1/tests/notion_collaboration/test_canonical_authority_runtime.py",
+    "code_assist_v1/tests/notion_collaboration/test_legacy_snapshot_cutover.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_authority_baseline.py"
+  ],
+  "evidence_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-a0b-p1-canonical-authority-pre-edit-20260824.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-a0b-p1-canonical-authority-20260824.json"
+  ],
+  "read_only_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/notion_workspace_store.py",
+    "code_assist_v1/notion_workspace_lifecycle_subtree_finalize_migration.py",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_authority_adr.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_engineering_decision.v1.json",
+    "code_assist_v1/notion_collaboration/canonical_authority_prototype.py",
+    "code_assist_v1/notion_collaboration/capability_switches.py",
+    "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md"
+  ],
+  "protected_dependencies": [
+    "code_assist_v1/knowledge/",
+    "code_assist_v1/user_data/",
+    "code_assist_v1/.runtime/",
+    "existing per-user Notion databases",
+    "existing 10111 preview roots and processes",
+    "ports 10011, 10012, 10111, 10112, and 10113",
+    "production roots and services"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:311d6660e0edfbfec2ca7ae9be019bd2894699fcecf4233d64c9849e9fcba205",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:92569b3dff9c857716cbcfb67820546b7128d26cf119f8b7fbfce5deb548c992",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:71ef7ca56130c5b7e49124e0599258b819c2306785e9549fb61b233aa20e0056",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:1de224920eee33b8e417db62b1d32e92848b231a7650b25eb332ca46e2f727bc",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:6d9f634825d53304824f7de5c2cd0b8ad0256d6cf2e0f85d0de733518e6bc78d",
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:fa3fc7639edf263d2f24e41ebdeeb32cb3f2b1e781a8d800e0c5459107c73d8e"
+  },
+  "workspace_schema_lineage": {
+    "source_version": 2026081317,
+    "source_name": "notion_workspace_v2_np2c_lifecycle_subtree_finalize_authority",
+    "source_store_sha256": "sha256:19de52d282b6d3adbad2aa72a128a56f9525fdb7f82748138d4e1a009705a979",
+    "source_migration_sha256": "sha256:67f00babc3e09c6e7308b77ef52fe2af12810573257ae7a3ccb45619805aca95",
+    "parallel_reserved_version": 2026081318,
+    "parallel_reservation_contract_sha256": "sha256:86901eacd80880882096a9366109c69ed226402a4bf156dd63268ed317021dd5",
+    "selected_collaboration_version": 2026082401,
+    "historical_migration_modified": false
+  },
+  "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked",
+    "tool_status_observed": "blocked_stale_after_prior_pause",
+    "user_resume_authority": "The user explicitly resumed the work and approved the complete G0-U recommended policy, including identity/workspace semantics, 100/30/10 floors, internal scope, recovery, and two-stage offline behavior.",
+    "goal_status_mutated_by_packet": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-24T08:12:00Z",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:87d4b24e32a8eb5725f44eb2b19f3df96211b64c6a96aeeac59b0d3510b04129",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_active_packet": "SBE-2.3",
+    "sbe_status_sha256": "sha256:ae8b81f3e6739a423d700abb65bfa21bc12f47cecf02650979e429ba8d0901a9",
+    "sbe_backlog_sha256": "sha256:761743ea761e10468ff9b761a78d5f41a43334ea0c6e8adf6f224feaf530efae",
+    "exact_path_collision_observed": false,
+    "np2c_2026081318_state": "reserved_candidate_not_landed",
+    "sbe_hot_contracts_modified_by_this_packet": false
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-A0B-P1-ROOT-20260824",
+    "lane": "CANONICAL",
+    "owner_agent": "/root",
+    "status": "active",
+    "acquired_at": "2026-08-24T08:12:00Z",
+    "expires_at": "2026-08-25T08:12:00Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "approval_and_external_prerequisites": {
+    "packet_approval_required": false,
+    "external_prerequisites": [],
+    "AP_DEV_PAIR_consumed": false,
+    "XG_10111_handoff_consumed": false,
+    "real_dev_pair_mutation_allowed": false
+  },
+  "rollback_or_cleanup": "Delete only the unique A0B-P1 new product, test, contract, and checkpoint files and restore the exact pre-edit catalog, ladder, matrix, harness, validator, and current-pointer hashes while this lease owns them. Synthetic migration/import/restart databases and projections exist only under pytest temporary roots. No schema downgrade, live database replacement, process, listener, identity, service, port, preview root, or production cleanup is required."
+}

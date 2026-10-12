@@ -1,0 +1,108 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T17:56:10.6867922+09:00",
+  "run_id": "ui56-approval-batch-v2-active-budget-integrity-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-approval-batch-v2-resolved-performance-budget-active-ime-review-sealed-20260822.json",
+    "sha256": "sha256:ee34bb48d63f17a53316e42071fd5966bf3edd383047a4086875e2833d07d054"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_ids": [
+      "UI-EDITOR-004",
+      "UI-PERF-001"
+    ],
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "external_action_performed": false
+  },
+  "slice": {
+    "status": "owner_approvals_resolved_local_budget_active_integrity_green",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_receipt.v2.20260822.json",
+      "sha256": "sha256:6d5ef719306499ca6e672081d2c91c180f20786064a22d99e1fb4c6ce46b81e7"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/manual_ime_summary_approval_receipt.20260822.json",
+      "sha256": "sha256:70befa928e5a9c616544be94c0de710c7e839cc1d3f58f2a24fdb0983a14fe2b"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/performance_budget.v1.json",
+      "sha256": "sha256:e142c76f6464a4b15869805eb82eeb1478f7e4d96d1fdbba4b0588a87a962e03"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:b99fc446a6cca87a6020887e1516e9e962c10633ea7fb3bbac55ae607bc53703"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:2b6cbe53ea476c5ac6a9028b873397c6dd50f5fa85510caf865867ca8c4bdea1"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json",
+      "sha256": "sha256:7f0c99a95dc89e6b8a924a38f374cd65129abd8f79f1bddfd388835f5c968c07"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-004-current-review-wrapper-20260822.json",
+      "sha256": "sha256:2712fc785b5b8f2de261d59eb5443c5f1233f756277acc880184ca60ca67a238"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-current-review-wrapper-20260822.json",
+      "sha256": "sha256:a533d9a7508e4507d6f7fb0d6902f3ecf20cd5d226ec184a46148b63d86926a4"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+      "sha256": "sha256:17cad4942917ad41e13501c05ec1dd085de82343852eeb4772ad9e62b93b6761"
+    }
+  ],
+  "verification": {
+    "review_gate": {
+      "status": "pass",
+      "errors": 0
+    },
+    "completion_gate": {
+      "status": "pass",
+      "completion_state": "incomplete",
+      "required_scenarios": 25,
+      "reference_characterized": 5,
+      "differential_passed": 5,
+      "promoted": 0
+    },
+    "performance_budget_gate": {
+      "status": "pass",
+      "state": "active_local_precalibration",
+      "budgeted_metric_count": 8,
+      "unbudgeted_metric_count": 1
+    },
+    "tests": [
+      {
+        "selection": "code_assist_v1/tests/test_notion_ui_completion_matrix.py",
+        "result": "6 passed"
+      },
+      {
+        "selection": "code_assist_v1/tests/test_notion_ui_review_gate.py",
+        "result": "8 passed"
+      },
+      {
+        "selection": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+        "result": "1 passed in 61.24s"
+      }
+    ],
+    "host_incident": "One earlier combined pytest process ended with the known Windows 0xC0000409/stdout flush failure; isolated reruns and direct verifiers passed."
+  },
+  "claims": {
+    "manual_ime_observable_summary_owner_approved": true,
+    "manual_ime_reference_local_focus_a11y_differential_passed": false,
+    "local_performance_budget_active": true,
+    "reference_performance_timing_accepted": false,
+    "notion_performance_slo_claimed": false,
+    "h8_complete": false,
+    "completion_matrix_changed_by_this_checkpoint": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

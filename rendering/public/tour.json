@@ -1,0 +1,107 @@
+{
+  "id": "demos-chat-stream",
+  "title": "질문 한 번이 답변이 되기까지",
+  "description": "Demos의 실제 코드에서 확인한 단일 모델 채팅 경로입니다. 앱 부팅, 화면의 요청, 모델 선택, 스킬 로딩, 토큰 응답을 따라갑니다. 조건부 분기는 각 단계에서 설명합니다.",
+  "steps": [
+    {
+      "title": "01 · 도시의 출입구",
+      "description": "app.py는 저장소의 중앙 Flask 앱을 시작합니다. demos_v1의 create_app()을 호출해 라우트를 등록한 뒤, 직접 실행할 때 10009번 포트로 서버를 엽니다. 3D 탐색기 자체는 이 서버를 실행하지 않습니다.",
+      "fileId": "app.py",
+      "line": 24,
+      "symbol": "create_app",
+      "relation": "verified",
+      "evidence": [
+        { "path": "app.py", "line": 24, "note": "demos_v1에서 app과 create_app을 가져옵니다." },
+        { "path": "app.py", "line": 25, "note": "create_app()을 실제로 호출합니다." },
+        { "path": "app.py", "line": 172, "note": "직접 실행 분기의 Flask 서버 시작 위치입니다." }
+      ]
+    },
+    {
+      "title": "02 · 서비스들을 연결하는 교차로",
+      "description": "create_app()은 일반 API, 채팅, 지식 검색, PPT, OpenAI 호환 게이트웨이를 같은 Flask 앱에 연결합니다. code_assist_v1도 /code 경로의 Blueprint로 등록합니다. 등록 여부를 기억해 같은 라우트를 중복 등록하지 않습니다.",
+      "fileId": "demos_v1/__init__.py",
+      "line": 16,
+      "symbol": "create_app",
+      "relation": "verified",
+      "evidence": [
+        { "path": "demos_v1/__init__.py", "line": 19, "note": "이미 등록된 앱은 바로 반환합니다." },
+        { "path": "demos_v1/__init__.py", "line": 30, "note": "API와 채팅 등록 함수를 실제 호출합니다." },
+        { "path": "demos_v1/__init__.py", "line": 41, "note": "code_assist_v1 Blueprint를 등록합니다." },
+        { "path": "demos_v1/routes_api.py", "line": 158, "note": "루트 화면은 templates/index.html을 렌더링합니다." }
+      ]
+    },
+    {
+      "title": "03 · 브라우저에서 출발하는 질문",
+      "description": "채팅 화면은 환경이 하나 이하이면 /api/chat으로 POST 요청을 보냅니다. 대화 history, 선택 스킬, 시스템 프롬프트와 stream: true가 함께 전달됩니다. 응답에서는 meta와 token 이벤트를 읽고, 받은 토큰을 말풍선에 누적합니다.",
+      "fileId": "demos_v1/templates/index.html",
+      "line": 1996,
+      "relation": "verified",
+      "evidence": [
+        { "path": "demos_v1/templates/index.html", "line": 1996, "note": "단일 환경인지 검사한 뒤 SSE 요청 경로로 들어갑니다." },
+        { "path": "demos_v1/templates/index.html", "line": 1998, "note": "fetch('/api/chat') 요청입니다." },
+        { "path": "demos_v1/templates/index.html", "line": 2012, "note": "요청에 stream: true를 명시합니다." },
+        { "path": "demos_v1/templates/index.html", "line": 2063, "note": "token 이벤트를 화면에 누적하는 위치입니다." }
+      ]
+    },
+    {
+      "title": "04 · 채팅 요청의 분기점",
+      "description": "api_chat()은 stream이 true이고 환경이 둘 이상이 아니면 _stream_chat_sse()를 호출합니다. 다중 환경은 별도의 통째 응답 경로로 이동합니다. 이 투어는 단일 환경 스트리밍 경로를 따라갑니다.",
+      "fileId": "demos_v1/routes_chat.py",
+      "line": 526,
+      "symbol": "api_chat",
+      "relation": "verified",
+      "evidence": [
+        { "path": "demos_v1/routes_chat.py", "line": 526, "note": "POST /api/chat 라우트 선언입니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 544, "note": "선택 환경이 둘 이상인지 검사합니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 548, "note": "단일 환경일 때 _stream_chat_sse를 실제 호출합니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 245, "note": "스트리밍 처리 함수가 시작됩니다." }
+      ]
+    },
+    {
+      "title": "05 · AUTO가 모델을 고르는 곳",
+      "description": "환경 선택이 auto일 때 채팅 함수는 classify_and_route()를 호출합니다. 이 함수는 질문 길이, 분석·코드·PPT 키워드, 첨부 이미지와 CSV 여부를 검사하는 규칙 기반 라우터입니다. 토큰 설정에 따라 로컬 GGUF 또는 API 환경 ID와 선택 이유를 반환합니다. 특정 모델의 설치나 가용성을 이 지도에서 보장하지는 않습니다.",
+      "fileId": "demos_v1/router.py",
+      "line": 58,
+      "symbol": "classify_and_route",
+      "relation": "verified",
+      "evidence": [
+        { "path": "demos_v1/routes_chat.py", "line": 270, "note": "auto 분기에서 classify_and_route를 호출합니다." },
+        { "path": "demos_v1/router.py", "line": 58, "note": "규칙 기반 모델 선택 함수입니다." },
+        { "path": "demos_v1/router.py", "line": 70, "note": "API 토큰이 없을 때 로컬 모델 선택 분기입니다." },
+        { "path": "demos_v1/router.py", "line": 91, "note": "첨부 이미지와 요청 유형별 API 모델 선택이 이어집니다." }
+      ]
+    },
+    {
+      "title": "06 · 필요한 스킬만 읽는 서가",
+      "description": "선택된 스킬 ID마다 load_skill_content()가 해당 폴더의 SKILL.md를 읽습니다. 채팅 함수는 성공적으로 읽은 본문을 시스템 프롬프트 앞에 붙입니다. 로컬 GGUF 경로에서는 스킬 하나당 글자 수 제한도 적용합니다. 하네스 추천 후보는 이 SSE 경로에서 본문을 자동 추가하지 않습니다.",
+      "fileId": "demos_v1/skills.py",
+      "line": 1601,
+      "symbol": "load_skill_content",
+      "relation": "verified",
+      "evidence": [
+        { "path": "demos_v1/skills.py", "line": 1601, "note": "선택 스킬의 SKILL.md를 읽는 함수입니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 283, "note": "GGUF 경로에서 스킬 본문의 글자 수 제한을 설정합니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 286, "note": "각 선택 스킬의 load_skill_content를 호출합니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 300, "note": "스킬 본문을 시스템 프롬프트 구성에 사용합니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 329, "note": "하네스의 추가 후보는 로그에 표시되고 본문 미적용으로 표시됩니다." }
+      ]
+    },
+    {
+      "title": "07 · 모델에서 토큰으로 돌아오는 길",
+      "description": "gguf- 환경이면 load_gguf_model()이 로컬 모델을 준비하고, 채팅 함수가 create_chat_completion(stream=True)을 호출합니다. 그 외에는 선택 환경의 API에 스트리밍 POST 요청을 보냅니다. 양쪽 모두 token 이벤트와 [DONE]을 브라우저에 전달하므로 화면은 같은 방식으로 답변을 누적합니다. 실제 요청의 환경에 따라 두 경로 중 하나를 통과합니다.",
+      "fileId": "demos_v1/gguf.py",
+      "line": 45,
+      "symbol": "load_gguf_model",
+      "relation": "verified",
+      "evidence": [
+        { "path": "demos_v1/gguf.py", "line": 45, "note": "로컬 GGUF 모델 로딩과 재사용을 담당합니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 408, "note": "gguf- 분기에서 로더를 실제 호출합니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 421, "note": "로컬 모델의 스트리밍 추론을 호출합니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 466, "note": "API 분기의 스트리밍 POST 요청입니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 442, "note": "로컬 추론 결과를 SSE Response로 반환합니다." },
+        { "path": "demos_v1/routes_chat.py", "line": 513, "note": "API 결과를 SSE Response로 반환합니다." },
+        { "path": "demos_v1/templates/index.html", "line": 2101, "note": "종료 후 누적된 답변을 정식 말풍선과 대화 history에 저장합니다." }
+      ]
+    }
+  ]
+}

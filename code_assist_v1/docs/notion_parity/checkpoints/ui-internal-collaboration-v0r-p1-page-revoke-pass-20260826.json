@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-PAGE-REVOKE-PASS-20260826",
+  "recorded_at": "2026-08-26T22:34:29+09:00",
+  "checkpoint_kind": "page_guest_grant_revoked_non_oracle_pass",
+  "packet_id": "V0R-P1",
+  "packet_status": "execution_in_progress_awaiting_A_workspace_revoke_confirmation",
+  "purpose": "Record removal of the REF-COLLABORATOR grant from synthetic REF-FREE-B / V0R-B-ROOT and the collaborator-side non-oracle access boundary with no page title or body disclosure.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-page-view-role-pass-20260826.json",
+    "sha256": "sha256:fccd7897c24d30aa95ba96b52bd50fc8fc3be997716feaf431b6fa39f247d1b0"
+  },
+  "action_time_confirmation": {
+    "exact_user_text": "B 페이지 공유 권한 회수 승인",
+    "bound_action_id": "V0R-PAGE-REVOKE",
+    "bound_target": "REF-FREE-B/V0R-B-ROOT",
+    "bound_principal": "REF-COLLABORATOR"
+  },
+  "operator_action_result": {
+    "order": 9,
+    "action_id": "V0R-PAGE-REVOKE",
+    "workspace": "REF-FREE-B",
+    "page": "V0R-B-ROOT",
+    "actor": "REF-OWNER",
+    "required_result": "REF-COLLABORATOR_page_access_revoked_non_oracle",
+    "owner_share_dialog_guest_row_remaining_count": 0,
+    "collaborator_page_title_visible_count": 0,
+    "collaborator_page_body_visible_count": 0,
+    "collaborator_no_access_surface_visible": true,
+    "collaborator_request_access_control_visible": true,
+    "public_or_anonymous_access_enabled": false,
+    "status": "passed"
+  },
+  "capture_state": {
+    "state_id": "V0R-MU-017",
+    "workspace": "REF-FREE-B",
+    "actor": "REF-COLLABORATOR",
+    "surface": "access_boundary",
+    "state": "page_access_revoked_non_oracle",
+    "status": "captured"
+  },
+  "privacy_processing": {
+    "method": "deterministic_rectangular_redaction",
+    "redacted_elements": [
+      "authenticated account avatar and identifier line"
+    ],
+    "raw_source_location": "temporary_root_only",
+    "raw_source_deleted": true,
+    "redacted_derivative_only_in_repository": true
+  },
+  "screenshots": [
+    {
+      "state_id": "V0R-MU-017",
+      "viewport": "1440x900",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-017__1440x900.png",
+      "sha256": "sha256:b02324a4da6205a503a51c3722849c2291a30d624282a13779958f8229850bfa"
+    },
+    {
+      "state_id": "V0R-MU-017",
+      "viewport": "1280x800",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-017__1280x800.png",
+      "sha256": "sha256:c4da98b069e750ed8ae802a96465a72507eb3e5144ea80633c9b5bab9e7260be"
+    }
+  ],
+  "evidence_denominator": {
+    "screenshot_file_count": 34,
+    "expected_screenshot_count": 36,
+    "completed_capture_state_count": 17,
+    "expected_capture_state_count": 18,
+    "completed_action_count": 9,
+    "expected_action_count": 11,
+    "cleanup_required_now": true
+  },
+  "scope_attestation": {
+    "REF_FREE_B_page_grant_remaining": false,
+    "REF_FREE_B_workspace_membership_changed": false,
+    "request_access_button_clicked": false,
+    "message_or_notification_sent_during_validation": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "paid_upgrade_or_purchase_executed": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "confirmation_boundary": {
+    "next_action_id": "V0R-WORKSPACE-REVOKE",
+    "next_workspace": "REF-FREE-A",
+    "next_mutation": "remove the explicitly approved temporary REF-COLLABORATOR workspace-owner membership and capture V0R-MU-018 revoked non-oracle state",
+    "fresh_action_time_confirmation_required": true,
+    "next_action_started": false
+  },
+  "claims": {
+    "V0R_PAGE_REVOKE_passed": true,
+    "V0R_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Obtain action-time confirmation to revoke the temporary REF-COLLABORATOR owner membership from REF-FREE-A."
+}

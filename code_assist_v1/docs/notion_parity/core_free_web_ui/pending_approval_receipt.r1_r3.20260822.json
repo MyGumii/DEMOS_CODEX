@@ -1,0 +1,50 @@
+{
+  "contract": "code_assist.notion.core_free_ui.pending_approval_receipt.v1",
+  "recorded_at": "2026-08-22T19:51:56+09:00",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "batch": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/pending_approval_batch.r1_r3.20260822.json",
+    "sha256": "sha256:00d149b6ad53fc90124738a5fbdb6789621820b79b5c2214c8172ddc28ace2cd"
+  },
+  "execution_manifest": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/reference_completion_execution_manifest.r1_r3.20260822.json",
+    "sha256": "sha256:c926f1f7321b3998c2644c98cd38accdfa520246f8eb84887eaa7b76472508e5"
+  },
+  "approval": {
+    "exact_user_text": "UI-R1-R3 합성 reference 보완 캡처와 Trash 정리 승인; zero-difference 검증 후 differential 매트릭스 갱신 승인",
+    "approval_sha256": "sha256:9128c2d1b13754b7acefa2f89adfc3e5a99f6f4c8518385f11388f85943f0d10",
+    "status": "owner_approved"
+  },
+  "authorization": {
+    "item_ids": [
+      "UI-R1-R3-REFERENCE-COMPLETION",
+      "UI-R1-R3-DIFFERENTIAL-MATRIX"
+    ],
+    "scenario_ids": [
+      "UI-SHELL-001",
+      "UI-EDITOR-001",
+      "UI-EDITOR-002",
+      "UI-SEARCH-002"
+    ],
+    "workspaces": [
+      "REF-FREE-A",
+      "REF-FREE-B"
+    ],
+    "synthetic_only": true,
+    "cleanup": "trash_only_recoverable",
+    "external_reference_mutation_authorized": true,
+    "conditional_differential_matrix_update_authorized": true,
+    "conditional_differential_matrix_update_condition": "all affected reference and current-local normalized captures validate and every differential reports zero observable differences",
+    "personal_workspace_access_allowed": false,
+    "public_publish_or_invite_allowed": false,
+    "permanent_delete_allowed": false,
+    "production_promotion_allowed": false
+  },
+  "claims": {
+    "reference_mutation_executed": false,
+    "completion_matrix_changed": false,
+    "production_or_live_change": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

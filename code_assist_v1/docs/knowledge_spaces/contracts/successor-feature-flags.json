@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "default_enabled": false,
+  "flags": [
+    {"name": "KNOWLEDGE_CORE_MULTI_WIKI_SCHEMA", "default": false, "prerequisites": []},
+    {"name": "KNOWLEDGE_CORE_MULTI_WIKI_READS", "default": false, "prerequisites": ["KNOWLEDGE_CORE_ENABLED", "KNOWLEDGE_CORE_MULTI_WIKI_SCHEMA", "KNOWLEDGE_CORE_READS"]},
+    {"name": "KNOWLEDGE_CORE_MULTI_WIKI_WRITES", "default": false, "prerequisites": ["KNOWLEDGE_CORE_MULTI_WIKI_READS", "KNOWLEDGE_CORE_PERSONAL_WRITES"]},
+    {"name": "KNOWLEDGE_CORE_CONVERSATION_WIKI_BINDING", "default": false, "prerequisites": ["KNOWLEDGE_CORE_MULTI_WIKI_READS"]},
+    {"name": "KNOWLEDGE_CORE_TEAM_WRITES", "default": false, "prerequisites": ["KNOWLEDGE_CORE_ENABLED", "KNOWLEDGE_CORE_PART_READS", "KNOWLEDGE_CORE_HIGHER_SPACES"]},
+    {"name": "KNOWLEDGE_CORE_RESPONSIBILITY_WRITES", "default": false, "prerequisites": ["KNOWLEDGE_CORE_ENABLED", "KNOWLEDGE_CORE_PART_READS", "KNOWLEDGE_CORE_HIGHER_SPACES"]},
+    {"name": "KNOWLEDGE_CORE_AGGREGATE_GRAPH_READS", "default": false, "prerequisites": ["KNOWLEDGE_CORE_ENABLED", "KNOWLEDGE_CORE_PART_READS", "KNOWLEDGE_CORE_HIGHER_SPACES"]},
+    {"name": "KNOWLEDGE_CORE_AUTO_SEMANTIC_EDGES_LOCAL", "default": false, "prerequisites": ["KNOWLEDGE_CORE_ENABLED"]},
+    {"name": "KNOWLEDGE_CORE_AUTO_SEMANTIC_EDGES_AGGREGATE", "default": false, "prerequisites": ["KNOWLEDGE_CORE_ENABLED", "KNOWLEDGE_CORE_AUTO_SEMANTIC_EDGES_LOCAL", "KNOWLEDGE_CORE_AGGREGATE_GRAPH_READS"]},
+    {"name": "KNOWLEDGE_CORE_HYBRID_RERANK", "default": false, "prerequisites": ["KNOWLEDGE_CORE_ENABLED", "KNOWLEDGE_CORE_READS"]},
+    {"name": "KNOWLEDGE_CORE_LOCAL_CROSS_ENCODER", "default": false, "prerequisites": ["KNOWLEDGE_CORE_HYBRID_RERANK"]},
+    {"name": "KNOWLEDGE_CORE_TEMPORAL_RANKING", "default": false, "prerequisites": ["KNOWLEDGE_CORE_HYBRID_RERANK"]},
+    {"name": "KNOWLEDGE_CORE_PROJECTION_FOOTER_V2", "default": false, "prerequisites": ["KNOWLEDGE_CORE_ENABLED", "KNOWLEDGE_CORE_PROJECTIONS"]}
+  ]
+}

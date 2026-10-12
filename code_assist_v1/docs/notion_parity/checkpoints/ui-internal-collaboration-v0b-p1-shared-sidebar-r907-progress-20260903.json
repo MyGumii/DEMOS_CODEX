@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-SHARED-SIDEBAR-R907-PROGRESS-20260903",
+  "recorded_at": "2026-09-03T10:26:13.5936677+09:00",
+  "checkpoint_kind": "bounded_shared_sidebar_residual_reduction_and_presence_capture_determinism_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "goal_complete": false,
+  "scope_guard": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "protected_hot_contracts_modified": false,
+    "final_product_or_sbe_gate_run": false
+  },
+  "approved_dev_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r879-20260903",
+    "manager_session_id": 77916,
+    "manager_session_live": true,
+    "ports": [10111, 10112, 10113],
+    "launch_id": "4ec3cb7615274822993ddb8ea05c30e9",
+    "root_id": "bb669d69-2ff2-43f9-8167-cf9854cf272d",
+    "run_marker_path": ".dev/notion-collaboration-10111-10113-clean-r879-20260903/runs/4ec3cb7615274822993ddb8ea05c30e9/run-marker.json",
+    "run_marker_sha256": "sha256:c01e3f0a483f7e6de9b4dacd459c2c5e55e938a7b98fa0ac3f0366627a21cb2a",
+    "workspace_count": 63,
+    "reference_workspace_count": 61,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "rotation_threshold": 64,
+    "reuse_allowed": false,
+    "reuse_fence_reason": "The realm is one workspace below the mandatory rotation threshold; no further mutating journey may start in this realm."
+  },
+  "retained_candidate": {
+    "label": "r907",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r907-sidebar-presence-freeze/receipt.json",
+    "receipt_sha256": "sha256:d10d699dbb63eab60af3cabeebb6b2641c03610fafc697dd268e039e7ca990cf",
+    "release_source_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 1689686,
+    "masked_difference_count": 68418,
+    "total_difference_count": 1758104,
+    "delta_from_r899_unmasked": -13375,
+    "delta_from_r899_masked": 0,
+    "delta_from_r899_total": -13375,
+    "improved_capture_count_from_r899": 10,
+    "unchanged_capture_count_from_r899": 26,
+    "regressed_capture_count_from_r899": 0,
+    "changed_capture_deltas_from_r899_unmasked": {
+      "V0R-MU-007@1440": -1338,
+      "V0R-MU-007@1280": -1338,
+      "V0R-MU-008@1440": -1318,
+      "V0R-MU-008@1280": -1337,
+      "V0R-MU-009@1440": -1336,
+      "V0R-MU-009@1280": -1338,
+      "V0R-MU-010@1440": -1338,
+      "V0R-MU-010@1280": -1338,
+      "V0R-MU-012@1440": -1347,
+      "V0R-MU-012@1280": -1347
+    },
+    "component_journeys": {
+      "C0-P2": "pass",
+      "I0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "duration_ms": 309737,
+    "cleanup": {
+      "status": "complete",
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "active_fixture_root_count": 0,
+      "component_cleanup_verified": true,
+      "browser_closed": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:cd0754aa73928368197c4db8f242103909c14f1e84d702d2bbda5957fa711b00"
+    }
+  },
+  "implemented_progress": {
+    "shared_compact_sidebar": {
+      "states": ["V0R-MU-007", "V0R-MU-008", "V0R-MU-009", "V0R-MU-010", "V0R-MU-012"],
+      "viewports": [1440, 1280],
+      "changes": [
+        "align the active page icon and title with the reference sidebar gutter",
+        "match the compact invite card border, width, subtitle color, and vertical position",
+        "align compact footer controls vertically"
+      ],
+      "targeted_c0_validation": {
+        "status": "pass",
+        "cleanup": true,
+        "improved_capture_count": 4,
+        "unchanged_capture_count": 4,
+        "regressed_capture_count": 0
+      }
+    },
+    "state004_presence_determinism": {
+      "cause": "A live-presence avatar from the preceding C0 journey could remain for its TTL and appear only in the first I0 viewport capture.",
+      "fix": "Freeze V0R-MU-004 presence visibility in the capture stylesheet so capture order and the live-presence TTL cannot change the raster.",
+      "provisional_full_run_r905": {
+        "status": "not_retained",
+        "net_delta_from_r899_unmasked": -13258,
+        "regressed_capture_count": 1,
+        "regressed_capture": "V0R-MU-004@1440",
+        "regression_delta": 138
+      },
+      "targeted_run_r906": {
+        "status": "pass",
+        "V0R-MU-004@1440": 50570,
+        "V0R-MU-004@1280": 51617,
+        "cleanup": true,
+        "browser_closed": true
+      }
+    }
+  },
+  "regression_validation": {
+    "pytest": {
+      "status": "pass",
+      "passed": 23,
+      "skipped": 1,
+      "failed": 0,
+      "scope": [
+        "test_v0b_p1_workspace_realm_budget.py",
+        "test_v0b_p1_i0_semantic_diagnostic.py",
+        "test_v0b_p1_capture_matte.py",
+        "test_internal_collaborative_v0b_p1_receipt.py",
+        "browser/test_f0_p5_adopted_surface.py"
+      ]
+    },
+    "official_receipt_verifier": {
+      "status": "expected_fail_open_gates_only",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_error_counts": {
+        "EXACT_PIXEL_GATE": 36,
+        "CORE_25_GATE": 1,
+        "PERFORMANCE_GATE": 1,
+        "CLAIMS_GATE": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:d10d699dbb63eab60af3cabeebb6b2641c03610fafc697dd268e039e7ca990cf"
+    }
+  },
+  "modified_sources": {
+    "code_assist_v1/notion_collaboration/v0b_p1_capture.py": "sha256:22c6543e8ca1aa7721788a334b97b5a6744dd0b0db03b8844c1029a132edfbd4",
+    "code_assist_v1/notion_collaboration/f0_p5_browser.py": "sha256:2bac7d82d8e91e4f256626a425c6a6195ba9f74df36b44b9686cec408ca457a3"
+  },
+  "protected_hot_contracts": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "code_assist_v1/notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "next_cursor": {
+    "action": "Rotate the approved dev realm, then continue exact-pixel residual reduction from retained r907 without running final product or SBE gates.",
+    "priority": [
+      "Create and validate a fresh isolated realm before any further mutating browser journey.",
+      "Continue with the largest stable remaining V0B state residuals and retain only no-regression full candidates.",
+      "Do not run final Core-25, performance, product, or SBE closure gates before exact 36/36."
+    ]
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "exact_36_of_36": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b.local_readiness_current_sbe_successor_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-LOCAL-READINESS-CURRENT-SBE-GREEN-V2-20260908",
+  "recorded_at": "2026-09-08T12:56:18+09:00",
+  "status": "o1b_through_z0_local_readiness_green_external_execution_deferred",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-local-readiness-current-sbe-drift-20260908.json",
+    "sha256": "sha256:75dcccb996810a624bdeb925b73042e361b7f584f6ef963a7712b8eafb0e5624"
+  },
+  "superseded_readiness_candidates": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v1.json",
+      "sha256": "sha256:345572f54a67af8ac853a64a78b2556bcb4d1298f3de21e871efa78036b90c15",
+      "reason": "historical SBE audit baseline no longer matched current source bytes"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v2.json",
+      "sha256": "sha256:b9112c2c7e9b75ef7b8b11967fea82ebbb04dd37b9222a2b8ffdc4de067acbc9",
+      "reason": "concurrent SBE owner changed four bound documents after the v2 audit was frozen"
+    }
+  ],
+  "active_readiness_policy": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v3.json",
+    "sha256": "sha256:f37555a1a3d8110a584c701137e568d9aa697175d48f2b891c9f67458cccf2dd",
+    "trust_anchor_status": "pending",
+    "authorized_execution_policy_sha256": null
+  },
+  "sbe_dynamic_baseline": {
+    "path": "capture/o1b-p1-sbe-readiness-contract-audit-20260908-v3.json",
+    "sha256": "sha256:404d567793c01a5060ad32f4581c8605df3b7207b73169dd8e400170975d02f3",
+    "input_sha256": "sha256:9a77b1d16d51ffb180c0d31edac0df4ad0acf1e66522d686806158d4440a2628",
+    "status": "pass",
+    "error_count": 0,
+    "source_file_count": 33,
+    "goal_count": 20,
+    "scenario_count": 284
+  },
+  "implementation_bindings": {
+    "target_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_target_restore.py",
+      "sha256": "sha256:d106cafebf7313e1196c5f8da2a1b0a7037671bb0e9a735964b11612067f40ae"
+    },
+    "policy_binder": {
+      "path": "code_assist_v1/tools/bind_internal_collaborative_target_policy.py",
+      "sha256": "sha256:4cb07129bd95a1972f030a20a32f9e0742a51c0884446107283283c9737a2032"
+    },
+    "target_restore_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_restore.py",
+      "sha256": "sha256:f2f009f26089cc9359cded8a9141a727d20272d12cc9e18717ad312d8592b860"
+    },
+    "policy_binding_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_policy_binding.py",
+      "sha256": "sha256:28c7e2f0503ecba1b3ee9c0187d2f3e8cbf624d6ba54dbf0b884cb0fc8ede702"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "status": "pass",
+      "file_count": 2
+    },
+    "target_policy_and_restore_regression": {
+      "status": "pass",
+      "passed": 70,
+      "failed": 0,
+      "duration_seconds": 26.13
+    },
+    "o1b_through_z0_six_module_readiness": {
+      "status": "pass",
+      "passed": 114,
+      "failed": 0,
+      "duration_seconds": 41.88
+    },
+    "target_verifier_readiness": {
+      "status": "pass",
+      "exit_code": 0,
+      "error_count": 0,
+      "readiness_contract_passed": true,
+      "policy_sha256": "sha256:f37555a1a3d8110a584c701137e568d9aa697175d48f2b891c9f67458cccf2dd",
+      "gate_passed": false,
+      "approval_required": true,
+      "target_operations_handoff_required": true,
+      "target_execution_required": true
+    },
+    "execution_required_mode": {
+      "status": "expected_fail_closed",
+      "exit_code": 1,
+      "error_code": "TARGET_EXECUTION_EVIDENCE_REQUIRED",
+      "readiness_contract_passed": true,
+      "gate_passed": false
+    },
+    "central_read_only_audit": {
+      "status": "fail_closed_on_historical_s0a_and_central_sbe_snapshot_drift",
+      "error_count": 2,
+      "error_codes": [
+        "S0A_PUBLICATION_FENCE_RECEIPT_INVALID",
+        "SBE_AUDIT_HASH_DRIFT"
+      ],
+      "gate_passed_required_packets": 44,
+      "required_packet_count": 50,
+      "closed_matrix_rows": 21,
+      "matrix_row_count": 28,
+      "closed_phase_gates": 15,
+      "phase_gate_count": 20,
+      "valid_execution_receipts": 21
+    }
+  },
+  "remaining_external_prerequisites": [
+    "reviewed target-specific release candidate and four distinct Ed25519 public trust anchors",
+    "approved encrypted off-host backup destination",
+    "approved distinct Windows target host and connection method",
+    "fresh signed AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF",
+    "durable single-use nonce ledger and sanitized external evidence destination"
+  ],
+  "claims": {
+    "current_sbe_contract_audit_green": true,
+    "o1b_local_readiness_contract_passed": true,
+    "target_specific_bound_policy_created": false,
+    "approval_inferred": false,
+    "target_operations_handoff_accepted": false,
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "O1B_P1_gate_passed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:0dc0901e5fa9cdddd111475b0a84c8c0571c29e9b08378b986abf732dbc220e8"
+}

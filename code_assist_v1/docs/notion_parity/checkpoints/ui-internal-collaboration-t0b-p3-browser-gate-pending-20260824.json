@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-T0B-P3-BROWSER-GATE-PENDING-20260824",
+  "recorded_at": "2026-08-24T13:10:00Z",
+  "checkpoint_kind": "packet_in_progress_external_browser_runtime_gate",
+  "packet_id": "T0B-P3",
+  "packet_status": "in_progress",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Preserve the fully implemented and automatically verified real cross-process selected runtime without falsely closing the packet before the required Browser-plugin WebSocket evidence exists.",
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p3-cross-process-pre-edit-20260824.json",
+    "packet_id": "T0B-P3"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p2-runtime-gateway-20260824.json",
+    "sha256": "sha256:b0686343517e49e940e125ca822d3f9fcee2d824a085decb8ae745c4753f01b9",
+    "packet_id": "T0B-P2",
+    "receipt_id": "T0B-P2-L3-RUNTIME-GATEWAY-20260824"
+  },
+  "implemented_product_files": {
+    "code_assist_v1/collaboration_runtime/node/compactor.mjs": "sha256:f7c69deab9b5d7e15e063e19b9fb7bc03781e38b7022841a94ac92b87895954b",
+    "code_assist_v1/notion_collaboration/node_compactor.py": "sha256:331013f65ce78cf1cddf504014e42ea4eb72ed1970691deef743a35ece894c18",
+    "code_assist_v1/notion_collaboration/cross_process_gateway.py": "sha256:72da87d47c355c3475da5083a450edd1f1cd53ef1180248c923ec9cdd19895ee",
+    "code_assist_v1/notion_collaboration/gateway_service.py": "sha256:0781844d1ff063860c393514b8addf74e138c2c9f30943c358e1e9590161c200"
+  },
+  "implemented_contract_and_verifier_files": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_cross_process_gateway.v1.json": "sha256:5bafb8587f5abbb6e6ee5644490827168c476a239c530a11a337b864a1ecd611",
+    "code_assist_v1/tools/verify_internal_collaborative_cross_process_gateway.py": "sha256:9783f7f42d53bf0eee67c44ce583ce615525bd8e89fc3703c70c822a44387cfc"
+  },
+  "implemented_test_files": {
+    "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_cross_process.py": "sha256:1571ac9dfeedb99f24a2f8bdd161e755421ccb8623883d7da5603900a6200dac",
+    "code_assist_v1/tests/notion_collaboration/browser/test_runtime_gateway_browser_transport.py": "sha256:7d10e0704bdfa41789636c443e2ebd81ed953c3e45c08d9cf64164364011b182"
+  },
+  "implemented_behavior": {
+    "real_gateway_child_process": true,
+    "real_owned_Node_Yjs_child_process": true,
+    "exact_hash_locked_temporary_dependencies": true,
+    "loopback_OS_assigned_port": true,
+    "one_time_origin_bound_ticket_admission": true,
+    "commit_before_ACK_and_broadcast": true,
+    "duplicate_operation_idempotency": true,
+    "out_of_order_rejection": true,
+    "slow_consumer_backpressure_fence": true,
+    "restart_and_durable_replay": true,
+    "real_Yjs_snapshot_compaction": true,
+    "revoke_before_send_zero_old_epoch_payload": true,
+    "marker_bound_process_port_and_root_cleanup": true
+  },
+  "validation_results": [
+    {
+      "id": "T0B-P3-FOCUSED-REAL-RUNTIME",
+      "result": "passed",
+      "passed": 1,
+      "failed": 0,
+      "duration_seconds": 27.99,
+      "notes": "Real Python gateway, owned Node/Yjs child, isolated real WebSocket clients, restart, duplicate, ordering, backpressure, compaction, revoke, and cleanup."
+    },
+    {
+      "id": "T0B-P2-P3-FOCUSED-REGRESSION",
+      "result": "passed",
+      "passed": 11,
+      "failed": 0,
+      "duration_seconds": 50.39
+    },
+    {
+      "id": "L2-COLLAB-AUTHORITY",
+      "result": "passed",
+      "passed": 50,
+      "failed": 0,
+      "duration_seconds": 93.17
+    },
+    {
+      "id": "L3-CRDT-PROTOCOL-CORPUS-PLUS-T0B-P3",
+      "result": "passed",
+      "passed": 146,
+      "failed": 0,
+      "duration_seconds": 147.02
+    },
+    {
+      "id": "T0B-P3-STATIC-CONTRACT",
+      "result": "passed_incomplete",
+      "error_count": 0,
+      "gate_passed": false,
+      "contract_sha256": "sha256:5bafb8587f5abbb6e6ee5644490827168c476a239c530a11a337b864a1ecd611"
+    }
+  ],
+  "browser_gate": {
+    "required_deliverable": "real_cross_process_gateway_store_and_browser_transport_tests",
+    "status": "pending_external_browser_control_runtime_recovery",
+    "browser_runtime_failure": "NODE_REPL_KERNEL_ASSET_PATH_MISSING",
+    "browser_selected": false,
+    "browser_tab_opened": false,
+    "ticket_issued_after_two_stage_probe": false,
+    "protected_payload_sent_to_browser": false,
+    "probe_server_cleanup": {
+      "owned_processes_stopped": true,
+      "owned_ports_closed": true,
+      "runtime_root_removed": true
+    },
+    "required_resume_action": "Recover the Browser-plugin JavaScript control runtime, rerun the two-stage disposable probe, and record two browser WebSocket connections with writer ACK and reader payload receipt."
+  },
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-24T13:05:00Z",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:e441f48c3cf1afb9041138bb5a43a9381434e31bd751899d29b0bd7d7b9ab3a2",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_status_sha256": "sha256:ae8b81f3e6739a423d700abb65bfa21bc12f47cecf02650979e429ba8d0901a9",
+    "sbe_backlog_sha256": "sha256:761743ea761e10468ff9b761a78d5f41a43334ea0c6e8adf6f224feaf530efae",
+    "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+    "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "exact_path_collision_observed": false,
+    "sbe_hot_contracts_owned_or_modified": false
+  },
+  "hot_contract_state": {
+    "catalog_sha256": "sha256:c31df8f77d66a369665f77815b798d37516da5203c6ef70d834a6070a4cc037a",
+    "ladder_sha256": "sha256:4b8f53f33478af2301f3134995f240b106c2344dc237d73e5088ae01ddb4ec16",
+    "matrix_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "current_pointer_sha256": "sha256:2882a824ac9acb3acfe08bedd317da6f17f195835cc6072cc3963297549915af",
+    "modified_by_in_progress_packet": false,
+    "reason": "No catalog, ladder, matrix, current-pointer, closure receipt, RT-001 closure, or T0 gate mutation is allowed before the real browser evidence passes."
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked",
+    "user_resume_authority": "The user explicitly instructed continued target development and functional verification.",
+    "goal_status_mutated_by_packet": false
+  },
+  "completion_truth": {
+    "T0B_P3_implementation_complete": true,
+    "T0B_P3_automatic_validation_complete": true,
+    "T0B_P3_browser_validation_complete": false,
+    "T0B_P3_gate_passed": false,
+    "RT_001_closed": false,
+    "product_complete": false
+  },
+  "rollback_or_cleanup": "Every runtime used by the automatic and attempted browser probes was under a test-owned temporary root. All owned gateway/Node/client processes and OS-assigned ports were closed; no live, development-pair, or production root was read or changed."
+}

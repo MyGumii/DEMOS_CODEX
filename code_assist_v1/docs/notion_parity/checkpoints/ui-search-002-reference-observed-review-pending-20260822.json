@@ -1,0 +1,150 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T02:53:17.9125842+09:00",
+  "run_id": "ui24-search-002-reference-observed-review-pending-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-search-002-backlink-reference-observed-native-find-partial-20260822.json",
+    "sha256": "sha256:19c212805d24dc77f24cc6ec4b47ed55214ad50cf504510b605b8a2fb4971925",
+    "semantic_status": "superseded_after_connected_ctrl_f_observation"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-SEARCH-002",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_query": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": false,
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root_find_overlay_hidden"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-SEARCH-002-FIND-COMPLETION",
+    "status": "reference_observed_review_pending",
+    "review_required": true,
+    "promotion_allowed": false,
+    "closed_requirements": [
+      "trusted_ctrl_f_notion_page_find_input",
+      "trusted_exact_match_count_and_highlight",
+      "trusted_escape_focus_restoration",
+      "reference_page_link_creation",
+      "reference_backlink_count_control",
+      "reference_exact_backlink_navigation"
+    ],
+    "incomplete_requirements": []
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "certified_differential_passed": 5,
+    "reference_observed_review_pending": 11,
+    "local_integration_review_pending": 3,
+    "reference_partially_observed": 6,
+    "reference_unobserved": 0,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:297d5f164d63d8dfe4b153717e9f1f6b4661831b478856627d53607ad5f38e76"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    }
+  ],
+  "reference_find_observation": {
+    "ctrl_f_surface": "notion_page_find",
+    "ctrl_f_surface_is_chrome_native": false,
+    "trusted_connected_page_input": true,
+    "input_placeholder": "찾기 또는 바꾸기…",
+    "trusted_query_value_observed": true,
+    "query_value": "REF-FREE-A",
+    "trusted_match_highlight_observed": true,
+    "trusted_match_counter_observed": true,
+    "match_counter": "1 / 2",
+    "focus_before_find": {
+      "tag": "DIV",
+      "role": "group"
+    },
+    "focus_during_find": {
+      "tag": "INPUT",
+      "active": true
+    },
+    "focus_after_escape": {
+      "tag": "DIV",
+      "role": "group"
+    },
+    "escape_restored_prior_focus_group": true,
+    "find_overlay_visible_after_escape": false,
+    "find_query_after_escape": "",
+    "reference_content_mutation_count": 0
+  },
+  "reference_backlink_observation": {
+    "source_and_target_were_synthetic": true,
+    "exact_target_link_committed_count": 1,
+    "backlink_count": 1,
+    "source_backlink_opened_exact_source": true,
+    "cleanup_disposition": "source_and_target_trash_only_recoverable",
+    "synthetic_source_residual_count": 0,
+    "synthetic_target_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_evidence": {
+    "selection": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py::test_ui_search_002_in_page_find_link_and_backlink_stay_workspace_scoped",
+    "result": "1 passed in 23.14s",
+    "command_exit_code": 0,
+    "action_capture_ids": [
+      "UI-SEARCH-002-A01",
+      "UI-SEARCH-002-A02"
+    ],
+    "focus_sequence": [
+      "PAGE-FIND-INPUT",
+      "EDITOR-BLOCK",
+      "PAGE-CANVAS"
+    ],
+    "workspace_scope_leak_count": 0,
+    "page_mutation_count_after_setup": 0,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "synthetic_only": true
+  },
+  "review_gate": {
+    "status": "pending_owner_approval",
+    "differential_passed": false,
+    "completion_matrix_changed": false,
+    "interpretation": "The previous Chrome-native-find assumption was incorrect. Ctrl+F on the connected official synthetic page opens Notion's own page-find UI. The exact query, 1 / 2 counter, visible highlights, and Escape focus restoration are now authenticated, while promotion remains blocked on owner review and differential sealing."
+  },
+  "claims": {
+    "ui_search_002_reference_observed": true,
+    "ui_search_002_reference_characterized": true,
+    "ui_search_002_reference_review_pending": true,
+    "ui_search_002_differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Add UI-SEARCH-002 to the owner-review set, retain promotion_allowed=false, and run a sealed differential only after the owner approves the expanded reference summary."
+}

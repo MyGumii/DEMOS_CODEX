@@ -1,0 +1,158 @@
+{
+  "run_id": "np2b2-workspace-navigation-routes-20260814",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "ultra",
+  "recorded_at": "2026-08-14T01:14:01.2540518+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "resume the documented plan, confirm the goal, and continue safe development",
+    "goal_completed": false
+  },
+  "slice": "NP2B-2-workspace-navigation-protected-routes",
+  "status": "contract_tested_api_slice_ui_disabled",
+  "scope": {
+    "workspace_schema_changed_by_this_slice": false,
+    "workspace_schema_version": 2026081310,
+    "protected_notion_host_routes_enabled": true,
+    "route_rule_count": 12,
+    "route_operation_count": 19,
+    "route_hard_operation_count": 19,
+    "legacy_route_rule_count": 59,
+    "legacy_route_operation_count": 61,
+    "legacy_route_hard_operation_count": 15,
+    "live_mutation": false,
+    "live_migration_applied": false,
+    "feature_flags_changed": false,
+    "ui_enabled": false,
+    "recents_write_enabled": false,
+    "resolver_cutover_enabled": false,
+    "destructive_watermark_ack": false,
+    "continuous_consumer_registered": false,
+    "git_provenance": "unavailable: workspace .git is not valid repository metadata"
+  },
+  "schema_contract": {
+    "version": 2026081310,
+    "name": "notion_workspace_v2_np2b_navigation_state",
+    "checksum": "sha256:72058812be6f0b92db756d5648d2cd9a0741d4ad4f4f9c62377d128ca0b581b3",
+    "actual_schema_sha256": "sha256:d8935af134fa12cdd5f0f803e15cba798dece1831cfeeee7673e0dc0ef7d7b33",
+    "persistent_object_count": 119,
+    "note": "The duplicate-insert navigation-state guard was independently added and focused-tested immediately before route ownership was acquired. No DDL changed during NP2B-2."
+  },
+  "route_contract": {
+    "contract_id": "notion-workspace-route-contract-np2a",
+    "semantic_manifest_id": "notion-workspace-route-semantics-np2a",
+    "routes": [
+      "GET /api/notion/workspaces/<workspace_id>/navigation",
+      "PATCH /api/notion/workspaces/<workspace_id>/navigation/preferences",
+      "PUT /api/notion/workspaces/<workspace_id>/navigation/favorites",
+      "DELETE /api/notion/workspaces/<workspace_id>/navigation/favorites"
+    ],
+    "request_contract": "exact top-level JSON keys; preference/favorite CAS versions start at zero; favorite identity stays in JSON body",
+    "security_contract": "current authentication; unsafe methods require same-origin and CSRF; current membership and current visibility; generic 404; no-store",
+    "response_contract": "identifier-only navigation state; no title, body, source path, filename, raw token, lease token, hidden count, or ordinal gap"
+  },
+  "owned_files": [
+    "code_assist_v1/routes_notion_workspace.py",
+    "code_assist_v1/tests/test_notion_workspace_navigation_routes.py",
+    "code_assist_v1/tests/test_notion_auth_contract.py",
+    "code_assist_v1/tools/verify_notion_workspace_route_contract.py",
+    "code_assist_v1/tests/test_verify_notion_workspace_route_contract.py",
+    "code_assist_v1/docs/notion_workspace_route_contract.json",
+    "code_assist_v1/docs/notion_workspace_route_semantics.json",
+    "code_assist_v1/docs/notion_parity/np2b_navigation_contract.json",
+    "code_assist_v1/tools/verify_notion_np2b_navigation_contract.py",
+    "code_assist_v1/tests/test_verify_notion_np2b_navigation_contract.py",
+    "code_assist_v1/docs/notion_parity/NP2B_NAVIGATION_STATE_DESIGN.md",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md",
+    "code_assist_v1/docs/notion_parity/checkpoints/np2b2-workspace-navigation-routes-20260814.json"
+  ],
+  "protected_files": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/**",
+    "code_assist_v1/knowledge_core/**",
+    "code_assist_v1/tests/knowledge_spaces/**",
+    "code_assist_v1/app_code.py",
+    "code_assist_v1/app_notion.py",
+    "code_assist_v1/routes_notion_bridge.py",
+    "code_assist_v1/routes_chat_stream.py",
+    "code_assist_v1/notion_http.py",
+    "code_assist_v1/auth.py",
+    "code_assist_v1/config.py",
+    "code_assist_v1/data_paths.py",
+    "code_assist_v1/tests/conftest.py",
+    "live knowledge/user_data/.runtime/sessions/workspace paths"
+  ],
+  "input_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/routes_notion_workspace.py": "16648d1a4404e7605ebeef96594e6bd12958e442a0ed9f945a2fb390fbf98201",
+    "code_assist_v1/notion_http.py": "dd622532cd0354272165b20c931fc6a9437ac6bea6b04bbab765e49c8fb2396a",
+    "code_assist_v1/app_notion.py": "e4bdcc9c9b5174f9d463f19c3091ff4a877c203b016b0bd7dc172b63f05403e2",
+    "code_assist_v1/tests/test_notion_workspace_routes.py": "02c4de24d4983f2183e98e5e19aca37688db7a82f9796b9964e44660072f68bb",
+    "code_assist_v1/tests/test_notion_auth_contract.py": "4b703d530854b335ed61dcc4303e1e0a74e4ce0331b442770d5df2acc0962e36",
+    "np2b1_checkpoint": "9bca028ffe6dd0e3d800d3b6e8fef3647f6846484a295cf2a4373d6f3f100c7b"
+  },
+  "output_hashes": {
+    "code_assist_v1/notion_workspace_store.py": "a91cff7bfbc949275effe299ad1fe8b7685ac3b48dc98a77c928867ba79e852b",
+    "code_assist_v1/notion_workspace_navigation_migration.py": "9c0ccd3b232aff6b149c25daaddef21f86c97f30d7050a275879d4c80b5f3344",
+    "code_assist_v1/routes_notion_workspace.py": "1a82ef6b5578d30cd21a8888f4df8604bef49c0a0832224a14942820bf4a43fd",
+    "code_assist_v1/tests/test_notion_workspace_navigation_routes.py": "d1dd6590712ead771b8995053f9297d3caa69a729429848807e96486762e79d9",
+    "code_assist_v1/tests/test_notion_auth_contract.py": "c8091f0c7c1c84f26ab34e3f1057ec9a28a3d56b64e4af9a064a5bf390f385a9",
+    "code_assist_v1/tools/verify_notion_workspace_route_contract.py": "53947933776eec915ba2632276a08a12fd278ab20cc78c9a16627037ab6bca13",
+    "code_assist_v1/tests/test_verify_notion_workspace_route_contract.py": "c911284eec087f378a2509948c770cec4461022267acc8bfacb41f7edb3ec6c3",
+    "code_assist_v1/docs/notion_workspace_route_contract.json": "08371eeec33177469ce37ff11b6005315c53d6f759a90ed6627aaafd5edde6b6",
+    "code_assist_v1/docs/notion_workspace_route_semantics.json": "aaaa03b09eecfd5a0645145f6a88276efc6c93375c56c1f873a17b69748e3444",
+    "code_assist_v1/docs/notion_parity/np2b_navigation_contract.json": "aa3f5742ee9c632a96e3b32613903110dfe582abed3063139a1a2f5b7fecd5cc",
+    "code_assist_v1/tools/verify_notion_np2b_navigation_contract.py": "1a05b67204ad7d5f9e02fd87f6d58b9222d39ffd5d2e4d2548ac8b6a40f5c071",
+    "code_assist_v1/tests/test_verify_notion_np2b_navigation_contract.py": "8d17688bbbc168775c02e55b8c23b9d0251b8b98a2714b514bfaf0e4766172d9",
+    "code_assist_v1/docs/notion_parity/NP2B_NAVIGATION_STATE_DESIGN.md": "2a55b55b8a1c1a8181a8c5e26583fd4577c3ac827e0146134c9836b62e0187dd",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "96104a965ef37c378a8822898663179cebc7cb568e9b319bc40caac418c50333",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "1b29384c1bad0c4c8922330a47d1e3eeb5b8dc223a5eea3efd826aed55d4f0d3",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "4877d12f4daf99d6d4523c43ecf7501757a8b91d4c4b73d60c48ccfabdb3a063",
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+  },
+  "tests": [
+    {
+      "selection": "navigation store/migration/routes, auth, workspace route contract and NP2B machine contract",
+      "result": "75 passed",
+      "exit_code": 0,
+      "duration_seconds": 69.33
+    },
+    {
+      "selection": "workspace pages/routes, legacy route/semantics, Notion routes/publication and Second Brain hard regressions",
+      "result": "91 passed",
+      "exit_code": 0,
+      "duration_seconds": 73.84
+    },
+    {
+      "selection": "workspace store, navigation state, navigation migration and 1303-to-1310 chain rehearsal",
+      "result": "41 passed",
+      "exit_code": 0,
+      "duration_seconds": 53.62
+    },
+    {
+      "selection": "changed production, verifier and focused test modules py_compile",
+      "result": "passed",
+      "exit_code": 0,
+      "duration_seconds": 1.7
+    }
+  ],
+  "invariants": [
+    "GET navigation creates no default row and returns only current-visible favorites with dense public positions.",
+    "PATCH preferences and PUT/DELETE favorites reject missing or unknown top-level JSON keys and use independent zero-based exact CAS versions.",
+    "Every new route requires current authentication; unsafe methods additionally require same-origin and CSRF through the existing Notion host middleware.",
+    "Missing membership and invisible favorite targets return the same generic no-store 404 envelope.",
+    "Every response is no-store and contains no title, body, path, filename, raw public token, lease token, hidden favorite count, or hidden ordinal gap.",
+    "The overlay is registered only by app_notion; app_code, the bridge registrar and Second Brain sources were unchanged.",
+    "The legacy 59/61/15 contract remains exact while the workspace overlay advances to 12/19/19.",
+    "No UI, Recents writer, resolver cutover, feature flag, request/startup migration, live migration, live data access, destructive acknowledgement or continuous worker was added."
+  ],
+  "known_non_product_failure": {
+    "description": "One read-only Python constant-print command emitted the correct 1310 checksum, actual hash and 119-object count, then exited with the known Windows 0xC0000409 host code during process teardown. All pytest, verifier and py_compile commands completed with exit code 0.",
+    "final_status": "host_only; no product failure"
+  },
+  "next_exact_work": "Re-read AGENTS.md and this checkpoint, verify the active goal and all owned/protected hashes, then perform an independent P0/P1 review of NP2B-2. Only after a new ownership approval may NP2B-3 connect a default-off UI with stale-response fencing, keyboard/focus/a11y and a kill switch. Do not combine Recents, resolver cutover, live migration or destructive source acknowledgement with the UI slice.",
+  "stop_reason": "NP2B-2 reached its documented boundary: the protected navigation API and strict route/auth/security contracts are tested. UI, Recents, resolver and live rollout remain separate gates."
+}

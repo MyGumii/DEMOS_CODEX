@@ -1,0 +1,658 @@
+{
+  "scenarios": [
+    {
+      "id": "api-hermes-external",
+      "label": "API 프록시",
+      "title": "외부 모델 API로 보내고 OpenAI 스트림 그대로 받기",
+      "category": "api",
+      "description": "Hermes 프록시의 /v1/chat/completions를 직접 호출하는 예입니다. 웹 채팅 화면의 /api/chat과 별도 경로입니다. OFFICE·UNKNOWN 또는 HOME에서 GGUF 엔진 import가 실패한 경우에는 외부 API를 호출합니다. 모든 주소·모델·키·응답은 이해를 돕는 가상 예시이며 실제 요청을 실행하지 않았습니다.",
+      "input": {
+        "query": "저장소 검색을 쉽게 설명해 주세요.",
+        "attachments": []
+      },
+      "steps": [
+        {
+          "fileId": "hermes-web/hermes_proxy.py",
+          "line": 206,
+          "title": "1. OpenAI 호환 요청을 프록시가 읽기",
+          "description": "외부 API 사용 예는 프록시에 POST /v1/chat/completions를 보내는 순간부터 시작합니다. 요청 본문에는 모델과 messages, stream 옵션이 들어갑니다.",
+          "input": "JSON body와 Content-Type: application/json",
+          "processing": "chat_completions가 JSON을 읽고 stream을 bool로 확인합니다. model은 이 지점에서 로그용으로 읽으며 messages는 별도로 재작성하지 않습니다.",
+          "output": "본문과 스트리밍 여부를 가진 프록시 요청",
+          "payload": {
+            "method": "POST",
+            "url": "https://hermes-proxy.example.invalid/v1/chat/completions",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "model": "example-chat-model",
+              "messages": [
+                {
+                  "role": "user",
+                  "content": "저장소 검색을 쉽게 설명해 주세요."
+                }
+              ],
+              "temperature": 0.5,
+              "max_tokens": 256,
+              "stream": true
+            }
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 206,
+              "note": "POST /v1/chat/completions 라우트"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 208,
+              "note": "JSON body 읽기"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 209,
+              "note": "stream bool 확인"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 210,
+              "note": "model 값 읽기"
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/hermes_proxy.py",
+          "line": 214,
+          "title": "2. 환경 조건으로 외부 API 경로 선택",
+          "description": "이 예시는 ENV_MODE가 OFFICE인 상황을 가정합니다. 정확한 분기 조건은 HOME이고 GGUF 엔진도 사용 가능한지입니다. 두 조건을 모두 만족하지 않으면 _forward를 호출합니다.",
+          "input": "본문과 ENV_MODE·_GGUF_AVAILABLE 상태",
+          "processing": "HOME + GGUF import 성공이면 _gguf_chat가 로컬 모델을 준비하고 GGUF chunk를 SSE로 포장합니다. 모델 준비 실패는 503 응답이며 외부 API로 자동 전환하지 않습니다. 이 예시에서는 HOME 조건이 성립하지 않아 _forward('POST','chat/completions',body,is_stream)로 갑니다.",
+          "output": "외부 API 전달 분기",
+          "payload": {
+            "exampleState": {
+              "ENV_MODE": "OFFICE",
+              "_GGUF_AVAILABLE": false
+            },
+            "selectedBranch": "_forward",
+            "alternateBranch": "HOME && _GGUF_AVAILABLE → _gguf_chat"
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 24,
+              "note": "설치 폴더 존재 여부로 HOME·OFFICE·UNKNOWN 모드를 정합니다."
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 59,
+              "note": "HOME에서 GGUF 엔진 import 성공 여부를 기록합니다."
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 214,
+              "note": "HOME + GGUF 조건 검사"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 216,
+              "note": "조건이 아니면 _forward 호출"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 125,
+              "note": "HOME 분기는 모델 준비를 수행합니다."
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 127,
+              "note": "로컬 모델 준비 실패는 503 응답이며 외부 API로 자동 전환하지 않습니다."
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 153,
+              "note": "HOME stream은 GGUF JSON chunk를 data 이벤트로 포장합니다."
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/hermes_proxy.py",
+          "line": 70,
+          "title": "3. 전달할 헤더를 정리하고 설정된 인증 적용",
+          "description": "프록시는 클라이언트의 헤더를 복사하되 Host, Content-Length, Connection을 제외합니다. 프록시에 로드된 _TOKEN이 있으면 Authorization을 그 값으로 덮어씁니다. 실제 키 파일은 읽지 않았습니다.",
+          "input": "클라이언트 요청 헤더와 프록시에 로드된 토큰의 유무",
+          "processing": "_build_headers가 전달용 헤더를 구성합니다. _TOKEN이 비어 있으면 기존 클라이언트 Authorization이 그대로 남을 수 있습니다.",
+          "output": "외부 API 요청에 쓸 헤더",
+          "payload": {
+            "omittedRequestHeaders": [
+              "Host",
+              "Content-Length",
+              "Connection"
+            ],
+            "forwardHeaders": {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer <환경에 설정된 키>"
+            }
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 73,
+              "note": "클라이언트 헤더 순회"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 74,
+              "note": "전달하지 않을 헤더 제외"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 77,
+              "note": "토큰이 존재할 때 인증 덮어쓰기"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 78,
+              "note": "Bearer Authorization 구성"
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/hermes_proxy.py",
+          "line": 171,
+          "title": "4. requests.request로 실제 외부 HTTP 호출",
+          "description": "외부 주소는 UPSTREAM 뒤에 /v1/chat/completions를 붙입니다. HTTP 메서드는 POST이고 JSON body의 모델과 messages를 이 경로에서 바꾸지 않습니다.",
+          "input": "POST 메서드, chat/completions 경로, 정리한 헤더와 원래 body",
+          "processing": "requests.request(method,url,headers=...,json=body,stream=is_stream,timeout=...,verify=...)를 호출합니다. 네트워크 예외이면 error JSON과 502를 반환합니다.",
+          "output": "상류 모델 서버의 HTTP 응답 객체",
+          "payload": {
+            "call": "requests.request",
+            "method": "POST",
+            "url": "https://model-api.example.invalid/v1/chat/completions",
+            "headers": {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer <환경에 설정된 키>"
+            },
+            "body": {
+              "model": "example-chat-model",
+              "messages": [
+                {
+                  "role": "user",
+                  "content": "저장소 검색을 쉽게 설명해 주세요."
+                }
+              ],
+              "temperature": 0.5,
+              "max_tokens": 256,
+              "stream": true
+            },
+            "stream": true
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 168,
+              "note": "UPSTREAM + /v1/ + subpath로 URL 구성"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 169,
+              "note": "전달 헤더 구성"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 171,
+              "note": "requests.request 호출"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 174,
+              "note": "원래 body를 json 인자로 전달"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 175,
+              "note": "stream 인자 전달"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 181,
+              "note": "호출 예외에 502 반환"
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/hermes_proxy.py",
+          "line": 191,
+          "title": "5. 상류 스트림의 바이트 조각을 그대로 중계",
+          "description": "이 예의 상류 서버가 OpenAI 호환 data 이벤트를 반환한다고 가정합니다. 프록시는 choices나 delta를 파싱하지 않고 iter_content에서 받은 바이트 조각을 그대로 yield합니다.",
+          "input": "상류 HTTP 응답의 스트리밍 바이트",
+          "processing": "r.iter_content(chunk_size=None)의 비어 있지 않은 chunk를 그대로 전달합니다. 바이트 조각의 경계가 SSE 이벤트 경계와 같다는 보장은 하지 않습니다.",
+          "output": "내용을 재포장하지 않은 상류 SSE 바이트",
+          "payload": {
+            "illustrativeUpstreamEvent": "data: {\"choices\":[{\"delta\":{\"content\":\"폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.\"}}]}\n\n",
+            "proxyParsesDelta": false,
+            "relay": "상류 바이트 그대로"
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 189,
+              "note": "stream 요청의 응답 분기"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 191,
+              "note": "iter_content로 상류 바이트 읽기"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 193,
+              "note": "chunk를 그대로 yield"
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/hermes_proxy.py",
+          "line": 196,
+          "title": "6. 호출자에게 상태·본문·스트림 응답 반환",
+          "description": "Flask Response는 상류 상태와 허용된 응답 헤더를 함께 전달합니다. 이 직접 API 응답은 Hermes 웹 화면이 기대하는 {type:'token',t:...} 이벤트로 변환되지 않습니다.",
+          "input": "중계 generator, 상류 HTTP 상태와 응답 헤더",
+          "processing": "Content-Encoding, Transfer-Encoding, Content-Length, Connection을 응답 헤더에서 제외하고 stream_with_context(gen())으로 응답합니다. 직접 호출자는 자신이 OpenAI delta를 해석해야 합니다.",
+          "output": "직접 API 호출자가 받는 OpenAI 호환 스트림",
+          "payload": {
+            "status": 200,
+            "illustrativeResponseHeaders": {
+              "Content-Type": "text/event-stream"
+            },
+            "format": "상류 OpenAI 호환 SSE",
+            "webChatRoute": "/api/chat",
+            "webChatEventFormat": "{type:'token', t:'...'} — 별도 CLI 경로"
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 194,
+              "note": "응답에서 제외할 헤더 목록"
+            },
+            {
+              "path": "hermes-web/hermes_proxy.py",
+              "line": 196,
+              "note": "상류 상태·헤더와 stream Response 반환"
+            },
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1548,
+              "note": "기존 웹 채팅은 별도 /api/chat을 호출합니다."
+            },
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1586,
+              "note": "기존 웹 화면은 type=token 이벤트를 처리합니다."
+            }
+          ]
+        }
+      ],
+      "result": {
+        "description": "가상 성공 예: 직접 API 호출자는 OpenAI delta를 누적해 답변을 표시할 수 있습니다. 프록시 자체는 화면 렌더링을 하지 않습니다. 기존 Hermes 웹 채팅은 다음 예제의 별도 CLI·SSE 경로를 사용합니다.",
+        "payload": {
+          "illustrative": true,
+          "answer": "폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.",
+          "transport": "OpenAI 호환 상류 SSE를 그대로 전달",
+          "source": "외부 모델 API를 가정한 응답",
+          "actualNetworkCall": false
+        }
+      }
+    },
+    {
+      "id": "api-hermes-web",
+      "label": "웹 채팅",
+      "title": "웹 질문을 CLI에 넘기고 token SSE로 화면에 표시하기",
+      "category": "api",
+      "description": "실제 Hermes HTML의 /api/chat 경로를 따라갑니다. 서버는 프록시 상태를 검사한 뒤 Hermes CLI를 실행하고, 터미널 출력을 자체 SSE로 바꿉니다. 설치된 Hermes CLI 내부의 외부 API 호출 방식은 이 저장소 코드만으로 확인할 수 없어 추정하지 않았습니다. 모든 입력·출력은 가상 예시입니다.",
+      "input": {
+        "query": "저장소 검색을 쉽게 설명해 주세요.",
+        "attachments": []
+      },
+      "steps": [
+        {
+          "fileId": "hermes-web/static/index.html",
+          "line": 1548,
+          "title": "1. 웹 화면이 대화와 선택 상태 전송",
+          "description": "사용자의 질문을 대화 history에 넣은 뒤 messages, skills, session_id, raw를 /api/chat에 보냅니다. 이 요청 본문에는 프록시 직접 호출 예제의 model·stream 필드가 없습니다.",
+          "input": "웹 입력창의 질문과 UI 대화 history",
+          "processing": "send 함수가 JSON.stringify로 history·스킬·세션·원본 출력 선택을 직렬화하고 fetch를 호출합니다.",
+          "output": "웹 서버로 향하는 채팅 POST",
+          "payload": {
+            "method": "POST",
+            "url": "https://hermes-ui.example.invalid/api/chat",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": {
+              "messages": [
+                {
+                  "role": "user",
+                  "content": "저장소 검색을 쉽게 설명해 주세요."
+                }
+              ],
+              "skills": [],
+              "session_id": "",
+              "raw": false
+            }
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1528,
+              "note": "사용자 메시지를 history에 넣습니다."
+            },
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1548,
+              "note": "/api/chat fetch 호출"
+            },
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1552,
+              "note": "웹 요청 body의 필드 구성"
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/server.py",
+          "line": 523,
+          "title": "2. 서버가 가장 최근 사용자 질문 추출",
+          "description": "서버는 messages를 거꾸로 확인해 마지막 user 메시지의 문자열을 고릅니다. 전체 웹 history가 그대로 CLI 인자에 전달되는 구조는 아닙니다.",
+          "input": "messages 배열, skills 배열, session_id, raw",
+          "processing": "api_chat이 요청 필드를 읽고 마지막 user 메시지를 last_user로 저장합니다. 스킬은 문자열만 남기고 raw는 bool로 변환합니다.",
+          "output": "CLI 질문·선택 스킬·세션·출력 모드",
+          "payload": {
+            "last_user": "저장소 검색을 쉽게 설명해 주세요.",
+            "skill_ids": [],
+            "session_id": "",
+            "raw_mode": false,
+            "entireHistoryPassedToCliArguments": false
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/server.py",
+              "line": 516,
+              "note": "채팅 JSON body 읽기"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 518,
+              "note": "문자열 스킬만 남기기"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 519,
+              "note": "raw bool 변환"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 523,
+              "note": "messages 역순 검사"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 527,
+              "note": "last_user 문자열 선택"
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/server.py",
+          "line": 563,
+          "title": "3. 실행 조건 확인 후 CLI 명령 조립",
+          "description": "프록시가 살아 있는지, 질문이 비어 있지 않은지, hermes 명령을 찾았는지 확인합니다. 이 예는 새 세션·선택 스킬 없음이므로 hermes chat -q <질문>이 됩니다.",
+          "input": "최근 질문과 스킬·세션 선택",
+          "processing": "조건 실패 시 error와 [DONE] SSE를 반환합니다. 기존 세션이 있으면 --resume, 스킬이 있으면 -s 옵션을 추가하고 마지막에 chat -q last_user를 붙입니다.",
+          "output": "실행할 Hermes CLI argv",
+          "payload": {
+            "argv": [
+              "hermes",
+              "chat",
+              "-q",
+              "저장소 검색을 쉽게 설명해 주세요."
+            ],
+            "sessionMode": "새 세션 예시",
+            "providerHttpCall": "설치된 CLI 내부의 API 호출은 이 저장소에서 확인할 수 없음"
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/server.py",
+              "line": 535,
+              "note": "프록시 상태 검사"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 539,
+              "note": "빈 질문 검사"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 543,
+              "note": "Hermes 실행 파일 찾기"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 557,
+              "note": "존재하는 세션의 --resume 옵션"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 562,
+              "note": "선택 스킬의 -s 옵션"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 563,
+              "note": "chat -q와 질문 인자 추가"
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/server.py",
+          "line": 651,
+          "title": "4. Hermes 프로세스의 터미널 출력 읽기",
+          "description": "일반 파이프 실행 분기를 예로 보여줍니다. Windows에서 winpty 사용 조건이 성립하면 별도의 PtyProcess.spawn 분기를 사용합니다. 서버의 이 단계는 모델 API에 POST하는 단계가 아닙니다.",
+          "input": "CLI argv와 실행 환경",
+          "processing": "subprocess.Popen이 stdout을 PIPE로 받고 stderr를 stdout에 합칩니다. 출력은 UTF-8 문자열로 한 줄씩 읽습니다. winpty 분기는 PTY 조각을 줄로 나눠 같은 필터에 보냅니다.",
+          "output": "Hermes CLI의 원시 터미널 출력",
+          "payload": {
+            "exampleLauncher": "subprocess.Popen",
+            "alternateLauncher": "winpty.PtyProcess.spawn",
+            "illustrativeStdout": "\u001b[32m폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.\u001b[0m\r\n",
+            "externalModelRequest": "CLI 내부 구현에 속하며 이 예제에서는 미확인"
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/server.py",
+              "line": 605,
+              "note": "winpty 사용 조건 분기"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 607,
+              "note": "PTY 프로세스 실행"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 651,
+              "note": "일반 subprocess.Popen 실행"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 652,
+              "note": "stdout PIPE·stderr STDOUT"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 660,
+              "note": "터미널 출력 줄 읽기"
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/server.py",
+          "line": 572,
+          "title": "5. 화면에 필요한 출력만 남기기",
+          "description": "raw=false 예에서는 ANSI 색상, 박스선·메타·잡음·생각 표시 등을 거릅니다. 질문을 되풀이한 줄도 본문이 시작되기 전에는 제외합니다. raw=true라면 색상 제거 후 원시 줄을 그대로 더 많이 보여줍니다.",
+          "input": "원시 터미널 출력 한 줄과 raw 모드",
+          "processing": "_filter_line이 ANSI와 줄끝을 정리하고 조건에 맞는 줄을 버립니다. 통과한 본문은 마지막에 줄바꿈 하나를 붙여 반환합니다.",
+          "output": "화면에 보여줄 본문 문자열",
+          "payload": {
+            "raw_mode": false,
+            "inputLine": "\u001b[32m폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.\u001b[0m\r\n",
+            "filteredText": "폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.\n"
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/server.py",
+              "line": 573,
+              "note": "ANSI·줄끝 정리"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 579,
+              "note": "raw=true 출력 분기"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 588,
+              "note": "잡음 접두어 제거"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 596,
+              "note": "처음의 질문 에코 제거"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 599,
+              "note": "정리한 본문에 줄바꿈 추가"
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/server.py",
+          "line": 603,
+          "title": "6. 본문을 웹용 token SSE 이벤트로 변환",
+          "description": "정리한 문자열은 {type:'token',t:<본문>} JSON에 담깁니다. 처리가 끝나면 end 메타데이터와 [DONE] 이벤트를 보냅니다. OpenAI의 choices[].delta와 다른 이 앱의 이벤트 형식입니다.",
+          "input": "필터를 통과한 본문과 CLI 실행 상태",
+          "processing": "_emit이 token 이벤트를 만들고 gen이 이를 yield합니다. Flask는 text/event-stream으로 제공하며 끝에서 end와 [DONE]을 내보냅니다.",
+          "output": "브라우저가 읽을 웹 전용 SSE",
+          "payload": {
+            "illustrativeTokenEvent": {
+              "type": "token",
+              "t": "폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.\n"
+            },
+            "wire": "data: {\"type\":\"token\",\"t\":\"폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.\\n\"}\n\n",
+            "illustrativeEndEvent": {
+              "type": "end",
+              "finish_reason": "stop"
+            },
+            "finalMarker": "data: [DONE]\n\n"
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/server.py",
+              "line": 603,
+              "note": "token·t JSON을 data SSE로 포장"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 664,
+              "note": "정리한 본문 이벤트 yield"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 679,
+              "note": "end 이벤트 반환"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 680,
+              "note": "[DONE] 반환"
+            },
+            {
+              "path": "hermes-web/server.py",
+              "line": 682,
+              "note": "text/event-stream Response"
+            }
+          ]
+        },
+        {
+          "fileId": "hermes-web/static/index.html",
+          "line": 1601,
+          "title": "7. 브라우저가 t를 누적해 채팅 버블 렌더링",
+          "description": "브라우저는 응답 바이트를 UTF-8로 읽고 빈 줄 두 개로 이벤트를 나눕니다. data JSON에서 type=token이면 t를 누적하고 renderBubble을 호출합니다.",
+          "input": "data: 이벤트 바이트와 token JSON",
+          "processing": "TextDecoder와 SSE 구분자 처리 뒤 JSON.parse를 합니다. token을 acc에 더하고 화면을 갱신합니다. [DONE]이면 읽기를 끝내고 error/end는 각각 별도로 처리합니다.",
+          "output": "사용자 채팅 화면의 답변 버블",
+          "payload": {
+            "parsedEvent": {
+              "type": "token",
+              "t": "폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.\n"
+            },
+            "acc": "폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.\n",
+            "renderCall": "renderBubble(bubble, acc)",
+            "illustrativeScreenText": "폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다."
+          },
+          "evidence": [
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1561,
+              "note": "TextDecoder 준비"
+            },
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1568,
+              "note": "빈 줄로 SSE 이벤트 분리"
+            },
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1573,
+              "note": "[DONE]에서 읽기 종료"
+            },
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1578,
+              "note": "data JSON 파싱"
+            },
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1586,
+              "note": "type=token 분기"
+            },
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1600,
+              "note": "t를 acc에 누적"
+            },
+            {
+              "path": "hermes-web/static/index.html",
+              "line": 1601,
+              "note": "renderBubble 화면 갱신"
+            }
+          ]
+        }
+      ],
+      "result": {
+        "description": "가상 화면 결과: 터미널에서 나온 본문이 서버의 token SSE를 거쳐 채팅 버블에 표시됩니다. 예제의 답변은 실행 결과가 아니며, 실제 모델 공급자·키·CLI 내부 HTTP 경로를 조회하거나 호출하지 않았습니다.",
+        "payload": {
+          "illustrative": true,
+          "query": "저장소 검색을 쉽게 설명해 주세요.",
+          "screenText": "폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.",
+          "eventFormat": {
+            "type": "token",
+            "t": "폴더를 역할별로 나누면 원하는 코드를 찾기 쉽습니다.\n"
+          },
+          "transport": "웹 /api/chat의 자체 SSE",
+          "actualNetworkCall": false
+        }
+      }
+    }
+  ]
+}

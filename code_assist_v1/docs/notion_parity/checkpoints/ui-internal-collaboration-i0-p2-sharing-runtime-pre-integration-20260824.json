@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-I0-P2-SHARING-RUNTIME-PRE-INTEGRATION-20260824",
+  "recorded_at": "2026-08-24T23:54:15+09:00",
+  "checkpoint_kind": "packet_pre_status_integration",
+  "packet_id": "I0-P2",
+  "packet_status": "implementation_and_live_validation_complete_status_integration_pending",
+  "owner_agent": "/root",
+  "ownership_lane": "UI",
+  "approval": {
+    "approval_id": "AP-DEV-PAIR",
+    "scope": "Exclusive D0B-P1 handoff of 10111-related launcher and services; replace and restart 10111 and start 10112/10113 with only the approved development identities.",
+    "approved_identity_ids": ["admin", "user01"],
+    "development_ports": [10111, 10112, 10113],
+    "production_ports_forbidden": [10011, 10012]
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:bc739f8f1bbf65dc7dc1bbcbc48676f46752ed448ca5c2a4980bb16cbed0ad6c",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:20d037649a48391a6e122efc2a1b865fa0e1602ebbafd164421c23034a471f7a",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:33d3da6463b7e481323ad5ad42aa42c674d44396323fed14937c8a8c656e0a61"
+    }
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-i0-p1-iam-authority-20260824.json",
+    "sha256": "sha256:cc54ee3e0e0e4420560c65240c3c8485850ea307d27888a3a393e336387d68dc",
+    "packet_id": "I0-P1",
+    "receipt_id": "I0-P1-L2-IAM-SHARING-AUTHORITY-20260824"
+  },
+  "completion_matrix_pre_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+  "dynamic_instruction_observation": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "write_policy": "read_only",
+    "exact_path_collision_observed": false
+  },
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-24T23:54:15+09:00",
+    "sbe_status_sha256": "sha256:475a8269ba18e97b0735cce5fc5cb6cde9c1cbc092bbd950dc28413e759c0134",
+    "sbe_backlog_sha256": "sha256:4557a325e06ace550ece73ec6101facc0ff41805498f4c4d798d234b8d2211eb",
+    "SBE_hot_contracts_modified_by_this_packet": false,
+    "write_policy": "read_only_dynamic_observation"
+  },
+  "implemented_paths": [
+    "code_assist_v1/notion_collaboration/iam_runtime.py",
+    "code_assist_v1/notion_collaboration/i0_p2_browser.py",
+    "code_assist_v1/notion_collaboration/gateway_service.py",
+    "code_assist_v1/notion_collaboration/runtime_gateway.py",
+    "code_assist_v1/notion_collaboration/approved_dev_pair.py",
+    "code_assist_v1/routes_notion_workspace.py",
+    "code_assist_v1/notion_static/index.html",
+    "code_assist_v1/notion_static/notion.css",
+    "code_assist_v1/notion_static/notion.js",
+    "code_assist_v1/tests/notion_collaboration/browser/test_share_and_workspace_membership.py",
+    "code_assist_v1/tests/notion_collaboration/browser/test_i0_p2_live_share_journey.py",
+    "code_assist_v1/tests/test_notion_navigation_ui.js",
+    "code_assist_v1/tests/test_notion_workspace_auth_isolation.py"
+  ],
+  "validated_claims_pending_receipt_binding": [
+    "one personal workspace is automatically available per approved identity",
+    "workspace member invite role change and revoke are canonical IAM mutations",
+    "subject group and teamspace page grants project the final effective role into the compatibility editor",
+    "direct and inherited page access are explained in the share UI",
+    "stale workspace and document epochs are rejected and refreshed by the UI",
+    "two isolated Chrome principals complete invite inherited edit view downgrade page revoke and workspace revoke",
+    "the persistent development catalog is exact schema 2026082403",
+    "ports 10011 and 10012 and production roots remain unchanged"
+  ],
+  "live_browser_observation": {
+    "contract": "code_assist.notion.i0_p2_two_principal_browser.v1",
+    "status": "pass",
+    "principal_count": 2,
+    "chrome_version": "151.0.7922.173",
+    "duration_ms": 13422,
+    "network_request_count": 210,
+    "unapproved_network_target_escape_count": 0,
+    "screenshot_sha256": {
+      "admin_invite_and_inherited_share": "sha256:41b761d768f9c2f9f7c60090ba4762b18d22a6c631f405f9908ec03eb0eec833",
+      "member_inherited_edit": "sha256:47da59deb268746f839ac6d7f16a3aae021f02b9d77bdce7634e8a345242224f",
+      "member_inherited_view": "sha256:2b8132bc36d892c65ae4466f059445d7ed001c3013542653e75c119fb3bfd441",
+      "member_after_workspace_revoke": "sha256:ca737e1b0b1b99e3edbf146e197f75d2415f7a5cc1c7062dcda425040d6a6cb6"
+    },
+    "raw_browser_state_recorded": false,
+    "credential_or_cookie_recorded": false
+  },
+  "runtime_observation": {
+    "development_root": "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113",
+    "schema_version": 2026082403,
+    "ports_listening": [10111, 10112, 10113],
+    "gateway_ready_for_admission": true,
+    "gateway_ready_for_realtime": true,
+    "production_ports_listening": [],
+    "production_mutation_allowed": false
+  },
+  "next_action": "Run the final phase-local regression, bind the I0-P2 L4 receipt, then update only the declared packet catalog, ladder, current pointer, and final checkpoint."
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.rejected_experiment.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-SHARE-AVATAR-INSET-R357-REJECTED-20260901",
+  "recorded_at": "2026-08-31T20:26:33.5310846Z",
+  "status": "rejected_reverted",
+  "summary": "The V0R-MU-006-only 1px inset avatar shadow experiment was rejected. The isolated r357 I0 journey, 20 accessibility observations, 20 interaction observations, and synthetic cleanup all passed, but the exact-pixel difference increased by 20 pixels at each adopted viewport, 40 total. No full candidate was run. The capture harness was restored byte-for-byte to retained r356.",
+  "lineage": {
+    "retained_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-share-workspace-icon-r356-progress-20260901.json",
+      "sha256": "sha256:ff1af1d26da8480b5f45423bf4fc0219238c2fdac5be6c739a7d1f5e1c934fc7"
+    },
+    "retained_candidate": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r356/receipt.json",
+      "sha256": "sha256:b55d97a638b929a218f3a9a7efa7f9ee964f0e55032d7897f82fa2894ba51e63"
+    },
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    }
+  },
+  "experiment": {
+    "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r357",
+    "experimental_capture_harness_sha256": "sha256:1f934a0cd66bdd1a6ec96c9b1fa188af418eb531cb471d41e0c1e8a705315e4d",
+    "change": "apply rgba(15,15,15,0.1) 0 0 0 1px inset to the two V0R-MU-006 inherited-share avatars",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "journey_status": "pass",
+    "V0R_MU_006_previous_unmasked_difference_count": 166806,
+    "V0R_MU_006_experimental_unmasked_difference_count": 166846,
+    "delta": 40,
+    "per_viewport_delta": {
+      "1440x900": 20,
+      "1280x800": 20
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    },
+    "accepted": false
+  },
+  "revert": {
+    "capture_harness_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "restored_sha256": "sha256:9ae2424da99c3e6a80a9a435fd1d7d277f3c721563c36ccc7d5b2d1c292bae60",
+    "matches_retained_r356": true,
+    "full_candidate_run": false,
+    "immutable_receipt_written": false
+  },
+  "promotion": {
+    "retained_candidate_remains": "r356",
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

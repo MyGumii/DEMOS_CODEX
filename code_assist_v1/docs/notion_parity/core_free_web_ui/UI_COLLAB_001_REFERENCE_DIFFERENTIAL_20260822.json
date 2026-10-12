@@ -1,0 +1,296 @@
+{
+  "contract": "code_assist.notion.core_free_ui.reference_differential.v1",
+  "recorded_at": "2026-08-22T20:34:39.3932957+09:00",
+  "scenario_id": "UI-COLLAB-001",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "review": {
+    "approved": true,
+    "approved_by": "workspace_owner",
+    "approval_scope": "redacted_summary_only"
+  },
+  "scope": {
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "external_side_effect_attempted": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "screenshot_count": 0
+  },
+  "reference": {
+    "browser": "chrome-signed-in",
+    "submission_file_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+    "receipt_file_sha256": "sha256:90bbbe185470af6493c272c9d8a2a2520053ef5dd51d013e27c04cbfdaa1190f",
+    "receipt": {
+      "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+      "c0_sha256": "sha256:9c122b6ac60d83575ef822c9c822b96e1f0d84f40dcd53a3ed3dae555550e366",
+      "capture_count": 2,
+      "captures_sha256": "sha256:ec942b918a7473d979dce3b94f6cf5dae7e465e36a1da91f357bc4b56532948e",
+      "contract": "notion_core_free_ui_manual_reference_receipt_v1",
+      "external_side_effect_attempted": false,
+      "path_disclosed": false,
+      "personal_page_accessed": false,
+      "personal_workspace_accessed": false,
+      "profile": "free-owner-chrome-desktop-ko-KR",
+      "promotion_allowed": false,
+      "run_id": "ui59-r1-r3-reference-completion-20260822",
+      "scenario_id": "UI-COLLAB-001",
+      "screenshot_count": 0,
+      "status": "accepted_reference_observation",
+      "worksheet_sha256": "sha256:6ca7ae02f16d8e07aad7ff065c44506ff506b7e01255cb05089bbcd444570d29"
+    },
+    "captures": {
+      "UI-COLLAB-001-A01": {
+        "a11y": {
+          "name": "COMMENT-THREAD",
+          "role": "textbox"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "COMMENT-INPUT"
+          ]
+        },
+        "geometry": {
+          "COMMENT-THREAD": {
+            "height": 90,
+            "width": 681,
+            "x": 772,
+            "y": 234
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 1000,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-COLLAB-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "COMMENT-PANEL",
+          "state": "posted"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-COLLAB-001-A02": {
+        "a11y": {
+          "name": "COMMENT-THREAD",
+          "role": "NONE"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "BODY"
+          ]
+        },
+        "geometry": {},
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 800,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-COLLAB-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "COMMENT-PANEL",
+          "state": "resolved_and_hidden"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "local": {
+    "browser": "chrome-ephemeral-headless",
+    "isolated_data_root": true,
+    "capture_sha256": {
+      "UI-COLLAB-001-A01": "sha256:abbb4004d1713c963ae9affaccd6208eece338bff6fa8ab36589d2969b0aece1",
+      "UI-COLLAB-001-A02": "sha256:db5eb8018a287a0c7b8034a993311803e3b30a24cb1f60a81007ca99d55f3e67"
+    },
+    "captures": {
+      "UI-COLLAB-001-A01": {
+        "a11y": {
+          "name": "COMMENT-THREAD",
+          "role": "textbox"
+        },
+        "action_log_sha256": "sha256:093a1a05f577af6cdf9a65f884b01526b66360cb9f6023870cb625a0d820185e",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "COMMENT-INPUT"
+          ]
+        },
+        "geometry": {
+          "COMMENT-PANEL": {
+            "height": 327,
+            "width": 319,
+            "x": 1107,
+            "y": 45
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-COLLAB-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "COMMENT-PANEL",
+          "state": "posted"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-COLLAB-001-A02": {
+        "a11y": {
+          "name": "COMMENT-THREAD",
+          "role": "NONE"
+        },
+        "action_log_sha256": "sha256:093a1a05f577af6cdf9a65f884b01526b66360cb9f6023870cb625a0d820185e",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "BODY"
+          ]
+        },
+        "geometry": {},
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-COLLAB-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "COMMENT-PANEL",
+          "state": "resolved_and_hidden"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "differential": {
+    "policy_state": "precalibration",
+    "all_actions_passed": true,
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-COLLAB-001-A01": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:b3c68b2f42af3768187fa702022b0885b8601b2781d168c7eea77db7cbda72e7",
+        "candidate_sha256": "sha256:abbb4004d1713c963ae9affaccd6208eece338bff6fa8ab36589d2969b0aece1",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "COMMENT-THREAD": {
+              "height": 90,
+              "width": 681,
+              "x": 772,
+              "y": 234
+            }
+          },
+          "candidate_geometry": {
+            "COMMENT-PANEL": {
+              "height": 327,
+              "width": 319,
+              "x": 1107,
+              "y": 45
+            }
+          },
+          "reference_latency_ms": 1000,
+          "candidate_latency_ms": 0
+        }
+      },
+      "UI-COLLAB-001-A02": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:bd20147dade7c9abb2f7d65a61dbb74177eff2260141d63e52f6ffffff395882",
+        "candidate_sha256": "sha256:db5eb8018a287a0c7b8034a993311803e3b30a24cb1f60a81007ca99d55f3e67",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {},
+          "candidate_geometry": {},
+          "reference_latency_ms": 800,
+          "candidate_latency_ms": 0
+        }
+      }
+    }
+  }
+}

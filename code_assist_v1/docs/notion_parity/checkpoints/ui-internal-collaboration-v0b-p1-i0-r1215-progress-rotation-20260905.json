@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1215-PROGRESS-ROTATION-20260905",
+  "recorded_at": "2026-09-05T04:14:08.084739Z",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1213-progress-20260905.json",
+    "sha256": "sha256:ba002576c66743e3d42f9e880ca393baadf19cfdabea7bb505264dfb7eed216f"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1215-state005-header-spacing-diagnostic",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1215-state005-header-spacing-diagnostic/diagnostic.json",
+    "diagnostic_sha256": "sha256:d3a8881a382e1016bf4fd5fa71c1defd0c4d80d3679911f90781cdfa495f11d2",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:8d1b448ce0257e5bbf5351fc882df6644a4e09e8888182842638073aa2920f7a",
+    "release_candidate_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_candidate_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 789160,
+    "masked_difference_count": 0,
+    "total_difference_count": 789160,
+    "overall_exact_progress": "0/36"
+  },
+  "improvement_since_r1213": {
+    "receipt_total_difference_delta": -213,
+    "stable_normalized_total_difference_delta": -204,
+    "retained_changes": [
+      "Apply a measured 0.05px letter spacing only to the V0R-MU-005 workspace sidebar header at both reference viewports."
+    ],
+    "rejected_candidates": [
+      "Text-stroke changes for the V0R-MU-004 invite card and bottom action row",
+      "Text-stroke changes for the V0R-MU-005 workspace sidebar header"
+    ]
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1192-20260905",
+    "launch_id": "45d2548ac5da4b6db6de7246f515b090",
+    "root_id": "ab52bfe9-31d7-43f6-9a4e-9e94c2e976a9",
+    "final_audit_before_rotation": {
+      "workspace_count": 50,
+      "reference_workspace_count": 48,
+      "active_membership_count": 50,
+      "active_page_binding_count": 48,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64,
+    "filesystem_preservation_required": true
+  },
+  "verification": {
+    "targeted_tests": "21 passed in 11.41s",
+    "python_compile": "pass",
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Preserve and stop the r1192 realm, start a fresh approved development realm, reproduce retained r1215, then continue lossless exact residual reduction. Do not run final gates before exact parity reaches 36/36."
+}

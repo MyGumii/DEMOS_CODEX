@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-LEGACY-JS-FIXTURE-PRE-EDIT-20260906",
+  "recorded_at": "2026-09-06T13:16:10Z",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-LEGACY-JS-FIXTURE-20260906",
+  "purpose": "Repair only three legacy VM test fixtures that omit the existing production NotionFileUpload and NotionDatabaseBridge globals required by notion.js. Bind the real modules as the already passing navigation fixture does. Do not weaken assertions or product initialization guards.",
+  "exact_owned_paths": [
+    "code_assist_v1/tests/test_notion_ui_runtime.js",
+    "code_assist_v1/tests/test_notion_atomic_save.js",
+    "code_assist_v1/tests/test_notion_publication_ui.js"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/tests/test_notion_ui_runtime.js": "sha256:16d604b441bad5e768f4dd40b228ead209c00d1707506ce42bb0305f2da58251",
+    "code_assist_v1/tests/test_notion_atomic_save.js": "sha256:355c2060c67408fd74dcc343eeabca93aaa3ef9e237ac67d3bd4da953225a03c",
+    "code_assist_v1/tests/test_notion_publication_ui.js": "sha256:81dcdec9da5a1bdbd90dcb4441fc2b53430bbd4143d25fd17eb0b95e34c1e8ab"
+  },
+  "diagnosis": {
+    "suite_count": 7,
+    "passed": 4,
+    "failed": 3,
+    "common_failure": "Notion collaboration editor runtime failed to load",
+    "product_guard": "code_assist_v1/notion_static/notion.js:184",
+    "missing_test_globals": [
+      "NotionFileUpload",
+      "NotionDatabaseBridge"
+    ],
+    "successful_control": "code_assist_v1/tests/test_notion_navigation_ui.js",
+    "no_browser_or_external_account_actions": true
+  },
+  "validation_required": [
+    "All seven declared standalone Node test scripts finish successfully on unchanged product source.",
+    "Retain existing assertions; if additional failures appear, diagnose and do not weaken them to force a pass."
+  ],
+  "scope_guard": {
+    "modify_product_source": false,
+    "modify_sbe_contracts": false,
+    "modify_agents_md": false,
+    "rebaseline_twelve_contracts_under_this_lease": false,
+    "overwrite_existing_evidence": false,
+    "mark_packet_or_product_complete": false
+  }
+}

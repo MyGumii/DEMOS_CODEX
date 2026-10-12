@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-WORKSPACE-INVITE-ROLE-GATE-20260826",
+  "recorded_at": "2026-08-26T11:17:58+09:00",
+  "checkpoint_kind": "action_time_role_and_billing_gate_before_invite_submission",
+  "packet_id": "V0R-P1",
+  "packet_status": "execution_in_progress_awaiting_role_direction",
+  "purpose": "Record the fail-closed boundary reached after the user approved the REF-FREE-A workspace invitation. The live Notion role selector routes the ordinary non-owner member role through a paid Plus upgrade. No purchase, subscription change, invitation, membership grant, or owner-role grant was submitted. The remaining immediately selectable roles materially differ from the approved active-member result, so execution pauses for explicit direction.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-workspace-invite-role-gate-20260826.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-001__1440x900.png",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-001__1280x800.png"
+  ],
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-fixtures-created-20260826.json",
+    "sha256": "sha256:67297ca7cb76b34dad15ed78d455821a707cb5c0acaab0ffd230356eb23ae0dc"
+  },
+  "action_time_confirmation": {
+    "action_id": "V0R-WORKSPACE-INVITE",
+    "exact_user_text": "초대 실행 승인",
+    "confirmation_received": true,
+    "confirmed_target_workspace": "REF-FREE-A",
+    "confirmed_target_identity": "REF-COLLABORATOR",
+    "confirmed_result": "active_workspace_member",
+    "covers_paid_plan_purchase": false,
+    "covers_workspace_owner_role": false
+  },
+  "live_role_gate_observation": {
+    "ordinary_member_role_triggered_paid_plus_upgrade": true,
+    "paid_upgrade_submitted": false,
+    "payment_information_submitted": false,
+    "workspace_owner_role_available": true,
+    "workspace_owner_role_selected_or_submitted": false,
+    "restricted_member_role_available": true,
+    "restricted_member_role_selected_or_submitted": false,
+    "reason_for_pause": "Owner grants materially broader administration rights; restricted member does not provide the declared inherited workspace access; ordinary member requires an unapproved paid upgrade."
+  },
+  "captured_state": {
+    "state_id": "V0R-MU-001",
+    "surface": "workspace_share_dialog",
+    "state": "invite_ready_no_raw_identifier_visible",
+    "pngs": [
+      {
+        "viewport": "1440x900",
+        "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-001__1440x900.png",
+        "sha256": "sha256:8a75442c39b192dd198b599797780b1fac0d7913521dd7b8ea23164f7d5bb1b0"
+      },
+      {
+        "viewport": "1280x800",
+        "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-001__1280x800.png",
+        "sha256": "sha256:653c8b3505aa3797212a54b69ca32cd4946b2a98ec7ba43e39378eab0cb370e1"
+      }
+    ],
+    "raw_email_or_non_alias_identifier_visible": false
+  },
+  "evidence_denominator": {
+    "screenshot_file_count": 2,
+    "expected_screenshot_count": 36,
+    "completed_capture_state_count": 1,
+    "completed_action_count": 3,
+    "action_4_started_but_not_submitted": true,
+    "cleanup_required_now": true
+  },
+  "scope_attestation": {
+    "workspace_invitation_sent": false,
+    "workspace_membership_granted": false,
+    "workspace_owner_role_granted": false,
+    "restricted_member_role_granted": false,
+    "paid_upgrade_or_purchase_executed": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_or_non_synthetic_workspace_label_persisted": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "claims": {
+    "V0R_P1_execution_started": true,
+    "V0R_WORKSPACE_INVITE_passed": false,
+    "V0R_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Obtain explicit direction for the live Notion role gate without purchasing or silently widening privileges."
+}

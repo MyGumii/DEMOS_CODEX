@@ -1,0 +1,179 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T00:34:30.0000000+09:00",
+  "run_id": "ui14-search-001-reference-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-SEARCH-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_page_alias": "UI-PARITY-RUN-검색-001",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "transient_screenshot_used_for_visual_confirmation": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "page_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-SEARCH-001",
+    "status": "reference_observed_review_pending_six_semantic_fields",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 8,
+    "reference_partially_observed": 2,
+    "reference_unobserved": 10,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "input_snapshot": {
+    "agents_sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572",
+    "test_source_sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3",
+    "local_source_build_sha256": "sha256:8d0eb7ee6e24ed4824707ef3c788074d71843742a8a87b841e713f83504614f4",
+    "reference_source_build_sha256": "sha256:a38b080d126ae53d5b3342d62ac27c7d0c2723422e0a03a656017037947c39e2",
+    "action_log_sha256": "sha256:edb714a512c026c60460a6ddc72899a755e01b9ef503254d1be7039f746e8637"
+  },
+  "reference_action_captures": {
+    "UI-SEARCH-001-A01": {
+      "sha256": "sha256:d0497e5b46f4a5ef2f3d67ff40c931902632c1bc04d40fab284ca4b75ae28159",
+      "capture_validation_errors": 0,
+      "state": {"result": true, "visible": true},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"sequence": ["SEARCH-TRIGGER"]},
+      "a11y": {"name": "SEARCH-TRIGGER", "role": "button"},
+      "semantic_visual": {"region": "SEARCH-OVERLAY", "state": "visible"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {
+        "SEARCH-INPUT": {"height": 24, "width": 866, "x": 507, "y": 95}
+      },
+      "latency_ms": 900
+    },
+    "UI-SEARCH-001-A02": {
+      "sha256": "sha256:59f8accb4152c8216d5fa142d55ce6e46a40926ff2135584f53c39cffa59ae28",
+      "capture_validation_errors": 0,
+      "state": {"hidden": true, "result": true},
+      "keyboard": {"key": "ESCAPE", "result": "pass"},
+      "focus": {"name": "SEARCH-TRIGGER", "state": "focused"},
+      "a11y": {"name": "SEARCH-TRIGGER", "role": "button"},
+      "semantic_visual": {"region": "SEARCH-OVERLAY", "state": "hidden"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {},
+      "latency_ms": 500
+    },
+    "UI-SEARCH-001-A04": {
+      "sha256": "sha256:eb05e20e9a21989ca580a7e5e4bff2ea5b5544d734963ee726d864f875f96655",
+      "capture_validation_errors": 0,
+      "state": {"count": 1, "opened": true, "result": true},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"sequence": ["SEARCH-INPUT", "PAGE-ROOT"]},
+      "a11y": {"name": "SEARCH-RESULT", "role": "option"},
+      "semantic_visual": {"region": "SEARCH-RESULT", "state": "visible"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {
+        "SEARCH-RESULT": {"height": 55, "width": 572, "x": 471, "y": 364}
+      },
+      "latency_ms": 4700
+    }
+  },
+  "reference_exact_results": {
+    "search_surface_style": "inline_overlay",
+    "search_input_role": "combobox",
+    "search_result_container_role": "listbox",
+    "search_result_role": "option",
+    "search_input_placeholder": "REF-FREE-A에서 검색 또는 질문",
+    "escape_hid_search": true,
+    "escape_restored_focus_to_search_trigger": true,
+    "exact_query": "UI-PARITY-RUN-검색-001",
+    "exact_active_workspace_result_count": 1,
+    "exact_result_opened": true,
+    "opened_page_title_exact": "UI-PARITY-RUN-검색-001",
+    "ref_free_b_visible_result_count": 0,
+    "personal_workspace_title_visible_result_count": 0,
+    "open_auto_focus_observations": [
+      "one open from the synthetic page eventually focused the combobox",
+      "one open from the REF-FREE-A root retained focus on the search trigger for more than three seconds"
+    ],
+    "open_auto_focus_consistent": false,
+    "search_result_dom_focus_after_typing": "SEARCH-INPUT",
+    "search_result_active_descendant_used": true,
+    "same_workspace_synthetic_prior_items_appeared_as_top_matches": true,
+    "synthetic_page_moved_to_trash": true,
+    "synthetic_tree_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_evidence": {
+    "current_exact_test": "1 passed in 19.25s",
+    "search_open_input_focused": true,
+    "escape_focus_restored": true,
+    "synthetic_result_visible": true,
+    "workspace_isolation_preserved": true,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "synthetic_only": true,
+    "historical_capture_sha256": {
+      "UI-SEARCH-001": "sha256:73efece016d0326d73bf6f1bbed8b1c2f76caf48e998f7b53102d5bcfb00c0cc"
+    },
+    "current_capture_hash_status": "not_reextracted_after_current_source_build; exact current journey passed",
+    "host_observation": "one broad rg query ended with Windows 0xC0000409; one simpler canonical Select-String retry succeeded"
+  },
+  "precalibration_differential": {
+    "status": "fail",
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-SEARCH-001-A01": {
+        "difference_count": 1,
+        "differences": ["focus"]
+      },
+      "UI-SEARCH-001-A02": {
+        "difference_count": 0,
+        "differences": []
+      },
+      "UI-SEARCH-001-A04": {
+        "difference_count": 1,
+        "differences": ["a11y"]
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "interpretation": "Both implementations open and dismiss search, restore Escape focus to the search trigger, isolate results to the active workspace, and open the exact synthetic page. Official Free web exposed listbox/option semantics while local uses a button result. Official pointer-open input autofocus was inconsistent across two observed opens; local requires and verifies deterministic input focus."
+  },
+  "redacted_review_summary": {
+    "reference_profile": "Chrome desktop Free owner ko-KR",
+    "reference_workspace": "REF-FREE-A",
+    "result": "Quick search opened as an inline overlay with a combobox and listbox/option results. Escape closed it and restored focus to the Search trigger. Searching the exact synthetic Korean title produced one active-workspace result, exposed no REF-FREE-B or personal-workspace title, and opened the expected page. Input autofocus was inconsistent across two pointer opens and is retained as an explicit parity decision rather than normalized away.",
+    "cleanup": "The synthetic search page was moved to Trash; the REF-FREE-A tree has zero matching residual rows and no open dialog remains.",
+    "privacy": "No personal workspace/page, raw DOM, network payload, cookies or storage, screenshot, public posting, invitation, permanent delete, or local live data was used."
+  },
+  "claims": {
+    "ui_search_001_reference_observed": true,
+    "ui_search_001_reference_characterized": false,
+    "ui_search_001_differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain workspace-owner approval of this redacted summary before sealing the receipt or changing local deterministic search focus/result semantics. Preserve the 5/25 certified parent until the selected behavior and the full regression ladder pass."
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0r_p1.lossless_ingest_receipt_binding.v1",
+  "checkpoint_id": "V0R-P1-LOSSLESS-INGEST-RECEIPT-BINDING-20260830",
+  "recorded_at": "2026-08-30T17:56:38.0725037+09:00",
+  "status": "exact_receipt_fail_closed_binding_ready_capture_pending",
+  "summary": "The reference receipt verifier no longer accepts exact-reference transport from receipt declarations alone. A candidate exact receipt must bind a sibling immutable lossless-ingest audit by hash, bind the audit's capture-manifest hash, preserve the full 36-capture denominator, and match all receipt scenario ids. Missing, unsafe, failed, drifted, or semantically inconsistent audit evidence keeps the exact gate false while leaving the independently verified semantic gate unchanged.",
+  "implementation": {
+    "lossless_ingest_verifier": {
+      "path": "code_assist_v1/tools/verify_v0r_p1_lossless_capture_ingest.py",
+      "sha256": "sha256:46fc0b9cacb59547240225700cde38bb4e9f6188fe232a54be88580d6cc27c2b",
+      "new_behavior": [
+        "optional --output writes an audit with exclusive-create semantics",
+        "an existing audit output cannot be overwritten"
+      ]
+    },
+    "reference_receipt_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py",
+      "sha256": "sha256:27fe2dceb667304937ee29d1e65d32ed1e55af024f96385cc5bb826645f99a6d",
+      "new_behavior": [
+        "exact transport declarations without lossless_ingest_audit are ineligible",
+        "audit path must be a safe existing JSON sibling beneath the receipt directory",
+        "declared audit sha256 must equal the immutable audit file hash",
+        "declared capture-manifest sha256 must equal the audit value",
+        "audit contract, pass status, zero errors, and exact eligibility are required",
+        "36 captures, 18 states, two viewports, and 36 byte-preserved rows are required",
+        "audit transport facts must match the receipt transport facts",
+        "audit scenario ids must exactly equal the receipt scenario ids"
+      ]
+    },
+    "tests": [
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/test_v0r_p1_lossless_capture_ingest.py",
+        "sha256": "sha256:dc8a44dbf673e1b894c31ae9a191c907a9104b9ed8cf30b8a11694c988c28d13"
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_receipt.py",
+        "sha256": "sha256:82c512ee62fd2578f6fdf59320aef68d8f01c1a72c477c9c859aafba6658cb96"
+      }
+    ]
+  },
+  "verification": {
+    "focused_ingest_and_reference_tests": {
+      "result": "24 passed in 58.41s",
+      "exit_code": 0
+    },
+    "integrated_reference_and_v0b_regression": {
+      "result": "38 passed in 67.11s",
+      "exit_code": 0
+    },
+    "python_compile": {
+      "status": "pass",
+      "exit_code": 0
+    },
+    "positive_contract_proof": {
+      "hash_bound_lossless_ingest_audit_accepted": true,
+      "exact_reference_gate_passed": true
+    },
+    "negative_contract_proof": {
+      "exact_transport_declaration_without_audit_rejected": true,
+      "lossless_ingest_audit_hash_drift_rejected": true,
+      "immutable_audit_overwrite_rejected": true
+    },
+    "actual_v2_receipt_recheck": {
+      "exit_code": 0,
+      "status": "pass",
+      "semantic_reference_gate_passed": true,
+      "exact_reference_gate_passed": false,
+      "capture_count": 36,
+      "capture_state_count": 18,
+      "viewport_count": 2,
+      "cleanup_complete": true,
+      "supersession_chain_valid": true,
+      "supersession_link_count": 3,
+      "exact_reference_transport_reason_codes": [
+        "SOURCE_CODEC_NOT_PNG",
+        "SOURCE_ENCODING_NOT_LOSSLESS",
+        "ZERO_RGBA_EQUIVALENCE_NOT_DECLARED"
+      ]
+    }
+  },
+  "lineage": {
+    "lossless_capture_ingest_preflight": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-capture-ingest-preflight-20260830.json",
+      "sha256": "sha256:0f54366777eaa5756840620ed46588b7f0cd03d769661fef5c1b7b7163244d6a"
+    },
+    "v2_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+      "sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "scope_attestation": {
+    "external_notion_mutation": false,
+    "external_notion_permission_change": false,
+    "reference_receipt_modified": false,
+    "reference_screenshot_modified": false,
+    "local_product_source_changed": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "approved_source_lossless_capture_surface": "pending",
+    "fresh_36_capture_ingest_manifest_and_audit": "pending",
+    "corrected_V0R_MU_004_reference": "pending",
+    "corrected_V0R_MU_006_reference": "pending",
+    "new_immutable_exact_reference_receipt": "pending",
+    "exact_pixel_36_of_36": "not_run",
+    "core_25": "not_run",
+    "performance": "not_run",
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "After explicit approval to switch from Chrome to a source-lossless capture surface, capture all 36 states, write the ingest audit immutably, bind it into a new superseding receipt, and only then admit that receipt to exact comparison."
+}

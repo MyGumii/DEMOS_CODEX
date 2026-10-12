@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-U0A-P2-HARNESS-20260823",
+  "recorded_at": "2026-08-23T05:42:29.4501098Z",
+  "checkpoint_kind": "packet_ownership_status_integrator_and_validation_evidence",
+  "packet_id": "U0A-P2",
+  "packet_status": "gate_passed",
+  "purpose": "Implement and verify the internal collaborative Notion packet catalog, validation ladder, completion audit/gate boundary, cross-catalog ownership rules, and single-writer status integration without touching concurrent Second Brain hot contracts.",
+  "owner_agent": "/root",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+  ],
+  "new_product_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.schema.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.schema.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_execution_receipt.v1.schema.json",
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tools/run_internal_collaborative_validation.py",
+    "code_assist_v1/tools/verify_internal_collaborative_validation_ladder.py",
+    "code_assist_v1/tools/verify_internal_collaborative_completion.py"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py"
+  ],
+  "read_only_dependencies": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-u0a-p1-inventory-20260823.json",
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md"
+  ],
+  "protected_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md",
+    "code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md",
+    "code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/",
+    "code_assist_v1/knowledge/",
+    "code_assist_v1/user_data/",
+    "code_assist_v1/.runtime/",
+    "existing per-user Notion databases and 10111/10011/10012 service roots"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:ef5749bcfb4c10d969e8af964d752580d872cdef6eaf4d675e28a3aa59ea57bc",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:2cdce4ea06be1f7000576f3c3c34b7845c9c783514e1f90f3de7118bc49ebf2f"
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:4ab3aaebb4db0cc9167bc2f81cbdcdc040475c9e2032692d7f0d617d813ed323",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:465d544ddd42bf1f9cf5845f5b664047e25c31a9a38558599ab5962f6ceb7431"
+  },
+  "ownership_lease": {
+    "lease_id": "U0A-P2-DOC-HARNESS-20260823-054229Z",
+    "lane": "DOC_HARNESS",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-23T05:42:29.4501098Z",
+    "expires_at": "2026-08-23T13:42:29.4501098Z",
+    "released_at": "2026-08-23T05:50:00Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false,
+    "release_condition": "U0A-P2 validation is recorded and the two declared hot-contract post-edit hashes are bound."
+  },
+  "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked",
+    "resumed_by_user": true,
+    "resume_message": "정합화하고 다시 재개해",
+    "prior_blocker_resolved": true,
+    "goal_completion_claimed": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-23T05:42:29.4501098Z",
+    "u0a_p1_receipt_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-u0a-p1-inventory-20260823.json",
+    "u0a_p1_receipt_sha256": "sha256:c798e4226e53244284edcd02dc5bed663690171b4aa2c7b4930c472a30c2b02d",
+    "u0a_p1_gate_passed": true,
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:7519df3f8c65a855e857a3a609d1c3159fc3554c39559e172f09655ba44593da",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_current_packet": "SBE-1.2",
+    "sbe_hot_contracts_modified_by_this_packet": false,
+    "exact_path_collision_observed": false,
+    "external_gate": "XG-SBE-DYNAMIC-BASELINE",
+    "external_gate_state": "satisfied_for_u0a_p2_read_only_binding"
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:ef5749bcfb4c10d969e8af964d752580d872cdef6eaf4d675e28a3aa59ea57bc",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:2cdce4ea06be1f7000576f3c3c34b7845c9c783514e1f90f3de7118bc49ebf2f"
+    },
+    "accepted_packet_receipt_ids": [
+      "U0A-P1-SOURCE-REFERENCE-RECONCILIATION-20260823"
+    ],
+    "lease": "U0A-P2-DOC-HARNESS-20260823-054229Z",
+    "post_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:4ab3aaebb4db0cc9167bc2f81cbdcdc040475c9e2032692d7f0d617d813ed323",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:465d544ddd42bf1f9cf5845f5b664047e25c31a9a38558599ab5962f6ceb7431"
+    }
+  },
+  "validation_receipt": {
+    "receipt_id": "U0A-P2-L0-COLLAB-CATALOG-AUDIT-20260823",
+    "validation_id": "L0-COLLAB-CATALOG-AUDIT",
+    "mode": "audit",
+    "argv": [
+      ".\\venv\\Scripts\\python.exe",
+      "-E",
+      "-m",
+      "code_assist_v1.tools.verify_internal_collaborative_validation_ladder",
+      "--mode",
+      "audit",
+      "--compact"
+    ],
+    "status": "pass",
+    "error_count": 0,
+    "completion_state_expected": "incomplete",
+    "strict_gate_expected_to_fail_while_product_is_incomplete": true,
+    "catalog_sha256": "sha256:4ab3aaebb4db0cc9167bc2f81cbdcdc040475c9e2032692d7f0d617d813ed323",
+    "ladder_sha256": "sha256:465d544ddd42bf1f9cf5845f5b664047e25c31a9a38558599ab5962f6ceb7431",
+    "sbe_contract_audit_input_sha256": "sha256:7519df3f8c65a855e857a3a609d1c3159fc3554c39559e172f09655ba44593da",
+    "executed_at": "2026-08-23T06:00:37.646041Z",
+    "audit_summary": {
+      "required_packets": 50,
+      "gate_passed_required_packets": 2,
+      "matrix_rows": 28,
+      "closed_matrix_rows": 0,
+      "phase_gates": 20,
+      "closed_phase_gates": 1,
+      "open_decisions": 5,
+      "planned_required_lanes": 10,
+      "required_approvals": 6,
+      "satisfied_approvals": 0,
+      "required_external_gates": 3,
+      "satisfied_external_gates": 0,
+      "valid_execution_receipts": 0,
+      "product_complete": false
+    },
+    "runner_dry_run": {
+      "status": "pass",
+      "exit_code": 0,
+      "duration_ms": 1912,
+      "shell_used": false,
+      "source_hashes_unchanged": true,
+      "raw_stdout_or_stderr_recorded": false
+    },
+    "combined_l0_regression": {
+      "status": "pass",
+      "passed": 59,
+      "failed": 0,
+      "duration_seconds": 47.63
+    },
+    "strict_completion_negative_control": {
+      "status": "expected_fail",
+      "exit_code": 1,
+      "error_codes": ["STRICT_COMPLETION_INCOMPLETE"]
+    },
+    "artifact_sha256": {
+      "internal_collaborative_packets.v2.schema.json": "sha256:86d07500332550526fe01db6ae8bb0fe115b330122b961ff1e3f0484dfbf46ee",
+      "internal_collaborative_validation_ladder.v1.schema.json": "sha256:133f291784f8f30b86c46b875976cb09f3582787aed918110b75240772f59d92",
+      "internal_collaborative_execution_receipt.v1.schema.json": "sha256:27b4c253a6485744d53167f4b72ccb174cd8340fa7ea182d6cae54dcc5890bfc",
+      "internal_collaborative_validation.py": "sha256:2bb230dc85ebe2905da2897f6407a5391a124ee4e7d49cd4a80f9011c6338fbe",
+      "run_internal_collaborative_validation.py": "sha256:1136afd4f26614977b3abc2b85696fbb856f9ae14c055b0800e731ca677ed5d0",
+      "verify_internal_collaborative_validation_ladder.py": "sha256:8f0d1444504ef00c83bed9a240442ce5325e5e64425c1b95041855389a310f7a",
+      "verify_internal_collaborative_completion.py": "sha256:ba9776443189f1998fab67e16c7d291cd66163a4f4da841f1c37055d314673e9",
+      "test_internal_collaborative_harness.py": "sha256:8ee8ebb09d23f48fb65cf0f22a4cff6e6dd9b994c1fbc0e47d0c966841c64575"
+    }
+  },
+  "rollback_or_cleanup": "If U0A-P2 is rejected, restore only the two declared hot contracts from their exact pre-edit hashes and remove only the new U0A-P2 tool/test paths plus this checkpoint; never alter concurrent SBE or live-data paths.",
+  "completion_truth": {
+    "u0a_p1_gate_passed": true,
+    "u0a_p2_started": true,
+    "u0a_p2_gate_passed": true,
+    "u0a_gate_001_passed": true,
+    "product_packet_started": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "U0A-P2",
+    "completed_gate": "U0A-GATE-001",
+    "next_packet": "D0A-P1",
+    "next_phase": "D0a",
+    "next_state": "ready_to_start",
+    "product_decision_freeze": "G0 remains open and may begin only through its declared U0A-GATE-001 prerequisite; product completion remains false.",
+    "shared_goal_status": "The goal tool retains its earlier blocked terminal record, but the user explicitly resumed execution and the prior blocker is resolved."
+  }
+}

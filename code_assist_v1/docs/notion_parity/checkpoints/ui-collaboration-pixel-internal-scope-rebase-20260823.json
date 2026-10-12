@@ -1,0 +1,96 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-23T01:58:16+09:00",
+  "run_id": "ui70-collaboration-pixel-internal-scope-rebase-20260823",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-h9-core-ui-pilot-control-default-off-20260823.json",
+    "sha256": "sha256:ea3a22c3fa9186410c96bcd16bcbf8ae2d577cc19b3885710e98f082cc956879",
+    "semantic_status": "pilot_control_implemented_contract_tested_not_enabled"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "goal_complete": false,
+    "resume_evidence": "the user expanded the required scope to real-time collaboration, exact pixels, and operational recovery"
+  },
+  "scope_rebase": {
+    "deployment": "internal_web_application",
+    "product": "notion_like_collaborative_database_integrated_with_second_brain",
+    "required": [
+      "workspace_and_page_sharing",
+      "owner_member_guest_permission_lifecycle",
+      "real_time_presence_and_simultaneous_editing",
+      "live_comments_mentions_reactions_and_inbox",
+      "controlled_environment_pixel_exact_ui",
+      "coordinated_operational_backup_restore",
+      "second_brain_permission_and_revision_invariants",
+      "allowlisted_internal_pilot_and_kill_switch"
+    ],
+    "deferred": [
+      "mobile_web_specific_parity",
+      "ios_android_windows_native_macos_native",
+      "native_offline_behavior"
+    ],
+    "conditional": [
+      "saml_sso_scim_dlp_siem",
+      "private_teamspaces",
+      "archive_lifecycle",
+      "public_web_sharing_and_external_email_invites"
+    ],
+    "excluded": [
+      "billing_seats_trials_and_plan_entitlements",
+      "notion_ai_parity",
+      "marketplace_commerce",
+      "formal_external_legal_brand_release_gate"
+    ]
+  },
+  "prior_evidence_boundary": {
+    "prior_required_scenarios": 25,
+    "prior_scenarios_evidence_satisfied": 25,
+    "prior_denominator_preserved": true,
+    "expanded_scope_complete": false,
+    "ui_collab_001_proved": "single_user_comment_create_resolve_reopen_reload",
+    "ui_collab_001_did_not_prove": "live_multi_user_delivery_or_concurrent_editing",
+    "ui_share_001_proved": "read_only_share_dialog_focus_and_escape",
+    "ui_share_001_did_not_prove": "invite_role_change_revoke_or_second_principal_visibility"
+  },
+  "plan": [
+    "C0_two_principal_harness_and_contract",
+    "C1_sharing_and_permission_lifecycle_ui",
+    "C2_durable_collaboration_event_foundation",
+    "C3_presence_and_live_async_collaboration",
+    "C4_convergent_simultaneous_editing",
+    "C5_full_pixel_parity_expansion",
+    "C6_coordinated_operational_recovery",
+    "C7_internal_allowlisted_pilot"
+  ],
+  "authority": {
+    "current_scope_document": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_SCOPE_V2.md",
+      "sha256": "sha256:b600411fb0e32d5ec87eb1a0029a63fb64cdaad2492208dbd19de6d2ea6cee31"
+    },
+    "earlier_release_readiness_priority": "historical_prior_denominator_superseded_for_next_work",
+    "legal_brand_gate_required": false,
+    "mobile_native_required_now": false,
+    "business_trial_required_now": false,
+    "second_concurrent_identity_required_for_reference": true
+  },
+  "safety": {
+    "product_code_changed": false,
+    "schema_or_migration_changed": false,
+    "feature_flag_enabled": false,
+    "live_or_personal_data_accessed": false,
+    "external_invite_or_message_sent": false,
+    "operational_restore_run": false,
+    "git_commit_claimed": false
+  },
+  "claims": {
+    "single_user_core_foundation_notionsimilar": true,
+    "real_time_collaboration_complete": false,
+    "sharing_lifecycle_complete": false,
+    "pixel_exact_complete": false,
+    "operational_recovery_complete": false,
+    "internal_product_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Implement C0 as one isolated slice: freeze the collaboration protocol and permission matrix, add synthetic owner/member/guest identities with two independent browser contexts, and record baseline share/comment behavior without touching live data or enabling the pilot."
+}

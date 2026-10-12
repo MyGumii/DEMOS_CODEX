@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-SBE-SOURCE-ARTIFACT-CONTRACT-REPAIR-VERIFIED-20260906",
+  "recorded_at": "2026-09-06T14:00:26Z",
+  "owner_agent": "/root",
+  "ownership_lane": "SBE_CONTRACT_REPAIR",
+  "lease_id": "SBE-8.12-SOURCE-ARTIFACT-CONTRACT-REPAIR-20260906",
+  "status": "approved_thirteen_file_contract_repair_verified_not_product_gate",
+  "approval": {
+    "exact_text": "SBE 원본파일 API 계약 교정 13개 파일 소유권 임시 이관 및 수정 승인",
+    "approved": true,
+    "pre_edit_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-sbe-source-artifact-contract-approved-pre-edit-20260906.json",
+      "sha256": "sha256:c699d16a0b9175c035675f76e15692ddef2c70947fc8444739e327a2c590a7f7"
+    },
+    "proposal": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/V0B_P1_SBE_SOURCE_ARTIFACT_CONTRACT_REPAIR_PROPOSAL_20260906.md",
+      "sha256": "sha256:313852f502ae2d6606e950d9070bd03e3bdad1f3b5eed85a1697aada6952f1a1",
+      "historical_unapproved_proposal_preserved": true
+    }
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/knowledge_spaces/contracts/openapi.json": "sha256:ab40ab954525c406ada5d07eb88a3438c08c36c762b6cd4d36407885885a0b74",
+    "code_assist_v1/docs/knowledge_spaces/contracts/contract-manifest.json": "sha256:0243609d79f911954354a5ed557224c6deb3b92c410a755249c91e413f627533",
+    "code_assist_v1/docs/knowledge_spaces/contracts/schemas/knowledge.schema.json": "sha256:abb74c669e228db16dcbdce33b75ad76f44b60523aa5455e3c3df91d212d3586",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md": "sha256:a5d4a31c2b2e6cb8909c0c981b3f6ac97e9454245ec47cc5beeda3a0f606d8ab",
+    "code_assist_v1/docs/knowledge_spaces/API_UI_CONTRACT.md": "sha256:8aab5795b2d4ae6fbb063aec1fb4f661cf69c15ba0983b6537dd9c9df4669f7a",
+    "code_assist_v1/tools/contract_audit.py": "sha256:f02dc71eb63ae7722b0693bd88f8a17b5874ce8f6f9f2e72e6f99c20f3cf857a",
+    "code_assist_v1/tests/knowledge_spaces/unit/test_contract_audit.py": "sha256:a12f56e02796a321874cc5feaca5dc22c5f3c8ffa6a5188708987720ba28b0ed",
+    "code_assist_v1/tests/knowledge_spaces/unit/test_source_artifact_routes.py": "sha256:db92341d7b9eba5bd7f838ce6760017a91c2b2593946a82902df3c6caa7635d5",
+    "code_assist_v1/docs/knowledge_spaces/evidence/SBE-8.12.md": "sha256:9a632615b9432342938925303a9d17d13fdd780f4e1eb866825dcc244f10d855",
+    "code_assist_v1/docs/knowledge_spaces/README.md": "sha256:a16b53e5be8f420b42ff6a04f07499a212c8ba20315fbaf05ff9577c11cae3e0",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md": "sha256:839adc78a28582cf7e60e0f3a8ac32afb76ca74ac0d601b6974591176ce2bacd",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md": "sha256:0411dafe49a7db5ffd820a6b9cb06840d6f72c1eae71e193c234b0b9c775f9c6",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/ACCEPTANCE.md": "sha256:479eb54b9b68d8cec47804ce716138f41bc40eaddac61f6d98d595ceb475417d"
+  },
+  "post_edit_manifest": [
+    {
+      "path": "code_assist_v1/docs/knowledge_spaces/contracts/openapi.json",
+      "sha256": "sha256:f15adeeb0cfb39e766c5351340979ca6a839f306c88f6b145c5db9c64419d6ba"
+    },
+    {
+      "path": "code_assist_v1/docs/knowledge_spaces/contracts/contract-manifest.json",
+      "sha256": "sha256:1aed96df9ca3d39d410f19f8ee68697764aa9844acba1c1014ee663e5b2526e0"
+    },
+    {
+      "path": "code_assist_v1/docs/knowledge_spaces/contracts/schemas/knowledge.schema.json",
+      "sha256": "sha256:a286c6a851d2cc4654a604431063a9981d9ed5a7b92af919da0cf6219690d7e0"
+    },
+    {
+      "path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md",
+      "sha256": "sha256:b31ec2d1801e80e0410a1decdd126f2d53f1bf72729fecf3703492fb7e61da31"
+    },
+    {
+      "path": "code_assist_v1/docs/knowledge_spaces/API_UI_CONTRACT.md",
+      "sha256": "sha256:430a5b452eb12055776a9a57c994823c361c50e80e3e0e5ea4daa7914c23ba28"
+    },
+    {
+      "path": "code_assist_v1/tools/contract_audit.py",
+      "sha256": "sha256:b24a0f1da0c193ae499bddef1e8b5113020be14175bf31af736dafe190c7516d"
+    },
+    {
+      "path": "code_assist_v1/tests/knowledge_spaces/unit/test_contract_audit.py",
+      "sha256": "sha256:7a07856a488df97d6063db9e6f6d035d78867e40e4e743f79dfe1d83b9fc6e37"
+    },
+    {
+      "path": "code_assist_v1/tests/knowledge_spaces/unit/test_source_artifact_routes.py",
+      "sha256": "sha256:030eb7753559ea7d20f49d06ee3ef876db5b56445b5a01970c53a3ac448d5e01"
+    },
+    {
+      "path": "code_assist_v1/docs/knowledge_spaces/evidence/SBE-8.12.md",
+      "sha256": "sha256:19bec36cdb92517bb295e3d109592dca083b08e3c144e5d365e9f86191e5de0a"
+    },
+    {
+      "path": "code_assist_v1/docs/knowledge_spaces/README.md",
+      "sha256": "sha256:877e8c7718a8c0ec1d12761a7a0d50f8ddd4ccdf8053b32fc30510e8785d09ce"
+    },
+    {
+      "path": "code_assist_v1/docs/knowledge_spaces/STATUS.md",
+      "sha256": "sha256:4db8a16b77a488a5a07f213de9131fcad3b6c3d0629a72f42f9cd41e0f9e3781"
+    },
+    {
+      "path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md",
+      "sha256": "sha256:e991b7d2a1fa4354222cdb41d612585d9d8527a336c54f42e6c57627390de85f"
+    },
+    {
+      "path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/ACCEPTANCE.md",
+      "sha256": "sha256:3e035e2402829c2f5625ff1f10989ede53d24e4a4dcd183e248bdb3dd03c041b"
+    }
+  ],
+  "implemented_correction": {
+    "registered_operations": [
+      "GET /api/knowledge/v1/spaces/{space_id}/items/{item_id}/source-artifacts",
+      "GET /api/knowledge/v1/spaces/{space_id}/items/{item_id}/source-artifacts/{artifact_id}/download"
+    ],
+    "active_path_count": 72,
+    "active_operation_count": 80,
+    "get_count": 27,
+    "baseline_path_count": 52,
+    "baseline_operation_count": 56,
+    "historical_successor_addition": {
+      "paths": 18,
+      "operations": 22
+    },
+    "sbe_8_12_addition": {
+      "paths": 2,
+      "operations": 2
+    },
+    "list_envelope_required_fields": 5,
+    "list_row_required_fields": 8,
+    "source_revision_nullable": false,
+    "download_media_type": "*/* binary",
+    "success_status": 200,
+    "binary_exception_exact_to_download_get": true,
+    "common_json_error_and_json_request_id_rules_preserved": true
+  },
+  "validation": {
+    "execution_mode": "sequential_isolated_fixtures_main_owned_no_parallel_heavy_tests",
+    "python_executable": "G:/AI_Agent/DEMOS_CODEX/venv/Scripts/python.exe",
+    "python_flags": [
+      "-E"
+    ],
+    "pytest_flags": [
+      "-p",
+      "no:cacheprovider",
+      "-q",
+      "--tb=short"
+    ],
+    "focused_passed": 77,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "suites": [
+      {
+        "path": "code_assist_v1/.runtime/sbe-source-artifact-routes-contract-20260906-r2-junit.xml",
+        "tests": "26",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "6.414"
+      },
+      {
+        "path": "code_assist_v1/.runtime/sbe-source-artifact-contract-audit-20260906-r2-junit.xml",
+        "tests": "51",
+        "failures": "0",
+        "errors": "0",
+        "skipped": "0",
+        "time": "147.491"
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "code_assist_v1/.runtime/sbe-source-artifact-routes-contract-20260906-r2-junit.xml",
+        "sha256": "sha256:e5655aa6a61d92397947416f6ddd89380aecf187028585f9fc7a2a7db251c523"
+      },
+      {
+        "path": "code_assist_v1/.runtime/sbe-source-artifact-contract-audit-20260906-r2-junit.xml",
+        "sha256": "sha256:370bf9bcfc449c2253826ca4e5b3884fb145b440b03b723bf22bb570811f49c1"
+      },
+      {
+        "path": "code_assist_v1/.runtime/sbe-source-artifact-contract-pre-evidence-20260906.json",
+        "sha256": "sha256:2551f3bbcde6744a1738360923d19330ead7591ae2d888c947c5f7c34df52b2f"
+      },
+      {
+        "path": "code_assist_v1/.runtime/sbe-source-artifact-contract-final-20260906.json",
+        "sha256": "sha256:1fd734677b4bacccf59ebfc7e46b6c70277b57f388225e0afec1d1725d640847"
+      }
+    ],
+    "pre_appendix_audit_input_sha256": "sha256:26aee3cbeb6e838fd627e7f5d24441c476e96e92a45b1a6212020e9ad4dc8626",
+    "final_audit": {
+      "exit_code": 0,
+      "status": "pass",
+      "error_count": 0,
+      "input_sha256": "sha256:ccd4eaa7e11a4b5416ef3f089e78f2f518daae48d7ffff19583914a0d2e687de",
+      "summary": {
+        "goal": {
+          "baseline_ids_sha256": "a9a2a6c1c308d1d3edd8e28f143d4ce37169b9eee90436cbd1ab97d4d63fcc9c",
+          "count": 20,
+          "duplicate_ids": 0,
+          "expected_count": 20,
+          "ids_sha256": "90934709da20b7e01f3054229b5fdc30b7e03d3f4a76edcce2a034b5f352367f"
+        },
+        "openapi": {
+          "baseline_operation_ids_sha256": "75b7270c72c7275879ab43824c0988717390502b319f3c970aecceb944b200c1",
+          "human_contract_operation_count": 80,
+          "method_counts": {
+            "delete": 3,
+            "get": 27,
+            "patch": 3,
+            "post": 41,
+            "put": 6
+          },
+          "operation_count": 80,
+          "operation_id_duplicates": 0,
+          "operation_ids_sha256": "706647ed548c33d1eb755920ca5f669bf44039647b0cc0ef613a470856b8fbbc",
+          "path_count": 72,
+          "requirement_coverage": 41,
+          "stable_error_count": 31
+        },
+        "requirements": {
+          "baseline_ids_sha256": "47a5ce485b0f8bc791ea4534cdec1b86d662c300558e0db2c7473a0a0eebd0a6",
+          "count": 41,
+          "declared_range_covered": 41,
+          "duplicate_ids": 0,
+          "expected_count": 41,
+          "ids_sha256": "59af4af52ac1b4668bdf7f573b4158d645bd22b398391b5d172b32c2e521e8d1",
+          "openapi_covered": 41,
+          "with_acceptance": 41
+        },
+        "scenarios": {
+          "backlog_covered": 284,
+          "baseline_count": 124,
+          "baseline_ids_sha256": "c63fc22a5908393b73cef5fd1d9839c15af807417afa9f39ca31c8a6b6bcddf9",
+          "count": 284,
+          "duplicate_ids": 0,
+          "expected_count": 284,
+          "families": {
+            "AGRAPH": 17,
+            "AUTH": 4,
+            "AUTOEDGE": 19,
+            "CONV": 13,
+            "CUR": 11,
+            "HSPACE": 18,
+            "JOB": 6,
+            "LEASE": 12,
+            "LIFE": 10,
+            "MERGE": 4,
+            "MIG": 8,
+            "OPS": 6,
+            "ORG": 6,
+            "PERF": 1,
+            "PROJ": 6,
+            "PROP": 5,
+            "PUB": 13,
+            "RANK": 21,
+            "REF": 8,
+            "REG": 3,
+            "REV": 2,
+            "SBEOPS": 18,
+            "SCHEMA": 8,
+            "SPACE": 6,
+            "TIME": 22,
+            "UPLOAD": 15,
+            "WIKI": 22
+          },
+          "ids_sha256": "595a2b8f6f7925cf8eb49fec1714672878e6e0a3ae6caab79d51aae69836aaa9",
+          "successor_addition_count": 160,
+          "traceability_covered": 284
+        },
+        "schemas": {
+          "document_count": 12,
+          "duplicate_ids": 0,
+          "example_count": 12,
+          "reference_count": 1679,
+          "resolved_reference_count": 1679,
+          "valid_example_count": 12
+        },
+        "successor_transition": {
+          "additions": {
+            "goals": 6,
+            "openapi_operations": 24,
+            "openapi_paths": 20,
+            "requirements": 10,
+            "scenarios": 160,
+            "stable_errors": 14
+          },
+          "authority_source_count": 12,
+          "baseline": {
+            "goals": 14,
+            "openapi_operations": 56,
+            "openapi_paths": 52,
+            "requirements": 31,
+            "scenarios": 124,
+            "stable_errors": 17
+          },
+          "feature_flag_count": 13,
+          "registered_totals": {
+            "goals": 20,
+            "openapi_operations": 80,
+            "openapi_paths": 72,
+            "requirements": 41,
+            "scenarios": 284,
+            "stable_errors": 31
+          },
+          "state": "registered",
+          "successor_source_count": 5,
+          "supersession_count": 10
+        }
+      }
+    },
+    "note": "Both final code/test suites passed before README/STATUS/evidence-only recording. The final audit was rerun after those three documentation changes. Earlier 20-test and 47-test outputs are retained as intermediate evidence, not counted again."
+  },
+  "independent_review": {
+    "reviewer": "/root/receipt_discovery_review",
+    "corrected_findings": [
+      "Canonical 8-4-4-4-12 UUID layout for each of three download URL segments; six negative cases.",
+      "Exact HTTP 200 success declarations for both source-artifact GETs; replacement 204 and extra 201 rejected."
+    ],
+    "other_material_findings_reported": 0,
+    "reviewer_performed_edits_or_tests": false
+  },
+  "inherited_evidence_preservation": {
+    "sbe_8_12_original_prefix_sha256": "sha256:9a632615b9432342938925303a9d17d13fdd780f4e1eb866825dcc244f10d855",
+    "matches_pre_edit_original": true,
+    "previous_v0b_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json",
+      "sha256": "sha256:d9fd95c7ed462bde80d50c86eaf6714405fbc5738c24cc3f8f05efbc9cda0d96",
+      "rerun": false
+    },
+    "ui_source_and_test_guards": [
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:c3c4ee95236243f73a02256643d1199dfe155488f835c5b18e9bbb7b4272ae30",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:797eadb7689d231dfcd34e23ad5ac1ea06ee2a8b1a92feb098ae3f948c4489c9",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion_editor_core.js",
+        "sha256": "sha256:c2b25b7156076e70c68b7fe96d1fc41234e329bca4e54850676afc6fd0020367",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion_collaboration_editor.js",
+        "sha256": "sha256:d196d832110a975cb1ebb5d297e8f6add40511a043fec1bcbb0f051272873bdc",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion_database_bridge.js",
+        "sha256": "sha256:094f61fedc206e8917949582b77e57e14406a1f6038e82ca85e24efcf93dbfc9",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion_file_upload.js",
+        "sha256": "sha256:00f0de47827d4be0f93587b1a14d9a009ada7aaba43afb30d075dbec37dc7137",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/notion_static/vendor/yjs-13.6.32.bundle.js",
+        "sha256": "sha256:242f8b9dd6ed5d09924b1115a0f5a976437520246dae536da5c85a1a3f64f436",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration_test_runtime.js",
+        "sha256": "sha256:85708cf64fc35a6283e76bcb9490525bed677ea864ef1da0da4ca9ecfc78e26f",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_collaboration_editor.js",
+        "sha256": "sha256:61ba0039e16e3946b7a2dc75ecf6677601f49d0a90af0826673ebf4e55a1f4a6",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_editor_core.js",
+        "sha256": "sha256:bb04bc3bec64b28e7b780d83119af7e95a3846e275b9260531286f19b21df2de",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_ui_runtime.js",
+        "sha256": "sha256:28d34d37912ed1a7752c3546fb53d79b88399d2912543251089cac571383354f",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_atomic_save.js",
+        "sha256": "sha256:3326c1c5f17a3ad4a3d41de2683ab3beb8391242adcbe4a85ede5675bb84881e",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_navigation_ui.js",
+        "sha256": "sha256:a1201d33dde59c3bca627864625644d5f497bc1b300ed11b82974694b8445f0b",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_publication_ui.js",
+        "sha256": "sha256:56924254ef9adaf831851e08c964b0095e7f302281ffda093e522b7acaaeadde",
+        "matches_inherited_evidence": true
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_database_bridge.js",
+        "sha256": "sha256:791338195bc5b877505bc28c4392adeacae04eab8e6a4d698a853311c39a80ef",
+        "matches_inherited_evidence": true
+      }
+    ]
+  },
+  "notion_follow_on_read_only_review": {
+    "verifier_module": "code_assist_v1.tools.verify_internal_collaborative_second_brain_publication",
+    "exit_code": 1,
+    "report": {
+      "contract": "code_assist.notion.internal_collaborative_second_brain_publication.audit.v1",
+      "contract_sha256": "sha256:03e49b34bf56c1dc198cc0c2e9232b40974f37e6b38943d672443e8377ed792b",
+      "error_count": 18,
+      "errors": [
+        {
+          "code": "DYNAMIC_INSTRUCTION_DRIFT",
+          "message": "current read-only instruction binding required",
+          "subject": "AGENTS.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/API_UI_CONTRACT.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/DECISIONS.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/README.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/STATUS.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/ACCEPTANCE.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/PRODUCT_CONTRACT.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/README.md"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/knowledge_core/scope.py"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/knowledge_core/services/publication.py"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py"
+        },
+        {
+          "code": "MANIFEST_HASH_DRIFT",
+          "message": "bound file hash drift",
+          "subject": "code_assist_v1/tools/internal_collaborative_validation.py"
+        },
+        {
+          "code": "SBE_DYNAMIC_PREFLIGHT_DRIFT",
+          "message": "current 20/284 SBE audit and exact scenarios required",
+          "subject": "$.sbe_dynamic_preflight"
+        }
+      ],
+      "gate_passed": false,
+      "product_complete": false,
+      "protected_sbe_change_required": false,
+      "sbe_scenario_count": 9,
+      "source_count": 14,
+      "status": "fail",
+      "test_count": 6
+    },
+    "actual_sbe_contract_audit_now_passes": true,
+    "old_sbe_preflight_input_sha_still_bound": true,
+    "interpretation": "The earlier actual OpenAPI/human contract mismatch is fixed. S0A-P2 still reports 18 errors because its old read-only document/source hashes, AGENTS reference and SBE audit input binding have not been reconciled. SBE_DYNAMIC_PREFLIGHT_DRIFT is now a stale binding, not a current SBE audit failure. No Notion gate promotion is justified yet.",
+    "notion_contracts_edited_in_this_correction": false
+  },
+  "ownership_return": {
+    "exact_thirteen_file_lease": "released_after_verified_contract_correction",
+    "next_owner": "existing SBE contract/status integrator",
+    "main_returns_to": "Notion DOC_HARNESS dependency reconciliation",
+    "delegated_six_document_ownership_returned_to_main_before_final_validation": true
+  },
+  "guards": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "agents_md_modified": false,
+    "runtime_source_modified": false,
+    "migrations_modified": false,
+    "feature_flags_modified": false,
+    "live_data_modified": false,
+    "external_accounts_used": false,
+    "historical_evidence_overwritten": false,
+    "sbe_8_12_state": "IMPLEMENTED_NOT_GATED",
+    "product_complete": false,
+    "goal_complete": false
+  },
+  "next_required_work": [
+    "Separately rebaseline the twelve Notion verifier contracts only after all declared regression evidence is accounted for and current dynamic instruction bindings are explicitly declared in the Notion lane.",
+    "Reconcile current checkpoint references, create strong-receipt-bound V0R/V0B wrappers and integrate catalog/ladder/stable pointer only after every required dependency audit passes.",
+    "Retain company-provider, target load/restore/canary, operations and full-product final gates."
+  ],
+  "goal_status_note": "The prior blocked goal was not replaced or marked complete. This approval resolves the former SBE ownership blocker; goal tools expose no active/resume mutation."
+}

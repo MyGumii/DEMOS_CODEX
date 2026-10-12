@@ -1,0 +1,51 @@
+{
+  "contract": "code_assist.notion.core_free_ui.manual_ime_input_verified_receipt.v1",
+  "recorded_at": "2026-08-22T17:23:03.6505187+09:00",
+  "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "entry_id": "UI-EDITOR-004-NATIVE-IME-INPUT",
+  "scenario_id": "UI-EDITOR-004",
+  "queue": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v1.json",
+    "sha256": "sha256:0c6a80362249a71378f01ac9f6c6f7b12fa8944f381fb7b8ae6ff1f3a9952598"
+  },
+  "supersedes_failed_attempt": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/manual_ime_input_receipt.20260822.json",
+    "sha256": "sha256:5ad26cf6a601a6211126d7b4870975ee39e075076649ff8efdf769e4ad6eb7cb",
+    "disposition": "preserved_as_failed_verification_attempt"
+  },
+  "source": {
+    "kind": "exact_user_message",
+    "received_text": "한글 조합 테스트 입력 후 UI-EDITOR-004 IME 입력 완료",
+    "required_text_matched": true,
+    "native_korean_ime_use_attested_by_user": true
+  },
+  "reference_observation": {
+    "workspace_alias": "REF-FREE-A",
+    "expected_final_text": "한글 조합 테스트",
+    "normalized_exact_count_immediate": 1,
+    "normalized_exact_count_after_3_5_seconds": 1,
+    "normalized_exact_count_after_reload": 1,
+    "visible_text_after_reload": true,
+    "duplicate_or_loss_observed": false,
+    "round_trip_durable": true,
+    "browser_control_observed_intermediate_composition_events": false,
+    "browser_control_observed_intermediate_save_count": false
+  },
+  "disposition": {
+    "status": "accepted_native_ime_reference_observation",
+    "manual_input_resolved": true,
+    "observable_outcome_complete": true,
+    "reference_summary_review_required": true,
+    "differential_promotion_allowed": false
+  },
+  "safety": {
+    "synthetic_workspace_only": true,
+    "personal_workspace_accessed": false,
+    "raw_url_or_page_id_persisted": false,
+    "raw_dom_network_cookie_or_storage_persisted": false,
+    "screenshot_persisted_to_repository": false,
+    "live_local_data_accessed": false,
+    "external_publish_or_message_executed": false
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CENTRAL-HARNESS-REBASELINE-PRE-EDIT-20260907",
+  "recorded_at": "2026-09-07T00:05:53+09:00",
+  "checkpoint_kind": "central_harness_expectation_and_successor_rebind_pre_edit",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CENTRAL-HARNESS-REBASELINE-20260907",
+  "purpose": "Supplement the existing V0B status integration lease so the central harness can bind the current green SBE audit and the post-V0 packet totals. Rebind the changed harness source only in the current F0-P5 successor and the strict O1A local-restore contract.",
+  "predecessor_declaration": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-status-integration-pre-edit-20260906.json",
+    "sha256": "sha256:74423d037c363ea913d0f2e497859360e12ffc4eb0f1a1092b6b443a70481ed5"
+  },
+  "exact_owned_paths": [
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:911d58dc99e17f8a7a32acf16ca35d01fe8e613a66a94bd6c8bc822f70c12190",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json": "sha256:c1f719a72ef2735c22196d360d779c4e944a9977842b00140f30dcbfafb8e295",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json": "sha256:75a9eebc3815d0ce6f8ea3759449be57c7c04208dfbbc1064b7e1c768b978824"
+  },
+  "expected_post_v0_summary": {
+    "required_packets": 50,
+    "gate_passed_required_packets": 44,
+    "matrix_rows": 28,
+    "closed_matrix_rows": 21,
+    "phase_gates": 20,
+    "closed_phase_gates": 15,
+    "open_decisions": 0,
+    "planned_required_lanes": 8,
+    "required_approvals": 6,
+    "satisfied_approvals": 2,
+    "required_external_gates": 3,
+    "satisfied_external_gates": 1,
+    "valid_execution_receipts": 20,
+    "product_complete": false
+  },
+  "guards": {
+    "modify_product_source": false,
+    "modify_verifier_source": false,
+    "modify_agents_md": false,
+    "modify_sbe_contracts_or_runtime": false,
+    "modify_completion_matrix": false,
+    "run_external_or_live_browser_mutations": false,
+    "overwrite_historical_receipts": false,
+    "product_complete": false,
+    "goal_complete": false
+  }
+}

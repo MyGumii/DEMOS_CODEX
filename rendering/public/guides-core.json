@@ -1,0 +1,1093 @@
+{
+  "districts": [
+    {
+      "id": "assist",
+      "purpose": "코딩 질문을 모델 요청으로 바꾸는 실행 구역입니다. 선택 스킬·첨부 코드·지식·메모리와 현재 요청의 작업 계획을 함께 조립합니다.",
+      "flow": "채팅 POST와 사용자 컨텍스트 → 시스템 지침/첨부 블록/요청 계획 구성 → 컨텍스트 한도에 맞춘 모델 메시지 → provider 생성과 스트리밍 이벤트",
+      "keyFiles": [
+        "code_assist_v1/routes_chat_stream.py",
+        "code_assist_v1/agent_harness.py",
+        "code_assist_v1/engine.py"
+      ],
+      "tourId": "assist-context"
+    },
+    {
+      "id": "knowledge",
+      "purpose": "지식 문서와 관계를 승인된 공간 범위에서 읽는 canonical 검색 구역입니다. 서비스의 권한 검증과 DB 검색을 분리하고 참고 본문의 신뢰 경계를 표시합니다.",
+      "flow": "사용자·scope epoch·선택 공간·검색어 → 트랜잭션에서 ScopeResolver가 AccessPlan/CorpusClosure 계산 → repository의 FTS·관계 이웃·이벤트 검색 → RetrievalResult",
+      "keyFiles": [
+        "code_assist_v1/knowledge_core/services/retrieval.py",
+        "code_assist_v1/knowledge_core/scope.py",
+        "code_assist_v1/knowledge_core/repositories/retrieval.py"
+      ],
+      "tourId": "knowledge-retrieval"
+    },
+    {
+      "id": "notion",
+      "purpose": "페이지·블록·부모 관계·revision을 관리하는 워크스페이스 구역입니다. 로컬 초안 생성과 수정 저장에 작업 영수증과 기준 revision을 사용합니다.",
+      "flow": "로컬 페이지 초안 POST → 권한·입력·operation_id 검증 → 페이지/블록/영수증 원자 생성 → /save에서 base_revision 확인 → 변경·버전·영수증 동시 커밋",
+      "keyFiles": [
+        "code_assist_v1/routes_notion.py",
+        "code_assist_v1/notion_page_creation.py",
+        "code_assist_v1/notion_store.py"
+      ],
+      "tourId": "workspace-draft"
+    },
+    {
+      "id": "frontend",
+      "purpose": "워크스페이스의 브라우저 상호작용 구역입니다. 생성 위치 선택, 문서 AI 초안의 검토와 적용, 스트리밍 응답 해석을 작은 UI 모듈로 나눕니다.",
+      "flow": "생성 선택은 허용 위치/템플릿 → 권한 검사 → submit 콜백; 문서 AI는 원문 snapshot/질문 → 요청·응답 검증 → 사용자 적용; 스트림 전송은 POST → SSE 이벤트 → 저장된 conversation",
+      "keyFiles": [
+        "code_assist_v1/notion_static/notion_creation_chooser.js",
+        "code_assist_v1/notion_static/notion_document_ai.js",
+        "code_assist_v1/notion_static/notion_ai_chat_transport.js"
+      ],
+      "tourId": "interface-components"
+    },
+    {
+      "id": "verification",
+      "purpose": "검색 권한 범위, 페이지 저장의 동시성·재시도, AI 초안 화면을 검증하는 테스트 구역입니다. 임시 fixture와 API mock을 사용해 실제 데이터와 모델 호출을 격리합니다.",
+      "flow": "격리 루트 검증 → 임시 DB/페이지 fixture와 mock API 준비 → 서비스·HTTP·브라우저 동작 실행 → 반환 범위·revision·화면 상태 assert/expect",
+      "keyFiles": [
+        "code_assist_v1/test_safety.py",
+        "code_assist_v1/tests/knowledge_spaces/unit/test_canonical_retrieval.py",
+        "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+        "code_assist_v1/tests/browser/test_notion_document_ai_ui.py"
+      ],
+      "tourId": "verification-contracts"
+    }
+  ],
+  "files": [
+    {
+      "fileId": "code_assist_v1/routes_chat_stream.py",
+      "purpose": "코딩 채팅의 스트리밍 HTTP 경로입니다. 모델 선택과 컨텍스트 조립을 한곳에서 연결하고 provider별 생성 경로를 호출합니다.",
+      "input": "인증된 사용자의 messages, skills, workspace_files, 모델 선택과 컨텍스트 옵션.",
+      "processing": "스킬·작업공간·지식·메모리 블록을 구성하고 요청 계획을 덧붙인 뒤 모델의 컨텍스트 한도에 맞춰 최종 메시지를 조립합니다.",
+      "output": "상태·응답·종료 또는 오류를 담은 text/event-stream 응답.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/routes_chat_stream.py",
+          "line": 1114,
+          "note": "채팅 스트리밍 POST 라우트."
+        },
+        {
+          "path": "code_assist_v1/routes_chat_stream.py",
+          "line": 1169,
+          "note": "시스템 프롬프트 빌더 호출."
+        },
+        {
+          "path": "code_assist_v1/routes_chat_stream.py",
+          "line": 1322,
+          "note": "요청 계획 분석 호출."
+        },
+        {
+          "path": "code_assist_v1/routes_chat_stream.py",
+          "line": 1426,
+          "note": "조립된 컨텍스트로 provider 생성 경로 호출."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "api_code_chat_stream",
+          "line": 1115,
+          "description": "요청을 검증하고 모델 및 컨텍스트를 결정하는 라우트 핸들러."
+        },
+        {
+          "name": "_generate_provider_route",
+          "line": 905,
+          "description": "provider 선택에 따라 생성 이벤트를 반환하는 공통 제너레이터."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/agent_harness.py",
+      "purpose": "질문과 옵션을 규칙으로 분석하여 coding·wiki·spec·memory 모드와 컨텍스트 읽기 순서를 명시합니다. 계획에 적힌 도구 이름을 여기서 실행하지는 않습니다.",
+      "input": "질문, 지식·메모리 옵션, 스킬 ID, 첨부 파일과 고정된 페이지 ID.",
+      "processing": "키워드와 제공된 컨텍스트를 검사해 모드·후보 도구·검증 기준을 구성하고 중복 항목을 제거합니다.",
+      "output": "구조화된 요청 계획 dict와 모델에 넣을 설명 문자열.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/agent_harness.py",
+          "line": 13,
+          "note": "분석 함수 입력과 규칙."
+        },
+        {
+          "path": "code_assist_v1/agent_harness.py",
+          "line": 92,
+          "note": "modes·intent·context_order·tools 등의 구조화 결과 반환."
+        },
+        {
+          "path": "code_assist_v1/routes_chat_stream.py",
+          "line": 1332,
+          "note": "계획 설명을 시스템 메시지로 사용하는 호출 위치."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "analyze_request",
+          "line": 13,
+          "description": "현재 요청의 모드, 읽을 컨텍스트 순서, 후보 도구와 검증 기준을 선택합니다."
+        },
+        {
+          "name": "build_harness_context",
+          "line": 116,
+          "description": "계획을 시스템 프롬프트에 넣을 문자열로 변환합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/engine.py",
+      "purpose": "모델에 전달할 코딩 지침, 선택 스킬, 지식 검색 결과와 첨부 코드 파일을 시스템 메시지로 구성합니다.",
+      "input": "스킬 ID, 추가 지시문, 컨텍스트 크기, 검색 결과 또는 workspace 파일 목록.",
+      "processing": "스킬별·전체 글자 예산을 적용하고 파일의 언어에 맞는 코드 블록과 문서 출처를 표시합니다.",
+      "output": "시스템 프롬프트 문자열 또는 role: system 컨텍스트 메시지.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/engine.py",
+          "line": 23,
+          "note": "스킬과 추가 지시문으로 시스템 프롬프트 구성."
+        },
+        {
+          "path": "code_assist_v1/engine.py",
+          "line": 60,
+          "note": "검색 결과의 출처와 예산을 반영한 지식 블록."
+        },
+        {
+          "path": "code_assist_v1/engine.py",
+          "line": 98,
+          "note": "첨부 코드 파일을 제한된 크기의 컨텍스트로 구성."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "build_coding_system_prompt",
+          "line": 23,
+          "description": "기본 코딩 지침에 활성 스킬과 사용자 지시문을 더합니다."
+        },
+        {
+          "name": "build_knowledge_block",
+          "line": 60,
+          "description": "지식 검색 발췌와 출처를 제한된 크기의 시스템 메시지로 만듭니다."
+        },
+        {
+          "name": "build_workspace_block",
+          "line": 98,
+          "description": "첨부 파일을 언어별 코드 블록으로 구성하고 크기 제한을 적용합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/knowledge_core/services/retrieval.py",
+      "purpose": "지식 검색의 서비스 경계입니다. 사용자·공간·대화 범위를 검증하고 하나의 읽기 트랜잭션 안에서 검색합니다.",
+      "input": "사용자 ID·scope epoch와 공간 또는 대화 ID, 검색어, 결과 한도.",
+      "processing": "읽기 전용 DB 연결과 트랜잭션을 열어 ScopeResolver로 권한을 확인하고 서버가 정한 CorpusClosure로 검색합니다.",
+      "output": "검색 문서·의미 관계·최근 이벤트·projection 상태를 포함한 RetrievalResult. 참고 본문은 untrusted_reference로 표시합니다.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/knowledge_core/services/retrieval.py",
+          "line": 170,
+          "note": "대화에 묶인 검색 진입점."
+        },
+        {
+          "path": "code_assist_v1/knowledge_core/services/retrieval.py",
+          "line": 219,
+          "note": "공간 검색 진입점."
+        },
+        {
+          "path": "code_assist_v1/knowledge_core/services/retrieval.py",
+          "line": 229,
+          "note": "같은 트랜잭션 안에서 범위를 검증."
+        },
+        {
+          "path": "code_assist_v1/knowledge_core/services/retrieval.py",
+          "line": 283,
+          "note": "서버가 해석한 closure를 repository에 전달."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "CanonicalRetrievalService",
+          "line": 129,
+          "description": "범위를 검증한 뒤 canonical 검색 repository를 호출합니다."
+        },
+        {
+          "name": "retrieve_for_conversation",
+          "line": 170,
+          "description": "활성 대화의 소유권과 연결된 공간을 검사한 후 검색합니다."
+        },
+        {
+          "name": "retrieve_for_space",
+          "line": 219,
+          "description": "명시적으로 선택한 공간의 READ 권한을 검사한 후 검색합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/knowledge_core/scope.py",
+      "purpose": "사용자와 선택 공간에 적용되는 실제 읽기·쓰기 권한과 검색 가능한 corpus를 서버에서 계산합니다.",
+      "input": "활성 DB 트랜잭션, SessionPrincipal, 선택 공간 ID와 요구 capability.",
+      "processing": "현재 사용자·멤버십·공간 상태를 조회하고 AccessPlan을 구성합니다. 비활성 범위나 허용되지 않은 capability는 오류로 종료합니다.",
+      "output": "범위·유효 권한·row version·AccessPlan을 포함한 ResolvedScope.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/knowledge_core/scope.py",
+          "line": 365,
+          "note": "트랜잭션 내부에서 범위 해석."
+        },
+        {
+          "path": "code_assist_v1/knowledge_core/scope.py",
+          "line": 385,
+          "note": "actor 상태 조회 시작."
+        },
+        {
+          "path": "code_assist_v1/knowledge_core/scope.py",
+          "line": 390,
+          "note": "AccessPlan 구성 후 capability 확인."
+        },
+        {
+          "path": "code_assist_v1/knowledge_core/scope.py",
+          "line": 414,
+          "note": "클라이언트 closure 입력을 신뢰하지 않는 계획 반환 API."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "ScopeResolver",
+          "line": 339,
+          "description": "현재 사용자 상태와 rollout 플래그로 공간 접근 계획을 결정합니다."
+        },
+        {
+          "name": "resolve_in_transaction",
+          "line": 365,
+          "description": "한 트랜잭션의 스냅샷에서 요청 공간과 capability를 검증합니다."
+        },
+        {
+          "name": "resolve_access_plan_in_transaction",
+          "line": 414,
+          "description": "검증된 서버 소유 AccessPlan을 반환합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/knowledge_core/repositories/retrieval.py",
+      "purpose": "승인된 공간 범위에서 canonical DB의 전문 검색, 의미 이웃과 이벤트를 읽는 repository입니다. Markdown 파일이나 별도 legacy 저장소를 열지 않습니다.",
+      "input": "호출자가 소유한 읽기 스냅샷, 공간 ID 또는 closure, 검색어와 결과 한도.",
+      "processing": "검색어와 한도를 검증하고 현재 문서 상태를 확인한 FTS 결과에서 관계 이웃·최근 이벤트를 조합합니다.",
+      "output": "CanonicalRetrievalSnapshot: 문서 hit, 의미 이웃, 최근 이벤트와 projection 상태.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/knowledge_core/repositories/retrieval.py",
+          "line": 392,
+          "note": "단일 공간 검색 진입점."
+        },
+        {
+          "path": "code_assist_v1/knowledge_core/repositories/retrieval.py",
+          "line": 426,
+          "note": "문서 hit와 이웃을 같은 연결에서 조회."
+        },
+        {
+          "path": "code_assist_v1/knowledge_core/repositories/retrieval.py",
+          "line": 450,
+          "note": "서버가 정한 정확한 closure로 검색하는 경로."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "RetrievalRepository",
+          "line": 387,
+          "description": "canonical DB 스냅샷에서 검색 결과를 구성합니다."
+        },
+        {
+          "name": "retrieve",
+          "line": 392,
+          "description": "한 공간의 검색 결과·이웃·이벤트를 반환합니다."
+        },
+        {
+          "name": "retrieve_closure",
+          "line": 450,
+          "description": "서버가 승인한 여러 원본 공간과 overlay 범위로 검색합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/routes_notion.py",
+      "purpose": "Notion 워크스페이스의 HTTP API를 등록합니다. 페이지 초안 생성과 원자 저장은 전용 저장 함수에 요청 데이터를 전달합니다.",
+      "input": "현재 사용자와 생성·저장 POST 본문: operation_id, 제목, 블록 또는 base_revision.",
+      "processing": "입력 필드를 검사하고 생성·저장 함수로 위임합니다. 로컬 초안 생성은 협업 runtime 활성화 시 거부되는 조건이 있습니다.",
+      "output": "생성/저장 결과 JSON 또는 오류 응답.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/routes_notion.py",
+          "line": 968,
+          "note": "페이지 생성 POST 라우트."
+        },
+        {
+          "path": "code_assist_v1/routes_notion.py",
+          "line": 979,
+          "note": "operation_id가 있는 로컬 초안을 create_draft_page로 전달."
+        },
+        {
+          "path": "code_assist_v1/routes_notion.py",
+          "line": 1107,
+          "note": "원자 저장 POST 라우트."
+        },
+        {
+          "path": "code_assist_v1/routes_notion.py",
+          "line": 1111,
+          "note": "save_page_atomic 호출."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "register_notion_routes",
+          "line": 721,
+          "description": "페이지·블록·공유 등 워크스페이스 API를 등록합니다."
+        },
+        {
+          "name": "api_notion_pages_create",
+          "line": 969,
+          "description": "로컬 초안 또는 일반 페이지 생성 경로를 선택합니다."
+        },
+        {
+          "name": "api_notion_page_save",
+          "line": 1108,
+          "description": "base_revision과 operation_id를 원자 저장 함수로 전달합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/notion_page_creation.py",
+      "purpose": "브라우저의 로컬 초안을 페이지·초기 블록·부모 링크·재시도 영수증으로 한 번에 저장합니다.",
+      "input": "사용자, operation_id, 제목, 부모 페이지 ID, 초기 블록과 아이콘.",
+      "processing": "입력을 검증하고 요청 해시와 안정적인 페이지 ID를 만든 뒤 BEGIN IMMEDIATE에서 권한·기존 영수증을 확인합니다.",
+      "output": "초기 revision과 페이지 payload. 동일 요청을 재시도하면 저장된 원래 결과를 반환합니다.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/notion_page_creation.py",
+          "line": 16,
+          "note": "로컬 초안 생성 함수."
+        },
+        {
+          "path": "code_assist_v1/notion_page_creation.py",
+          "line": 43,
+          "note": "쓰기 트랜잭션 진입."
+        },
+        {
+          "path": "code_assist_v1/notion_page_creation.py",
+          "line": 55,
+          "note": "기존 operation 영수증 조회."
+        },
+        {
+          "path": "code_assist_v1/notion_page_creation.py",
+          "line": 72,
+          "note": "페이지·블록·부모 링크를 한 트랜잭션에서 기록."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "create_draft_page",
+          "line": 16,
+          "description": "초안 생성 요청을 검증하고 페이지와 재시도 영수증을 원자적으로 저장합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/notion_store.py",
+      "purpose": "Notion 페이지·블록·revision·공유 상태의 SQLite 저장 계층입니다. 원자 저장은 동시 수정 충돌과 중복 재시도를 구분합니다.",
+      "input": "현재 사용자와 페이지 ID, base_revision, operation_id, 페이지 메타데이터와 블록.",
+      "processing": "편집 권한을 확인하고 트랜잭션 안에서 저장 영수증·현재 revision을 대조합니다. 바뀐 블록과 메타데이터, 버전·영수증을 함께 커밋합니다.",
+      "output": "일관된 페이지·블록·파일·revision 결과, 또는 revision/operation 충돌.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/notion_store.py",
+          "line": 3393,
+          "note": "CAS와 durable idempotency를 적용한 원자 저장."
+        },
+        {
+          "path": "code_assist_v1/notion_store.py",
+          "line": 3450,
+          "note": "현재 revision과 base revision 비교."
+        },
+        {
+          "path": "code_assist_v1/notion_store.py",
+          "line": 3477,
+          "note": "페이지 버전 기록."
+        },
+        {
+          "path": "code_assist_v1/notion_store.py",
+          "line": 3493,
+          "note": "영수증과 변경 결과 커밋."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "save_page_atomic",
+          "line": 3393,
+          "description": "기준 revision과 operation ID로 페이지·블록을 한 트랜잭션에서 저장합니다."
+        },
+        {
+          "name": "_record_page_version",
+          "line": 3296,
+          "description": "페이지와 블록의 이력 스냅샷을 기록합니다."
+        },
+        {
+          "name": "page_id_for_operation",
+          "line": 1274,
+          "description": "동일 생성 작업에 안정적인 페이지 ID를 계산합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/notion_static/notion_creation_chooser.js",
+      "purpose": "생성 가능한 위치와 템플릿을 보여주는 브라우저 선택창입니다. 권한과 현재 화면 여부를 확인한 뒤 생성 의도를 호스트에 전달합니다.",
+      "input": "허용 템플릿 ID, 생성 위치 목록, 현재 선택과 canCreate/submit 콜백.",
+      "processing": "검색어로 항목을 걸러 카드와 위치 선택을 렌더링합니다. 이미 제출되었거나 화면이 바뀐 클릭은 무시합니다.",
+      "output": "template·title·teamspaceId를 담은 submit 콜백 및 dispose/selected 인터페이스.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/notion_static/notion_creation_chooser.js",
+          "line": 12,
+          "note": "검색어로 허용 템플릿을 필터링."
+        },
+        {
+          "path": "code_assist_v1/notion_static/notion_creation_chooser.js",
+          "line": 13,
+          "note": "선택창을 구성하는 mount."
+        },
+        {
+          "path": "code_assist_v1/notion_static/notion_creation_chooser.js",
+          "line": 33,
+          "note": "위치와 생성 권한을 재확인."
+        },
+        {
+          "path": "code_assist_v1/notion_static/notion_creation_chooser.js",
+          "line": 35,
+          "note": "선택 결과를 호스트 submit 콜백에 전달."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "filter",
+          "line": 12,
+          "description": "허용 항목 중 검색어에 일치하는 이름·설명·키워드를 반환합니다."
+        },
+        {
+          "name": "mount",
+          "line": 13,
+          "description": "템플릿과 생성 위치 UI를 렌더링하고 이벤트를 연결합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/notion_static/notion_document_ai.js",
+      "purpose": "문서 AI 패널입니다. 현재 페이지 또는 선택한 텍스트로 초안을 요청하고 결과 적용 전에 원문과 편집 권한을 다시 확인합니다.",
+      "input": "현재 페이지 snapshot, 질문, 모델 ID, 선택 텍스트와 최근 AI 대화.",
+      "processing": "저장을 flush한 뒤 document-ai/ask를 요청합니다. 요청 serial·페이지 key·fingerprint로 늦거나 오래된 응답을 배제하고 결과를 탭에 보관합니다.",
+      "output": "확인 가능한 AI 초안. 사용자가 적용하면 호스트 편집기를 통해 반영합니다.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/notion_static/notion_document_ai.js",
+          "line": 78,
+          "note": "질문과 원문 snapshot을 검증한 요청 진입점."
+        },
+        {
+          "path": "code_assist_v1/notion_static/notion_document_ai.js",
+          "line": 92,
+          "note": "document-ai/ask POST 요청."
+        },
+        {
+          "path": "code_assist_v1/notion_static/notion_document_ai.js",
+          "line": 99,
+          "note": "응답 적용 전 원문 fingerprint 확인."
+        },
+        {
+          "path": "code_assist_v1/notion_static/notion_document_ai.js",
+          "line": 127,
+          "note": "적용 직전 원문·편집 권한 재확인."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "ask",
+          "line": 78,
+          "description": "최신 원문 상태로 AI 결과를 요청하고 임시 초안으로 표시합니다."
+        },
+        {
+          "name": "apply",
+          "line": 122,
+          "description": "원문과 권한을 확인한 후 선택한 적용 동작을 호스트 편집기로 보냅니다."
+        },
+        {
+          "name": "invalidate",
+          "line": 49,
+          "description": "페이지 변경 또는 초기화 시 진행 중 요청과 결과를 무효화합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/notion_static/notion_ai_chat_transport.js",
+      "purpose": "Notion AI의 스트리밍 요청과 응답 파싱을 분리한 브라우저 전송 모듈입니다.",
+      "input": "fetch 함수, POST 경로·본문, AbortSignal과 onEvent 콜백.",
+      "processing": "Content-Type을 확인하고 UTF-8 SSE 프레임을 해석합니다. error를 예외로 바꾸고 done 이벤트의 저장된 conversation을 확인합니다.",
+      "output": "이벤트 콜백과 최종 conversation. 끝나면 reader를 취소하고 잠금을 해제합니다.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/notion_static/notion_ai_chat_transport.js",
+          "line": 9,
+          "note": "스트리밍 POST와 응답 형식 확인."
+        },
+        {
+          "path": "code_assist_v1/notion_static/notion_ai_chat_transport.js",
+          "line": 23,
+          "note": "data 프레임을 이벤트로 파싱."
+        },
+        {
+          "path": "code_assist_v1/notion_static/notion_ai_chat_transport.js",
+          "line": 29,
+          "note": "done 이벤트의 저장된 conversation 검증."
+        },
+        {
+          "path": "code_assist_v1/notion_static/notion_ai_chat_transport.js",
+          "line": 55,
+          "note": "종료 시 reader 정리."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "send",
+          "line": 9,
+          "description": "HTTP 스트림을 열어 이벤트를 전달하고 저장된 최종 대화를 반환합니다."
+        },
+        {
+          "name": "line",
+          "line": 23,
+          "description": "SSE data 프레임을 완성하여 JSON 이벤트로 처리합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/test_safety.py",
+      "purpose": "테스트가 실제 사용자 데이터와 저장소의 라이브 데이터 경로를 건드리지 않도록 격리 경로를 검사합니다.",
+      "input": "명시적인 테스트 모드, 절대 경로인 임시 테스트 루트와 fixture 사용자 ID.",
+      "processing": "경로·심볼릭 링크를 해석하고 보호 경로와 중첩되는지 검사합니다. 모든 생성 대상이 검증된 다음에 디렉터리를 만듭니다.",
+      "output": "격리된 runtime·knowledge·user_data·DB·blob·projection 경로를 담은 IsolatedTestLayout.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/test_safety.py",
+          "line": 113,
+          "note": "테스트 모드와 격리 루트의 경로 검증."
+        },
+        {
+          "path": "code_assist_v1/test_safety.py",
+          "line": 153,
+          "note": "표준 테스트 폴더 구조 생성."
+        },
+        {
+          "path": "code_assist_v1/test_safety.py",
+          "line": 197,
+          "note": "디렉터리 생성 전에 모든 경로를 검증."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "assert_isolated_test_path",
+          "line": 113,
+          "description": "테스트 모드와 보호 경로 중첩 및 루트 밖 탈출을 검사합니다."
+        },
+        {
+          "name": "create_isolated_test_layout",
+          "line": 153,
+          "description": "검증된 임시 루트 아래 테스트 저장 경로를 구성합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/tests/knowledge_spaces/unit/test_canonical_retrieval.py",
+      "purpose": "canonical 검색의 공간 격리·현재 revision·의미 이웃·이벤트 한도를 검사하는 테스트 모음입니다.",
+      "input": "임시 DB에 구축한 사용자·공간·문서·관계 fixture.",
+      "processing": "서비스 검색을 실행하고 다른 공간·개인 문서·임시 문서가 결과에 섞이지 않는지, 이웃과 이벤트 한도가 지켜지는지 assert합니다.",
+      "output": "pytest 성공/실패로 검색 범위와 반환 계약을 검증합니다.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/tests/knowledge_spaces/unit/test_canonical_retrieval.py",
+          "line": 95,
+          "note": "격리된 임시 DB와 migration을 준비."
+        },
+        {
+          "path": "code_assist_v1/tests/knowledge_spaces/unit/test_canonical_retrieval.py",
+          "line": 575,
+          "note": "한 공간만 반환하는 literal FTS 검사."
+        },
+        {
+          "path": "code_assist_v1/tests/knowledge_spaces/unit/test_canonical_retrieval.py",
+          "line": 602,
+          "note": "의미 이웃과 이벤트의 관련성·한도 검사."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "test_conversation_fts_is_literal_current_visible_and_exactly_one_space",
+          "line": 575,
+          "description": "다른 공간과 임시 문서를 제외하며 canonical 결과만 반환하는지 검사합니다."
+        },
+        {
+          "name": "test_semantic_neighborhood_and_recent_events_are_relevant_bounded_and_same_space",
+          "line": 602,
+          "description": "관계 이웃과 이벤트가 같은 공간과 요청 한도에 묶이는지 검사합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+      "purpose": "원자 페이지 저장의 성공·revision 충돌·동일 재시도·operation ID 충돌을 Flask 테스트 클라이언트로 검증합니다.",
+      "input": "격리된 사용자 DB, 페이지 초기 revision과 저장 요청.",
+      "processing": "HTTP 저장 후 페이지 메타데이터·블록·revision의 일관성을 대조합니다. 오래된 revision과 재시도에서 일부만 저장되지 않는지 검사합니다.",
+      "output": "pytest 회귀 검증 결과. 실제 사용자 데이터 대신 per-test DB를 사용합니다.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+          "line": 29,
+          "note": "격리된 Notion DB를 사용하는 fixture."
+        },
+        {
+          "path": "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+          "line": 77,
+          "note": "메타데이터·블록·revision이 한 결과인지 검사."
+        },
+        {
+          "path": "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+          "line": 103,
+          "note": "stale revision의 409와 부분 쓰기 방지."
+        },
+        {
+          "path": "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+          "line": 130,
+          "note": "동일 재시도의 원래 결과와 버전 수 유지 검사."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "test_atomic_save_success_returns_one_coherent_revision",
+          "line": 77,
+          "description": "성공한 저장의 페이지·블록·revision 일관성을 확인합니다."
+        },
+        {
+          "name": "test_atomic_save_stale_base_is_409_with_current_revision_and_no_partial_write",
+          "line": 103,
+          "description": "오래된 기준 revision을 거부하고 기존 결과를 보존하는지 검사합니다."
+        },
+        {
+          "name": "test_atomic_save_identical_retry_returns_original_result_without_new_revision",
+          "line": 130,
+          "description": "동일 작업 재시도가 추가 revision을 만들지 않는지 검사합니다."
+        }
+      ]
+    },
+    {
+      "fileId": "code_assist_v1/tests/browser/test_notion_document_ai_ui.py",
+      "purpose": "문서 AI 화면을 Playwright로 검증합니다. 모델 API 응답을 가로채 초안 표시·삽입·저장과 늦은 응답·권한 변경을 재현합니다.",
+      "input": "fixture 페이지, 고정된 모델 목록, route.fulfill로 만든 AI 응답.",
+      "processing": "실제 버튼과 선택 텍스트를 조작하고 표시 상태·원문 보존·저장 후 재로딩 결과·권한 변경 차단을 expect/assert로 확인합니다.",
+      "output": "브라우저 검증 결과와 필요 시 스크린샷. 파일 헤더에 live model 호출을 하지 않는 테스트임을 명시합니다.",
+      "evidence": [
+        {
+          "path": "code_assist_v1/tests/browser/test_notion_document_ai_ui.py",
+          "line": 12,
+          "note": "capabilities 응답을 mock하고 페이지 내용을 준비."
+        },
+        {
+          "path": "code_assist_v1/tests/browser/test_notion_document_ai_ui.py",
+          "line": 28,
+          "note": "요약 표시·삽입·저장·재로딩 경로 검사."
+        },
+        {
+          "path": "code_assist_v1/tests/browser/test_notion_document_ai_ui.py",
+          "line": 116,
+          "note": "늦은 응답과 편집 권한 변경 가드 검사."
+        }
+      ],
+      "symbols": [
+        {
+          "name": "test_sidebar_page_summary_insert_save_and_template_removed",
+          "line": 28,
+          "description": "요약 초안의 안전한 표시, 삽입, 저장 후 복구를 검증합니다."
+        },
+        {
+          "name": "test_late_response_stale_apply_and_revoked_edit_guard",
+          "line": 116,
+          "description": "원문·권한 변경과 늦은 응답을 화면에 반영하지 않는지 검증합니다."
+        }
+      ]
+    }
+  ],
+  "tours": [
+    {
+      "id": "assist-context",
+      "title": "에이전트 요청의 컨텍스트 만들기",
+      "districtId": "assist",
+      "kind": "workflow",
+      "description": "코딩 채팅의 실제 함수 호출을 따라 시스템 지침과 실행 계획이 최종 모델 메시지가 되는 경로입니다.",
+      "steps": [
+        {
+          "fileId": "code_assist_v1/routes_chat_stream.py",
+          "title": "요청에서 모델과 컨텍스트 결정",
+          "description": "스트리밍 라우트가 요청의 대화·스킬·모델을 정규화하고 컨텍스트 한도를 정합니다.",
+          "line": 1115,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/routes_chat_stream.py",
+              "line": 1142,
+              "note": "원본 메시지와 선택 스킬 정규화."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/engine.py",
+          "title": "프롬프트와 파일 블록 구성",
+          "description": "build_coding_system_prompt는 선택 스킬과 사용자 지시문을 합칩니다. 첨부 코드가 있으면 build_workspace_block이 크기 제한을 적용한 시스템 블록을 만듭니다.",
+          "line": 23,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/routes_chat_stream.py",
+              "line": 1169,
+              "note": "프롬프트 빌더 호출."
+            },
+            {
+              "path": "code_assist_v1/routes_chat_stream.py",
+              "line": 1306,
+              "note": "첨부 파일 블록 빌더 호출."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/agent_harness.py",
+          "title": "현재 요청의 작업 계획",
+          "description": "analyze_request가 질문과 실제 첨부 컨텍스트로 coding/wiki/spec/memory 모드를 고릅니다. build_harness_context로 변환된 계획은 후보 도구와 검증 기준을 설명하는 시스템 메시지입니다.",
+          "line": 13,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/routes_chat_stream.py",
+              "line": 1322,
+              "note": "계획 분석 호출."
+            },
+            {
+              "path": "code_assist_v1/routes_chat_stream.py",
+              "line": 1332,
+              "note": "계획을 시스템 메시지로 변환."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/routes_chat_stream.py",
+          "title": "최종 메시지를 provider로 전달",
+          "description": "기본 지침·계획·지식·첨부 블록과 대화 이력을 조립한 후 _generate_provider_route에 전달하여 스트리밍 생성 경로를 시작합니다.",
+          "line": 1334,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/routes_chat_stream.py",
+              "line": 1352,
+              "note": "최종 메시지 조립."
+            },
+            {
+              "path": "code_assist_v1/routes_chat_stream.py",
+              "line": 1426,
+              "note": "provider 생성 경로 실제 호출."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "knowledge-retrieval",
+      "title": "승인된 지식만 검색하는 경로",
+      "districtId": "knowledge",
+      "kind": "workflow",
+      "description": "CanonicalRetrievalService를 호출했을 때의 권한 확인과 DB 검색 경로입니다. 사용자에게 허용된 공간을 먼저 확정한 뒤 그 범위에서 검색합니다.",
+      "steps": [
+        {
+          "fileId": "code_assist_v1/knowledge_core/services/retrieval.py",
+          "title": "공간과 질문으로 검색 시작",
+          "description": "retrieve_for_space가 사용자 ID, scope epoch, 공간 ID와 검색어를 검증하고 읽기 전용 DB 트랜잭션을 엽니다.",
+          "line": 219,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/knowledge_core/services/retrieval.py",
+              "line": 225,
+              "note": "검색 계획과 읽기 전용 연결 준비."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/knowledge_core/scope.py",
+          "title": "서버에서 실제 접근 범위 계산",
+          "description": "ScopeResolver가 현재 사용자·공간 상태를 읽고 READ capability 및 CorpusClosure를 포함한 AccessPlan을 반환합니다.",
+          "line": 365,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/knowledge_core/services/retrieval.py",
+              "line": 229,
+              "note": "ScopeResolver를 같은 트랜잭션에서 호출."
+            },
+            {
+              "path": "code_assist_v1/knowledge_core/scope.py",
+              "line": 390,
+              "note": "권한 계획 구성과 capability 검증."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/knowledge_core/repositories/retrieval.py",
+          "title": "승인 범위의 문서와 관계 반환",
+          "description": "서비스가 단일 공간 retrieve 또는 승인된 closure의 retrieve_closure를 호출합니다. repository는 문서 hit·관계 이웃·최근 이벤트를 반환하고 서비스가 RetrievalResult로 변환합니다.",
+          "line": 392,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/knowledge_core/services/retrieval.py",
+              "line": 272,
+              "note": "단일 공간 repository 호출."
+            },
+            {
+              "path": "code_assist_v1/knowledge_core/services/retrieval.py",
+              "line": 283,
+              "note": "closure repository 호출."
+            },
+            {
+              "path": "code_assist_v1/knowledge_core/services/retrieval.py",
+              "line": 246,
+              "note": "최종 서비스 결과 반환."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "workspace-draft",
+      "title": "페이지 초안 생성과 원자 저장",
+      "districtId": "notion",
+      "kind": "workflow",
+      "description": "로컬 초안 생성 후 원자 저장하는 API 경로입니다. operation_id와 revision으로 재시도와 동시 수정 충돌을 구분합니다.",
+      "steps": [
+        {
+          "fileId": "code_assist_v1/routes_notion.py",
+          "title": "브라우저 초안 POST 받기",
+          "description": "/api/notion/pages 요청에 operation_id가 있으면 지원 필드를 검사하고 로컬 초안 생성 함수로 위임합니다. 협업 runtime이 요청된 환경에서는 이 로컬 경로가 거부됩니다.",
+          "line": 969,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/routes_notion.py",
+              "line": 975,
+              "note": "협업 runtime의 로컬 생성 거부 조건."
+            },
+            {
+              "path": "code_assist_v1/routes_notion.py",
+              "line": 979,
+              "note": "create_draft_page 실제 호출."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/notion_page_creation.py",
+          "title": "페이지·블록·영수증 함께 생성",
+          "description": "초안 입력과 요청 해시를 검증하고 한 트랜잭션에서 페이지, 초기 블록, 부모 링크와 영수증을 저장합니다. 동일한 operation은 원래 결과로 재생합니다.",
+          "line": 16,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/notion_page_creation.py",
+              "line": 55,
+              "note": "기존 작업 영수증 확인."
+            },
+            {
+              "path": "code_assist_v1/notion_page_creation.py",
+              "line": 72,
+              "note": "페이지와 초기 블록 저장."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/notion_store.py",
+          "title": "수정할 때 revision으로 충돌 확인",
+          "description": "/save 라우트가 save_page_atomic을 호출합니다. 편집 권한, 기존 operation 영수증과 기준 revision을 확인하고 변경·버전·영수증을 함께 커밋합니다.",
+          "line": 3393,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/routes_notion.py",
+              "line": 1111,
+              "note": "원자 저장 함수 호출."
+            },
+            {
+              "path": "code_assist_v1/notion_store.py",
+              "line": 3450,
+              "note": "기준 revision 충돌 검사."
+            },
+            {
+              "path": "code_assist_v1/notion_store.py",
+              "line": 3493,
+              "note": "최종 커밋."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interface-components",
+      "title": "브라우저의 세 가지 인터랙션 읽기",
+      "districtId": "frontend",
+      "kind": "reading",
+      "description": "생성 선택창, 문서 AI 패널, AI 스트림 전송 모듈을 각각 읽는 경로입니다. 세 모듈을 하나의 실행 순서로 가정하지 않습니다.",
+      "steps": [
+        {
+          "fileId": "code_assist_v1/notion_static/notion_creation_chooser.js",
+          "title": "생성할 위치와 항목 선택",
+          "description": "선택창은 허용된 템플릿과 위치를 렌더링하고 현재 화면·생성 권한을 확인한 뒤 submit 콜백에 선택을 넘깁니다.",
+          "line": 13,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/notion_static/notion_creation_chooser.js",
+              "line": 33,
+              "note": "클릭 시 목적지와 생성 권한 확인."
+            },
+            {
+              "path": "code_assist_v1/notion_static/notion_creation_chooser.js",
+              "line": 35,
+              "note": "호스트 콜백 전달."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/notion_static/notion_document_ai.js",
+          "title": "AI 초안을 확인한 뒤 적용",
+          "description": "문서 AI는 원문 snapshot으로 응답을 요청하고 페이지가 바뀐 응답을 버립니다. 적용 버튼은 다시 원문과 편집 권한을 확인하여 호스트 편집기에 넘깁니다.",
+          "line": 78,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/notion_static/notion_document_ai.js",
+              "line": 99,
+              "note": "응답 이후 원문 변경 검사."
+            },
+            {
+              "path": "code_assist_v1/notion_static/notion_document_ai.js",
+              "line": 127,
+              "note": "사용자가 적용할 때 권한 재검사."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/notion_static/notion_ai_chat_transport.js",
+          "title": "스트림 완료를 저장된 대화로 확인",
+          "description": "별도의 전송 모듈은 SSE를 해석하고 done 이벤트에 저장된 conversation과 messages가 있어야 성공으로 반환합니다. 네트워크 단절은 재시도 가능한 오류로 처리합니다.",
+          "line": 9,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/notion_static/notion_ai_chat_transport.js",
+              "line": 29,
+              "note": "저장된 완료 대화 검증."
+            },
+            {
+              "path": "code_assist_v1/notion_static/notion_ai_chat_transport.js",
+              "line": 53,
+              "note": "완료 전에 끊긴 연결을 오류로 처리."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verification-contracts",
+      "title": "안전한 테스트에서 계약 확인하기",
+      "districtId": "verification",
+      "kind": "reading",
+      "description": "테스트 격리, 검색 범위, 원자 저장, 문서 AI 화면을 확인하는 읽기 순서입니다. 각 테스트가 무엇을 준비하고 어떤 결과를 확인하는지 살펴봅니다.",
+      "steps": [
+        {
+          "fileId": "code_assist_v1/test_safety.py",
+          "title": "테스트 경로부터 격리",
+          "description": "명시적 테스트 모드와 절대 경로를 요구하고 실제 데이터 경로·심볼릭 링크 탈출을 검사합니다. 모든 대상이 검증된 뒤 테스트 폴더를 만듭니다.",
+          "line": 113,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/test_safety.py",
+              "line": 113,
+              "note": "격리 경로 검사."
+            },
+            {
+              "path": "code_assist_v1/test_safety.py",
+              "line": 197,
+              "note": "폴더 생성 전 전체 경로 검증."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/tests/knowledge_spaces/unit/test_canonical_retrieval.py",
+          "title": "다른 공간 문서가 섞이지 않는가",
+          "description": "임시 DB fixture에서 서비스 검색을 호출하고 외부 공간·개인 문서·임시 문서의 제외와 의미 이웃의 한도를 검증합니다.",
+          "line": 575,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/tests/knowledge_spaces/unit/test_canonical_retrieval.py",
+              "line": 575,
+              "note": "단일 공간 검색 결과 검사."
+            },
+            {
+              "path": "code_assist_v1/tests/knowledge_spaces/unit/test_canonical_retrieval.py",
+              "line": 602,
+              "note": "같은 공간의 이웃과 이벤트 한도 검사."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+          "title": "동시 수정과 재시도는 일관적인가",
+          "description": "Flask 테스트 클라이언트로 성공 결과, 오래된 기준 revision의 409, 동일 작업 재시도에서 revision이 늘어나지 않는 계약을 검증합니다.",
+          "line": 77,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+              "line": 103,
+              "note": "충돌과 부분 쓰기 방지 검사."
+            },
+            {
+              "path": "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+              "line": 130,
+              "note": "동일 재시도 검사."
+            }
+          ]
+        },
+        {
+          "fileId": "code_assist_v1/tests/browser/test_notion_document_ai_ui.py",
+          "title": "화면에서 초안과 적용을 구분하는가",
+          "description": "Playwright가 모델 응답을 mock하여 요약 표시·삽입·저장 후 재로딩을 조작합니다. 원문 변경·권한 철회·늦은 응답 상황도 검증합니다.",
+          "line": 28,
+          "relation": "verified",
+          "evidence": [
+            {
+              "path": "code_assist_v1/tests/browser/test_notion_document_ai_ui.py",
+              "line": 28,
+              "note": "요약 삽입과 저장 UI 여정."
+            },
+            {
+              "path": "code_assist_v1/tests/browser/test_notion_document_ai_ui.py",
+              "line": 116,
+              "note": "늦은 응답과 편집권한 변경 검사."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

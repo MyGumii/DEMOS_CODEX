@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_checkpoint.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-COMPACT-CREATE-LABELS-R496-20260901",
+  "recorded_at": "2026-09-01T17:56:57+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "r496 retains r491 and extends the measured compact database-create presentation to V0R-MU-008, V0R-MU-009, V0R-MU-010, and V0R-MU-011 at 1280x800. The four source-bound targets improve by 29, 29, 29, and 25 unmasked pixels respectively, for a normalized 112-pixel improvement against r491 and 141 pixels across the r482-to-r496 lineage. Full-run runtime-only variations add a net 2998 pixels and are excluded from the source delta. All four journeys, all 36 accessibility and keyboard-path records, all 17 targeted tests, synthetic cleanup, and receipt integrity pass. Exact parity remains 0/36 and no completion claim is made.",
+  "immutable_lineage": {
+    "lossless_exact_v4_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+    },
+    "previous_retained_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state012-create-label-r491-progress-20260901.json",
+      "sha256": "sha256:c45e58e3993c4dcf83790428fce3e7ea72d2deb4afe20742685a47ef9a6f3d8c"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified": false
+    },
+    "main_agent_handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "retained_source_binding": [
+    {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:477709f7530203559c30329f84dada04bf08cf24a7d49242a482322ee2a842c8",
+      "changes_from_r491": [
+        "extend the compact icon-hidden, nowrap, zero-gap database-create presentation to V0R-MU-008 through V0R-MU-011 at 1280x800",
+        "retain the V0R-MU-012 compact correction and all r482 V0R-MU-007 corrections",
+        "retain the V0R-MU-007-only -1px,-1px create-control transform",
+        "leave all 1440x900 and other state presentations unchanged"
+      ]
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+      "changes_in_r492_r496": []
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+      "changes_in_r492_r496": []
+    }
+  ],
+  "isolated_validation": {
+    "invalid_r492_c0_run": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-candidate-20260901-r492",
+      "proposal": "measure the non-retained V0R-MU-012 compact table-block width",
+      "result": "invalid before capture on the third transient comment-latency budget failure; no score claim was made and the width code was removed",
+      "source_reverted": true
+    },
+    "accepted_r493_e1_run": {
+      "root": "code_assist_v1/.runtime/v0b-p1-e1-candidate-20260901-r493",
+      "proposal": "extend the compact create-label presentation to V0R-MU-008",
+      "state_delta": {"V0R-MU-008-1280x800": -29},
+      "other_source_bound_score_deltas": 0,
+      "cleanup_complete": true,
+      "accepted": true
+    },
+    "accepted_r494_e1_run": {
+      "root": "code_assist_v1/.runtime/v0b-p1-e1-candidate-20260901-r494",
+      "proposal": "extend the compact create-label presentation to V0R-MU-009 and V0R-MU-010",
+      "state_deltas": {
+        "V0R-MU-008-1280x800": -29,
+        "V0R-MU-009-1280x800": -29,
+        "V0R-MU-010-1280x800": -29
+      },
+      "all_1440_score_deltas": 0,
+      "cleanup_complete": true,
+      "accepted": true
+    },
+    "accepted_r495_f0_run": {
+      "root": "code_assist_v1/.runtime/v0b-p1-f0-candidate-20260901-r495",
+      "proposal": "extend the compact create-label presentation to V0R-MU-011",
+      "state_delta": {"V0R-MU-011-1280x800": -25},
+      "V0R-MU-011-1440x900_delta": 0,
+      "cleanup_complete": true,
+      "accepted": true
+    }
+  },
+  "development_runtime": {
+    "authority": "AP-DEV-PAIR-USER-APPROVAL-20260824",
+    "root_path": "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113-r437",
+    "root_id": "f9024494-6fb6-4c1f-9720-7cccbce5a0b1",
+    "root_locator_sha256": "sha256:e6259d6953d5b1a053541b6f5023fb709581a94a3bcc0475317a14db5ca7e327",
+    "launch_id": "510a04f037ad4676a3bc6efcf6df1993",
+    "run_root_locator_sha256": "sha256:e937c0e520cc4d00215f2cf1d61a42cfb95c09330a79a678b8220bfb907fd5a5",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "approved_identity_ids": ["admin", "user01"],
+    "listen_ports": [10111, 10112, 10113],
+    "personal_content_imported": false,
+    "production_port_or_root_mutated": false,
+    "old_root_deleted": false
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r496",
+    "receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r496/receipt.json",
+      "sha256": "sha256:f0848e8176863cdca0cdf3b494a7dc2f276125e1bb3d4c51db4ef80985f63f6a",
+      "size_bytes": 287606
+    },
+    "candidate_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "started_at": "2026-09-01T08:47:16.980732Z",
+    "ended_at": "2026-09-01T08:52:39.122357Z",
+    "duration_ms": 322141,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "keyboard_path_record_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2110227,
+    "masked_difference_count": 69506,
+    "total_difference_count": 2179733,
+    "journeys": {"I0-P2": "pass", "C0-P2": "pass", "E1-P2": "pass", "F0-P5": "pass"},
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1282,
+      "comment_delivery_ms": 2386,
+      "reaction_delivery_ms": 1196,
+      "presence_ttl_expiry_ms": 15526,
+      "reconnect_ms": 1300
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:d71dca8dc1862b67e726a2e7ecb26e2a08ee46e63a0f0f6c947c204392064a12"
+    }
+  },
+  "comparison_to_r491": {
+    "raw_unmasked_difference_delta": 2886,
+    "source_bound_normalized_delta": -112,
+    "runtime_only_net_delta": 2998,
+    "masked_difference_delta": 0,
+    "raw_total_difference_delta": 2886,
+    "state_viewport_source_deltas": {
+      "V0R-MU-008-1280x800": -29,
+      "V0R-MU-009-1280x800": -29,
+      "V0R-MU-010-1280x800": -29,
+      "V0R-MU-011-1280x800": -25
+    },
+    "all_other_source_bound_capture_score_deltas": 0,
+    "runtime_only_variations": [
+      {"capture": "V0R-MU-002-1440x900", "delta": 975},
+      {"capture": "V0R-MU-004-1440x900", "delta": 2040},
+      {"capture": "V0R-MU-015-1280x800", "delta": -6},
+      {"capture": "V0R-MU-007-1440x900", "delta": 0, "candidate_screenshot_sha256_changed": true},
+      {"capture": "V0R-MU-008-1440x900", "delta": -12},
+      {"capture": "V0R-MU-008-1280x800", "delta_beyond_source_normalization": 1}
+    ],
+    "normalized_lineage_delta_from_r482": -141
+  },
+  "verification": {
+    "python_compile": "pass",
+    "targeted_tests": {"result": "17 passed in 29.84s", "exit_code": 0, "live_approved_pair_enabled": true},
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {"claims": 1, "core_25": 1, "exact_pixel": 36, "performance": 1},
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:f0848e8176863cdca0cdf3b494a7dc2f276125e1bb3d4c51db4ef80985f63f6a"
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from retained r496. Preserve r491 and the compact database-create icon/label presentation for V0R-MU-007 through V0R-MU-012. Do not restore the rejected broad compact pageView-width extension or the unmeasured V0R-MU-012 table-block-width hypothesis. Select the next separately measured source-bound region. Do not run fresh Core 25 or quiet-host performance gates before exact parity reaches 36/36, and do not mark the product or shared goal complete before all final gates close."
+}

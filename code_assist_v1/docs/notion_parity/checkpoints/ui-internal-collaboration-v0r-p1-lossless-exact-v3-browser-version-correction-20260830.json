@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0r_p1.lossless_exact_v3_browser_version_correction.v1",
+  "checkpoint_id": "V0R-P1-LOSSLESS-EXACT-V3-BROWSER-VERSION-CORRECTION-20260830",
+  "recorded_at": "2026-08-30T22:57:41.4452789+09:00",
+  "status": "browser_version_provenance_corrected_v4_receipt_required",
+  "summary": "The immutable v3 receipt inherited Chrome major 151 from its V2 semantic predecessor, but both live Windows renderer handles used for the source-lossless capture resolve to the same Chrome 153.0.8010.12 process. V0B-P1 correctly rejected the mismatch before comparison. The v3 receipt remains immutable and must be superseded by a new receipt that corrects only browser-version provenance while preserving the 36 PNGs, masks, ingest manifest, audit, semantic observations, and cleanup evidence.",
+  "capture_process_binding": {
+    "host_renderer_window_handle": 394984,
+    "collaborator_renderer_window_handle": 853918,
+    "resolved_process_id": 8288,
+    "process_name": "chrome",
+    "executable_path": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+    "file_version": "153.0.8010.12",
+    "product_version": "153.0.8010.12",
+    "chrome_major_version": "153",
+    "both_renderer_handles_resolve_to_same_process": true
+  },
+  "immutable_lineage": {
+    "v3_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v3-20260830.json",
+      "sha256": "sha256:b6a8a550455ccfbd9a41dd4a35643f57930ce6c1ad1cad7a0f1faace48ca6984",
+      "modified": false
+    },
+    "ingest_manifest": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-lossless-exact-v3-20260830-ingest-manifest.json",
+      "sha256": "sha256:d92ef951e11970e7a41678104b85acb1e15b594c09d6f6c40fbea95c9a6790db"
+    },
+    "capture_journal": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/capture-journal.json",
+      "sha256": "sha256:d9e84a49194afa9d8b5e1b228150644a14884b8054d6c20967e84fa5d7a6874f"
+    },
+    "capture_tool": {
+      "path": "code_assist_v1/tools/capture_v0r_window_renderer_png.ps1",
+      "sha256": "sha256:d4e8840787e814ba33762183ea9592864b5c3f4c02198d37d904fdd1b9628023"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "v0b_fail_closed_probe": {
+    "runner_browser_major_version": "153",
+    "v3_declared_browser_major_version": "151",
+    "error": "V0B_BROWSER_MAJOR_MISMATCH:153:151",
+    "comparison_started": false,
+    "candidate_receipt_created": false
+  },
+  "scope_attestation": {
+    "reference_png_modified": false,
+    "reference_mask_modified": false,
+    "v3_receipt_modified": false,
+    "external_notion_mutation": false,
+    "production_changed": false,
+    "second_brain_changed": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "next_action": "Create and independently verify a new immutable v4 receipt that supersedes v3 and binds Chrome 153.0.8010.12, then rerun V0B-P1 with Chrome major 153."
+}

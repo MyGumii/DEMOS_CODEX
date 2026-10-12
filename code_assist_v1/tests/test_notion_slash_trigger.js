@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');
+const {trigger}=require('../notion_static/notion_slash_menu');
+assert.deepEqual(trigger('/제목',3),{start:0,end:3,query:'제목',text:'/제목'});
+assert.deepEqual(trigger('앞 문장 /제목뒤 문장',8),{start:5,end:8,query:'제목',text:'/제목'});
+assert.equal(trigger('앞 문장/ 뒤 문장',5),null);
+assert.equal(trigger('https://example.com/a',21),null);
+assert.deepEqual(trigger('/제목 ',4),{start:0,end:4,query:'제목 ',text:'/제목 '});
+assert.deepEqual(trigger('앞 문장 /4개의 열',11),{start:5,end:11,query:'4개의 열',text:'/4개의 열'});
+assert.equal(trigger('/제목\n다음 줄',10),null);
+assert.equal(trigger('/foo/bar',8),null);
+assert.equal(trigger('/'+ 'a'.repeat(101),102),null);
+console.log('UI-C7: slash token is caret-relative, preserves suffix boundaries and excludes attached words/URLs');

@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.v0b_q0.central_audit_restoration_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-Q0-CENTRAL-AUDIT-RESTORED-20260907",
+  "recorded_at": "2026-09-07T06:31:27.7052841Z",
+  "status": "validated_central_audit_pass_incomplete_product",
+  "immutable_after_recording": true,
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    }
+  },
+  "evidence_bindings": {
+    "selected_v0b_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-product-similarity-critical-regions-r9-20260907.json",
+      "sha256": "sha256:84c8626db11391e0e4c45877d5fb2a853551205954b9b8117417abf9486878db",
+      "receipt_id": "V0B-P1-L6-FINAL-CANDIDATE-FRESH-27F3DCFC709DC942"
+    },
+    "v0b_runtime_compatibility": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-q0-runtime-compatibility-inheritance-20260907.json",
+      "sha256": "sha256:2c93a561d3ece833df1fb7d5f48aa980e74269be329eb8a2c0f5b078322bc91f"
+    },
+    "source_compatibility_v4": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-source-compatibility-inheritance-v4-20260907.json",
+      "sha256": "sha256:f3332d9b90d2a5c73ee9fc9275eb306c99d8d9402fe71bc113e4031edbd07f08"
+    },
+    "q0_local_readiness": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-p1-local-readiness-20260907.json",
+      "sha256": "sha256:b6b3798acad616ea96545c277fa1cab84d72c915d40d12bb06e583be8ee51bb5"
+    },
+    "o1b_target_infrastructure_blocker": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-p1-target-infrastructure-blocked-20260907.json",
+      "sha256": "sha256:c393e455414f524262ad83be7dd26248b65ce30fff4ecfa4b84d7cd5b3e61edf"
+    }
+  },
+  "validation_source_bindings": [
+    {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py",
+      "sha256": "sha256:580d5670b6f4cbfe0a086da78db1769f3ac1ceabcd2583ca185b1e6ff7b436d0"
+    },
+    {
+      "path": "code_assist_v1/tools/compile_internal_collaborative_v0b_p1_final_receipt.py",
+      "sha256": "sha256:6d6d641a3fb6b897e2470ecb7b6fea01b6739cd5e0f0f2c3fac8ab926c654970"
+    },
+    {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:66f8290a4f2e8c6afda36b20c4c44e3267d2d828cc9de3082bbe167ee87406fd"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+      "sha256": "sha256:4693bec0475320cb50f807485cec5fb274feaaac87d685c64cb4c503bfbf3914"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_compile_internal_collaborative_v0b_p1_final_receipt.py",
+      "sha256": "sha256:299fd01b560211096977ca469708d6c8a3531fce1a74aa8f7fd4299d3a5b2c91"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_source_compatibility.py",
+      "sha256": "sha256:20a20b6f3017ca0ff2a464e5ae98f239178208d9c37bc7ce81ad30989d6f0404"
+    }
+  ],
+  "verification_evidence": {
+    "python_compile": {
+      "status": "pass",
+      "file_count": 6
+    },
+    "focused_unit_tests": {
+      "status": "pass",
+      "passed": 44,
+      "failed": 0
+    },
+    "direct_v0b_visual_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "core_test_count": 21,
+      "performance_run_count": 2,
+      "exact_pixel_pass_count": 0,
+      "visual_similarity_pass_count": 36,
+      "accessibility_pass_count": 36,
+      "runtime_compatibility_required": true,
+      "gate_passed_before_compatibility_inheritance": false
+    },
+    "catalog_audit": {
+      "status": "pass",
+      "error_count": 0
+    },
+    "full_bundle_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "valid_execution_receipts": 21,
+      "gate_passed_required_packets": 44,
+      "required_packets": 50,
+      "closed_matrix_rows": 21,
+      "matrix_rows": 28,
+      "closed_phase_gates": 15,
+      "phase_gates": 20,
+      "completion_state": "incomplete",
+      "product_complete": false
+    }
+  },
+  "remaining_work": {
+    "next_packet": "O1B-P1",
+    "packet_count": "44/50",
+    "matrix_row_count": "21/28",
+    "phase_gate_count": "15/20",
+    "external_target_infrastructure_required": true,
+    "release_manifest_frozen": false
+  },
+  "claims": {
+    "historical_receipt_overwritten": false,
+    "completed_visual_capture_reexecution_performed": false,
+    "visual_or_accessibility_failure_hidden": false,
+    "central_catalog_ladder_matrix_or_pointer_changed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "production_changed": false,
+    "second_brain_changed": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:b9ba6e92d46a7811099a8fd516350432a3350ae46347fce788d1510de21d731e"
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.q0.local_load_fault_revalidation_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-Q0-LOCAL-LOAD-FAULT-REVALIDATION-V2-20260908",
+  "recorded_at": "2026-09-08T23:08:39+09:00",
+  "status": "local_q0_load_fault_regression_pass_external_target_gate_deferred",
+  "immutable_after_recording": true,
+  "packet_id": "Q0-P1",
+  "predecessors": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-q0-pretarget-regression-20260907.json",
+      "sha256": "sha256:81677bb83532081fd0cf47a6b669981e8eb53fd47ebb413035464ffed6947428"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-through-z0-local-readiness-current-sbe-v3-20260908.json",
+      "sha256": "sha256:c5df9aa7224ebd58b2390b539e0e8e6de920ffd4bbe261cd5a3519cbf11d8439"
+    }
+  ],
+  "current_bindings": {
+    "q0_validation": {
+      "path": "code_assist_v1/notion_collaboration/q0_validation.py",
+      "sha256": "sha256:8d3cdebe1ccf28ccf6c25e3cdf07dbdc7db10f60350100bf0072b9353362bdbe"
+    },
+    "o1b_policy": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v4.json",
+      "sha256": "sha256:f6ba450334eb337782f57e5c2e1d8a8956d43953f6e9cfd577901a9c3332896d"
+    },
+    "sbe_audit": {
+      "path": "capture/o1b-p1-sbe-readiness-contract-audit-20260908-v4.json",
+      "sha256": "sha256:5b5e063cf39488ec3853e3ea22cf7b86698d6fc9aa4f13c3f2db74bb0e81ccb4",
+      "input_sha256": "sha256:4f3e995b27e6a1e2cb0b130212217c62dae9aae688785676b7daf8dd1e4b1e5b"
+    }
+  },
+  "test_bindings": [
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/load/test_target_concurrency.py",
+      "sha256": "sha256:37c3f65c5ee501630efb17eddba0d22b5131443d143c7f5c60067a47710f11d6"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/load/test_reconnect_storm.py",
+      "sha256": "sha256:389381699b913591956fbdc887d93ec4324f41c96a35832b50bb34b20de06e95"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/load/test_slow_consumer_backpressure.py",
+      "sha256": "sha256:8751ec472fb4604d50125dbc275ff9298826a2c3b95e83c6eecafce8afc97f89"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/fault/test_gateway_and_store_faults.py",
+      "sha256": "sha256:1a5fcbf428ae8027a89e695b05621456a97d7146e56b2c3d27f62778e089c587"
+    }
+  ],
+  "verification": {
+    "command_scope": "Q0 local target-concurrency, reconnect-storm, slow-consumer-backpressure, and gateway/store-fault modules",
+    "status": "pass",
+    "passed": 9,
+    "failed": 0,
+    "duration_seconds": 115.54,
+    "external_target_used": false,
+    "production_data_used": false
+  },
+  "retained_gate_boundary": {
+    "prerequisite_O1B_P1_gate_passed": false,
+    "Q0_P1_gate_passed": false,
+    "target_class_performance_evidence_present": false,
+    "target_security_and_observability_receipt_present": false,
+    "central_packet_progress": "44/50",
+    "central_matrix_progress": "21/28",
+    "central_phase_progress": "15/20"
+  },
+  "claims": {
+    "local_q0_regression_green": true,
+    "external_system_mutated": false,
+    "target_traffic_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:e32543f8acca82dbaa142bb9a6df2c0a09742dff6aac82b4f891cf566c969ac1"
+}

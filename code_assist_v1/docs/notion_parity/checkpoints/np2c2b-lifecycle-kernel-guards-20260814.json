@@ -1,0 +1,156 @@
+{
+  "run_id": "np2c2b-lifecycle-kernel-guards-20260814",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "recorded_at": "2026-08-14T04:58:16.4216410+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "goal_completed": false
+  },
+  "slice": "NP2C-2b-prerequisite-1312-lifecycle-kernel-guards",
+  "status": "contract_tested_trigger_hardening_command_kernel_runtime_disabled",
+  "schema": {
+    "source_version": 2026081311,
+    "source_name": "notion_workspace_v2_np2c_page_tree_foundation",
+    "source_checksum": "sha256:bb88d9c7e7937d0e29086d20ebd0c7a567658678daca0dd31c931634431cf723",
+    "source_actual_schema_sha256": "sha256:7ef7fcee1e78a641388de16e55937ad73fd549d97aa33de7221c215d19da9517",
+    "runtime_version": 2026081312,
+    "runtime_name": "notion_workspace_v2_np2c_lifecycle_kernel_guards",
+    "checksum": "sha256:effcfb238406228b79ad780e39c0577de4ac851f881af520c92b627b98b529f6",
+    "actual_schema_sha256": "sha256:49e388386f2a90ea23fe8861554c50274b127de2ad7aa171e78bb4e9ded074e1",
+    "object_count": 142,
+    "frozen_1311_remains_importable": true
+  },
+  "implementation": {
+    "explicit_1311_to_1312_migration_implemented": true,
+    "explicit_cli_implemented": true,
+    "maximum_command_lease_seconds": 300,
+    "exact_initial_claim_fence_increment": 1,
+    "expired_reclaim_requires_fence_increment": 1,
+    "same_token_heartbeat_preserves_fence": true,
+    "same_token_heartbeat_extends_expiry": true,
+    "source_applied_requires_live_exact_lease": true,
+    "finalized_failed_manual_audit_require_live_exact_lease": true,
+    "terminal_transition_clears_lease": true,
+    "command_and_workspace_operation_namespace_mutually_exclusive": true,
+    "only_exact_finalized_operation_commitment_allowed": true,
+    "pre_kernel_1311_command_rows_refused": true,
+    "deep_health_mirrors_lease_fence_namespace_guards": true,
+    "lifecycle_command_service_implemented": false,
+    "source_effect_adapter_implemented": false,
+    "routes_implemented": false,
+    "ui_implemented": false,
+    "runtime_commands_enabled": false,
+    "resolver_cutover_enabled": false,
+    "continuous_worker_enabled": false,
+    "destructive_watermark_ack_enabled": false,
+    "permanent_delete_enabled": false,
+    "live_migration_applied": false,
+    "live_data_accessed": false
+  },
+  "migration_guards": {
+    "explicit_offline_quiescence_required": true,
+    "verified_backup_required": true,
+    "exact_plan_checksum_required": true,
+    "copy_on_write_target_image": true,
+    "rollback_on_schema_fault": true,
+    "rollback_on_precommit_fault": true,
+    "pre_kernel_command_refusal_preserves_source_bytes": true,
+    "request_or_startup_migration_enabled": false,
+    "runtime_or_live_catalog_apply_performed": false
+  },
+  "output_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/notion_workspace_store.py": "a85237fe9b95ab1f0a1e710d9fff991e7ab2148a8bbfa491349096c9d37cb825",
+    "code_assist_v1/notion_workspace_page_tree_migration.py": "d45afd17ad903c0c7b7b23d558b33523a181598cc8cb7061e9bdf4a814609be9",
+    "code_assist_v1/notion_workspace_lifecycle_kernel_migration.py": "26ceb03a679d7404ca986bc8058812792fcd374d48129142c3c0bbb5d2b6bf2e",
+    "code_assist_v1/tools/migrate_notion_workspace_lifecycle_kernel.py": "5925c00518f6ae897080afcdc6e034c42939883242c58a57048ec6b1b9c61ff4",
+    "code_assist_v1/notion_workspace_rehearsal.py": "71c4f3a96dd1e59dc648bea62bf866144789395e5bbf4e4944c57974a1c314c9",
+    "code_assist_v1/tests/test_migrate_notion_workspace_lifecycle_kernel.py": "0e540603fbd4131600b8802b40e9d2b7b706d135e5b738112e37b5c36102c9fb",
+    "code_assist_v1/tests/test_migrate_notion_workspace_page_tree.py": "91b07a0c0428a7aac8e6669a1a0998626bc7802bf9e000ddba63d3acbbb5cc1d",
+    "code_assist_v1/tests/test_notion_workspace_migration_chain_rehearsal.py": "2225718408f06a43414e8b13a4e2dc649256c8f57eb0c642e0798a3dc70c345e",
+    "code_assist_v1/tests/test_migrate_notion_workspace_schema.py": "04334a6a7cb074eb8d5d7c290f8d3c53c0629adee5e08d705f665b7f8d4a72e2",
+    "code_assist_v1/tests/test_migrate_notion_workspace_healing.py": "fa5a0fe9cfe94b33171f368c1fc84440d6c11a3223d6c7fe6741d6e905630a2d",
+    "code_assist_v1/tests/test_migrate_notion_workspace_healing_apply.py": "4b4e53d72c5dc5cec649a6b0e3004e1c765b7d9af2c8ba43cfbf21978e581afb",
+    "code_assist_v1/tests/test_notion_workspace_locator_projection.py": "d747caf207727c7546324a130cbdae90680aa967f0f29e45ed4872aafa98ab2b",
+    "code_assist_v1/tests/test_notion_workspace_outbox_delivery.py": "6a631a230e6e1af457fd9fce541c15e34c1a105445e7725426669b3fcd51bb6f",
+    "code_assist_v1/tests/test_notion_workspace_offline_rehearsal.py": "f67fbc882491afd8c40a061815d1d85b2a238c066c8f559d5a0dd9888425ad60",
+    "code_assist_v1/tools/verify_notion_np2c_page_tree_contract.py": "80039f93ecb6acdfe4b3277204f0d245fe8246a639797d27f7c131647eb7d219",
+    "code_assist_v1/tests/test_verify_notion_np2c_page_tree_contract.py": "252e1af6caa41c57678c6e0633ac175ecc99a2c562cdafa15d7f75ac209a999a",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "73e6815ee836d7b6d1938fdff8082f668574c47d0d89ed27435e5494ed5af34b",
+    "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "2709e242e01a0f80ed4c7be62c46f9f064f699e62264793a37b28c3d6994d57b",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "43c5f641aeab0962c8a318570f3d717f177ebfba734cc6acd7bbc5d316b5a7eb",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "f68d070783911a6daceb93243cbdf4326c7b7fb689a7e0a59eda1c189e336f64",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "204acd777535142e10044c9e97e8e0dcd3e4ec30fa2ac98c866245c1fd9e90f9",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "b383b57cd9d1fcc546daeb60a1007599a1990b7b7761c528db960f8c07cdd674"
+  },
+  "tests": [
+    {
+      "selection": "1312 migration, raw SQL lease/fence/namespace guards and deep-health fault injection",
+      "result": "12 passed",
+      "exit_code": 0,
+      "duration_seconds": 8.67
+    },
+    {
+      "selection": "frozen 1304, 1306 and 1307 migration independence",
+      "result": "50 passed, 1 skipped",
+      "exit_code": 0,
+      "duration_seconds": 36.57
+    },
+    {
+      "selection": "frozen 1311 page-tree migration",
+      "result": "10 passed",
+      "exit_code": 0,
+      "duration_seconds": 11.23
+    },
+    {
+      "selection": "full frozen 1303 through 1312 migration chain and fresh-schema equality",
+      "result": "1 passed",
+      "exit_code": 0,
+      "duration_seconds": 4.46
+    },
+    {
+      "selection": "1312 migration plus page-tree/store/chain core regression",
+      "result": "48 passed",
+      "exit_code": 0,
+      "duration_seconds": 64.40
+    },
+    {
+      "selection": "locator projection, outbox delivery and offline rehearsal adjacent regression",
+      "result": "39 passed",
+      "exit_code": 0,
+      "duration_seconds": 56.01
+    },
+    {
+      "selection": "NP2C machine contract and migration-chain document synchronization",
+      "result": "5 passed",
+      "exit_code": 0,
+      "duration_seconds": 5.15
+    }
+  ],
+  "known_host_failure": "A hash-collection PowerShell process emitted every requested hash and runtime value, then exited with Windows status 0xC0000409. The values were already emitted and the same Python imports and hashes had succeeded separately. No test result is inferred from this host exit.",
+  "review_outcome": {
+    "p0_remaining_in_enabled_paths": 0,
+    "p1_remaining_in_enabled_paths": 0,
+    "protected_boundaries_changed": false,
+    "runtime_state_changed": false,
+    "next_slice": "NP2C-2b disabled lifecycle command kernel on frozen 1312",
+    "next_slice_requirements": [
+      "prepare command with current admin authority and canonical request hash",
+      "claim reclaim heartbeat token-digest and fencing CAS",
+      "exact replay before source resolver or source effect",
+      "record source-applied receipt with full tree binding incarnation fence",
+      "finalize tree nodes state operation audit outbox atomically",
+      "source-effect response-loss convergence",
+      "source-committed catalog-finalize-crash convergence",
+      "failed and manual-audit terminal replay",
+      "identifier-free secret-free canonical results",
+      "fake or isolated temp source effect only",
+      "no protected route UI runtime resolver worker ack purge or live migration"
+    ]
+  },
+  "git_provenance": "unavailable: workspace .git is not valid repository metadata; no commit or landed claim",
+  "next_exact_work": "Re-hash this checkpoint and owned files, then implement only the disabled 1312 prepare/claim/heartbeat/record-source/finalize/fail/manual-audit store kernel and fake/temp source convergence tests. Do not add a legacy source adapter, routes/UI, runtime registration, resolver cutover, continuous worker, source watermark acknowledgement, permanent purge, live migration, or protected-file edits.",
+  "stop_reason": "The 1312 prerequisite guard slice is implemented and contract-tested. The active overall Notion parity goal remains open; the NP2C-2b service kernel and later phases are not complete."
+}

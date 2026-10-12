@@ -1,0 +1,53 @@
+{
+  "contract": "code_assist.notion.core_free_ui.owner_approval_receipt.v1",
+  "recorded_at": "2026-08-22T03:30:17.5197610+09:00",
+  "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "source": {
+    "kind": "user_message",
+    "normalization_policy": "Collapse display whitespace and rejoin a line-wrapped scenario identifier before exact phrase comparison.",
+    "line_wrap_repair": "UI- DB-003 -> UI-DB-003",
+    "normalized_approval_text": "UI-SHELL-001, UI-EDITOR-001, UI-EDITOR-002, UI-EDITOR-005, UI-DB-001, UI-DB-002, UI-DB-003, UI-SEARCH-001, UI-SEARCH-002, UI-COLLAB-001, UI-SHARE-001 요약 승인; UI-SB-001, UI-SB-002, UI-SB-003 로컬 전용 통합 증거 정책 승인"
+  },
+  "decisions": {
+    "reference_observed_summary": {
+      "status": "approved",
+      "scenario_ids": [
+        "UI-SHELL-001",
+        "UI-EDITOR-001",
+        "UI-EDITOR-002",
+        "UI-EDITOR-005",
+        "UI-DB-001",
+        "UI-DB-002",
+        "UI-DB-003",
+        "UI-SEARCH-001",
+        "UI-SEARCH-002",
+        "UI-COLLAB-001",
+        "UI-SHARE-001"
+      ],
+      "approval_phrase": "UI-SHELL-001, UI-EDITOR-001, UI-EDITOR-002, UI-EDITOR-005, UI-DB-001, UI-DB-002, UI-DB-003, UI-SEARCH-001, UI-SEARCH-002, UI-COLLAB-001, UI-SHARE-001 요약 승인"
+    },
+    "local_second_brain_policy": {
+      "status": "approved",
+      "scenario_ids": [
+        "UI-SB-001",
+        "UI-SB-002",
+        "UI-SB-003"
+      ],
+      "approval_phrase": "UI-SB-001, UI-SB-002, UI-SB-003 로컬 전용 통합 증거 정책 승인"
+    }
+  },
+  "authorization": {
+    "reference_behavior_revalidation_allowed": true,
+    "reference_behavior_change_allowed_after_revalidation": true,
+    "local_second_brain_evidence_sealing_allowed": true,
+    "completion_matrix_mutation_allowed": false
+  },
+  "safety": {
+    "synthetic_data_only": true,
+    "personal_notion_content_access_allowed": false,
+    "live_second_brain_data_access_allowed": false,
+    "live_second_brain_mutation_allowed": false,
+    "external_publish_or_message_allowed": false
+  }
+}

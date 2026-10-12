@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CORRECTIVE-REFERENCE-DIAGNOSTIC-20260828",
+  "recorded_at": "2026-08-28T02:03:17+09:00",
+  "checkpoint_kind": "corrective_reference_final_candidate_diagnostic_gate_fail",
+  "packet_id": "V0B-P1",
+  "packet_status": "diagnostic_complete_structural_pixel_parity_required",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Preserve the first complete V0B-P1 run against the superseding corrective V0R reference, including passing multi-principal journeys, accessibility, and cleanup, while explicitly refusing the exact-pixel, Core 25, performance, product, and shared-goal completion claims.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-corrective-cleanup-gate-pass-20260828.json",
+    "sha256": "sha256:5509f36117db3985701bcd0a2354117ece098d4f111c35266c6f99f96a044cdc"
+  },
+  "corrective_reference_binding": {
+    "receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "screenshot_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-corrective/screenshots",
+    "mask_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-corrective/masks",
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "screenshot_count": 36,
+    "mask_manifest_count": 36
+  },
+  "diagnostic_run": {
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-corrective-diagnostic-20260828-retry3/receipt.json",
+    "receipt_sha256": "sha256:d33c182fb2840d0f5d3fc4b992922fcf01d6742abb17aa9c35d38c2e270e049b",
+    "candidate_screenshot_root": "code_assist_v1/.runtime/v0b-p1-corrective-diagnostic-20260828-retry3/screenshots",
+    "diff_root": "code_assist_v1/.runtime/v0b-p1-corrective-diagnostic-20260828-retry3/diffs",
+    "browser": "chrome_two_independent_ephemeral_contexts",
+    "chrome_major_version": "151",
+    "duration_ms": 315704,
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "gate_passed": false
+  },
+  "build_binding": {
+    "ui_source_build_sha256": "sha256:5be1bba28c588a46f5035d0a5f5fc4c3631e09c2b401b5a96ad7478fed75524d",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "notion_js_path": "code_assist_v1/notion_static/notion.js",
+    "notion_js_sha256": "sha256:7f3603564d2457c0f47f41723b29040e6ec9e5144163864c059ab8e7b7577333"
+  },
+  "component_journey_result": {
+    "passed_count": 4,
+    "expected_count": 4,
+    "passed_packets": [
+      "C0-P2",
+      "E1-P2",
+      "F0-P5",
+      "I0-P2"
+    ],
+    "status": "pass"
+  },
+  "cleanup_result": {
+    "active_fixture_root_count": 0,
+    "active_test_grant_count": 0,
+    "active_test_member_count": 0,
+    "latest_synthetic_workspace_count_audited": 5,
+    "trashed_source_page_count": 5,
+    "active_source_page_count": 0,
+    "active_page_tree_node_count": 0,
+    "active_collaborator_workspace_membership_count": 0,
+    "active_guest_count": 0,
+    "active_page_grant_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "status": "complete"
+  },
+  "gate_diagnostics": {
+    "exact_pixel_gate_error_count": 36,
+    "core_25_gate_error_count": 1,
+    "performance_gate_error_count": 1,
+    "claims_gate_error_count": 1,
+    "total_gate_error_count": 39,
+    "minimum_unmasked_rgba_difference_count": 282583,
+    "maximum_unmasked_rgba_difference_count": 1161806,
+    "diagnosis": "The candidate and corrective reference differ at the shell and surface-structure level; this is not pixel noise and requires structural UI parity work before a fresh final-candidate run."
+  },
+  "preserved_attempts": [
+    {
+      "runtime_root": "code_assist_v1/.runtime/v0b-p1-corrective-diagnostic-20260828",
+      "status": "stopped_no_receipt",
+      "reason": "The access-boundary state intentionally removed State.user.id; the harness had not yet bound the subject to the same ephemeral browser context before revoke."
+    },
+    {
+      "runtime_root": "code_assist_v1/.runtime/v0b-p1-corrective-diagnostic-20260828-retry2",
+      "status": "stopped_no_receipt",
+      "reason": "The run captured 17 of 18 states before a concurrent document_sequence_conflict in the database journey."
+    }
+  ],
+  "corrective_changes": {
+    "harness_subject_binding": "Permit the post-revoke access-boundary state to inherit the already-proven subject from the same ephemeral browser context without weakening cross-context isolation.",
+    "database_conflict_retry": "Bound UI database command retries to at most four conflict retries across five total attempts.",
+    "notion_js_syntax_check": "pass",
+    "v0b_and_iam_regression": "16 passed, 1 skipped",
+    "v0b_and_corrective_receipt_regression": "14 passed",
+    "v0b_verifier_regression": "9 passed"
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "original_V0R_semantic_receipt_modified": false,
+    "corrective_V0R_receipt_overwritten": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "V0B_P1_diagnostic_execution_complete": true,
+    "all_adopted_multiuser_states_captured": true,
+    "accessibility_evidence_complete": true,
+    "component_journeys_passed": true,
+    "cleanup_complete": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Implement structural V0B UI parity by surface cluster, rerun the 36-row exact-pixel and accessibility matrix against the corrective reference, and run fresh Core 25 plus quiet-host performance only on the resulting final candidate. Do not enter O1B until V0B passes."
+}

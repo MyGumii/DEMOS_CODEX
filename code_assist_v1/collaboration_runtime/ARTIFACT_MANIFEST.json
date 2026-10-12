@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.collaboration_runtime_artifact_manifest.v1",
+  "packet_id": "E0-P4",
+  "selected_candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+  "target": {
+    "operating_system": "Windows 10 19045 x64",
+    "python": "CPython 3.14.3",
+    "node": "24.14.1",
+    "npm": "11.11.0"
+  },
+  "global_runtime_lock": {
+    "path": "code_assist_v1/requirements-runtime.lock",
+    "sha256": "sha256:fc5522dcbf576d8dcfbbf51d6349dbc007bc5438dcc396cba913f54aa22f0bd0",
+    "modified": false,
+    "reason": "The collaboration gateway and compactor are independently managed runtimes, not imports of the Flask/Waitress application environment."
+  },
+  "python_lock": {
+    "path": "code_assist_v1/collaboration_runtime/python-requirements.lock",
+    "require_hashes": true,
+    "packages": [
+      {
+        "name": "click",
+        "version": "8.4.2",
+        "role": "transitive",
+        "license_spdx": "BSD-3-Clause",
+        "artifact": "click-8.4.2-py3-none-any.whl",
+        "sha256": "sha256:e6f9f66136c816745b9d65817da91d61d957fb16e02e4dcd0552553c5a197b76"
+      },
+      {
+        "name": "colorama",
+        "version": "0.4.6",
+        "role": "transitive_windows",
+        "license_spdx": "BSD-3-Clause",
+        "artifact": "colorama-0.4.6-py2.py3-none-any.whl",
+        "sha256": "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
+      },
+      {
+        "name": "h11",
+        "version": "0.16.0",
+        "role": "transitive",
+        "license_spdx": "MIT",
+        "artifact": "h11-0.16.0-py3-none-any.whl",
+        "sha256": "sha256:63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+      },
+      {
+        "name": "uvicorn",
+        "version": "0.52.4",
+        "role": "direct_gateway",
+        "license_spdx": "BSD-3-Clause",
+        "artifact": "uvicorn-0.52.4-py3-none-any.whl",
+        "sha256": "sha256:f86e41a149d7d05a9969337e3946a9c171c06a5d42680896daaba624aeac8da1"
+      },
+      {
+        "name": "websockets",
+        "version": "17.0.1",
+        "role": "direct_gateway",
+        "license_spdx": "BSD-3-Clause",
+        "artifact": "websockets-17.0.1-cp314-cp314-win_amd64.whl",
+        "sha256": "sha256:81ce19c6046ace11da7001781be7317bb1dc389f399af4b2ed962190f76f9add"
+      }
+    ]
+  },
+  "node_lock": {
+    "package_json_path": "code_assist_v1/collaboration_runtime/node/package.json",
+    "package_lock_path": "code_assist_v1/collaboration_runtime/node/package-lock.json",
+    "lockfile_version": 3,
+    "packages": [
+      {
+        "name": "isomorphic.js",
+        "version": "0.2.5",
+        "role": "transitive",
+        "license_spdx": "MIT",
+        "integrity": "sha512-PIeMbHqMt4DnUP3MA/Flc0HElYjMXArsw1qwJZcm9sqR8mq3l8NYizFMty0pWwE/tzIGH3EKK5+jes5mAr85yw=="
+      },
+      {
+        "name": "lib0",
+        "version": "0.2.117",
+        "role": "transitive",
+        "license_spdx": "MIT",
+        "integrity": "sha512-DeXj9X5xDCjgKLU/7RR+/HQEVzuuEUiwldwOGsHK/sfAfELGWEyTcf0x+uOvCvK3O2zPmZePXWL85vtia6GyZw=="
+      },
+      {
+        "name": "yjs",
+        "version": "13.6.32",
+        "role": "direct_compactor",
+        "license_spdx": "MIT",
+        "integrity": "sha512-lfiJIIC4Xayt5ItynE407ehlE03pCjeOc4hkR4yxxvvNJ4kuiN25B0g+Qp8XagYz361LLL7DCzR5bvFJ81QKtQ==",
+        "approved_tarball_sha256": "sha256:dbca91b1729235d44dce944813c800dd910ec2e2c5f6acf55ccbda3bbb828009"
+      }
+    ]
+  },
+  "license_policy": {
+    "allowed_spdx": [
+      "BSD-3-Clause",
+      "MIT"
+    ],
+    "selected_package_count": 8,
+    "disallowed_selected_package_count": 0,
+    "hosted_service_required": false
+  },
+  "rejected_candidate_license_evidence": [
+    {
+      "candidate_id": "PY_NATIVE_PYCRDT",
+      "package": "typing-extensions",
+      "version": "4.16.0",
+      "license_spdx": "PSF-2.0",
+      "reason": "The frozen E0-P1 allowlist contains only MIT and BSD-3-Clause; E0-P4 may not silently expand it."
+    },
+    {
+      "candidate_id": "NODE_YJS_HOCUSPOCUS",
+      "package": "tslib",
+      "version": "2.8.1",
+      "license_spdx": "0BSD",
+      "reason": "The frozen E0-P1 allowlist contains only MIT and BSD-3-Clause; E0-P4 may not silently expand it."
+    }
+  ],
+  "claims": {
+    "exact_versions_pinned": true,
+    "archive_integrity_bound": true,
+    "global_application_lock_unchanged": true,
+    "service_entry_point_implemented": false,
+    "runtime_enabled": false,
+    "product_complete": false
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-R1617-FINAL-SOURCE-EXACT-36-OF-36-20260906",
+  "recorded_at": "2026-09-06T19:25:45.0194177+09:00",
+  "status": "final_product_source_unified_capture_green_performance_pending",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1615-core-final-source-green-20260906.json",
+    "sha256": "sha256:619b894aeb9c694a4b7a63e64232591553450a257db3d36b3dc49cac72c364f4",
+    "preserved_without_overwrite": true
+  },
+  "capture": {
+    "run_id": "v0b-p1-r1617-final-source-capture",
+    "receipt_path": ".runtime/v0b-p1-r1617-final-source-capture/receipt.json",
+    "receipt_sha256": "sha256:8408d786295638f47f49caeed3a33e118dbe6be0ea79a81437b8d1adae40e8fc",
+    "candidate_screenshot_root": ".runtime/v0b-p1-r1617-final-source-capture/screenshots",
+    "diff_root": ".runtime/v0b-p1-r1617-final-source-capture/diffs",
+    "screenshot_file_count": 36,
+    "diff_file_count": 36,
+    "capture_count": 36,
+    "exact_pixel_pass_count": 36,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "unmasked_difference_count": 0,
+    "started_at": "2026-09-06T10:14:39.762993Z",
+    "ended_at": "2026-09-06T10:22:37.392347Z",
+    "duration_ms": 477629,
+    "chrome_major_version": "153"
+  },
+  "reference_binding": {
+    "path": "docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+    "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "capture_count": 36,
+    "source_lossless": true
+  },
+  "source_binding": {
+    "release_candidate_source_build_sha256": "sha256:a0657e5597b111373d7d4a3711728fd5b9e296471f8172149be9fbadd6123f7b",
+    "runtime_candidate_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:137aed460f602a39a2daedd492c4b25c7fe474561c21ace8140ea36d332dad4b",
+    "runner_source_path": "notion_collaboration/v0b_p1_browser.py",
+    "runner_source_sha256": "sha256:7cf22b851e82cd1932c956f05f52a5449f493c762f7a3dc97f5c680a347c3c40"
+  },
+  "component_journeys": {
+    "I0-P2": "pass",
+    "C0-P2": "pass",
+    "E1-P2": "pass",
+    "F0-P5": "pass"
+  },
+  "cleanup": {
+    "status": "complete",
+    "synthetic_member_absent_after_each_journey": true,
+    "active_test_grant_count": 0,
+    "active_test_member_count": 0,
+    "active_fixture_root_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "ports_10111_10112_10113_closed": true,
+    "owned_gateway_processes_stopped": true,
+    "owned_host_processes_stopped": true
+  },
+  "stale_gate_fields": {
+    "present_in_capture_receipt": true,
+    "accepted_as_final_gate_evidence": false,
+    "reason": "the legacy capture runner inherits the 20260826 preflight and always marks quiet_host_verified false",
+    "final_receipt_action": "compile a new immutable receipt from this unchanged capture plus r1615 Core evidence and two new quiet-host performance observations"
+  },
+  "scope_guard": {
+    "final_source_core_25": "21/21 pass",
+    "final_source_exact_progress": "36/36 pass",
+    "final_source_accessibility_progress": "36/36 pass",
+    "final_source_interaction_progress": "36/36 pass",
+    "final_source_performance_green_streak": "0/2",
+    "V0B_P1_gate_passed": false,
+    "O1B_started": false,
+    "goal_complete": false
+  },
+  "next_action": "After both quiet-host performance observations pass on the same product source, compile and verify a new immutable V0B-P1 receipt without modifying this capture receipt."
+}

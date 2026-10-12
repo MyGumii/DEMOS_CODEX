@@ -1,0 +1,42 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T03:01:44.1573098+09:00",
+  "run_id": "ui25-resp-001-current-source-revalidated-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-resp-001-reference-partial-current-viewport-only-20260822.json",
+    "sha256": "sha256:c2e1f5b29804e7a12cc62530ff73562114d6eb8e9f18d45ae4b9183619107a4d",
+    "semantic_status": "partial_reference_gate_retained_current_local_source_revalidated"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-RESP-001",
+    "synthetic_only": true,
+    "live_local_data_accessed": false
+  },
+  "slice": {
+    "id": "UI1-CURRENT-SOURCE-REVALIDATION/UI-RESP-001",
+    "status": "reference_partially_observed",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:297d5f164d63d8dfe4b153717e9f1f6b4661831b478856627d53607ad5f38e76"
+    }
+  ],
+  "current_verification": {
+    "selection": "test_ui_resp_001_shell_editor_and_overlays_fit_adopted_viewports",
+    "result": "1 passed in 24.14s",
+    "command_exit_code": 0
+  },
+  "claims": {
+    "remaining_reference_gate_changed": false,
+    "completion_matrix_changed": false,
+    "promotion_allowed": false
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P3-STATUS-INTEGRATION-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-23T23:24:18Z",
+  "checkpoint_kind": "status_integration_pre_edit",
+  "packet_id": "E0-P3",
+  "owner_agent": "/root",
+  "ownership_lease": {
+    "lease_id": "E0-P3-STATUS-INTEGRATOR-20260824",
+    "lane": "SPIKE",
+    "status": "active",
+    "acquired_at": "2026-08-23T23:24:18Z",
+    "expires_at": "2026-08-24T23:24:18Z",
+    "exact_paths_only": true
+  },
+  "owned_existing_files": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:9bbde1679002c122cd054413cad5c6dfd9ee77b2e28be218d216547c6755736c",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:1d67ebbbd9832785ad64eb70c8287936db0948c1148b19cf32fae156a3d54c0e",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:8ebf3ab7438ee6a3ff2620965e3555d3bb18d32d4e1aba7567cd03a883cea947",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:6a0f9c0cf0e1146b1e681425927a73b59af9807601c414753dddfa1b4c8447ea",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:11de6d0b8618480e4cdebc475eb0c1f7d2974d20622dc598d1e14b6294806c05"
+  },
+  "accepted_receipts": {
+    "E0-P2-L3-RUNTIME-SPIKE-20260824": "sha256:cc097d5d7265c72ffe228a854254649d8d0f2ffcca26b7248e62c288f947aba6",
+    "E0-P3-L3-CANDIDATE-BENCHMARK-20260824": "sha256:15f7d5fa52844adc5b576d34d6ebe8cd5415446c61f465431c67c9b0f75d67cc"
+  },
+  "implementation_sha256": {
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark.py": "sha256:e72e352cd602ada2249b3daaf6c2a3443f524c00700109e13be69b3c9041b8ef",
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark_executor.py": "sha256:de320448b5fa7f9144afe89572ea8ded609103fa15a0c2dc4fbdc33c77f7cd91",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_benchmark_adapter.py": "sha256:9c60f2c52241b20238c73dd5512e10c80a9622c9a780e2215906c495ce16760b",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_benchmark_relay_adapter.py": "sha256:6be93eedcdc0d672c0c415a0fecdffd1db7743171b7f4ba25b1a2e24398a1d14",
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_benchmark_adapter.cjs": "sha256:90cd6f8bdabb766ee7d473271d50ccd533a22e1d1e6c87ad89be6d779fa81f89",
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_benchmark_adapter.cjs": "sha256:833180039d60c2d1d783806816827f4dddfd9eec6aa017717b18c18051ccba52",
+    "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark.py": "sha256:c51537817b77558128acc4a69569c6f9f783751c4b2026099e38f031a3959c6b",
+    "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark_executor.py": "sha256:4e9e945c71dd1c0d37e341e4921bf4b0343ac7bb9dff700c959a9d7275c81e94"
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "sbe_input_sha256": "sha256:59c9eac679584ec7a7a879989245964e9bf5f12c608870860de57ac7b94ca22b",
+    "sbe_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+    "implementation_backlog_sha256": "sha256:6cb9abe671b87401196e33acf3d2fd2c16d4c951ae0c90dc8c6331a64f1be7fc",
+    "status_sha256": "sha256:62e4aa857461c3cc5eb3b4f7c73dbdb5e1f59fec21f043d454b07e4305db7015"
+  },
+  "intended_post_state": {
+    "E0-P3": "gate_passed",
+    "next_packet": "E0-P4",
+    "winner_selected": false,
+    "product_runtime_changed": false
+  },
+  "rollback_or_cleanup": "Restore only the five owned existing files to the exact pre-edit hashes if integration fails. Do not touch E0-P2, product roots, SBE contracts, identities, workspaces, services, ports, schemas, or protected data."
+}

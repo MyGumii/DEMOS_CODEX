@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PAGE-BODY-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T03:51:50+09:00",
+  "checkpoint_kind": "structural_ui_parity_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_gate_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Bind the durable reference-shaped shared-page body, scroll positioning, icon/title presentation, live C0-P2 diagnostic, and recoverable cleanup audit for V0R-MU-007/012/013/014 without changing reference receipts or hot shared contracts.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-database-full-page-progress-20260828.json",
+    "sha256": "sha256:c5815c57a8cce742e499c782aaff74805f16573d3e0381889e8c7596dca51c8b"
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:26e3b731e7d011f9a47a90c3adfdc673e91c4d6648a5ed22ed7e44b5b96c9ca3",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:932f34e7a25723d055f4c5e1dd65d8285b65576761489ab2b1e0ca94e1193774"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:0f00d19c0b2f65b9c2d88dd1d1ef8041bf91833acd8a893b587a735b11d29a8e"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:21258576b09fe0319b5641f398e9fe69529b6d590c74851679f443fab6bab82b"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/f0_p5_browser.py",
+        "sha256": "sha256:44f19356dceb50a2d4fd7e4ceb673a1e5dec567fe45ca8a69386b938bdbcc654"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:76bf0b7ce89665c8960a7b527633f238f39d9bac9ad77b72f25e202dc39b4e41"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:02f38ba3679b43420d1feea7b19fbd1debcfd56113f0a72cec162e069de68bd4"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/c0_p2_browser.py",
+        "sha256": "sha256:42f87d5ad3664b8a214150b1621cdd3e458fdef7d39aa93a081bb44169b0d677"
+      }
+    ]
+  },
+  "implemented_behavior": {
+    "page_body_seeded_through_real_block_editor_interactions": true,
+    "structural_insertions_wait_for_authoritative_shape_and_durability": true,
+    "reference_shaped_checked_todo_present": true,
+    "reference_shaped_normal_todo_present": true,
+    "reference_shaped_indented_multiline_todo_present": true,
+    "shared_page_marker_converges_across_admin_and_user01": true,
+    "focus_capture_uses_prevent_scroll": true,
+    "reconnect_capture_uses_explicit_workspace_scroll": true,
+    "icon_page_title_spacing_and_sidebar_reference_color_applied": true
+  },
+  "diagnostic_evidence": {
+    "root": "code_assist_v1/.runtime/v0b-p1-page-body-diagnostic-20260828-retry24",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-page-body-diagnostic-20260828-retry24/receipt.json",
+    "receipt_sha256": "sha256:9bd100edf6f745e9fb3b82f5b4cd92d1fd3a83a2b2d6066cfee6d45511b21720",
+    "journey": "C0-P2",
+    "state_ids": [
+      "V0R-MU-007",
+      "V0R-MU-012",
+      "V0R-MU-013",
+      "V0R-MU-014"
+    ],
+    "capture_count": 8,
+    "accessibility_pass_count": 8,
+    "exact_pixel_pass_count": 0,
+    "journey_status": "pass",
+    "workspace_id": "ws_42416aee62644b9b8f02b9e8495ef74b",
+    "document_id": "p_042b6320ceef2d8b925327c643399ea8",
+    "test_page_moved_to_trash": true,
+    "synthetic_member_absent_after_cleanup": true,
+    "browser_closed": true,
+    "gate_passed": false
+  },
+  "pixel_comparison": [
+    {
+      "state_id": "V0R-MU-007",
+      "viewport": "1440x900",
+      "baseline_difference_count": 372439,
+      "current_difference_count": 233620,
+      "reduction_count": 138819,
+      "reduction_percent": 37.27,
+      "status": "improved_not_exact"
+    },
+    {
+      "state_id": "V0R-MU-007",
+      "viewport": "1280x800",
+      "baseline_difference_count": 326604,
+      "current_difference_count": 205919,
+      "reduction_count": 120685,
+      "reduction_percent": 36.95,
+      "status": "improved_not_exact"
+    },
+    {
+      "state_id": "V0R-MU-012",
+      "viewport": "1440x900",
+      "baseline_difference_count": 398731,
+      "current_difference_count": 121584,
+      "reduction_count": 277147,
+      "reduction_percent": 69.51,
+      "status": "improved_not_exact"
+    },
+    {
+      "state_id": "V0R-MU-012",
+      "viewport": "1280x800",
+      "baseline_difference_count": 353178,
+      "current_difference_count": 105543,
+      "reduction_count": 247635,
+      "reduction_percent": 70.12,
+      "status": "improved_not_exact"
+    },
+    {
+      "state_id": "V0R-MU-013",
+      "viewport": "1440x900",
+      "baseline_difference_count": 1151660,
+      "current_difference_count": 187569,
+      "reduction_count": 964091,
+      "reduction_percent": 83.71,
+      "status": "improved_not_exact"
+    },
+    {
+      "state_id": "V0R-MU-013",
+      "viewport": "1280x800",
+      "baseline_difference_count": 912157,
+      "current_difference_count": 185280,
+      "reduction_count": 726877,
+      "reduction_percent": 79.69,
+      "status": "improved_not_exact"
+    },
+    {
+      "state_id": "V0R-MU-014",
+      "viewport": "1440x900",
+      "baseline_difference_count": 378773,
+      "current_difference_count": 123038,
+      "reduction_count": 255735,
+      "reduction_percent": 67.52,
+      "status": "improved_not_exact"
+    },
+    {
+      "state_id": "V0R-MU-014",
+      "viewport": "1280x800",
+      "baseline_difference_count": 346918,
+      "current_difference_count": 122196,
+      "reduction_count": 224722,
+      "reduction_percent": 64.78,
+      "status": "improved_not_exact"
+    }
+  ],
+  "cleanup_audit": {
+    "audit_mode": "read_only_api_plus_read_only_sqlite_discovery",
+    "audited_recent_c0_workspace_count": 8,
+    "audited_root_count": 8,
+    "active_root_count": 0,
+    "recoverable_trash_root_count": 8,
+    "active_page_count": 0,
+    "recoverable_trash_item_count": 16,
+    "active_collaborator_workspace_membership_count": 0,
+    "audited_workspace_ids": [
+      "ws_42416aee62644b9b8f02b9e8495ef74b",
+      "ws_31e5fdf1a8914732b782e4d362c05ff2",
+      "ws_27016c934da54c43ad607c28bb507e31",
+      "ws_c6945517cd0d45559d0e4728564b293c",
+      "ws_fde14753731b4be7a0bfca78ffdf4cd6",
+      "ws_23a89718d8cd4644848a0d35d6384088",
+      "ws_97ff4d2821cd4bd785e1a1a73b7cf759",
+      "ws_71c323ea8e5042328be19d58e4298e6a"
+    ],
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "status": "complete"
+  },
+  "verification": {
+    "node_syntax_check": "pass",
+    "python_compile_check": "pass",
+    "targeted_regression": "20 passed, 2 skipped",
+    "targeted_regression_exit_code": 0,
+    "C0_P2_browser_journey": "pass",
+    "accessibility_matrix_slice": "8/8 pass",
+    "cleanup": "pass"
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "V0B_P1_page_body_structural_progress": true,
+    "C0_P2_journey_passed": true,
+    "C0_P2_accessibility_passed": true,
+    "C0_P2_cleanup_passed": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue bounded structural parity for the remaining collaborative editor and IAM states, then run a fresh complete 36-state V0B candidate, Core 25, accessibility, and quiet-host performance gate. Do not enter O1B until every V0B gate passes."
+}

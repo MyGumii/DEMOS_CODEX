@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b.central_target_policy_functional_reconstruction_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-CENTRAL-TARGET-POLICY-FUNCTIONAL-RECONSTRUCTION-20260908",
+  "recorded_at": "2026-09-08T23:58:20+09:00",
+  "status": "central_v4_target_evidence_functional_reconstruction_regression_green_external_execution_deferred",
+  "immutable_after_recording": true,
+  "packet_id": "O1B-P1",
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-central-target-policy-binding-aligned-20260908.json",
+    "sha256": "sha256:12dd75230c3d636f3c3c31d04e07f036d49f5fd892531e94a1312c787617a75d",
+    "record_sha256": "sha256:5a0168bf5321218e7c3b18f3c8cbb6a9c6d771218a0f58689da38b4fa2a1b741"
+  },
+  "bindings": {
+    "central_validation": {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:fb6862d8cf598a712c0f25415161fe0cc562a3ca3cac4042024a3bc60ca70043"
+    },
+    "target_policy": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v4.json",
+      "sha256": "sha256:f6ba450334eb337782f57e5c2e1d8a8956d43953f6e9cfd577901a9c3332896d"
+    },
+    "source_compatibility": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-source-compatibility-inheritance-v14-20260908.json",
+      "sha256": "sha256:31e4a8b2bc74400bd8a2df2eb6b0139c911a04c0f5397afc032a1be84a0a0f26",
+      "record_sha256": "sha256:1b1b93ba79521294dd850961fcabfd86a8c1730f2f3a8effba0ff15926d31c4f"
+    },
+    "s0a_contract": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json",
+      "sha256": "sha256:95e7287bd7a78686e5eee3c28efa1a3fe0c479c416a4544c6876eef4df2a870c"
+    },
+    "target_gate_test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_gate_runner.py",
+      "sha256": "sha256:583612a82f36a847e5f439045e49d215247887b12107ca7c2e13cb5931613a0a"
+    }
+  },
+  "functional_regression": {
+    "test_id": "test_central_receipt_validator_reconstructs_v4_bound_target_evidence",
+    "assertions": [
+      "the central validator requires the exact reviewed v4 target policy path",
+      "the generic receipt artifact hashes bind the current v4 policy bytes",
+      "the receipt release candidate and realm fingerprint bind the reviewed policy",
+      "the central validator invokes execution-required target verification before accepting evidence"
+    ],
+    "target_gate_file": {
+      "status": "pass",
+      "passed": 12,
+      "failed": 0,
+      "duration_seconds": 5.92
+    },
+    "target_restore_policy_and_gate_group": {
+      "status": "pass",
+      "passed": 82,
+      "failed": 0,
+      "duration_seconds": 25.43
+    }
+  },
+  "remaining_boundaries": [
+    "the functional test uses monkeypatched bound trust metadata and a non-mutating verifier result; it does not claim external execution evidence",
+    "fresh signed AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF remain required before target action",
+    "an encrypted off-host destination and actual target-host restore remain required for O1B-P1 gate credit",
+    "central catalogs and the current checkpoint pointer remain intentionally unchanged"
+  ],
+  "claims": {
+    "central_v4_target_evidence_path_functionally_exercised": true,
+    "external_target_evidence_created": false,
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "historical_evidence_overwritten": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:5229422eed6796e26a4bf37f2b169dae1cd059e1b200dad8d33b320d733a9962"
+}

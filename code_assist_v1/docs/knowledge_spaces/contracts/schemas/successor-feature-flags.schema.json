@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/contracts/successor-feature-flags.schema.json",
+  "title": "Second Brain successor feature flag dependency contract",
+  "type": "object",
+  "required": ["schema_version", "default_enabled", "flags"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "default_enabled": {"const": false},
+    "flags": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": {
+        "type": "object",
+        "required": ["name", "default", "prerequisites"],
+        "properties": {
+          "name": {"type": "string", "pattern": "^KNOWLEDGE_CORE_[A-Z0-9_]+$"},
+          "default": {"const": false},
+          "prerequisites": {"type": "array", "items": {"type": "string", "pattern": "^KNOWLEDGE_CORE_[A-Z0-9_]+$"}, "uniqueItems": true, "maxItems": 3}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

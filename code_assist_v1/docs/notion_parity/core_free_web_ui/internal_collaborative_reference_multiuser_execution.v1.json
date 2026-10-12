@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_reference_multiuser_execution.v0r_p1.v1",
+  "packet_id": "V0R-P1",
+  "recorded_at": "2026-08-25T11:05:25Z",
+  "status": "awaiting_owner_approval",
+  "purpose": "Fail-closed operator contract for synthetic external Notion multi-user reference capture. This manifest authorizes nothing by itself and contains no execution evidence.",
+  "source_bindings": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:455de38d4ac91deb9de7df0a92fd94dcbcd234dd50569f8148ce3b4f80672a43"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+      "sha256": "sha256:660f3a738d4835ecfe57be7fa9473da76129399de7095f508577ba297587dc77"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_product_decision.v1.json",
+      "sha256": "sha256:19b550449db5af3510f62be6b56f65372faeacdd9f10136aa382b73da84362a8"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0a-p1-exact-rgba-20260824.json",
+      "sha256": "sha256:198bdeb21fa25b1a5356af820ca7162f6011d18c1539ba9366afeabc46f357cd"
+    },
+    {
+      "path": "code_assist_v1/tools/notion_parity/exact_pixel.py",
+      "sha256": "sha256:4797cd46fe6aebc3b11c768ef58d29e62a175a8d07dba0f08e1928fedb3135c5"
+    }
+  ],
+  "approval": {
+    "id": "AP-REFERENCE-MULTIUSER",
+    "registry_status": "pending",
+    "required": true,
+    "exact_requested_text": "AP-REFERENCE-MULTIUSER 승인. REF-FREE-A/B에서 테스트 계정과 합성 페이지만 사용해 초대·공동 편집·권한 회수·화면 캡처를 수행하고, 생성 항목은 Trash로 정리해도 됨. 개인 콘텐츠·공개 게시·영구 삭제는 금지.",
+    "owner_receipt": null,
+    "external_mutation_authorized": false,
+    "approval_is_test_evidence": false
+  },
+  "scope": {
+    "workspace_aliases": [
+      "REF-FREE-A",
+      "REF-FREE-B"
+    ],
+    "identity_aliases": [
+      "REF-OWNER",
+      "REF-COLLABORATOR"
+    ],
+    "identity_requirements": {
+      "independent_authenticated_browser_sessions": 2,
+      "dedicated_test_accounts_only": true,
+      "raw_email_or_account_identifier_persisted": false,
+      "credentials_cookie_token_or_storage_persisted": false
+    },
+    "workspace_assignment": {
+      "REF-FREE-A": "workspace_member_invite_edit_and_revoke",
+      "REF-FREE-B": "page_share_role_transition_and_revoke"
+    },
+    "synthetic_only": true,
+    "existing_page_reuse_allowed": false,
+    "personal_workspace_access_allowed": false,
+    "personal_page_access_allowed": false,
+    "non_test_identity_invite_allowed": false,
+    "public_publish_or_public_link_allowed": false,
+    "message_or_notification_outside_test_identities_allowed": false,
+    "permanent_delete_allowed": false,
+    "production_or_second_brain_mutation_allowed": false
+  },
+  "capture_environment": {
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "width": 1280,
+        "height": 800
+      }
+    ],
+    "device_scale_factor": 1,
+    "zoom": 1,
+    "locale": "ko-KR",
+    "timezone_id": "Asia/Seoul",
+    "color_scheme": "light",
+    "reduced_motion": "reduce",
+    "animations_disabled": true,
+    "caret_hidden_for_capture": true,
+    "font_manifest_required": true,
+    "chrome_major_version_required": true,
+    "reference_build_identifier_required": true,
+    "one_environment_receipt_per_screenshot": true
+  },
+  "synthetic_fixtures": [
+    {
+      "alias": "V0R-A-ROOT",
+      "workspace": "REF-FREE-A",
+      "owner": "REF-OWNER",
+      "kind": "synthetic_page_tree_with_text_blocks_database_and_comment_thread",
+      "cleanup": "revoke_workspace_access_then_move_root_subtree_to_trash"
+    },
+    {
+      "alias": "V0R-B-ROOT",
+      "workspace": "REF-FREE-B",
+      "owner": "REF-OWNER",
+      "kind": "synthetic_page_tree_for_page_role_transitions",
+      "cleanup": "revoke_page_access_then_move_root_subtree_to_trash"
+    }
+  ],
+  "operator_actions": [
+    {
+      "order": 1,
+      "id": "V0R-PREFLIGHT",
+      "workspace": null,
+      "actor": "REF-OWNER",
+      "mutation_class": "read_only",
+      "required_result": "two_exact_workspace_aliases_and_two_independent_test_identities_confirmed"
+    },
+    {
+      "order": 2,
+      "id": "V0R-CREATE-A",
+      "workspace": "REF-FREE-A",
+      "actor": "REF-OWNER",
+      "mutation_class": "synthetic_mutation",
+      "required_result": "V0R-A-ROOT_created"
+    },
+    {
+      "order": 3,
+      "id": "V0R-CREATE-B",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "synthetic_mutation",
+      "required_result": "V0R-B-ROOT_created"
+    },
+    {
+      "order": 4,
+      "id": "V0R-WORKSPACE-INVITE",
+      "workspace": "REF-FREE-A",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_membership_mutation",
+      "required_result": "REF-COLLABORATOR_active_workspace_member"
+    },
+    {
+      "order": 5,
+      "id": "V0R-PAGE-SHARE",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_page_grant_mutation",
+      "required_result": "REF-COLLABORATOR_page_edit_access"
+    },
+    {
+      "order": 6,
+      "id": "V0R-MULTIUSER-CAPTURE",
+      "workspace": "REF-FREE-A",
+      "actor": "REF-OWNER+REF-COLLABORATOR",
+      "mutation_class": "synthetic_mutation_and_capture",
+      "required_result": "workspace_presence_edit_comment_mention_reconnect_states_captured"
+    },
+    {
+      "order": 7,
+      "id": "V0R-PAGE-ROLE-COMMENT",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_page_grant_mutation",
+      "required_result": "REF-COLLABORATOR_comment_access_captured"
+    },
+    {
+      "order": 8,
+      "id": "V0R-PAGE-ROLE-VIEW",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_page_grant_mutation",
+      "required_result": "REF-COLLABORATOR_view_access_captured"
+    },
+    {
+      "order": 9,
+      "id": "V0R-PAGE-REVOKE",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_page_grant_mutation",
+      "required_result": "REF-COLLABORATOR_page_access_revoked_and_non_disclosure_captured"
+    },
+    {
+      "order": 10,
+      "id": "V0R-WORKSPACE-REVOKE",
+      "workspace": "REF-FREE-A",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_membership_mutation",
+      "required_result": "REF-COLLABORATOR_workspace_access_revoked_and_non_disclosure_captured"
+    },
+    {
+      "order": 11,
+      "id": "V0R-CLEANUP",
+      "workspace": "REF-FREE-A+REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "recoverable_cleanup",
+      "required_result": "both_exact_synthetic_root_subtrees_in_trash_and_no_test_grants_active"
+    }
+  ],
+  "capture_states": [
+    {"id": "V0R-MU-001", "workspace": "REF-FREE-A", "actor": "REF-OWNER", "surface": "workspace_share_dialog", "state": "invite_ready_no_raw_identifier_visible"},
+    {"id": "V0R-MU-002", "workspace": "REF-FREE-A", "actor": "REF-OWNER", "surface": "workspace_member_list", "state": "collaborator_active"},
+    {"id": "V0R-MU-003", "workspace": "REF-FREE-A", "actor": "REF-COLLABORATOR", "surface": "workspace_shell", "state": "shared_workspace_visible"},
+    {"id": "V0R-MU-004", "workspace": "REF-FREE-B", "actor": "REF-OWNER", "surface": "page_share_dialog", "state": "edit_access_active"},
+    {"id": "V0R-MU-005", "workspace": "REF-FREE-B", "actor": "REF-COLLABORATOR", "surface": "page_canvas", "state": "page_edit_access_visible"},
+    {"id": "V0R-MU-006", "workspace": "REF-FREE-A", "actor": "REF-COLLABORATOR", "surface": "page_share_dialog", "state": "inherited_workspace_access_explained"},
+    {"id": "V0R-MU-007", "workspace": "REF-FREE-A", "actor": "REF-OWNER", "surface": "page_header", "state": "two_principal_presence_visible"},
+    {"id": "V0R-MU-008", "workspace": "REF-FREE-A", "actor": "REF-OWNER", "surface": "editor", "state": "remote_cursor_and_selection_visible"},
+    {"id": "V0R-MU-009", "workspace": "REF-FREE-A", "actor": "REF-OWNER+REF-COLLABORATOR", "surface": "editor", "state": "simultaneous_text_edit_converged"},
+    {"id": "V0R-MU-010", "workspace": "REF-FREE-A", "actor": "REF-OWNER+REF-COLLABORATOR", "surface": "editor", "state": "simultaneous_block_edit_converged"},
+    {"id": "V0R-MU-011", "workspace": "REF-FREE-A", "actor": "REF-OWNER+REF-COLLABORATOR", "surface": "database", "state": "simultaneous_database_edit_converged"},
+    {"id": "V0R-MU-012", "workspace": "REF-FREE-A", "actor": "REF-OWNER+REF-COLLABORATOR", "surface": "comment_thread", "state": "comment_reply_and_reaction_visible"},
+    {"id": "V0R-MU-013", "workspace": "REF-FREE-A", "actor": "REF-COLLABORATOR", "surface": "inbox", "state": "synthetic_mention_notification_visible"},
+    {"id": "V0R-MU-014", "workspace": "REF-FREE-A", "actor": "REF-COLLABORATOR", "surface": "page_canvas", "state": "reconnect_catch_up_complete"},
+    {"id": "V0R-MU-015", "workspace": "REF-FREE-B", "actor": "REF-COLLABORATOR", "surface": "page_canvas", "state": "comment_only_access_visible"},
+    {"id": "V0R-MU-016", "workspace": "REF-FREE-B", "actor": "REF-COLLABORATOR", "surface": "page_canvas", "state": "view_only_access_visible"},
+    {"id": "V0R-MU-017", "workspace": "REF-FREE-B", "actor": "REF-COLLABORATOR", "surface": "access_boundary", "state": "page_access_revoked_non_oracle"},
+    {"id": "V0R-MU-018", "workspace": "REF-FREE-A", "actor": "REF-COLLABORATOR", "surface": "access_boundary", "state": "workspace_access_revoked_non_oracle"}
+  ],
+  "capture_contract": {
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "expected_screenshot_count": 36,
+    "one_png_per_state_and_viewport": true,
+    "raw_dom_network_cookie_token_or_storage_capture_allowed": false,
+    "raw_email_or_non_alias_label_persistence_allowed": false,
+    "required_per_capture_fields": [
+      "state_id",
+      "workspace_alias",
+      "actor_alias",
+      "viewport",
+      "environment_sha256",
+      "screenshot_sha256",
+      "reference_build_identifier",
+      "focus",
+      "accessible_name_role_state",
+      "interaction_outcome",
+      "captured_at"
+    ],
+    "required_run_artifacts": [
+      "owner_approval_receipt",
+      "reference_action_log",
+      "capture_environment_receipts",
+      "screenshot_hash_manifest",
+      "reference_cleanup_receipt"
+    ],
+    "screenshot_binary_directory": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots",
+    "receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json"
+  },
+  "cleanup_contract": {
+    "runs_after_success_or_failure": true,
+    "order": [
+      "revoke_V0R-B-ROOT_page_grant",
+      "revoke_REF-COLLABORATOR_from_REF-FREE-A",
+      "move_V0R-A-ROOT_to_trash",
+      "move_V0R-B-ROOT_to_trash",
+      "confirm_zero_active_test_grants_and_zero_active_fixture_roots"
+    ],
+    "mode": "trash_only_recoverable",
+    "permanent_delete_allowed": false,
+    "cleanup_receipt_required": true,
+    "cleanup_failure_blocks_packet": true
+  },
+  "stop_conditions": [
+    "owner_approval_receipt_missing_or_scope_mismatch",
+    "workspace_alias_not_exactly_REF-FREE-A_or_REF-FREE-B",
+    "personal_or_non_synthetic_content_visible_in_active_capture_path",
+    "identity_is_not_one_of_the_two_dedicated_test_accounts",
+    "browser_control_or_identity_certainty_lost",
+    "capture_environment_drift",
+    "raw_private_identifier_would_be_persisted",
+    "public_publish_permanent_delete_or_non_test_message_path_reached"
+  ],
+  "claims": {
+    "execution_contract_prepared": true,
+    "owner_approval_received": false,
+    "external_reference_mutation_executed": false,
+    "reference_screenshots_captured": false,
+    "cleanup_executed": false,
+    "V0R_P1_gate_passed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "production_changed": false,
+    "second_brain_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

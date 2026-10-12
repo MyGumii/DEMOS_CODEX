@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.r0_r1_z0.release_freeze_readiness_checkpoint.v2",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-R0-R1-Z0-RELEASE-FREEZE-READINESS-V2-20260907",
+  "recorded_at": "2026-09-07T03:54:00Z",
+  "packet_ids": [
+    "R0A-P1",
+    "R0B-P1",
+    "R1-P1",
+    "Z0-P1"
+  ],
+  "status": "local_release_freeze_and_l9_verifier_ready_external_gates_pending",
+  "supersedes_local_readiness": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-r0-r1-z0-local-promotion-readiness-20260907.json",
+    "sha256": "sha256:fdf7c5507d3f59e78b1e9d42d0e9ce996dc1b88e956ab27ff210d82e7503066b",
+    "reason": "Adds the missing deterministic release-candidate freeze and requires the L9 promotion verifier to freshly rederive the bound release. The earlier checkpoint remains immutable historical evidence."
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    },
+    "prior_q0_local_readiness": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-p1-local-readiness-20260907.json",
+      "sha256": "sha256:b6b3798acad616ea96545c277fa1cab84d72c915d40d12bb06e583be8ee51bb5"
+    },
+    "o1b_target_infrastructure_blocker": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-p1-target-infrastructure-blocked-20260907.json",
+      "sha256": "sha256:c393e455414f524262ad83be7dd26248b65ce30fff4ecfa4b84d7cd5b3e61edf"
+    }
+  },
+  "implementation": {
+    "files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/release_candidate.py",
+        "sha256": "sha256:536d140064270134115d56112536e83371f71885cd3b21d61357eba2e638738d",
+        "role": "Deterministic product/dependency/schema/protocol/frontend/validation inventory, release derivation, create-only writer, and drift verifier."
+      },
+      {
+        "path": "code_assist_v1/tools/freeze_internal_collaborative_release.py",
+        "sha256": "sha256:f00a87bac6c8a2f9f0e82e190d9a1c61fa65dfc114d8d8ae33a6779a3b116de4",
+        "role": "Repository-contained create-only release freeze and read-only verification CLI."
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/test_release_candidate.py",
+        "sha256": "sha256:f250601d2ac3468edbec77a50251e2c255bfab50b278fcf4fafefe04db67e532",
+        "role": "Release determinism, validation separation, drift, create-only, scope, default-policy, and CLI regression coverage."
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/realm_promotion.py",
+        "sha256": "sha256:62e0b32e0be90c2dd2ccf6c092949b31d582baef060aff35c14c49ef9f795cfe",
+        "role": "L9 promotion verifier with fresh bound release-manifest rederivation."
+      },
+      {
+        "path": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+        "sha256": "sha256:244586e8a308ce31b415b58c5a13c02503a62337c841542c1c82df4f68ad983c",
+        "role": "Fail-closed gate dispatch and create-only aggregate L9 receipt."
+      },
+      {
+        "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+        "sha256": "sha256:dd365f46dda56050ac0606eee60fc91a836d1459ba9da0ee06433ce8cf8d0205",
+        "role": "Same-authority multi-packet historical checkpoint receipt verification."
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/test_realm_promotion.py",
+        "sha256": "sha256:f8aa61d70fccca14a00e42545b258a25d47fb9573b5de9aeb18b24616cde510f",
+        "role": "Promotion, operator approval/handoff, release rederivation, path, identity, canary, and aggregate receipt coverage."
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+        "sha256": "sha256:033b00f1325193cd03ae08c82c57de1bc0fa6ba02543aded9767d5ece6f63754",
+        "role": "Current 44/21/15 central completion-counter expectation and legacy receipt regression source."
+      }
+    ],
+    "release_canonical_inputs": [
+      "source_manifest_without_runtime_evidence",
+      "dependency_lock_hashes",
+      "database_schema_version_and_migration_hashes",
+      "collaboration_protocol_version",
+      "frontend_build_manifest_hash"
+    ],
+    "validation_binding_is_separate_from_release_candidate_id": true,
+    "default_inventory_policy": {
+      "policy_id": "internal-collaboration-r0-release-inventory-v1",
+      "product_source_files": 341,
+      "dependency_lock_files": 3,
+      "database_schema_and_migration_files": 54,
+      "collaboration_protocol_files": 7,
+      "frontend_build_files": 13,
+      "validation_source_files": 119,
+      "runtime_evidence_included": false,
+      "tests_or_tools_in_product_source": false
+    },
+    "diagnostic_current_tree_derivation": {
+      "release_candidate_id": "sha256:98e49f0fdd3a11726e99184bd4bb4038182805b6d87aeda1a3179b7ed141df5e",
+      "artifact_manifest_sha256": "sha256:3b8bade60849f2bc4019967d5d7bfec0bf183d31b08c90aee521d1939824d21d",
+      "derivation_proof_sha256": "sha256:177678f0205a871ae71f71d5d2c8afb2e4aed541c6cee05b4d0faa1fe124970e",
+      "status": "diagnostic_only_not_frozen_not_gate_evidence",
+      "deployment_generation_id": "readiness-audit-0001"
+    },
+    "safety_properties": {
+      "manifest_create_only": true,
+      "artifact_archive_created": false,
+      "service_or_listener_started": false,
+      "runtime_or_production_root_accessed": false,
+      "deployment_or_canary_authorized": false,
+      "absolute_or_escaping_output_path_allowed": false,
+      "post_freeze_product_or_validation_drift_accepted": false,
+      "promotion_accepts_unverified_release_hash": false
+    }
+  },
+  "validation": {
+    "focused_release_promotion_and_legacy_receipt_regression": {
+      "command_shape": "pytest release candidate, realm promotion, generic receipt schema, V0 wrapper, cross-rung receipt, and argv-without-shell selections",
+      "passed": 57,
+      "failed": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 17.58
+    },
+    "python_compile": {
+      "files": [
+        "code_assist_v1/notion_collaboration/release_candidate.py",
+        "code_assist_v1/notion_collaboration/realm_promotion.py",
+        "code_assist_v1/tools/freeze_internal_collaborative_release.py",
+        "code_assist_v1/tools/internal_collaborative_validation.py",
+        "code_assist_v1/tools/run_internal_collaborative_validation.py",
+        "code_assist_v1/tests/notion_collaboration/test_release_candidate.py",
+        "code_assist_v1/tests/notion_collaboration/test_realm_promotion.py"
+      ],
+      "result": "pass"
+    }
+  },
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1",
+    "o1b_gate_passed": false,
+    "q0_gate_passed": false,
+    "r0_gate_passed": false,
+    "r1_gate_passed": false,
+    "z0_gate_passed": false,
+    "catalog_ladder_matrix_or_pointer_modified": false
+  },
+  "remaining_gate_requirements": [
+    "Obtain and execute O1B target infrastructure and the sealed target restore drill.",
+    "Execute Q0 on target_windows_load at the frozen scale and write a target-eligible immutable report.",
+    "After the target and SBE ownership gates pass, create the actual release manifest once with the final deployment_generation_id; the diagnostic derivation in this checkpoint is not that freeze.",
+    "Obtain exact AP-PROD-REHEARSAL, AP-PROD-DEPLOY, and AP-PROD-CANARY only at their action boundaries.",
+    "Run and seal the offline rehearsal, default-off install at 10012, and exactly two-collaborator plus one-outsider canary without rebuilding the frozen release.",
+    "Run L9 full Python, all six Node lanes, L9 realm promotion, and strict Z0 completion with no skips, xfails, open decisions, unresolved retry, or stale authority binding."
+  ],
+  "claims": {
+    "external_system_mutated": false,
+    "target_or_production_service_started": false,
+    "offline_production_copy_read_or_written": false,
+    "real_user_content_read_or_written": false,
+    "operator_approval_consumed": false,
+    "actual_release_manifest_created": false,
+    "local_release_freezer_ready": true,
+    "local_l9_verifier_ready": true,
+    "o1b_gate_passed": false,
+    "q0_gate_passed": false,
+    "r0_gate_passed": false,
+    "r1_gate_passed": false,
+    "z0_gate_passed": false,
+    "sbe_hot_contract_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1170-PROGRESS-ROTATION-20260905",
+  "recorded_at": "2026-09-05T10:24:17.9409756+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1167-progress-20260905.json",
+    "sha256": "sha256:89a01b7ab34279cffc69a49f2de598a6dc1df19e48f2b929ce1231661bf21075"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1170-presence-freeze-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1170-presence-freeze-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:3f5589eb5b0167f0fe4ba57f715cae5d416c29e0ca41430f54bf854562156472",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:f7cc821836a96417f945f352f77c3033d3056e1b20e054c4d37d5498d84f0e7e",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 793607,
+    "masked_difference_count": 0,
+    "total_difference_count": 793607,
+    "overall_exact_progress": "0/36"
+  },
+  "realm_rotation": {
+    "preserved_previous_realm": {
+      "path": ".dev/notion-collaboration-10111-10113-clean-r1144-20260905",
+      "final_audit": {
+        "workspace_count": 50,
+        "reference_workspace_count": 48,
+        "active_membership_count": 50,
+        "active_page_binding_count": 48,
+        "active_external_membership_count": 0,
+        "active_guest_count": 0
+      },
+      "owned_processes_stopped": true,
+      "ports_closed_before_replacement_start": true,
+      "filesystem_preserved": true
+    },
+    "replacement_realm": {
+      "path": ".dev/notion-collaboration-10111-10113-clean-r1168-20260905",
+      "manager_session_id": 96283,
+      "manager_pid": 35572,
+      "launch_id": "98b2e8d12daa404bb9522717dc985587",
+      "root_id": "e8fd6b70-e86e-48c4-839d-e3ebf6529975",
+      "processes": {
+        "agent_10111": 46916,
+        "notion_10112": 42580,
+        "gateway_10113": 16620,
+        "compactor": 2816
+      },
+      "gateway_state": "READY",
+      "ready_for_admission": true,
+      "ready_for_realtime": true,
+      "ready_for_compaction": true,
+      "schema_compatibility": "compatible",
+      "restart_required": false,
+      "initial_audit": {
+        "workspace_count": 0,
+        "reference_workspace_count": 0,
+        "active_membership_count": 0,
+        "active_page_binding_count": 0,
+        "active_external_membership_count": 0,
+        "active_guest_count": 0
+      },
+      "current_audit": {
+        "workspace_count": 8,
+        "reference_workspace_count": 6,
+        "active_membership_count": 8,
+        "active_page_binding_count": 6,
+        "active_external_membership_count": 0,
+        "active_guest_count": 0
+      },
+      "rotation_threshold": 64
+    }
+  },
+  "determinism_evidence": {
+    "first_replay": {
+      "run_id": "v0b-p1-i0-r1168-fresh-realm-replay-standard",
+      "unmasked_difference_count": 795851,
+      "runtime_variants": [
+        "V0R-MU-003 1440x900: 1743 transient pixels; disappeared on identical replay.",
+        "V0R-MU-005 1280x800: 501 presence-avatar pixels; account-default redraw occurred after the previous final assertion."
+      ]
+    },
+    "second_replay": {
+      "run_id": "v0b-p1-i0-r1169-fresh-realm-replay-repeat",
+      "unmasked_difference_count": 794108,
+      "remaining_runtime_variant": "V0R-MU-005 1280x800 presence avatar only"
+    },
+    "fix": "Include V0R-MU-005 in the existing final presence MutationObserver so the measured k/I avatars remain fixed through screenshot time.",
+    "post_fix_replay": {
+      "run_id": "v0b-p1-i0-r1170-presence-freeze-standard",
+      "unmasked_difference_count": 793607,
+      "delta_from_pre_rotation_stable": 0,
+      "source_attributable_regression_count": 0
+    }
+  },
+  "verification": {
+    "python_compile": "pass",
+    "cleanup": {
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless I0 exact residual reduction from stable r1170 in the fresh r1168 realm. Do not run final Core 25, performance, product, or SBE gates before exact 36/36."
+}

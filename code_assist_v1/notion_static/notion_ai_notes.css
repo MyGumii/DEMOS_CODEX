@@ -1,0 +1,61 @@
+.ai-notes { border: 1px solid var(--border, #e9e9e7); border-radius: 8px; margin: 8px 0; padding: 16px 20px; width: 100%; box-sizing: border-box; background: var(--bg, #fff); color: var(--text, #37352f); font-size: 14px; }
+.ai-notes-translation-controls > label { display: block; margin: 10px 0; font-size: 12px; }
+.ai-notes-translation-controls input[type="text"], .ai-notes-translation-controls select { display: block; box-sizing: border-box; max-width: 100%; margin-top: 5px; padding: 6px 8px; border: 1px solid var(--border, #e9e9e7); border-radius: 4px; background: var(--bg, #fff); color: inherit; font: inherit; }
+.ai-notes-translation-text { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; line-height: 1.7; min-height: 70px; }
+.ai-notes-interpret-pair { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; margin: 10px 0; font-size: 12px; }
+.ai-notes-interpret-pair > span { align-self: center; padding-top: 16px; }
+.ai-notes [data-ai-translation-status] { font-size: 12px; color: #695a76; }
+.ai-notes header { display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+.ai-notes-symbol { font-size: 23px; color: #8b62b2; }
+.ai-notes-badge { color: #787774; font-size: 12px; margin-left: auto; }
+.ai-notes-tabs { display: flex; gap: 18px; border-bottom: 1px solid #e9e9e7; margin-bottom: 14px; }
+.ai-notes button { font: inherit; cursor: pointer; }
+.ai-notes-tabs button { border: 0; border-bottom: 2px solid transparent; padding: 7px 2px; background: transparent; color: #787774; }
+.ai-notes-tabs button[aria-selected="true"] { color: #37352f; border-bottom-color: #37352f; }
+.ai-notes textarea { display: block; box-sizing: border-box; width: 100%; min-height: 170px; resize: vertical; border: 1px solid #e9e9e7; border-radius: 4px; padding: 12px; font: inherit; line-height: 1.65; background: transparent; color: inherit; }
+.ai-notes textarea[readonly] { border-color: transparent; }
+.ai-notes [data-ai-field="instructions"] { min-height: 70px; }
+.ai-notes [hidden] { display: none !important; }
+.ai-notes-summary { white-space: pre-wrap; line-height: 1.7; overflow-wrap: anywhere; }
+.ai-notes h4 { font-size: 14px; margin: 18px 0 8px; }
+.ai-notes ul { list-style: none; padding: 0; }
+.ai-notes li { display: flex; align-items: start; gap: 8px; margin: 8px 0; line-height: 1.6; }
+.ai-notes li > span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.ai-notes li small { display: block; color: #787774; }
+.ai-notes li input { margin-top: 4px; }
+.ai-notes-source { border: 0; border-radius: 4px; background: #f5f5f4; color: #787774; font-size: 11px !important; padding: 2px 6px; flex-shrink: 0; }
+.ai-notes-muted, .ai-notes-empty p { color: #787774; font-size: 12px; line-height: 1.6; }
+.ai-notes-stale { color: #9b6700; font-size: 12px; }
+.ai-notes-empty { padding: 22px 0; }
+.ai-notes-options { border-top: 1px solid #e9e9e7; margin-top: 14px; padding-top: 12px; }
+.ai-notes-options summary { cursor: pointer; color: #787774; font-size: 12px; }
+.ai-notes-options label { display: block; margin-top: 12px; font-size: 12px; }
+.ai-notes-options select { display: block; max-width: 100%; padding: 5px 8px; margin-top: 5px; border: 1px solid #e9e9e7; border-radius: 4px; background: transparent; color: inherit; }
+.ai-notes-options input[type="text"] { display: block; width: 100%; box-sizing: border-box; padding: 7px 9px; margin-top: 5px; border: 1px solid #e9e9e7; border-radius: 4px; background: transparent; color: inherit; font: inherit; }
+.ai-notes footer { display: flex; align-items: center; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+.ai-notes-generate { background: #f4eff9; color: #694496; border: 1px solid #e2d7ed; border-radius: 5px; padding: 7px 12px; }
+.ai-notes-generate:disabled { opacity: .6; cursor: default; }
+.ai-notes [data-ai-status] { flex: 1; font-size: 12px; color: #787774; }
+.ai-notes-import { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; font-size: 12px; margin: 10px 0; }
+.ai-notes-import input { max-width: 100%; font: inherit; }
+.ai-notes :focus-visible { outline: 2px solid #9d7fbc; outline-offset: 2px; }
+@media (max-width: 650px) { .ai-notes { padding: 12px; } }
+.ai-notes-audio { padding: 10px 12px; margin: 0 0 14px; background: #faf9fb; border: 1px solid #eee9f3; border-radius: 5px; }
+.ai-notes-consent { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #6b626f; margin: 6px 0; }
+.ai-notes-audio-buttons { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0; }
+.ai-notes-audio-buttons button { border: 1px solid #e2d7ed; border-radius: 4px; background: #fff; color: #694496; padding: 6px 10px; font-size: 12px; }
+.ai-notes-audio-buttons button:disabled { opacity: .5; cursor: default; }
+.ai-notes [data-ai-stop] { color: #b3261e; border-color: #e6c6c3; }
+.ai-notes [data-ai-audio-status] { color: #695a76; font-size: 12px; line-height: 1.5; }
+.ai-notes-export { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; margin: 0 0 16px; padding: 10px 0; border-top: 1px solid var(--border, #e9e9e7); border-bottom: 1px solid var(--border, #e9e9e7); font-size: 12px; }
+.ai-notes-export label { display: flex; align-items: center; gap: 6px; max-width: 100%; color: var(--soft, #787774); }
+.ai-notes-export select { min-width: 0; max-width: 100%; border: 1px solid var(--border, #e9e9e7); border-radius: 4px; padding: 5px 7px; background: var(--bg, #fff); color: var(--text, #37352f); font: inherit; }
+.ai-notes-export button { padding: 6px 12px; border: 1px solid #e2d7ed; border-radius: 4px; background: #f4eff9; color: #694496; }
+.ai-notes-export button:disabled { opacity: .5; cursor: default; }
+.ai-notes-export small { flex-basis: 100%; color: var(--soft, #787774); font-size: 11px; line-height: 1.5; }
+@media print { .ai-notes-export { display: none; } }
+.ai-notes-panel-actions { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+.ai-notes-clear { padding: 6px 10px; border: 1px solid #e6cfcc; border-radius: 4px; background: transparent; color: #a3473e; font-size: 12px !important; }
+.ai-notes-clear:hover:not(:disabled) { background: #fdf3f2; }
+.ai-notes-clear:disabled { opacity: .45; cursor: default; }
+@media print { .ai-notes-panel-actions, .ai-notes-clear, [data-ai-clear-hint] { display: none; } }

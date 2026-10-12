@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/schemas/internal-collaborative-backup-adr.v1.schema.json",
+  "title": "Internal collaborative coordinated backup ADR v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract",
+    "adr_id",
+    "recorded_at",
+    "status",
+    "packet_id",
+    "authority_inputs",
+    "current_state",
+    "authority_boundary",
+    "component_inventory",
+    "coordinated_generation_manifest_contract",
+    "write_barrier_contract",
+    "restore_contract",
+    "event_snapshot_compaction_contract",
+    "recovery_decision_boundary",
+    "validation_contract",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "contract": {"const": "code_assist.notion.internal_collaborative_backup_adr.v1"},
+    "adr_id": {"const": "O0A-P1-COORDINATED-BACKUP-ADR-001"},
+    "recorded_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T"},
+    "status": {"const": "accepted_design_contract_current_runtime_unchanged"},
+    "packet_id": {"const": "O0A-P1"},
+    "authority_inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agents_md", "planning_documents", "sbe_instruction_manifest", "p7_4_implementation_documents", "current_schema_lineage_sha256", "sbe_contract_audit"],
+      "properties": {
+        "agents_md": {"$ref": "#/$defs/hashRef"},
+        "planning_documents": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/hashRef"}},
+        "sbe_instruction_manifest": {"type": "array", "minItems": 18, "maxItems": 18, "items": {"$ref": "#/$defs/pathHashTuple"}},
+        "p7_4_implementation_documents": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/hashRef"}},
+        "current_schema_lineage_sha256": {"$ref": "#/$defs/sha256"},
+        "sbe_contract_audit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "input_sha256", "goal_count", "mandatory_scenario_count", "error_count"],
+          "properties": {
+            "status": {"const": "pass"},
+            "input_sha256": {"$ref": "#/$defs/sha256"},
+            "goal_count": {"const": 20},
+            "mandatory_scenario_count": {"const": 284},
+            "error_count": {"const": 0}
+          }
+        }
+      }
+    },
+    "current_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["p7_4_baseline", "sbe_successor_ownership", "collaborative_backup_runtime_implemented", "backup_or_restore_executed_by_this_adr", "live_root_or_database_accessed"],
+      "properties": {
+        "p7_4_baseline": {"type": "object"},
+        "sbe_successor_ownership": {"type": "object"},
+        "collaborative_backup_runtime_implemented": {"const": false},
+        "backup_or_restore_executed_by_this_adr": {"const": false},
+        "live_root_or_database_accessed": {"const": false}
+      }
+    },
+    "authority_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["notion_authority", "second_brain_authority", "identity_authority", "notion_and_sbe_database_authorities_separate", "notion_and_sbe_schema_lineages_separate", "cross_database_atomic_transaction_claimed", "coordinator_role", "generation_publication_rule", "projection_as_sole_truth_allowed", "identity_snapshot_includes_password_hashes_and_stable_subject_ids", "identity_snapshot_includes_live_sessions_tokens_or_secret_material"],
+      "properties": {
+        "notion_authority": {"type": "string", "minLength": 1},
+        "second_brain_authority": {"type": "string", "minLength": 1},
+        "identity_authority": {"type": "string", "minLength": 1},
+        "notion_and_sbe_database_authorities_separate": {"const": true},
+        "notion_and_sbe_schema_lineages_separate": {"const": true},
+        "cross_database_atomic_transaction_claimed": {"const": false},
+        "coordinator_role": {"type": "string", "minLength": 1},
+        "generation_publication_rule": {"type": "string", "minLength": 1},
+        "projection_as_sole_truth_allowed": {"const": false},
+        "identity_snapshot_includes_password_hashes_and_stable_subject_ids": {"const": true},
+        "identity_snapshot_includes_live_sessions_tokens_or_secret_material": {"const": false}
+      }
+    },
+    "component_inventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mandatory_non_rebuildable", "rebuildable", "never_restore", "classification_rule"],
+      "properties": {
+        "mandatory_non_rebuildable": {"type": "array", "minItems": 11, "maxItems": 11, "items": {"$ref": "#/$defs/mandatoryComponent"}},
+        "rebuildable": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"$ref": "#/$defs/rebuildableComponent"}},
+        "never_restore": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"$ref": "#/$defs/neverRestoreComponent"}},
+        "classification_rule": {"type": "string", "minLength": 1}
+      }
+    },
+    "coordinated_generation_manifest_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format_id", "manifest_is_self_hashed", "allowed_states", "required_authority_records", "required_top_level_fields", "required_authority_record_fields", "required_high_water_fields", "required_component_record_fields", "unavailable_high_water_rule", "secret_material_allowed", "each_authority_snapshot_independently_verified", "cross_database_transaction_claimed", "verified_requires_all_mandatory_components", "incomplete_generation_is_restorable", "publication_boundary_semantics"],
+      "properties": {
+        "format_id": {"const": "internal-collaborative-coordinated-generation-v1"},
+        "manifest_is_self_hashed": {"const": true},
+        "allowed_states": {"$ref": "#/$defs/stringList"},
+        "required_authority_records": {"$ref": "#/$defs/stringList"},
+        "required_top_level_fields": {"$ref": "#/$defs/stringList"},
+        "required_authority_record_fields": {"$ref": "#/$defs/stringList"},
+        "required_high_water_fields": {"$ref": "#/$defs/stringList"},
+        "required_component_record_fields": {"$ref": "#/$defs/stringList"},
+        "unavailable_high_water_rule": {"type": "string", "minLength": 1},
+        "secret_material_allowed": {"const": false},
+        "each_authority_snapshot_independently_verified": {"const": true},
+        "cross_database_transaction_claimed": {"const": false},
+        "verified_requires_all_mandatory_components": {"const": true},
+        "incomplete_generation_is_restorable": {"const": false},
+        "publication_boundary_semantics": {"type": "string", "minLength": 1}
+      }
+    },
+    "write_barrier_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ordered_states", "new_mutation_admission_during_barrier", "drain_timeout_source", "timeout_action", "writer_or_copy_failure_action", "authority_unavailable_action", "blob_gc_during_generation", "partial_generation_reuse", "write_crossing_boundary_allowed", "false_completion_allowed"],
+      "properties": {
+        "ordered_states": {"type": "array", "minItems": 10, "maxItems": 10, "items": {"type": "string", "minLength": 1}},
+        "new_mutation_admission_during_barrier": {"type": "string", "minLength": 1},
+        "drain_timeout_source": {"const": "pending_G0_U_recovery_decision"},
+        "timeout_action": {"type": "string", "minLength": 1},
+        "writer_or_copy_failure_action": {"type": "string", "minLength": 1},
+        "authority_unavailable_action": {"type": "string", "minLength": 1},
+        "blob_gc_during_generation": {"type": "string", "minLength": 1},
+        "partial_generation_reuse": {"type": "string", "minLength": 1},
+        "write_crossing_boundary_allowed": {"const": false},
+        "false_completion_allowed": {"const": false}
+      }
+    },
+    "restore_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "existing_or_live_root_overwrite_allowed", "outbound_integrations_enabled_during_restore", "mutation_traffic_enabled_during_restore", "ordered_steps", "required_integrity_checks", "session_policy", "copied_session_registry_may_revive_sessions", "traffic_activation_requires_separate_approval_and_later_gate", "restore_failure_claims_success"],
+      "properties": {
+        "target": {"const": "new_empty_runner_owned_root_only"},
+        "existing_or_live_root_overwrite_allowed": {"const": false},
+        "outbound_integrations_enabled_during_restore": {"const": false},
+        "mutation_traffic_enabled_during_restore": {"const": false},
+        "ordered_steps": {"type": "array", "minItems": 10, "maxItems": 10, "items": {"type": "string", "minLength": 1}},
+        "required_integrity_checks": {"type": "array", "minItems": 10, "maxItems": 10, "items": {"type": "string", "minLength": 1}},
+        "session_policy": {"const": "rotate_session_signing_secret_and_force_reauthentication"},
+        "copied_session_registry_may_revive_sessions": {"const": false},
+        "traffic_activation_requires_separate_approval_and_later_gate": {"const": true},
+        "restore_failure_claims_success": {"const": false}
+      }
+    },
+    "event_snapshot_compaction_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_deletion_allowed_only_after", "event_high_water_monotonic_no_reuse", "compaction_below_unverified_snapshot_allowed", "compaction_invalidates_immutable_sbe_publication_revision", "page_revision_auto_delete_allowed", "page_history_compaction_policy_source", "compaction_failure_action"],
+      "properties": {
+        "event_deletion_allowed_only_after": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"type": "string", "minLength": 1}},
+        "event_high_water_monotonic_no_reuse": {"const": true},
+        "compaction_below_unverified_snapshot_allowed": {"const": false},
+        "compaction_invalidates_immutable_sbe_publication_revision": {"const": false},
+        "page_revision_auto_delete_allowed": {"const": false},
+        "page_history_compaction_policy_source": {"const": "pending_G0_U_recovery_decision"},
+        "compaction_failure_action": {"type": "string", "minLength": 1}
+      }
+    },
+    "recovery_decision_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_id", "status", "must_freeze_before_production_rehearsal", "existing_sbe_baseline_objectives_not_product_freeze", "provisional_engineering_targets_not_product_freeze", "retention_destination_and_key_owner_selected", "production_recovery_contract_frozen_by_O0A_P1"],
+      "properties": {
+        "decision_id": {"const": "G0-U"},
+        "status": {"const": "pending"},
+        "must_freeze_before_production_rehearsal": {"type": "array", "minItems": 8, "maxItems": 8, "items": {"type": "string", "minLength": 1}},
+        "existing_sbe_baseline_objectives_not_product_freeze": {"type": "object"},
+        "provisional_engineering_targets_not_product_freeze": {"type": "object"},
+        "retention_destination_and_key_owner_selected": {"const": false},
+        "production_recovery_contract_frozen_by_O0A_P1": {"const": false}
+      }
+    },
+    "validation_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["validation_id", "existing_baseline_tests", "packet_contract_test", "future_collaborative_restore_tests_owned_by_O0A_P2", "sbe_baseline_scenarios", "sbe_successor_restore_scenarios", "target_restore_required_for_product_closure"],
+      "properties": {
+        "validation_id": {"const": "L7-KNOWLEDGE-BACKUP-BASELINE"},
+        "existing_baseline_tests": {"type": "array", "minItems": 8, "maxItems": 8, "items": {"$ref": "#/$defs/hashRef"}},
+        "packet_contract_test": {"const": "code_assist_v1/tests/notion_collaboration/test_backup_inventory_contract.py"},
+        "future_collaborative_restore_tests_owned_by_O0A_P2": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "string", "pattern": "^code_assist_v1/"}},
+        "sbe_baseline_scenarios": {"type": "array", "minItems": 6, "maxItems": 6, "items": {"type": "string"}},
+        "sbe_successor_restore_scenarios": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "string"}},
+        "target_restore_required_for_product_closure": {"const": true}
+      }
+    },
+    "claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["coordinated_backup_design_contract_accepted", "component_denominator_frozen_for_O0A_P2", "existing_p7_4_baseline_reused_read_only", "collaborative_backup_runtime_implemented", "coordinated_backup_executed", "new_root_collaborative_restore_executed", "target_restore_executed", "production_recovery_contract_frozen", "sbe_successor_backup_format_modified", "production_schema_route_store_runtime_or_data_root_modified", "product_complete"],
+      "properties": {
+        "coordinated_backup_design_contract_accepted": {"const": true},
+        "component_denominator_frozen_for_O0A_P2": {"const": true},
+        "existing_p7_4_baseline_reused_read_only": {"const": true},
+        "collaborative_backup_runtime_implemented": {"const": false},
+        "coordinated_backup_executed": {"const": false},
+        "new_root_collaborative_restore_executed": {"const": false},
+        "target_restore_executed": {"const": false},
+        "production_recovery_contract_frozen": {"const": false},
+        "sbe_successor_backup_format_modified": {"const": false},
+        "production_schema_route_store_runtime_or_data_root_modified": {"const": false},
+        "product_complete": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "hashRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^code_assist_v1/"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "pathHashTuple": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [{"type": "string", "pattern": "^code_assist_v1/"}, {"$ref": "#/$defs/sha256"}]
+    },
+    "stringList": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "mandatoryComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "authority_domain", "restore_rule"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+        "authority_domain": {"type": "string", "minLength": 1},
+        "restore_rule": {"type": "string", "minLength": 1}
+      }
+    },
+    "rebuildableComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "rebuild_source"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+        "rebuild_source": {"type": "string", "minLength": 1}
+      }
+    },
+    "neverRestoreComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "reason"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

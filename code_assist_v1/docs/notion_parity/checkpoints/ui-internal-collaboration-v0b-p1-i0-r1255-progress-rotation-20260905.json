@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1255-PROGRESS-ROTATION-20260905",
+  "recorded_at": "2026-09-05T15:34:52.3294630+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1236-progress-rotation-20260905.json",
+    "sha256": "sha256:b8045b274c0b66525e6f3e53b19b91696c2e94591e40c82cf137836272e406ab"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1251-guest-search-handle-diagnostic",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1251-guest-search-handle-diagnostic/diagnostic.json",
+    "diagnostic_sha256": "sha256:884d3d82fbf7bad8b8350ec427b283cc624f6b7542016708cc1c0632194294bf",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:087e3436f75f3904d1f4f78352ef63a9e33a60c101689c4d1f1f1ca6cdddf8b6",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 784790,
+    "masked_difference_count": 0,
+    "total_difference_count": 784790,
+    "stable_normalized_total_difference_count": 785765,
+    "runtime_variance": {
+      "V0R-MU-002": -975,
+      "V0R-MU-004": 0,
+      "normalization_basis": "both known alternating states at their higher stable counts"
+    },
+    "overall_exact_progress": "0/36"
+  },
+  "improvement_since_fresh_r1238_reproduction": {
+    "stable_normalized_total_difference_delta": -540,
+    "retained_changes": [
+      "Move the guest Home vector upward by one quarter pixel after the integer placement plateau.",
+      "Match the six guest Inbox notification pills to #e56458 and use the measured 600 glyph weight.",
+      "Match the six guest Inbox vector colors to #8e8b86.",
+      "Render the six guest Search vectors at 19px with the measured one-pixel left/down placement.",
+      "Refine the Search handle length to 6.5 and stroke width to 1.8 in the source-bound SVG mask."
+    ],
+    "source_bound_reduction_breakdown": {
+      "home_icon": -6,
+      "inbox_badge_color": -414,
+      "inbox_badge_glyph": -18,
+      "inbox_icon_color": -18,
+      "search_geometry": -60,
+      "search_handle_geometry": -24
+    }
+  },
+  "rejected_diagnostics": [
+    {
+      "run_id": "v0b-p1-i0-r1252-guest-page-emoji-rendering-sweep",
+      "reason": "Opacity, blend, saturation, and brightness hypotheses did not improve the 826-pixel V0R-MU-016 page-emoji boundary residual."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1253-guest-page-emoji-size-sweep",
+      "reason": "The first size sweep used a selector that did not reach the nested emoji image and was excluded from evidence."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1254-guest-page-emoji-size-sweep-corrected-selector",
+      "reason": "The corrected 77px through 79px sweep confirmed the retained 78px rasterization bucket as best at both viewports."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1255-guest-page-emoji-subpixel-origin-sweep",
+      "reason": "The two-dimensional one-eighth-pixel origin sweep confirmed the retained translate(9px,12px) as best at both viewports."
+    }
+  ],
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1237-20260905",
+    "launch_id": "210344ee07aa44c2819bc5320d458371",
+    "root_id": "84eebc2d-9cf1-42e1-8738-2d2698f59e2a",
+    "manager_session_id": 44021,
+    "manager_session_live": true,
+    "final_audit_before_rotation": {
+      "workspace_count": 38,
+      "reference_workspace_count": 36,
+      "active_membership_count": 38,
+      "active_page_binding_count": 36,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64,
+    "filesystem_preservation_required": true
+  },
+  "verification": {
+    "targeted_tests": "21 passed in 12.32s",
+    "python_compile": "pass",
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Preserve and stop the r1237 realm, start a fresh approved development realm, reproduce the retained r1251 source, then continue lossless exact residual reduction from a larger state-bounded region. Do not run final gates before exact parity reaches 36/36."
+}

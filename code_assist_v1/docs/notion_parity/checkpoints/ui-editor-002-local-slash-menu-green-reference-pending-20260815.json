@@ -1,0 +1,273 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-15T03:42:00+09:00",
+  "run_id": "ui-editor-002-local-slash-menu-green-20260815",
+  "model": {
+    "planning": "gpt-5.6-sol-ultra",
+    "implementation": "gpt-5.6-sol-xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-editor-004-local-ime-green-reference-pending-20260815.json",
+    "sha256": "sha256:08d7d36f4e6deab2d424db873069b002826b0876fe99fdaea543f0b85d5b34d1",
+    "semantic_status": "historical-parent-preserved"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T03:42:00+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": [
+      "UI-EDITOR-002"
+    ],
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "official-reference-parity-claim",
+      "trial-or-payment",
+      "invite-or-public-posting",
+      "operational-migration",
+      "live-feature-flag",
+      "continuous-consumer",
+      "resolver-cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI-EDITOR-002-SLASH-MENU-BLOCK-TRANSFORM",
+    "status": "local-real-browser-green-reference-pending",
+    "acceptance_ids": [
+      "SLASH-MENU-NAMED-DIALOG",
+      "SLASH-SEARCH-COMBOBOX-LISTBOX",
+      "SLASH-ACTIVE-OPTION-EXPOSED",
+      "UNSUPPORTED-COMMAND-CONTENT-PRESERVED",
+      "ESCAPE-RESTORES-SOURCE-CARET",
+      "HEADING-TRANSFORM-FOCUS-RETURN",
+      "HEADING-ONE-SAVE-EXACT-RELOAD",
+      "SECOND-BRAIN-ZERO-DELTA",
+      "LOCAL-REPEATABILITY",
+      "SYNTHETIC-ONLY"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "notion_static/notion.js",
+        "pre_sha256": "sha256:3766990ac062c861c497f9a6dcdd6f0be8b945353676f3bee54663e4e0acf51c",
+        "post_sha256": "sha256:a2a27ede844c4e0ecc2055fb8d50817941e192fc03a12676106f0c0e9f592a8e",
+        "change": "accessible slash-menu focus, selection, empty-state, Escape restoration, and option semantics"
+      },
+      {
+        "path": "notion_static/index.html",
+        "pre_sha256": "sha256:24a534279ece6802d22571a490e525fc2c25209843de5ba5de748364ed3ac434",
+        "post_sha256": "sha256:da219d0b212183471d1a3b784b164409153b66056d5d39c9f0a4851cb59bba3c",
+        "change": "named block-menu dialog contract"
+      },
+      {
+        "path": "tests/test_notion_ui_runtime.js",
+        "pre_sha256": "sha256:77c69490840ee358524f41a3129baf26dbffa9ee60dcfa4e4ccf1352ac91c17e",
+        "post_sha256": "sha256:8b77288f51e5ad3f552cca686684ab378020d649bae940264db4546f13cb4413",
+        "change": "static slash-menu accessibility and focus-restoration guards"
+      },
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "pre_sha256": "sha256:562278fcaadf15cd30fee86634084a5dd42a5f1007c01a89580c54954fc9eac3",
+        "post_sha256": "sha256:ff6dcd83f3791520a66bcb155cb95f2c2d4d0ea3687051c5b2d0cd6c9950b803",
+        "change": "repeated installed-Chrome slash-menu, transform, persistence, redaction, and workspace-readiness journey"
+      },
+      {
+        "path": "docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:a56546ce10ff0108510b31218ce909414e1fddf5814cecd85b25444a852da036",
+        "post_sha256": "sha256:0401879ee5149badf60073f95972d394fa197887b75e06d45ac26253af79ef2e",
+        "change": "latest UI-EDITOR-002 checkpoint and non-promotion state"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:9ed0bb4afef6b6aa01720120015b63bcc86e3a5c09f6c989eaff027479db9dcf",
+        "post_sha256": "sha256:f63d2f370ed6b985048fa24df433ad9b53940936a3333c7e99c8f2b135f3ed97",
+        "change": "current slash-menu browser evidence and reference limitation"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:053ec764ed0662c267f02b8eb7bfbad2cc9a49be13b2adb2faf9e240d1c583c1",
+        "post_sha256": "sha256:0a4d7b1d2cb84eb8d9f2ba135a6fb185adbb3fbb0606e9fb91f3eea74bce3edb",
+        "change": "current authoritative plan and harness source hashes"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI_EDITOR_002_LOCAL_SLASH_MENU_RESULT_20260815.md",
+        "post_sha256": "sha256:38f75a31c81d36db8bf5bf45c3e3ada291048a57f009fde4eed7dc19a359b6d2",
+        "change": "new identifier-free local slash-menu result"
+      }
+    ],
+    "read_dependencies": [
+      "docs/notion_parity/checkpoints/ui-editor-004-local-ime-green-reference-pending-20260815.json",
+      "notion_static/notion_editor_core.js",
+      "tools/notion_parity/ui_capture.py",
+      "tools/notion_parity/ui_local_fixture.py"
+    ],
+    "protected_unchanged": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      },
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "persistent_browser_profile_reused": false,
+    "local_browser": "installed-stable-chrome-ephemeral-playwright-context"
+  },
+  "evidence": {
+    "source_build_sha256": "sha256:078a76e98e6e60d13555b25b05a28aa704be813adde6b5b2888cd4eaa8802934",
+    "plan_sha256": "sha256:e24357415646b67934525c8537ef0f6289f42ceddc763f3279a3db6538bb9886",
+    "reference": [],
+    "local": [
+      {
+        "scenario_id": "UI-EDITOR-002",
+        "action_id": "UI-EDITOR-002-A01",
+        "capture_sha256": "sha256:43b7156b40729e2c2e8d2d887a771c58d887078a710165875f98df1b897b1583",
+        "redaction": "pass",
+        "repeat_runs": 2
+      },
+      {
+        "scenario_id": "UI-EDITOR-002",
+        "action_id": "UI-EDITOR-002-A02",
+        "capture_sha256": "sha256:3292eefc3eab116a55220a8e819afa9845a57dad5161d22e5854320b82f840a9",
+        "redaction": "pass",
+        "repeat_runs": 2
+      }
+    ],
+    "differential": [],
+    "focus_sequence": [
+      "SLASH-MENU",
+      "EDITOR-BLOCK"
+    ],
+    "reference_status": {
+      "state": "blocked-before-browser-or-tab-selection",
+      "stage": "browser-runtime-initialization",
+      "error_code": "kernel-assets-path-not-found-os-error-3",
+      "content_accessed": false,
+      "parity_promoted": false,
+      "retry_in_same_environment": false
+    }
+  },
+  "commands": [
+    {
+      "selection": "UI-EDITOR-002 first accessibility red",
+      "result": "failed as expected: visible block menu had no dialog role",
+      "exit_code": 1
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py -k ui_editor_002 final",
+      "result": "1 passed, 8 deselected in 16.45s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py first full run",
+      "result": "8 passed, 1 existing IME setup-readiness failure in 186.43s",
+      "exit_code": 1,
+      "classification": "synthetic-workspace-readiness-test-race"
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py -k ui_editor_004 after readiness wait",
+      "result": "1 passed, 8 deselected in 19.29s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py full current-source run",
+      "result": "9 passed in 189.64s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six Node UI/editor/navigation/publication/atomic-save/CSRF scripts",
+      "result": "6 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion route, atomic-save compatibility, and publication adapter",
+      "result": "25 passed in 11.82s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication/job restart and chat characterization",
+      "result": "5 passed in 5.15s",
+      "exit_code": 0
+    },
+    {
+      "selection": "plan, local fixture, evidence harness, packet, and reference guard",
+      "result": "68 passed in 20.29s",
+      "exit_code": 0
+    },
+    {
+      "selection": "test_verify_notion_core_free_ui_plan.py and compact verifier",
+      "result": "13 passed; compact verifier pass with 25 required scenarios and zero promotions",
+      "exit_code": 0
+    },
+    {
+      "selection": "direct verifier invocation without module context and unsupported --root option",
+      "result": "two invocation errors corrected by canonical module --compact command",
+      "exit_code": 1,
+      "classification": "command-contract-error-not-product-failure"
+    }
+  ],
+  "tests": {
+    "slash_menu_semantics": "pass-dialog-combobox-listbox-active-option",
+    "unsupported_command": "pass-content-preserved",
+    "escape_focus": "pass-source-block-and-caret-restored",
+    "heading_transform": "pass-heading1-focus-return",
+    "save_reload": "pass-one-save-exact-reload",
+    "second_brain_delta": "pass-zero-items-zero-revisions",
+    "local_repeatability": "pass-twice",
+    "full_browser_regression": "pass-nine",
+    "reference_c0": "blocked-before-browser-selection"
+  },
+  "claims": {
+    "h3_local_implementation_green": true,
+    "h3_complete": false,
+    "h4_editor_001_local_green": true,
+    "h4_editor_002_local_green": true,
+    "h4_editor_004_local_green": true,
+    "h4_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_or_production_content_exposed": false,
+    "live_local_data_accessed": false,
+    "protected_file_edit_required": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false,
+    "trial_payment_invite_public_action_required": false
+  },
+  "remaining": [
+    "recover signed-in Chrome control and run identifier-free C0 against synthetic REF-FREE-A/B only",
+    "capture and seal the UI-EDITOR-002 and UI-EDITOR-004 reference differentials",
+    "complete UI-EDITOR-003, UI-EDITOR-005, and UI-EDITOR-006 local and differential gates",
+    "continue H5-H9 through evidence-bound cohesive vertical slices"
+  ],
+  "next_exact_command": "if safe signed-in Chrome C0 is unavailable, begin UI-EDITOR-003 selection, clipboard-safe paste, undo, and redo with a repeated isolated real-Chrome red/green journey; otherwise prioritize synthetic REF-FREE-A/B reference capture without opening personal workspaces"
+}

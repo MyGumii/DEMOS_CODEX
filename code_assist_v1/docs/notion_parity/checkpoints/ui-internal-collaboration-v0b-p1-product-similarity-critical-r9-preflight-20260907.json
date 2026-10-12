@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-SIMILARITY-CRITICAL-R9-PREFLIGHT-20260907",
+  "recorded_at": "2026-09-07T06:18:00+09:00",
+  "status": "ready",
+  "packet_id": "V0B-P1",
+  "supersedes_evidence_only": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-similarity-r8-green-20260907.json",
+  "supersede_reason": "R9 adds one independently gated state-specific critical region to every state and viewport while preserving the R8 receipt unchanged as predecessor evidence.",
+  "acceptance_mode": {
+    "reference_transport": "immutable lossless exact V0R v4",
+    "product_visual_gate": "reviewed strict similarity by state, viewport, whole frame, three broad regions, and one state-specific critical region",
+    "exact_pixel_result": "retained as an integrity-checked diagnostic and not required to pass",
+    "policy_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_v0b_p1_visual_similarity_policy.v2.json",
+    "policy_file_sha256": "sha256:c305605836af4043dbc0c7de4b3e49a0d4643ee8d79309e0357ecd95716a47b3",
+    "policy_sha256": "sha256:8b05efac4c107c7a681ba4e1f124e6784eeaf04cb108e3c2c5e8a783a7b714d0",
+    "policy_rows": 36,
+    "required_regions_per_row": 4,
+    "critical_region_contract_checked": true
+  },
+  "runtime": {
+    "root": "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113-product-similarity-r9-20260907",
+    "allowed_parent": "G:/AI_Agent/DEMOS_CODEX/.dev",
+    "root_exists_before_start": false,
+    "ports": [10111, 10112, 10113],
+    "ports_listening_before_start": [],
+    "approval_id": "AP-DEV-PAIR",
+    "python": "G:/AI_Agent/DEMOS_CODEX/venv/Scripts/python.exe",
+    "identity_source": "G:/AI_Agent/DEMOS_CODEX/.tmp/second-brain-full-preview-10111/.runtime/users.json",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "identity_allowlist": ["admin", "user01"]
+  },
+  "capture": {
+    "output": "G:/AI_Agent/DEMOS_CODEX/.runtime/v0b-p1-product-similarity-critical-r9-20260907/receipt.json",
+    "candidate_root": "G:/AI_Agent/DEMOS_CODEX/.runtime/v0b-p1-product-similarity-critical-r9-20260907/candidates",
+    "diff_root": "G:/AI_Agent/DEMOS_CODEX/.runtime/v0b-p1-product-similarity-critical-r9-20260907/diffs",
+    "expected_capture_count": 36,
+    "capture_pipeline_contract": "code_assist.notion.internal_collaborative_v0b_p1.product_capture.v5",
+    "create_only": true
+  },
+  "frozen_source_binding": {
+    "code_assist_v1/notion_collaboration/v0b_p1_product_capture.py": "sha256:228e3cf853fe2e35adbfe0f8b436aadeb0c66072c1bb8d078e56a36f51e7bd50",
+    "code_assist_v1/notion_collaboration/v0b_p1_browser.py": "sha256:29cf7c2f9987532206688cf69eb85ed169dd9532c2b9ea1acc87f9f64bcbfdf0",
+    "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py": "sha256:89796772d24ce6e7fa46c00a78b8c4ea267c7fe8071b6501cbdf043a5800fef9",
+    "code_assist_v1/tools/notion_parity/visual_similarity.py": "sha256:30c129bf67cebe138a3b90a9e251744543c3345d81d8613cb62ffdeb87a9de10",
+    "code_assist_v1/notion_static/index.html": "sha256:d3a76391b0b12e96c1e43fa85eb554eabfa3fe144300251146550abdacb1b71d",
+    "code_assist_v1/notion_static/notion.css": "sha256:23a512cd5bc33765f41dd44d21835b9acae9be2cb9842df8bde80c22bf67c35c",
+    "code_assist_v1/notion_static/notion.js": "sha256:26757ac92994df6d2d348abe9c1dba62966dc95be0b561099fe365898728d781"
+  },
+  "preflight_tests": {
+    "critical_policy_and_capture_integrity": {"passed": 20, "failed": 0},
+    "frontend_node_contracts": {"passed": 9, "failed": 0},
+    "bound_python_union_non_manifest_tests": {"passed": 225, "failed": 0, "skipped": 3},
+    "known_pre_rebind_manifest_failures": 13,
+    "known_unstarted_runtime_browser_failure": 1
+  },
+  "safety": {
+    "personal_content_imported": false,
+    "production_mutation": false,
+    "SBE_hot_contract_edit": false,
+    "historical_receipt_overwrite": false
+  },
+  "goal_complete": false
+}

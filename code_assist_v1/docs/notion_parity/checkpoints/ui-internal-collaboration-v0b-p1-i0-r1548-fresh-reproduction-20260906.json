@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1548-FRESH-REPRODUCTION-20260906",
+  "recorded_at": "2026-09-06T10:23:40.1553229+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1546-state003-icon-lines-20260906.json",
+    "sha256": "sha256:d4223ff691c5eb57935c742d5fd8167e093c5f40540ffd8ec1fa804727c502e3",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 704356
+  },
+  "reproduction": {
+    "run_id": "v0b-p1-i0-r1548-fresh-reproduction",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1548-fresh-reproduction/diagnostic.json",
+    "diagnostic_sha256": "sha256:8a0b750d266bd606af5a62d4d0a4722e6e5f581467800af285727dbc47d47a88",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:9e4480ce03c193f63fb52dbad6095da474dac6920d4c69f6697b071500dd4bc6",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 704356,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 704356,
+    "predecessor_candidate_image_hash_match_count": 20,
+    "predecessor_candidate_image_hash_denominator": 20,
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "cookie_name": "ca_dev_pair_8bdd3f5a3f2324cb0c99",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "identity_allowlist": ["admin", "user01"],
+    "initial_audit": {
+      "workspace_count": 0,
+      "reference_workspace_count": 0,
+      "active_membership_count": 0,
+      "active_page_binding_count": 0,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "current_audit": {
+      "workspace_count": 4,
+      "reference_workspace_count": 2,
+      "active_membership_count": 4,
+      "active_page_binding_count": 2,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from reproducible stable 704356. Do not run final gates before exact parity reaches 36/36."
+}

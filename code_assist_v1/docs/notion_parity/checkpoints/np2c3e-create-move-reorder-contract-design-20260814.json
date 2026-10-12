@@ -1,0 +1,180 @@
+{
+  "checkpoint_version": 1,
+  "run_id": "np2c3e-create-move-reorder-contract-design-20260814",
+  "recorded_at": "2026-08-14T08:13:59+09:00",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "observed_goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "resume 현재 우리가 작성한 개발 문서와 계획을 확인하고 goal resume을 해서 목표 확인 후 다시 개발 진행해.",
+    "completion_changed": false
+  },
+  "slice": "NP2C-3e-create-move-reorder-contract-design",
+  "status": "design_frozen_implementation_blocked",
+  "scope": {
+    "current_workspace_schema_version": 2026081313,
+    "candidate_workspace_schema_version": 2026081314,
+    "candidate_1314_is_design_only": true,
+    "workspace_schema_changed": false,
+    "legacy_source_version": 2026081303,
+    "legacy_source_schema_changed": false,
+    "h5e_source_v4_reservation_preserved": true,
+    "source_adapters_added": false,
+    "catalog_finalizers_added": false,
+    "route_or_runtime_registration_added": false,
+    "runtime_commands_enabled": false,
+    "resolver_cutover_enabled": false,
+    "permanent_delete_enabled": false,
+    "continuous_worker_enabled": false,
+    "destructive_watermark_ack_enabled": false,
+    "live_migration_applied": false
+  },
+  "design_decisions": {
+    "create_move_reorder_share_one_generic_receipt": false,
+    "legacy_v3_operation_ledger_reused_with_action_specific_contracts": true,
+    "create_proposed_page_identity_replay_derived": true,
+    "move_when_result_parent_differs": true,
+    "reorder_when_result_parent_is_same": true,
+    "fixed_source_generation_delta_assumed": false,
+    "candidate_1314_required": true,
+    "candidate_1314_reasons": [
+      "create target has no existing binding or tree node",
+      "frozen 1313 request and source-refresh authority are rename-only",
+      "old and new sibling scopes require bounded per-page evidence beyond the 1000-node command receipt",
+      "a full 10000-node scope has no spare positive ordinal for collision-free permutation under the frozen unique index"
+    ],
+    "implementation_order": [
+      "NP2C-3e1-action-specific-legacy-v3-source-adapters",
+      "NP2C-3e2-frozen-1313-to-1314-schema-and-guards",
+      "NP2C-3e3-atomic-catalog-finalizers-and-sentinel-rehearsal"
+    ],
+    "implementation_authorized_by_this_checkpoint": false
+  },
+  "bounds": {
+    "moved_subtree_max_nodes": 1000,
+    "tree_max_depth": 256,
+    "old_sibling_scope_max_nodes": 10000,
+    "new_sibling_scope_max_nodes": 10000,
+    "structural_effect_max_page_receipts": 21002,
+    "structural_effect_max_aggregate_bytes": 268435456,
+    "structural_effect_result_json_max_bytes": 16777216,
+    "parent_block_max_count": 5000,
+    "maximum_source_snapshots_per_new_effect": 2,
+    "maximum_full_integrity_checks_per_owner_per_new_effect": 1,
+    "legacy_directory_scan_count": 0
+  },
+  "protected_inputs": {
+    "AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "shared_knowledge_status_modified": false,
+    "shared_knowledge_traceability_modified": false,
+    "live_data_paths_accessed": false
+  },
+  "input_hashes": {
+    "notion_store.py": "06c5680d0d73f775787ac5d793f7bc1ffdfc36fcd6e37e1db75d0d566f00cb02",
+    "routes_notion.py": "66936318692f1b1708a777fcb786ca6d654973d88f3770f3cdbc3f7f614a2fba",
+    "outlook_integration.py": "396ffea6e4831425844f083904b6a124e6f3e9508bdb9f5628901c28d9ad9b61",
+    "notion_legacy_change_migration.py": "b44745fb23daca222eed2d5f70d1ed718cba246fec9d32049970b4cec4c0d41d",
+    "notion_legacy_change_consumer_contract.py": "0e107bfed985957d965b2a9e89000fae16422998326dfb82548cabfa033e5758",
+    "notion_workspace_store.py": "cf12c6766899873262cb81725a09c2ab8ad4559e00f0ff2a6548ae81d20be8a0"
+  },
+  "output_hashes": {
+    "docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "c6390cdb2035b29eff7f8594460fd5325a7f68559b8ee5ec686618d06a0825d1",
+    "tools/verify_notion_np2c_page_tree_contract.py": "21874f867bbba8460219901991993c2f96feebef8115e0e5e238d2ac275ee096",
+    "tests/test_verify_notion_np2c_page_tree_contract.py": "094b8c4c58843f3f5074fc105d8dbc6ba49b79cc3b222615f32a24d6df38c134",
+    "docs/NOTION_PARITY_MASTER_PLAN.md": "4c624c789e39e992fea20520eeb622419abbc8b8cad07c792f28571d71386900",
+    "docs/NOTION_PARITY_ROADMAP.md": "b22bd3267bc64c1325e245d24956119b097d280c207d6f120b4d3079a05f0baf",
+    "docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "aa5da44a15274efaf5880b41c32aa20d89e3ba19c4333eede7e0534347064e66",
+    "docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "6d93a8f17b1f577ea04f41b191e1dc6561136fd58a6ced073d6bda0207a3bd19",
+    "docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "ea2493200a673284b4551ef7538df6f14a5a5ed7104f92b1570107c6c8172548"
+  },
+  "evidence": [
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py code_assist_v1\\tests\\test_notion_workspace_migration_chain_rehearsal.py -q",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 6.08
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_workspace_route_contract.py code_assist_v1\\tests\\test_verify_notion_route_contract.py code_assist_v1\\tests\\test_notion_workspace_routes.py code_assist_v1\\tests\\test_notion_workspace_auth_isolation.py code_assist_v1\\tests\\test_notion_auth_contract.py -q",
+      "exit_code": 0,
+      "passed": 74,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 33.50
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\knowledge_spaces\\regression\\test_second_brain_chat_characterization.py -q",
+      "exit_code": 0,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 2.23
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_h5e_ack_contract.py code_assist_v1\\tests\\test_verify_notion_np2b_navigation_contract.py code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q",
+      "exit_code": 0,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 2.51
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe code_assist_v1\\tools\\verify_notion_np2c_page_tree_contract.py",
+      "exit_code": 0,
+      "result": "valid=true, current=1313, candidate=1314, runtime=false, permanent_delete=false"
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m py_compile code_assist_v1\\tools\\verify_notion_np2c_page_tree_contract.py code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py",
+      "exit_code": 0
+    }
+  ],
+  "development_observations": [
+    {
+      "kind": "host_search_process_failure",
+      "context": "One read-only rg invocation exited with Windows status 0xC0000409. The same audit was completed with PowerShell Select-String; no source file or test failure was involved and no retry loop was used."
+    },
+    {
+      "kind": "vcs_unavailable",
+      "context": "The workspace .git directory is not a valid Git repository. No commit, branch, diff, or landed claim is made and git init was not run."
+    }
+  ],
+  "claims": {
+    "live_source_accessed": false,
+    "live_catalog_accessed": false,
+    "live_data_mutated": false,
+    "feature_flags_changed": false,
+    "routes_changed": false,
+    "production_code_changed": false,
+    "app_or_second_brain_boundary_changed": false,
+    "shared_knowledge_boundary_changed": false,
+    "cross_database_exactly_once_claimed": false,
+    "delivery_semantics": "at_least_once_state_idempotent",
+    "git_commit_claimed": false,
+    "formal_differential_parity": false
+  },
+  "status_delta": {
+    "shared_status_update_required": false,
+    "reason": "NP2C is independent from the Shared Knowledge phase and its protected STATUS/TRACEABILITY files are owned by another development stream.",
+    "notion_status": "NP2C-3e design and machine contract v10 are frozen; candidate 1314 and all create/move/reorder implementation remain absent and default-off."
+  },
+  "next_slice": {
+    "name": "NP2C-3e1-action-specific-legacy-v3-source-adapters",
+    "objective": "Implement temporary-shard-only create, move, and reorder source contracts/adapters against the frozen v3 operation ledger, preserving H5e source-v4 reservation and stopping before workspace 1314.",
+    "implementation_allowed_without_new_review": false,
+    "schema_change_allowed_without_design_review": false,
+    "route_or_runtime_registration_allowed": false,
+    "live_data_allowed": false,
+    "destructive_ack_allowed": false,
+    "next_exact_command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py code_assist_v1\\tests\\test_notion_workspace_migration_chain_rehearsal.py -q"
+  },
+  "stop_reason": null
+}

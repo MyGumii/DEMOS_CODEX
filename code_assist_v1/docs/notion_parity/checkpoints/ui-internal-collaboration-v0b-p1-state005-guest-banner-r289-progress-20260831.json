@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-STATE005-GUEST-BANNER-R289-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T21:15:22.6302242+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r289 Chrome 153 full candidate uses the immutable lossless-exact-v4 browser reference, captures all 18 named states at both adopted viewports, passes all 36 accessibility captures and all four component journeys, and completes synthetic cleanup. The V0R-MU-005 guest-access banner text and workspace-creation button now use viewport-specific horizontal placement matching the reference. The banner-only comparison reproduces a 1,956 pixel reduction wide and a 2,168 pixel reduction compact, exactly matching the 4,124 pixel full-state reduction, with zero candidate changes outside the banner in either capture. Unrelated repeat-run variability in V0R-MU-011, plus one V0R-MU-008 pixel, leaves the r289 full unmasked total above r286 and is not attributed to this source correction. Exact RGBA remains 0/36, so r289 is a mutable progress candidate only and is not immutable V0B evidence, a phase-gate claim, or a product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified_by_this_packet": false,
+      "conflicting_change_detected": false
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state005-controls-r286-progress-20260831.json",
+      "sha256": "sha256:60db667048ac0f7973aae5671ca78c27da3e75c78cd3687500300d0dc32a761b"
+    },
+    "previous_candidate": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r286/receipt.json",
+      "receipt_sha256": "sha256:3c165ac4c968ec09d267908db83eb6a386cf10081a92f034dcdab34fd850fd94",
+      "unmasked_difference_count": 2244483,
+      "masked_difference_count": 70240,
+      "raw_difference_count": 2314723
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:6817df8966e2da4665759937fd87fd28518dbc66aced4bc74df7189e218c3ad4",
+        "changes": [
+          "retain all r286 state-bounded capture corrections",
+          "move only the V0R-MU-005 guest-access banner text and workspace-creation button 54 pixels right at 1440 by 900",
+          "move only the same banner children 319 pixels right at 1280 by 800 so the compact reference clipping boundary is reproduced",
+          "leave the banner background, close button, accessible text, IAM state, successor states, and product runtime source unchanged"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:b9fd7185d0b81d5c5b3faff110125bc1595f3d4147e98c3ccd5e9c592b3bc4c3"
+      }
+    ],
+    "isolated_experiment_series": {
+      "r287": "position correction plus a white workspace-creation button background improved compact by 2,168 pixels but worsened wide by 1,264 pixels; the background override was rejected and removed",
+      "r288": "position-only correction improved wide by 1,956 pixels and compact by 2,168 pixels, passed all 20 IAM accessibility captures, and completed cleanup",
+      "retained_configuration": "r288 position-only banner correction",
+      "retained_run_capture_count": 20,
+      "retained_run_accessibility_pass_count": 20,
+      "retained_run_cleanup_status": "complete"
+    },
+    "fixed_region_reproduction": {
+      "region_description": "V0R-MU-005 guest-access banner text and workspace-creation button at both adopted viewports",
+      "changed_candidate_pixel_count": {
+        "1440x900": 4103,
+        "1280x800": 4474
+      },
+      "reference_difference_delta": {
+        "1440x900": -1956,
+        "1280x800": -2168,
+        "combined": -4124
+      },
+      "full_state_delta": -4124,
+      "fixed_region_and_full_state_delta_match": true,
+      "changed_candidate_pixel_count_outside_banner": {
+        "1440x900": 0,
+        "1280x800": 0
+      },
+      "state_leak_detected": false
+    },
+    "repeat_run_variability_not_claimed": {
+      "V0R-MU-008_1280x800_delta": 1,
+      "V0R-MU-011_1440x900_delta": 11698,
+      "V0R-MU-011_1280x800_delta": 14292,
+      "V0R-MU-011_combined_delta": 25990,
+      "net_unmasked_delta_outside_state005": 25991,
+      "net_masked_delta": 246
+    }
+  },
+  "retained_r289_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r289",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r289/receipt.json",
+    "receipt_sha256": "sha256:0202a5f1feaebe67adaf1d9861dc3309503ad764c5d315e05b26fa5b7a8531b8",
+    "source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 377843,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2266350,
+    "masked_difference_count": 70486,
+    "raw_difference_count": 2336836,
+    "unmasked_delta_from_r286": 21867,
+    "masked_delta_from_r286": 246,
+    "raw_delta_from_r286": 22113,
+    "unmasked_state_totals": {
+      "V0R-MU-001": 197776,
+      "V0R-MU-002": 189531,
+      "V0R-MU-003": 137453,
+      "V0R-MU-004": 125086,
+      "V0R-MU-005": 59338,
+      "V0R-MU-006": 189974,
+      "V0R-MU-007": 113094,
+      "V0R-MU-008": 115339,
+      "V0R-MU-009": 131745,
+      "V0R-MU-010": 117642,
+      "V0R-MU-011": 138991,
+      "V0R-MU-012": 110620,
+      "V0R-MU-013": 143500,
+      "V0R-MU-014": 171717,
+      "V0R-MU-015": 71922,
+      "V0R-MU-016": 70874,
+      "V0R-MU-017": 90943,
+      "V0R-MU-018": 90805
+    },
+    "source_reproduced_evidence": {
+      "V0R-MU-005_1440x900_delta_from_r286": -1956,
+      "V0R-MU-005_1280x800_delta_from_r286": -2168,
+      "V0R-MU-005_full_state_delta_from_r286": -4124,
+      "V0R-MU-005_fixed_region_delta_from_r286": -4124
+    },
+    "c0_p2_measurements_ms": {
+      "presence_delivery_ms": 1531,
+      "comment_delivery_ms": 1139,
+      "reaction_delivery_ms": 1764,
+      "presence_ttl_expiry_ms": 15296,
+      "reconnect_ms": 1296
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:53e42eeeab08d16c7e06922f68f6642088e84dc673b2e412d2aa92689b48f74b"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_i0_semantic_diagnostic.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "16 passed in 12.22s",
+      "exit_code": 0
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:0202a5f1feaebe67adaf1d9861dc3309503ad764c5d315e05b26fa5b7a8531b8"
+    },
+    "full_candidate": {
+      "component_journey_statuses": {
+        "I0-P2": "pass",
+        "C0-P2": "pass",
+        "E1-P2": "pass",
+        "F0-P5": "pass"
+      },
+      "all_adopted_multiuser_states_captured": true,
+      "accessibility_evidence_complete": true,
+      "zero_unmasked_RGBA_difference": false
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from the retained r289 mutable candidate. Preserve the V0R-MU-005 checked and unchecked todo corrections, toggle placement, viewport-specific page alignment, and viewport-specific guest-banner placement, plus the V0R-MU-015 responsive alignment. Do not restore the rejected white guest-banner button background, 78-pixel page-icon override, 30-pixel all-row minimum height, 13-pixel toggle experiment, later-editor letter-spacing transform, V0R-MU-015 Korean display-string substitution, or V0R-MU-016 title transform. Prioritize another reproducible state-bounded structural or rendering difference, and do not run fresh Core 25 or quiet-host performance gates until the 36/36 exact gate closes."
+}

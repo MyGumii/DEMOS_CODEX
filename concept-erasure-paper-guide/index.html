@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="확산 모델 개념 삭제 연구 7편을 초보자 관점에서 연결해 설명하는 인터랙티브 가이드">
+  <title>Diffusion Concept Erasure · 7편의 논문, 하나의 연구 흐름</title>
+  <style>
+    :root {
+      --bg: #f6f3ed;
+      --paper: #fffdf8;
+      --ink: #17211d;
+      --muted: #64706a;
+      --line: #d8ddd7;
+      --green: #1f6b52;
+      --green-soft: #dcece4;
+      --amber: #a85f18;
+      --amber-soft: #f7e6cf;
+      --red: #a3423f;
+      --red-soft: #f4dedd;
+      --blue: #315e8a;
+      --blue-soft: #dfe9f3;
+      --purple: #6d4f88;
+      --purple-soft: #e9e1ef;
+      --shadow: 0 18px 44px rgba(30, 39, 34, .08);
+      --radius: 20px;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --sans: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+    }
+    [data-theme="dark"] {
+      --bg: #111715;
+      --paper: #18201d;
+      --ink: #edf2ee;
+      --muted: #a8b3ad;
+      --line: #33413b;
+      --green: #79c7a8;
+      --green-soft: #1f3c32;
+      --amber: #e2a35f;
+      --amber-soft: #46321f;
+      --red: #e08b87;
+      --red-soft: #482827;
+      --blue: #91b9df;
+      --blue-soft: #25394d;
+      --purple: #c1a4da;
+      --purple-soft: #3c2f49;
+      --shadow: 0 18px 44px rgba(0, 0, 0, .28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 5%, color-mix(in srgb, var(--green-soft) 55%, transparent), transparent 30rem),
+        radial-gradient(circle at 92% 20%, color-mix(in srgb, var(--amber-soft) 50%, transparent), transparent 28rem),
+        var(--bg);
+      font-family: var(--sans);
+      line-height: 1.72;
+      word-break: keep-all;
+    }
+    a { color: var(--green); text-underline-offset: 3px; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    .skip-link {
+      position: absolute; left: 1rem; top: -4rem; z-index: 99;
+      padding: .7rem 1rem; border-radius: 10px; color: var(--paper); background: var(--ink);
+    }
+    .skip-link:focus { top: 1rem; }
+    .topbar {
+      position: sticky; top: 0; z-index: 40;
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(14px);
+    }
+    .topbar-inner {
+      width: min(1160px, calc(100% - 2rem)); margin: auto;
+      min-height: 64px; display: flex; align-items: center; gap: 1rem;
+    }
+    .brand { font-weight: 800; letter-spacing: -.03em; white-space: nowrap; }
+    .topnav { display: flex; align-items: center; gap: .25rem; margin-left: auto; }
+    .topnav a { padding: .45rem .65rem; border-radius: 9px; color: var(--muted); text-decoration: none; font-size: .9rem; }
+    .topnav a:hover, .topnav a:focus-visible { color: var(--ink); background: var(--green-soft); }
+    .icon-btn {
+      width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 12px;
+      background: var(--paper); cursor: pointer;
+    }
+    main { width: min(1160px, calc(100% - 2rem)); margin: 0 auto; }
+    .hero { padding: 7rem 0 4.5rem; display: grid; grid-template-columns: 1.25fr .75fr; gap: 3rem; align-items: end; }
+    .eyebrow { color: var(--green); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: .78rem; }
+    h1, h2, h3, h4 { line-height: 1.24; letter-spacing: -.035em; margin-top: 0; }
+    h1 { margin: .75rem 0 1rem; font-size: clamp(2.7rem, 7vw, 6rem); max-width: 930px; }
+    h2 { font-size: clamp(2rem, 4vw, 3.45rem); margin-bottom: 1rem; }
+    h3 { font-size: clamp(1.35rem, 2vw, 1.75rem); }
+    h4 { font-size: 1.08rem; margin-bottom: .55rem; }
+    .lead { font-size: clamp(1.05rem, 1.9vw, 1.35rem); color: var(--muted); max-width: 780px; }
+    .hero-note { border-left: 3px solid var(--amber); padding-left: 1.2rem; color: var(--muted); }
+    .hero-note strong { color: var(--ink); }
+    .quick-links { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.6rem; }
+    .pill-link, .paper-chip {
+      display: inline-flex; align-items: center; gap: .45rem; padding: .62rem .85rem;
+      border: 1px solid var(--line); border-radius: 999px; background: var(--paper);
+      text-decoration: none; color: var(--ink); box-shadow: 0 6px 20px rgba(30,39,34,.04);
+    }
+    .pill-link:hover { border-color: var(--green); transform: translateY(-1px); }
+    section { padding: 5.5rem 0; border-top: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: .65fr 1.35fr; gap: 2rem; margin-bottom: 2.7rem; }
+    .section-head p { margin-top: .2rem; color: var(--muted); font-size: 1.05rem; }
+    .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .summary-card, .card {
+      background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+    }
+    .summary-card { padding: 1.3rem; }
+    .summary-card .letter { display: block; font-family: Georgia, serif; font-size: 2rem; color: var(--green); }
+    .summary-card p { margin-bottom: 0; color: var(--muted); font-size: .93rem; }
+    .thesis {
+      margin-top: 1.2rem; padding: 1.2rem 1.35rem; border-radius: 16px;
+      background: linear-gradient(100deg, var(--green-soft), color-mix(in srgb, var(--blue-soft) 70%, transparent));
+      font-weight: 700;
+    }
+    .pipeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: .9rem; align-items: stretch; margin-top: 1.5rem; }
+    .pipe-step { position: relative; padding: 1.1rem; border-radius: 16px; background: var(--paper); border: 1px solid var(--line); min-height: 160px; }
+    .pipe-step:not(:last-child)::after { content: "→"; position: absolute; right: -.77rem; top: 42%; z-index: 2; color: var(--green); font-weight: 900; font-size: 1.4rem; }
+    .pipe-step .num { font-family: var(--mono); color: var(--green); font-size: .8rem; }
+    .pipe-step h3 { margin: .35rem 0 .45rem; font-size: 1.08rem; }
+    .pipe-step p { margin: 0; color: var(--muted); font-size: .88rem; }
+    .analogy { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
+    .analogy > div { padding: 1.25rem; border-left: 3px solid var(--blue); background: var(--blue-soft); border-radius: 0 14px 14px 0; }
+    .analogy p { margin: .4rem 0 0; }
+    .formula-box { padding: 1.25rem; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); overflow-wrap: anywhere; }
+    .formula {
+      display: block; margin: .8rem 0; padding: .9rem 1rem; border-radius: 12px;
+      background: color-mix(in srgb, var(--bg) 75%, var(--green-soft));
+      font-family: var(--mono); font-size: clamp(.86rem, 1.4vw, 1rem); line-height: 1.7;
+    }
+    .formula-key { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .65rem; }
+    .formula-key span { padding: .35rem .55rem; border-radius: 8px; background: var(--green-soft); font-size: .84rem; }
+    .simulator { margin-top: 1rem; padding: 1.2rem; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
+    .sim-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 1.5rem; }
+    .control { margin-bottom: 1rem; }
+    .control label { display: flex; justify-content: space-between; font-weight: 700; }
+    input[type="range"] { width: 100%; accent-color: var(--green); }
+    .number-line { position: relative; height: 160px; border-radius: 16px; background: linear-gradient(90deg, var(--red-soft), var(--paper), var(--green-soft)); border: 1px solid var(--line); }
+    .axis { position: absolute; left: 5%; right: 5%; top: 78px; height: 2px; background: var(--line); }
+    .axis::before, .axis::after { position: absolute; top: .35rem; color: var(--muted); font-size: .76rem; }
+    .axis::before { content: "-10"; left: 0; }
+    .axis::after { content: "+10"; right: 0; }
+    .marker { position: absolute; top: 38px; width: 12px; height: 78px; transform: translateX(-50%); transition: left .2s ease; }
+    .marker::after { content: ""; display: block; width: 3px; height: 48px; margin: auto; border-radius: 4px; background: currentColor; }
+    .marker span { position: absolute; top: -24px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: .78rem; font-weight: 800; }
+    .m-u { color: var(--blue); } .m-c { color: var(--green); } .m-target { color: var(--red); }
+    .sim-result { margin: .8rem 0 0; font-weight: 700; }
+    .note { padding: 1rem 1.1rem; border-radius: 14px; background: var(--amber-soft); color: var(--ink); }
+    .note strong { color: var(--amber); }
+    .legend { display: flex; flex-wrap: wrap; gap: 1rem; color: var(--muted); font-size: .88rem; margin-bottom: 1.2rem; }
+    .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: .35rem; }
+    .legend .base::before { background: var(--green); }
+    .legend .robust::before { background: var(--red); }
+    .legend .scope::before { background: var(--purple); }
+    .legend .audit::before { background: var(--blue); }
+    .flowchart-wrap { padding: 1rem; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .flowchart { width: 100%; height: auto; min-height: 550px; display: block; }
+    .flowchart .edge { stroke: var(--line); stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    .flowchart .edge-feedback { stroke: var(--blue); stroke-dasharray: 8 8; }
+    .flowchart .node rect { stroke-width: 2; rx: 18; }
+    .flowchart .node text { fill: var(--ink); font-family: var(--sans); text-anchor: middle; }
+    .flowchart .node .title { font-weight: 800; font-size: 18px; }
+    .flowchart .node .sub { fill: var(--muted); font-size: 13px; }
+    .flowchart .n-base rect { fill: var(--green-soft); stroke: var(--green); }
+    .flowchart .n-robust rect { fill: var(--red-soft); stroke: var(--red); }
+    .flowchart .n-preserve rect { fill: var(--amber-soft); stroke: var(--amber); }
+    .flowchart .n-scope rect { fill: var(--purple-soft); stroke: var(--purple); }
+    .flowchart .n-audit rect { fill: var(--blue-soft); stroke: var(--blue); }
+    .mobile-flow { display: none; }
+    .timeline { position: relative; margin-top: 2rem; }
+    .timeline::before { content: ""; position: absolute; left: 94px; top: 0; bottom: 0; width: 2px; background: var(--line); }
+    .timeline-row { display: grid; grid-template-columns: 78px 1fr; gap: 2rem; margin-bottom: 1rem; position: relative; }
+    .timeline-year { text-align: right; font-family: var(--mono); color: var(--green); font-weight: 800; padding-top: 1.1rem; }
+    .timeline-card { position: relative; padding: 1.2rem 1.35rem; border: 1px solid var(--line); background: var(--paper); border-radius: 16px; }
+    .timeline-card::before { content: ""; position: absolute; left: -2.45rem; top: 1.45rem; width: 12px; height: 12px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 6px var(--bg); }
+    .timeline-card p { margin: .35rem 0 0; color: var(--muted); }
+    .paper-nav { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1.4rem 0 2rem; }
+    .paper-chip { cursor: pointer; background: transparent; box-shadow: none; }
+    .paper-chip[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .paper-panel { display: none; }
+    .paper-panel.is-active { display: block; animation: rise .28s ease; }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .paper-hero { display: grid; grid-template-columns: 1.35fr .65fr; gap: 1.4rem; padding: 1.5rem; border-radius: var(--radius); background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .paper-meta { color: var(--green); font-size: .87rem; font-weight: 800; letter-spacing: .04em; }
+    .paper-hero h3 { margin: .55rem 0 .6rem; font-size: clamp(1.55rem, 3vw, 2.35rem); }
+    .paper-hero p { margin: 0; color: var(--muted); }
+    .question-card { padding: 1.1rem; border-radius: 14px; background: var(--green-soft); align-self: stretch; }
+    .question-card small { color: var(--green); font-weight: 800; }
+    .question-card p { margin-top: .45rem; color: var(--ink); font-weight: 750; }
+    .paper-body { display: grid; grid-template-columns: 1.08fr .92fr; gap: 1rem; margin-top: 1rem; }
+    .paper-body > .card { padding: 1.3rem; box-shadow: none; }
+    .span-2 { grid-column: 1 / -1; }
+    .steps { counter-reset: step; display: grid; gap: .7rem; padding: 0; margin: 0; list-style: none; }
+    .steps li { counter-increment: step; display: grid; grid-template-columns: 34px 1fr; gap: .7rem; align-items: start; }
+    .steps li::before { content: counter(step); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--green-soft); color: var(--green); font-family: var(--mono); font-weight: 800; }
+    .split-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .good, .limit { padding: 1rem; border-radius: 14px; }
+    .good { background: var(--green-soft); }
+    .limit { background: var(--red-soft); }
+    .good ul, .limit ul { margin-bottom: 0; padding-left: 1.2rem; }
+    .source-tag { display: inline-block; margin-top: .6rem; padding: .24rem .48rem; border-radius: 7px; font-size: .76rem; background: var(--blue-soft); color: var(--blue); font-weight: 700; }
+    .compare-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); }
+    table { border-collapse: collapse; width: 100%; min-width: 980px; font-size: .88rem; }
+    th, td { padding: .78rem .72rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: color-mix(in srgb, var(--green-soft) 65%, var(--paper)); position: sticky; top: 64px; z-index: 2; }
+    td:first-child, th:first-child { position: sticky; left: 0; background: var(--paper); font-weight: 800; z-index: 3; }
+    .decision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .decision-card { padding: 1.15rem; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); }
+    .decision-card .if { color: var(--muted); font-size: .86rem; }
+    .decision-card .then { color: var(--green); font-weight: 850; font-size: 1.1rem; }
+    .warning-banner { margin-top: 1.2rem; padding: 1.25rem; background: var(--amber-soft); border-radius: 16px; }
+    .glossary { display: grid; grid-template-columns: repeat(2, 1fr); gap: .8rem 1.3rem; }
+    .term { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+    .term dt { font-weight: 850; }
+    .term dd { margin: .25rem 0 0; color: var(--muted); }
+    .sources { display: grid; gap: .7rem; padding: 0; list-style: none; }
+    .sources li { padding: .9rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+    .sources small { display: block; color: var(--muted); }
+    footer { width: min(1160px, calc(100% - 2rem)); margin: 0 auto; padding: 2.5rem 0 4rem; color: var(--muted); border-top: 1px solid var(--line); }
+    @media (max-width: 900px) {
+      .topnav a { display: none; }
+      .hero, .section-head, .paper-hero, .paper-body, .sim-grid { grid-template-columns: 1fr; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .pipeline { grid-template-columns: 1fr 1fr; }
+      .pipe-step:not(:last-child)::after { display: none; }
+      .decision-grid { grid-template-columns: 1fr 1fr; }
+      .flowchart-wrap { display: none; }
+      .mobile-flow { display: grid; gap: .7rem; }
+      .mobile-flow div { padding: 1rem; border-radius: 14px; background: var(--paper); border: 1px solid var(--line); }
+      .mobile-flow div:not(:last-child)::after { content: "↓"; display: block; color: var(--green); text-align: center; margin-bottom: -1.45rem; }
+    }
+    @media (max-width: 560px) {
+      main, .topbar-inner, footer { width: min(100% - 1.2rem, 1160px); }
+      .hero { padding-top: 4.5rem; }
+      section { padding: 4rem 0; }
+      .summary-grid, .pipeline, .analogy, .split-list, .decision-grid, .glossary { grid-template-columns: 1fr; }
+      .timeline::before { left: 14px; }
+      .timeline-row { grid-template-columns: 1fr; gap: .3rem; padding-left: 2rem; }
+      .timeline-year { text-align: left; padding: 0; }
+      .timeline-card::before { left: -1.63rem; top: 1.4rem; }
+      .paper-nav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: .45rem; }
+      .paper-chip { white-space: nowrap; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">본문으로 이동</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Concept Erasure Atlas</div>
+      <nav class="topnav" aria-label="주요 섹션">
+        <a href="#background">배경</a>
+        <a href="#lineage">연결성</a>
+        <a href="#papers">7편 해설</a>
+        <a href="#comparison">비교</a>
+        <a href="#sources">원문</a>
+      </nav>
+      <button id="themeToggle" class="icon-btn" type="button" aria-label="색상 테마 전환">◐</button>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow">Beginner-friendly research guide · 2023–2026</div>
+        <h1 id="hero-title">“지운다”는 말 뒤에 숨은 네 가지 문제</h1>
+        <p class="lead">한 단어를 못 그리게 만드는 것에서 시작해, 우회 공격을 막고, 주변 개념을 보존하고, 조합과 계층까지 다루는 연구로 확장된 7편의 흐름을 한 번에 읽습니다.</p>
+        <div class="quick-links">
+          <a class="pill-link" href="#thirty-seconds">30초 요약</a>
+          <a class="pill-link" href="#formula-lab">수식 실험실</a>
+          <a class="pill-link" href="#lineage">연구 계보</a>
+          <a class="pill-link" href="#papers">논문별 해설</a>
+        </div>
+      </div>
+      <aside class="hero-note">
+        <strong>읽기 전 핵심 구분</strong><br>
+        여기서 “concept erasure”는 대개 <em>모델이 특정 내용을 생성하지 못하도록 행동과 파라미터를 바꾸는 것</em>입니다. 특정 학습 샘플이 완전히 삭제되었다는 암호학적·통계적 증명과는 다릅니다.
+      </aside>
+    </section>
+
+    <section id="thirty-seconds" aria-labelledby="summary-title">
+      <div class="section-head">
+        <div><div class="eyebrow">30-second map</div><h2 id="summary-title">좋은 삭제의 네 축</h2></div>
+        <p>논문마다 “삭제 성공”을 다르게 정의합니다. 네 축을 동시에 보면 각 논문의 위치가 선명해집니다.</p>
+      </div>
+      <div class="summary-grid">
+        <article class="summary-card"><span class="letter">E</span><h3>Efficacy</h3><p>목표 개념이 실제로 덜 생성되는가?</p></article>
+        <article class="summary-card"><span class="letter">L</span><h3>Locality</h3><p>목표가 아닌 개념과 이미지 품질은 보존되는가?</p></article>
+        <article class="summary-card"><span class="letter">R</span><h3>Robustness</h3><p>동의어, 우회 프롬프트, 학습된 공격에도 다시 나타나지 않는가?</p></article>
+        <article class="summary-card"><span class="letter">S</span><h3>Scalability</h3><p>수십·수백 개를 지울 때 비용과 상위 개념 손상이 감당 가능한가?</p></article>
+      </div>
+      <div class="thesis">한 줄 결론: ESD가 “가중치에서 개념을 지우는 법”을 열었고, 후속 연구는 각각 R·L·조합·계층·평가의 빈틈을 메웠지만, 네 축을 완전히 해결한 단일 방법은 아직 없습니다.</div>
+    </section>
+
+    <section id="background" aria-labelledby="background-title">
+      <div class="section-head">
+        <div><div class="eyebrow">Background</div><h2 id="background-title">확산 모델부터 천천히</h2></div>
+        <p>Stable Diffusion은 픽셀보다 작은 잠재 공간에서 “노이즈를 조금씩 제거”합니다. 텍스트는 cross-attention을 통해 어느 시각 특징을 강조할지 알려줍니다.</p>
+      </div>
+
+      <div class="pipeline" aria-label="텍스트-이미지 확산 생성 과정">
+        <article class="pipe-step"><span class="num">01</span><h3>프롬프트</h3><p>“고흐 스타일의 교회”처럼 원하는 내용을 씁니다.</p></article>
+        <article class="pipe-step"><span class="num">02</span><h3>텍스트 임베딩</h3><p>문장을 숫자 벡터 <strong>c</strong>로 바꿉니다.</p></article>
+        <article class="pipe-step"><span class="num">03</span><h3>Cross-attention</h3><p>단어와 이미지 위치·특징을 연결합니다.</p></article>
+        <article class="pipe-step"><span class="num">04</span><h3>U-Net denoising</h3><p>각 시점 <strong>t</strong>에서 섞인 노이즈를 예측합니다.</p></article>
+        <article class="pipe-step"><span class="num">05</span><h3>Decoder</h3><p>깨끗해진 잠재 표현을 최종 이미지로 복원합니다.</p></article>
+      </div>
+
+      <div class="analogy">
+        <div><strong>확산 모델 = 안개 낀 그림을 복원하는 화가</strong><p>화가는 매 단계 “어느 방향으로 붓질하면 노이즈가 줄까?”를 예측합니다.</p></div>
+        <div><strong>Cross-attention = 통역사 겸 스포트라이트</strong><p>“교회”라는 단어가 이미지의 어느 영역과 특징에 연결되는지 알려줍니다.</p></div>
+      </div>
+
+      <div class="paper-body" style="margin-top:1.2rem">
+        <article class="card">
+          <h3>기본 학습 수식</h3>
+          <span class="formula">L<sub>diff</sub> = E[ ‖ ε − ε<sub>θ</sub>(x<sub>t</sub>, t, c) ‖² ]</span>
+          <p><strong>정답 노이즈 ε</strong>와 모델이 예측한 노이즈 <strong>ε<sub>θ</sub></strong>의 차이를 줄입니다. 차이가 작을수록 안개를 더 정확히 걷어냅니다.</p>
+          <div class="formula-key"><span>θ: 모델 가중치</span><span>x<sub>t</sub>: t시점의 noisy latent</span><span>c: 텍스트 조건</span></div>
+        </article>
+        <article class="card">
+          <h3>Concept erasure의 공통 목표</h3>
+          <span class="formula">목표 E는 생성 ↓ &nbsp; | &nbsp; 나머지 P = C \ E는 유지 ↑</span>
+          <p>문제는 개념이 서랍처럼 분리되어 있지 않다는 점입니다. “nudity”를 누르면 “person”, “skin”, “body”의 표현도 함께 흔들릴 수 있습니다.</p>
+        </article>
+      </div>
+
+      <div id="formula-lab" class="simulator" aria-labelledby="sim-title">
+        <h3 id="sim-title">수식 실험실: ESD의 ‘반대 방향 교사’</h3>
+        <p>일반 CFG는 조건 방향을 더합니다. ESD는 그 방향을 빼서, 편집 모델이 목표 개념에서 멀어지도록 학습합니다. 아래 값은 벡터를 숫자 하나로 줄인 직관용 장난감 예시입니다.</p>
+        <div class="sim-grid">
+          <div>
+            <div class="control"><label for="uRange">무조건 예측 u <output id="uOut">2.0</output></label><input id="uRange" type="range" min="-5" max="5" value="2" step="0.1"></div>
+            <div class="control"><label for="cRange">조건 예측 c <output id="cOut">5.0</output></label><input id="cRange" type="range" min="-5" max="5" value="5" step="0.1"></div>
+            <div class="control"><label for="etaRange">삭제 강도 η <output id="etaOut">1.0</output></label><input id="etaRange" type="range" min="0" max="3" value="1" step="0.1"></div>
+            <span class="formula">target = u − η(c − u)</span>
+            <p id="simText" class="sim-result" aria-live="polite"></p>
+          </div>
+          <div>
+            <div class="number-line" aria-label="무조건, 조건, 삭제 목표 예측의 위치">
+              <div class="axis"></div>
+              <div id="markerU" class="marker m-u"><span>u</span></div>
+              <div id="markerC" class="marker m-c"><span>c</span></div>
+              <div id="markerTarget" class="marker m-target"><span>target</span></div>
+            </div>
+            <div class="legend"><span class="audit">무조건 u</span><span class="base">조건 c</span><span class="robust">삭제 목표</span></div>
+            <div class="note"><strong>주의:</strong> 실제 ε는 고차원 텐서입니다. 숫자 선은 “조건이 만든 변화량을 반대로 민다”는 방향성만 보여줍니다.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lineage" aria-labelledby="lineage-title">
+      <div class="section-head">
+        <div><div class="eyebrow">Research lineage</div><h2 id="lineage-title">왜 다음 논문이 필요했나</h2></div>
+        <p>아래는 엄밀한 단일 인용 계보가 아니라, 7편이 해결하는 <strong>연구 질문의 진화</strong>를 그린 지도입니다. 같은 시기에 병렬로 발전한 가지도 있습니다.</p>
+      </div>
+      <div class="legend"><span class="base">기초 삭제</span><span class="robust">우회 공격</span><span class="scope">의미 범위·조합</span><span class="audit">평가·피드백</span></div>
+      <div class="flowchart-wrap">
+        <svg class="flowchart" viewBox="0 0 1160 650" role="img" aria-labelledby="flow-title flow-desc">
+          <title id="flow-title">7개 논문의 연구 연결 흐름도</title>
+          <desc id="flow-desc">ESD에서 시작해 강건성, 보존, 개념 조합, 부작용 평가, 대규모 계층 삭제로 확장되는 연구 흐름</desc>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--line)"></path></marker>
+          </defs>
+          <path class="edge" d="M 285 110 C 350 110, 360 110, 420 110"></path>
+          <path class="edge" d="M 285 110 C 350 110, 355 260, 420 260"></path>
+          <path class="edge" d="M 285 110 C 350 110, 355 410, 420 410"></path>
+          <path class="edge" d="M 285 110 C 350 110, 355 560, 420 560"></path>
+          <path class="edge" d="M 665 110 C 735 110, 740 185, 805 185"></path>
+          <path class="edge" d="M 665 410 C 735 410, 740 335, 805 335"></path>
+          <path class="edge" d="M 665 560 C 735 560, 740 500, 805 500"></path>
+          <path class="edge edge-feedback" d="M 930 395 C 930 445, 790 575, 675 575"></path>
+          <g class="node n-base" transform="translate(45 55)"><rect width="240" height="110"></rect><text x="120" y="38" class="title">ESD · ICCV 2023</text><text x="120" y="65" class="sub">가중치에 역방향 guidance 학습</text><text x="120" y="86" class="sub">한 개념 삭제의 출발점</text></g>
+          <g class="node n-robust" transform="translate(420 55)"><rect width="245" height="110"></rect><text x="122" y="38" class="title">Receler · ECCV 2024</text><text x="122" y="65" class="sub">가벼운 eraser + 위치 마스크</text><text x="122" y="86" class="sub">paraphrase 공격 학습</text></g>
+          <g class="node n-robust" transform="translate(420 205)"><rect width="245" height="110"></rect><text x="122" y="38" class="title">RACE · ECCV 2024</text><text x="122" y="65" class="sub">단일 timestep PGD 공격</text><text x="122" y="86" class="sub">임베딩 이웃까지 방어</text></g>
+          <g class="node n-preserve" transform="translate(420 355)"><rect width="245" height="110"></rect><text x="122" y="38" class="title">Adv. Preservation · NeurIPS 2024</text><text x="122" y="65" class="sub">가장 손상되는 남은 개념 탐색</text><text x="122" y="86" class="sub">그 개념을 보존하며 삭제</text></g>
+          <g class="node n-scope" transform="translate(420 505)"><rect width="245" height="110"></rect><text x="122" y="38" class="title">CoGFD · ICLR 2025</text><text x="122" y="65" class="sub">개별 단어가 아니라 조합 삭제</text><text x="122" y="86" class="sub">LLM graph + feature decoupling</text></g>
+          <g class="node n-audit" transform="translate(805 280)"><rect width="300" height="115"></rect><text x="150" y="38" class="title">SEE · Findings EMNLP 2025</text><text x="150" y="65" class="sub">계층·조합·속성으로 재검사</text><text x="150" y="88" class="sub">evasion / neighbor damage / leakage 발견</text></g>
+          <g class="node n-scope" transform="translate(805 455)"><rect width="300" height="115"></rect><text x="150" y="38" class="title">SuPLoRA · AAAI 2026</text><text x="150" y="65" class="sub">많은 개념을 supertype별 그룹화</text><text x="150" y="88" class="sub">부모 개념 직교 보존 + 저랭크 삭제</text></g>
+          <g class="node n-robust" transform="translate(805 125)"><rect width="300" height="115"></rect><text x="150" y="38" class="title">공통 질문: 정말 못 돌아오나?</text><text x="150" y="65" class="sub">Receler는 모듈, RACE는 ε-neighborhood</text><text x="150" y="88" class="sub">공격자의 모델 접근 수준이 핵심</text></g>
+        </svg>
+      </div>
+      <div class="mobile-flow" aria-label="모바일용 연구 흐름 요약">
+        <div><strong>ESD (2023)</strong><br>가중치 기반 개념 삭제의 출발</div>
+        <div><strong>2024의 세 갈래</strong><br>Receler: 경량·국소·강건 / RACE: 공격 방어 / Adversarial Preservation: 주변 보존</div>
+        <div><strong>2025의 범위 확장</strong><br>CoGFD: 개념 조합 / SEE: 계층·조합·속성 부작용 평가</div>
+        <div><strong>SuPLoRA (2026)</strong><br>많은 개념을 계층적으로 지우고 부모 개념 보존</div>
+      </div>
+
+      <div class="timeline" aria-label="논문 발표 연표">
+        <div class="timeline-row"><div class="timeline-year">2023</div><div class="timeline-card"><strong>ESD</strong> — 모델 자체를 교사로 삼아 target concept의 생성 방향을 뒤집음.</div></div>
+        <div class="timeline-row"><div class="timeline-year">2024</div><div class="timeline-card"><strong>Receler · RACE · Adversarial Preservation</strong><p>“삭제했다”에서 “우회에도 버티나?”와 “주변은 얼마나 망가졌나?”로 질문이 세분화됩니다.</p></div></div>
+        <div class="timeline-row"><div class="timeline-year">2025</div><div class="timeline-card"><strong>CoGFD · SEE</strong><p>개념 조합을 직접 다루고, 단일 target 정확도만 보던 평가를 계층·조합·속성 수준으로 넓힙니다.</p></div></div>
+        <div class="timeline-row"><div class="timeline-year">2026</div><div class="timeline-card"><strong>Mass Concept Erasure with Hierarchy</strong><p>수십 개를 지우며 공통 부모 개념까지 무너지는 문제를 SuPLoRA로 다룹니다.</p></div></div>
+      </div>
+    </section>
+
+    <section id="papers" aria-labelledby="papers-title">
+      <div class="section-head">
+        <div><div class="eyebrow">Paper by paper</div><h2 id="papers-title">7편을 한 편씩</h2></div>
+        <p>발표 연대기 순으로 배치했습니다. 버튼을 눌러 논문의 질문, 방법 흐름, 핵심 수식, 기여와 한계를 확인하세요.</p>
+      </div>
+
+      <div class="paper-nav" role="tablist" aria-label="논문 선택">
+        <button class="paper-chip" role="tab" aria-selected="true" aria-controls="panel-esd" id="tab-esd" data-paper="esd">ESD</button>
+        <button class="paper-chip" role="tab" aria-selected="false" aria-controls="panel-receler" id="tab-receler" data-paper="receler">Receler</button>
+        <button class="paper-chip" role="tab" aria-selected="false" aria-controls="panel-race" id="tab-race" data-paper="race">RACE</button>
+        <button class="paper-chip" role="tab" aria-selected="false" aria-controls="panel-advp" id="tab-advp" data-paper="advp">Adv. Preservation</button>
+        <button class="paper-chip" role="tab" aria-selected="false" aria-controls="panel-cogfd" id="tab-cogfd" data-paper="cogfd">CoGFD</button>
+        <button class="paper-chip" role="tab" aria-selected="false" aria-controls="panel-see" id="tab-see" data-paper="see">SEE</button>
+        <button class="paper-chip" role="tab" aria-selected="false" aria-controls="panel-suplo" id="tab-suplo" data-paper="suplo">SuPLoRA</button>
+      </div>
+
+      <article id="panel-esd" class="paper-panel is-active" role="tabpanel" aria-labelledby="tab-esd">
+        <div class="paper-hero">
+          <div><div class="paper-meta">ICCV 2023 · Gandikota et al.</div><h3>Erasing Concepts from Diffusion Models</h3><p>추가 이미지 데이터 없이, 원래 모델의 conditional / unconditional 예측만으로 모델 가중치에서 특정 개념을 억제하는 ESD를 제안합니다.</p></div>
+          <aside class="question-card"><small>이 논문의 질문</small><p>“안전 필터가 아니라 모델 자체가 그 개념을 덜 알게 만들 수 있을까?”</p></aside>
+        </div>
+        <div class="paper-body">
+          <section class="card"><h3>방법 flow</h3><ol class="steps"><li>삭제할 짧은 텍스트 <strong>c</strong>만 준다.</li><li>동결된 원본 모델에서 무조건 예측 u와 조건 예측 c를 얻는다.</li><li>조건이 만든 차이 <strong>(c−u)</strong>를 반대로 민 target을 만든다.</li><li>편집 모델이 그 target을 예측하도록 U-Net 일부를 fine-tune한다.</li></ol></section>
+          <section class="card"><h3>핵심 수식</h3><span class="formula">ε̄ = ε<sub>θ*</sub>(x<sub>t</sub>,t) − η[ε<sub>θ*</sub>(x<sub>t</sub>,c,t) − ε<sub>θ*</sub>(x<sub>t</sub>,t)]<br>L<sub>ESD</sub> = E ‖ε<sub>θ′</sub>(x<sub>t</sub>,c,t) − ε̄‖²</span><p><strong>번역:</strong> “c가 만든 붓질”을 더하는 대신 같은 만큼 반대로 가도록 새 모델을 훈련합니다.</p><p><strong>숫자 예:</strong> u=2, c=5, η=1이면 ε̄=−1. 편집 모델은 c를 봐도 5가 아니라 −1 쪽을 모방합니다.</p></section>
+          <section class="card span-2"><div class="split-list"><div class="good"><h4>Contribution</h4><ul><li>이미지 데이터 없이 모델 자체의 지식을 교사로 사용.</li><li><strong>ESD-x</strong>: cross-attention만 바꿔 prompt-specific 삭제.</li><li><strong>ESD-u</strong>: cross-attention 이외를 바꿔 prompt 표현과 무관한 더 넓은 삭제.</li><li>style, object, nudity에 가중치 기반 삭제를 실증.</li></ul></div><div class="limit"><h4>Limit</h4><ul><li>ESD-x는 명시적 token에 좁게 반응해 동의어·우회 prompt에 취약할 수 있음.</li><li>ESD-u는 넓게 작동하지만 주변 시각 능력의 간섭 위험이 큼.</li><li>초기 평가는 주로 직접 prompt와 단일 target 중심; 후속 연구가 공격·조합·계층 우회를 보임.</li><li>행동 억제이지, 학습 데이터 삭제의 엄밀한 증명은 아님.</li></ul><span class="source-tag">마지막 두 항목은 후속 연구를 반영한 해석</span></div></div></section>
+        </div>
+      </article>
+
+      <article id="panel-receler" class="paper-panel" role="tabpanel" aria-labelledby="tab-receler" hidden>
+        <div class="paper-hero">
+          <div><div class="paper-meta">ECCV 2024 · Huang et al.</div><h3>Receler: Reliable Concept Erasing via Lightweight Erasers</h3><p>원본 U-Net은 동결하고 cross-attention 뒤에 작은 Eraser를 붙여, <strong>locality와 robustness</strong>를 동시에 노립니다.</p></div>
+          <aside class="question-card"><small>이 논문의 질문</small><p>“모델 전체를 망가뜨리지 않고, 말 바꾸기 공격에도 버티는 작은 지우개를 붙일 수 있을까?”</p></aside>
+        </div>
+        <div class="paper-body">
+          <section class="card"><h3>방법 flow</h3><ol class="steps"><li>각 cross-attention 뒤에 bottleneck Eraser를 삽입.</li><li>ESD식 negative target으로 목표 개념을 억제.</li><li>attention map으로 목표 위치 mask M을 만들고, mask 밖 Eraser 출력을 벌점.</li><li>목표를 복구하려는 soft adversarial prompt를 번갈아 학습하고 다시 삭제.</li></ol></section>
+          <section class="card"><h3>핵심 수식 두 개</h3><span class="formula">L<sub>Reg</sub> = (1/L) Σ<sub>l</sub> ‖ o<sup>l</sup> ⊙ (1−M̃) ‖²</span><p>목표 영역 밖에서 Eraser가 손대면 벌점입니다. “사진 전체를 지우지 말고 대상이 있던 자리만 고쳐라”에 가깝습니다.</p><span class="formula">L<sub>Adv</sub> = E ‖ ε<sub>θ′</sub>(x<sub>t</sub>, [e<sub>c</sub>;e<sub>adv</sub>],t) − ε<sub>θ</sub>(x<sub>t</sub>,e<sub>c</sub>,t) ‖²</span><p>e<sub>adv</sub>는 지운 개념을 되살리는 공격 prompt를 배우고, Eraser는 그것을 다시 지웁니다.</p></section>
+          <section class="card span-2"><div class="split-list"><div class="good"><h4>Contribution</h4><ul><li>Eraser가 U-Net 파라미터의 <strong>0.37%</strong>만 차지.</li><li>mask 기반 concept-localized regularization으로 locality 강화.</li><li>paraphrase·learned prompt를 흉내 내는 adversarial learning.</li><li>실험에서 ESD 대비 object robustness와 fidelity를 함께 개선.</li></ul></div><div class="limit"><h4>Limit</h4><ul><li><strong>논문 명시:</strong> 공격자가 원본 weight에 접근하면 Eraser를 제거해 원 모델을 복구할 수 있음.</li><li>개념마다 별도 Eraser를 약 1시간(V100) 학습; 다중 삭제는 개별 출력을 평균.</li><li>삭제 세기를 높이면 locality가 나빠지는 trade-off가 보충자료에 확인됨.</li><li>SD v1.4와 제한된 object/unsafe concept 실험 중심.</li></ul></div></div></section>
+        </div>
+      </article>
+
+      <article id="panel-race" class="paper-panel" role="tabpanel" aria-labelledby="tab-race" hidden>
+        <div class="paper-hero">
+          <div><div class="paper-meta">ECCV 2024 Oral · Kim, Min & Yang</div><h3>R.A.C.E.: Robust Adversarial Concept Erasure</h3><p>삭제된 개념을 되살리는 adversarial text embedding을 <strong>한 timestep</strong>에서 빠르게 찾고, 그 주변까지 함께 지우도록 adversarial training합니다.</p></div>
+          <aside class="question-card"><small>이 논문의 질문</small><p>“직접 prompt는 막았지만 embedding을 살짝 비틀면 다시 나타나는 문제를 어떻게 막을까?”</p></aside>
+        </div>
+        <div class="paper-body">
+          <section class="card"><h3>방법 flow</h3><ol class="steps"><li>기존 ESD 모델에서 target image latent를 준비.</li><li>t*=500 같은 단일 시점에서 PGD로 작은 δ를 찾음.</li><li>c+δ가 삭제 개념을 다시 복원하게 만드는지 확인.</li><li>이 가장 나쁜 이웃 embedding도 ESD의 neutral target으로 보내도록 반복 학습.</li></ol></section>
+          <section class="card"><h3>안쪽 공격 + 바깥 방어</h3><span class="formula">δ* = arg min<sub>‖δ‖∞≤ε</sub> ‖ n − Φ<sub>θ</sub>(z̃<sub>t</sub>,t,c+δ) ‖²</span><p>먼저 “이 금지 이미지를 가장 잘 설명하는 작은 prompt 변형”을 찾습니다.</p><span class="formula">L<sub>RACE</sub> = ‖ Φ<sub>θ</sub>(z<sub>t</sub>,t,c+δ*) − ε̄<sub>ESD</sub> ‖²</span><p>다음에는 그 변형까지 반대 방향 target에 맞춥니다. 중심 한 점이 아니라 반경 ε의 이웃을 함께 눌러주는 셈입니다.</p></section>
+          <section class="card span-2"><div class="split-list"><div class="good"><h4>Contribution</h4><ul><li>모든 timestep 대신 단일 timestep 공격으로 adversarial training 비용 절감.</li><li>추가 모듈이나 외부 prompt/image 없이 ESD에 결합 가능.</li><li>white-box와 black-box red-team 평가.</li><li>nudity에서 강한 white-box 공격 대비 ASR을 약 30–33%p 낮춤.</li></ul></div><div class="limit"><h4>Limit</h4><ul><li><strong>논문 명시:</strong> robustness가 강해질수록 FID/품질과 non-target 정확도가 나빠지는 경향.</li><li>ε-neighborhood와 선택한 t*가 방어 범위를 정의하므로 모든 언어적 우회를 포괄한다고 보장하지 않음.</li><li>L1 weight regularization과 유사 keyword 확대가 완화책이지만, 다시 품질 trade-off를 만듦.</li><li>주 실증이 SD v1.x와 특정 공격군에 한정.</li></ul></div></div></section>
+        </div>
+      </article>
+
+      <article id="panel-advp" class="paper-panel" role="tabpanel" aria-labelledby="tab-advp" hidden>
+        <div class="paper-hero">
+          <div><div class="paper-meta">NeurIPS 2024 · Bui et al.</div><h3>Erasing Undesirable Concepts with Adversarial Preservation</h3><p>여기서 “adversarial”은 공격 prompt가 아닙니다. 삭제 도중 <strong>가장 많이 손상되는 남은 개념</strong>을 찾아 그 개념을 보존하는 감시자로 사용합니다.</p></div>
+          <aside class="question-card"><small>이 논문의 질문</small><p>“왜 항상 빈 문자열을 보존하지? 지금 가장 크게 망가지는 개념을 보존해야 하지 않을까?”</p></aside>
+        </div>
+        <div class="paper-body">
+          <section class="card"><h3>방법 flow</h3><ol class="steps"><li>target c<sub>e</sub>를 neutral c<sub>n</sub>에 맞추는 기본 삭제.</li><li>현재 편집 모델과 원본 모델의 출력 차이가 가장 큰 남은 개념 c<sub>a</sub> 탐색.</li><li>그 c<sub>a</sub>의 원본 출력을 보존하는 loss 추가.</li><li>Gumbel-Softmax로 discrete 단어 탐색과 gradient 학습을 연결.</li></ol></section>
+          <section class="card"><h3>핵심 min–max 수식</h3><span class="formula">min<sub>θ′</sub> max<sub>c<sub>a</sub>∈R</sub> [ ‖ε<sub>θ′</sub>(c<sub>e</sub>)−ε<sub>θ</sub>(c<sub>n</sub>)‖² + λ‖ε<sub>θ′</sub>(c<sub>a</sub>)−ε<sub>θ</sub>(c<sub>a</sub>)‖² ]</span><p><strong>max:</strong> 현재 제일 많이 망가진 c<sub>a</sub>를 찾습니다. <strong>min:</strong> target은 지우되 그 c<sub>a</sub>의 차이는 줄입니다.</p><p><strong>예:</strong> nudity 삭제 뒤 person 차이=8, truck=1, tree=.5라면 c<sub>a</sub>=person을 보존 loss에 넣습니다.</p></section>
+          <section class="card span-2"><div class="split-list"><div class="good"><h4>Contribution</h4><ul><li>neutral anchor가 민감도 스펙트럼의 중간일 뿐이라는 경험적 분석.</li><li>target마다 달라지는 collateral damage를 adaptive하게 추적.</li><li>Gumbel-Softmax로 의미 있는 discrete concept를 찾음.</li><li>5-object 동시 삭제에서 높은 erasure를 유지하며 preservation 개선.</li></ul></div><div class="limit"><h4>Limit</h4><ul><li><strong>논문 명시:</strong> 전체 concept space를 넣는 비용이 커 K-nearest 후보로 줄여야 함.</li><li>Oxford 3000 단어 중심이라 다국어·구문·복잡한 개념 공간은 포괄하지 못함.</li><li>nudity 삭제는 A100 80GB에서 6시간 미만으로 보고되어 경량 방법은 아님.</li><li>CLIP/embedding 유사성과 후보군 품질에 민감.</li></ul></div></div></section>
+        </div>
+      </article>
+
+      <article id="panel-cogfd" class="paper-panel" role="tabpanel" aria-labelledby="tab-cogfd" hidden>
+        <div class="paper-hero">
+          <div><div class="paper-meta">ICLR 2025 · Nie et al.</div><h3>Erasing Concept Combinations with CoGFD</h3><p>“kid”, “drink”, “wine” 각각은 보존하면서 <strong>kid ∧ drink ∧ wine</strong>이라는 조합과 같은 주제의 변형만 약화하는 CCE 문제를 공식화합니다.</p></div>
+          <aside class="question-card"><small>이 논문의 질문</small><p>“안전한 단어들이 조합되어 위험한 장면이 될 때, 단어를 죽이지 않고 조합만 끊을 수 있을까?”</p></aside>
+        </div>
+        <div class="paper-body">
+          <section class="card"><h3>방법 flow</h3><ol class="steps"><li>하나의 seed 조합을 LLM Generator에게 입력.</li><li>≡, ⊑, ∧ 관계의 concept logic graph를 만들고 Reviewer가 오류 수정.</li><li>같은 theme의 조합들을 뽑아 각 구성 concept으로 분해.</li><li>초기 denoising 구간의 high-level feature는 조합에서 멀게, 개별 concept에서는 원본과 가깝게 학습.</li></ol></section>
+          <section class="card"><h3>수식이 하는 일</h3><span class="formula">D(Φ<sub>θ</sub>,Φ<sub>θ̃</sub>,p)=Σ<sub>early t</sub> ‖Φ<sub>θ</sub>(…,p,t)−Φ<sub>θ̃</sub>(…,p,t)‖²</span><span class="formula">L = α·exp(−D<sub>combo</sub>) + (1−α)·exp(ΣD<sub>individual</sub>)</span><p>L을 줄이려면 <strong>D<sub>combo</sub>는 커져야</strong> 하고 <strong>D<sub>individual</sub>은 작아져야</strong> 합니다. 즉, 원본과 조합의 high-level feature는 갈라놓되, kid·wine 각각은 원본에 붙잡아 둡니다.</p></section>
+          <section class="card span-2"><div class="split-list"><div class="good"><h4>Contribution</h4><ul><li>Concept Combination Erasing 문제를 명시적으로 공식화.</li><li>동일 theme의 여러 표현을 LLM logic graph로 확장.</li><li>개별 concept 삭제가 아니라 co-occurring high-level feature를 decouple.</li><li>HarmfulCmb와 UnlearnCanvas 등에서 조합 삭제/개별 보존을 함께 평가.</li></ul></div><div class="limit"><h4>Limit</h4><ul><li><strong>논문 가정:</strong> 이미지가 주로 하나의 concept combination과 연관된다고 봄.</li><li>LLM graph는 불안정하고 크기가 커질수록 오류가 늘어 Generator–Reviewer와 외부 API에 의존.</li><li><strong>논문 명시:</strong> HarmfulCmb의 고위험 내용이 주로 minors 관련으로 제한.</li><li>“초기 timestep = high-level feature” 근사와 SD v1.5 중심 실증.</li></ul></div></div></section>
+        </div>
+      </article>
+
+      <article id="panel-see" class="paper-panel" role="tabpanel" aria-labelledby="tab-see" hidden>
+        <div class="paper-hero">
+          <div><div class="paper-meta">Findings of EMNLP 2025 · Saha et al.</div><h3>Side Effects of Erasing Concepts from Diffusion Models</h3><p>새 삭제 방법이 아니라 <strong>SEE 평가 benchmark</strong>입니다. “car를 지운 뒤 car만 검사”하는 관행이 얼마나 많은 실패를 놓치는지 보여줍니다.</p></div>
+          <aside class="question-card"><small>이 논문의 질문</small><p>“지웠다는 주장을 계층, 조합, 속성 수준으로 다시 검사하면 무엇이 새어 나올까?”</p></aside>
+        </div>
+        <div class="paper-body">
+          <section class="card"><h3>평가 flow</h3><ol class="steps"><li>11개 superclass 아래 object와 조합 prompt 5,056개 구성.</li><li>크기·색·재질을 붙여 semantic/compositional distance를 만듦.</li><li>각 모델·prompt당 4장, 총 20,224장을 생성.</li><li>CLIP 분류와 Qwen/BLIP/Florence VQA로 target·preserve 존재를 검증.</li></ol></section>
+          <section class="card"><h3>세 가지 side effect</h3><span class="formula">Target Acc = (1/|E|) Σ 1[target이 보임] ↓<br>Preserve Acc = (1/|P|) Σ 1[preserve가 보임] ↑</span><p><strong>① Evasion:</strong> vehicle을 지워도 bicycle·large pizza 같은 하위/조합으로 우회.<br><strong>② Neighbor damage:</strong> blue couch를 지우자 blue chair도 사라짐.<br><strong>③ Attribute leakage:</strong> wooden bench를 지우자 wooden이 bird로 이동.</p></section>
+          <section class="card span-2"><div class="split-list"><div class="good"><h4>Contribution / Finding</h4><ul><li>계층·조합 prompt를 포함한 model-agnostic 자동 평가 suite.</li><li>8/11 superclass에서 subclass/조합 우회가 80–100% 수준.</li><li>편집 후 preserve 대상의 attribute leakage가 모든 평가기에서 50% 이상.</li><li>63개 변형을 한 번에 지우는 것보다 순차 삭제가 더 효과적이라는 관찰.</li></ul></div><div class="limit"><h4>Limit</h4><ul><li><strong>논문 명시:</strong> object/supercategory와 자동 검증 가능한 size·color·material에 제한.</li><li>연구가 다룬 세 부작용 외의 실패 모드는 남아 있음.</li><li>저자들은 배포가 쉬운 특정 CET 계열 중심 평가라는 범위 제한을 명시.</li><li>자동 verifier 자체의 오분류와 문화·맥락적 위험은 별도 문제.</li></ul></div></div></section>
+        </div>
+      </article>
+
+      <article id="panel-suplo" class="paper-panel" role="tabpanel" aria-labelledby="tab-suplo" hidden>
+        <div class="paper-hero">
+          <div><div class="paper-meta">AAAI 2026 · Tu et al.</div><h3>Mass Concept Erasure with Concept Hierarchy</h3><p>많은 subtype을 하나씩 지우면 공통 부모인 supertype까지 무너집니다. 의미 계층으로 묶어 지우고, 부모 방향과 직교하는 저랭크 공간에서만 업데이트합니다.</p></div>
+          <aside class="question-card"><small>이 논문의 질문</small><p>“수십 명의 celebrity를 지우면서 ‘person’ 자체와 저장 비용을 지킬 수 있을까?”</p></aside>
+        </div>
+        <div class="paper-body">
+          <section class="card"><h3>방법 flow</h3><ol class="steps"><li>LLM으로 subtype을 supertype별 그룹화: macaw·eagle → bird.</li><li>그룹마다 하나의 파라미터 세트로 attention-based suppression.</li><li>mask 밖 영역에는 standard diffusion loss로 denoising 보존.</li><li>supertype gradient subspace의 직교 여공간을 B로 고정하고 A만 학습.</li><li>여러 SuPLoRA를 target alignment + generality consistency로 하나에 distill.</li></ol></section>
+          <section class="card"><h3>SuPLoRA의 기하학</h3><span class="formula">o<sub>j</sub> = Wh<sub>j</sub> + A<sub>j</sub>B<sub>j</sub>h<sub>j</sub></span><span class="formula">ΔW′<sub>A</sub> = ΔW′<sub>full</sub> B<sub>j</sub><sup>T</sup>B<sub>j</sub></span><p>B가 supertype gradient 공간 S<sub>j</sub>와 직교하도록 고정되면, A를 바꿔도 update는 부모 방향을 덜 건드립니다.</p><p><strong>2D 비유:</strong> “person” 지식이 x축이라면 삭제 업데이트를 y축에서만 허용하는 칸막이입니다.</p></section>
+          <section class="card span-2"><div class="split-list"><div class="good"><h4>Contribution</h4><ul><li>mass erasure를 supertype–subtype 계층으로 재구성.</li><li>concept별 모듈 대신 group별 공유로 parameter 효율 향상.</li><li>SVD와 gradient orthogonality로 부모 개념 보존을 이론화.</li><li>object·celebrity·pornography를 동시에 다루는 다중 domain benchmark.</li><li>ablation에서 7.11MB 대 28.5MB로 더 작은 설정을 보고.</li></ul></div><div class="limit"><h4>Limit</h4><ul><li><strong>논문 명시:</strong> 공유 supertype 구조가 약하면 group suppression 효과가 낮을 수 있음.</li><li>기본 구조는 2-level hierarchy이며 LLM이 만든 grouping 품질에 의존.</li><li>부모 subspace를 text embedding/SVD로 근사하므로 실제 시각 개념 전체를 완전히 포착한다는 보장은 없음.</li><li>계층 밖의 조합·속성 leakage와 적대적 prompt 강건성은 별도 축.</li></ul></div></div></section>
+        </div>
+      </article>
+    </section>
+
+    <section id="comparison" aria-labelledby="comparison-title">
+      <div class="section-head">
+        <div><div class="eyebrow">Comparison matrix</div><h2 id="comparison-title">같은 단어, 다른 문제</h2></div>
+        <p>특히 “adversarial”이 무엇을 뜻하는지 구분해야 합니다. RACE/Receler의 adversary는 <strong>삭제를 우회하는 prompt</strong>, Adversarial Preservation의 adversary는 <strong>삭제 때문에 가장 손상되는 보존 concept</strong>입니다.</p>
+      </div>
+      <div class="compare-wrap" role="region" aria-label="7개 논문 비교 표" tabindex="0">
+        <table>
+          <thead><tr><th>관점</th><th>ESD</th><th>Receler</th><th>RACE</th><th>Adv. Preservation</th><th>CoGFD</th><th>SEE</th><th>SuPLoRA</th></tr></thead>
+          <tbody>
+            <tr><td>주 질문</td><td>가중치에서 지우기</td><td>경량·국소·강건</td><td>공격에도 복원 방지</td><td>주변 능력 보존</td><td>조합만 분리 삭제</td><td>숨은 부작용 측정</td><td>대규모·부모 보존</td></tr>
+            <tr><td>변경 대상</td><td>U-Net 일부</td><td>추가 Eraser</td><td>ESD U-Net</td><td>U-Net</td><td>Cross-attention</td><td>변경 없음</td><td>SuPLoRA + fused W*</td></tr>
+            <tr><td>핵심 도구</td><td>negative guidance</td><td>mask + soft prompt</td><td>single-step PGD</td><td>min–max + Gumbel</td><td>LLM graph + early feature</td><td>hierarchy + VQA/CLIP</td><td>SVD + orthogonal LoRA</td></tr>
+            <tr><td>삭제 단위</td><td>개별 concept</td><td>개별 concept/module</td><td>concept 주변 embedding</td><td>다중 target 가능</td><td>concept combination/theme</td><td>계층·조합 전체 평가</td><td>supertype별 concept group</td></tr>
+            <tr><td>보존 전략</td><td>파라미터 선택</td><td>mask 밖 출력 0</td><td>L1 선택적 완화</td><td>최악 손상 concept 직접 보존</td><td>individual feature 원본 정렬</td><td>Preserve Acc 측정</td><td>부모 subspace 직교 업데이트</td></tr>
+            <tr><td>대표 취약점</td><td>우회·간섭</td><td>모듈 제거 가능</td><td>강건성–품질 trade-off</td><td>검색 비용·단어 공간</td><td>LLM/단일 조합 가정</td><td>제한된 object 속성</td><td>공유 부모가 약한 경우</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:2.2rem">연구 목적별 읽기 순서</h3>
+      <div class="decision-grid">
+        <article class="decision-card"><div class="if">기초 원리를 알고 싶다면</div><div class="then">ESD → Receler</div><p>negative guidance와 cross-attention 편집부터 시작.</p></article>
+        <article class="decision-card"><div class="if">보안/레드팀이 목적이라면</div><div class="then">RACE → SEE</div><p>방어 loss를 이해한 뒤 계층·조합 우회로 검증.</p></article>
+        <article class="decision-card"><div class="if">원본 능력 보존이 핵심이라면</div><div class="then">Adv. Preservation</div><p>neutral anchor가 왜 부족한지 집중.</p></article>
+        <article class="decision-card"><div class="if">위험한 ‘조합’을 막고 싶다면</div><div class="then">CoGFD → SEE</div><p>theme graph와 attribute leakage를 함께 봄.</p></article>
+        <article class="decision-card"><div class="if">수십 개 이상 지운다면</div><div class="then">SuPLoRA</div><p>group-wise parameter와 부모 보존을 확인.</p></article>
+        <article class="decision-card"><div class="if">새 방법을 평가하려면</div><div class="then">E/L/R/S 전부 측정</div><p>직접 prompt 성공률 하나로 결론 내리지 않기.</p></article>
+      </div>
+      <div class="warning-banner"><strong>실무적 takeaway:</strong> “car” 한 번 생성해 안 나오면 성공이 아닙니다. 최소한 direct target, synonym/paraphrase, superclass/subclass, attribute composition, adversarial prompt, non-target quality, removable adapter 여부를 따로 검사해야 합니다.</div>
+    </section>
+
+    <section id="glossary" aria-labelledby="glossary-title">
+      <div class="section-head">
+        <div><div class="eyebrow">Glossary</div><h2 id="glossary-title">헷갈리는 용어</h2></div>
+        <p>수식을 읽을 때 이 여섯 개만 기억하면 본문의 대부분을 따라갈 수 있습니다.</p>
+      </div>
+      <dl class="glossary">
+        <div class="term"><dt>ε (noise)</dt><dd>모델이 매 단계 제거하려고 예측하는 노이즈. 실제로는 큰 텐서입니다.</dd></div>
+        <div class="term"><dt>θ / θ*</dt><dd>θ는 학습 중 모델, θ*는 보통 동결한 원본 교사 모델.</dd></div>
+        <div class="term"><dt>Embedding c</dt><dd>텍스트의 의미를 담은 숫자 벡터. 가까운 벡터가 항상 같은 시각 의미를 보장하진 않습니다.</dd></div>
+        <div class="term"><dt>Locality</dt><dd>편집이 target 주변에만 머물고 나머지 능력은 보존되는 성질.</dd></div>
+        <div class="term"><dt>ASR</dt><dd>Attack Success Rate. 공격 prompt가 지운 개념을 되살리는 비율. 낮을수록 좋습니다.</dd></div>
+        <div class="term"><dt>LoRA: AB</dt><dd>큰 W 전체 대신 작은 rank의 A와 B로 update를 표현하는 parameter-efficient 방식.</dd></div>
+        <div class="term"><dt>Supertype / Subtype</dt><dd>bird / macaw처럼 부모–자식 의미 관계. 부모를 지키면서 자식만 지우는 것이 어렵습니다.</dd></div>
+        <div class="term"><dt>Concept combination</dt><dd>각각은 안전할 수 있지만 함께 등장할 때 특정 theme가 되는 개념의 논리곱.</dd></div>
+      </dl>
+    </section>
+
+    <section id="sources" aria-labelledby="sources-title">
+      <div class="section-head">
+        <div><div class="eyebrow">Primary sources</div><h2 id="sources-title">확인한 원문</h2></div>
+        <p>논문 본문·공식 프로시딩·보충자료를 기준으로 작성했습니다. 한계가 저자 명시인지 후속 연구 기반 해석인지 본문에서 구분했습니다.</p>
+      </div>
+      <ol class="sources">
+        <li><a href="https://openaccess.thecvf.com/content/ICCV2023/html/Gandikota_Erasing_Concepts_from_Diffusion_Models_ICCV_2023_paper.html" target="_blank" rel="noreferrer">Erasing Concepts from Diffusion Models</a><small>Gandikota et al. · ICCV 2023 · 공식 CVF 프로시딩</small></li>
+        <li><a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/5685_ECCV_2024_paper.php" target="_blank" rel="noreferrer">Receler: Reliable Concept Erasing via Lightweight Erasers</a><small>Huang et al. · ECCV 2024 · <a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/05685-supp.pdf" target="_blank" rel="noreferrer">보충자료</a> 포함</small></li>
+        <li><a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/11117_ECCV_2024_paper.php" target="_blank" rel="noreferrer">R.A.C.E.: Robust Adversarial Concept Erasure</a><small>Kim, Min & Yang · ECCV 2024 Oral · 공식 ECVA 프로시딩</small></li>
+        <li><a href="https://papers.nips.cc/paper_files/paper/2024/hash/f02d7fb7ddd2e6be33b6f3224e5cc44a-Abstract-Conference.html" target="_blank" rel="noreferrer">Erasing Undesirable Concepts with Adversarial Preservation</a><small>Bui et al. · NeurIPS 2024 · 공식 프로시딩 및 arXiv v4</small></li>
+        <li><a href="https://proceedings.iclr.cc/paper_files/paper/2025/hash/7adf155d85da5d2ef23c307f999b1f98-Abstract-Conference.html" target="_blank" rel="noreferrer">Erasing Concept Combination(s) from Text-to-Image Diffusion Model</a><small>Nie et al. · ICLR 2025 · 공식 프로시딩 (페이지/본문의 단·복수 표기 차이 존재)</small></li>
+        <li><a href="https://aclanthology.org/2025.findings-emnlp.810/" target="_blank" rel="noreferrer">Side Effects of Erasing Concepts from Diffusion Models</a><small>Saha et al. · Findings of EMNLP 2025 · ACL Anthology</small></li>
+        <li><a href="https://ojs.aaai.org/index.php/AAAI/article/view/37920" target="_blank" rel="noreferrer">Mass Concept Erasure in Diffusion Models with Concept Hierarchy</a><small>Tu et al. · AAAI 2026 · 공식 AAAI 프로시딩</small></li>
+        <li><a href="https://openaccess.thecvf.com/content/CVPR2022/html/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.html" target="_blank" rel="noreferrer">Background: Latent Diffusion Models</a><small>Rombach et al. · CVPR 2022</small></li>
+        <li><a href="https://arxiv.org/abs/2207.12598" target="_blank" rel="noreferrer">Background: Classifier-Free Diffusion Guidance</a><small>Ho & Salimans · 2022</small></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Concept Erasure Atlas</strong><br>
+    이 문서는 논문 원문의 수식을 초보자용 직관으로 재표현했습니다. 장난감 숫자 예시는 방향을 설명하기 위한 것이며 논문의 실제 텐서 계산을 대체하지 않습니다.
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+      const savedTheme = localStorage.getItem('concept-erasure-theme');
+      if (savedTheme) root.dataset.theme = savedTheme;
+      themeToggle.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem('concept-erasure-theme', next);
+      });
+
+      const tabs = [...document.querySelectorAll('[data-paper]')];
+      const panels = [...document.querySelectorAll('.paper-panel')];
+      function selectPaper(id, focus = false) {
+        tabs.forEach(tab => {
+          const active = tab.dataset.paper === id;
+          tab.setAttribute('aria-selected', String(active));
+          if (active && focus) tab.focus();
+        });
+        panels.forEach(panel => {
+          const active = panel.id === `panel-${id}`;
+          panel.classList.toggle('is-active', active);
+          panel.hidden = !active;
+        });
+      }
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => selectPaper(tab.dataset.paper));
+        tab.addEventListener('keydown', event => {
+          if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+          event.preventDefault();
+          let nextIndex = index;
+          if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+          if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = tabs.length - 1;
+          selectPaper(tabs[nextIndex].dataset.paper, true);
+        });
+      });
+
+      const uRange = document.getElementById('uRange');
+      const cRange = document.getElementById('cRange');
+      const etaRange = document.getElementById('etaRange');
+      const uOut = document.getElementById('uOut');
+      const cOut = document.getElementById('cOut');
+      const etaOut = document.getElementById('etaOut');
+      const simText = document.getElementById('simText');
+      const markerU = document.getElementById('markerU');
+      const markerC = document.getElementById('markerC');
+      const markerTarget = document.getElementById('markerTarget');
+      const toPercent = value => Math.max(5, Math.min(95, 50 + Number(value) * 4.5));
+      function updateSimulator() {
+        const u = Number(uRange.value);
+        const c = Number(cRange.value);
+        const eta = Number(etaRange.value);
+        const target = u - eta * (c - u);
+        uOut.textContent = u.toFixed(1);
+        cOut.textContent = c.toFixed(1);
+        etaOut.textContent = eta.toFixed(1);
+        markerU.style.left = `${toPercent(u)}%`;
+        markerC.style.left = `${toPercent(c)}%`;
+        markerTarget.style.left = `${toPercent(target)}%`;
+        markerTarget.querySelector('span').textContent = `target ${target.toFixed(1)}`;
+        simText.textContent = `조건 방향은 ${(c-u).toFixed(1)}, 반대로 이동한 삭제 목표는 ${target.toFixed(1)}입니다.`;
+      }
+      [uRange, cRange, etaRange].forEach(input => input.addEventListener('input', updateSimulator));
+      updateSimulator();
+    })();
+  </script>
+</body>
+</html>

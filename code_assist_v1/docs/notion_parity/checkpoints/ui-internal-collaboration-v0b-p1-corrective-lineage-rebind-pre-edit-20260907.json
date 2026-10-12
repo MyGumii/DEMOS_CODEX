@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CORRECTIVE-LINEAGE-REBIND-PRE-EDIT-20260907",
+  "recorded_at": "2026-09-07T01:58:00+09:00",
+  "status": "in_progress_validation_lineage_rebind",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Rebind the two aggregate Notion validation contracts that explicitly own the central harness and hot-catalog lineage after the fail-closed V0 evidence-revocation correction. No product behavior, SBE contract, or historical execution receipt is changed.",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json"
+  ],
+  "read_only_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+    "code_assist_v1/docs/knowledge_spaces/"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json": "sha256:0089f873f9628e7d379ca343aaa605d93c081154634c95d6729dd65fb01ef010",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json": "sha256:89580ac193b4b977d16f6b6cba5bad557dc020c6341623d679c60040f5f49de6"
+  },
+  "target_bindings": {
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:6452f040cccba8750b980d48bcf3d8d67a6e68e5626a52ec332b0347bd33089e",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:775f5f921c930ebcfb6fe07fd1fce311d7339920a04c7c4c4c467e107c389444",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:96d7f4493b687816f24563e54c1aab3401713e2d65056b62726b664d2f5b9275",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:28ef02fd42dec55597b92b41a97b63319d8540efd86d1dc5f8d433feb053bcd4",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CORRECTIVE-LINEAGE-REBIND-20260907",
+    "owner_agent": "/root",
+    "lane": "DOC_HARNESS",
+    "status": "active",
+    "exact_paths_only": true
+  },
+  "scope_guard": {
+    "product_source_changed": false,
+    "historical_receipt_overwritten": false,
+    "SBE_hot_contract_changed": false,
+    "runtime_or_external_mutation": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

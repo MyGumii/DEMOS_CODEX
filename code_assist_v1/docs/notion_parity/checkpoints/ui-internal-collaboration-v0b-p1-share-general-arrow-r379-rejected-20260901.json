@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.rejected_experiment.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-SHARE-GENERAL-ARROW-R379-REJECTED-20260901",
+  "recorded_at": "2026-08-31T22:40:00.8833282Z",
+  "status": "rejected_restored_to_r378",
+  "summary": "The V0R-MU-006-only general-access arrow split-and-translate experiment was rejected. The isolated r379 I0 journey, all 20 accessibility observations, and synthetic cleanup passed, but the exact-pixel difference increased by two pixels at each adopted viewport, four pixels total. No full candidate was run. The capture harness was restored byte-for-byte to retained r378.",
+  "retained_predecessor": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-share-tab-general-label-r378-progress-20260901.json",
+    "checkpoint_sha256": "sha256:a761b5313532673768ac0b7a705eae80058705277efe1ebb2aed4f22126899e0",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r378/receipt.json",
+    "receipt_sha256": "sha256:373cca7c8b2cba554494684a44bd7d487e0edcba66cf4a94b007fd0ba3527596",
+    "capture_harness_sha256": "sha256:da11393f39cd2af2725abf6e27e05fe483ae326234ae4ae0f8000683a5464964"
+  },
+  "experiment": {
+    "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r379",
+    "change": "split the final general-access arrow into an aria-hidden span, add six pixels of left margin, and translate it seven pixels upward while preserving the parent accessibility name",
+    "journey_status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "V0R_MU_006_previous_unmasked_difference_count": 163300,
+    "V0R_MU_006_experimental_unmasked_difference_count": 163304,
+    "delta": 4,
+    "per_viewport_delta": {
+      "1440x900": 2,
+      "1280x800": 2
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    },
+    "accepted": false,
+    "full_candidate_run": false
+  },
+  "scope_attestation": {
+    "local_product_source_changed": false,
+    "local_capture_harness_restored": true,
+    "external_reference_modified": false,
+    "personal_workspace_or_page_used": false,
+    "service_restart_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "next_cursor": "Continue from retained r378. Preserve r379 as rejected evidence and do not restore the general-access arrow split or translation. Keep the exact gate, Core 25 gate, performance gate, product-complete claim, and active goal open."
+}

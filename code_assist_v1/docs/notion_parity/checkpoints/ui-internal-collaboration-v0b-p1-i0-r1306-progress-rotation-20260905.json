@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1306-PROGRESS-ROTATION-20260905",
+  "recorded_at": "2026-09-05T18:56:40.2507276+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1280-progress-rotation-20260905.json",
+    "sha256": "sha256:b41740e37281a4db29336ad1f0c7db2cafb706830581d8e31f645200e2143737"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1303-state006-label-weights-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1303-state006-label-weights-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:a5858eb086e2b4e678ea7a02ea0f3776c1b675954bf2816db1a7ba744747129c",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:258f442212925b817cdebb444d5b14aef41728c171cae929aa5be4feed112e0a",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 783248,
+    "masked_difference_count": 0,
+    "total_difference_count": 783248,
+    "stable_normalized_total_difference_count": 783248,
+    "runtime_variance": {
+      "V0R-MU-002": 0,
+      "V0R-MU-004": 0,
+      "normalization_basis": "both known alternating states at their higher stable counts"
+    },
+    "overall_exact_progress": "0/36"
+  },
+  "improvement_since_r1280": {
+    "stable_normalized_total_difference_delta": -198,
+    "retained_changes": [
+      "Reduce the V0R-MU-006 page-share panel shadow vertical offset by one half pixel after full-frame validation.",
+      "Replace the operating-system-dependent link emoji with a deterministic masked SVG link glyph.",
+      "Match the measured page-share copy-label and advanced-label font weights independently."
+    ],
+    "source_bound_reduction_breakdown": {
+      "page_share_panel_shadow": -92,
+      "copy_link_vector_glyph": -56,
+      "copy_and_advanced_label_weights": -50
+    }
+  },
+  "rejected_diagnostics": [
+    {
+      "run_id": "v0b-p1-i0-r1283-through-r1285-state016-guest-block-typography",
+      "reason": "A bounded crop suggested improvement, but the full standard run exposed a 2390-pixel regression outside the crop; the source was restored exactly."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1286-through-r1289-state006-shadow-followups",
+      "reason": "The coarse bounded result at y=18 regressed each full viewport by 1442 pixels; only the independently validated y=19.5 half-pixel correction was retained."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1291-state006-border-and-radius-sweep",
+      "reason": "All panel border-alpha and radius variants were worse than the retained source."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1292-state006-agent-banner-typography",
+      "reason": "The retained agent-banner stroke, spacing, and weight remained best."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1299-state006-advanced-gear-vector",
+      "reason": "Every deterministic gear-vector candidate was worse than the retained glyph."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1304-through-r1305-korean-inbox-details-probe",
+      "reason": "Adding the missing synthetic inbox detail lines increased differences by more than 2600 pixels even after an exhaustive plus-or-minus-four-pixel translation probe, so no source change was retained."
+    }
+  ],
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1281-20260905",
+    "launch_id": "0611800801b148c98e6f05e4079393db",
+    "root_id": "0f4d0332-d8d6-45c1-827a-cb9d2576c568",
+    "manager_session_id": 43996,
+    "manager_session_live": true,
+    "final_audit_before_rotation": {
+      "workspace_count": 50,
+      "reference_workspace_count": 48,
+      "active_membership_count": 50,
+      "active_page_binding_count": 48,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64,
+    "filesystem_preservation_required": true
+  },
+  "verification": {
+    "targeted_tests": "23 passed in 12.46s",
+    "python_compile": "pass",
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Preserve and stop the r1281 realm, start a fresh approved development realm, reproduce retained r1303, then continue lossless exact residual reduction. Do not run final gates before exact parity reaches 36/36."
+}

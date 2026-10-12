@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-P1-POLICY-BINDING-READINESS-R2-20260907",
+  "recorded_at": "2026-09-07T09:01:55+09:00",
+  "checkpoint_kind": "fail_closed_pre_execution_readiness_successor",
+  "packet_id": "O1B-P1",
+  "packet_status": "ready_for_public_trust_binding_inputs",
+  "immutable_after_recording": true,
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-p1-cryptographic-readiness-20260907.json",
+    "sha256": "sha256:bce9696fed918d9d4e9cc9e625ed1f2a4b5cab4e901bb20989d60ebf00a08fe1"
+  },
+  "new_artifacts": {
+    "create_only_policy_binder": {
+      "path": "code_assist_v1/tools/bind_internal_collaborative_target_policy.py",
+      "sha256": "sha256:4cb07129bd95a1972f030a20a32f9e0742a51c0884446107283283c9737a2032"
+    },
+    "policy_binder_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_policy_binding.py",
+      "sha256": "sha256:28c7e2f0503ecba1b3ee9c0187d2f3e8cbf624d6ba54dbf0b884cb0fc8ede702"
+    }
+  },
+  "retained_bindings": {
+    "pending_readiness_policy_sha256": "sha256:345572f54a67af8ac853a64a78b2556bcb4d1298f3de21e871efa78036b90c15",
+    "target_receipt_verifier_sha256": "sha256:a3a692ad03465cb35e0949d4f2c3b3cdac999ad64c5bbfb555e155a1f952b85a",
+    "target_receipt_verifier_tests_sha256": "sha256:735579c27f0c4ff5ab60cdd268c559f552fbccc2158b106becbd88517481cca0",
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+  },
+  "policy_binder_contract": {
+    "base_policy_exact_hash_required": true,
+    "input_limited_to_public_keys_and_release_identity": true,
+    "four_distinct_ed25519_public_keys_required": true,
+    "release_candidate_exact_denominator_required": true,
+    "compiled_policy_reverified_before_output": true,
+    "output_create_only": true,
+    "existing_output_overwrite_allowed": false,
+    "private_key_or_signature_generated": false,
+    "approval_generated": false,
+    "handoff_generated": false,
+    "policy_activated": false,
+    "target_action_executed": false
+  },
+  "verification": {
+    "compile_status": "pass",
+    "binder_and_target_verifier_tests": {
+      "status": "pass",
+      "passed": 56,
+      "failed": 0
+    },
+    "focused_restore_and_binding_regression": {
+      "status": "pass",
+      "passed": 83,
+      "failed": 0,
+      "duration_seconds": 133.64
+    },
+    "cli_help_exit_code": 0
+  },
+  "execution_truth": {
+    "AP_OPS_TARGET_granted": false,
+    "XG_SBE_TARGET_OPERATIONS_HANDOFF_accepted": false,
+    "target_specific_bound_policy_created": false,
+    "authorized_execution_policy_sha256": null,
+    "target_backup_restore_executed": false,
+    "O1B_P1_gate_passed": false,
+    "production_restore_executed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "central_catalogs_modified": false,
+  "resume_condition": "Supply the exact reviewed release identity and four distinct Ed25519 public trust anchors to compile a target-specific successor policy; then independently review and pin that exact policy before fresh approval, handoff, or target action.",
+  "goal_complete": false
+}

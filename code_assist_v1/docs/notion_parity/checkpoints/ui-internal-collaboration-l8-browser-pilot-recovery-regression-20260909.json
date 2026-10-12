@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.l8.browser_pilot_recovery_regression_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-L8-BROWSER-PILOT-RECOVERY-REGRESSION-20260909",
+  "recorded_at": "2026-09-09T09:08:00+09:00",
+  "status": "current_accessibility_navigation_and_page_creation_journey_green",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-r0-r1-z0-local-readiness-regression-v2-20260909.json",
+    "sha256": "sha256:6ced43b386a0c1625c21bd588b9d05176425748b39abac755d0ef865dbc3921b",
+    "record_sha256": "sha256:1f97e0c9538ee6a0cebf253622fc9f422f578a75e8e0e163d9946fc97fb96861"
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    }
+  },
+  "defect": {
+    "classification": "stale_browser_test_navigation_contract",
+    "observed_current_contract": {
+      "home_accessibility_role": "tab",
+      "new_page_action": "opens_new_page_type_menu_before_creation"
+    },
+    "corrective_change": [
+      "locate Home by its current tab role",
+      "select the plain page item from the new-page type menu before waiting for the editor"
+    ]
+  },
+  "changed_test_binding": {
+    "path": "code_assist_v1/tests/browser/test_notion_ui_pilot_recovery.py",
+    "before_sha256": "sha256:4ef60521a69a5dd02d6f5d00907fb98675f88e2b8c63a4defda10ac8d6e2204d",
+    "sha256": "sha256:ba75f36c105da1aabcbe9a534ad157cd9bba363c9d585797a214bd046392fc0f"
+  },
+  "l8_test_bindings": [
+    {"path": "code_assist_v1/tests/knowledge_spaces/unit/test_performance_load.py", "sha256": "sha256:ba6c9f8c1d697ed36156ad03529e42a3ab5555b76daea4b749c17573df387bc6"},
+    {"path": "code_assist_v1/tests/test_notion_ui_performance_budget.py", "sha256": "sha256:73e947f2e3c71216979ffb5ea8b2f2d6efd48b1dccd89738cbfa1375569b8560"},
+    {"path": "code_assist_v1/tests/test_notion_ui_performance_budget_proposal.py", "sha256": "sha256:40ebb286007cea7daf1868011605036048cc9c3ca05febd6041a0edd83409525"},
+    {"path": "code_assist_v1/tests/browser/test_notion_ui_performance.py", "sha256": "sha256:17cad4942917ad41e13501c05ec1dd085de82343852eeb4772ad9e62b93b6761"},
+    {"path": "code_assist_v1/tests/browser/test_notion_ui_pilot_recovery.py", "sha256": "sha256:ba75f36c105da1aabcbe9a534ad157cd9bba363c9d585797a214bd046392fc0f"}
+  ],
+  "verification": {
+    "original_l8_run": {"passed": 40, "failed": 1, "duration_seconds": 124.29},
+    "focused_corrected_pilot_recovery": {"passed": 1, "failed": 0, "duration_seconds": 28.37},
+    "full_l8_existing_performance_baseline": {"passed": 41, "failed": 0, "duration_seconds": 99.31},
+    "central_read_only_audit": {"status": "pass", "error_count": 0, "completion_state": "incomplete", "gate_passed_required_packets": 44, "required_packet_count": 50}
+  },
+  "claims": {
+    "product_behavior_changed": false,
+    "current_browser_test_contract_corrected": true,
+    "local_l8_baseline_green": true,
+    "external_target_evidence_created": false,
+    "external_system_mutated": false,
+    "production_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "historical_evidence_overwritten": false,
+    "central_catalogs_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:8dfb0decad18b80548b15dee55449f9006ccd99997b8980c1c4c27ca55397de4"
+}

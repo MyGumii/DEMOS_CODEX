@@ -1,0 +1,176 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T04:40:15.6313782+09:00",
+  "run_id": "ui31-r1-r3-approved-parity-implementation-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-owner-approvals-recorded-20260822.json",
+    "sha256": "sha256:0b5c2449edf73c1aad3d3a058318c39330b182d0a27b55a5179ec3f709caee35",
+    "semantic_status": "owner_approval_recorded"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "blocked",
+    "user_resume_received": true,
+    "goal_replaced_or_completed": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "reference_scenario_ids": [
+      "UI-SHELL-001",
+      "UI-EDITOR-001",
+      "UI-EDITOR-002",
+      "UI-EDITOR-005",
+      "UI-DB-001",
+      "UI-DB-002",
+      "UI-DB-003",
+      "UI-SEARCH-001",
+      "UI-SEARCH-002",
+      "UI-COLLAB-001",
+      "UI-SHARE-001"
+    ],
+    "local_second_brain_scenario_ids": [
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-SB-003"
+    ],
+    "synthetic_only": true,
+    "personal_or_live_data_accessed": false,
+    "external_publish_or_message_performed": false
+  },
+  "slice": {
+    "status": "owner_approved_revalidation_current_source_green",
+    "promotion_allowed": false,
+    "completion_matrix_mutation_allowed": false,
+    "remaining_plan_continues": true
+  },
+  "source_bindings": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:35fc4fd4ec17c9e3ab62925517e2eb9a78744d9081ada92775e8926e619797e9"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "sha256": "sha256:0d8d52313f7e1bb8920348af4be3407d2ca80daca6c3b71afeca3fd03e7b7102"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.css",
+      "sha256": "sha256:7f7b723aa10cbbb425e47227c6863c59efc0970d87e018a22850dc2e53bdad1d"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:2608922bb7d645b61537a619a2de875550cf45d3b68fa84883696d657df91d38"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_runtime.js",
+      "sha256": "sha256:be80798d74864b42904448b05a4211ae44f49789e9d02a2e6f715366d1408bff"
+    }
+  ],
+  "evidence_bindings": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:9d39278d7a66a6f69809f8eb89c7167477464acfd1390c35f174fec73c96677e"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json",
+      "sha256": "sha256:9db7d0be2ad5913f77ee6fa6608bc29d944766540438e3294e6697f4130a8933"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-002-r2-r3-current-source-green-20260822.json",
+      "sha256": "sha256:5d0bdecd482a28b55f6f03eec2db88cf2ba29f85ef0da4fcbfec66cd5fc11cb2"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-search-002-r2-r3-current-source-green-20260822.json",
+      "sha256": "sha256:55469ec8dff0f0cebf78dd63d24c535024a2597cbbeeaf28f1e8c2cdfc1304e8"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-003-r2-r3-current-source-green-20260822.json",
+      "sha256": "sha256:e07be0251eba03e26d5fd2959b10332682b992e46bd2d700089023babe6dc17e"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-006-r2-r3-current-source-green-20260822.json",
+      "sha256": "sha256:68224d8b5e6bba1d2b6801119e4cd5393e8c6f1700caccdb83a53df4264c0ef6"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-a11y-001-r2-r3-current-source-green-20260822.json",
+      "sha256": "sha256:3957a0173c4f629c044f675d909355dfdb1feeacef3b9b4a2246c6ae522eacf9"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-resp-001-r2-r3-current-source-green-20260822.json",
+      "sha256": "sha256:dda0619d1d274230fb8ea96df1f2a3a7ef029bd3d102ce6f9b196bb7ea419aa5"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-sb-001-003-r2-r3-current-source-green-20260822.json",
+      "sha256": "sha256:d6c7f4fdd7d80ef52cfdd85ba9102a9e928d3a133607ee67f8f9ad9cbc98d386"
+    }
+  ],
+  "verification": [
+    {
+      "selection": "review gate verifier",
+      "result": "pass; 5 certified, 11 approved reference revalidations, 3 approved local integrations, 6 partial"
+    },
+    {
+      "selection": "review gate and completion matrix tests",
+      "result": "14 passed in 8.22s"
+    },
+    {
+      "selection": "completion verifier",
+      "result": "pass and incomplete; 5/25 differential-passed, 24/25 local-real-browser-green, promoted 0"
+    },
+    {
+      "selection": "Node UI runtime, navigation, and publication",
+      "result": "3 serial commands passed"
+    },
+    {
+      "selection": "Notion routes, atomic-save compatibility, and publication adapter",
+      "result": "25 passed in 11.84s"
+    },
+    {
+      "selection": "workspace routes, navigation routes, and auth isolation",
+      "result": "41 passed in 45.69s"
+    },
+    {
+      "selection": "Second Brain publication/job-restart and chat characterization",
+      "result": "5 passed in 5.23s"
+    },
+    {
+      "selection": "R2/R3 exact browser scenarios",
+      "result": "current-source per-scenario checkpoints green; DB3 and Editor6 required unchanged serial timing retries"
+    }
+  ],
+  "host_observations": [
+    {
+      "classification": "host_failure",
+      "detail": "one combined R1 shell command exited Windows 0xC0000409 with no output; unchanged direct serial runs passed"
+    },
+    {
+      "classification": "timing_retry",
+      "detail": "UI-DB-003 and UI-EDITOR-006 each had transient timing timeouts; unchanged isolated serial retries passed"
+    }
+  ],
+  "claims": {
+    "owner_approved_revalidation_sealed": true,
+    "local_second_brain_integration_revalidated": true,
+    "live_second_brain_data_accessed": false,
+    "external_request_count": 0,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next": {
+    "status": "continue_remaining_core_free_ui_plan",
+    "note": "Owner approval authorized implementation and local integration revalidation only; it did not promote reference evidence or complete the 25-scenario matrix."
+  }
+}

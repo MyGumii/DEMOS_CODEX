@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P4-STATUS-INTEGRATION-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-24T00:05:00Z",
+  "checkpoint_kind": "status_integration_pre_edit",
+  "packet_id": "E0-P4",
+  "owner_agent": "/root",
+  "ownership_lease": {
+    "lease_id": "E0-P4-STATUS-INTEGRATOR-20260824",
+    "lane": "SPIKE",
+    "status": "active",
+    "acquired_at": "2026-08-24T00:05:00Z",
+    "expires_at": "2026-08-25T00:05:00Z",
+    "exact_paths_only": true
+  },
+  "owned_existing_files": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:ff31c59d7cd9ef08822d7a3f76f69bec9524b61f557bef4a28a5b2ed3dffbe71",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:2d18a52eca113d7e62b8acc928e6c8a01bad710320b7b8968a40c5958e07de08",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:ca1ffe749166f3745e934531f31d95b24e977faaebca2746bbda8cdcda72f0b5",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:6dcbc6e58c84a85ba8a5d2f571760b964d2ac90bdcfa81dc06e18d94ebef908d",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:36501ebf429d705c630be3be19f32c5ee8750afad31d2b2b07b5c17ffc61b267"
+  },
+  "accepted_receipts": {
+    "E0-P3-L3-CANDIDATE-BENCHMARK-20260824": "sha256:f1f0c1dd63d4a927733e02782f72cfc75bc3a31da6a0b02619755b29289e96a0",
+    "E0-P4-L3-CRDT-WINNER-SELECTION-20260824": "sha256:c358230bc289d8b1c2244ec46b8b5ebe939fd051fa0b4a595625044f7b0d490a",
+    "E0-P4-CANDIDATE-ROOT-CLEANUP-20260824": "sha256:d72dabb2c31c9bf1ff240301dbda9440198bc6fd39051910352c560b3263cbf7"
+  },
+  "decision_and_artifact_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_winner_adr.v1.json": "sha256:591b08a1cefcf5cf536b52a66e70ab6c1047133c8bcff99f27bdab90bef6a71a",
+    "code_assist_v1/collaboration_runtime/ARTIFACT_MANIFEST.json": "sha256:8059bf135ca66a49d67c0798d30b71ed48bf779e3f142cb20d94a1328354e584",
+    "code_assist_v1/collaboration_runtime/python-requirements.lock": "sha256:2910510df5c434104778c4a78f40a6b2368204513c8ac29824c5a1cb13db7c65",
+    "code_assist_v1/collaboration_runtime/node/package.json": "sha256:19296e28baa32d70748e7dd5d006246366bc181934321eaf9fee6dd21aae1f51",
+    "code_assist_v1/collaboration_runtime/node/package-lock.json": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3"
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "sbe_input_sha256": "sha256:e42924c7d5d305dad8b483b76909eb86398c720626e90c99f37e60f682d49bc4",
+    "sbe_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+    "implementation_backlog_sha256": "sha256:b4dff500da85408d9a417d8cd8f6f33d42b136eb1715bd980dce3d8ca001f1d4",
+    "status_sha256": "sha256:01b6c94ef328ce32aed2cb54513d240afd12bd1ee2bd7eabd32a45338fab4bfc",
+    "global_runtime_lock_sha256": "sha256:fc5522dcbf576d8dcfbbf51d6349dbc007bc5438dcc396cba913f54aa22f0bd0"
+  },
+  "intended_post_state": {
+    "E0-P4": "gate_passed",
+    "E0-GATE-001": "closed",
+    "next_packet": "T0A-P3",
+    "selected_candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+    "actual_runtime_service_implemented": false,
+    "product_complete": false
+  },
+  "rollback_or_cleanup": "Restore only the five owned existing files to their exact pre-edit hashes if integration fails. The marker-bound candidate root has already been validated and removed. Do not touch the selected artifact files, global runtime lock, SBE contracts, identities, workspaces, services, ports, schemas, or protected data."
+}

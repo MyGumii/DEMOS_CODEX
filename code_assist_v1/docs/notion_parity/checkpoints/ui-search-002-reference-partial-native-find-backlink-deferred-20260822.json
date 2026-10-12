@@ -1,0 +1,137 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T00:50:42.1547845+09:00",
+  "run_id": "ui15-search-002-reference-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-SEARCH-002",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_root_alias": "UI-PARITY-RUN-ROOT-SEARCH-002",
+    "synthetic_child_alias": "UI-PARITY-RUN-CHILD-SEARCH-002",
+    "synthetic_marker_alias": "UI-PARITY-MARKER-SEARCH-002",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "root_and_child_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-SEARCH-002",
+    "status": "reference_partial_native_find_and_backlink_deferred",
+    "review_required": true,
+    "promotion_allowed": false,
+    "incomplete_requirements": [
+      "reference_current_page_find_input_and_highlight_evidence",
+      "reference_backlink_dialog_and_exact_backlink_navigation"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 8,
+    "reference_partially_observed": 3,
+    "reference_unobserved": 9,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    }
+  ],
+  "reference_partial_observation": {
+    "synthetic_root_created": true,
+    "synthetic_child_created": true,
+    "synthetic_marker_entered": true,
+    "child_page_block_role": "link",
+    "child_page_link_opened_exact_child": true,
+    "ctrl_f_dom_focus_after_open": "BODY",
+    "native_browser_find_surface_dom_observable": false,
+    "trusted_find_query_value_observed": false,
+    "trusted_find_match_highlight_observed": false,
+    "separate_page_mention_committed": false,
+    "backlink_control_visible": false,
+    "backlink_dialog_observed": false,
+    "backlink_navigation_observed": false,
+    "ref_free_b_visible_count": 0,
+    "personal_workspace_title_visible_count": 0,
+    "synthetic_root_final_title_before_cleanup": "UI-PARITY-MARKER-SEARCH-002",
+    "synthetic_editing_recovery_note": "During a synthetic-only mention attempt, normal block editing renamed the root and removed synthetic blocks. No personal or non-synthetic content was in scope; the altered synthetic tree was not treated as evidence.",
+    "synthetic_root_and_child_moved_to_trash": true,
+    "synthetic_root_alias_residual_count": 0,
+    "synthetic_marker_alias_residual_count": 0,
+    "synthetic_child_alias_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_evidence": {
+    "current_exact_test": "1 passed in 26.15s",
+    "historical_action_capture_sha256": {
+      "UI-SEARCH-002-A01": "sha256:f005abe4900c1b715b7558b6ba40c929bc0726b2ff581bfc07b2ac70e525f4b3",
+      "UI-SEARCH-002-A02": "sha256:a05a03b61f913e280210382f44923f381dd1982a0a34be20c8f62c1e23a83e06"
+    },
+    "exact_in_page_match_count": 1,
+    "focus_sequence": ["PAGE-FIND-INPUT", "INVOKING-EDITOR", "PAGE-CANVAS"],
+    "other_workspace_title_count": 0,
+    "page_mutation_count_after_fixture_setup": 0,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "synthetic_only": true
+  },
+  "partial_differential": {
+    "status": "incomplete",
+    "promotion_allowed": false,
+    "missing_evidence": [
+      "reference_page_find_input",
+      "reference_page_find_match_count_and_highlight",
+      "reference_find_escape_focus",
+      "reference_backlink_dialog",
+      "reference_exact_backlink_navigation"
+    ],
+    "geometry_and_latency": "measurement_only",
+    "interpretation": "The official child-page block opened the exact synthetic child and did not reveal another workspace. Ctrl+F moved focus outside the page DOM, consistent with a Chrome-native find surface that the connected page transport cannot authenticate. A separate committed mention/backlink path was not established, so neither action is promoted."
+  },
+  "stop_reason": {
+    "code": "REFERENCE_NATIVE_FIND_AND_BACKLINK_NOT_PROVEN",
+    "description": "The current browser transport cannot inspect Chrome's native find input/highlight, and the synthetic mention/backlink setup did not produce a verified backlink before cleanup."
+  },
+  "claims": {
+    "ui_search_002_reference_partially_observed": true,
+    "ui_search_002_reference_observed": false,
+    "ui_search_002_reference_characterized": false,
+    "ui_search_002_differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Keep UI-SEARCH-002 unpromoted. Complete it only with a trusted Chrome-native find observation channel and a fresh synthetic mention/backlink fixture; otherwise continue with an independent Core Free scenario without reopening personal workspaces."
+}

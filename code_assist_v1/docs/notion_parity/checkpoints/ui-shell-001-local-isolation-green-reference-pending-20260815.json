@@ -1,0 +1,257 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-15T00:48:13+09:00",
+  "run_id": "ui-shell-001-local-isolation-green-20260815",
+  "model": {
+    "planning": "gpt-5.6-sol-ultra",
+    "implementation": "gpt-5.6-sol-xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui1-local-six-scenario-focus-green-reference-pending-20260815.json",
+    "sha256": "sha256:7f9dbd9d4cc314637bb5e1c90e2ec4e417cf9e0763c7d5b4df231eeee948f468",
+    "semantic_status": "historical-parent-preserved"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T00:48:13+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": [
+      "UI-SHELL-001"
+    ],
+    "extension": [],
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "trial-or-payment",
+      "invite-or-public-posting",
+      "operational-migration",
+      "live-feature-flag",
+      "continuous-consumer",
+      "resolver-cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI-SHELL-001-WORKSPACE-SCOPED-NAVIGATION",
+    "status": "local-real-browser-green-reference-pending",
+    "acceptance_ids": [
+      "WORKSPACE-A-B-A-SWITCH",
+      "ONE-BOUND-PAGE-PER-ACTIVE-WORKSPACE",
+      "GLOBAL-LEGACY-PAGE-LIST-ZERO",
+      "GLOBAL-LEGACY-SEARCH-ZERO",
+      "DIRECT-OPEN-FAIL-CLOSED",
+      "SWITCHER-FOCUS-RESTORED",
+      "LOCAL-REPEATABILITY",
+      "SECOND-BRAIN-REGRESSION"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "notion_static/notion.js",
+        "pre_sha256": "sha256:44419d9645ec1dddc320bfe10c9fd88f172248aae5593687a04d165d375d69d7",
+        "post_sha256": "sha256:487b86fc58c4f5617bcc4362c8d8124dab6452a42bf2ca0cd38fa0f1cad0644f",
+        "change": "authoritative workspace page loading, capability-first boot, scoped search/direct-open fence, safe switch focus"
+      },
+      {
+        "path": "tools/notion_parity/ui_local_fixture.py",
+        "pre_sha256": "sha256:d014f949e6859da8a943ccf199887e3c9fbc7a3cae3ca4d07dea75bd6d713cd1",
+        "post_sha256": "sha256:902f24cd73badee6137cc8837a496b63b8fcfb4bc9d74bb2eefa0c2acd68436a",
+        "change": "explicit isolated two-workspace synthetic navigation fixture"
+      },
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "pre_sha256": "sha256:f08eaad0b60d75e56f511c2cdb916408e0d8601d7b1811728a46dca12fe58f47",
+        "post_sha256": "sha256:5db50435a48974aceda483ead4480f9e5ea50a85ecc063ee6591ec58b020120d",
+        "change": "repeated A-B-A real-browser isolation, request-boundary, cross-workspace direct-open, focus, and strict-capture assertions"
+      },
+      {
+        "path": "tests/test_notion_navigation_ui.js",
+        "post_sha256": "sha256:c7711ca617f0b8979d972744e8be66f8d80b0c018db070ae7970326ce9969430",
+        "change": "workspace page snapshot normalization negative contracts"
+      },
+      {
+        "path": "docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:db724d46a94cd8b5d6bc3b7b4207257ef9cc95c156184079f6bfaf8317ad8014",
+        "post_sha256": "sha256:17eb526f400a17cecbc6f914689139c9696944d04b77daba720b2fe9702a69ae",
+        "change": "latest local H3 checkpoint and non-promotion note"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:9446fe078021a42b562b956dd481751f1e104445481901749e68bf30579c61f5",
+        "post_sha256": "sha256:e10e7c701a855ec594a8c1e90863e4acdcf65e7830e171d919b2d11d3f2b33b8",
+        "change": "current H3 local workspace-isolation snapshot"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI_SHELL_001_LOCAL_WORKSPACE_ISOLATION_RESULT_20260815.md",
+        "post_sha256": "sha256:c0656bd987c2db7c2b4f94a257504b86ddc0b92649253aa1855708069546b5b4",
+        "change": "new immutable identifier-free local result"
+      }
+    ],
+    "read_dependencies": [
+      "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "routes_notion_workspace.py",
+      "notion_workspace_pages.py",
+      "notion_workspace_store.py"
+    ],
+    "protected_unchanged": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      },
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ],
+    "unchanged_ui": [
+      {
+        "path": "notion_static/index.html",
+        "sha256": "sha256:fadd37a7357b45721e403b5e29d44ece6671344b722df856ddb208d10e170a03"
+      },
+      {
+        "path": "notion_static/notion.css",
+        "sha256": "sha256:6dbddb3d093d37f25ae5132a040023c122362a67b034bb2674fe39fc152f5b20"
+      }
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "persistent_browser_profile_reused": false,
+    "local_browser": "installed-stable-chrome-ephemeral-playwright-context"
+  },
+  "evidence": {
+    "source_build_sha256": "sha256:cfd93be1f4c62e5bda0858c267b3797ba66002b1bb415fc14dd1a4c3a81babef",
+    "reference": [],
+    "local": [
+      {
+        "scenario_id": "UI-SHELL-001",
+        "capture_sha256": "sha256:6fbf103060f265720ef68027a59eb49920325d23f0d83312f8fd10f9342ab615",
+        "redaction": "pass",
+        "repeat_runs": 2
+      }
+    ],
+    "differential": [],
+    "request_boundary": {
+      "global_legacy_page_list_requests": 0,
+      "global_legacy_search_requests": 0,
+      "scoped_page_requests": 13
+    },
+    "reference_blocker": {
+      "stage": "browser-runtime-initialization-before-selection",
+      "error_code": "kernel-assets-path-not-found-os-error-3",
+      "content_accessed": false,
+      "retry_in_same_environment": false
+    }
+  },
+  "commands": [
+    {
+      "selection": "UI-SHELL-001 browser red: active workspace expected one page",
+      "result": "failed as expected: actual page row count 2",
+      "exit_code": 1
+    },
+    {
+      "selection": "UI-SHELL-001 browser red: no pre-capability global list",
+      "result": "failed as expected: one legacy page-list request",
+      "exit_code": 1
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py::test_ui_shell_001_workspace_switch_is_scoped_repeatable_and_focus_safe",
+      "result": "1 passed in 23.70s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py",
+      "result": "3 passed in 62.87s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/test_notion_ui_local_fixture.py",
+      "result": "7 passed in 4.72s",
+      "exit_code": 0
+    },
+    {
+      "selection": "workspace pages, navigation routes, auth isolation",
+      "result": "35 passed in 36.76s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion routes, atomic-save compatibility, publication adapter",
+      "result": "25 passed in 11.31s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication restart and chat characterization",
+      "result": "5 passed in 4.65s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six serial Node UI/editor/navigation/publication/atomic-save/CSRF scripts",
+      "result": "6 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "parallel PowerShell source inspection",
+      "result": "host-dependent Windows process error 0xC0000409; serial inspections succeeded",
+      "exit_code": -1073740791
+    }
+  ],
+  "tests": {
+    "workspace_page_scope": "pass",
+    "boot_pre_capability_leak": "pass-zero-requests",
+    "workspace_search_scope": "pass-zero-global-requests",
+    "workspace_switch_focus": "pass",
+    "workspace_switch_repeatability": "pass-twice",
+    "direct_open_membership_fence": "implemented-and-browser-path-covered",
+    "default_off_legacy_regression": "pass",
+    "second_brain_regression": "pass",
+    "reference_c0": "blocked-before-browser-selection"
+  },
+  "claims": {
+    "h1_local_six_scenario_green": true,
+    "h1_complete": false,
+    "h3_ui_shell_001_local_green": true,
+    "h3_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "archive_business_complete": false,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_or_production_content_exposed": false,
+    "live_local_data_accessed": false,
+    "protected_file_edit_required": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false,
+    "trial_payment_invite_public_action_required": false,
+    "repeated_product_process_failure": false
+  },
+  "remaining": [
+    "recover signed-in Chrome Browser control and run C0 without opening personal workspaces",
+    "capture matching REF-FREE-A/B UI-SHELL-001 evidence and seal the first differential",
+    "complete UI-SHELL-003 and UI-TREE-001 through UI-TREE-003 local and differential gates",
+    "continue H4-H9 through evidence-bound cohesive vertical slices"
+  ],
+  "next_exact_command": "if signed-in browser control is available, run identifier-free C0 and capture REF-FREE-A/B UI-SHELL-001; otherwise continue the isolated H3 UI-SHELL-003 home/topbar/breadcrumb inventory without weakening the reference gate"
+}

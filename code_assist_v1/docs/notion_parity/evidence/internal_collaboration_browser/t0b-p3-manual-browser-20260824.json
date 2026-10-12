@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.t0b_p3.manual_browser_evidence.v1",
+  "evidence_id": "T0B-P3-MANUAL-BROWSER-20260824",
+  "recorded_at": "2026-08-24T20:55:00+09:00",
+  "packet_id": "T0B-P3",
+  "probe_id": "75ac65dc911e41358d43f8f0b0fad843",
+  "status": "pass",
+  "realm": "synthetic_isolated_actual_browser",
+  "browser_attestation": {
+    "actual_browser_user_agent_detected": true,
+    "user_agent_sha256": "sha256:40956f08f6c9af83802ecd226385c678a06f995e8a19f59cd575a9a4c6acc287",
+    "persistent_profile_data_read": false,
+    "cookies_or_local_storage_read": false,
+    "personal_content_read": false
+  },
+  "transport_attestation": {
+    "actual_gateway_process": true,
+    "actual_node_yjs_process": true,
+    "actual_browser_websocket_clients": 2,
+    "durable_acknowledgement": true,
+    "reader_received_exact_submitted_payload": true,
+    "durable_update_count": 1,
+    "listener_assignment": "OS_port_zero",
+    "fixed_operator_port_accessed": false
+  },
+  "cleanup_attestation": {
+    "owned_ports_closed": true,
+    "owned_processes_stopped": true,
+    "runtime_root_removed": true,
+    "unrelated_processes_targeted": false
+  },
+  "redaction_summary": {
+    "raw_user_agent_recorded": false,
+    "raw_ticket_or_session_binding_recorded": false,
+    "raw_payload_recorded": false,
+    "raw_identifiers_or_personal_content_recorded": false
+  },
+  "claims": {
+    "real_browser_websocket_verified": true,
+    "development_pair_changed": false,
+    "production_changed": false,
+    "runtime_or_feature_enabled": false,
+    "product_complete": false
+  }
+}

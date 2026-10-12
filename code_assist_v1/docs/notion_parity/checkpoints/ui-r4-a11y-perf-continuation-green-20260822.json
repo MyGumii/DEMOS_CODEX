@@ -1,0 +1,88 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T13:41:57.0305699+09:00",
+  "run_id": "ui34-r4-a11y-perf-continuation-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-r1-r3-approved-parity-implementation-green-20260822.json",
+    "sha256": "sha256:7774138e3b0458b293ffff847fed0ad89dae605a4203bc56c71e2f22cc2db99b",
+    "semantic_status": "owner_approved_revalidation_current_source_green"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective": "개발된거 확인하고 계획들 이어서 계속 진행해줘.",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "implemented_scenario_id": "UI-A11Y-001",
+    "supplemented_scenario_id": "UI-PERF-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_or_live_data_accessed": false,
+    "external_publish_or_message_performed": false
+  },
+  "slice": {
+    "status": "r4_current_source_green_review_pending",
+    "product_change": "focus-visible skip-to-content link and programmatically focusable native main target",
+    "promotion_allowed": false,
+    "completion_matrix_mutation_allowed": false
+  },
+  "source_bindings": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/notion_static/index.html","sha256":"sha256:2771c9fd9975fdf6306b11f6cd4cab85d6fc1cfe88eb12d16c9cdda7035584c8"},
+    {"path":"code_assist_v1/notion_static/notion.css","sha256":"sha256:4288697c676f9913a614a2b8e0c6095de58638e5b12df8f01528d46af9f6986f"},
+    {"path":"code_assist_v1/notion_static/notion.js","sha256":"sha256:0d8d52313f7e1bb8920348af4be3407d2ca80daca6c3b71afeca3fd03e7b7102"},
+    {"path":"code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py","sha256":"sha256:683159022d00e32c367e348f19c4df9977177431959730abda0f7f09c345f3cd"},
+    {"path":"code_assist_v1/tests/test_notion_ui_runtime.js","sha256":"sha256:c18d6440700daeafac6fae39ddee24dbb6692bf88f44cf40182f01880c2dd3f7"},
+    {"path":"code_assist_v1/tests/test_notion_ui_review_gate.py","sha256":"sha256:19a73a709fbae2f0d9c46fbc696d2618afb1711df2a9e9cecdc9da4786903f5d"},
+    {"path":"code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md","sha256":"sha256:4b618290c188a34c142f29d72efa8083b81a128a38ced97401cbf9890b39baa6"}
+  ],
+  "evidence_bindings": [
+    {"path":"code_assist_v1/docs/notion_parity/checkpoints/ui-a11y-001-reference-native-tab-skip-link-green-20260822.json","sha256":"sha256:8505b2f12317fa24390193127da71503f85c9286064074f8a0f3326153c22b4f"},
+    {"path":"code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-warm-search-samples-20260822.json","sha256":"sha256:cd7dddc9f234567790c024944fce73eea505ff1e364575b6c6383b995a934a7e"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json","sha256":"sha256:d9048d710e89fdcf4ea8c17c12b05cd01178d3282a6c070aec3f7a26ae98c224"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json","sha256":"sha256:0d3c98940cb1fec636f3400ace11a928fc770b2445d05badec0e79e026b2f9c7"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json","sha256":"sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"}
+  ],
+  "reference_observation": {
+    "native_tab_cycle": "focus-only traversal completed without a keyboard trap; official Notion exposes 콘텐츠로 건너뛰기 before the long sidebar sequence",
+    "raw_dom_network_screenshot_stored": false,
+    "third_party_extension_nodes_excluded": true,
+    "warm_search_open_samples_ms": [901, 317, 329, 322, 328],
+    "warm_search_open_median_ms": 328,
+    "performance_budget_claimed": false
+  },
+  "verification": [
+    {"selection":"UI-A11Y-001 full-surface browser journey","result":"1 passed in 23.48s after one unchanged retry of a 45-second Second Brain preview timing timeout"},
+    {"selection":"golden shell/search/editor browser journey","result":"1 passed in 20.32s"},
+    {"selection":"UI-RESP-001 adopted viewports","result":"1 passed in 23.61s after correcting a stale share-focus test expectation"},
+    {"selection":"UI-SHARE-001 and UI-SB-001/002","result":"2 passed in 45.16s"},
+    {"selection":"UI-EDITOR-002/003/006, UI-SEARCH-002, UI-SB-003","result":"5 passed in 105.76s"},
+    {"selection":"UI-PERF-001 isolated local measurement harness","result":"1 passed in 52.43s"},
+    {"selection":"Node UI runtime, navigation, publication","result":"3 serial commands passed"},
+    {"selection":"review gate and completion matrix tests","result":"14 passed in 7.83s"},
+    {"selection":"Second Brain publication/job-restart and chat characterization","result":"5 passed in 5.33s"},
+    {"selection":"review gate verifier","result":"pass; 5 certified, 11 reference review-pending, 3 local integration review-pending, 6 partial"},
+    {"selection":"completion verifier","result":"pass and incomplete; 5/25 differential-passed, 24/25 local real-browser-green, promoted 0"}
+  ],
+  "claims": {
+    "r1_r3_queue_implemented_current_source_green": true,
+    "ui_a11y_001_skip_to_content_green": true,
+    "ui_perf_001_supplemented": true,
+    "live_second_brain_data_accessed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "remaining": [
+    "owner review of the redacted UI-A11Y-001 native Tab-cycle summary",
+    "UI-EDITOR-003 trusted clipboard-paste reference observation",
+    "UI-EDITOR-004 native Korean composition reference observation",
+    "UI-EDITOR-006 safe failed-save and stale-revision reference evidence",
+    "UI-RESP-001 official viewport measurements",
+    "UI-PERF-001 independent create, release identity, and reviewed budget gates"
+  ],
+  "next_exact_action": "Continue with a synthetic-only UI-EDITOR-003 clipboard-paste observation that never reads OS clipboard history; if that cannot be proven safely, proceed to a read-only viewport measurement and leave the clipboard gate open."
+}

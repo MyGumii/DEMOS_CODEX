@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-SPECIALIZED-VERIFIER-REBIND-ACTIVE-PRE-EDIT-20260906",
+  "recorded_at": "2026-09-06T14:22:29Z",
+  "checkpoint_kind": "doc_harness_contract_rebind_active_pre_edit",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-SPECIALIZED-VERIFIER-REBIND-20260906",
+  "purpose": "Acquire the unchanged twelve packet-specific verifier contracts under the already declared rebaseline scope, bind the now-green SBE contract audit and current read-only AGENTS instructions, and update only fields proven stale by their fail-closed verifiers. Rebase the F0-P5 successor authority first so older successor-owned hashes remain historical instead of being indiscriminately rewritten.",
+  "predecessor_declaration": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-specialized-verifier-rebaseline-pre-edit-20260906.json",
+    "sha256": "sha256:a2d07254e687fee7ce9ff50f70672da2891f449a5a7dca255b8481c5404bb090"
+  },
+  "exact_owned_contract_paths": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_live_collaboration_runtime.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editing_authority.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editor_ui.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_convergence_corpus.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_database_features.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_file_authority.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_history_authority.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_search_authority.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_sharing_runtime.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_live_collaboration_runtime.v1.json": "sha256:d14d50a2168ac1b767d4ffd7013d6c0379e081c89041c510e94db451548db24d",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editing_authority.v1.json": "sha256:5d86c46d6b1ea0005dde9a281751126494382c800032fe0e4db1824006691856",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editor_ui.v1.json": "sha256:77357f7c9743c3adc75dc1c7c470a080e999b82fad960c6af171f528314a92d2",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_convergence_corpus.v1.json": "sha256:fbe0e386cb2d43021aebf14e30239f67bac8980ca2937f0ca6f68ae2d5b5d848",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json": "sha256:03e49b34bf56c1dc198cc0c2e9232b40974f37e6b38943d672443e8377ed792b",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_database_features.v1.json": "sha256:b052132735c67814e7d711d502d7c5e68b27c3e0d460f9d99ad6fd2280b39ef6",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_file_authority.v1.json": "sha256:3feb9810bfa615748806d9da49adc72619bbc1a59d562dd88c364a868060ecb7",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_history_authority.v1.json": "sha256:ecf0a2604c7632eea3f1e30b5dcba427e81e545fc0949ff3a3bc30cf474af3e7",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_search_authority.v1.json": "sha256:2432d6dae20629af003c67294a6699828b1ffce8714b23019224bb0ffc02a5e3",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json": "sha256:660f3a738d4835ecfe57be7fa9473da76129399de7095f508577ba297587dc77",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_sharing_runtime.v1.json": "sha256:1234e7b0bb38e4ce7192be53cd6bc8d84bb8f4ffe119de03ec30253a8e0e98a1",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json": "sha256:e7607663de6c6dc021d700b4283abd0709832b3c7573320e7eebc2243197f68c"
+  },
+  "dependency_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "write_policy": "read_only"
+    },
+    "sbe_repair_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-sbe-source-artifact-contract-repair-verified-20260906.json",
+      "sha256": "sha256:31e2fbc5b5a04d1efd1990f15edd444b206d2ca8fc2602774ae4dfbe7a48a41c",
+      "status": "verified_contract_only"
+    },
+    "sbe_final_audit": {
+      "path": "code_assist_v1/.runtime/sbe-source-artifact-contract-final-20260906.json",
+      "input_sha256": "sha256:ccd4eaa7e11a4b5416ef3f089e78f2f518daae48d7ffff19583914a0d2e687de",
+      "status": "pass",
+      "error_count": 0
+    },
+    "v0b_final_source_exact_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json",
+      "sha256": "sha256:d9fd95c7ed462bde80d50c86eaf6714405fbc5738c24cc3f8f05efbc9cda0d96",
+      "verified_core_tests": 21,
+      "exact_pixel_states": 36,
+      "accessibility_states": 36,
+      "performance_runs": 2,
+      "rerun": false
+    },
+    "legacy_node_evidence": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-legacy-js-fixture-verified-20260906.json",
+      "sha256": "sha256:57951b8702b73e5e4cde4822f0762dc9031ea7a45490a69be71ac4057695db05",
+      "source_exact_guard_count": 16,
+      "passed_scripts": 7,
+      "rerun": false
+    }
+  },
+  "observed_pre_edit_state": {
+    "specialized_verifiers": {
+      "status": "fail",
+      "contract_count": 12,
+      "total_error_count": 75,
+      "manifest_hash_drift_count": 67,
+      "dynamic_instruction_drift_count": 7,
+      "sbe_dynamic_preflight_drift_count": 1
+    },
+    "central_audit": {
+      "status": "fail",
+      "error_count": 15,
+      "gate_passed_required_packets": 42,
+      "required_packets": 50,
+      "closed_phase_gates": 14,
+      "phase_gates": 20,
+      "closed_matrix_rows": 18,
+      "matrix_rows": 28,
+      "valid_execution_receipts": 19
+    },
+    "interpretation": "The SBE audit itself is now green. The current failures are stale verifier/checkpoint bindings; passing them still requires functional regression evidence and cannot be achieved by broad historical hash replacement."
+  },
+  "first_phase_validation": {
+    "scope": "current F0-P5 functional dependencies before successor contract rebinding",
+    "failed_invocation": {
+      "artifact": "code_assist_v1/.runtime/notion-specialized-f0p5-functional-pre-rebaseline-20260906-junit.xml",
+      "sha256": "sha256:25c002ebf6f342f896bfdf77fae8e05ad3465b19f64242927894282105e79ac8",
+      "passed": 84,
+      "failed": 3,
+      "failure_class": "pytest no:debugging option removed an option still read by pytest unittest tracing hook; no product assertion executed in the three failures"
+    },
+    "corrected_invocation": {
+      "artifact": "code_assist_v1/.runtime/notion-specialized-f0p5-functional-pre-rebaseline-20260906-r2-junit.xml",
+      "sha256": "sha256:8da2dbbba75f09feeb9a89d30524e7dab27ea63f38d0c2c09f4e91816f81c246",
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0
+    },
+    "live_browser_rerun": false
+  },
+  "ordered_edit_strategy": [
+    {
+      "order": 1,
+      "contract": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+      "exact_fields": 7,
+      "reason": "Seal current successor-owned artifacts after 87 functional passes and inherited source-exact V0B/Node evidence."
+    },
+    {
+      "order": 2,
+      "contracts": "Only remaining verifier-failing contracts after F0-P5 re-evaluation",
+      "reason": "Preserve historical hashes now legitimately owned by the sealed successor contract; update only still-failing fields."
+    },
+    {
+      "order": 3,
+      "validation": "Run all twelve verifiers, all declared non-live/synthetic regressions, source-exact inherited evidence checks, and central audit. Never count environment-gated browser tests as fresh passes."
+    }
+  ],
+  "guards": {
+    "modify_product_source": false,
+    "modify_test_source": false,
+    "modify_verifier_source": false,
+    "modify_agents_md": false,
+    "modify_sbe_contracts_or_runtime": false,
+    "modify_catalog_ladder_matrix_or_pointer_under_this_lease": false,
+    "run_external_or_live_browser_mutations": false,
+    "rerun_completed_reference_or_pixel_scenarios": false,
+    "overwrite_historical_receipts": false,
+    "product_complete": false,
+    "goal_complete": false
+  },
+  "goal_observation": {
+    "thread_id": "01a0399e-4edc-7792-9c0c-9c050b30e177",
+    "status": "active",
+    "objective": "gpt 5.6 sol로 다시 변경했어. 마찬가지로 필요 시 agent team을 만들어서 goal을 수행해.",
+    "goal_mutated_by_checkpoint": false
+  }
+}

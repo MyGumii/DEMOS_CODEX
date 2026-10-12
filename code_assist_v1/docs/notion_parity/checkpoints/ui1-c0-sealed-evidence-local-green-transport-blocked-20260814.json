@@ -1,0 +1,183 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-14T23:50:07+09:00",
+  "run_id": "ui1-c0-sealed-evidence-local-green-20260814",
+  "model": {
+    "planning": "ultra",
+    "implementation": "gpt-5.6-sol-xhigh-goal-profile"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui1-c0-reference-guard-local-green-transport-blocked-20260814.json",
+    "sha256": "sha256:4a93c889942c22c87e28855315764f19e38e3dcba5b29daa69b602c2acb94c9a",
+    "semantic_status": "historical-parent-c0-contract-result"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-14T23:22:00+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "slice": "UI1-C0-BOUND-EVIDENCE-SEAL",
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "trial-or-payment",
+      "invite-or-public-posting",
+      "production-publication-rollout",
+      "operational-migration"
+    ]
+  },
+  "slice": {
+    "id": "UI1-C0-BOUND-EVIDENCE-SEAL",
+    "status": "contract-tested-local-green-live-reference-transport-blocked",
+    "acceptance_ids": [
+      "C0-DESCRIPTOR-EXACT-ROUNDTRIP",
+      "C0-CONTRADICTORY-PASS-REJECTED",
+      "PACKET-REFERENCE-REQUIRES-C0",
+      "PACKET-C0-RUN-MATCH",
+      "PACKET-SEAL-MANIFEST-BINDING",
+      "PACKET-SEAL-ARTIFACT-INDEX-BINDING",
+      "PACKET-SEAL-C0-BINDING",
+      "PACKET-SEAL-TAMPER-REJECTION",
+      "PACKET-PATH-FREE-RECEIPT"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "tools/notion_parity/ui_reference_guard.py",
+        "sha256": "sha256:dcf00e3dedde1ed8220d3b9dc5674b3d420b41c06ebf019c09d870b1f4a9f625"
+      },
+      {
+        "path": "tools/notion_parity/ui_evidence_packet.py",
+        "sha256": "sha256:3e234821d1aa60c48bb023bbd7b65f14a9ea64a93d72d4b53113c0ccd7afd214"
+      },
+      {
+        "path": "tests/test_notion_ui_reference_guard.py",
+        "sha256": "sha256:139b99330da37c30b41aa7c56215ecd16db707d8de956000ad87bf8b60333aad"
+      },
+      {
+        "path": "tests/test_notion_ui_evidence_packet.py",
+        "sha256": "sha256:ed45780f1b692d8e613338de9847d83bbd788278edb46864ae221217b14f6da2"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "sha256": "sha256:326d698ef36cd50f4dc6c3a3d96f7e860b2dbc680f8033c29b24e48b3b011d0d"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI1_C0_SEALED_EVIDENCE_RESULT_20260814.md",
+        "sha256": "sha256:9aca973bd62f61f34e5b8b8c923bcdcbd41940f4394dad56fb0c3c8a284a44b6"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "sha256": "sha256:af091a1110221b87f1b9294803ef72c088e064b3a4ea0c98c05be8a887a1a851"
+      }
+    ],
+    "protected_unchanged": [
+      "AGENTS.md",
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ],
+    "agents_sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "chrome_application_listed": false,
+    "chrome_window_selected": false,
+    "raw_evidence_committed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false
+  },
+  "evidence": {
+    "c0_packet_binding": {
+      "state": "contract-tested",
+      "reference_without_c0_allowed": false,
+      "failed_c0_allowed": false,
+      "cross_run_c0_allowed": false,
+      "seal_manifest_bound": true,
+      "seal_artifact_index_bound": true,
+      "seal_c0_bound": true,
+      "seal_tamper_rejected": true
+    },
+    "local_browser_parent_evidence": {
+      "state": "pass",
+      "real_chrome_tests": 2,
+      "second_brain_cancel_delta": 0,
+      "second_brain_approve_delta": 1,
+      "second_brain_replay_delta": 0,
+      "source_snapshot_matches": true
+    },
+    "live_c0": {
+      "state": "blocked-before-application-listing",
+      "failure_code": "kernel-assets-path-not-found-os-error-3",
+      "attempted_surfaces": [
+        "in-app-browser",
+        "computer-use"
+      ],
+      "content_accessed": false
+    }
+  },
+  "commands": [
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "C0 guard plus evidence packet focused tests",
+      "result": "32 passed in 7.83s",
+      "exit_code": 0
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "complete H1 guard/evidence/packet/plan/local-fixture selection",
+      "result": "67 passed in 19.39s",
+      "exit_code": 0
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "python -m code_assist_v1.tools.verify_notion_core_free_ui_plan --compact",
+      "result": "pass: 25 required, 6 UI1, 0 errors",
+      "exit_code": 0
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "py_compile C0 guard, evidence packet, and focused tests",
+      "result": "pass",
+      "exit_code": 0
+    }
+  ],
+  "claims": {
+    "c0_contract_tested": true,
+    "c0_packet_binding_tested": true,
+    "c0_live_passed": false,
+    "h1_local_harness_green": true,
+    "h1_reference_complete": false,
+    "h1_differential_complete": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "remaining": [
+    "restart or repair the desktop Browser/Computer Use runtime",
+    "obtain a real passing C0 decision before opening either synthetic workspace",
+    "capture matching REF-FREE-A/B scenarios with synthetic content",
+    "write a C0-bound sealed reference/local packet and produce the first differential",
+    "continue H2-H9 through reviewed cohesive slices"
+  ],
+  "next_exact_command": "after desktop Browser/Computer Use runtime restart, list applications without screenshot or text capture, select exactly one Chrome window, then perform C0 before any workspace entry or capture"
+}

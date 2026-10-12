@@ -1,0 +1,2918 @@
+{
+  "algorithm": {
+    "alpha_mismatch_allowed": 0,
+    "component_connectivity": 4,
+    "delta_threshold": 16,
+    "edge_neighborhood": "right_and_down",
+    "edge_threshold": 24,
+    "id": "fixed-window-luma-ssim-rgb-mae-delta16-edge-cc-v1",
+    "luminance": {
+      "blue": 19,
+      "denominator": 256,
+      "green": 183,
+      "red": 54,
+      "rounding": "nearest_half_up"
+    },
+    "metric_scale_ppm": 1000000,
+    "ssim": {
+      "dynamic_range": 255,
+      "k1_times_100": 1,
+      "k2_times_100": 3,
+      "variance": "population",
+      "window_aggregation": "per_window_ppm_then_mean_half_up"
+    },
+    "window_size_px": 8
+  },
+  "contract": "code_assist.notion.visual_similarity_policy.v1",
+  "policy_id": "V0B-P1-STRICT-SIMILARITY-CRITICAL-R2-20260907",
+  "policy_sha256": "sha256:8b05efac4c107c7a681ba4e1f124e6784eeaf04cb108e3c2c5e8a783a7b714d0",
+  "review": {
+    "receipt_id": "V0B-P1-STRICT-SIMILARITY-CRITICAL-R2-REVIEW",
+    "reviewed_at": "2026-09-07T06:09:45+09:00",
+    "reviewer": "internal-collaborative-notion-main-agent",
+    "status": "approved"
+  },
+  "schema_version": 1,
+  "states": [
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-INVITE-CONTROLS",
+          "rect": {
+            "height": 310,
+            "width": 420,
+            "x": 430,
+            "y": 330
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 80000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 830000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-001",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-INVITE-CONTROLS",
+          "rect": {
+            "height": 310,
+            "width": 420,
+            "x": 510,
+            "y": 330
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 170000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 140000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 800000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-001",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-MEMBER-ROLE-ROWS",
+          "rect": {
+            "height": 150,
+            "width": 820,
+            "x": 350,
+            "y": 350
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 80000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 820000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-002",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-MEMBER-ROLE-ROWS",
+          "rect": {
+            "height": 150,
+            "width": 820,
+            "x": 430,
+            "y": 350
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 70000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 840000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-002",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-WORKSPACE-ROOT-NAV",
+          "rect": {
+            "height": 340,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 180000,
+            "max_edge_mismatch_ratio_ppm": 120000,
+            "max_largest_delta16_component_ratio_ppm": 80000,
+            "max_normalized_rgb_mae_ppm": 90000,
+            "min_mean_luminance_ssim_ppm": 520000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-003",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-WORKSPACE-ROOT-NAV",
+          "rect": {
+            "height": 340,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 180000,
+            "max_edge_mismatch_ratio_ppm": 120000,
+            "max_largest_delta16_component_ratio_ppm": 80000,
+            "max_normalized_rgb_mae_ppm": 90000,
+            "min_mean_luminance_ssim_ppm": 520000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-003",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-PAGE-EDIT-SHARE",
+          "rect": {
+            "height": 280,
+            "width": 440,
+            "x": 760,
+            "y": 90
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 180000,
+            "max_edge_mismatch_ratio_ppm": 100000,
+            "max_largest_delta16_component_ratio_ppm": 90000,
+            "max_normalized_rgb_mae_ppm": 110000,
+            "min_mean_luminance_ssim_ppm": 640000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-004",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-PAGE-EDIT-SHARE",
+          "rect": {
+            "height": 280,
+            "width": 440,
+            "x": 920,
+            "y": 90
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 180000,
+            "max_edge_mismatch_ratio_ppm": 100000,
+            "max_largest_delta16_component_ratio_ppm": 90000,
+            "max_normalized_rgb_mae_ppm": 110000,
+            "min_mean_luminance_ssim_ppm": 640000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-004",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-EDITABLE-PAGE",
+          "rect": {
+            "height": 330,
+            "width": 800,
+            "x": 320,
+            "y": 40
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 130000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 70000,
+            "min_mean_luminance_ssim_ppm": 780000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-005",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-EDITABLE-PAGE",
+          "rect": {
+            "height": 330,
+            "width": 800,
+            "x": 400,
+            "y": 40
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 70000,
+            "min_mean_luminance_ssim_ppm": 800000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-005",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-INHERITED-ACCESS",
+          "rect": {
+            "height": 300,
+            "width": 440,
+            "x": 760,
+            "y": 90
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 220000,
+            "max_edge_mismatch_ratio_ppm": 110000,
+            "max_largest_delta16_component_ratio_ppm": 100000,
+            "max_normalized_rgb_mae_ppm": 140000,
+            "min_mean_luminance_ssim_ppm": 540000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-006",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-INHERITED-ACCESS",
+          "rect": {
+            "height": 300,
+            "width": 440,
+            "x": 920,
+            "y": 90
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 220000,
+            "max_edge_mismatch_ratio_ppm": 110000,
+            "max_largest_delta16_component_ratio_ppm": 100000,
+            "max_normalized_rgb_mae_ppm": 140000,
+            "min_mean_luminance_ssim_ppm": 540000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-006",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-PAGE-HEADER",
+          "rect": {
+            "height": 60,
+            "width": 180,
+            "x": 1030,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 300000,
+            "max_edge_mismatch_ratio_ppm": 110000,
+            "max_largest_delta16_component_ratio_ppm": 130000,
+            "max_normalized_rgb_mae_ppm": 90000,
+            "min_mean_luminance_ssim_ppm": 560000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-007",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-PAGE-HEADER",
+          "rect": {
+            "height": 60,
+            "width": 180,
+            "x": 1190,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 300000,
+            "max_edge_mismatch_ratio_ppm": 110000,
+            "max_largest_delta16_component_ratio_ppm": 130000,
+            "max_normalized_rgb_mae_ppm": 90000,
+            "min_mean_luminance_ssim_ppm": 560000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-007",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-REMOTE-EDITOR",
+          "rect": {
+            "height": 120,
+            "width": 720,
+            "x": 310,
+            "y": 235
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 100000,
+            "max_edge_mismatch_ratio_ppm": 60000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 820000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-008",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-REMOTE-EDITOR",
+          "rect": {
+            "height": 120,
+            "width": 720,
+            "x": 390,
+            "y": 235
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 100000,
+            "max_edge_mismatch_ratio_ppm": 60000,
+            "max_largest_delta16_component_ratio_ppm": 80000,
+            "max_normalized_rgb_mae_ppm": 70000,
+            "min_mean_luminance_ssim_ppm": 830000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-008",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-TEXT-CONVERGENCE",
+          "rect": {
+            "height": 120,
+            "width": 720,
+            "x": 310,
+            "y": 235
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 90000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 80000,
+            "min_mean_luminance_ssim_ppm": 680000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-009",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-TEXT-CONVERGENCE",
+          "rect": {
+            "height": 120,
+            "width": 720,
+            "x": 390,
+            "y": 235
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 140000,
+            "max_edge_mismatch_ratio_ppm": 90000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 70000,
+            "min_mean_luminance_ssim_ppm": 670000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-009",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-BLOCK-CONVERGENCE",
+          "rect": {
+            "height": 150,
+            "width": 720,
+            "x": 310,
+            "y": 235
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 90000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 80000,
+            "min_mean_luminance_ssim_ppm": 680000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-010",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-BLOCK-CONVERGENCE",
+          "rect": {
+            "height": 150,
+            "width": 720,
+            "x": 390,
+            "y": 235
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 90000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 80000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-010",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-DATABASE-CONVERGENCE",
+          "rect": {
+            "height": 390,
+            "width": 720,
+            "x": 310,
+            "y": 390
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 110000,
+            "max_edge_mismatch_ratio_ppm": 80000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-011",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-DATABASE-CONVERGENCE",
+          "rect": {
+            "height": 390,
+            "width": 720,
+            "x": 390,
+            "y": 390
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 80000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 710000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-011",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-COMMENT-THREAD",
+          "rect": {
+            "height": 250,
+            "width": 910,
+            "x": 290,
+            "y": 330
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 110000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 750000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-012",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-COMMENT-THREAD",
+          "rect": {
+            "height": 250,
+            "width": 960,
+            "x": 370,
+            "y": 330
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 100000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 780000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-012",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-MENTION-INBOX",
+          "rect": {
+            "height": 220,
+            "width": 270,
+            "x": 0,
+            "y": 90
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 180000,
+            "max_edge_mismatch_ratio_ppm": 130000,
+            "max_largest_delta16_component_ratio_ppm": 90000,
+            "max_normalized_rgb_mae_ppm": 90000,
+            "min_mean_luminance_ssim_ppm": 480000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-013",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-MENTION-INBOX",
+          "rect": {
+            "height": 220,
+            "width": 270,
+            "x": 0,
+            "y": 90
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 180000,
+            "max_edge_mismatch_ratio_ppm": 130000,
+            "max_largest_delta16_component_ratio_ppm": 90000,
+            "max_normalized_rgb_mae_ppm": 90000,
+            "min_mean_luminance_ssim_ppm": 480000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-013",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-RECONNECT-PROJECTION",
+          "rect": {
+            "height": 500,
+            "width": 720,
+            "x": 310,
+            "y": 250
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 80000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-014",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-RECONNECT-PROJECTION",
+          "rect": {
+            "height": 580,
+            "width": 720,
+            "x": 390,
+            "y": 250
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 110000,
+            "max_edge_mismatch_ratio_ppm": 80000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 730000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-014",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-COMMENT-CAPABILITY",
+          "rect": {
+            "height": 145,
+            "width": 720,
+            "x": 400,
+            "y": 270
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 160000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 70000,
+            "max_normalized_rgb_mae_ppm": 110000,
+            "min_mean_luminance_ssim_ppm": 680000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-015",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-COMMENT-CAPABILITY",
+          "rect": {
+            "height": 145,
+            "width": 720,
+            "x": 480,
+            "y": 270
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 160000,
+            "max_edge_mismatch_ratio_ppm": 80000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 110000,
+            "min_mean_luminance_ssim_ppm": 680000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-015",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-VIEW-CAPABILITY",
+          "rect": {
+            "height": 320,
+            "width": 720,
+            "x": 400,
+            "y": 250
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 110000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 110000,
+            "min_mean_luminance_ssim_ppm": 550000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-016",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-VIEW-CAPABILITY",
+          "rect": {
+            "height": 320,
+            "width": 720,
+            "x": 480,
+            "y": 250
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 160000,
+            "max_edge_mismatch_ratio_ppm": 120000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 110000,
+            "min_mean_luminance_ssim_ppm": 540000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-016",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-PAGE-ACCESS-BOUNDARY",
+          "rect": {
+            "height": 300,
+            "width": 400,
+            "x": 440,
+            "y": 250
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 80000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 840000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-017",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-PAGE-ACCESS-BOUNDARY",
+          "rect": {
+            "height": 300,
+            "width": 400,
+            "x": 520,
+            "y": 300
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 80000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 840000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-017",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1280,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-WORKSPACE-ACCESS-BOUNDARY",
+          "rect": {
+            "height": 300,
+            "width": 400,
+            "x": 440,
+            "y": 250
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 80000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 840000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 704,
+            "width": 1010,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 800,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-018",
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    },
+    {
+      "required_regions": [
+        {
+          "id": "APP-CHROME",
+          "rect": {
+            "height": 96,
+            "width": 1440,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 150000,
+            "max_edge_mismatch_ratio_ppm": 55000,
+            "max_largest_delta16_component_ratio_ppm": 50000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 700000
+          }
+        },
+        {
+          "id": "CRITICAL-WORKSPACE-ACCESS-BOUNDARY",
+          "rect": {
+            "height": 300,
+            "width": 400,
+            "x": 520,
+            "y": 300
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 80000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 60000,
+            "max_normalized_rgb_mae_ppm": 40000,
+            "min_mean_luminance_ssim_ppm": 840000
+          }
+        },
+        {
+          "id": "PRIMARY-CONTENT",
+          "rect": {
+            "height": 804,
+            "width": 1170,
+            "x": 270,
+            "y": 96
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 45000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 50000,
+            "min_mean_luminance_ssim_ppm": 720000
+          }
+        },
+        {
+          "id": "SIDEBAR",
+          "rect": {
+            "height": 900,
+            "width": 270,
+            "x": 0,
+            "y": 0
+          },
+          "thresholds": {
+            "max_delta16_changed_pixel_ratio_ppm": 120000,
+            "max_edge_mismatch_ratio_ppm": 70000,
+            "max_largest_delta16_component_ratio_ppm": 30000,
+            "max_normalized_rgb_mae_ppm": 60000,
+            "min_mean_luminance_ssim_ppm": 620000
+          }
+        }
+      ],
+      "state_id": "V0R-MU-018",
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "whole_frame_thresholds": {
+        "max_delta16_changed_pixel_ratio_ppm": 120000,
+        "max_edge_mismatch_ratio_ppm": 50000,
+        "max_largest_delta16_component_ratio_ppm": 25000,
+        "max_normalized_rgb_mae_ppm": 50000,
+        "min_mean_luminance_ssim_ppm": 700000
+      }
+    }
+  ]
+}

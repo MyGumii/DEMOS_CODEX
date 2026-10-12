@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/contracts/conversation.schema.json",
+  "title": "Knowledge space, conversation, pin, and explicit context contracts",
+  "$defs": {
+    "SpaceKind": {"enum": ["personal", "part", "team", "responsibility"]},
+    "Capability": {
+      "enum": [
+        "read", "publish", "edit", "deactivate", "restore", "curate",
+        "temporal_mutate", "local_edge_correct", "aggregate_edge_correct",
+        "distribution_grant", "distribution_revoke", "force_release",
+        "purge_eligible"
+      ]
+    },
+    "HigherPublicationTarget": {
+      "type": "object",
+      "required": ["space_id", "kind", "capability", "role_assignment_id", "role_assignment_generation"],
+      "properties": {
+        "space_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "kind": {"enum": ["team", "responsibility"]},
+        "capability": {"const": "publish"},
+        "role_assignment_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "role_assignment_generation": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "HigherNativeAuthority": {
+      "type": "object",
+      "required": ["native_space_id", "role_assignment_id", "role_assignment_generation", "capabilities", "publication_target"],
+      "properties": {
+        "native_space_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "role_assignment_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "role_assignment_generation": {"type": "integer", "minimum": 1},
+        "capabilities": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/Capability"},
+          "uniqueItems": true
+        },
+        "publication_target": {
+          "oneOf": [
+            {"$ref": "#/$defs/HigherPublicationTarget"},
+            {"type": "null"}
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "SpaceSummary": {
+      "type": "object",
+      "required": ["id", "kind", "name", "org_path", "capabilities"],
+      "properties": {
+        "id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "kind": {"$ref": "#/$defs/SpaceKind"},
+        "name": {"type": "string", "minLength": 1, "maxLength": 200},
+        "org_path": {"type": "array", "items": {"type": "string"}, "maxItems": 3},
+        "capabilities": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/Capability"},
+          "uniqueItems": true
+        },
+        "history_only": {"type": "boolean"},
+        "native_authority": {"$ref": "#/$defs/HigherNativeAuthority"}
+      },
+      "additionalProperties": false
+    },
+    "SpaceListResponse": {
+      "type": "object",
+      "required": ["request_id", "items", "scope_epoch"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "items": {"type": "array", "items": {"$ref": "#/$defs/SpaceSummary"}},
+        "scope_epoch": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "ConversationSummary": {
+      "type": "object",
+      "required": ["id", "space", "title", "archived", "accessible", "row_version", "created_at", "updated_at"],
+      "properties": {
+        "id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "space": {"$ref": "#/$defs/SpaceSummary"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 300},
+        "archived": {"type": "boolean"},
+        "accessible": {"type": "boolean"},
+        "access_status": {
+          "enum": ["accessible", "wiki_archived", "owner_disabled", "personal_owner_mismatch", "space_inactive", "stale_part_scope", "unsupported_space_kind"]
+        },
+        "history_only": {"type": "boolean"},
+        "selected_view_space_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "wiki_lifecycle_generation": {
+          "type": ["integer", "null"],
+          "minimum": 1
+        },
+        "row_version": {"type": "integer", "minimum": 1},
+        "created_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "updated_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"}
+      },
+      "additionalProperties": false
+    },
+    "ConversationListResponse": {
+      "type": "object",
+      "required": ["request_id", "items", "next_cursor", "has_more"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "items": {"type": "array", "items": {"$ref": "#/$defs/ConversationSummary"}},
+        "next_cursor": {"$ref": "common.schema.json#/$defs/Cursor"},
+        "has_more": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "CreateConversationRequest": {
+      "type": "object",
+      "required": ["operation_id", "space_id"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "space_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 300}
+      },
+      "additionalProperties": false
+    },
+    "UpdateConversationRequest": {
+      "type": "object",
+      "required": ["operation_id", "expected_row_version"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "expected_row_version": {"type": "integer", "minimum": 1},
+        "title": {"type": "string", "minLength": 1, "maxLength": 300},
+        "archived": {"type": "boolean"}
+      },
+      "anyOf": [{"required": ["title"]}, {"required": ["archived"]}],
+      "additionalProperties": false
+    },
+    "CompactConversationRequest": {
+      "type": "object",
+      "required": ["operation_id", "through_message_sequence"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "through_message_sequence": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "ConversationDetailResponse": {
+      "type": "object",
+      "required": ["request_id", "conversation", "messages", "pins", "context_bindings", "summary_status"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "conversation": {"$ref": "#/$defs/ConversationSummary"},
+        "messages": {"type": "array", "items": {"type": "object"}},
+        "pins": {"type": "array", "items": {"type": "object"}},
+        "context_bindings": {"type": "array", "items": {"type": "object"}},
+        "summary_status": {"enum": ["absent", "queued", "ready", "failed"]}
+      },
+      "additionalProperties": false
+    },
+    "TurnStreamRequest": {
+      "type": "object",
+      "required": ["operation_id", "message"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "message": {"type": "string", "minLength": 1, "maxLength": 200000},
+        "resume_after_event_sequence": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "TurnEvent": {
+      "type": "object",
+      "required": ["request_id", "operation_id", "turn_id", "event_sequence", "event_type", "terminal", "payload"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "turn_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "event_sequence": {"type": "integer", "minimum": 1},
+        "event_type": {"enum": ["accepted", "delta", "citation", "metadata", "completed", "failed"]},
+        "terminal": {"type": "boolean"},
+        "payload": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "AddPinRequest": {
+      "type": "object",
+      "required": ["operation_id", "item_id", "revision_id"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "item_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "revision_id": {"$ref": "common.schema.json#/$defs/Uuid"}
+      },
+      "additionalProperties": false
+    },
+    "RemovePinRequest": {"$ref": "common.schema.json#/$defs/OperationRequest"},
+    "ContextBindingRequest": {
+      "type": "object",
+      "required": ["operation_id", "source_kind", "source_reference", "binding_mode"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "source_kind": {"enum": ["workspace", "project", "notion", "source_artifact"]},
+        "source_reference": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "binding_mode": {"enum": ["snapshot", "live"]},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 300}
+      },
+      "additionalProperties": false
+    },
+    "RemoveContextBindingRequest": {"$ref": "common.schema.json#/$defs/OperationRequest"}
+  }
+}

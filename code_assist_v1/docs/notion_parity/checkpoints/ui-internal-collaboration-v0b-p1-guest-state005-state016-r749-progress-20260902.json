@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-GUEST-STATE005-STATE016-R749-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T12:14:39+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-guest-block-spacing-r739-progress-20260902.json",
+    "checkpoint_sha256": "sha256:f8d12174d76b4c36462706c1b1348cc6cf03c9f6ec93a9f84a68f5e0098abe47",
+    "source_sha256": "sha256:37838769819ee09f9c618a940e0c952d7e60a5f80b0e195e0432593d74850968",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r739/receipt.json",
+    "receipt_sha256": "sha256:76fd4a934c92920c11282b3bbb3bd84edd2fba7850913432f59e0e8277144ded",
+    "unmasked_differing_pixel_count": 1965447,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2033865
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:9ce2da01504ad8a0773478564788d00b0015e8ecef1ff20898e46a35e590ca72",
+    "summary": [
+      "Refined only V0R-MU-016 after the r739 guest-page synchronization: the second todo line and final toggle were locally aligned without changing V0R-MU-015.",
+      "Added the missing immutable-reference page emoji to the V0R-MU-005 breadcrumb and set only its second onboarding editor line to zero letter spacing.",
+      "Restored every rejected font weight, font size, overbroad letter-spacing, mixed-viewport alignment, and page-emoji-size experiment before the accepted full candidate."
+    ],
+    "source_bound_unmasked_reduction_from_r739": 3562,
+    "source_bound_unmasked_reduction_from_r732": 7117,
+    "source_bound_unmasked_reduction_from_r728": 10511,
+    "source_bound_unmasked_reduction_from_r720": 13855,
+    "source_bound_unmasked_reduction_from_r717": 16203,
+    "source_bound_unmasked_reduction_from_r713": 21202,
+    "source_bound_unmasked_reduction_from_r657": 50129,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 111176,
+    "source_bound_state_deltas_from_r739": {
+      "V0R-MU-005__1440x900": -985,
+      "V0R-MU-005__1280x800": -616,
+      "V0R-MU-016__1440x900": -1007,
+      "V0R-MU-016__1280x800": -954
+    }
+  },
+  "accepted_diagnostics": {
+    "r741_state016_local_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r741",
+      "journey_status": "pass",
+      "cleanup": true,
+      "state016_1440_reduction_from_r739": 1007,
+      "state016_1280_reduction_from_r739": 954,
+      "state015_delta_from_r739": 0,
+      "other_I0_source_regression_count": 0,
+      "accessibility_pass_count": 20
+    },
+    "r744_state005_breadcrumb_icon": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r744",
+      "journey_status": "pass",
+      "cleanup": true,
+      "state005_1440_reduction_from_r739": 321,
+      "state005_1280_reduction_from_r739": 321,
+      "other_I0_source_regression_count": 0,
+      "accessibility_pass_count": 20
+    },
+    "r747_state005_second_line_spacing": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r747",
+      "journey_status": "pass",
+      "cleanup": true,
+      "state005_1440_reduction_from_r744": 664,
+      "state005_1280_reduction_from_r744": 295,
+      "other_I0_source_regression_count": 0,
+      "accessibility_pass_count": 20
+    }
+  },
+  "rejected_diagnostics": {
+    "r740_mixed_state015_state016_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r740",
+      "reason": "The combined alignment improved V0R-MU-016 but mixed the two V0R-MU-015 viewports, so only the V0R-MU-016 subset was retained in r741.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r742_state016_font_weight": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r742",
+      "reason": "Font weight 500 regressed V0R-MU-016 by 1200 pixels wide and 766 pixels compact.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r743_state016_font_size": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r743",
+      "reason": "The 16px font-size hypothesis regressed V0R-MU-016 by 4885 pixels wide and 4481 pixels compact.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r745_state005_negative_letter_spacing": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r745",
+      "reason": "Changing all four remaining editor lines from the inherited +0.5px spacing to negative spacing regressed V0R-MU-005 by 1750 pixels.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r746_state005_all_zero_letter_spacing": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r746",
+      "reason": "Zero spacing on all editor lines improved the wide viewport by 541 pixels but regressed compact by 405 pixels; only the independently improving second line was retained.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r748_state005_page_emoji_size": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r748",
+      "reason": "Increasing the page emoji from 77px to 78px regressed both viewports, by 121 pixels wide and 118 pixels compact.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r749",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r749/receipt.json",
+    "receipt_sha256": "sha256:489b18d8154cd3b42c7dedd7966eacd0515ec83f93323043b1c1a9e565dc43d7",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1962841,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2031259,
+    "raw_unmasked_delta_from_r739": -2606,
+    "raw_masked_delta_from_r739": 0,
+    "raw_total_delta_from_r739": -2606,
+    "raw_unmasked_delta_from_r732": -8181,
+    "raw_masked_delta_from_r732": 0,
+    "raw_total_delta_from_r732": -8181,
+    "raw_unmasked_delta_from_r728": -12551,
+    "raw_masked_delta_from_r728": 0,
+    "raw_total_delta_from_r728": -12551,
+    "raw_unmasked_delta_from_r720": -14566,
+    "raw_masked_delta_from_r720": 0,
+    "raw_total_delta_from_r720": -14566,
+    "raw_unmasked_delta_from_r713": -23174,
+    "raw_masked_delta_from_r713": 0,
+    "raw_total_delta_from_r713": -23174,
+    "raw_unmasked_delta_from_r657": -51187,
+    "raw_masked_delta_from_r657": -1008,
+    "raw_total_delta_from_r657": -52195,
+    "runtime_only_unmasked_variation_from_r739": {
+      "V0R-MU-002__1440x900": 975,
+      "V0R-MU-008__1440x900": -20,
+      "V0R-MU-008__1280x800": 1,
+      "net": 956
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1131,
+      "comment_delivery_ms": 1650,
+      "reaction_delivery_ms": 1471,
+      "presence_ttl_expiry_ms": 15358,
+      "reconnect_ms": 1300
+    },
+    "duration_ms": 345810,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:5f95f40b0a50911527570cf794c9f1de565c2e3b890b70b69378eaad7bd65ffd"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "command_scope": [
+        "test_internal_collaborative_v0b_p1_receipt.py",
+        "test_v0b_p1_capture_matte.py",
+        "test_v0b_p1_i0_semantic_diagnostic.py",
+        "browser/test_exact_pixel_parity.py"
+      ],
+      "result": "17 passed in 24.72s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:489b18d8154cd3b42c7dedd7966eacd0515ec83f93323043b1c1a9e565dc43d7"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r749 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

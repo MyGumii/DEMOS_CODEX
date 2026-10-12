@@ -1,0 +1,193 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T01:47:37.6304530+09:00",
+  "run_id": "ui21-perf-001-reference-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-PERF-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_page_alias": "UI-PARITY-RUN-PERF-001",
+    "synthetic_body_alias": "UI-PARITY-PERFORMANCE-CONTENT-001",
+    "synthetic_only": true,
+    "measurement_policy": "precalibration_measurement_only",
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "synthetic_page_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-PERF-001",
+    "status": "reference_partial_precalibration_measurement",
+    "review_required": true,
+    "promotion_allowed": false,
+    "incomplete_requirements": [
+      "reference_exact_source_build_binding",
+      "reference_exact_browser_version_binding",
+      "repeat_reference_sample_distribution",
+      "reference_second_brain_preview_measurement",
+      "reviewed_product_performance_budget"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 10,
+    "local_integration_review_pending": 3,
+    "reference_partially_observed": 7,
+    "reference_unobserved": 0,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "owned_change": {
+    "path": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+    "pre_sha256": "sha256:30a1e6fb4bc31b468ded3bff4f20f135a51e9918d658c48634aface528ffec79",
+    "post_sha256": "sha256:e3b0407fbe21dcb78a9d803c54a4ca4e74ec305e61fb9b66738e0f1f51fc5a22",
+    "change_class": "test_harness_alignment_only",
+    "production_source_changed": false,
+    "corrections": [
+      "Use the current selected Home tab role rather than the obsolete Home button role.",
+      "Do not reactivate workspace navigation by clicking an already selected Home tab during shell readiness measurement.",
+      "Use the current new-page type menu to create the untimed fixture page.",
+      "Wait for the existing page load to reach Ready before measuring editor input.",
+      "Let the input-ack edit reach one stable server revision before timing the next autosave generation.",
+      "Retain only sanitized internal failure path/status diagnostics when a save cannot settle."
+    ]
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_PERF_001_LOCAL_MEASUREMENT_RESULT_20260815.md",
+      "sha256": "sha256:a5d55fdfbf24922697fafa6c69ac28619636becb4a17a60b43766ed918f1cd19"
+    }
+  ],
+  "reference_partial_measurement": {
+    "browser_family": "Chrome",
+    "exact_browser_version_recorded": false,
+    "exact_reference_source_build_recorded": false,
+    "viewport": {"width": 1920, "height": 919},
+    "sample_count": 1,
+    "transport_overhead_included": true,
+    "metrics_ms": {
+      "search_open_first": 1064,
+      "page_create_ready": 5585,
+      "editor_input_ack": 97,
+      "pre_reload_settle_wait": 1800,
+      "reload_content_ready": 134,
+      "search_open_repeat": 226,
+      "search_result_ready": 1346
+    },
+    "state": {
+      "synthetic_visible_before_reload": true,
+      "content_restored_after_reload": true,
+      "exact_synthetic_result_visible": true,
+      "second_brain_preview_measured": false,
+      "release_budget_applied": false
+    },
+    "interpretation": "These single-run values include browser-control transport and are evidence that the safe synthetic actions completed, not a latency budget, service-level objective, or Notion parity threshold."
+  },
+  "cleanup": {
+    "synthetic_page_moved_to_trash": true,
+    "synthetic_title_residual_count": 0,
+    "synthetic_body_residual_count": 0,
+    "permanent_delete_used": false,
+    "non_modal_role_dialog_residual_count": 1,
+    "non_modal_role_dialog_shape": {"width": 47, "height": 26.796875, "aria_modal": false},
+    "note": "The small tooltip-shaped role=dialog persisted after root reload and contained no synthetic title or body; it is not treated as a blocking modal or as cleanup failure."
+  },
+  "local_evidence": {
+    "current_exact_test": "1 passed in 49.32s",
+    "test_node": "code_assist_v1/tests/browser/test_notion_ui_performance.py::test_ui_perf_001_measurements_are_isolated_bounded_and_precalibration_only",
+    "python_compile": "pass",
+    "root_count": 2,
+    "samples_per_root": 3,
+    "sample_count": 6,
+    "metric_names": [
+      "editor_input_ack_ms",
+      "page_ready_ms",
+      "reload_ready_ms",
+      "save_ready_ms",
+      "search_open_ms",
+      "search_result_ms",
+      "second_brain_preview_ready_ms",
+      "shell_ready_ms"
+    ],
+    "distribution_ordering_asserted": "min <= p50 <= p95 <= p99 <= max",
+    "external_request_count": 0,
+    "page_restored": true,
+    "publication_item_delta": 0,
+    "publication_revision_delta": 0,
+    "synthetic_only": true,
+    "historical_baseline_retained_as_historical_only": true,
+    "historical_report_sha256": "sha256:e1aca063da1238534bc8ee5e7aff0a5b94512809b532b538e585a85bcc7d3a21"
+  },
+  "red_to_green_summary": {
+    "initial_red": "The combined responsive/performance run exposed an obsolete Home button role while UI-RESP-001 passed.",
+    "subsequent_reds": [
+      "The new-page fixture assumed direct creation instead of the current type menu.",
+      "The harness interacted before page load reached Ready, causing editor replacement during input.",
+      "Re-clicking the already selected Home tab activated an unseeded workspace-navigation path and produced a sanitized /api/notion/workspaces 503.",
+      "Overlapping autosave generations caused the draft-recovery safety path instead of a stable measurement."
+    ],
+    "final_green": "1 passed in 49.32s",
+    "product_failure_claimed": false
+  },
+  "partial_differential": {
+    "status": "incomplete",
+    "promotion_allowed": false,
+    "missing_evidence": [
+      "repeat official reference samples bound to exact browser and source build",
+      "official second-brain preview action, which is not present in Notion",
+      "reviewed product budget or explicit local-only calibration policy"
+    ],
+    "interpretation": "The official reference action sample and the corrected isolated local distribution are both measurement-only. No historical 500ms value or any new observed value is promoted to a Core release budget."
+  },
+  "stop_reason": {
+    "code": "REFERENCE_PERFORMANCE_NOT_REPEATABLE_OR_BUILD_BOUND",
+    "description": "One safe official sample was captured, but it lacks exact build/version binding, repeat distributions, the product-specific Second Brain action, and an approved budget."
+  },
+  "claims": {
+    "ui_perf_001_reference_partially_observed": true,
+    "ui_perf_001_reference_observed": false,
+    "ui_perf_001_reference_characterized": false,
+    "ui_perf_001_differential_passed": false,
+    "all_25_scenarios_have_at_least_one_evidence_category": true,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Keep UI-PERF-001 unpromoted. Review the local-only and partial-reference evidence policy, then run the current performance harness again only when a new current distribution or explicit budget decision is required."
+}

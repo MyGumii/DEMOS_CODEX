@@ -1,0 +1,169 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T23:24:42.7562048+09:00",
+  "run_id": "ui10-editor-005-reference-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "superseded_context_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-005-reference-context-correction-required-20260821.json",
+    "sha256": "sha256:c52057136f57d952e911ee7a96105c14950a1d0ee362af268826f33ab52687c8",
+    "semantic_status": "historical_invalid_ordinary_page_entry_context"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-EDITOR-005",
+    "reference_workspace_alias": "REF-FREE-A",
+    "reference_entry_context": "synthetic_database_row_page",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "transient_screenshot_used_for_context_confirmation": true,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "database_and_row_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "handoff_ref_free_a"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-EDITOR-005",
+    "status": "reference_observed_review_pending_six_semantic_fields",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 4,
+    "reference_partially_observed": 2,
+    "reference_unobserved": 14,
+    "overall_goal_complete": false
+  },
+  "reference_intake": {
+    "worksheet_sha256": "sha256:62a716f9c31d63228f01c521e4061d6fde3d9eae4c61439dabb2c1fb9c70db65",
+    "c0_status": "pass",
+    "c0_sha256": "sha256:46af3a6190a1ffe082be6fda5c66f494590419316636f7716a6a5cfb78c43b24",
+    "action_log_sha256": "sha256:768f57abf03529855b1ade30b92d047a241d989649bb0b32d518e12fa1c61442",
+    "capture_validation_errors": 0,
+    "operator_review": {
+      "status": "pending",
+      "scope": "redacted_summary_only"
+    }
+  },
+  "reference_action_captures": {
+    "UI-EDITOR-005-A01": {
+      "sha256": "sha256:ef283f7405b1abd3d8248ea7d925540c4570973967657ad6004cab611df5d62e",
+      "state": {"count": 1, "result": "pass"},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"name": "SIDE-PEEK-TITLE", "state": "focused"},
+      "a11y": {"name": "SIDE-PEEK", "role": "REGION"},
+      "semantic_visual": {"region": "SIDE-PEEK", "state": "visible"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {
+        "SIDE-PEEK": {"height": 919, "width": 960, "x": 960, "y": 0}
+      },
+      "latency_ms": 1000
+    },
+    "UI-EDITOR-005-A02": {
+      "sha256": "sha256:71db71e252aae37e317518951c4c6139187cd5513f948b2781a105946862fad3",
+      "state": {"count": 1, "result": "pass"},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"name": "PAGE-CANVAS", "state": "not_focused"},
+      "a11y": {"name": "PAGE-CANVAS", "role": "MAIN"},
+      "semantic_visual": {"region": "PAGE-ROOT", "state": "visible"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {
+        "PAGE-ROOT": {"height": 875, "width": 1650, "x": 270, "y": 44}
+      },
+      "latency_ms": 5042
+    }
+  },
+  "reference_exact_results": {
+    "ordinary_page_menu_side_peek_absent": true,
+    "synthetic_database_row_side_peek_supported": true,
+    "side_peek_region_role_exposed": true,
+    "side_peek_title_received_focus": true,
+    "side_peek_content_saved": true,
+    "full_page_link_closed_side_peek": true,
+    "full_page_content_round_trip_exact": true,
+    "full_page_reload_occurrence_count": 1,
+    "synthetic_database_and_row_moved_to_trash": true,
+    "synthetic_tree_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_action_captures": {
+    "UI-EDITOR-005-A01": {
+      "sha256": "sha256:741f616c4cab94ad2873e7a74c0818a0f0ee46323204478a5e9eb6c7fc89b45b",
+      "state": {"count": 1, "result": "pass"},
+      "keyboard": {"result": "pass"},
+      "focus": {"name": "SIDE-PEEK-CANVAS", "state": "focused"},
+      "a11y": {"name": "SIDE-PEEK", "role": "DIALOG"},
+      "semantic_visual": {"region": "SIDE-PEEK", "state": "visible"},
+      "geometry": {
+        "SIDE-PEEK": {"height": 900, "width": 749, "x": 691, "y": 0}
+      }
+    },
+    "UI-EDITOR-005-A02": {
+      "sha256": "sha256:13ac113acff650e0b7c15c95c58161fc08d093cd1f1862f7db4466bd96e85389",
+      "state": {"count": 1, "result": "pass"},
+      "keyboard": {"result": "pass"},
+      "focus": {"name": "PAGE-CANVAS", "state": "focused"},
+      "a11y": {"name": "FULL-PAGE", "role": "REGION"},
+      "semantic_visual": {"region": "PAGE-ROOT", "state": "visible"},
+      "geometry": {
+        "PAGE-ROOT": {"height": 168, "width": 760, "x": 475, "y": 151}
+      }
+    }
+  },
+  "precalibration_differential": {
+    "status": "fail",
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-EDITOR-005-A01": {
+        "difference_count": 3,
+        "differences": ["a11y", "focus", "keyboard"]
+      },
+      "UI-EDITOR-005-A02": {
+        "difference_count": 3,
+        "differences": ["a11y", "focus", "keyboard"]
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "interpretation": "Both implementations preserve one row-page state across side peek and full page. Official Free web exposes side peek as a REGION from a database row, initially focuses the row title, treats opening transitions as non-keyboard actions, and leaves the full page unfocused. Local exposes an ordinary-page DIALOG, focuses its canvas, reports keyboard pass, and explicitly focuses the full-page canvas."
+  },
+  "verification": {
+    "isolated_local_browser_test": "1 passed in 24.71s",
+    "local_save_count": 2,
+    "local_second_brain_item_delta": 0,
+    "local_second_brain_revision_delta": 0,
+    "reference_capture_validation": "2 captures, 0 errors"
+  },
+  "redacted_review_summary": {
+    "reference_profile": "Chrome desktop Free owner ko-KR",
+    "reference_workspace": "REF-FREE-A",
+    "result": "A synthetic database row opened in a right-side REGION covering half the viewport and focused the row title. Opening the same row as a full page closed the side region and preserved the synthetic content exactly. Local state persistence matches, but its entry context, roles, keyboard classification, and focus targets differ.",
+    "cleanup": "The synthetic database and its row page were moved together to Trash; no synthetic tree row or open dialog remained.",
+    "privacy": "No personal workspace/page, raw DOM, network payload, cookies or storage, persisted screenshot, public posting, invitation, or permanent delete was used."
+  },
+  "claims": {
+    "ui_editor_005_reference_observed": true,
+    "ui_editor_005_reference_characterized": false,
+    "ui_editor_005_differential_passed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain workspace-owner approval of this redacted summary before sealing the receipt or revising the scenario and local entry context. Preserve the 5/25 certified parent until the corrected behavior and full regression ladder pass."
+}

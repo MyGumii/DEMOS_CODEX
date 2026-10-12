@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b_q0_r0_r1_z0.pretarget_full_readiness_revalidation_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-Q0-R0-R1-Z0-PRETARGET-REVALIDATED-20260907",
+  "recorded_at": "2026-09-07T06:37:12.7332571Z",
+  "status": "local_implementation_and_verifiers_pass_external_prerequisites_required",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-q0-central-audit-restored-20260907.json",
+    "sha256": "sha256:1d233f64504b02f10e1238e2fcb95ad35fadb9f8d76536769c57c5a9cf3388c0"
+  },
+  "packet_ids": [
+    "O1B-P1",
+    "Q0-P1",
+    "R0A-P1",
+    "R0B-P1",
+    "R1-P1",
+    "Z0-P1"
+  ],
+  "implementation_bindings": [
+    {
+      "path": "code_assist_v1/tools/bind_internal_collaborative_target_policy.py",
+      "sha256": "sha256:4cb07129bd95a1972f030a20a32f9e0742a51c0884446107283283c9737a2032"
+    },
+    {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_target_restore.py",
+      "sha256": "sha256:a3a692ad03465cb35e0949d4f2c3b3cdac999ad64c5bbfb555e155a1f952b85a"
+    },
+    {
+      "path": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+      "sha256": "sha256:18c782b14b3f4e4b8133090ea1ed21eb38efdae841a32a1d0d7fb31b1d54fe21"
+    },
+    {
+      "path": "code_assist_v1/tools/q0_target_attestation.py",
+      "sha256": "sha256:f900a504d598ec6da05482e53d6214e4ce4f7d0c6b58d3caf2d00f25b9aafe0d"
+    },
+    {
+      "path": "code_assist_v1/tools/freeze_internal_collaborative_release.py",
+      "sha256": "sha256:f00a87bac6c8a2f9f0e82e190d9a1c61fa65dfc114d8d8ae33a6779a3b116de4"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/release_candidate.py",
+      "sha256": "sha256:02f7e958da0a47f2f81a005a1d7150ddf068b5e48b26176f82b32bbb8e43befb"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/realm_promotion.py",
+      "sha256": "sha256:62e0b32e0be90c2dd2ccf6c092949b31d582baef060aff35c14c49ef9f795cfe"
+    }
+  ],
+  "test_bindings": [
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_policy_binding.py",
+      "sha256": "sha256:28c7e2f0503ecba1b3ee9c0187d2f3e8cbf624d6ba54dbf0b884cb0fc8ede702"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_restore.py",
+      "sha256": "sha256:735579c27f0c4ff5ab60cdd268c559f552fbccc2158b106becbd88517481cca0"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_gate_runner.py",
+      "sha256": "sha256:69488fc5da971f0d98d7448f3679f5b0e1c98b1609065e9a6b0c6edcc208768d"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_q0_target_attestation.py",
+      "sha256": "sha256:c74f685eb08b5389be3d41951d18f2b77023318324e65ffed02096bac3435c0b"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_release_candidate.py",
+      "sha256": "sha256:f250601d2ac3468edbec77a50251e2c255bfab50b278fcf4fafefe04db67e532"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_realm_promotion.py",
+      "sha256": "sha256:f8aa61d70fccca14a00e42545b258a25d47fb9573b5de9aeb18b24616cde510f"
+    }
+  ],
+  "verification": {
+    "command_scope": "six current O1B, Q0, release-freeze, and realm-promotion test modules",
+    "status": "pass",
+    "passed": 100,
+    "failed": 0,
+    "duration_seconds": 34.42
+  },
+  "remaining_external_prerequisites": [
+    "approved encrypted off-host backup destination or explicit authority to provision one",
+    "approved distinct Windows target host and connection method or explicit authority to provision a compliant Windows VM",
+    "reviewed release identity and four distinct Ed25519 public trust anchors",
+    "fresh execution-specific AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF after target policy review"
+  ],
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1"
+  },
+  "claims": {
+    "local_required_implementation_gap_detected": false,
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "approval_or_handoff_consumed": false,
+    "release_manifest_frozen": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:d234d509475390a2528b0ea26a725aaa7f59c8dfdcddde545ff95684a5a6b267"
+}

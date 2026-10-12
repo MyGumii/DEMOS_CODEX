@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-CLEANBASE-RETRY31-20260829",
+  "recorded_at": "2026-08-29T04:38:02.6389501+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry31 replaced the stale onboarding canvas with the lossless V0R clean baseline, rendered the reference text, block, database and row as three canonical CRDT blocks, removed the non-applicable landing banner, aligned the collaborative page width and list icon, and adopted a reference-like inline database presentation. All four live browser journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. Unmasked differences decreased by 134,709 from retry30. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-workspace-home-retry30-progress-20260829.json",
+      "sha256": "sha256:9291bfcbc1328fa3384e048f08b5dffb28dc88d97ea7567d36b29cdfdbf37046"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:cd8d979158413949db81892d3498025f9b42769313a57e5799509806a2e1aca0",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:bbb4b508930e3f31f0f6294b427d16c8a3dd2599e99ae4f40e9b2ad58d5df343"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:cda7932616887dfa30f22d93cf2751c47082cc9e5192a408ece452e7318bdb83"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:46973ef9e72ba1c5066b2302568229371e564b44e6ff1de6a7c6c252e817e4b2"
+      }
+    ],
+    "journey_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/c0_p2_browser.py",
+        "sha256": "sha256:d7192f6d72c3c22e554b3c151901323c4c56154ad37a860095b4abfb45d3532e"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/e1_p2_browser.py",
+        "sha256": "sha256:57e52c3d157efbce99eea43d6dd0d8d8100e393a217af9540da357438181649c"
+      }
+    ]
+  },
+  "product_and_journey_changes": {
+    "clean_reference_body": "The shared V0R-A fixture now contains exactly V0R-A-TEXT-BASE, V0R-A-BLOCK-BASE and one table block titled V0R-A-DB with row V0R-A-ROW-BASE. The child fixture remains authority-bound but is not rendered as a starter block.",
+    "landing_banner_policy": "The workspace landing banner now evaluates the live collaborative projection and remains hidden once the root page contains durable content.",
+    "reference_page_icon": "The synthetic collaborative root uses a neutral list icon matching the lossless reference instead of the obsolete waving-hand fixture icon.",
+    "collaborative_canvas_geometry": "Collaborative pages use the observed variable width and asymmetric canvas margins while preserving non-collaborative page geometry.",
+    "inline_database_presentation": "The collaborative inline table uses a reference-like title row, compact controls, property header, row and new-page affordance while retaining the existing operational database controls."
+  },
+  "bounded_diagnostics": {
+    "c0_retry8": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260829-retry8-lossless-cleanbase",
+      "journey_status": "pass",
+      "capture_count": 8,
+      "accessibility_pass_count": 8,
+      "interaction_pass_count": 8,
+      "browser_closed": true,
+      "test_page_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true
+    },
+    "e1_retry9": {
+      "root": "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260829-retry9-lossless-cleanbase",
+      "journey_status": "pass",
+      "capture_count": 6,
+      "unmasked_difference_count": 2213679,
+      "cleanup_verified": true
+    },
+    "e1_retry11": {
+      "root": "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260829-retry11-lossless-banner",
+      "journey_status": "pass",
+      "capture_count": 6,
+      "unmasked_difference_count": 1961658,
+      "cleanup_verified": true
+    },
+    "e1_retry12": {
+      "root": "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260829-retry12-lossless-table",
+      "journey_status": "pass",
+      "capture_count": 6,
+      "accessibility_pass_count": 6,
+      "interaction_pass_count": 6,
+      "unmasked_difference_count": 1943556,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "e1_retry13": {
+      "root": "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260829-retry13-lossless-table-tuned",
+      "journey_status": "pass",
+      "capture_count": 6,
+      "unmasked_difference_count": 1944054,
+      "delta_from_retry12_unmasked": 498,
+      "cleanup_verified": true,
+      "accepted": false,
+      "reason": "The final 2-3 px table micro-adjustment increased the measured difference and was reverted before retry31."
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry31-lossless-cleanbase",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry31-lossless-cleanbase/receipt.json",
+    "receipt_sha256": "sha256:4dc915594bc8463414644f440c768bd028966fe355d995da58e3238e56121832",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {
+      "I0-P2": 136763,
+      "C0-P2": 90070,
+      "E1-P2": 56419,
+      "F0-P5": 45418
+    },
+    "unmasked_difference_count": 9893837,
+    "masked_difference_count": 211220,
+    "raw_difference_count": 10105057,
+    "delta_from_retry30_unmasked": -134709,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:1397af0d603394586b5d8c81d9160f20f9a30024a7188742ec79d42eaa167a0e"
+    }
+  },
+  "state_deltas_from_retry30": [
+    {"state_id": "V0R-MU-007", "delta": -49275},
+    {"state_id": "V0R-MU-010", "delta": -43689},
+    {"state_id": "V0R-MU-009", "delta": -43004},
+    {"state_id": "V0R-MU-008", "delta": -38528},
+    {"state_id": "V0R-MU-015", "delta": -19518},
+    {"state_id": "V0R-MU-016", "delta": -18196},
+    {"state_id": "V0R-MU-006", "delta": -12186},
+    {"state_id": "V0R-MU-002", "delta": -6216},
+    {"state_id": "V0R-MU-001", "delta": -800},
+    {"state_id": "V0R-MU-004", "delta": 2601},
+    {"state_id": "V0R-MU-005", "delta": 1611},
+    {"state_id": "V0R-MU-014", "delta": 46151},
+    {"state_id": "V0R-MU-012", "delta": 46340}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "next_focus": {
+    "primary": "Separate collapsed-sidebar canvas geometry for V0R-MU-012 and V0R-MU-014 from the expanded collaborative canvas rule, then diagnose the remaining IAM and shared toolbar/sidebar differences.",
+    "known_regressions": [
+      {"state_id": "V0R-MU-012", "delta_from_retry30": 46340},
+      {"state_id": "V0R-MU-014", "delta_from_retry30": 46151}
+    ],
+    "full_candidate_policy": "Use bounded C0 diagnostics before another 36-capture full run."
+  },
+  "open_gates": {
+    "exact_pixel": {"passed": 0, "required": 36, "status": "open"},
+    "core_25": {"status": "not_run_until_exact_36_of_36"},
+    "performance": {"status": "not_run_until_exact_36_of_36"},
+    "claims": {"status": "open"},
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "scope_attestation": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "user_chrome_touched": false,
+    "persistent_browser_profile_used": false,
+    "public_publish_or_link_used": false,
+    "personal_workspace_or_page_used": false,
+    "permanent_delete_used": false,
+    "reference_receipts_modified": false,
+    "agents_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  }
+}

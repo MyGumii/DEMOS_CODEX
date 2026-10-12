@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.e0.runtime_lock_successor_aligned_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-RUNTIME-LOCK-SBE-8-13-SUCCESSOR-ALIGNED-20260909",
+  "recorded_at": "2026-09-09T04:19:31.094944+09:00",
+  "status": "runtime_lock_successor_implemented_and_regression_validated",
+  "immutable_after_recording": true,
+  "supersedes": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-runtime-lock-sbe-8-13-successor-20260909.json",
+    "sha256": "sha256:75b325c7f8f358d338c6b0a37894f0cec733bf3ab4ea2fb6bdcf02ab1b4ed0b3",
+    "record_sha256": "sha256:5abba22c5a5b558cce06f555e0e41b7c0f9c39c196fa6acc7e99d43eb7ea54e6"
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    }
+  },
+  "runtime_lock_binding": {
+    "path": "code_assist_v1/requirements-runtime.lock",
+    "sha256": "sha256:eb2c677bd3865d81b16dc5018babdd52d01bab39ba0f1e1aa6ad0f5645e19788",
+    "ownership_handoff_source_thread_id": "019fec6f-60b0-7f53-876d-ba9b7acb0c51",
+    "ownership_handoff_packet": "SBE-8.13",
+    "exact_version_row_count": 22,
+    "forbidden_global_crdt_package_count": 0
+  },
+  "implementation_bindings": {
+    "successor_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_e0_runtime_lock_successor.py",
+      "sha256": "sha256:6cda39f6d7035b2c47099d4feec7769d9fe3e3d99cb19c14d7151277d41a51cc"
+    },
+    "candidate_corpus_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py",
+      "sha256": "sha256:0d8cc64b9574553e31afdcc996c82ea158e4bb7f546d412618a407aafbb30eb8"
+    },
+    "winner_selection": {
+      "path": "code_assist_v1/tools/notion_parity/crdt_winner_selection.py",
+      "sha256": "sha256:6dcd2cf1de1378fe060b8d1ebd73bbb8d988ccb58b6a0abe51cde07a43ab6961"
+    },
+    "successor_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_e0_runtime_lock_successor.py",
+      "sha256": "sha256:4cceb8ec85be12af8c8d6f78e0342d7d7b834a6279d84aa7717fe549322d7028"
+    },
+    "winner_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_crdt_winner_selection.py",
+      "sha256": "sha256:bc11cf19228db660e55a1d9b85fa79ee58616e964e590d8582b0975442349a0f"
+    }
+  },
+  "validation_evidence": {
+    "focused_e0_successor_regression_passed": 20,
+    "full_unit_collected": 548,
+    "full_unit_passed": 530,
+    "full_unit_failed": 18,
+    "full_unit_deselected": 265,
+    "e0_runtime_lock_failure_count": 0,
+    "remaining_failure_class": "active_sbe_publication_and_target_readiness_dynamic_binding_only",
+    "central_audit_error_count": 2,
+    "central_audit_error_codes": [
+      "S0A_PUBLICATION_FENCE_RECEIPT_INVALID",
+      "SBE_AUDIT_HASH_DRIFT"
+    ]
+  },
+  "preservation": {
+    "historical_candidate_matrix_modified": false,
+    "historical_corpus_modified": false,
+    "historical_winner_adr_modified": false,
+    "historical_artifact_manifest_modified": false,
+    "runtime_lock_modified_by_notion_lane": false,
+    "sbe_hot_contract_modified_by_notion_lane": false
+  },
+  "claims": {
+    "new_packet_or_gate_credit_awarded": false,
+    "external_system_mutated": false,
+    "operator_action_executed": false,
+    "runtime_enabled": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:ac31a66959a5c98369013990e355e108d74ef19562c0135a1a079e51ffa34904"
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-REALM-ROTATION-R908-20260903",
+  "recorded_at": "2026-09-03T10:31:31.7296768+09:00",
+  "checkpoint_kind": "approved_development_realm_rotation",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "goal_complete": false,
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-shared-sidebar-r907-progress-20260903.json",
+    "sha256": "sha256:9a2ed302d595fbae5b4b96934d6d5b0c72a60b39b15f7ea234aeb6879fa52d43"
+  },
+  "retired_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r879-20260903",
+    "launch_id": "4ec3cb7615274822993ddb8ea05c30e9",
+    "root_id": "bb669d69-2ff2-43f9-8167-cf9854cf272d",
+    "final_workspace_count": 63,
+    "rotation_threshold": 64,
+    "stop_status": "stopped",
+    "owned_gateway_processes_stopped": true,
+    "owned_host_processes_stopped": true,
+    "owned_ports_closed": true,
+    "data_preserved_as_evidence": true,
+    "reuse_allowed": false
+  },
+  "approved_dev_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r908-20260903",
+    "manager_session_id": 81902,
+    "manager_pid": 34724,
+    "manager_session_live": true,
+    "ports": [10111, 10112, 10113],
+    "launch_id": "0d2298f2e16e4a65b43384f7e2d03c1a",
+    "root_id": "3c14ef7f-625d-4cae-84e3-34f25e77548d",
+    "root_locator_sha256": "sha256:82ead94f18bedc660f2d5165fe9ee34618dd1a177f0c081636e3413d1bc86e62",
+    "run_root_locator_sha256": "sha256:fc3d07f66213b7de70905069af92959cad5550820a4fef6c2a1eb1a3eb468d10",
+    "run_marker_path": ".dev/notion-collaboration-10111-10113-clean-r908-20260903/runs/0d2298f2e16e4a65b43384f7e2d03c1a/run-marker.json",
+    "run_marker_sha256": "sha256:ed2af2fa01c3ed12a422b02ccdc662d278766a7092b1ff6d697230265d2566e1",
+    "cookie_name": "ca_dev_pair_631bff4285a33437a3e0",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "approved_identity_ids": ["admin", "user01"],
+    "workspace_count": 0,
+    "reference_workspace_count": 0,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "health": {
+      "agent_10111": 200,
+      "notion_10112": 200,
+      "gateway_10113": 200,
+      "gateway_state": "READY",
+      "ready_for_admission": true,
+      "ready_for_realtime": true,
+      "ready_for_compaction": true,
+      "schema_compatibility": "compatible",
+      "restart_required": false
+    },
+    "isolation": {
+      "new_signing_secret": true,
+      "existing_signing_secret_copied": false,
+      "notion_password_authority_copy": false,
+      "personal_content_imported": false,
+      "production_port_or_root_mutated": false
+    }
+  },
+  "retained_candidate": {
+    "label": "r907",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r907-sidebar-presence-freeze/receipt.json",
+    "receipt_sha256": "sha256:d10d699dbb63eab60af3cabeebb6b2641c03610fafc697dd268e039e7ca990cf",
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 1689686,
+    "regressed_capture_count_from_r899": 0
+  },
+  "scope_guard": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "protected_hot_contracts_modified": false,
+    "personal_content_imported": false,
+    "final_product_or_sbe_gate_run": false
+  },
+  "next_cursor": {
+    "action": "Continue V0B exact-pixel residual reduction from retained r907 in the fresh r908 realm.",
+    "retain_policy": "Only retain full candidates with all four component journeys passing, cleanup complete, accessibility 36/36, and zero regressed captures against r907.",
+    "final_gate_fence": "Do not run final Core-25, performance, product, or SBE closure gates before exact 36/36."
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "exact_36_of_36": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

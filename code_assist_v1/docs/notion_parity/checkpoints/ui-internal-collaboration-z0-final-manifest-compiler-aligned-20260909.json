@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.z0.final_manifest_compiler_aligned_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-Z0-FINAL-MANIFEST-COMPILER-ALIGNED-20260909",
+  "recorded_at": "2026-09-09T02:20:00.4277811+09:00",
+  "status": "create_only_z0_final_manifest_compiler_verified_external_execution_deferred",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-z0-final-evidence-aligned-20260909.json",
+    "sha256": "sha256:ac718111106264f3050fd572d058016bf757972111d1aa207adf5b51a250f4f1",
+    "record_sha256": "sha256:2ca070f40d67e9576d1f8d050ebb3085f315a138ba078509bb995dfd934faeb4"
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    }
+  },
+  "current_sbe_dynamic_baseline": {
+    "path": "capture/o1b-p1-sbe-readiness-contract-audit-20260909-v6.json",
+    "sha256": "sha256:514205a6b69288c4680f1fc70aa76ec792e3a465fe963a096b7e7f8e68499da7",
+    "input_sha256": "sha256:5a25051a7be86c79a3fa418c75cf29b3cbb9177262fe65c4197ad9ded35a6b04",
+    "status": "pass",
+    "error_count": 0,
+    "goal_count": 20,
+    "mandatory_scenario_count": 284,
+    "protected_sbe_changed_by_this_lane": false
+  },
+  "implementation_bindings": {
+    "compiler": {
+      "path": "code_assist_v1/tools/compile_internal_collaborative_z0_final_manifest.py",
+      "sha256": "sha256:91ce9805fde3b2b2ba08072f46a79bfee16081c739d63e8a1cadfae2c964da7c"
+    },
+    "compiler_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_compile_internal_collaborative_z0_final_manifest.py",
+      "sha256": "sha256:5f4558cff16bfcd7c1ce83729a9bbd34bf8920bb064dd5994ba989ad46e6dda9"
+    },
+    "central_validation": {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:5e772304cb14c80493a034af07fd736389594ba6967b314a057fa96caca5c899"
+    },
+    "gate_runner": {
+      "path": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+      "sha256": "sha256:4e9f28db3b55eb43308db96ff7fb7c420577b0823759997880752fec97d6a476"
+    },
+    "z0_completion_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_z0_completion.py",
+      "sha256": "sha256:e2f19b9dc37d7c592b81951f2301913ba74275d1cf7914a4550220bf8d9c7c39"
+    }
+  },
+  "compiler_contract": {
+    "required_suite_receipt_count": 7,
+    "required_suite_lane_order": [
+      "L9-FULL-PYTHON-SUITE",
+      "L3-NODE-EDITOR-CORE",
+      "L3-NODE-UI-RUNTIME",
+      "L3-NODE-NAVIGATION",
+      "L3-NODE-PUBLICATION",
+      "L3-NODE-ATOMIC-SAVE",
+      "L3-NODE-CSRF"
+    ],
+    "promotion_receipt_count": 1,
+    "all_suite_receipts_distinct": true,
+    "same_release_manifest_required": true,
+    "same_release_generation_synthetic_realm_and_authority_required": true,
+    "current_catalog_ladder_matrix_lineage_agents_goal_and_sbe_revalidated": true,
+    "release_candidate_reconstructed": true,
+    "promotion_evidence_reconstructed": true,
+    "full_final_manifest_reconstructed_before_publish": true,
+    "direct_inputs_byte_rechecked_before_publish": true,
+    "output_restricted_to_final_evidence_root": true,
+    "output_create_only": true,
+    "staging_artifact_cleaned": true,
+    "tests_or_operator_actions_executed": false,
+    "rollout_enabled": false,
+    "packet_or_gate_credit_awarded": false
+  },
+  "verification": {
+    "python_compile": {
+      "status": "pass",
+      "source_count": 2
+    },
+    "compiler_and_z0_contract_regression": {
+      "status": "pass",
+      "passed": 19,
+      "failed": 0,
+      "duration_seconds": 8.86
+    },
+    "compiler_z0_target_and_promotion_regression": {
+      "status": "pass",
+      "passed": 49,
+      "failed": 0,
+      "duration_seconds": 24.22
+    },
+    "current_checked_in_bundle_regression": {
+      "status": "pass",
+      "passed": 1,
+      "failed": 0,
+      "duration_seconds": 38.2
+    },
+    "s0a_direct_verifier": {
+      "status": "pass",
+      "error_count": 0,
+      "contract_sha256": "sha256:c968a2e72b17c5bb3de9f973a6c710f3d28f794c9805b7e58ca84432e97465d8"
+    },
+    "central_read_only_audit": {
+      "status": "expected_fail_closed_on_unpromoted_dynamic_sbe_snapshot",
+      "error_count": 1,
+      "only_error_code": "SBE_AUDIT_HASH_DRIFT",
+      "packet_progress": "44/50",
+      "completion_matrix_progress": "21/28",
+      "phase_gate_progress": "15/20",
+      "valid_execution_receipts": 21
+    }
+  },
+  "remaining_boundaries": [
+    "No exact O1B target identity, encrypted off-host destination, trust anchors, signed approval, or handoff exists.",
+    "The compiler cannot run until seven real supporting-suite receipts and one real promotion receipt exist.",
+    "O1B-P1, Q0-P1, R0A-P1, R0B-P1, R1-P1, and Z0-P1 remain uncredited.",
+    "The central packet catalog, ladder, completion matrix, and current checkpoint pointer remain unchanged."
+  ],
+  "claims": {
+    "historical_receipt_or_checkpoint_overwritten": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified_by_this_lane": false,
+    "agents_md_modified": false,
+    "external_system_mutated": false,
+    "operator_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:e65f451da73047b5ea8932580c055eab1af7680b1e51794422aca884857ac932"
+}

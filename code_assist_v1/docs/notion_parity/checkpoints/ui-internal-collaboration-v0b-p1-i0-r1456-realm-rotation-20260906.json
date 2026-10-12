@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1456-REALM-ROTATION-20260906",
+  "recorded_at": "2026-09-06T03:54:31.9605130+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1435-fresh-reproduction-20260906.json",
+    "sha256": "sha256:e4f98fb441a64e42f3988aaa56edc1da801c993098e7dfcd908d469d83b64966",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 770583
+  },
+  "verified_progress": {
+    "run_id": "v0b-p1-i0-r1456-realm-threshold-reproduction",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1456-realm-threshold-reproduction/diagnostic.json",
+    "diagnostic_sha256": "sha256:a7eaa5592114fb94b121fcd2cba9c3aed19a55661734dc497518e67996bfc4d5",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 769980,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 769980,
+    "stable_normalized_improvement_from_predecessor": 603,
+    "reproduction_from_r1455": {
+      "candidate_capture_hash_mismatch_count": 1,
+      "per_capture_difference_count_mismatch_count": 1,
+      "known_runtime_variance_only": "V0R-MU-004@1440:+9",
+      "normalized_mismatch_count": 0
+    },
+    "comment_snapshot_determinism": {
+      "states": ["V0R-MU-003", "V0R-MU-006"],
+      "normal_mode_preserved": true,
+      "empty_preview_mode_recurrence_after_fix": 0
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    },
+    "overall_exact_progress": "0/36"
+  },
+  "capture_source": {
+    "path": "notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:38705ae17da7b68e01d081cebbfdf41398c33da92e2714d4ef3571e67fa38b69",
+    "python_compile_pass": true
+  },
+  "realm_at_rotation_threshold": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1434-20260906",
+    "launch_id": "a65d3c12d77043d88d3e703c28f3049f",
+    "root_id": "8b65e0e6-034d-4ae7-8046-dafaf0b86d54",
+    "manager_session_id": 42714,
+    "cookie_name": "ca_dev_pair_2c881709bdacd4ebafba",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "current_audit": {
+      "workspace_count": 46,
+      "reference_workspace_count": 44,
+      "active_membership_count": 46,
+      "active_page_binding_count": 44,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    }
+  },
+  "protected_contract_hashes": {
+    "AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1",
+    "unchanged": true
+  },
+  "scope_guard": {
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Stop the threshold realm cleanly, launch a zero-audit fresh realm from the pinned identity source, reproduce the r1456 stable candidate, then continue exact residual reduction. Do not run final gates before exact parity reaches 36/36."
+}

@@ -1,0 +1,183 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T00:51:54+09:00",
+  "run_id": "ui-tree-001-reference-differential-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-shell-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:08a8c9a9493f6ca548523791c5f6e9825c9bc01d77b94e5a3ae1baf71ea065a8",
+    "semantic_status": "superseded_by_third_reference_differential"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "implement the adopted 25-scenario Core Free Web UI and Second Brain plan through reviewed reference and differential gates",
+    "observed_at": "2026-08-21T00:36:00+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-TREE-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "live_local_data_accessed": false,
+    "business_enterprise_archive_required": false
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-TREE-001",
+    "status": "third_reference_and_precalibration_differential_green",
+    "implemented_corrections": [
+      "replace the planned ArrowLeft-collapse assumption with the approved observed Notion no-op contract",
+      "preserve tree-row focus and expanded state on ArrowLeft",
+      "retain disclosure-click expand and collapse with focused row restoration",
+      "add a third action so collapsed-descendant keyboard exclusion remains explicitly evidenced"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 3,
+    "differential_passed": 3,
+    "promotion_allowed": 0,
+    "remaining_reference": 22,
+    "remaining_differential": 22,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+      "sha256": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+      "sha256": "sha256:ee7fa3537dc953f33a2f029830a3463f30f4af6f65de776552ee3349b2252fdd"
+    }
+  ],
+  "owned_outputs": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:f071b4cd3e43970c3725c91dbba8f292bf68acb7b7b3947d2c3a095d7976bcf9"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "sha256": "sha256:50654cdf98dfc2c278c79831a1855515751863efeb7988f862943e9684573035"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:e1c7318d00224a72c490695dcef745e21783595964e7a5fd50be738c61499120"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_completion_matrix.py",
+      "sha256": "sha256:50b5b86e210008c331dc07cd7619655c13e94e5963583672bc95e004ce37e636"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_001_REFERENCE_DIFFERENTIAL_20260821.json",
+      "sha256": "sha256:fbc705e540513e1b6b4a0096de8adb24894883953ebc1efeb4e224444a38dc5f"
+    }
+  ],
+  "reference_evidence": {
+    "submission_sha256": "sha256:b7b44a11288bbb33278b2e8720a925dde21aed62eaf8215d7067b2ec64876c99",
+    "receipt_sha256": "sha256:4c44c7e76eaebe0478be478b78931a8bac4c6c169d7a5cea2a701794c7f025a4",
+    "reviewed_redaction_summary": true,
+    "capture_count": 3,
+    "screenshot_count": 0,
+    "raw_dom_captured": false,
+    "network_payload_captured": false
+  },
+  "differential_evidence": {
+    "policy_state": "precalibration",
+    "action_count": 3,
+    "difference_count": 0,
+    "all_actions_passed": true,
+    "promotion_allowed": false
+  },
+  "commands": [
+    {
+      "selection": "focused Node navigation contract",
+      "result": "notion_navigation_ui: ok",
+      "exit_code": 0
+    },
+    {
+      "selection": "isolated Chrome UI-TREE-001 click and ArrowLeft regression",
+      "result": "1 passed in 19.00s",
+      "exit_code": 0
+    },
+    {
+      "selection": "combined manual-intake setup invocation",
+      "result": "Windows host exit 0xC0000409 after the fail-closed C0 output; replaced by direct serial invocations",
+      "exit_code": -1073740791
+    },
+    {
+      "selection": "manual synthetic reference intake for revised UI-TREE-001",
+      "result": "accepted_reference_observation; 3 captures; 0 screenshots",
+      "exit_code": 0
+    },
+    {
+      "selection": "1920x863 local-to-reference UI-TREE-001 probe",
+      "result": "3 actions passed; 0 differences",
+      "exit_code": 0
+    },
+    {
+      "selection": "completion matrix verifier and adversarial packet tests",
+      "result": "6 passed in 2.72s; verifier pass with reference=3 and differential=3",
+      "exit_code": 0
+    },
+    {
+      "selection": "six serial Node editor/UI/navigation/publication/atomic-save/CSRF contracts",
+      "result": "6 commands passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion routes, atomic-save compatibility, and publication adapter",
+      "result": "25 passed in 12.07s",
+      "exit_code": 0
+    },
+    {
+      "selection": "workspace routes, navigation routes, and workspace auth isolation",
+      "result": "41 passed in 43.43s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication restart and chat characterization regressions",
+      "result": "5 passed in 4.82s",
+      "exit_code": 0
+    }
+  ],
+  "known_failures_resolved": [
+    "the fail-closed C0 required the already-observed synthetic A/B switcher boundary flags",
+    "capture vocabulary was normalized to the existing redaction allowlist",
+    "the differential probe initially selected the workspace-isolation seed instead of the nested-tree seed"
+  ],
+  "claims": {
+    "third_reference_characterized": true,
+    "third_precalibration_differential_passed": true,
+    "core_ui_complete": false,
+    "second_brain_complete": false,
+    "business_archive_complete": false,
+    "overall_goal_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_content_exposed": false,
+    "live_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "protected_file_modified": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false
+  },
+  "deferred_scenario_notes": [
+    "UI-SHELL-001 reference switching remains deferred because indistinguishable visible workspace labels prevent a risk-free click without exposing personal workspace state"
+  ],
+  "remaining": [
+    "22 scenario reference characterizations",
+    "22 scenario differential passes",
+    "reviewed performance budget",
+    "formal accessibility review",
+    "H9 opt-in pilot and recovery gate"
+  ],
+  "next_exact_action": "Run the serial adjacent regression ladder, then characterize the next read-only synthetic scenario available inside REF-FREE-A without workspace switching."
+}

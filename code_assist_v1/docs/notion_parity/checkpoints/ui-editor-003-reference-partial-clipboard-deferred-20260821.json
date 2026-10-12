@@ -1,0 +1,202 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T23:09:47.6025388+09:00",
+  "run_id": "ui7-editor-003-reference-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "parallel_pending_observations": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-shell-001-reference-observed-review-pending-20260821.json",
+      "sha256": "sha256:293b71d6184f60308cbd21b17196692941087066d802c1188af662328bebae5e",
+      "semantic_status": "awaiting_workspace_owner_summary_approval"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-001-reference-observed-review-pending-20260821.json",
+      "sha256": "sha256:549cac2ec21b31e425da7819ee1b5c9b9be812f0c8e3d5784c0fd53783d255e7",
+      "semantic_status": "awaiting_workspace_owner_summary_approval"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-002-reference-observed-review-pending-20260821.json",
+      "sha256": "sha256:daafd5b251c1e3a3e410d9fceb1bf674c22c750df5e9862b5a2cf03347803084",
+      "semantic_status": "awaiting_workspace_owner_summary_approval"
+    }
+  ],
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-EDITOR-003",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "os_clipboard_read": false,
+    "os_clipboard_written": false,
+    "transient_screenshot_used_for_visual_confirmation": true,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "handoff_ref_free_a"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-EDITOR-003",
+    "status": "reference_partial_clipboard_deferred",
+    "review_required": true,
+    "promotion_allowed": false,
+    "incomplete_requirement": "clipboard_safe_paste_reference_behavior"
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 3,
+    "reference_partially_observed": 1,
+    "reference_unobserved": 16,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa",
+      "canonical_sha256": "sha256:a2c1a94be54f255cac128a4810a66ed1e0dd85f9762f2ecc850df0cc21ba0cf7"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3"
+    }
+  ],
+  "reference_intake": {
+    "worksheet_sha256": "sha256:30740e19208b158545ac13d1a2d1ad9cf138aa24e58c8925add28954810a62cd",
+    "c0_status": "pass",
+    "c0_sha256": "sha256:ed308501fac9967eb686cd69c1f5a9a21e60e78119a135eea9fc7c6655b8a93b",
+    "action_log_sha256": "sha256:d7f15f9a1015f59b274e11943661b5c7136b7b8852d878508103d1ef062220db",
+    "capture_validation_errors": 0,
+    "operator_review": {
+      "status": "not_requested_incomplete_clipboard_requirement",
+      "scope": "redacted_summary_only"
+    }
+  },
+  "reference_action_captures": {
+    "UI-EDITOR-003-A01": {
+      "sha256": "sha256:f32b843785ac38c5200754c856a42e884b53fc02758596b4f7dcc69ad845451b",
+      "state": {"count": 2, "result": "pass"},
+      "keyboard": {"result": "pass"},
+      "focus": {"name": "PAGE-EDITOR-GROUP", "state": "focused"},
+      "a11y": {"name": "PAGE-EDITOR-GROUP", "role": "GROUP"},
+      "semantic_visual": {"region": "PAGE-ROOT", "state": "visible"},
+      "geometry": {
+        "PAGE-ROOT": {"height": 875, "width": 1650, "x": 270, "y": 44}
+      },
+      "latency_ms": 664
+    },
+    "UI-EDITOR-003-A02": {
+      "sha256": "sha256:00bdbbbf56fc789ee0febdfc1de5dba60dd2f2bbe9317a1cd050a19274ee4569",
+      "state": {"count": 2, "result": "pass"},
+      "keyboard": {"result": "pass"},
+      "focus": {"name": "PAGE-EDITOR-GROUP", "state": "focused"},
+      "a11y": {"name": "PAGE-EDITOR-GROUP", "role": "GROUP"},
+      "semantic_visual": {"region": "PAGE-ROOT", "state": "restored"},
+      "geometry": {
+        "PAGE-ROOT": {"height": 875, "width": 1650, "x": 270, "y": 44}
+      },
+      "latency_ms": 1277
+    }
+  },
+  "reference_exact_results": {
+    "two_synthetic_blocks_selected": true,
+    "selection_owned_by_page_editor_group": true,
+    "synthetic_change_applied": true,
+    "undo_removed_exact_change": true,
+    "redo_restored_exact_change": true,
+    "redo_state_persisted_after_reload": true,
+    "os_clipboard_inspected": false,
+    "os_clipboard_modified": false,
+    "browser_clipboard_api_used": false,
+    "clipboard_safe_paste_reference_behavior_observed": false,
+    "failed_isolated_paste_attempt_mutated_page": false,
+    "synthetic_page_moved_to_trash": true,
+    "synthetic_tree_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_action_captures": {
+    "UI-EDITOR-003-A01": {
+      "sha256": "sha256:40cc436fab5148aaf59336c36da06c926fadeb27f9c342aedaa8457b0bea4fff",
+      "state": {"count": 2, "result": "pass"},
+      "focus": {"name": "EDITOR-BLOCK", "state": "focused"},
+      "a11y": {"name": "EDITOR-BLOCK", "role": "TEXTBOX"},
+      "semantic_visual": {"region": "PAGE-ROOT", "state": "visible"},
+      "geometry": {
+        "PAGE-ROOT": {"height": 202, "width": 760, "x": 475, "y": 151}
+      }
+    },
+    "UI-EDITOR-003-A02": {
+      "sha256": "sha256:d5d769df715be91b1581efe16f35c9b16ae54371a2abe8705eff8ac124e42ea3",
+      "state": {"count": 2, "result": "pass"},
+      "focus": {"name": "EDITOR-BLOCK", "state": "focused"},
+      "a11y": {"name": "EDITOR-BLOCK", "role": "TEXTBOX"},
+      "semantic_visual": {"region": "PAGE-ROOT", "state": "restored"},
+      "geometry": {
+        "PAGE-ROOT": {"height": 202, "width": 760, "x": 475, "y": 151}
+      }
+    }
+  },
+  "partial_differential": {
+    "status": "incomplete",
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-EDITOR-003-A01": {
+        "difference_count": 2,
+        "differences": ["a11y", "focus"]
+      },
+      "UI-EDITOR-003-A02": {
+        "difference_count": 2,
+        "differences": ["a11y", "focus"]
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "missing_evidence": ["reference_clipboard_safe_paste"],
+    "interpretation": "Reference and local selection counts plus undo/redo/reload behavior agree. Reference selection and history actions settle on the page editor group while local reports the block textbox. Clipboard sanitization is proven only on the isolated local implementation and remains deliberately unclaimed for reference."
+  },
+  "verification": {
+    "isolated_local_browser_test": "1 passed in 21.66s",
+    "isolated_local_capture_run": "completed with deterministic action hashes",
+    "local_sanitized_markup_persisted": true,
+    "local_unsafe_markup_persisted": false,
+    "local_second_brain_item_delta": 0,
+    "local_second_brain_revision_delta": 0,
+    "reference_capture_validation": "2 partial captures, 0 errors"
+  },
+  "stop_reason": {
+    "code": "REFERENCE_CLIPBOARD_SIDE_EFFECT_NOT_AUTHORIZED",
+    "description": "Completing the official clipboard assertion through the connected Chrome session would require reading or replacing the user's operating-system clipboard. The browser's isolated interaction surface does not expose a non-mutating synthetic paste path."
+  },
+  "claims": {
+    "ui_editor_003_reference_partially_observed": true,
+    "ui_editor_003_reference_observed": false,
+    "ui_editor_003_reference_characterized": false,
+    "ui_editor_003_differential_passed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Keep UI-EDITOR-003 unpromoted. Continue with another independent synthetic-only scenario, or obtain an explicitly approved disposable clipboard procedure that does not read personal clipboard content before completing this reference assertion."
+}

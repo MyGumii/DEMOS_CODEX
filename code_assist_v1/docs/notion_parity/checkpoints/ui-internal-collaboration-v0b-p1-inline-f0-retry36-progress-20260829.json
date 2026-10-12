@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-INLINE-F0-RETRY36-20260829",
+  "recorded_at": "2026-08-29T07:31:24.2317958+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry36 used the adopted lossless-20260829 reference explicitly and incorporated the inline canonical database seed and measured one-column table geometry for F0. All four live browser journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. Unmasked differences decreased by 76,819 from retry34 to 4,012,175, led by a 75,795 reduction in V0R-MU-011. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-access-guest-share-retry34-progress-20260829.json",
+      "sha256": "sha256:21f6b5414b50dbb534617e668996a8d4044c4ac29baf1cab93ddab59f92da230"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:fffa132771cee89969dff4194ad78093e2af8edd991260922302514b1477ceef",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:7ffdae48dc0b4c3619d8e1933d62f965053b42c5fad989f25c15b3c9c2320a8d"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:dffb5aeafd7c243d78ecb068b756787c8819d2e334f9c4b283d90764e65ef773"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:2bada130c4a9c70121cfca03357a83d87abe4d026b0e5b2f2a4b922c2af5dc7f"
+      }
+    ],
+    "journey_and_capture_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:7bf7d3c16d630acba160aacd97971ec9ff77edba79d41fc39394a19511af2259"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:41ee3978a04fc5588d250da26d73303dd8fb418e931bb7aec488274d8a43dc2a"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/c0_p2_browser.py",
+        "sha256": "sha256:d7192f6d72c3c22e554b3c151901323c4c56154ad37a860095b4abfb45d3532e"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/e1_p2_browser.py",
+        "sha256": "sha256:57e52c3d157efbce99eea43d6dd0d8d8100e393a217af9540da357438181649c"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/f0_p5_browser.py",
+        "sha256": "sha256:3044f27a11d5dcfa0a2e41bd1e47cae709eb0cff12a9952d8b0a812073f026de"
+      }
+    ]
+  },
+  "accepted_changes": {
+    "f0_surface": "The lossless capture now preserves the inline database surface instead of opening the full-page route.",
+    "canonical_seed": "The F0 capture seed uses two canonical text blocks and three canonical database rows for base, owner, and collaborator content.",
+    "reference_table": "The V0B F0 capture mode applies the measured one-column table geometry and focuses the owner row while retaining the collaborator convergence result."
+  },
+  "bounded_diagnostics": {
+    "f0_retry6": {
+      "root": "code_assist_v1/.runtime/v0b-p1-f0-diagnostic-20260829-retry6-lossless-inline-database",
+      "capture_count": 2,
+      "unmasked_difference_count": 247005,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "f0_retry7": {
+      "root": "code_assist_v1/.runtime/v0b-p1-f0-diagnostic-20260829-retry7-lossless-canonical-seed",
+      "capture_count": 2,
+      "unmasked_difference_count": 238553,
+      "delta_from_retry6": -8452,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "f0_retry8": {
+      "root": "code_assist_v1/.runtime/v0b-p1-f0-diagnostic-20260829-retry8-lossless-reference-table",
+      "capture_count": 2,
+      "accessibility_pass_count": 2,
+      "interaction_pass_count": 2,
+      "unmasked_difference_count": 232228,
+      "delta_from_retry7": -6325,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "retry35_wrong_reference_diagnostic": {
+      "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry35-lossless-inline-f0",
+      "receipt_sha256": "sha256:749daf9fd0017651952a515c5f6e493c17e98ed70959feb56550c449505a9ba4",
+      "reference_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+      "accepted": false,
+      "reason": "The runner default selected the superseded corrective-20260828 reference instead of the adopted lossless-20260829 reference; candidate evidence was preserved as diagnostic only."
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry36-lossless-inline-f0",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry36-lossless-inline-f0/receipt.json",
+    "receipt_sha256": "sha256:9ae2eabf4f68f9b82225628fc7b613af71bf67ac6081be8e2fbb359f7dd0e9ca",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {
+      "I0-P2": 130020,
+      "C0-P2": 87691,
+      "E1-P2": 58975,
+      "F0-P5": 44776
+    },
+    "unmasked_difference_count": 4012175,
+    "masked_difference_count": 211220,
+    "raw_difference_count": 4223395,
+    "delta_from_retry34_unmasked": -76819,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:64066cdbfa3cc535378d7c155160e8e353da0374946c8e465908006906627d84"
+    }
+  },
+  "state_deltas_from_retry34": [
+    {"state_id": "V0R-MU-011", "delta": -75795},
+    {"state_id": "V0R-MU-012", "delta": -26},
+    {"state_id": "V0R-MU-015", "delta": -1090},
+    {"state_id": "V0R-MU-017", "delta": 92}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "next_focus": {
+    "largest_states": [
+      {"state_id": "V0R-MU-001", "unmasked_difference_count": 372500},
+      {"state_id": "V0R-MU-002", "unmasked_difference_count": 359181},
+      {"state_id": "V0R-MU-004", "unmasked_difference_count": 302939},
+      {"state_id": "V0R-MU-006", "unmasked_difference_count": 297144},
+      {"state_id": "V0R-MU-008", "unmasked_difference_count": 262121}
+    ],
+    "primary": "Continue bounded diagnostics on the workspace-member and page-share surfaces, accepting only measured reductions before another full run.",
+    "full_candidate_policy": "Do not rerun Core25 or performance until exact pixel is 36/36."
+  },
+  "open_gates": {
+    "exact_pixel": {"passed": 0, "required": 36, "status": "open"},
+    "core_25": {"status": "not_run_until_exact_36_of_36"},
+    "performance": {"status": "not_run_until_exact_36_of_36"},
+    "claims": {"status": "open"},
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "scope_attestation": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "user_chrome_touched": false,
+    "persistent_browser_profile_used": false,
+    "public_publish_or_link_used": false,
+    "personal_workspace_or_page_used": false,
+    "permanent_delete_used": false,
+    "reference_receipts_modified": false,
+    "agents_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  }
+}

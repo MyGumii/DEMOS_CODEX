@@ -1,0 +1,41 @@
+{
+  "contract": "code_assist.notion.core_free_ui.manual_ime_input_receipt.v1",
+  "recorded_at": "2026-08-22T17:17:42.9266173+09:00",
+  "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "entry_id": "UI-EDITOR-004-NATIVE-IME-INPUT",
+  "scenario_id": "UI-EDITOR-004",
+  "source": {
+    "kind": "exact_user_message",
+    "received_text": "한글 조합 테스트 입력 후 UI-EDITOR-004 IME 입력 완료",
+    "required_text_matched": true
+  },
+  "reference_target": {
+    "workspace_alias": "REF-FREE-A",
+    "expected_final_text": "한글 조합 테스트",
+    "input_method_attested_by_user": "native_korean_ime"
+  },
+  "read_only_verification": {
+    "initial_normalized_exact_count": 0,
+    "initial_normalized_contains_count": 0,
+    "delayed_normalized_exact_count": 0,
+    "delayed_normalized_contains_count": 0,
+    "save_delay_recheck_seconds": 3.5,
+    "final_text_verified": false,
+    "intermediate_composition_events_observed_by_browser_control": false
+  },
+  "disposition": {
+    "status": "user_report_received_final_state_not_verified",
+    "manual_input_resolved": false,
+    "promotion_allowed": false,
+    "next_action": "repeat_native_ime_input_in_the_focused_empty_ref_free_a_block"
+  },
+  "safety": {
+    "synthetic_workspace_only": true,
+    "personal_workspace_accessed": false,
+    "raw_url_or_page_id_persisted": false,
+    "raw_dom_network_cookie_or_storage_persisted": false,
+    "screenshot_persisted_to_repository": false,
+    "live_local_data_accessed": false
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T03:53:20.6738688+09:00",
+  "run_id": "ui33-a11y-001-r2-1-revalidated-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-owner-approvals-recorded-20260822.json",
+    "sha256": "sha256:0b5c2449edf73c1aad3d3a058318c39330b182d0a27b55a5179ec3f709caee35",
+    "semantic_status": "owner_approval_recorded_current_source_revalidation"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "blocked",
+    "user_resume_received": true
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-A11Y-001",
+    "synthetic_only": true,
+    "personal_or_live_data_accessed": false
+  },
+  "slice": {
+    "status": "reference_partially_observed_current_source_green",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "protected_inputs": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/notion_static/index.html","sha256":"sha256:c39cc152ee3a4a528cd59aac9833833d6246354c2e18bde820ee281d3d2c3999"},
+    {"path":"code_assist_v1/notion_static/notion.js","sha256":"sha256:c884a911d8d0409283913e93c53de27dd8ad459ce3a29a530b2241cd344a88a0"},
+    {"path":"code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py","sha256":"sha256:0f0c3bb58b6bbe13902677bc748a49d6040be2f32bf7c47a9705de2750702fd2"}
+  ],
+  "verification": [{"selection":"UI-A11Y-001 first exact run","result":"search-modal asynchronous Tab-wrap assertion failed; not used as green evidence"},{"selection":"UI-A11Y-001 permitted serial retry","result":"1 passed in 23.57s"}],
+  "claims": {
+    "current_source_revalidated": true,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "known_transient": "The first run reached the existing asynchronous search-result focus boundary; the unchanged isolated retry passed."
+}
+

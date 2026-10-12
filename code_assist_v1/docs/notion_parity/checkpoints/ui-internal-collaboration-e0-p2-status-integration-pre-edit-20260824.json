@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P2-STATUS-INTEGRATION-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-23T17:17:30Z",
+  "checkpoint_kind": "status_integration_pre_edit",
+  "packet_id": "E0-P2",
+  "packet_status": "evidence_passed_awaiting_integration",
+  "purpose": "Acquire exact current hashes for the single-writer E0-P2 catalog, L3 lane, and CRDT verifier integration after preserving runtime receipts and cleaning the disposable root.",
+  "owner_agent": "/root",
+  "owned_existing_files": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:907287f527fc2493fe154621052080c5d339546ab84b4eef97f30ffd02da5625",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:00f8d071a30e29574b861ed80d981fb918b896a0371ca3036db6e4eeda06daff",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:f9ea8563d1f1d2999a9963d3ad9f25a75b0ddc6d9266302e99d559646ede0f8d"
+  },
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:ebc30e142ae00c1ac9c1467be36649ddee94fbbf1c396e42c986070050eb702f",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:abc60747effdb8936b2af76105a9eea3daa376bfd73e935c98c0c5601a9ea2c6",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.schema.json": "sha256:86d07500332550526fe01db6ae8bb0fe115b330122b961ff1e3f0484dfbf46ee",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.schema.json": "sha256:133f291784f8f30b86c46b875976cb09f3582787aed918110b75240772f59d92",
+    "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md": "sha256:6cb9abe671b87401196e33acf3d2fd2c16d4c951ae0c90dc8c6331a64f1be7fc",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md": "sha256:62e4aa857461c3cc5eb3b4f7c73dbdb5e1f59fec21f043d454b07e4305db7015"
+  },
+  "accepted_runtime_receipts": {
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-artifact-and-lock-receipt-20260824.json": "sha256:fb1c59bcf024ccdb766ce3d11477df2ca130d76c35dfa60e3daa7e5c8b8403eb",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-windows-lifecycle-receipt-20260824.json": "sha256:04a5461db08ed13f7b98558796c15b573d9c963f481da320fe98d37501191605",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-install-reproducibility-receipt-20260824.json": "sha256:d413aa5c51ceba815c987695336735dda6f0436591dd3780d1f702d354506183",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-cleanup-receipt-20260824.json": "sha256:6b149d58132cb1ddb302568a6d91566d332239985aba1af7caed084e1a449a5b"
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "lease_id": "E0-P2-STATUS-INTEGRATOR-20260824",
+    "status": "held",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "approval_implies_ownership": false,
+    "release_condition": "Release after post-edit bundle audit and final E0-P2 checkpoint."
+  },
+  "ownership_amendments": [
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+      "pre_edit_sha256": "sha256:ebc30e142ae00c1ac9c1467be36649ddee94fbbf1c396e42c986070050eb702f",
+      "reason": "The gate-passed required packet denominator must move from 16 to 17 when E0-P2 is integrated; no other harness expectation changes.",
+      "exact_path_collision_observed": false
+    }
+  ],
+  "planned_integration": {
+    "approval_registry_AP_RUNTIME_SPIKE": "consumed",
+    "packet_E0_P2": "gate_passed",
+    "catalog_next_packet": "E0-P3",
+    "ladder_L3_state": "planned_required",
+    "ladder_L3_new_test_paths": [
+      "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_contract.py",
+      "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_executor.py"
+    ],
+    "candidate_winner_selected": false,
+    "production_dependency_pinned": false
+  },
+  "fresh_cross_stream_audit": {
+    "sbe_status": "pass",
+    "sbe_error_count": 0,
+    "sbe_input_sha256": "sha256:59c9eac679584ec7a7a879989245964e9bf5f12c608870860de57ac7b94ca22b",
+    "exact_path_collision_observed": false
+  },
+  "rollback_or_cleanup": "Restore only the three owned existing files to the exact recorded hashes if integration fails. Runtime evidence files and cleanup receipt remain immutable facts; do not recreate the deleted candidate root or alter product, service, port, identity, workspace, protected data, or SBE contracts."
+}

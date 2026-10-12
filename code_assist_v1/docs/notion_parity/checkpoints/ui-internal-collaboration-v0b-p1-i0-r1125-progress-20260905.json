@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1125-PROGRESS-20260905",
+  "recorded_at": "2026-09-05T06:51:22.3870389+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1115-progress-rotation-20260905.json",
+    "sha256": "sha256:ed1309fe8991451df35529690d840271e0c6f24f4a22b61d0e5db018eead0b0d"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1123-inbox-avatar-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1123-inbox-avatar-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:d68d996f24da9db79fa5c952e4af53cc0aecf8820b2cdedf9c8ca080ce36fa7d",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:0d7a067d62f5f9bcf05511d988bdbdce6c2de94d369a28b8ab3eaa7aa80da18f",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 837920,
+    "masked_difference_count": 46800,
+    "total_difference_count": 884720,
+    "overall_exact_progress": "0/36"
+  },
+  "comparison": {
+    "baseline_run_id": "v0b-p1-i0-r1099-state004-final-icon-standard",
+    "baseline_unmasked_difference_count": 841212,
+    "predecessor_unmasked_difference_count": 839574,
+    "retained_unmasked_difference_count": 837920,
+    "net_unmasked_improvement_from_baseline": 3292,
+    "net_unmasked_improvement_from_predecessor": 1654,
+    "source_attributable_regression_count": 0,
+    "stable_improvements_since_predecessor": [
+      "V0R-MU-003 and V0R-MU-006 inbox filter glyph replaced by measured three-bar geometry: 316 fewer pixels across four frames.",
+      "V0R-MU-003 and V0R-MU-006 first inbox-row typography corrected independently: 146 fewer pixels across four frames.",
+      "V0R-MU-003 and V0R-MU-006 first inbox-row avatar background corrected from #c64125 to measured #bf360c: 1192 fewer pixels across four frames."
+    ]
+  },
+  "avatar_measurement_evidence": {
+    "sweep_run_id": "v0b-p1-i0-r1124-state003-006-inbox-avatar-sweep",
+    "result_path": ".runtime/v0b-p1-i0-r1124-state003-006-inbox-avatar-sweep/avatar-sweep-results.json",
+    "winning_variant": "color-bf360c",
+    "reference_region_difference_per_frame": 188,
+    "prior_region_difference_per_frame": 486,
+    "measured_improvement_per_frame": 298,
+    "affected_frame_count": 4,
+    "standard_run_improvement": 1192
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1112-20260905",
+    "current_audit": {
+      "workspace_count": 26,
+      "reference_workspace_count": 24,
+      "active_membership_count": 26,
+      "active_page_binding_count": 24,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64
+  },
+  "verification": {
+    "pytest": {
+      "status": "pass",
+      "passed": 21,
+      "duration_seconds": 12.22
+    },
+    "python_compile": "pass",
+    "cleanup": {
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless I0 exact residual reduction from stable r1123 in the r1112 realm. Rotate before the next mutating browser run would reach 64 workspaces. Do not run final product or SBE gates before exact 36/36."
+}

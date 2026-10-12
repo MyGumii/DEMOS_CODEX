@@ -1,0 +1,362 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/contracts/publication.schema.json",
+  "title": "Publication preview, source snapshot, and atomic target result contracts",
+  "$defs": {
+    "WikiGeneration": {
+      "type": "object",
+      "required": ["schema_version", "status"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "status": {"enum": ["pending", "ready", "extraction_only", "unavailable"]}
+      },
+      "additionalProperties": false
+    },
+    "WikiPublicationOverlay": {
+      "allOf": [
+        {"if": {"required": ["wiki_generation"]}, "then": {"required": ["publication_ready"]}},
+        {"if": {"required": ["publication_ready"]}, "then": {"required": ["wiki_generation"]}},
+        {
+          "if": {"properties": {"status": {"enum": ["queued", "extracting", "failed"]}}, "required": ["status"]},
+          "then": {"properties": {"wiki_generation": {"properties": {"status": {"enum": ["pending", "unavailable"]}}}}}
+        },
+        {
+          "if": {"required": ["wiki_generation"], "properties": {"wiki_generation": {"properties": {"status": {"const": "pending"}}}}},
+          "then": {"properties": {"status": {"enum": ["queued", "extracting", "ready"]}}}
+        }
+      ],
+      "if": {"required": ["publication_ready"], "properties": {"publication_ready": {"const": true}}},
+      "then": {
+        "properties": {
+          "status": {"const": "ready"},
+          "wiki_generation": {"properties": {"status": {"enum": ["ready", "extraction_only"]}}}
+        }
+      }
+    },
+    "TargetMode": {"enum": ["personal", "part", "both", "explicit"]},
+    "ExplicitTargetDescriptor": {
+      "type": "object",
+      "required": [
+        "space_id", "kind", "capability", "role_assignment_id",
+        "role_assignment_generation"
+      ],
+      "properties": {
+        "space_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "kind": {"enum": ["team", "responsibility"]},
+        "capability": {"const": "publish"},
+        "role_assignment_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "role_assignment_generation": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "ManualPreviewRequest": {
+      "type": "object",
+      "required": ["operation_id", "source_type", "markdown"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "source_type": {"const": "manual"},
+        "markdown": {"type": "string", "minLength": 1, "maxLength": 2000000},
+        "title": {"type": "string", "minLength": 1, "maxLength": 500},
+        "target": {"$ref": "#/$defs/ExplicitTargetDescriptor"}
+      },
+      "additionalProperties": false
+    },
+    "NotionPreviewRequest": {
+      "type": "object",
+      "required": ["operation_id", "source_type", "page_id"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "source_type": {"const": "notion"},
+        "page_id": {"type": "string", "minLength": 1, "maxLength": 500},
+        "target": {"$ref": "#/$defs/ExplicitTargetDescriptor"}
+      },
+      "additionalProperties": false
+    },
+    "ChatPreviewRequest": {
+      "type": "object",
+      "required": ["operation_id", "source_type", "conversation_id", "message_range"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "source_type": {"const": "chat"},
+        "conversation_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "message_range": {
+          "type": "object",
+          "required": ["from_sequence", "to_sequence"],
+          "properties": {
+            "from_sequence": {"type": "integer", "minimum": 1},
+            "to_sequence": {"type": "integer", "minimum": 1}
+          },
+          "additionalProperties": false
+        },
+        "target": {"$ref": "#/$defs/ExplicitTargetDescriptor"}
+      },
+      "additionalProperties": false
+    },
+    "UploadPreviewRequest": {
+      "type": "object",
+      "required": ["operation_id", "source_type", "file"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "source_type": {"const": "upload"},
+        "file": {"type": "string", "format": "binary"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 500},
+        "target": {"$ref": "#/$defs/ExplicitTargetDescriptor"}
+      },
+      "additionalProperties": false
+    },
+    "PublicationPreviewRequest": {
+      "oneOf": [
+        {"$ref": "#/$defs/ManualPreviewRequest"},
+        {"$ref": "#/$defs/NotionPreviewRequest"},
+        {"$ref": "#/$defs/ChatPreviewRequest"},
+        {"$ref": "#/$defs/UploadPreviewRequest"}
+      ]
+    },
+    "PreviewFinding": {
+      "type": "object",
+      "required": ["kind", "severity", "risk_tier", "visibility_effect", "evidence_sha256"],
+      "properties": {
+        "kind": {"type": "string", "minLength": 1, "maxLength": 80},
+        "severity": {"enum": ["blocker", "error", "warning", "info"]},
+        "risk_tier": {"enum": ["T0", "T1", "T2", "T3"]},
+        "visibility_effect": {"enum": ["none", "badge", "agent_hidden", "publication_blocked"]},
+        "evidence_sha256": {"$ref": "common.schema.json#/$defs/Sha256"}
+      },
+      "additionalProperties": false
+    },
+    "PreviewCore": {
+      "type": "object",
+      "required": ["request_id", "preview_id", "status", "expires_at", "created_at", "updated_at"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "preview_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "status": {"enum": ["queued", "extracting", "ready", "consumed", "expired", "cancelled", "failed"]},
+        "expires_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "created_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "updated_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "available_targets": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ExplicitTargetDescriptor"},
+          "maxItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "QueuedPreviewResponse": {
+      "type": "object",
+      "allOf": [{"$ref": "#/$defs/WikiPublicationOverlay"}],
+      "required": ["request_id", "operation_id", "preview_id", "job_id", "status", "status_url", "expires_at", "created_at", "updated_at"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "preview_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "job_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "status": {"enum": ["queued", "extracting"]},
+        "wiki_generation": {"$ref": "#/$defs/WikiGeneration"},
+        "publication_ready": {"type": "boolean"},
+        "status_url": {"type": "string", "format": "uri-reference"},
+        "expires_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "created_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "updated_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "available_targets": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ExplicitTargetDescriptor"},
+          "maxItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "ReadyPreviewResponse": {
+      "type": "object",
+      "allOf": [{"$ref": "#/$defs/WikiPublicationOverlay"}],
+      "required": [
+        "request_id", "operation_id", "preview_id", "status", "source_snapshot_sha256", "title",
+        "size_bytes", "warnings", "available_target_modes", "deterministic_findings",
+        "ready_result_schema_version", "expires_at", "created_at", "updated_at", "completed_at"
+      ],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "preview_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "job_id": {"type": ["string", "null"], "format": "uuid"},
+        "status": {"enum": ["ready", "consumed", "expired", "cancelled"]},
+        "wiki_generation": {"$ref": "#/$defs/WikiGeneration"},
+        "publication_ready": {"type": "boolean"},
+        "source_snapshot_sha256": {"$ref": "common.schema.json#/$defs/Sha256"},
+        "title": {"type": "string", "minLength": 1, "maxLength": 500},
+        "size_bytes": {"type": "integer", "minimum": 0},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "available_target_modes": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/TargetMode"},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "deterministic_findings": {"type": "array", "items": {"$ref": "#/$defs/PreviewFinding"}},
+        "ready_result_schema_version": {"const": 1},
+        "expires_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "created_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "updated_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "completed_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "available_targets": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ExplicitTargetDescriptor"},
+          "maxItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "FailedPreviewResponse": {
+      "type": "object",
+      "allOf": [{"$ref": "#/$defs/WikiPublicationOverlay"}],
+      "required": ["request_id", "operation_id", "preview_id", "job_id", "status", "error", "expires_at", "created_at", "updated_at", "completed_at"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "preview_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "job_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "status": {"const": "failed"},
+        "wiki_generation": {"$ref": "#/$defs/WikiGeneration"},
+        "publication_ready": {"type": "boolean"},
+        "error": {"type": "object"},
+        "expires_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "created_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "updated_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "completed_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "available_targets": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ExplicitTargetDescriptor"},
+          "maxItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "CancelledUnreadyPreviewResponse": {
+      "type": "object",
+      "allOf": [{"$ref": "#/$defs/WikiPublicationOverlay"}],
+      "required": ["request_id", "operation_id", "preview_id", "job_id", "status", "expires_at", "created_at", "updated_at", "completed_at"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "preview_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "job_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "status": {"const": "cancelled"},
+        "wiki_generation": {"$ref": "#/$defs/WikiGeneration"},
+        "publication_ready": {"type": "boolean"},
+        "expires_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "created_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "updated_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "completed_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "available_targets": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ExplicitTargetDescriptor"},
+          "maxItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "PublicationPreviewResponse": {
+      "oneOf": [
+        {"$ref": "#/$defs/QueuedPreviewResponse"},
+        {"$ref": "#/$defs/ReadyPreviewResponse"},
+        {"$ref": "#/$defs/FailedPreviewResponse"},
+        {"$ref": "#/$defs/CancelledUnreadyPreviewResponse"}
+      ]
+    },
+    "PublicationRequest": {
+      "type": "object",
+      "required": ["operation_id", "preview_id", "source_snapshot_sha256", "target_mode"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "preview_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "personal_space_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "source_snapshot_sha256": {"$ref": "common.schema.json#/$defs/Sha256"},
+        "target_mode": {"$ref": "#/$defs/TargetMode"},
+        "target": {"$ref": "#/$defs/ExplicitTargetDescriptor"}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"target_mode": {"const": "explicit"}},
+            "required": ["target_mode"]
+          },
+          "then": {"required": ["target"]},
+          "else": {"not": {"required": ["target"]}}
+        },
+        {
+          "if": {"required": ["personal_space_id"]},
+          "then": {
+            "properties": {"target_mode": {"enum": ["personal", "both"]}}
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "PublicationTargetResult": {
+      "type": "object",
+      "required": [
+        "space_id", "outcome", "source_artifact_id", "item_id",
+        "resolved_revision_id", "created_revision_id", "finding_id"
+      ],
+      "properties": {
+        "space_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "outcome": {"enum": ["created", "provenance_added", "update_proposed", "no_op"]},
+        "source_artifact_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "item_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "resolved_revision_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "created_revision_id": {"type": ["string", "null"], "format": "uuid"},
+        "finding_id": {"type": ["string", "null"], "format": "uuid"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"outcome": {"const": "created"}}, "required": ["outcome"]},
+          "then": {
+            "properties": {
+              "created_revision_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+              "finding_id": {"type": "null"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"outcome": {"const": "update_proposed"}}, "required": ["outcome"]},
+          "then": {
+            "properties": {
+              "created_revision_id": {"type": "null"},
+              "finding_id": {"$ref": "common.schema.json#/$defs/Uuid"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"outcome": {"enum": ["provenance_added", "no_op"]}}, "required": ["outcome"]},
+          "then": {
+            "properties": {
+              "created_revision_id": {"type": "null"},
+              "finding_id": {"type": "null"}
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "PublicationResponse": {
+      "type": "object",
+      "required": ["request_id", "operation_id", "results"],
+      "properties": {
+        "body_source": {"enum": ["authored_wiki", "extraction"]},
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "results": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/PublicationTargetResult"},
+          "minItems": 1,
+          "maxItems": 2
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "run_id": "np2c1-page-tree-foundation-20260814",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "recorded_at": "2026-08-14T03:39:34.2573320+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "goal_completed": false
+  },
+  "slice": "NP2C-0-design-and-NP2C-1-1311-page-tree-foundation",
+  "status": "backend_foundation_contract_tested_runtime_disabled",
+  "schema": {
+    "runtime_version": 2026081311,
+    "runtime_name": "notion_workspace_v2_np2c_page_tree_foundation",
+    "source_version": 2026081310,
+    "source_checksum": "sha256:72058812be6f0b92db756d5648d2cd9a0741d4ad4f4f9c62377d128ca0b581b3",
+    "source_actual_schema_sha256": "sha256:d8935af134fa12cdd5f0f803e15cba798dece1831cfeeee7673e0dc0ef7d7b33",
+    "target_checksum": "sha256:bb88d9c7e7937d0e29086d20ebd0c7a567658678daca0dd31c931634431cf723",
+    "target_actual_schema_sha256": "sha256:7ef7fcee1e78a641388de16e55937ad73fd549d97aa33de7221c215d19da9517",
+    "target_object_count": 140,
+    "existing_workspace_initial_state": "unmaterialized",
+    "fabricated_tree_node_count": 0,
+    "fabricated_command_count": 0
+  },
+  "implementation": {
+    "design_and_machine_contract": true,
+    "schema_implemented": true,
+    "explicit_migration_implemented": true,
+    "deep_health_implemented": true,
+    "admin_readiness_implemented": true,
+    "materializer_implemented": false,
+    "tree_snapshot_api_implemented": false,
+    "command_kernel_implemented": false,
+    "source_adapters_implemented": false,
+    "routes_implemented": false,
+    "ui_implemented": false,
+    "runtime_commands_enabled": false,
+    "resolver_cutover_enabled": false,
+    "permanent_delete_enabled": false,
+    "continuous_worker_enabled": false,
+    "destructive_watermark_ack_enabled": false,
+    "live_migration_applied": false,
+    "live_data_accessed": false
+  },
+  "closed_foundation_findings": [
+    "resolved-parent insertion now requires an exact same-lifecycle parent at depth minus one",
+    "tree nodes require a non-unmaterialized state correlated to the same service operation",
+    "internal materialize context is separate from the user lifecycle command allowlist",
+    "complete readiness recounts physical active nodes and rechecks binding, attestation, parent, depth and dense ordinals",
+    "complete state rejects hidden-or-unbound active parents",
+    "frozen 1310 remains independently migratable after runtime advances to 1311"
+  ],
+  "output_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/notion_workspace_store.py": "c69d25f60c856d71ddecbc4409859104e7b38f2e506366c3e01f7105f6a5619b",
+    "code_assist_v1/notion_workspace_navigation_migration.py": "bd9e61fb4c6684c1634117577fa0361a33f0028bcd61893e5e124e1626fea719",
+    "code_assist_v1/notion_workspace_page_tree_migration.py": "eed8198a2f237db7dc78bb3a660b66754f490dc8e452298286992052bb202578",
+    "code_assist_v1/notion_workspace_rehearsal.py": "a367ba3528855af403d6074177b4baf937bfd76888407af587b993da1b098959",
+    "code_assist_v1/tools/migrate_notion_workspace_page_tree.py": "c3bcc9ed6505692155874a3a6575cdbde7b129b609ec838b787c601eba123682",
+    "code_assist_v1/tools/verify_notion_np2c_page_tree_contract.py": "3faf2e1139a8b73ad29a5d0dbe5c119387c4a5707bc5429f81102b2b80d4ddd6",
+    "code_assist_v1/tests/test_migrate_notion_workspace_page_tree.py": "036df2978509216a9900d27a9b0134c9e03b13dff31c80187cc6f3da2cc552fc",
+    "code_assist_v1/tests/test_verify_notion_np2c_page_tree_contract.py": "b30b675d3f9c403b4609081c367cb88e5fb27488a4c03bf9cc4f00661299a7e5",
+    "code_assist_v1/tests/test_notion_workspace_migration_chain_rehearsal.py": "6c7629aa4fce081b2d4d264d2d9b3f884b6128592ccfda18fd5db16eca0a3963",
+    "code_assist_v1/tests/test_notion_workspace_store_p1.py": "e6805041e665310161ca3bb0469c9b1105291a697d2458773edc46d0de168982",
+    "code_assist_v1/tests/test_migrate_notion_workspace_incarnation.py": "85378c5c28da139deebdd1fe26502245a97b99677c4104d877f1eb7be1a2fa02",
+    "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "dae4fc8c039d7e2afd37ad721975f3461b8a104eba08722448a9e4b303b63560",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "eeec1277a6fa451b6964c212ee3c969ecc75df12bfe409840037af00f97cae6c",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "840635dd5bb09972c929beee870318e90faaeb7dbb8aef6193167c0b88421072",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "a1237ef77124142e00e15ad0d62c690399bfcbb27290bffeea4add46f76b1464",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "6954c3c101f9338c2b2232370328892fed77b10e2439f6705645c6e035984812",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "57ff583ded62b87101c63c8283c6001d821cebf55966d8321ccd6ee0c6078585"
+  },
+  "tests": [
+    {
+      "selection": "NP2C contract, 1311 migration and restored-chain rehearsal",
+      "result": "15 passed",
+      "exit_code": 0,
+      "duration_seconds": 17.50
+    },
+    {
+      "selection": "workspace frozen migrations 1303 through 1311",
+      "result": "106 passed, 1 symlink-platform skip",
+      "exit_code": 0,
+      "duration_seconds": 89.12
+    },
+    {
+      "selection": "workspace store/P1, navigation and incarnation attestation",
+      "result": "74 passed",
+      "exit_code": 0,
+      "duration_seconds": 100.26
+    },
+    {
+      "selection": "locator projection, projection, healing, outbox and offline rehearsal",
+      "result": "138 passed",
+      "exit_code": 0,
+      "duration_seconds": 185.32
+    },
+    {
+      "selection": "workspace pages/routes/auth and route contract verifiers",
+      "result": "57 passed",
+      "exit_code": 0,
+      "duration_seconds": 32.73
+    },
+    {
+      "selection": "navigation UI, Notion UI runtime and auth CSRF Node regressions",
+      "result": "3 scripts passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "legacy Notion routes, publication adapter and Second Brain/Knowledge regression",
+      "result": "17 passed",
+      "exit_code": 0,
+      "duration_seconds": 10.45
+    }
+  ],
+  "review_outcome": {
+    "p0_remaining_in_enabled_paths": 0,
+    "p1_remaining_in_enabled_paths": 0,
+    "protected_boundaries_changed": false,
+    "runtime_state_changed": false,
+    "next_slice_open_contracts": [
+      "bounded exact-source materializer and source-fence-set commitment",
+      "tree snapshot DTO with hidden-parent flattening and dense visible ordinals",
+      "command lease claim/reclaim and exact token/fence transitions",
+      "canonical finalized operation/audit/outbox result correlation",
+      "source-applied response-loss and catalog-finalize crash convergence",
+      "cycle, subtree and sibling-order negative tests"
+    ]
+  },
+  "known_host_failure": "One py_compile/import probe printed the exact 1311 version/checksum/actual/object count, then its PowerShell wrapper timed out during process cleanup. Subsequent pytest lanes imported the same modules and passed, so the timed-out probe is not counted as success evidence.",
+  "git_provenance": "unavailable: workspace .git is not valid repository metadata; no commit or landed claim",
+  "next_exact_work": "Re-hash this checkpoint and every owned NP2C file, then implement NP2C-2 offline materializer and command kernel in isolated temporary catalogs/sources. Do not add source adapters, routes/UI, enable runtime commands, cut over the resolver, acknowledge source watermarks, purge pages, apply a live migration, or modify AGENTS/Shared Knowledge/app_code/Second Brain files.",
+  "stop_reason": "NP2C-0/1 design, additive 1311 backend foundation, frozen migration lineage and adjacent regressions are complete. Runtime tree authority and lifecycle commands remain disabled pending NP2C-2."
+}

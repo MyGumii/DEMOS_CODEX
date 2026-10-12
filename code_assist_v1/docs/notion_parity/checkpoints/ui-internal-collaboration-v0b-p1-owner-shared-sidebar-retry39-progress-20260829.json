@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-OWNER-SHARED-SIDEBAR-RETRY39-20260829",
+  "recorded_at": "2026-08-29T08:36:22.4168120+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry39 retains the direct-guest share panel, aligns its lower section by four pixels, and classifies the directly shared REF-FREE-B root under the owner-side Shared pages section while keeping the teamspace and workspace-member branches separate. All four journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. Unmasked differences decreased by 7,433 from retry38 to 3,961,718. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-direct-guest-share-retry38-progress-20260829.json",
+      "sha256": "sha256:642324d0db5adff365976b1ac01ea84af90f2394187e045701259a08a344ca01"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:c8c91c1e74a1407e318bdac54208eaa2634577d3ee64db8b6f9466aa52bbe010",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {"path": "code_assist_v1/notion_static/index.html", "sha256": "sha256:7ffdae48dc0b4c3619d8e1933d62f965053b42c5fad989f25c15b3c9c2320a8d"},
+      {"path": "code_assist_v1/notion_static/notion.css", "sha256": "sha256:c6d8efe518bf5315b3526bad93986f746d7ff38df7d1b044fd168cebbde69319"},
+      {"path": "code_assist_v1/notion_static/notion.js", "sha256": "sha256:af8062453ee987c70b6a4075f7cef4696294a4c8a6145b0eace919ee42b5e45c"}
+    ]
+  },
+  "accepted_changes": {
+    "owner_shared_sidebar": "When a page has a direct subject guest but no second workspace member, the owner sidebar keeps the HQ/add controls and lists the active root under Shared pages.",
+    "direct_share_lower_alignment": "The invite-only, advanced, and agent rows are shifted four pixels upward and the direct panel height is reduced by four pixels."
+  },
+  "bounded_diagnostics": {
+    "iam_retry83": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry83-lossless-owner-shared-sidebar",
+      "capture_count": 20,
+      "unmasked_difference_count": 2376811,
+      "delta_from_retry82": -2610,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "iam_retry84": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry84-lossless-direct-share-lower-offset",
+      "capture_count": 20,
+      "unmasked_difference_count": 2370949,
+      "delta_from_retry83": -5862,
+      "cleanup_verified": true,
+      "accepted": true
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry39-lossless-owner-shared-sidebar",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry39-lossless-owner-shared-sidebar/receipt.json",
+    "receipt_sha256": "sha256:ba9f77b4542040c3d69e4c471587a2723af1b0667c2cc23a1c5903ad34efe763",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {"I0-P2": 128795, "C0-P2": 88393, "E1-P2": 58252, "F0-P5": 45060},
+    "unmasked_difference_count": 3961718,
+    "masked_difference_count": 211224,
+    "raw_difference_count": 4172942,
+    "delta_from_retry38_unmasked": -7433,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:998731191d81f0a86dd5ea44b666a30e3fa5503c013ae7d3df1b128a4395fc6e"
+    }
+  },
+  "state_deltas_from_retry38": [
+    {"state_id": "V0R-MU-004", "delta": -7445},
+    {"state_id": "V0R-MU-012", "delta": 12}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {"EXACT_PIXEL_GATE": 36, "CORE_25_GATE": 1, "PERFORMANCE_GATE": 1, "CLAIMS_GATE": 1},
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "next_focus": {
+    "largest_states": [
+      {"state_id": "V0R-MU-001", "unmasked_difference_count": 372500},
+      {"state_id": "V0R-MU-002", "unmasked_difference_count": 359181},
+      {"state_id": "V0R-MU-006", "unmasked_difference_count": 297144},
+      {"state_id": "V0R-MU-004", "unmasked_difference_count": 271512},
+      {"state_id": "V0R-MU-008", "unmasked_difference_count": 262121}
+    ],
+    "primary": "Continue bounded diagnostics on workspace members, inherited page sharing, and common workspace shell geometry.",
+    "full_candidate_policy": "Do not rerun Core25 or performance until exact pixel is 36/36."
+  },
+  "open_gates": {
+    "exact_pixel": {"passed": 0, "required": 36, "status": "open"},
+    "core_25": {"status": "not_run_until_exact_36_of_36"},
+    "performance": {"status": "not_run_until_exact_36_of_36"},
+    "claims": {"status": "open"},
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "scope_attestation": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "user_chrome_touched": false,
+    "persistent_browser_profile_used": false,
+    "public_publish_or_link_used": false,
+    "personal_workspace_or_page_used": false,
+    "permanent_delete_used": false,
+    "reference_receipts_modified": false,
+    "agents_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  }
+}

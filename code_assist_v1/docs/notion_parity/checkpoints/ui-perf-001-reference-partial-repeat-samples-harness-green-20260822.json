@@ -1,0 +1,120 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T02:24:47.9989485+09:00",
+  "run_id": "ui25-perf-001-repeat-samples-harness-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-partial-precalibration-measurement-20260822.json",
+    "sha256": "sha256:3269be062d1d9b02f81cc1124dee2f3cb59278085a0bed8c0e671b93b80b11a9",
+    "semantic_status": "superseded_by_repeat_reference_samples_and_current_harness"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "Continue the Core Free desktop UI characterization and implementation plan."
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-PERF-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root_restored"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-PERF-001-REPEAT-SAMPLES",
+    "status": "reference_partial_repeat_samples_harness_green",
+    "review_required": true,
+    "promotion_allowed": false,
+    "measurement_policy": "precalibration_only_no_budget_claim"
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "certified_differential_passed": 5,
+    "reference_observed_review_pending": 10,
+    "local_integration_review_pending": 3,
+    "reference_partially_observed": 7,
+    "reference_unobserved": 0,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+      "sha256": "sha256:324357219752b5ea7f9142072c434bbf890fac9e0f9179eeb7065bac6d68464d"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    }
+  ],
+  "reference_measurements_ms": {
+    "search_open": [3658, 3607, 3627],
+    "search_result_ready": [147, 47, 110],
+    "reload_content_ready": [3829, 2768, 3408],
+    "body_edit_visible": [409, 653],
+    "body_edit_post_settle_reload_ready": [2524, 1985],
+    "initial_title_and_body_visible": 1712,
+    "transport_note": "Values include connected-browser control overhead and are observations, not product SLOs."
+  },
+  "rejected_measurement": {
+    "name": "new_page_create_ready_ms",
+    "value": 2381,
+    "accepted": false,
+    "reason": "The reference action opened the REF-FREE-A root editor instead of proving creation of an independent child page."
+  },
+  "fixture_recovery": {
+    "root_was_temporarily_moved_to_trash": true,
+    "root_restored_recoverably": true,
+    "root_title_restored_to": "REF-FREE-A",
+    "root_body_restored_empty": true,
+    "synthetic_title_residual_count": 0,
+    "synthetic_body_marker_residual_count": 0,
+    "restore_control_visible_count": 0,
+    "open_dialog_residual_count": 0,
+    "final_tab_title": "REF-FREE-A | Notion",
+    "permanent_delete_used": false
+  },
+  "local_harness_correction": {
+    "problem": "After login the Home tab could be visible while a previously selected page kept #homeView hidden.",
+    "correction": "Click Home only when its aria-selected value is not true, preserving the already-selected Home path.",
+    "file": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+    "pre_sha256": "sha256:e3b0407fbe21dcb78a9d803c54a4ca4e74ec305e61fb9b66738e0f1f51fc5a22",
+    "post_sha256": "sha256:324357219752b5ea7f9142072c434bbf890fac9e0f9179eeb7065bac6d68464d",
+    "python_compile": "pass",
+    "focused_test": "1 passed in 50.55s"
+  },
+  "partial_differential": {
+    "status": "repeat_reference_measurements_without_budget",
+    "promotion_allowed": false,
+    "remaining_gates": [
+      "separate-page creation measurement with unambiguous fixture identity",
+      "reference build or release identifier that can safely bind repeated samples",
+      "reviewed performance budget policy",
+      "more samples before percentile claims"
+    ],
+    "interpretation": "Repeated official search, edit, and reload observations are now recorded and exact content durability was verified. No latency budget, percentile, parity, or completion claim is made."
+  },
+  "claims": {
+    "ui_perf_001_reference_partially_observed": true,
+    "ui_perf_001_reference_characterized": false,
+    "ui_perf_001_differential_passed": false,
+    "local_harness_green": true,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Use an unambiguous independent synthetic page for future create measurements, bind samples to a safely observable reference release marker, and obtain a reviewed budget policy before percentile or parity claims."
+}

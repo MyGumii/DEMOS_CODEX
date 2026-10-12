@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-SIDEBAR-TOP-EDGE-PARITY-RETRY50-20260830",
+  "recorded_at": "2026-08-30T01:21:43.879743+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry50 retains retry49, completes the presence-scoped compact owner sidebar footer, teamspace row, and active-home geometry, and reproduces the lossless Chrome desktop capture's deterministic seven-pixel top window edge only while the V0B capture-freeze marker is present. All four journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. Every state was unchanged or improved. Full-candidate unmasked differences decreased by 610,224 to 2,854,295. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-presence-sidebar-parity-retry49-progress-20260830.json",
+      "sha256": "sha256:22c8b51d89d5d9e1e21e429f44773452d2a8508f7355880e2682538ee7d8d4ea"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:62ea5a909ea365276b379a7bc481a3c7ab409f5a276f71a1f3c8df2a6e9810d9",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {"path": "code_assist_v1/notion_static/index.html", "sha256": "sha256:7ffdae48dc0b4c3619d8e1933d62f965053b42c5fad989f25c15b3c9c2320a8d"},
+      {"path": "code_assist_v1/notion_static/notion.css", "sha256": "sha256:3355909b91c26f5a2e80937569a34f4ad48e2db4d78858dd2f6810c9581f3b01"},
+      {"path": "code_assist_v1/notion_static/notion.js", "sha256": "sha256:cada2b95dbfb4432ea33f26cfa40fc461d1fdd4b59383fbf40cd22f0ca234862"},
+      {"path": "code_assist_v1/notion_static/assets/emoji/1f3e0.svg", "sha256": "sha256:fd04bb778ab22836385a4c19971ffc3282024e0cbb7eabe4d6edd6287527882d"},
+      {"path": "code_assist_v1/notion_static/assets/emoji/1f44b.svg", "sha256": "sha256:eaced9544876442d06a117570c6f9da91f08d758e1f4b0161b0b018c81235bc7"},
+      {"path": "code_assist_v1/notion_static/assets/emoji/TWEMOJI_ATTRIBUTION.md", "sha256": "sha256:4cf8d4fe49c77a9b7a3caa2b24452d56ddae0675d73d067f98b6820326bb665d"}
+    ]
+  },
+  "evidence_harness_binding": {
+    "path": "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py",
+    "sha256": "sha256:3a16237c0edc4cf9a92b2eb0bed6dbe796c3fa5d3fc24cc1a068aea49bc7ffcf",
+    "modified_in_retry50": false
+  },
+  "accepted_changes": {
+    "presence_footer_colors": "The owner sidebar member-invite card uses the reference transparent fill and the chat/compose controls use opaque white only when collaborator presence is active; inbox and guest surfaces remain isolated.",
+    "presence_teamspace_row": "The compact HQ row uses the exact #eeeceb reference fill and background geometry while preserving the already aligned child text and icon baseline.",
+    "presence_home_scope": "The reference active-home pill and hidden collapse control apply only outside inbox and access-boundary overlays, preventing hidden background state from contaminating V0R-MU-013.",
+    "capture_top_edge_normalization": "Only when the collector's #v0b-capture-freeze marker exists, deterministic one-pixel solid rows reproduce the adopted Chrome desktop top window edge. Normal, dark workspace-modal, sidebar, border, and access-boundary geometries have separate measured RGB bindings; ordinary product rendering is unchanged."
+  },
+  "bounded_diagnostics": {
+    "presence_footer_colors": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260830-presence-footer-colors",
+      "state_007_delta": -36862,
+      "state_012_delta": -36872,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "presence_teamspace_row": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260830-presence-teamspace-row",
+      "state_007_delta": -14710,
+      "state_012_delta": -14722,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "presence_home_inbox_isolation": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260830-presence-home-pill-inbox-excluded",
+      "state_007_delta": -1114,
+      "state_012_delta": -1176,
+      "state_013_delta": 0,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "capture_top_edge_exact_rows": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260830-capture-top-edge-exact-rows",
+      "state_007_delta_from_home_isolated": -19014,
+      "state_012_delta_from_home_isolated": -19016,
+      "state_013_delta": 0,
+      "state_014_delta": -15260,
+      "top_edge_rgb_exact": true,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "capture_top_edge_all_surfaces": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260830-capture-top-edge-all-surfaces",
+      "capture_count": 20,
+      "journey_status": "pass",
+      "all_states_unchanged_or_improved": true,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "rejected_scope_experiments": [
+      "The redundant footer display:grid override increased each target capture by one pixel and was reverted.",
+      "Changing the C0 reference fixture icon from C to R increased aggregate differences and was reverted.",
+      "Home styling without inbox exclusion changed hidden pixels beneath V0R-MU-013 and was superseded by the inbox-isolated selector.",
+      "The first fixed sidebar top-edge layer leaked across the viewport and was superseded by isolated absolute sidebar layers."
+    ]
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260830-retry50-lossless-sidebar-top-edge-parity",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260830-retry50-lossless-sidebar-top-edge-parity/receipt.json",
+    "receipt_sha256": "sha256:a789382805ad8dea852583077a6c9f01b8e849aff92e9bb75b26f944675a5154",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {"I0-P2": 130668, "C0-P2": 91489, "E1-P2": 59374, "F0-P5": 47776},
+    "unmasked_difference_count": 2854295,
+    "masked_difference_count": 211278,
+    "raw_difference_count": 3065573,
+    "delta_from_retry49_unmasked": -610224,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:542c192277d056c1cfe35edfae8ee20c221866b6845a897bd5020fdee1164bea"
+    }
+  },
+  "state_deltas_from_retry49": [
+    {"state_id":"V0R-MU-001","previous":309598,"current":307206,"delta":-2392},
+    {"state_id":"V0R-MU-002","previous":355101,"current":352753,"delta":-2348},
+    {"state_id":"V0R-MU-003","previous":230419,"current":214341,"delta":-16078},
+    {"state_id":"V0R-MU-004","previous":212744,"current":194168,"delta":-18576},
+    {"state_id":"V0R-MU-005","previous":127844,"current":108830,"delta":-19014},
+    {"state_id":"V0R-MU-006","previous":273221,"current":241902,"delta":-31319},
+    {"state_id":"V0R-MU-007","previous":176234,"current":104534,"delta":-71700},
+    {"state_id":"V0R-MU-008","previous":177008,"current":105308,"delta":-71700},
+    {"state_id":"V0R-MU-009","previous":172533,"current":100833,"delta":-71700},
+    {"state_id":"V0R-MU-010","previous":176857,"current":105157,"delta":-71700},
+    {"state_id":"V0R-MU-011","previous":203429,"current":131729,"delta":-71700},
+    {"state_id":"V0R-MU-012","previous":210619,"current":138835,"delta":-71784},
+    {"state_id":"V0R-MU-013","previous":35098,"current":35098,"delta":0},
+    {"state_id":"V0R-MU-014","previous":104105,"current":88845,"delta":-15260},
+    {"state_id":"V0R-MU-015","previous":121567,"current":103643,"delta":-17924},
+    {"state_id":"V0R-MU-016","previous":120710,"current":101696,"delta":-19014},
+    {"state_id":"V0R-MU-017","previous":229148,"current":210147,"delta":-19001},
+    {"state_id":"V0R-MU-018","previous":228284,"current":209270,"delta":-19014}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "receipt_sha256": "sha256:a789382805ad8dea852583077a6c9f01b8e849aff92e9bb75b26f944675a5154",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {"EXACT_PIXEL_GATE":36,"CORE_25_GATE":1,"PERFORMANCE_GATE":1,"CLAIMS_GATE":1},
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "focused_regression": {
+    "selection": [
+      "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+      "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py"
+    ],
+    "result": "11 passed in 8.66s",
+    "exit_code": 0
+  },
+  "next_focus": {
+    "largest_states": [
+      {"state_id":"V0R-MU-002","unmasked_difference_count":352753},
+      {"state_id":"V0R-MU-001","unmasked_difference_count":307206},
+      {"state_id":"V0R-MU-006","unmasked_difference_count":241902},
+      {"state_id":"V0R-MU-003","unmasked_difference_count":214341},
+      {"state_id":"V0R-MU-017","unmasked_difference_count":210147},
+      {"state_id":"V0R-MU-018","unmasked_difference_count":209270}
+    ],
+    "primary": "Continue bounded geometry and color decomposition on workspace-member/invite panels, inherited-share content, and access-boundary surfaces; then return to shared topbar and page/database canvas glyphs.",
+    "full_candidate_policy": "Do not rerun Core25 or performance until exact pixel is 36/36."
+  },
+  "open_gates": {
+    "exact_pixel":{"passed":0,"required":36,"status":"open"},
+    "core_25":{"status":"not_run_until_exact_36_of_36"},
+    "performance":{"status":"not_run_until_exact_36_of_36"},
+    "claims":{"status":"open"},
+    "V0B_P1_gate_passed":false,
+    "product_complete":false,
+    "active_shared_goal_complete":false
+  },
+  "scope_attestation": {
+    "production_changed":false,
+    "second_brain_changed":false,
+    "user_chrome_touched":false,
+    "persistent_browser_profile_used":false,
+    "public_publish_or_link_used":false,
+    "personal_workspace_or_page_used":false,
+    "permanent_delete_used":false,
+    "reference_receipts_modified":false,
+    "agents_md_modified":false,
+    "other_sbe_hot_contract_modified":false
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-R1620-FINAL-EVIDENCE-GATE-PASS-20260906",
+  "recorded_at": "2026-09-06T20:52:06.7806676+09:00",
+  "status": "v0b_p1_final_evidence_gate_pass_status_integration_pending",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1618-performance-quiet-host-preflight-blocked-20260906.json",
+    "sha256": "sha256:f02c9a94fbc10c368ec8613da32ce185f6463f85533d43cf677834e9bbce1984",
+    "preserved_without_overwrite": true
+  },
+  "final_receipt": {
+    "path": "docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json",
+    "sha256": "sha256:d9fd95c7ed462bde80d50c86eaf6714405fbc5738c24cc3f8f05efbc9cda0d96",
+    "receipt_id": "V0B-P1-L6-FINAL-CANDIDATE-FRESH-1F606FC8F1826AAA",
+    "release_candidate_source_build_sha256": "sha256:a0657e5597b111373d7d4a3711728fd5b9e296471f8172149be9fbadd6123f7b",
+    "ui_source_build_sha256": "sha256:c0e344f1bdc4000044e3cf22ec39ac85115b56dd5ed73e14377475ece4edf7d8"
+  },
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_v0b_p1.fresh_gate_audit.v1",
+    "status": "pass",
+    "error_count": 0,
+    "errors": [],
+    "gate_passed": true,
+    "core_test_count": 21,
+    "performance_run_count": 2,
+    "exact_pixel_pass_count": 36,
+    "accessibility_pass_count": 36,
+    "base_v0b_receipt_sha256": "sha256:8408d786295638f47f49caeed3a33e118dbe6be0ea79a81437b8d1adae40e8fc",
+    "product_complete": false
+  },
+  "evidence_summary": {
+    "core_25": "21/21 pass",
+    "exact_pixel": "36/36 pass",
+    "accessibility": "36/36 pass",
+    "interaction": "36/36 pass",
+    "unmasked_difference_count": 0,
+    "quiet_host_performance_green_streak": "2/2",
+    "active_budget_metric_count": 8,
+    "all_active_metrics_within_budget": true,
+    "performance_sample_count_per_metric_per_run": 6
+  },
+  "quiet_host_performance": [
+    {
+      "run_id": "v0b-p1-r1618-performance-final-source-green-1",
+      "preflight_sha256": "sha256:84166631194b2550e74f76312ac0e331d1b2b3b4fb66a4a88ee6b35f4da6e2ce",
+      "eligible_suffix_percent": [9.635, 22.656, 19.531, 23.499, 24.935],
+      "junit_sha256": "sha256:06306407fd2da4e7ab15057dfa0f58bc5b349a027e0166425b24f27d14b76ded",
+      "report_sha256": "sha256:0e44e6cb2de0bdf61a0b6c25ff3eabf3a302ee265c76ed8a7e233ff4528074cf",
+      "result": "1 passed in 65.28s"
+    },
+    {
+      "run_id": "v0b-p1-r1619-performance-final-source-green-2",
+      "preflight_sha256": "sha256:78bb49fa55c02d386ce44147bc4bd2b986858e5806f8be732d8cbd22cfa28234",
+      "eligible_suffix_percent": [16.754, 19.481, 18.799, 17.054, 19.01],
+      "junit_sha256": "sha256:95d6af605a5a7b292031cd670f68954eae77fcd0fca0e4285590f7035a31bebc",
+      "report_sha256": "sha256:9eb28b09887d14914ab9572242f99907443cbfd906f18deb4806bb66a217c583",
+      "result": "1 passed in 61.23s"
+    }
+  ],
+  "cleanup_and_safety": {
+    "synthetic_member_absent": true,
+    "active_test_grant_count": 0,
+    "active_test_member_count": 0,
+    "active_fixture_root_count": 0,
+    "browser_closed_after_capture": true,
+    "capture_ports_closed": true,
+    "permanent_delete_used": false,
+    "existing_receipt_overwritten": false,
+    "performance_budget_changed": false,
+    "sbe_hot_contract_changed": false,
+    "production_changed": false
+  },
+  "scope_guard": {
+    "V0B_P1_evidence_gate_passed": true,
+    "V0B_P1_status_integrated": false,
+    "O1B_started": false,
+    "Q0_started": false,
+    "product_complete": false,
+    "goal_complete": false
+  },
+  "next_action": "Validate designated DOC_HARNESS ownership and integrate this immutable r1620 receipt into the Notion packet catalog, validation ladder, completion matrix, and current pointer without modifying AGENTS.md or any SBE hot contract. Then begin the approval-gated O1B preparation sequence."
+}

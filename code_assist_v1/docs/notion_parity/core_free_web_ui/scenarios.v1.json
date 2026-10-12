@@ -1,0 +1,521 @@
+{
+  "schema_version": 1,
+  "contract": "notion_core_free_web_ui_scenarios_v1",
+  "primary_profile": {
+    "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+    "plan": "free",
+    "role": "workspace_owner",
+    "platform": "desktop_web",
+    "locale": "ko-KR",
+    "browser": "chrome",
+    "reference_workspaces": ["REF-FREE-A", "REF-FREE-B"],
+    "personal_workspace": "forbidden"
+  },
+  "required_scenarios": [
+    {
+      "scenario_id": "UI-SHELL-001",
+      "phase": "H3",
+      "outcome": "Switch between the two synthetic workspaces without cross-workspace page or navigation leakage.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "REF-FREE-B", "UI-PARITY-RUN-WORKSPACE-A", "UI-PARITY-RUN-WORKSPACE-B"],
+      "actions": [
+        {"action_id":"UI-SHELL-001-A01","scenario_id":"UI-SHELL-001","surface":"workspace_switcher","verb":"switch_workspace_alias","target_alias":"REF-FREE-B","input_alias":null,"expected_state_id":"STATE-WORKSPACE-B-ACTIVE","expected_focus_alias":"WORKSPACE-SWITCHER","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-SHELL-001-A02","scenario_id":"UI-SHELL-001","surface":"workspace_switcher","verb":"switch_workspace_alias","target_alias":"REF-FREE-A","input_alias":null,"expected_state_id":"STATE-WORKSPACE-A-ACTIVE","expected_focus_alias":"WORKSPACE-SWITCHER","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [
+        {"assertion_id":"A1","channel":"workspace_isolation","expected":"Only the active synthetic workspace page and navigation aliases are visible."},
+        {"assertion_id":"A2","channel":"focus","expected":"The workspace switcher retains an observable focus target after each switch."}
+      ],
+      "tolerance_assertions": [],
+      "negative_assertions": ["No personal workspace is opened or captured."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Plan entitlement behavior is not reproduced."]
+    },
+    {
+      "scenario_id": "UI-SHELL-002",
+      "phase": "H3",
+      "outcome": "Collapse and restore the sidebar with stable state, geometry, and keyboard focus.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A"],
+      "actions": [
+        {"action_id":"UI-SHELL-002-A01","scenario_id":"UI-SHELL-002","surface":"sidebar","verb":"click","target_alias":"SIDEBAR-COLLAPSE","input_alias":null,"expected_state_id":"STATE-SIDEBAR-COLLAPSED","expected_focus_alias":"SIDEBAR-RESTORE","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-SHELL-002-A02","scenario_id":"UI-SHELL-002","surface":"sidebar","verb":"click","target_alias":"SIDEBAR-RESTORE","input_alias":null,"expected_state_id":"STATE-SIDEBAR-EXPANDED","expected_focus_alias":"SIDEBAR-COLLAPSE","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [
+        {"assertion_id":"A1","channel":"state","expected":"Collapsed and expanded states are observable and reversible."},
+        {"assertion_id":"A2","channel":"focus","expected":"Focus moves to the available inverse control after each action."}
+      ],
+      "tolerance_assertions": [{"assertion_id":"A3","channel":"geometry","expected":"Sidebar and canvas regions are measured during precalibration without an invented pass threshold."}],
+      "negative_assertions": ["The page draft and active workspace remain unchanged."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Pixel-identical Notion branding is not compared."]
+    },
+    {
+      "scenario_id": "UI-SHELL-003",
+      "phase": "H3",
+      "outcome": "Present a coherent home, topbar, active page, and breadcrumb hierarchy.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-ROOT"],
+      "actions": [
+        {"action_id":"UI-SHELL-003-A01","scenario_id":"UI-SHELL-003","surface":"home","verb":"open_surface","target_alias":"HOME","input_alias":null,"expected_state_id":"STATE-HOME-VISIBLE","expected_focus_alias":"HOME-MAIN","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-SHELL-003-A02","scenario_id":"UI-SHELL-003","surface":"page","verb":"open_surface","target_alias":"UI-PARITY-RUN-ROOT","input_alias":null,"expected_state_id":"STATE-BREADCRUMB-ROOT","expected_focus_alias":"PAGE-CANVAS","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"semantic_visual","expected":"Home, topbar, active page, and breadcrumb expose an unambiguous information hierarchy."}],
+      "tolerance_assertions": [{"assertion_id":"A2","channel":"geometry","expected":"Semantic region positions are recorded for later reviewed calibration."}],
+      "negative_assertions": ["No hidden workspace metadata appears in breadcrumb or topbar."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Home recommendation ranking is outside Core parity."]
+    },
+    {
+      "scenario_id": "UI-TREE-001",
+      "phase": "H3",
+      "outcome": "Expand and collapse a nested synthetic page tree by disclosure click while ArrowLeft preserves the expanded focused row.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-ROOT", "UI-PARITY-RUN-CHILD-A"],
+      "actions": [
+        {"action_id":"UI-TREE-001-A01","scenario_id":"UI-TREE-001","surface":"page_tree","verb":"click","target_alias":"TREE-ROOT-EXPAND","input_alias":null,"expected_state_id":"STATE-TREE-ROOT-EXPANDED","expected_focus_alias":"TREE-ROOT","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-TREE-001-A02","scenario_id":"UI-TREE-001","surface":"page_tree","verb":"press","target_alias":"TREE-ROOT","input_alias":"ARROW-LEFT","expected_state_id":"STATE-TREE-ROOT-EXPANDED-ARROWLEFT-NOOP","expected_focus_alias":"TREE-ROOT","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-TREE-001-A03","scenario_id":"UI-TREE-001","surface":"page_tree","verb":"click","target_alias":"TREE-ROOT-COLLAPSE","input_alias":null,"expected_state_id":"STATE-TREE-ROOT-COLLAPSED","expected_focus_alias":"TREE-ROOT","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [
+        {"assertion_id":"A1","channel":"focus","expected":"Disclosure-click expand and collapse preserve the tree row as the focused item."},
+        {"assertion_id":"A2","channel":"keyboard","expected":"ArrowLeft on the focused expanded row preserves both the expanded state and tree-row focus."}
+      ],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Collapsed descendants are not keyboard reachable."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Realtime collaborator tree presence is an extension."]
+    },
+    {
+      "scenario_id": "UI-TREE-002",
+      "phase": "H3",
+      "outcome": "Create, rename, nest, reorder, and move synthetic pages with a coherent active path.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-ROOT", "UI-PARITY-RUN-CHILD-A", "UI-PARITY-RUN-CHILD-B"],
+      "actions": [
+        {"action_id":"UI-TREE-002-A01","scenario_id":"UI-TREE-002","surface":"page_tree","verb":"click","target_alias":"NEW-PAGE","input_alias":null,"expected_state_id":"STATE-NEW-PAGE-MENU-OPEN","expected_focus_alias":"PAGE-TYPE","capture_after":false,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-TREE-002-A02","scenario_id":"UI-TREE-002","surface":"page_tree","verb":"click","target_alias":"PAGE-TYPE","input_alias":null,"expected_state_id":"STATE-NEW-PAGE-EDITING","expected_focus_alias":"PAGE-TITLE","capture_after":false,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-TREE-002-A03","scenario_id":"UI-TREE-002","surface":"page_tree","verb":"type_synthetic","target_alias":"PAGE-TITLE","input_alias":"SYNTHETIC-CHILD-TITLE","expected_state_id":"STATE-CHILD-TITLE-SAVED","expected_focus_alias":"PAGE-TITLE","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-TREE-002-A04","scenario_id":"UI-TREE-002","surface":"page_tree","verb":"click","target_alias":"PAGE-MENU","input_alias":null,"expected_state_id":"STATE-PAGE-MENU-OPEN","expected_focus_alias":"MOVE-PAGE","capture_after":false,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-TREE-002-A05","scenario_id":"UI-TREE-002","surface":"page_tree","verb":"click","target_alias":"MOVE-PAGE","input_alias":null,"expected_state_id":"STATE-MOVE-DIALOG-OPEN","expected_focus_alias":"MOVE-TARGET","capture_after":false,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-TREE-002-A06","scenario_id":"UI-TREE-002","surface":"page_tree","verb":"type_synthetic","target_alias":"MOVE-TARGET","input_alias":"TREE-ROOT","expected_state_id":"STATE-MOVE-TARGET-SELECTED","expected_focus_alias":"MOVE-TARGET","capture_after":false,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-TREE-002-A07","scenario_id":"UI-TREE-002","surface":"page_tree","verb":"click","target_alias":"MOVE-TARGET-RESULT","input_alias":null,"expected_state_id":"STATE-CHILD-NESTED","expected_focus_alias":"PAGE-MENU","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-TREE-002-A08","scenario_id":"UI-TREE-002","surface":"page_tree","verb":"drag","target_alias":"TREE-CHILD-B","input_alias":"TREE-CHILD-A","expected_state_id":"STATE-CHILD-B-BEFORE-A","expected_focus_alias":"TREE-CHILD-B","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-TREE-002-A09","scenario_id":"UI-TREE-002","surface":"page_tree","verb":"drag","target_alias":"TREE-ROOT","input_alias":"TREE-CHILD-B","expected_state_id":"STATE-INVALID-MOVE-REFUSED","expected_focus_alias":"TREE-ROOT","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"state","expected":"Parent, order, title, active row, and breadcrumb converge after each acknowledged mutation."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["A failed move leaves the original tree and breadcrumb unchanged."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Cross-account moves are not in the primary profile."]
+    },
+    {
+      "scenario_id": "UI-TREE-003",
+      "phase": "H3",
+      "outcome": "Duplicate, move to Trash, and restore a synthetic subtree without changing Second Brain retention state.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-TRASH"],
+      "actions": [
+        {"action_id":"UI-TREE-003-A01","scenario_id":"UI-TREE-003","surface":"page_menu","verb":"click","target_alias":"DUPLICATE-PAGE","input_alias":null,"expected_state_id":"STATE-DUPLICATE-VISIBLE","expected_focus_alias":"PAGE-MENU","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-TREE-003-A02","scenario_id":"UI-TREE-003","surface":"page_menu","verb":"click","target_alias":"MOVE-TO-TRASH","input_alias":null,"expected_state_id":"STATE-PAGE-IN-TRASH","expected_focus_alias":"PAGE-MENU","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-TREE-003-A03","scenario_id":"UI-TREE-003","surface":"trash","verb":"click","target_alias":"RESTORE-PAGE","input_alias":null,"expected_state_id":"STATE-PAGE-RESTORED","expected_focus_alias":"RESTORE-POST-ACTION-BUTTON","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"second_brain","expected":"Trash and restore do not deactivate or purge Second Brain knowledge."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Permanent delete is never executed by this scenario."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION", "SB-NO-PURGE"],
+      "evidence_state": "planned",
+      "non_goals": ["Official paid Archive is a conditional track."]
+    },
+    {
+      "scenario_id": "UI-EDITOR-001",
+      "phase": "H4",
+      "outcome": "Create a page, enter a Korean title and paragraph, save, reload, and recover identical content.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-EDITOR-001-A01","scenario_id":"UI-EDITOR-001","surface":"page","verb":"click","target_alias":"NEW-PAGE","input_alias":null,"expected_state_id":"STATE-NEW-PAGE-EDITING","expected_focus_alias":"PAGE-TITLE","capture_after":false,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-EDITOR-001-A02","scenario_id":"UI-EDITOR-001","surface":"editor","verb":"type_synthetic","target_alias":"PAGE-TITLE","input_alias":"SYNTHETIC-KOREAN-TITLE","expected_state_id":"STATE-KOREAN-TITLE-DIRTY","expected_focus_alias":"PAGE-TITLE","capture_after":false,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-EDITOR-001-A03","scenario_id":"UI-EDITOR-001","surface":"editor","verb":"type_synthetic","target_alias":"EDITOR-BLOCK","input_alias":"SYNTHETIC-KOREAN-PARAGRAPH","expected_state_id":"STATE-KOREAN-PARAGRAPH-SAVED","expected_focus_alias":"EDITOR-BLOCK","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-EDITOR-001-A04","scenario_id":"UI-EDITOR-001","surface":"page","verb":"reload","target_alias":"PAGE-CANVAS","input_alias":null,"expected_state_id":"STATE-KOREAN-CONTENT-RESTORED","expected_focus_alias":"PAGE-CANVAS","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [
+        {"assertion_id":"A1","channel":"state","expected":"Title and paragraph round-trip exactly after acknowledged save and reload."},
+        {"assertion_id":"A2","channel":"error_recovery","expected":"A failed save never presents unsaved content as durable."}
+      ],
+      "tolerance_assertions": [{"assertion_id":"A3","channel":"geometry","expected":"Title, canvas, and first block regions are measured during precalibration."}],
+      "negative_assertions": ["No content is written to live user data or live Knowledge storage."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION", "SB-SNAPSHOT-EXACT"],
+      "evidence_state": "planned",
+      "non_goals": ["Advanced rich text is covered by later editor scenarios."]
+    },
+    {
+      "scenario_id": "UI-EDITOR-002",
+      "phase": "H4",
+      "outcome": "Open the slash menu, transform a synthetic block, dismiss the menu, and preserve focus.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-EDITOR-002-A01","scenario_id":"UI-EDITOR-002","surface":"editor","verb":"press","target_alias":"EDITOR-BLOCK","input_alias":"SLASH","expected_state_id":"STATE-SLASH-MENU-VISIBLE","expected_focus_alias":"SLASH-MENU","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-EDITOR-002-A02","scenario_id":"UI-EDITOR-002","surface":"slash_menu","verb":"click","target_alias":"BLOCK-HEADING","input_alias":null,"expected_state_id":"STATE-BLOCK-HEADING","expected_focus_alias":"EDITOR-BLOCK","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"focus","expected":"Menu dismissal returns focus and caret ownership to the transformed block."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Unsupported commands do not silently drop content."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["All Notion block types are not required in this scenario."]
+    },
+    {
+      "scenario_id": "UI-EDITOR-003",
+      "phase": "H4",
+      "outcome": "Preserve deterministic keyboard, caret, selection, clipboard, and undo behavior.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-EDITOR-003-A01","scenario_id":"UI-EDITOR-003","surface":"editor","verb":"press","target_alias":"EDITOR-BLOCK","input_alias":"SELECT-ALL-BLOCK","expected_state_id":"STATE-BLOCK-SELECTED","expected_focus_alias":"EDITOR-BLOCK","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-EDITOR-003-A02","scenario_id":"UI-EDITOR-003","surface":"editor","verb":"press","target_alias":"EDITOR-BLOCK","input_alias":"UNDO-REDO-SEQUENCE","expected_state_id":"STATE-CONTENT-RESTORED","expected_focus_alias":"EDITOR-BLOCK","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"keyboard","expected":"Caret, selection, clipboard-safe paste, undo, and redo produce deterministic states."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Clipboard handling never persists unsanitized executable markup."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Operating-system clipboard history is not inspected."]
+    },
+    {
+      "scenario_id": "UI-EDITOR-004",
+      "phase": "H4",
+      "outcome": "Commit Korean IME composition without duplication, loss, or premature grapheme splitting.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-EDITOR-004-A01","scenario_id":"UI-EDITOR-004","surface":"editor","verb":"type_synthetic","target_alias":"EDITOR-BLOCK","input_alias":"SYNTHETIC-KOREAN-COMPOSITION","expected_state_id":"STATE-KOREAN-COMPOSITION-COMMITTED","expected_focus_alias":"EDITOR-BLOCK","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"keyboard","expected":"Committed Korean grapheme clusters equal the declared synthetic input exactly."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Intermediate composition text is not double-saved."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION", "SB-SNAPSHOT-EXACT"],
+      "evidence_state": "planned",
+      "non_goals": ["Additional input methods are extension profiles."]
+    },
+    {
+      "scenario_id": "UI-EDITOR-005",
+      "phase": "H4",
+      "outcome": "Use one command and persistence model across main, full-page, and side-peek editor surfaces.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-EDITOR-005-A01","scenario_id":"UI-EDITOR-005","surface":"page","verb":"open_surface","target_alias":"SIDE-PEEK","input_alias":null,"expected_state_id":"STATE-SIDE-PEEK-VISIBLE","expected_focus_alias":"SIDE-PEEK-CANVAS","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-EDITOR-005-A02","scenario_id":"UI-EDITOR-005","surface":"page","verb":"open_surface","target_alias":"FULL-PAGE","input_alias":null,"expected_state_id":"STATE-FULL-PAGE-VISIBLE","expected_focus_alias":"PAGE-CANVAS","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"state","expected":"Supported commands and saved block state are identical across implemented editor surfaces."}],
+      "tolerance_assertions": [{"assertion_id":"A2","channel":"geometry","expected":"Main, full, and side-peek semantic regions are measured separately."}],
+      "negative_assertions": ["Changing surface does not discard a dirty draft."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION", "SB-SNAPSHOT-EXACT"],
+      "evidence_state": "planned",
+      "non_goals": ["Center peek is not claimed until implemented and characterized."]
+    },
+    {
+      "scenario_id": "UI-EDITOR-006",
+      "phase": "H4",
+      "outcome": "Recover a dirty draft across autosave retry, stale revision, and reload without false success.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-CONFLICT"],
+      "actions": [
+        {"action_id":"UI-EDITOR-006-A01","scenario_id":"UI-EDITOR-006","surface":"editor","verb":"type_synthetic","target_alias":"EDITOR-BLOCK","input_alias":"SYNTHETIC-DIRTY-DRAFT","expected_state_id":"STATE-DRAFT-DIRTY","expected_focus_alias":"EDITOR-BLOCK","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-EDITOR-006-A02","scenario_id":"UI-EDITOR-006","surface":"editor","verb":"reload","target_alias":"PAGE-CANVAS","input_alias":null,"expected_state_id":"STATE-DRAFT-RECOVERABLE","expected_focus_alias":"PAGE-CANVAS","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"error_recovery","expected":"Stale or failed saves preserve a recoverable draft and never overwrite the acknowledged revision."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Failed save creates no partial publication, audit, or outbox effect."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION", "SB-SNAPSHOT-EXACT"],
+      "evidence_state": "planned",
+      "non_goals": ["Realtime collaborative conflict convergence is an extension."]
+    },
+    {
+      "scenario_id": "UI-DB-001",
+      "phase": "H5",
+      "outcome": "Round-trip a table row page and typed text, select, and date properties.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-DB"],
+      "actions": [
+        {"action_id":"UI-DB-001-A01","scenario_id":"UI-DB-001","surface":"database","verb":"open_surface","target_alias":"DATABASE-TABLE","input_alias":null,"expected_state_id":"STATE-DATABASE-TABLE-VISIBLE","expected_focus_alias":"DATABASE-GRID","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-DB-001-A02","scenario_id":"UI-DB-001","surface":"database","verb":"type_synthetic","target_alias":"DATABASE-ROW","input_alias":"SYNTHETIC-PROPERTY-VALUES","expected_state_id":"STATE-PROPERTIES-SAVED","expected_focus_alias":"DATABASE-ROW","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"state","expected":"Typed property values and row-page state survive reload exactly."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Unsupported property values are preserved or rejected explicitly, never silently dropped."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Advanced paid database properties are conditional."]
+    },
+    {
+      "scenario_id": "UI-DB-002",
+      "phase": "H5",
+      "outcome": "Apply filter, sort, and group state and recover the same view after reload.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-DB"],
+      "actions": [
+        {"action_id":"UI-DB-002-A01","scenario_id":"UI-DB-002","surface":"database","verb":"click","target_alias":"DATABASE-FILTER","input_alias":"SYNTHETIC-FILTER","expected_state_id":"STATE-FILTER-APPLIED","expected_focus_alias":"DATABASE-GRID","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-DB-002-A02","scenario_id":"UI-DB-002","surface":"database","verb":"reload","target_alias":"DATABASE-GRID","input_alias":null,"expected_state_id":"STATE-VIEW-RESTORED","expected_focus_alias":"DATABASE-GRID","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"state","expected":"Filter, sort, group, and visible row order are deterministic after reload."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["View-local state does not mutate source rows."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Automations triggered by database changes are conditional."]
+    },
+    {
+      "scenario_id": "UI-DB-003",
+      "phase": "H5",
+      "outcome": "Switch among table, board, list, gallery, and calendar without losing canonical row data.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-DB"],
+      "actions": [
+        {"action_id":"UI-DB-003-A01","scenario_id":"UI-DB-003","surface":"database","verb":"click","target_alias":"DATABASE-VIEW-SWITCHER","input_alias":"SYNTHETIC-VIEW-SEQUENCE","expected_state_id":"STATE-VIEWS-RENDERED","expected_focus_alias":"DATABASE-VIEW-SWITCHER","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"state","expected":"Every supported view renders the same canonical synthetic row identities and values."}],
+      "tolerance_assertions": [{"assertion_id":"A2","channel":"geometry","expected":"Each view's primary semantic regions are measured during precalibration."}],
+      "negative_assertions": ["Changing a view never creates or deletes a row."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Timeline, chart, form, dashboard, feed, and map are extension surfaces."]
+    },
+    {
+      "scenario_id": "UI-SEARCH-001",
+      "phase": "H6",
+      "outcome": "Open quick search, dismiss with Escape and restored focus, then preview and open a synthetic result.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-SEARCH-001-A01","scenario_id":"UI-SEARCH-001","surface":"search","verb":"click","target_alias":"SEARCH-TRIGGER","input_alias":null,"expected_state_id":"STATE-SEARCH-VISIBLE","expected_focus_alias":"SEARCH-INPUT","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-SEARCH-001-A02","scenario_id":"UI-SEARCH-001","surface":"search","verb":"press","target_alias":"SEARCH-INPUT","input_alias":"ESCAPE","expected_state_id":"STATE-SEARCH-HIDDEN","expected_focus_alias":"SEARCH-TRIGGER","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-SEARCH-001-A03","scenario_id":"UI-SEARCH-001","surface":"search","verb":"click","target_alias":"SEARCH-TRIGGER","input_alias":null,"expected_state_id":"STATE-SEARCH-VISIBLE","expected_focus_alias":"SEARCH-INPUT","capture_after":false,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-SEARCH-001-A04","scenario_id":"UI-SEARCH-001","surface":"search","verb":"type_synthetic","target_alias":"SEARCH-INPUT","input_alias":"SYNTHETIC-KOREAN-TITLE","expected_state_id":"STATE-SEARCH-RESULT-VISIBLE","expected_focus_alias":"SEARCH-RESULT","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [
+        {"assertion_id":"A1","channel":"focus","expected":"Escape returns focus to the search trigger."},
+        {"assertion_id":"A2","channel":"workspace_isolation","expected":"Search results contain only the active workspace synthetic fixtures."}
+      ],
+      "tolerance_assertions": [],
+      "negative_assertions": ["No inaccessible workspace title or metadata appears in search."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Enterprise Content Search is conditional."]
+    },
+    {
+      "scenario_id": "UI-SEARCH-002",
+      "phase": "H6",
+      "outcome": "Find synthetic text in-page and navigate a synthetic page link and backlink without scope leakage.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-ROOT", "UI-PARITY-RUN-CHILD-A"],
+      "actions": [
+        {"action_id":"UI-SEARCH-002-A01","scenario_id":"UI-SEARCH-002","surface":"page_find","verb":"type_synthetic","target_alias":"PAGE-FIND-INPUT","input_alias":"SYNTHETIC-PARAGRAPH","expected_state_id":"STATE-PAGE-FIND-MATCH","expected_focus_alias":"PAGE-FIND-INPUT","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-SEARCH-002-A02","scenario_id":"UI-SEARCH-002","surface":"backlinks","verb":"click","target_alias":"SYNTHETIC-BACKLINK","input_alias":null,"expected_state_id":"STATE-BACKLINK-TARGET-OPEN","expected_focus_alias":"PAGE-CANVAS","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"workspace_isolation","expected":"Page find, links, mentions, and backlinks expose only authorized active-workspace aliases."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Inaccessible page titles are absent rather than disabled metadata."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Semantic vector search ranking is not a visual parity claim."]
+    },
+    {
+      "scenario_id": "UI-COLLAB-001",
+      "phase": "H6",
+      "outcome": "Create, resolve, and reopen a synthetic comment thread using the Free owner surface.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-COMMENT"],
+      "actions": [
+        {"action_id":"UI-COLLAB-001-A01","scenario_id":"UI-COLLAB-001","surface":"comments","verb":"type_synthetic","target_alias":"COMMENT-INPUT","input_alias":"SYNTHETIC-COMMENT","expected_state_id":"STATE-COMMENT-POSTED","expected_focus_alias":"COMMENT-THREAD","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null},
+        {"action_id":"UI-COLLAB-001-A02","scenario_id":"UI-COLLAB-001","surface":"comments","verb":"click","target_alias":"RESOLVE-COMMENT","input_alias":null,"expected_state_id":"STATE-COMMENT-RESOLVED","expected_focus_alias":"COMMENT-THREAD","capture_after":true,"mutation_class":"synthetic_mutation","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"state","expected":"Comment text, resolution state, and page association round-trip exactly."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["No email, notification, or external message is sent."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Realtime multi-user presence is an extension."]
+    },
+    {
+      "scenario_id": "UI-SHARE-001",
+      "phase": "H6",
+      "outcome": "Inspect Free-visible sharing controls and close them without inviting, publishing, or changing access.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-ROOT"],
+      "actions": [
+        {"action_id":"UI-SHARE-001-A01","scenario_id":"UI-SHARE-001","surface":"share","verb":"click","target_alias":"SHARE-TRIGGER","input_alias":null,"expected_state_id":"STATE-SHARE-DIALOG-VISIBLE","expected_focus_alias":"SHARE-DIALOG","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-SHARE-001-A02","scenario_id":"UI-SHARE-001","surface":"share","verb":"press","target_alias":"SHARE-DIALOG","input_alias":"ESCAPE","expected_state_id":"STATE-SHARE-DIALOG-HIDDEN","expected_focus_alias":"SHARE-TRIGGER","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"focus","expected":"Closing the sharing dialog restores focus and leaves permissions unchanged."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Invite, public link creation, and external publishing are never executed."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Paid Sites and Enterprise sharing controls are conditional."]
+    },
+    {
+      "scenario_id": "UI-SB-001",
+      "phase": "H7",
+      "outcome": "Preview a saved synthetic page and cancel with zero Knowledge or publication mutation.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-SB-001-A01","scenario_id":"UI-SB-001","surface":"second_brain","verb":"click","target_alias":"SECOND-BRAIN-PREVIEW","input_alias":null,"expected_state_id":"STATE-PREVIEW-VISIBLE","expected_focus_alias":"PREVIEW-DIALOG","capture_after":true,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-SB-001-A02","scenario_id":"UI-SB-001","surface":"second_brain","verb":"click","target_alias":"PREVIEW-CANCEL","input_alias":null,"expected_state_id":"STATE-PREVIEW-CANCELLED","expected_focus_alias":"SECOND-BRAIN-PREVIEW","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"second_brain","expected":"Cancel leaves canonical Knowledge, projection, job, and publication counts unchanged."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Preview does not publish or mutate Knowledge implicitly."],
+      "second_brain_hard_gate_ids": ["SB-CANCEL-NO-MUTATION", "SB-SNAPSHOT-EXACT"],
+      "evidence_state": "planned",
+      "non_goals": ["Notion reference has no Second Brain control and is not compared for this effect."]
+    },
+    {
+      "scenario_id": "UI-SB-002",
+      "phase": "H7",
+      "outcome": "Approve a revalidated synthetic preview and create exactly one immutable publication snapshot.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-SB-002-A01","scenario_id":"UI-SB-002","surface":"second_brain","verb":"click","target_alias":"SECOND-BRAIN-PREVIEW","input_alias":null,"expected_state_id":"STATE-PREVIEW-VISIBLE","expected_focus_alias":"PREVIEW-DIALOG","capture_after":false,"mutation_class":"read_only","recovery_action_id":null},
+        {"action_id":"UI-SB-002-A02","scenario_id":"UI-SB-002","surface":"second_brain","verb":"click","target_alias":"PREVIEW-APPROVE","input_alias":null,"expected_state_id":"STATE-PUBLICATION-COMMITTED","expected_focus_alias":"SECOND-BRAIN-STATUS","capture_after":true,"mutation_class":"local_second_brain_mutation","recovery_action_id":null},
+        {"action_id":"UI-SB-002-A03","scenario_id":"UI-SB-002","surface":"second_brain","verb":"click","target_alias":"PREVIEW-APPROVE","input_alias":null,"expected_state_id":"STATE-PUBLICATION-REPLAYED","expected_focus_alias":"SECOND-BRAIN-STATUS","capture_after":true,"mutation_class":"local_second_brain_mutation","recovery_action_id":null}
+      ],
+      "exact_assertions": [
+        {"assertion_id":"A1","channel":"second_brain","expected":"Approval commits one immutable synthetic publication with the exact source revision and hash."},
+        {"assertion_id":"A2","channel":"error_recovery","expected":"Replay or lost response does not create a second publication."}
+      ],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Only the trusted OS temporary Knowledge fixture may change."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-ATOMIC", "SB-SNAPSHOT-EXACT"],
+      "evidence_state": "planned",
+      "non_goals": ["Live Knowledge publication is prohibited."]
+    },
+    {
+      "scenario_id": "UI-SB-003",
+      "phase": "H7",
+      "outcome": "Attach and detach a synthetic page from a session with current access revalidation.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["UI-PARITY-RUN-EDITOR", "UI-PARITY-RUN-SESSION"],
+      "actions": [
+        {"action_id":"UI-SB-003-A01","scenario_id":"UI-SB-003","surface":"session","verb":"click","target_alias":"ATTACH-PAGE","input_alias":null,"expected_state_id":"STATE-PAGE-ATTACHED","expected_focus_alias":"SESSION-CONTEXT","capture_after":true,"mutation_class":"local_second_brain_mutation","recovery_action_id":null},
+        {"action_id":"UI-SB-003-A02","scenario_id":"UI-SB-003","surface":"session","verb":"click","target_alias":"DETACH-PAGE","input_alias":null,"expected_state_id":"STATE-PAGE-DETACHED","expected_focus_alias":"SESSION-CONTEXT","capture_after":true,"mutation_class":"local_second_brain_mutation","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"second_brain","expected":"Session context contains the page only while current authorization and attachment both hold."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["Revoked page content or metadata never remains discoverable in context."],
+      "second_brain_hard_gate_ids": ["SB-SESSION-AUTH"],
+      "evidence_state": "planned",
+      "non_goals": ["Cross-user session collaboration is an extension."]
+    },
+    {
+      "scenario_id": "UI-A11Y-001",
+      "phase": "H8",
+      "outcome": "Reach every UI1 control by keyboard with stable role, name, state, visible focus, and focus restoration.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-A11Y-001-A01","scenario_id":"UI-A11Y-001","surface":"shell","verb":"press","target_alias":"PAGE-ROOT","input_alias":"KEYBOARD-GOLDEN-SEQUENCE","expected_state_id":"STATE-ALL-CONTROLS-REACHABLE","expected_focus_alias":"SECOND-BRAIN-PREVIEW","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"a11y","expected":"UI1 controls expose stable accessible role, name, state, and visible focus in logical order."}],
+      "tolerance_assertions": [],
+      "negative_assertions": ["No keyboard trap or focus loss is accepted."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Formal screen-reader certification is a later H8 gate."]
+    },
+    {
+      "scenario_id": "UI-RESP-001",
+      "phase": "H8",
+      "outcome": "Preserve usable shell, editor, and overlay behavior across adopted desktop and narrow web viewports.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-RESP-001-A01","scenario_id":"UI-RESP-001","surface":"shell","verb":"capture_region","target_alias":"RESPONSIVE-REGIONS","input_alias":"VIEWPORT-SEQUENCE","expected_state_id":"STATE-NO-HORIZONTAL-OVERFLOW","expected_focus_alias":"PAGE-CANVAS","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"state","expected":"No adopted viewport loses the primary navigation, editor, or dismissal controls."}],
+      "tolerance_assertions": [{"assertion_id":"A2","channel":"geometry","expected":"1440x900, 1280x800, 980px, and 720px semantic regions are measured before threshold approval."}],
+      "negative_assertions": ["Horizontal overflow and unreachable controls fail the scenario."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Native mobile interaction is conditional."]
+    },
+    {
+      "scenario_id": "UI-PERF-001",
+      "phase": "H8",
+      "outcome": "Measure shell, editor, save, and search latency without inventing a release budget before calibration.",
+      "profile_id": "core_free_owner_chrome_desktop_ko_kr",
+      "fixture_aliases": ["REF-FREE-A", "UI-PARITY-RUN-EDITOR"],
+      "actions": [
+        {"action_id":"UI-PERF-001-A01","scenario_id":"UI-PERF-001","surface":"shell","verb":"capture_region","target_alias":"PERFORMANCE-ACTIONS","input_alias":"MEASURED-ACTION-SEQUENCE","expected_state_id":"STATE-LATENCY-MEASURED","expected_focus_alias":"PAGE-CANVAS","capture_after":true,"mutation_class":"read_only","recovery_action_id":null}
+      ],
+      "exact_assertions": [{"assertion_id":"A1","channel":"state","expected":"Every measurement is bound to an action, source build, fixture, browser version, and result state."}],
+      "tolerance_assertions": [{"assertion_id":"A2","channel":"latency","expected":"Latency is measurement-only until repeat-run noise and a reviewed product budget are recorded."}],
+      "negative_assertions": ["The historical 500ms value is not silently promoted to the Core release budget."],
+      "second_brain_hard_gate_ids": ["SB-PUBLICATION-REGRESSION"],
+      "evidence_state": "planned",
+      "non_goals": ["Enterprise-scale load is not part of the first Free owner profile."]
+    }
+  ],
+  "extension_scenarios": [
+    {"scenario_id":"UI-EXT-GUEST-COLLAB-001","status":"extension","outcome":"Guest and member collaboration with realtime presence."},
+    {"scenario_id":"UI-EXT-MOBILE-WEB-001","status":"extension","outcome":"Mobile web interaction profile."},
+    {"scenario_id":"UI-EXT-ADVANCED-DB-001","status":"extension","outcome":"Advanced database views, properties, forms, and dashboards."},
+    {"scenario_id":"UI-EXT-RICH-INBOX-001","status":"extension","outcome":"Richer comments, inbox, reminders, and notification flows."},
+    {"scenario_id":"UI-EXT-BROWSER-LOCALE-001","status":"extension","outcome":"Additional browsers and locales."}
+  ],
+  "conditional_scenarios": [
+    {"scenario_id":"UI-COND-ARCHIVE-001","status":"conditional","outcome":"Official Archive and unarchive beta."},
+    {"scenario_id":"UI-COND-BUSINESS-001","status":"conditional","outcome":"Business plan reference behavior."},
+    {"scenario_id":"UI-COND-ENTERPRISE-001","status":"conditional","outcome":"Enterprise administration and compliance."},
+    {"scenario_id":"UI-COND-NATIVE-OFFLINE-001","status":"conditional","outcome":"Native clients and offline behavior."},
+    {"scenario_id":"UI-COND-PAID-SITES-001","status":"conditional","outcome":"Paid Sites, custom domains, and analytics."},
+    {"scenario_id":"UI-COND-PAID-AUTOMATION-AI-001","status":"conditional","outcome":"Paid automations and AI plan behavior."}
+  ],
+  "excluded_capabilities": [
+    "personal Notion content",
+    "Notion billing and entitlement internals",
+    "private endpoints and raw network capture",
+    "Notion trademark and proprietary asset copying",
+    "provider-specific AI wording"
+  ],
+  "artifact_contract": {
+    "raw_artifacts_in_repository": false,
+    "raw_capture_root": "repository_external_trusted_temp",
+    "synthetic_allowlist_required": true,
+    "forbidden_artifacts": ["raw_dom", "raw_accessibility_tree", "network_log", "cookies", "browser_storage", "personal_labels"],
+    "required_capture_sections": ["state", "keyboard", "focus", "a11y", "semantic_visual", "error_recovery", "geometry", "latency"]
+  },
+  "policy_refs": [
+    {"path":"code_assist_v1/docs/notion_parity/policies/default_differential.json","status":"historical_not_adopted_for_core","purpose":"Historical comparator policy retained without promoting its 2px and 500ms values to Core UI thresholds."},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/policies/precalibration.v1.json","status":"active_measurement_only","purpose":"Exact semantic comparisons are active while geometry and latency are measurement-only."}
+  ],
+  "source_refs": [
+    {"path":"code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md","sha256":"sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9","purpose":"Authoritative product scope and H0-H9 sequence."},
+    {"path":"code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md","sha256":"sha256:ee7fa3537dc953f33a2f029830a3463f30f4af6f65de776552ee3349b2252fdd","purpose":"H1 implementation, action, evidence, redaction, packet, and C0 reference safety contract."},
+    {"path":"code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_CHARACTERIZATION_RUNBOOK.md","sha256":"sha256:b48e9874cc378d26b0e7b83ad2886d76eb0869c79ee541d276107538bb845eac","purpose":"Synthetic reference workspace observation and safety procedure."},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/CORE_FREE_WEB_UI_MANUAL_REFERENCE_INTAKE_RUNBOOK.md","sha256":"sha256:48912606a236da31ea495653c76c46a6d8a48b0524c6ab4bf5216fce7ce2659c","purpose":"Fail-closed human-observed reference worksheet, C0, draft, redaction, and submission procedure when automatic Chrome control is unavailable."},
+    {"path":"code_assist_v1/docs/notion_parity/catalog/workspace_editor_core.json","sha256":"sha256:05fedcfc8c5696ba016f88c7b619a27e61d9bf2fff98ad5b4da39fc78e796f51","purpose":"Historical NP-2 and NP-3 catalog provenance without scope mutation."},
+    {"path":"code_assist_v1/docs/notion_parity/policies/default_differential.json","sha256":"sha256:6e3b8cadcddb5eaf820e91667d49b1a811c3e8caa6c55a291de354692908e928","purpose":"Historical comparator policy provenance."}
+  ],
+  "generated_counts": {
+    "required_core_scenarios": 25,
+    "planned_count": 25,
+    "exists_count": 0,
+    "contract_tested_count": 0,
+    "live_characterized_count": 0,
+    "differential_passed_count": 0,
+    "unknown_count": 0,
+    "blocked_count": 0,
+    "extension_count": 5,
+    "conditional_count": 6
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-R1615-CORE-FINAL-SOURCE-GREEN-20260906",
+  "recorded_at": "2026-09-06T19:05:14.8617623+09:00",
+  "status": "final_product_source_core_25_green_performance_pending",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1607-performance-one-of-two-green-20260906.json",
+    "sha256": "sha256:6cad10a8ffa57ea05f97e28097f78255d087857f87cad900e6a1c4126c789733",
+    "preserved_without_overwrite": true
+  },
+  "approved_product_corrections": {
+    "authorization_text": "notion.css와 notion.js 소유권을 이 작업으로 임시 이관하고 두 회귀 수정 승인",
+    "notion_static/notion.css": {
+      "sha256": "sha256:797eadb7689d231dfcd34e23ad5ac1ea06ee2a8b1a92feb098ae3f948c4489c9",
+      "correction": "retain the comments panel title and filter row in comments mode"
+    },
+    "notion_static/notion.js": {
+      "sha256": "sha256:c3c4ee95236243f73a02256643d1199dfe155488f835c5b18e9bbb7b4272ae30",
+      "correction": "activate the skip link by focusing workspaceMain"
+    },
+    "scope_complete": true,
+    "ownership_expansion_claimed": false
+  },
+  "test_harness_corrections": {
+    "path": "tests/browser/test_notion_ui1_golden_journey.py",
+    "sha256": "sha256:802440c926ee21815fd8d2f8fa78c42078a5452e4c5b9188c90ab9d197d82748",
+    "production_default_kdf_fixture_retained": true,
+    "official_ready_marker_waited_by_all_ui1_owner_journeys": true,
+    "ui1_owner_ready_wait_call_count": 13,
+    "responsive_share_capture_waits_for_page_popover_state": true,
+    "approved_budget_changed": false,
+    "product_timeout_changed": false
+  },
+  "executions": [
+    {
+      "run_id": "v0b-p1-r1609-product-fixes-targeted",
+      "junit_path": ".runtime/v0b-p1-r1609-product-fixes-targeted-junit.xml",
+      "junit_sha256": "sha256:120553cb921ff65b87db0a9eeb3a99db364989c0e219381848b49cd2ecaeb346",
+      "passed": 2,
+      "failed": 0,
+      "status": "pass"
+    },
+    {
+      "run_id": "v0b-p1-r1610-core25-product-fixed",
+      "junit_path": ".runtime/v0b-p1-r1610-core25-product-fixed-junit.xml",
+      "junit_sha256": "sha256:a0d8a4d1f6d4f14afa37bf452b0f7ef6dc925d7bcfe8c9d0ecc39ad9a3c32556",
+      "passed": 16,
+      "failed": 5,
+      "status": "fail",
+      "diagnosis": "all failures occurred before scenario work while the first synthetic page-title save raced incomplete boot"
+    },
+    {
+      "run_id": "v0b-p1-r1612-readiness-five",
+      "junit_path": ".runtime/v0b-p1-r1612-readiness-five-junit.xml",
+      "junit_sha256": "sha256:8f7948ee85c735f3a141071b0032ecee4512b86c744183d68ad1f3397b9805ab",
+      "passed": 5,
+      "failed": 0,
+      "status": "pass"
+    },
+    {
+      "run_id": "v0b-p1-r1613-core-before-responsive-settle",
+      "junit_path": ".runtime/v0b-p1-r1613-core-final-source-junit.xml",
+      "junit_sha256": "sha256:3845f43db8684c83bd2c8adde9c0626d360c5fae34833143cae711a7957aebac",
+      "passed": 20,
+      "failed": 1,
+      "status": "fail",
+      "diagnosis": "UI-RESP-001 captured either the initial 348x800 drawer or the final 458x385 page-popover during asynchronous share rendering"
+    },
+    {
+      "run_id": "v0b-p1-r1614-responsive-stable",
+      "junit_path": ".runtime/v0b-p1-r1614-responsive-stable-junit.xml",
+      "junit_sha256": "sha256:3bb1d02fa92ce5d7487bb1813d2bad47e71e1289813a023749a1235ed6a34541",
+      "passed": 1,
+      "failed": 0,
+      "status": "pass"
+    },
+    {
+      "run_id": "v0b-p1-r1615-core-final-source",
+      "junit_path": ".runtime/v0b-p1-r1615-core-final-source-junit.xml",
+      "junit_sha256": "sha256:0b45a2c57f3b8e49e3baf184a31e07b51898f5096ad60bd4bde2a3b82e3c4e7c",
+      "collected": 21,
+      "passed": 21,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "duration_seconds": 619.582,
+      "status": "pass"
+    }
+  ],
+  "protected_contract_hashes": {
+    "AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+  },
+  "performance_preflight_after_core": {
+    "performance_process_started": false,
+    "reason": "no five-sample CPU-below-30-percent streak",
+    "latest_samples_percent": [43.0, 53.1, 62.1, 31.6, 29.4, 54.8, 47.0, 50.2, 59.6, 30.8, 63.8, 41.5, 45.5, 48.7, 48.0, 35.3, 54.0, 54.3, 49.9, 58.1, 37.4, 25.2, 50.6, 49.3, 43.9, 50.0, 69.7, 66.3, 64.6, 53.1, 49.3, 51.5, 68.3, 56.9, 48.0, 80.4, 73.2, 62.0, 80.5, 89.2, 71.6, 51.2, 43.2, 31.0, 43.1, 49.2, 56.9, 69.7, 58.1, 57.9, 67.2, 46.6, 43.6, 47.2, 35.2, 35.5, 66.4, 44.6, 44.7, 48.9]
+  },
+  "scope_guard": {
+    "unified_exact_progress": "36/36 inherited semantic evidence; final-source recapture pending",
+    "unified_accessibility_progress": "36/36 inherited semantic evidence; final-source recapture pending",
+    "final_source_core_25": "21/21 pass",
+    "final_source_performance_green_streak": "0/2",
+    "V0B_P1_gate_passed": false,
+    "O1B_started": false,
+    "goal_complete": false
+  },
+  "next_action": "Obtain two consecutive quiet-host UI-PERF-001 passes on the current product source, then emit a fresh current-evidence-bound V0B-P1 36-capture receipt without overwriting prior receipts."
+}

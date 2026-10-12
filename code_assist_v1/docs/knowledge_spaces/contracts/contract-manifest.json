@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "openapi": "openapi.json",
+  "examples": "examples.json",
+  "goal_contract": "../GOAL_CONTRACT.json",
+  "documents": {"api_ui": "../API_UI_CONTRACT.md", "backlog": "../IMPLEMENTATION_BACKLOG.md", "scenarios": "../TEST_OPERATIONS.md", "traceability": "../TRACEABILITY.md"},
+  "expected": {"goal_metrics": 20, "requirements": 41, "scenarios": 284, "openapi_paths": 72, "openapi_operations": 80, "stable_errors": 31},
+  "schema_roles": {
+    "backup_manifest": "schemas/backup-manifest.schema.json#/$defs/BackupManifest",
+    "cursor_page": "schemas/common.schema.json#/$defs/CursorPage",
+    "error_envelope": "schemas/common.schema.json#/$defs/ErrorEnvelope",
+    "goal_contract": "schemas/goal-contract.schema.json",
+    "job_state": "schemas/job.schema.json#/$defs/JobResponse",
+    "merge_preview": "schemas/curation.schema.json#/$defs/MergePreviewResponse",
+    "projection_manifest": "schemas/projection-manifest.schema.json#/$defs/ProjectionManifest",
+    "proposal_preview": "schemas/curation.schema.json#/$defs/ProposalPreviewResponse",
+    "publication_preview": "schemas/publication.schema.json#/$defs/PublicationPreviewResponse",
+    "publication_result": "schemas/publication.schema.json#/$defs/PublicationResponse",
+    "stable_mutation_response": "schemas/common.schema.json#/$defs/MutationResponse",
+    "successor_api": "schemas/second-brain.schema.json#/$defs/SuccessorContractExample",
+    "successor_feature_flags": "schemas/successor-feature-flags.schema.json"
+  },
+  "successor_transition": {
+    "state": "registered",
+    "baseline": {
+      "counts": {"requirements": 31, "goals": 14, "scenarios": 124, "openapi_paths": 52, "openapi_operations": 56, "stable_errors": 17},
+      "hashes": {
+        "requirements": "47a5ce485b0f8bc791ea4534cdec1b86d662c300558e0db2c7473a0a0eebd0a6",
+        "goals": "a9a2a6c1c308d1d3edd8e28f143d4ce37169b9eee90436cbd1ab97d4d63fcc9c",
+        "scenarios": "c63fc22a5908393b73cef5fd1d9839c15af807417afa9f39ca31c8a6b6bcddf9",
+        "openapi_operations": "75b7270c72c7275879ab43824c0988717390502b319f3c970aecceb944b200c1"
+      }
+    },
+    "additions": {
+      "requirements": ["R-032", "R-033", "R-034", "R-035", "R-036", "R-037", "R-038", "R-039", "R-040", "R-041"],
+      "goals": ["G-15", "G-16", "G-17", "G-18", "G-19", "G-20"],
+      "scenario_families": {"AGRAPH": 17, "AUTOEDGE": 19, "HSPACE": 18, "RANK": 21, "REF": 8, "SBEOPS": 18, "TIME": 22, "UPLOAD": 15, "WIKI": 22},
+      "openapi_operations": [
+        {"method": "GET", "path": "/api/knowledge/v2/personal-wikis", "operation_id": "personalWikisList"},
+        {"method": "POST", "path": "/api/knowledge/v2/personal-wikis", "operation_id": "personalWikisCreate"},
+        {"method": "POST", "path": "/api/knowledge/v2/personal-wikis/search", "operation_id": "personalWikisSearch"},
+        {"method": "PATCH", "path": "/api/knowledge/v2/personal-wikis/{space_id}", "operation_id": "personalWikiRename"},
+        {"method": "PUT", "path": "/api/knowledge/v2/personal-wikis/{space_id}/default", "operation_id": "personalWikiSetDefault"},
+        {"method": "POST", "path": "/api/knowledge/v2/personal-wikis/{space_id}/archive", "operation_id": "personalWikiArchive"},
+        {"method": "POST", "path": "/api/knowledge/v2/personal-wikis/{space_id}/restore", "operation_id": "personalWikiRestore"},
+        {"method": "GET", "path": "/api/admin/v2/org/teams/{team_id}/leader", "operation_id": "teamKnowledgeLeaderGet"},
+        {"method": "PUT", "path": "/api/admin/v2/org/teams/{team_id}/leader", "operation_id": "teamKnowledgeLeaderPut"},
+        {"method": "GET", "path": "/api/admin/v2/org/responsibilities/{responsibility_id}/executive", "operation_id": "responsibilityKnowledgeExecutiveGet"},
+        {"method": "PUT", "path": "/api/admin/v2/org/responsibilities/{responsibility_id}/executive", "operation_id": "responsibilityKnowledgeExecutivePut"},
+        {"method": "GET", "path": "/api/knowledge/v2/spaces/{space_id}/distribution-targets", "operation_id": "distributionTargetsList"},
+        {"method": "GET", "path": "/api/knowledge/v2/spaces/{space_id}/distributions", "operation_id": "distributionsList"},
+        {"method": "POST", "path": "/api/knowledge/v2/spaces/{space_id}/distributions", "operation_id": "distributionsCreate"},
+        {"method": "POST", "path": "/api/knowledge/v2/spaces/{space_id}/distributions/{grant_id}/revoke", "operation_id": "distributionRevoke"},
+        {"method": "POST", "path": "/api/knowledge/v2/spaces/{space_id}/edges/{edge_id}/suppress", "operation_id": "semanticEdgeSuppress"},
+        {"method": "POST", "path": "/api/knowledge/v2/spaces/{space_id}/edges/{edge_id}/suppression/lift", "operation_id": "semanticEdgeSuppressionLift"},
+        {"method": "GET", "path": "/api/knowledge/v2/spaces/{space_id}/items/{item_id}/temporal", "operation_id": "itemTemporalGet"},
+        {"method": "POST", "path": "/api/knowledge/v2/spaces/{space_id}/items/{item_id}/temporal-assertions", "operation_id": "temporalAssertionCreate"},
+        {"method": "POST", "path": "/api/knowledge/v2/spaces/{space_id}/items/{item_id}/temporal-assertions/{assertion_id}/revoke", "operation_id": "temporalAssertionRevoke"},
+        {"method": "POST", "path": "/api/knowledge/v2/spaces/{space_id}/items/{item_id}/verification-attestations", "operation_id": "verificationAttestationCreate"},
+        {"method": "POST", "path": "/api/knowledge/v2/spaces/{space_id}/items/{item_id}/verification-attestations/{attestation_id}/revoke", "operation_id": "verificationAttestationRevoke"},
+        {"method": "GET", "path": "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/source-artifacts", "operation_id": "listItemSourceArtifacts"},
+        {"method": "GET", "path": "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/source-artifacts/{artifact_id}/download", "operation_id": "downloadItemSourceArtifact"}
+      ],
+      "stable_errors": ["CORPUS_CLOSURE_STALE", "DISTRIBUTION_STATE_CONFLICT", "EDGE_HOME_INVALID", "EDGE_SUPPRESSED", "NATIVE_WRITE_DISABLED", "PROJECTION_MANIFEST_UNTRUSTED", "REFERENCE_TARGET_INVALID", "ROLE_EPISODE_STALE", "TEMPORAL_HEAD_CONFLICT", "TEMPORAL_VALUE_INVALID", "VERIFICATION_NONCURRENT", "WIKI_ARCHIVED_HISTORY_ONLY", "WIKI_DEFAULT_REQUIRED", "WIKI_NAME_CONFLICT"]
+    },
+    "registered_totals": {"requirements": 41, "goals": 20, "scenarios": 284, "openapi_paths": 72, "openapi_operations": 80, "stable_errors": 31},
+    "sources": ["second_brain_evolution/README.md", "second_brain_evolution/PRODUCT_CONTRACT.md", "second_brain_evolution/FORWARD_SCHEMA.md", "second_brain_evolution/EXECUTION_PLAN.md", "second_brain_evolution/ACCEPTANCE.md"],
+    "authority_sources": {"repository_root": ["AGENTS.md"], "docs_root": ["README.md", "DECISIONS.md", "ARCHITECTURE.md", "SCHEMA_V1.md", "API_UI_CONTRACT.md", "MIGRATION_ROLLOUT.md", "TEST_OPERATIONS.md", "IMPLEMENTATION_BACKLOG.md", "TRACEABILITY.md", "GOAL_CONTRACT.json", "STATUS.md"]},
+    "supersessions": [
+      {"selector": "SPACE-005", "action": "retain_flags_off_compatibility"},
+      {"selector": "CUR-005", "action": "retain_legacy_human_approval_mode"},
+      {"selector": "CUR-011", "action": "retain_destructive_and_t3_review"},
+      {"selector": "R-004", "action": "rewrite_selected_view_corpus_closure"},
+      {"selector": "R-017", "action": "rewrite_native_higher_spaces"},
+      {"selector": "R-028", "action": "split_validated_edge_from_destructive_curation"},
+      {"selector": "G-07", "action": "rewrite_authorized_closure_isolation"},
+      {"selector": "G-08", "action": "rewrite_valid_auto_edge_safety"},
+      {"selector": "G-09", "action": "retain_slo_rebaseline_successor_profile"},
+      {"selector": "API_UI_CONTRACT.md#9:system-admin-Part-authorship", "action": "remove_admin_status_ordinary_authorship"}
+    ],
+    "feature_flag_contract": "successor-feature-flags.json"
+  }
+}

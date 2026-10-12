@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P2-RUNTIME-SPIKE-20260824",
+  "recorded_at": "2026-08-23T17:19:59Z",
+  "checkpoint_kind": "gate_passed_runtime_spike",
+  "packet_id": "E0-P2",
+  "packet_status": "gate_passed",
+  "purpose": "Bind explicit AP-RUNTIME-SPIKE approval, exact candidate artifacts and transitive locks, no-port adapters, Windows clean-install/start/stop/crash/restart evidence, reproducibility, complete disposable-root cleanup, and status integration without selecting a winner or changing the product runtime.",
+  "owner_agent": "/root",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py"
+  ],
+  "new_product_files": [
+    "code_assist_v1/tools/notion_parity/crdt_runtime_spike.py",
+    "code_assist_v1/tools/notion_parity/crdt_runtime_spike_executor.py",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_pycrdt_adapter.py",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_relay_adapter.py",
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_adapter.cjs",
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_adapter.cjs"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_contract.py",
+    "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_executor.py"
+  ],
+  "preserved_evidence_files": {
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-ap-runtime-spike-approval-receipt-20260824.json": "sha256:1da0b899f891191533ec52af8556290f5012da06a5d23269e9aae61573d78b29",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-artifact-and-lock-receipt-20260824.json": "sha256:fb1c59bcf024ccdb766ce3d11477df2ca130d76c35dfa60e3daa7e5c8b8403eb",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-windows-lifecycle-receipt-20260824.json": "sha256:04a5461db08ed13f7b98558796c15b573d9c963f481da320fe98d37501191605",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-install-reproducibility-receipt-20260824.json": "sha256:d413aa5c51ceba815c987695336735dda6f0436591dd3780d1f702d354506183",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-cleanup-receipt-20260824.json": "sha256:6b149d58132cb1ddb302568a6d91566d332239985aba1af7caed084e1a449a5b"
+  },
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_candidate_matrix.v1.json": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_corpus.v1.json": "sha256:9be012b8150b3db48c66f743369a2b9905e234582056e28e427d77f311fca8b2",
+    "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md": "sha256:6cb9abe671b87401196e33acf3d2fd2c16d4c951ae0c90dc8c6331a64f1be7fc",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md": "sha256:62e4aa857461c3cc5eb3b4f7c73dbdb5e1f59fec21f043d454b07e4305db7015"
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "paths": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/docs/knowledge_spaces",
+      "code_assist_v1/notion_static",
+      "code_assist_v1/app_notion.py",
+      "code_assist_v1/routes_notion.py",
+      "code_assist_v1/routes_notion_workspace.py",
+      "code_assist_v1/notion_store.py",
+      "code_assist_v1/notion_workspace_store.py",
+      "code_assist_v1/user_data",
+      "code_assist_v1/knowledge",
+      "code_assist_v1/.runtime"
+    ]
+  },
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-status-integration-pre-edit-20260824.json",
+    "sha256": "sha256:b04a925ccd836aaf0437a5e375d047301c7dd8f4d4e119758bb64e9ef51aacf2"
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/tools/notion_parity/crdt_runtime_spike.py": null,
+    "code_assist_v1/tools/notion_parity/crdt_runtime_spike_executor.py": null,
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_pycrdt_adapter.py": null,
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_relay_adapter.py": null,
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_adapter.cjs": null,
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_adapter.cjs": null,
+    "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_contract.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_executor.py": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:907287f527fc2493fe154621052080c5d339546ab84b4eef97f30ffd02da5625",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:00f8d071a30e29574b861ed80d981fb918b896a0371ca3036db6e4eeda06daff",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:ebc30e142ae00c1ac9c1467be36649ddee94fbbf1c396e42c986070050eb702f",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:f9ea8563d1f1d2999a9963d3ad9f25a75b0ddc6d9266302e99d559646ede0f8d"
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/tools/notion_parity/crdt_runtime_spike.py": "sha256:c345fd09ef697a968c52559ee3baf6438ea9982bf598628daacbd498828c0cb9",
+    "code_assist_v1/tools/notion_parity/crdt_runtime_spike_executor.py": "sha256:c42c0a7cb997ee9d2313ecc1221e014c27ae56a8c9cf27cc12ae8c507221201a",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_pycrdt_adapter.py": "sha256:c8e90c3a1341770b259abbf2992efc5325a0ea07caa21a55a1f2bc3eb3efa47a",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_relay_adapter.py": "sha256:c4adf8a31dac1ce2eff0b93a1b0ce4408087b980c40aa3f7ed230b2518f7ae64",
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_adapter.cjs": "sha256:e13e63ccb9dcc00216ba57a3132e64fb04e47b721fd8e55453c3657955e8b347",
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_adapter.cjs": "sha256:f53b3bd5eee15a6aeb63835384ee0c4a9a1f2ca2fcaff016c09775d80114b124",
+    "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_contract.py": "sha256:47987fb5f2fe5c7d9ead9960d139e34144c4083efc899ef39b08b20bd92b70a9",
+    "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_executor.py": "sha256:d85283942061d2a3ab0adb3981472b2a74b000980368f4d2fd0694a1d56662f2",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:9bbde1679002c122cd054413cad5c6dfd9ee77b2e28be218d216547c6755736c",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:1d67ebbbd9832785ad64eb70c8287936db0948c1148b19cf32fae156a3d54c0e",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:8ebf3ab7438ee6a3ff2620965e3555d3bb18d32d4e1aba7567cd03a883cea947",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:6a0f9c0cf0e1146b1e681425927a73b59af9807601c414753dddfa1b4c8447ea"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0a-p1-exact-rgba-20260824.json",
+    "sha256": "sha256:198bdeb21fa25b1a5356af820ca7162f6011d18c1539ba9366afeabc46f357cd",
+    "packet_id": "V0A-P1",
+    "receipt_id": "V0A-P1-L6-EXACT-RGBA-20260824"
+  },
+  "ownership_lease": {
+    "lease_id": "E0-P2-STATUS-INTEGRATOR-20260824",
+    "lane": "SPIKE",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-23T17:03:33Z",
+    "expires_at": "2026-08-24T17:03:33Z",
+    "released_at": "2026-08-23T17:19:59Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false,
+    "release_condition": "Approval, artifact, lock, lifecycle, reproducibility, cleanup, packet tests, catalog integration, checkpoint chain, and current pointer are hash-bound."
+  },
+  "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "Resume the interrupted implementation goal.",
+    "status": "active_by_explicit_user_resume",
+    "persisted_tool_status": "blocked_stale_after_explicit_resume",
+    "resumed_by_user": true,
+    "observed_at": "2026-08-23T17:19:59Z",
+    "goal_completion_claimed": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-23T17:19:59Z",
+    "predecessor_checkpoint_sha256": "sha256:198bdeb21fa25b1a5356af820ca7162f6011d18c1539ba9366afeabc46f357cd",
+    "u0a_p2_checkpoint_sha256": "sha256:64abae55cbf7fb39d7d770b4df969d84db80252510dd40497e97dc8208a85d33",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:59c9eac679584ec7a7a879989245964e9bf5f12c608870860de57ac7b94ca22b",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_hot_contracts_modified_by_this_packet": false,
+    "exact_path_collision_observed": false,
+    "schema_migration_version_allocated": false,
+    "dependency_download_or_install_authorized": true,
+    "dependency_download_or_install_scope_consumed": true,
+    "persistent_network_service_or_port_started": false,
+    "live_identity_or_data_root_mutated": false
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:907287f527fc2493fe154621052080c5d339546ab84b4eef97f30ffd02da5625",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:00f8d071a30e29574b861ed80d981fb918b896a0371ca3036db6e4eeda06daff"
+    },
+    "accepted_packet_receipt_ids": [
+      "V0A-P1-L6-EXACT-RGBA-20260824",
+      "E0-P2-L3-RUNTIME-SPIKE-20260824"
+    ],
+    "lease": "E0-P2-STATUS-INTEGRATOR-20260824",
+    "post_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:9bbde1679002c122cd054413cad5c6dfd9ee77b2e28be218d216547c6755736c",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:1d67ebbbd9832785ad64eb70c8287936db0948c1148b19cf32fae156a3d54c0e"
+    }
+  },
+  "validation_receipt": {
+    "receipt_id": "E0-P2-L3-RUNTIME-SPIKE-20260824",
+    "validation_id": "L3-CRDT-PROTOCOL-CORPUS",
+    "status": "pass",
+    "error_count": 0,
+    "executed_at": "2026-08-23T17:19:59Z",
+    "approval": {
+      "approval_id": "AP-RUNTIME-SPIKE",
+      "status": "consumed",
+      "scope_sha256": "sha256:15d04969e31156df32f1ebd801ecb3a4ab6cec1f0df9748a74d3850f82293c4d"
+    },
+    "artifact_and_lock": {
+      "direct_artifacts_passed": 6,
+      "python_wheels_locked": 12,
+      "npm_lock_package_entries": 13,
+      "npm_registry_integrity_missing": 0
+    },
+    "windows_lifecycle": {
+      "component_count": 4,
+      "graceful_start_stop_passed": 4,
+      "forced_crash_restart_passed": 4,
+      "state_recovery_passed": 4,
+      "owned_process_cleanup_passed": 4,
+      "persistent_service_or_port_started": false
+    },
+    "clean_reproducibility": {
+      "clean_reinstall_count": 4,
+      "pip_check_passed": 2,
+      "npm_ls_passed": 2,
+      "npm_lock_byte_identity_passed": 2,
+      "adapter_start_stop_passed": 4
+    },
+    "packet_contract_tests": {
+      "passed": 37,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 9.65
+    },
+    "sbe_contract_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "input_sha256": "sha256:59c9eac679584ec7a7a879989245964e9bf5f12c608870860de57ac7b94ca22b",
+      "goal_count": 20,
+      "scenario_count": 284
+    },
+    "runtime_observations": [
+      {
+        "classification": "pre_candidate_executor_environment_contract_bug",
+        "symptoms": "Node CSPRNG assertion and Python WinError 10106 before adapter ready",
+        "product_assertion_reached": false,
+        "cause": "case-sensitive allowlist omitted uppercase SYSTEMROOT and SYSTEMDRIVE",
+        "fix": "case-insensitive Windows environment-key matching plus unit test",
+        "post_fix_sequential_components_passed": 4,
+        "post_fix_parallel_components_passed": 4,
+        "candidate_rejected_by_observation": false
+      },
+      {
+        "classification": "receipt_harness_command_resolution_bug",
+        "symptom": "npm executable was not found by shell-free subprocess invocation",
+        "cause": "Windows exposes npm as npm.cmd",
+        "fix": "resolve npm.cmd explicitly",
+        "candidate_assertion_failed": false,
+        "post_fix_dependency_checks_passed": 4
+      }
+    ],
+    "cleanup": {
+      "candidate_owned_processes_remaining": 0,
+      "candidate_root_removed": true,
+      "candidate_root_files_removed": 9401,
+      "candidate_root_bytes_removed": 95986394
+    },
+    "claims": {
+      "candidate_adapters_implemented": true,
+      "windows_install_start_stop_and_reproducibility_passed": true,
+      "candidate_winner_selected": false,
+      "production_dependency_pinned": false,
+      "product_runtime_changed": false,
+      "persistent_service_or_port_changed": false,
+      "live_identity_workspace_or_data_root_changed": false,
+      "product_complete": false
+    }
+  },
+  "rollback_or_cleanup": "The approved candidate root was already marker-validated and removed. Restore only the four owned existing files to pre-edit hashes and remove only E0-P2 new source/test/checkpoint evidence if the packet integration is rejected. Never recreate or target an existing root, product dependency lock, runtime, schema, service, port, identity, workspace, protected data, browser profile, or SBE contract.",
+  "completion_truth": {
+    "e0_p1_gate_passed": true,
+    "ap_runtime_spike_consumed": true,
+    "e0_p2_gate_passed": true,
+    "e0_p3_started": false,
+    "candidate_winner_selected": false,
+    "production_dependency_pinned": false,
+    "real_runtime_implemented": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "E0-P2",
+    "current_state": "gate_passed_integrated",
+    "next_packet": "E0-P3",
+    "next_state": "ready_approval_free_candidate_benchmark",
+    "required_approval_id": null,
+    "candidate_winner_selection_owner": "E0-P4",
+    "real_service_or_identity_mutation_allowed": false
+  }
+}

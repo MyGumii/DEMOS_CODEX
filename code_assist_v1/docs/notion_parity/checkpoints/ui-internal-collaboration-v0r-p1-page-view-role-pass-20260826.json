@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-PAGE-VIEW-ROLE-PASS-20260826",
+  "recorded_at": "2026-08-26T22:31:48+09:00",
+  "checkpoint_kind": "page_guest_view_only_access_pass",
+  "packet_id": "V0R-P1",
+  "packet_status": "execution_in_progress_awaiting_B_page_revoke_confirmation",
+  "purpose": "Record the confirmed REF-FREE-B / V0R-B-ROOT permission transition from comment-only to view-only and the collaborator-side readable canvas with no page editing or comment composer controls.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-page-comment-role-pass-20260826.json",
+    "sha256": "sha256:821a4d743155595f2de5983e66afc51b82d7ebfd2b91eda7241fdbc71f7de031"
+  },
+  "action_time_confirmation": {
+    "exact_user_text": "B 페이지 보기 전용 권한 전환 승인",
+    "bound_action_id": "V0R-PAGE-ROLE-VIEW",
+    "bound_target": "REF-FREE-B/V0R-B-ROOT",
+    "bound_principal": "REF-COLLABORATOR"
+  },
+  "operator_action_result": {
+    "order": 8,
+    "action_id": "V0R-PAGE-ROLE-VIEW",
+    "workspace": "REF-FREE-B",
+    "page": "V0R-B-ROOT",
+    "actor": "REF-OWNER",
+    "required_result": "REF-COLLABORATOR_view_access_captured",
+    "owner_share_dialog_guest_read_role_active": true,
+    "collaborator_page_title_visible": true,
+    "collaborator_page_body_visible": true,
+    "collaborator_page_textbox_count": 0,
+    "collaborator_comment_add_button_count": 0,
+    "collaborator_no_access_surface_absent": true,
+    "status": "passed"
+  },
+  "capture_state": {
+    "state_id": "V0R-MU-016",
+    "workspace": "REF-FREE-B",
+    "actor": "REF-COLLABORATOR",
+    "surface": "page_canvas",
+    "state": "view_only_access_visible",
+    "status": "captured"
+  },
+  "privacy_processing": {
+    "privacy_mode": "synthetic_guest_shell_and_synthetic_page_content_only",
+    "raw_private_identifier_visible": false,
+    "redaction_required": false
+  },
+  "screenshots": [
+    {
+      "state_id": "V0R-MU-016",
+      "viewport": "1440x900",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-016__1440x900.png",
+      "sha256": "sha256:65db9bc14ae0a3d392f494e1f63a5948c67db12f51ab698be5a2efb990492ac1"
+    },
+    {
+      "state_id": "V0R-MU-016",
+      "viewport": "1280x800",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-016__1280x800.png",
+      "sha256": "sha256:4ae4087372cf5a2acfdb7d5ca576b895f278e67af4d29fca03e7ab3bd01e520c"
+    }
+  ],
+  "evidence_denominator": {
+    "screenshot_file_count": 32,
+    "expected_screenshot_count": 36,
+    "completed_capture_state_count": 16,
+    "expected_capture_state_count": 18,
+    "completed_action_count": 8,
+    "expected_action_count": 11,
+    "cleanup_required_now": true
+  },
+  "scope_attestation": {
+    "page_permission_reduced_to_view_only": true,
+    "workspace_role_changed": false,
+    "message_or_notification_sent_during_validation": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "paid_upgrade_or_purchase_executed": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "confirmation_boundary": {
+    "next_action_id": "V0R-PAGE-REVOKE",
+    "next_workspace": "REF-FREE-B",
+    "next_page": "V0R-B-ROOT",
+    "next_mutation": "remove REF-COLLABORATOR page grant and capture V0R-MU-017 revoked non-oracle state",
+    "fresh_action_time_confirmation_required": true,
+    "next_action_started": false
+  },
+  "claims": {
+    "V0R_PAGE_ROLE_VIEW_passed": true,
+    "V0R_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Obtain action-time confirmation to revoke the REF-FREE-B V0R-B-ROOT page grant."
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.browser.live_pair_opt_in_regression_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-BROWSER-LIVE-OPT-IN-REGRESSION-20260909",
+  "recorded_at": "2026-09-09T07:11:18.0600259+09:00",
+  "status": "browser_suite_safe_by_default_local_cases_green_live_pair_gates_deferred",
+  "immutable_after_recording": true,
+  "packet_ids": ["E1-P2", "V0B-P1"],
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-r0-r1-z0-local-readiness-regression-20260909.json",
+    "sha256": "sha256:d25362a235bb3b2ab7aaafd91e87befebe1fb503a18e08b3d7585a86708e6d93"
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    }
+  },
+  "implementation_change": {
+    "path": "code_assist_v1/tests/notion_collaboration/browser/test_e1_p2_collaborative_editor.py",
+    "sha256": "sha256:e2ddccc3f15a2d21aac67197fd10de29d518662d625cb5157d7dcffde4e1b4e9",
+    "behavior": "require CODE_ASSIST_E1_P2_BROWSER_LIVE=1 before connecting to the approval-bound 10111/10112/10113 development pair",
+    "reason": "align E1-P2 with the existing C0-P2, I0-P2, and F0-P5 explicit live-pair opt-in boundary"
+  },
+  "browser_test_bindings": [
+    {"path": "code_assist_v1/tests/notion_collaboration/browser/test_c0_p2_live_collaboration.py", "sha256": "sha256:04229d35a57c4a1c0551f2e2f7bfc8d4bde374185874ca2ce9e3593c36d8d20b"},
+    {"path": "code_assist_v1/tests/notion_collaboration/browser/test_e1_p2_collaborative_editor.py", "sha256": "sha256:e2ddccc3f15a2d21aac67197fd10de29d518662d625cb5157d7dcffde4e1b4e9"},
+    {"path": "code_assist_v1/tests/notion_collaboration/browser/test_exact_pixel_parity.py", "sha256": "sha256:f8706f94f768a3f35e3075b32917b5c81ce8b0514a1d82f4ba7c65d2ae4d5520"},
+    {"path": "code_assist_v1/tests/notion_collaboration/browser/test_f0_p5_adopted_surface.py", "sha256": "sha256:b69e602458d24ba3547b1078f107ef6dd2235bd2254d053b450129c1931a6186"},
+    {"path": "code_assist_v1/tests/notion_collaboration/browser/test_i0_p2_live_share_journey.py", "sha256": "sha256:154dcbfa406d394c6ee76a76700f1e5d8ee9708459b8adb23adc947c29469b41"},
+    {"path": "code_assist_v1/tests/notion_collaboration/browser/test_runtime_gateway_browser_transport.py", "sha256": "sha256:7d10e0704bdfa41789636c443e2ebd81ed953c3e45c08d9cf64164364011b182"},
+    {"path": "code_assist_v1/tests/notion_collaboration/browser/test_share_and_workspace_membership.py", "sha256": "sha256:0f00a7352ed00b446195eb66d08049f5312c588b14c242a3284a4f137f278d04"}
+  ],
+  "verification": {
+    "before_change": {
+      "status": "fail",
+      "passed": 6,
+      "failed": 1,
+      "skipped": 3,
+      "duration_seconds": 36.07,
+      "failure": "E1-P2 attempted an approval-bound fixed-port browser journey without an explicit live-pair opt-in and received ERR_CONNECTION_REFUSED"
+    },
+    "after_change": {
+      "status": "pass",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 4,
+      "duration_seconds": 34.24
+    },
+    "skip_contract": {
+      "local_self_contained_browser_cases_skipped": 0,
+      "approval_bound_live_pair_cases_skipped": 4,
+      "live_pair_started_or_restarted": false,
+      "explicit_live_pair_environment_set": false
+    }
+  },
+  "claims": {
+    "default_browser_suite_safe_without_live_pair": true,
+    "local_browser_regression_green": true,
+    "live_browser_gate_executed": false,
+    "live_browser_gate_passed": false,
+    "approved_dev_pair_started_or_restarted": false,
+    "external_system_mutated": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "historical_evidence_overwritten": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:8d210e08dcdcb543c33e51ad7504cc9198d238689ca46453b4330b9636432156"
+}

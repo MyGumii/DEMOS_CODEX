@@ -1,0 +1,51 @@
+{
+  "claims": {
+    "core_ui_complete": false,
+    "external_action_executed_count": 0,
+    "human_evidence_approval_count": 1,
+    "human_policy_approval_count": 1,
+    "overall_goal_complete": false,
+    "resolved_entry_count": 2
+  },
+  "contract": "code_assist.notion.core_free_ui.approval_batch_receipt.v2",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "queue": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v2.json",
+    "sha256": "sha256:a1153a7f60fd0f84dab9c40f29f746292c696ced86255176c5cb3eb519fab489"
+  },
+  "recorded_at": "2026-08-22T08:43:31Z",
+  "resolved_entries": [
+    {
+      "authorization_effect": "allow_redacted_observable_differential_recomputation",
+      "entry_id": "UI-EDITOR-004-NATIVE-IME-SUMMARY-REVIEW",
+      "external_action_executed": false,
+      "kind": "human_evidence_acceptance",
+      "scenario_ids": [
+        "UI-EDITOR-004"
+      ]
+    },
+    {
+      "authorization_effect": "allow_local_precalibration_regression_budget",
+      "entry_id": "UI-PERF-001-LOCAL-BUDGET-REVIEW",
+      "external_action_executed": false,
+      "kind": "human_policy_acceptance",
+      "scenario_ids": [
+        "UI-PERF-001"
+      ]
+    }
+  ],
+  "safety": {
+    "browser_control_used": false,
+    "completion_matrix_mutated": false,
+    "external_action_executed": false,
+    "live_local_data_access_allowed": false,
+    "personal_workspace_access_allowed": false,
+    "queue_mutated": false,
+    "receipt_creation_only": true
+  },
+  "source": {
+    "exact_text": "UI-EDITOR-004 네이티브 IME 요약 승인; UI-PERF-001 로컬 성능 예산 제안 승인",
+    "kind": "exact_user_message"
+  },
+  "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038"
+}

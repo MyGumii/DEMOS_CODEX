@@ -1,0 +1,63 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T17:29:43.9512286+09:00",
+  "run_id": "ui49-perf-001-local-budget-proposal-green-review-pending-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-create-cleanup-complete-20260822.json",
+    "sha256": "sha256:fb8be523019ee6bb25d4f84c7ab699424733082d108d80e5c399f0dd8c1c049a",
+    "semantic_status": "reference_identity_observed_and_synthetic_tree_restored_without_accepted_timing"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-PERF-001",
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_content_accessed": false,
+    "external_action_executed": false
+  },
+  "slice": {
+    "id": "UI-PERF-001-LOCAL-PRECALIBRATION-BUDGET",
+    "status": "proposal_green_owner_review_pending",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "proposal": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/performance_budget_proposal.v1.json",
+    "sha256": "sha256:069638d69cb57b4b15bf714ce43d97cd8ce1719f77c022c0c682678ad28ee7f5",
+    "metric_count": 8,
+    "method": "p95 nearest-rank from six isolated local samples, multiplied by 1.75 and rounded up to 10 ms"
+  },
+  "verification": [
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_performance_budget_proposal --compact",
+      "exit_code": 0,
+      "result": "pass; metric_count=8; budget_approved=false"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_performance_budget_proposal.py -q",
+      "exit_code": 0,
+      "result": "4 passed in 1.15s"
+    }
+  ],
+  "implementation": {
+    "verifier": {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_performance_budget_proposal.py",
+      "sha256": "sha256:71ec608469b6d9d78a82258fc81c3546aca753bcb6035ef82cf296ad6f950988"
+    },
+    "tests": {
+      "path": "code_assist_v1/tests/test_notion_ui_performance_budget_proposal.py",
+      "sha256": "sha256:40ebb286007cea7daf1868011605036048cc9c3ca05febd6041a0edd83409525"
+    }
+  },
+  "claims": {
+    "local_budget_proposal_verified": true,
+    "budget_approved": false,
+    "reference_timing_accepted": false,
+    "notion_performance_parity_claimed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next_exact_action": "Batch the local budget decision with the UI-EDITOR-004 redacted native-IME summary review; approval permits a local regression threshold only."
+}

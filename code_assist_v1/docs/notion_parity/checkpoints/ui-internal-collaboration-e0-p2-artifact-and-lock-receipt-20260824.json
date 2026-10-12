@@ -1,0 +1,181 @@
+{
+  "contract": "code_assist.notion.crdt_runtime_spike_execution_receipt.v1",
+  "payload": {
+    "adapter_sha256": {
+      "node_hocuspocus": "sha256:f53b3bd5eee15a6aeb63835384ee0c4a9a1f2ca2fcaff016c09775d80114b124",
+      "py_native": "sha256:c8e90c3a1341770b259abbf2992efc5325a0ea07caa21a55a1f2bc3eb3efa47a",
+      "py_opaque_relay": "sha256:c4adf8a31dac1ce2eff0b93a1b0ce4408087b980c40aa3f7ed230b2518f7ae64",
+      "py_opaque_yjs": "sha256:e13e63ccb9dcc00216ba57a3132e64fb04e47b721fd8e55453c3657955e8b347"
+    },
+    "direct_artifacts": {
+      "artifacts": [
+        {
+          "bytes": 205623,
+          "ecosystem": "npm",
+          "file": "hocuspocus-server-4.6.0.tgz",
+          "integrity": "sha512:Ex4tka1vsm9NycHU1vPwxj3weQj+L2+736U8uentRyykAefUcYkHEh7Gfxiy9PHBholWcw1H+oYgZ3LP0ShTWQ==",
+          "integrity_passed": true,
+          "package_id": "@hocuspocus/server",
+          "version": "4.6.0"
+        },
+        {
+          "bytes": 868548,
+          "ecosystem": "pypi",
+          "file": "pycrdt-0.14.3-cp314-cp314-win_amd64.whl",
+          "integrity": "sha256:5f9c5fde46e7961b3595141833d96ce31badcc980c6256e5e62689e5b4d404bd",
+          "integrity_passed": true,
+          "package_id": "pycrdt",
+          "version": "0.14.3"
+        },
+        {
+          "bytes": 14916,
+          "ecosystem": "pypi",
+          "file": "pycrdt_websocket-0.16.4-py3-none-any.whl",
+          "integrity": "sha256:5c1612ea4e8743c4eb9d46b938b9e727ddfc7aee0d20130627e0d6c1fcc083da",
+          "integrity_passed": true,
+          "package_id": "pycrdt-websocket",
+          "version": "0.16.4"
+        },
+        {
+          "bytes": 79871,
+          "ecosystem": "pypi",
+          "file": "uvicorn-0.52.4-py3-none-any.whl",
+          "integrity": "sha256:f86e41a149d7d05a9969337e3946a9c171c06a5d42680896daaba624aeac8da1",
+          "integrity_passed": true,
+          "package_id": "uvicorn",
+          "version": "0.52.4"
+        },
+        {
+          "bytes": 212969,
+          "ecosystem": "pypi",
+          "file": "websockets-17.0.1-cp314-cp314-win_amd64.whl",
+          "integrity": "sha256:81ce19c6046ace11da7001781be7317bb1dc389f399af4b2ed962190f76f9add",
+          "integrity_passed": true,
+          "package_id": "websockets",
+          "version": "17.0.1"
+        },
+        {
+          "bytes": 444969,
+          "ecosystem": "npm",
+          "file": "yjs-13.6.32.tgz",
+          "integrity": "sha512:lfiJIIC4Xayt5ItynE407ehlE03pCjeOc4hkR4yxxvvNJ4kuiN25B0g+Qp8XagYz361LLL7DCzR5bvFJ81QKtQ==",
+          "integrity_passed": true,
+          "package_id": "yjs",
+          "version": "13.6.32"
+        }
+      ],
+      "contract": "code_assist.notion.crdt_runtime_spike_executor.v1",
+      "direct_artifact_count": 6,
+      "integrity_passed_count": 6
+    },
+    "marker": {
+      "approval_receipt_sha256": "sha256:1da0b899f891191533ec52af8556290f5012da06a5d23269e9aae61573d78b29",
+      "contract": "code_assist.notion.crdt_runtime_spike_root.v1",
+      "created_at": "2026-08-23T17:08:00Z",
+      "execution_manifest_sha256": "sha256:9c44f015d68ff7f5004a3707e655900321453c3ed8bd88ccafb0a733814f1cef",
+      "matrix_sha256": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57",
+      "root_name": "code-assist-e0-p2-20260824-da7002bf97aa4ec9b181af497b2ed652",
+      "run_id": "E0P2-20260824-001",
+      "scope_sha256": "sha256:15d04969e31156df32f1ebd801ecb3a4ab6cec1f0df9748a74d3850f82293c4d"
+    },
+    "npm_locks": [
+      {
+        "contract": "code_assist.notion.crdt_runtime_spike_executor.v1",
+        "direct_dependencies": {
+          "yjs": "file:../../../downloads/npm/yjs-13.6.32.tgz"
+        },
+        "kind": "isolated_npm_lock",
+        "lockfile_sha256": "sha256:c0f9270e445bbcc87c165f74daff0b3011c3a37ced82179eec9143aab9d3c523",
+        "missing_registry_integrity_count": 0,
+        "package_entry_count": 3,
+        "path": "package-lock.json",
+        "registry_entries_sha256": "sha256:dfd03bce3217677e49171eaa09269c39ba866af14cb92ed5bfd8ac54b501ab6e",
+        "registry_entry_count": 2
+      },
+      {
+        "contract": "code_assist.notion.crdt_runtime_spike_executor.v1",
+        "direct_dependencies": {
+          "@hocuspocus/server": "file:../../downloads/npm/hocuspocus-server-4.6.0.tgz",
+          "yjs": "file:../../downloads/npm/yjs-13.6.32.tgz"
+        },
+        "kind": "isolated_npm_lock",
+        "lockfile_sha256": "sha256:17c0bfdd96606bccacf3b4add95416ee31934e6847f32ab780562418319c9d21",
+        "missing_registry_integrity_count": 0,
+        "package_entry_count": 10,
+        "path": "package-lock.json",
+        "registry_entries_sha256": "sha256:17977f32d7782dcb94acd3d586c8a45d94705aa72d2f98308a819aa345964114",
+        "registry_entry_count": 8
+      }
+    ],
+    "python_wheel_lock": {
+      "artifact_count": 12,
+      "artifacts": [
+        {
+          "bytes": 125813,
+          "file": "anyio-4.14.2-py3-none-any.whl",
+          "sha256": "sha256:9f505dda5ac9f0c8309b5e8bd445a8c2bf7246f3ce950121e45ea15bc41d1494"
+        },
+        {
+          "bytes": 119243,
+          "file": "click-8.4.2-py3-none-any.whl",
+          "sha256": "sha256:e6f9f66136c816745b9d65817da91d61d957fb16e02e4dcd0552553c5a197b76"
+        },
+        {
+          "bytes": 25335,
+          "file": "colorama-0.4.6-py2.py3-none-any.whl",
+          "sha256": "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
+        },
+        {
+          "bytes": 37515,
+          "file": "h11-0.16.0-py3-none-any.whl",
+          "sha256": "sha256:63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+        },
+        {
+          "bytes": 68550,
+          "file": "idna-3.19-py3-none-any.whl",
+          "sha256": "sha256:815e7be7a7806d54abb586dc943addc79e8b2ee16915059658cbeff4b1b43bf4"
+        },
+        {
+          "bytes": 868548,
+          "file": "pycrdt-0.14.3-cp314-cp314-win_amd64.whl",
+          "sha256": "sha256:5f9c5fde46e7961b3595141833d96ce31badcc980c6256e5e62689e5b4d404bd"
+        },
+        {
+          "bytes": 11840,
+          "file": "pycrdt_store-0.1.5-py3-none-any.whl",
+          "sha256": "sha256:5ef6978d363be01275ffc337567072050363fa18fd6a51f0a48917dc210025f2"
+        },
+        {
+          "bytes": 14916,
+          "file": "pycrdt_websocket-0.16.4-py3-none-any.whl",
+          "sha256": "sha256:5c1612ea4e8743c4eb9d46b938b9e727ddfc7aee0d20130627e0d6c1fcc083da"
+        },
+        {
+          "bytes": 4042,
+          "file": "sqlite_anyio-0.2.10-py3-none-any.whl",
+          "sha256": "sha256:059d9d401f455fcfb6283770fcd6b42f8366d21cf9f256ff56d20f7ec1141b8f"
+        },
+        {
+          "bytes": 45571,
+          "file": "typing_extensions-4.16.0-py3-none-any.whl",
+          "sha256": "sha256:481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+        },
+        {
+          "bytes": 79871,
+          "file": "uvicorn-0.52.4-py3-none-any.whl",
+          "sha256": "sha256:f86e41a149d7d05a9969337e3946a9c171c06a5d42680896daaba624aeac8da1"
+        },
+        {
+          "bytes": 212969,
+          "file": "websockets-17.0.1-cp314-cp314-win_amd64.whl",
+          "sha256": "sha256:81ce19c6046ace11da7001781be7317bb1dc389f399af4b2ed962190f76f9add"
+        }
+      ],
+      "contract": "code_assist.notion.crdt_runtime_spike_executor.v1",
+      "kind": "isolated_python_wheel_lock",
+      "lock_sha256": "sha256:73a42e6a4f25a7e06fbad3d8e031f2e06d9d866d30fa1e911ecaf165081b3105"
+    },
+    "status": "pass"
+  },
+  "run_id": "E0P2-20260824-001"
+}

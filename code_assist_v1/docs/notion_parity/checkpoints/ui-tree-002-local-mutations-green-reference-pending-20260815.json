@@ -1,0 +1,313 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-15T01:58:39+09:00",
+  "run_id": "ui-tree-002-local-mutations-green-20260815",
+  "model": {
+    "planning": "gpt-5.6-sol-ultra",
+    "implementation": "gpt-5.6-sol-xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-tree-001-local-expand-collapse-green-reference-pending-20260815.json",
+    "sha256": "sha256:c0a5a985df73d5fb45c52f189f7751f7c3af8670bedc66c143fa21ce72f8b53d",
+    "semantic_status": "historical-parent-preserved"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T01:58:39+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": [
+      "UI-TREE-002"
+    ],
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "trial-or-payment",
+      "invite-or-public-posting",
+      "operational-migration",
+      "live-feature-flag",
+      "continuous-consumer",
+      "resolver-cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI-TREE-002-CREATE-RENAME-NEST-REORDER-MOVE",
+    "status": "local-real-browser-green-reference-pending",
+    "acceptance_ids": [
+      "WORKSPACE-SCOPED-CREATE",
+      "DEFAULT-OFF-CAPABILITY",
+      "CREATE-EXACT-REPLAY",
+      "STRICT-REQUEST-AND-STALE-REFUSAL",
+      "TITLE-SAVE",
+      "MOVE-DIALOG-NEST",
+      "DRAG-SIBLING-REORDER",
+      "ANCESTOR-INTO-DESCENDANT-REFUSED",
+      "ACTIVE-PATH-AND-BREADCRUMB-COHERENT",
+      "TREE-ROW-FOCUS-PRESERVED",
+      "NO-GLOBAL-LEGACY-CREATE-REQUEST",
+      "LOCAL-REPEATABILITY",
+      "SECOND-BRAIN-REGRESSION"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "notion_store.py",
+        "pre_sha256": "sha256:06c5680d0d73f775787ac5d793f7bc1ffdfc36fcd6e37e1db75d0d566f00cb02",
+        "post_sha256": "sha256:0964afb12def35bd853514f7e33722db3aa1e8dd9b11c1ae22110efaf02aaa68",
+        "change": "deterministic operation-bound page id and idempotent self-owned source create"
+      },
+      {
+        "path": "notion_workspace_pages.py",
+        "pre_sha256": "sha256:480f6862d0374fa37c7e5de98deb64dd0a41528eaa011df063c91ad7cf34ce95",
+        "post_sha256": "sha256:46f0564fe89ed328c8a904f553f275670ee91e3f9de59e9177756a95be70302c",
+        "change": "owner-only workspace-scoped create, binding activation, and exact replay"
+      },
+      {
+        "path": "routes_notion_workspace.py",
+        "pre_sha256": "sha256:86cea3741de68077d6141aa841138a183e2bf3dda8f953c71047b5b04ded5df3",
+        "post_sha256": "sha256:50bb9ede95a16dfe453d6439ada876c564a0f3b7bcbe29fab7a24fbaf3d2f0f4",
+        "change": "strict default-off workspace page POST command"
+      },
+      {
+        "path": "notion_static/notion.js",
+        "pre_sha256": "sha256:8695da8df76f7da30f906c39f60689d7d654b5b2f29d90fc13c44fe957e6668c",
+        "post_sha256": "sha256:a4b44ca145f90585a0b6878212f5e7989f45dc14ddc1402510d5cbb418dbe12a",
+        "change": "workspace create intent and focus restoration after move and drag rerenders"
+      },
+      {
+        "path": "tools/notion_parity/ui_actions.py",
+        "post_sha256": "sha256:c2ee0f601040fe5eeb1ac65c0d18ddc7ba4f41535a8a3eb9bb78276a787673b7",
+        "change": "select_synthetic and drag evidence verbs aligned with the scenario schema"
+      },
+      {
+        "path": "tests/test_notion_workspace_pages.py",
+        "post_sha256": "sha256:e480265465d6c734c329aff9bba5bb85071e40baf0d055664ab85c124d58801f",
+        "change": "default-off, replay, strict-field, stale-version, conflict, and scoped-list tests"
+      },
+      {
+        "path": "tests/test_notion_workspace_auth_isolation.py",
+        "post_sha256": "sha256:7de2c21bbf0631a9531998d8e59de36faa8cb3a6bf0d0f135e3f41b6a42d0725",
+        "change": "exact host-only route shape includes the gated POST method"
+      },
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "pre_sha256": "sha256:fd5320d10a225898416c83c958808b674631c48243a419913a2bb85646455ff3",
+        "post_sha256": "sha256:28cf32378e725362d0b74dc645ad3b38d9e135ef99e2a79a6e3cf0f1b1f45c08",
+        "change": "repeated real-Chrome page-tree mutation journey and redacted capture"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenario.schema.json",
+        "post_sha256": "sha256:09c0a88e9341f39c96681ca03939807f3efbda85a4c6d5370bba023d55bb97b5",
+        "change": "explicit synthetic selection and drag action vocabulary"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "post_sha256": "sha256:8371eaf5fec0d541db51f93c3011a2059b2dfb90f0b545994698964311285121",
+        "change": "eight-action UI-TREE-002 contract and current authority hashes"
+      },
+      {
+        "path": "docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:f2e122fff42db8f9bd431728824468e68fc30c9289d0cadf968cb7bf8143a9f4",
+        "post_sha256": "sha256:7b987b7eac4f067d99e9135e1c2cadc6face92431be9f80827411ab15fac0464",
+        "change": "latest UI-TREE-002 local checkpoint and non-promotion note"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:07cccd2ed5f83220b9a35d031800f2785aafa4c95b3c5817ac822824c6c4e4d4",
+        "post_sha256": "sha256:034ff23330b4320aa22f19aad17bbb46a53418ab896b77a9d00885b886bfb104",
+        "change": "current UI-TREE-002 browser evidence state"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI_TREE_002_LOCAL_MUTATIONS_RESULT_20260815.md",
+        "post_sha256": "sha256:ff3adbb7a5ac09ae636f0d138dabbde32e0e274a6590c7b6a6d5b64e454f11d5",
+        "change": "new identifier-free local result"
+      }
+    ],
+    "read_dependencies": [
+      "docs/notion_parity/checkpoints/ui-tree-001-local-expand-collapse-green-reference-pending-20260815.json",
+      "tools/notion_parity/ui_local_fixture.py",
+      "notion_workspace_store.py"
+    ],
+    "protected_unchanged": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      },
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ],
+    "unchanged_ui": [
+      {
+        "path": "notion_static/index.html",
+        "sha256": "sha256:24a534279ece6802d22571a490e525fc2c25209843de5ba5de748364ed3ac434"
+      },
+      {
+        "path": "notion_static/notion.css",
+        "sha256": "sha256:6dbddb3d093d37f25ae5132a040023c122362a67b034bb2674fe39fc152f5b20"
+      }
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "persistent_browser_profile_reused": false,
+    "local_browser": "installed-stable-chrome-ephemeral-playwright-context"
+  },
+  "evidence": {
+    "source_build_sha256": "sha256:1b0111f829f137ba5c616f10f8e06edae453d83333533159e52ecf47f36e40f9",
+    "reference": [],
+    "local": [
+      {
+        "scenario_id": "UI-TREE-002",
+        "capture_sha256": "sha256:c9fb4ae16772b3a8d3afb765fe78e367f2899f384a0512f0c290b9a221d4a85b",
+        "redaction": "pass",
+        "repeat_runs": 2
+      }
+    ],
+    "differential": [],
+    "focus_sequence": [
+      "PAGE-TITLE",
+      "TREE-CHILD-B",
+      "TREE-CHILD-B",
+      "TREE-ROOT"
+    ],
+    "reference_blocker": {
+      "stage": "browser-runtime-initialization-before-selection",
+      "error_code": "kernel-assets-path-not-found-os-error-3",
+      "content_accessed": false,
+      "retry_in_same_environment": false
+    }
+  },
+  "commands": [
+    {
+      "selection": "workspace page POST red before route implementation",
+      "result": "failed as expected: method not available (405)",
+      "exit_code": 1
+    },
+    {
+      "selection": "UI-TREE-002 first current-source browser run",
+      "result": "product journey reached capture; action vocabulary rejected select_synthetic",
+      "exit_code": 1
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py -k ui_tree_002",
+      "result": "1 passed, 5 deselected in 22.37s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py final current-source run",
+      "result": "6 passed in 122.25s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/test_notion_workspace_pages.py",
+      "result": "5 passed in 10.61s",
+      "exit_code": 0
+    },
+    {
+      "selection": "workspace routes, navigation, and auth isolation first run",
+      "result": "40 passed, 1 intentional route-shape snapshot drift",
+      "exit_code": 1
+    },
+    {
+      "selection": "workspace routes, navigation, and auth isolation final run",
+      "result": "41 passed in 43.22s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion routes, atomic-save compatibility, publication adapter",
+      "result": "25 passed in 12.23s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication/job restart and chat characterization",
+      "result": "5 passed in 6.90s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six Node UI/editor/navigation/publication/atomic-save/CSRF scripts",
+      "result": "6 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Core UI plan verifier",
+      "result": "13 passed in 3.83s",
+      "exit_code": 0
+    },
+    {
+      "selection": "isolated local fixture",
+      "result": "8 passed in 4.78s",
+      "exit_code": 0
+    },
+    {
+      "selection": "UI evidence, packet, redaction, and reference guard",
+      "result": "47 passed in 12.49s",
+      "exit_code": 0
+    }
+  ],
+  "tests": {
+    "workspace_scoped_create": "pass",
+    "default_off": "pass",
+    "exact_replay": "pass",
+    "strict_request_and_stale_version": "pass-zero-extra-pages",
+    "title_save": "pass",
+    "nest_and_breadcrumb": "pass",
+    "sibling_reorder": "pass",
+    "invalid_cycle_move": "pass-zero-request",
+    "focus_preservation": "pass",
+    "local_repeatability": "pass-twice",
+    "second_brain_regression": "pass",
+    "reference_c0": "blocked-before-browser-selection"
+  },
+  "claims": {
+    "h1_local_six_scenario_green": true,
+    "h1_complete": false,
+    "h3_shell_001_local_green": true,
+    "h3_shell_002_local_green": true,
+    "h3_shell_003_local_green": true,
+    "h3_tree_001_local_green": true,
+    "h3_tree_002_local_green": true,
+    "h3_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_or_production_content_exposed": false,
+    "live_local_data_accessed": false,
+    "protected_file_edit_required": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false,
+    "trial_payment_invite_public_action_required": false
+  },
+  "remaining": [
+    "recover signed-in Chrome Browser control and run C0 without opening personal workspaces",
+    "capture matching REF-FREE-A/B shell and tree evidence and seal differentials",
+    "complete UI-TREE-003 duplicate, Delete/Trash, and restore local and differential gates",
+    "continue H4-H9 through evidence-bound cohesive vertical slices"
+  ],
+  "next_exact_command": "if signed-in browser control is available, run identifier-free C0 and capture REF-FREE-A/B shell/tree evidence; otherwise begin the isolated H3 UI-TREE-003 duplicate-delete-trash-restore slice without weakening the reference gate"
+}

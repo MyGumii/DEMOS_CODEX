@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_transport_authority.v1",
+  "contract_id": "T0B-P1-DURABLE-TRANSPORT-AUTHORITY-001",
+  "recorded_at": "2026-08-24T10:00:00Z",
+  "packet_id": "T0B-P1",
+  "status": "verified_synthetic_durable_authority",
+  "authority_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+    },
+    {
+      "path": "code_assist_v1/notion_workspace_realtime_transport_migration.py",
+      "sha256": "sha256:55fec94bc3e7d8a04d4aec7d4e544aaf33bbeeba8a1c7309d8004de29f70f9ba"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/durable_transport.py",
+      "sha256": "sha256:1d0f0328445b63eac8a05d75be1c54522ec853932980ab525db3ce2b004fdb7d"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/canonical_authority.py",
+      "sha256": "sha256:6c5a0c28a451028c6ea59f61d44b87711b7d70aeaf66fe62a661ff4f1b2510a3"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/protocol_contract.py",
+      "sha256": "sha256:232f090471775e49dc4097911a409c3a45e0c47f0ece279f7452ad1d595e1fe8"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/selected_runtime_contract.py",
+      "sha256": "sha256:31947c8739e5555875e6df8c0e604e987299299726684f2cf3220d11dd1f79fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_winner_adr.v1.json",
+      "sha256": "sha256:591b08a1cefcf5cf536b52a66e70ab6c1047133c8bcff99f27bdab90bef6a71a"
+    }
+  ],
+  "schema_lineage": {
+    "source_version": 2026082401,
+    "source_name": "notion_workspace_v2_collaboration_canonical_authority",
+    "source_checksum": "sha256:13f018dfe76330241c022dc9dd2b052f8612deefd8701f6a20ed526c13cd3d11",
+    "source_actual_schema_sha256": "sha256:d2145ebaf231a9592684a5b80f5f4962dcf2413f949203a7c266265a050d5d88",
+    "parallel_reserved_version": 2026081318,
+    "target_version": 2026082402,
+    "target_name": "notion_workspace_v2_durable_realtime_transport",
+    "target_checksum": "sha256:76377bdee7954f9d03d27dcf56dcf052799547d65d4e6ba21f117455e085baba",
+    "target_actual_schema_sha256": "sha256:8f3bb03c8cecef84f9c4343234743bcd57c9264a293699d89576becb56c966c9",
+    "source_object_count": 213,
+    "target_object_count": 228,
+    "required_additive_tables": [
+      "workspace_collaboration_tickets",
+      "workspace_collaboration_client_ack_state",
+      "workspace_collaboration_crdt_updates",
+      "workspace_collaboration_crdt_snapshots"
+    ],
+    "application_import_applies_migration": false,
+    "forward_only": true
+  },
+  "ticket_authority": {
+    "stored_secret_material": "sha256_digest_only",
+    "plaintext_ticket_persisted": false,
+    "csrf_required_before_issue": true,
+    "current_canonical_role_and_epoch_required": true,
+    "recognized_ticket_burned_before_accept_or_reject": true,
+    "one_time_consumption": true,
+    "maximum_ttl_ms": 30000,
+    "non_oracle_rejection": "collaboration ticket rejected"
+  },
+  "durable_update_authority": {
+    "selected_candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+    "wire_format": "Yjs_v1_update_bytes",
+    "payload_encoding": "application/vnd.yjs-update",
+    "maximum_payload_bytes": 1048576,
+    "runtime_binding_sha256": "sha256:99b8e01015bbf92c385493bebbc08b6600add4b43afd2ab6e1746a6bb8e74057",
+    "canonical_transaction_order": [
+      "current_authority_and_epoch_revalidation",
+      "operation_replay_or_conflict_check",
+      "client_sequence_and_ack_bound_check",
+      "opaque_update_and_monotonic_state_write",
+      "canonical_event_write",
+      "canonical_audit_write",
+      "canonical_outbox_write",
+      "immutable_operation_result_write",
+      "commit_before_ack"
+    ],
+    "same_operation_same_request": "original_ack",
+    "same_operation_different_request": "operation_conflict",
+    "response_loss_retry_duplicate_effect_count": 0,
+    "fault_points_full_rollback": [
+      "after_domain",
+      "after_event",
+      "after_audit",
+      "after_outbox",
+      "after_operation"
+    ]
+  },
+  "replay_and_compaction": {
+    "replay_order": "strictly_ascending_document_sequence",
+    "maximum_replay_batch": 256,
+    "current_epoch_revalidated_before_payload_read": true,
+    "compacted_cursor_returns_snapshot_then_tail": true,
+    "snapshot_and_state_vector_hashes_verified_against_exact_bytes": true,
+    "ordered_update_hashes_and_high_water_revalidated_before_snapshot_commit": true,
+    "base_snapshot_change_fails_closed": true,
+    "python_inspects_yjs_payload_semantics": false
+  },
+  "prototype_boundary": {
+    "temporary_sqlite_catalogs_only_for_gate_evidence": true,
+    "network_listener_started": false,
+    "service_or_port_started": false,
+    "live_identity_imported": false,
+    "live_or_existing_per_user_database_opened": false,
+    "development_pair_changed": false,
+    "capability_enabled": false,
+    "production_target_changed": false
+  },
+  "validation": {
+    "new_test_count": 15,
+    "failed": 0,
+    "skipped": 0,
+    "xfailed": 0,
+    "migration_apply_roots": "pytest_temporary_only"
+  },
+  "claims": {
+    "durable_ticket_event_ack_replay_snapshot_and_epoch_store_implemented": true,
+    "selected_crdt_payload_and_compaction_binding_implemented": true,
+    "atomic_operation_event_audit_outbox_commit_implemented": true,
+    "T0B_P1_gate_passed": true,
+    "actual_gateway_transport_implemented": false,
+    "actual_browser_collaboration_verified": false,
+    "runtime_or_feature_enabled": false,
+    "product_complete": false
+  }
+}

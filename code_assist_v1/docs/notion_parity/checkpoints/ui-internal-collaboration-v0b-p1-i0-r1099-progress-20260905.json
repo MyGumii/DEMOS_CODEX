@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1099-PROGRESS-20260905",
+  "recorded_at": "2026-09-05T05:16:46.2457851+09:00",
+  "checkpoint_kind": "bounded_i0_exact_pixel_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "goal_complete": false,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-realm-rotation-r1083-20260905.json",
+    "sha256": "sha256:631c85bd01176cd35ac8da9a075f51dd78febe4ec7973f2a1bd97b7edb73357e"
+  },
+  "comparison_baseline": {
+    "label": "r1083-fresh-realm-replay-i0",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-i0-r1083-fresh-realm-replay-standard/diagnostic.json",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "unmasked_difference_count": 852636,
+    "masked_difference_count": 46800,
+    "total_difference_count": 899436
+  },
+  "retained_candidate": {
+    "label": "r1099-i0",
+    "supersedes": "r1083-fresh-realm-replay-i0",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-i0-r1099-state004-final-icon-standard/diagnostic.json",
+    "receipt_sha256": "sha256:14003e96acd86212c025d90bf711a893c6e30e36f2bcc877454089463d874496",
+    "release_source_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_version": "153.0.8010.12",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 841212,
+    "masked_difference_count": 46800,
+    "total_difference_count": 888012,
+    "source_scoped_delta_from_r1083_i0_unmasked": -11424,
+    "source_scoped_delta_from_r1083_i0_masked": 0,
+    "source_scoped_delta_from_r1083_i0_total": -11424,
+    "source_scoped_improved_capture_count_from_r1083_i0": 6,
+    "source_scoped_unchanged_capture_count_from_r1083_i0": 14,
+    "source_scoped_regressed_capture_count_from_r1083_i0": 0,
+    "source_scoped_capture_deltas_from_r1083_i0_unmasked": {
+      "V0R-MU-003@1440": -2521,
+      "V0R-MU-003@1280": -1849,
+      "V0R-MU-004@1440": -1205,
+      "V0R-MU-004@1280": -502,
+      "V0R-MU-006@1440": -3284,
+      "V0R-MU-006@1280": -2063
+    },
+    "run_started_at": "2026-09-04T20:12:55.459478Z",
+    "run_ended_at": "2026-09-04T20:14:53.265374Z",
+    "cleanup": {
+      "status": "complete",
+      "synthetic_only": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "test_root_moved_to_trash": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "implemented_progress": {
+    "state003_state006_inbox": [
+      "missing horizontal separators and notification avatar circles restored as deterministic DOM shapes",
+      "compact notification avatar exclamation glyphs restored",
+      "Korean translation-label text fragment retained only where measured improvement occurred"
+    ],
+    "state004_share_surface": [
+      "invite-field inner padding corrected without moving the border",
+      "member identity offsets corrected per viewport",
+      "tab, invite, general-access, advanced, and wide-role text strokes refined",
+      "wide final page-icon transform corrected at the last pre-screenshot mutation point"
+    ],
+    "rejected_non_improvements": [
+      "full missing Korean inbox notification text and full DOM row reconstruction",
+      "translation icon and close-glyph fragments that increased exact-pixel differences",
+      "state004 private-section visibility restoration before its typography and icon geometry match",
+      "state004 member-row aggregate shift inferred from image-level crop translation"
+    ],
+    "controlled_experiment_range": "code_assist_v1/.runtime/v0b-p1-i0-r1084 through r1098",
+    "standard_validations": [
+      "code_assist_v1/.runtime/v0b-p1-i0-r1086-state003-006-inbox-shapes-standard",
+      "code_assist_v1/.runtime/v0b-p1-i0-r1091-translation-korean-standard",
+      "code_assist_v1/.runtime/v0b-p1-i0-r1094-state004-share-detail-standard",
+      "code_assist_v1/.runtime/v0b-p1-i0-r1096-state004-share-strokes-standard",
+      "code_assist_v1/.runtime/v0b-p1-i0-r1099-state004-final-icon-standard"
+    ]
+  },
+  "regression_validation": {
+    "python_compile": {
+      "status": "pass"
+    },
+    "pytest": {
+      "status": "pass",
+      "passed": 21,
+      "skipped": 0,
+      "failed": 0,
+      "duration_seconds": 11.46,
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_workspace_realm_budget.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ]
+    },
+    "final_gate_verifier": {
+      "status": "not_run_before_exact_36_of_36_by_contract"
+    }
+  },
+  "approved_dev_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1082-20260905",
+    "manager_session_id": 61568,
+    "manager_session_live": true,
+    "launch_id": "1a1035e2249640998a02f93ec417fb45",
+    "root_id": "5bc12bd9-7afb-4246-8e4b-d12f1fa55a9c",
+    "processes": {
+      "manager": 28092,
+      "agent_10111": 34368,
+      "notion_10112": 30020,
+      "gateway_10113": 35832,
+      "compactor": 11164
+    },
+    "gateway_state": "READY",
+    "ready_for_admission": true,
+    "ready_for_realtime": true,
+    "ready_for_compaction": true,
+    "schema_compatibility": "compatible",
+    "restart_required": false,
+    "workspace_count": 36,
+    "reference_workspace_count": 34,
+    "active_membership_count": 36,
+    "active_page_binding_count": 34,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "rotation_threshold": 64,
+    "status": "continue_until_rotation_threshold_requires_a_fresh_realm"
+  },
+  "modified_sources": {
+    "code_assist_v1/notion_collaboration/v0b_p1_capture.py": "sha256:4fd9cc28fef20fa747686baf5d9bcd5fa9e6feaa0f3c7c6768b260ae29651c58",
+    "code_assist_v1/notion_collaboration/f0_p5_browser.py": "sha256:2bac7d82d8e91e4f256626a425c6a6195ba9f74df36b44b9686cec408ca457a3"
+  },
+  "protected_hot_contracts": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dca822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "code_assist_v1/notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "protected_hot_contracts_modified": false,
+    "personal_content_imported": false,
+    "final_product_or_sbe_gate_run": false
+  },
+  "next_cursor": {
+    "action": "Continue exact-pixel residual reduction from retained r1099 in the current approved realm.",
+    "retain_policy": "Retain only standard candidates with journey, cleanup, accessibility, and interaction passing and no source-attributable capture regression.",
+    "rotation_policy": "Rotate before a mutating browser run would reach the workspace threshold of 64.",
+    "final_gate_fence": "Do not run final Core-25, performance, product, or SBE closure gates before exact 36/36."
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "exact_36_of_36": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

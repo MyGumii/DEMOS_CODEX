@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1213-PROGRESS-20260905",
+  "recorded_at": "2026-09-05T04:06:07.623986Z",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1189-progress-20260905.json",
+    "sha256": "sha256:5d32aad432077c063093348da92448b6fd8adf37e3933da41ec95f6ccc564a50"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1213-footer-header-retained-diagnostic",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1213-footer-header-retained-diagnostic/diagnostic.json",
+    "diagnostic_sha256": "sha256:88de5c9548c265304dd7e087e3549b790c50d726bafdd334993d23249814f0e5",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:bea1585b4ccd92f53e673adaf686650c52c900709951c0b05bbec67c995536c8",
+    "release_candidate_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_candidate_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 789373,
+    "masked_difference_count": 0,
+    "total_difference_count": 789373,
+    "known_runtime_mode_delta": {
+      "state": "V0R-MU-004@1440",
+      "pixels_above_stable_mode": 9,
+      "stable_normalized_total_difference_count": 789364
+    },
+    "overall_exact_progress": "0/36"
+  },
+  "improvement_since_r1189": {
+    "receipt_total_difference_delta": -2327,
+    "stable_normalized_total_difference_delta": -2336,
+    "retained_changes": [
+      "Refine the repeated Korean inbox first-line bold stroke without changing its copy or geometry.",
+      "Align the V0R-MU-005 third editor independently for wide and compact viewports.",
+      "Refine V0R-MU-005 per-block text strokes while preserving the exact title region.",
+      "Add and refine a compact-only secondary V0R-MU-004 inspector shadow while keeping the wide shadow unchanged.",
+      "Align the V0R-MU-004 wide sidebar invite card and bottom action row with viewport-scoped rules.",
+      "Move only the V0R-MU-005 workspace sidebar header left by one pixel, leaving guest scroll geometry unchanged."
+    ],
+    "rejected_candidates": [
+      "Repeated inbox overlay letter-spacing changes outside the retained plateau",
+      "Separate suffix-only stroke changes for the repeated comment and membership lines",
+      "V0R-MU-005 fifth editor position changes",
+      "Wide V0R-MU-004 secondary shadow layers",
+      "Compact V0R-MU-004 footer movement for elements at or outside the viewport"
+    ]
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1192-20260905",
+    "launch_id": "45d2548ac5da4b6db6de7246f515b090",
+    "root_id": "ab52bfe9-31d7-43f6-9a4e-9e94c2e976a9",
+    "current_audit": {
+      "workspace_count": 46,
+      "reference_workspace_count": 44,
+      "active_membership_count": 46,
+      "active_page_binding_count": 44,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64,
+    "filesystem_preservation_required": true
+  },
+  "verification": {
+    "targeted_tests": "21 passed in 11.87s",
+    "python_compile": "pass",
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue measured lossless exact residual reduction from the stable normalized 789364 baseline. Preserve and rotate the realm before the workspace budget reaches 64. Do not run final gates before exact parity reaches 36/36."
+}

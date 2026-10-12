@@ -1,0 +1,165 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-14T23:43:28+09:00",
+  "run_id": "ui1-c0-reference-guard-local-green-20260814",
+  "model": {
+    "planning": "ultra",
+    "implementation": "gpt-5.6-sol-xhigh-goal-profile"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui1-evidence-packet-local-green-reference-blocked-20260814.json",
+    "sha256": "sha256:18705ddd390c05009977f45e04014a28e1a9c54c8527aa1c8b06e226f4b76124",
+    "semantic_status": "historical-parent-evidence-packet-result"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-14T23:22:00+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "slice": "UI1-REFERENCE-C0-GUARD",
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "trial-or-payment",
+      "invite-or-public-posting",
+      "production-publication-rollout",
+      "operational-migration"
+    ]
+  },
+  "slice": {
+    "id": "UI1-REFERENCE-C0-GUARD",
+    "status": "contract-tested-live-c0-transport-blocked",
+    "acceptance_ids": [
+      "C0-CONNECTION-STATE",
+      "C0-CHROME-SESSION",
+      "C0-SIGNED-IN-VISIBLE",
+      "C0-SYNTHETIC-WORKSPACE-BOUNDARY",
+      "C0-PERSONAL-WORKSPACE-ZERO",
+      "C0-ARTIFACT-ZERO",
+      "C0-MUTATION-ZERO",
+      "C0-IDENTIFIER-FREE-DECISION",
+      "C0-CONTRADICTORY-PASS-REJECTED",
+      "C0-PER-ACTION-AUTHORIZATION"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "tools/notion_parity/ui_reference_guard.py",
+        "sha256": "sha256:ff7a5f2b807cd73f5fc6ccb83c0a503296f7df5ffdfe07accf912befa434297d"
+      },
+      {
+        "path": "tests/test_notion_ui_reference_guard.py",
+        "sha256": "sha256:f69ffeca1905449ebb47de9934bb7d3aec7bed7bfa8e2fcc646c7843b3d11fed"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "sha256": "sha256:1836073ad4af1a13f8b0786bef71753e7bf24db0a51f96eed9e2c190f523e232"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI1_REFERENCE_C0_GUARD_RESULT_20260814.md",
+        "sha256": "sha256:3bff1ff5d110e53ad269affe04b89cbafafa65b39af2cd726adeac5ddef7116b"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "sha256": "sha256:9476d52e2a15490d75cfa67426d8941f9d167f71f7c966a56b207daf17bdd3f2"
+      }
+    ],
+    "protected_unchanged": [
+      "AGENTS.md",
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ],
+    "agents_sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "chrome_application_listed": false,
+    "chrome_window_selected": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false
+  },
+  "evidence": {
+    "c0_guard": {
+      "state": "contract-tested",
+      "passing_decision_consistency": "exact",
+      "raw_workspace_labels_accepted": false,
+      "contradictory_pass_constructible": false,
+      "personal_workspace_action_allowed": false,
+      "reference_second_brain_mutation_allowed": false,
+      "external_side_effect_allowed": false
+    },
+    "live_c0": {
+      "state": "blocked-before-application-listing",
+      "failure_code": "kernel-assets-path-not-found-os-error-3",
+      "attempted_surfaces": [
+        "in-app-browser",
+        "computer-use"
+      ],
+      "content_accessed": false
+    }
+  },
+  "commands": [
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "tests/test_notion_ui_reference_guard.py",
+      "result": "25 passed in 5.44s",
+      "exit_code": 0
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "H1 reference guard + evidence + packet + plan verifier + local fixture",
+      "result": "65 passed in 18.63s",
+      "exit_code": 0
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "core plan verifier and guard regression",
+      "result": "38 passed in 9.00s; plan verifier 0 errors",
+      "exit_code": 0
+    },
+    {
+      "cwd": "G:/AI_Agent/DEMOS_CODEX",
+      "selection": "py_compile ui_reference_guard.py and focused test",
+      "result": "pass",
+      "exit_code": 0
+    }
+  ],
+  "claims": {
+    "c0_contract_tested": true,
+    "c0_live_passed": false,
+    "h1_local_harness_green": true,
+    "h1_reference_complete": false,
+    "h1_differential_complete": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "remaining": [
+    "restart or repair the desktop Browser/Computer Use runtime",
+    "obtain a real passing C0 decision before opening either synthetic workspace",
+    "capture matching REF-FREE-A/B scenarios with synthetic content",
+    "seal reference and local artifacts and produce the first differential",
+    "continue H2-H9 through reviewed cohesive slices"
+  ],
+  "next_exact_command": "after desktop Browser/Computer Use runtime restart, list applications without screenshot or text capture, select exactly one Chrome window, then perform C0 without opening personal content"
+}

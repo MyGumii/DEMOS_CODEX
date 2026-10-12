@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.crdt_winner_selection_cleanup_receipt.v1",
+  "receipt_id": "E0-P4-CANDIDATE-ROOT-CLEANUP-20260824",
+  "packet_id": "E0-P4",
+  "status": "pass",
+  "executed_at": "2026-08-24T00:02:00Z",
+  "root_binding": {
+    "root_basename": "code-assist-e0-p3-20260824-bfec48e4f9444d06b1b5c2780225dcb6",
+    "marker_contract": "code_assist.notion.crdt_candidate_benchmark_root.v1",
+    "marker_name": ".e0-p3-owned.json",
+    "run_id": "E0P3-20260824-001",
+    "direct_os_temp_child_validated": true,
+    "marker_validated_before_cleanup": true,
+    "run_id_validated_before_cleanup": true
+  },
+  "cleanup": {
+    "candidate_owned_processes_remaining_before_cleanup": 0,
+    "files_removed": 5190,
+    "bytes_removed": 56770335,
+    "root_removed": true,
+    "root_exists_after_cleanup": false,
+    "cleanup_function": "crdt_candidate_benchmark_executor.cleanup_owned_root"
+  },
+  "preserved_repo_evidence": {
+    "winner_selection_receipt_sha256": "sha256:c358230bc289d8b1c2244ec46b8b5ebe939fd051fa0b4a595625044f7b0d490a",
+    "artifact_manifest_sha256": "sha256:8059bf135ca66a49d67c0798d30b71ed48bf779e3f142cb20d94a1328354e584",
+    "python_lock_sha256": "sha256:2910510df5c434104778c4a78f40a6b2368204513c8ac29824c5a1cb13db7c65",
+    "node_package_lock_sha256": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3"
+  },
+  "claims": {
+    "unrelated_process_terminated": false,
+    "unrelated_root_removed": false,
+    "product_service_or_port_changed": false,
+    "protected_data_changed": false,
+    "candidate_runtime_root_remaining": false
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-SIDEBAR-COLOR-RETRY32-20260829",
+  "recorded_at": "2026-08-29T05:20:03.2283120+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry32 aligned the expanded sidebar base RGB and boundary to the lossless reference, kept V0R-MU-014 collapsed, expanded the other reference states, and reused the clean canonical A-root seed in IAM. All four live browser journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. Unmasked differences decreased by 3,110,008 from retry31 to 6,783,829. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-cleanbase-retry31-progress-20260829.json",
+      "sha256": "sha256:89f4547babe886c055f12954de79d4a859be5fcee3a918a50a7ee8a5151f8a08"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:0c58d25cd0c8c5b60b1c552a3b819356a0cf96c39ee0deaf0c1ff07a5ba7836c",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:bbb4b508930e3f31f0f6294b427d16c8a3dd2599e99ae4f40e9b2ad58d5df343"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:0aa8f50e20752d15ff19bf8d179a307d6b4fc157783b3c1b8710d1a1bab3f4e3"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:46973ef9e72ba1c5066b2302568229371e564b44e6ff1de6a7c6c252e817e4b2"
+      }
+    ],
+    "journey_and_capture_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:8512f54356fac7dfc4e1906752a4a9da904cf4a79805a80112111f3d4685f65b"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:4708210b1c07e0dbd76acccc166082868bd792dab065805d164729c9d77f35c1"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/c0_p2_browser.py",
+        "sha256": "sha256:d7192f6d72c3c22e554b3c151901323c4c56154ad37a860095b4abfb45d3532e"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/e1_p2_browser.py",
+        "sha256": "sha256:57e52c3d157efbce99eea43d6dd0d8d8100e393a217af9540da357438181649c"
+      }
+    ]
+  },
+  "product_and_journey_changes": {
+    "sidebar_base_color": "The expanded sidebar base changed from #f9f8f6 to the lossless reference RGB #f9f8f7, eliminating a one-channel full-surface exact mismatch.",
+    "sidebar_boundary": "The sidebar boundary uses the observed #f0efed rather than the stronger generic border token.",
+    "capture_sidebar_state": "All adopted states render the expanded sidebar except V0R-MU-014, whose independently measured collapsed presentation remains closer.",
+    "iam_clean_a_root": "The IAM journey now reuses the same canonical lossless A-root seed and neutral list icon as C0 and E1 instead of the obsolete onboarding checklist."
+  },
+  "bounded_diagnostics": {
+    "iam_retry64": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry64-lossless-sidebar-color",
+      "journey_status": "pass",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "delta_from_retry31_same_states": -766921,
+      "cleanup_verified": true
+    },
+    "iam_retry65": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry65-lossless-state006-open",
+      "journey_status": "pass",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "delta_from_retry64": -310747,
+      "V0R_MU_006_delta_from_retry64": -321369,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "c0_retry11": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260829-retry11-lossless-sidebar-color-open",
+      "journey_status": "pass",
+      "capture_count": 8,
+      "accessibility_pass_count": 8,
+      "interaction_pass_count": 8,
+      "delta_from_retry31_same_states_before_preserving_collapsed_V0R_MU_014": -697353,
+      "cleanup_verified": true
+    },
+    "e1_retry14": {
+      "root": "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260829-retry14-lossless-sidebar-color",
+      "journey_status": "pass",
+      "capture_count": 6,
+      "accessibility_pass_count": 6,
+      "interaction_pass_count": 6,
+      "delta_from_retry31_same_states": -992138,
+      "cleanup_verified": true
+    },
+    "f0_retry5": {
+      "root": "code_assist_v1/.runtime/v0b-p1-f0-diagnostic-20260829-retry5-lossless-sidebar-color",
+      "journey_status": "pass",
+      "capture_count": 2,
+      "accessibility_pass_count": 2,
+      "interaction_pass_count": 2,
+      "delta_from_retry31_same_state": -331410,
+      "cleanup_verified": true
+    },
+    "iam_retry63": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry63-lossless-state006-sidebar",
+      "status": "rejected_fail_closed",
+      "reason": "The run stopped on a transient reference-matte validation before completion. Direct immutable screenshot hash and both matte rectangles were then revalidated with zero drift.",
+      "cleanup_path": "component finally cleanup",
+      "accepted": false
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry32-lossless-sidebar-color",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry32-lossless-sidebar-color/receipt.json",
+    "receipt_sha256": "sha256:fb04c916afd2a35db58d22142e04ff671769a571b326fc28554557e69cdf4f38",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {
+      "I0-P2": 132193,
+      "C0-P2": 91244,
+      "E1-P2": 56945,
+      "F0-P5": 45519
+    },
+    "unmasked_difference_count": 6783829,
+    "masked_difference_count": 211220,
+    "raw_difference_count": 6995049,
+    "delta_from_retry31_unmasked": -3110008,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:05756beae8a62687b39908cfd61c856f9b78bbb13b91310ccfb640520a3c8d93"
+    }
+  },
+  "state_deltas_from_retry31": [
+    {"state_id": "V0R-MU-011", "delta": -331410},
+    {"state_id": "V0R-MU-009", "delta": -330714},
+    {"state_id": "V0R-MU-010", "delta": -330714},
+    {"state_id": "V0R-MU-007", "delta": -330710},
+    {"state_id": "V0R-MU-008", "delta": -330710},
+    {"state_id": "V0R-MU-004", "delta": -324766},
+    {"state_id": "V0R-MU-003", "delta": -315744},
+    {"state_id": "V0R-MU-012", "delta": -307491},
+    {"state_id": "V0R-MU-006", "delta": -286052},
+    {"state_id": "V0R-MU-005", "delta": -174335},
+    {"state_id": "V0R-MU-013", "delta": -70212},
+    {"state_id": "V0R-MU-002", "delta": -78},
+    {"state_id": "V0R-MU-015", "delta": -379},
+    {"state_id": "V0R-MU-001", "delta": 23294},
+    {"state_id": "V0R-MU-017", "delta": 13}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "next_focus": {
+    "largest_states": [
+      {"state_id": "V0R-MU-001", "unmasked_difference_count": 807490},
+      {"state_id": "V0R-MU-002", "unmasked_difference_count": 755660},
+      {"state_id": "V0R-MU-015", "unmasked_difference_count": 533442},
+      {"state_id": "V0R-MU-016", "unmasked_difference_count": 530578}
+    ],
+    "primary": "Diagnose the workspace invite and people settings presentation in V0R-MU-001/002, then the B role-transition states V0R-MU-015/016.",
+    "full_candidate_policy": "Use bounded IAM diagnostics before another 36-capture full run."
+  },
+  "open_gates": {
+    "exact_pixel": {"passed": 0, "required": 36, "status": "open"},
+    "core_25": {"status": "not_run_until_exact_36_of_36"},
+    "performance": {"status": "not_run_until_exact_36_of_36"},
+    "claims": {"status": "open"},
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "scope_attestation": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "user_chrome_touched": false,
+    "persistent_browser_profile_used": false,
+    "public_publish_or_link_used": false,
+    "personal_workspace_or_page_used": false,
+    "permanent_delete_used": false,
+    "reference_receipts_modified": false,
+    "agents_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  }
+}

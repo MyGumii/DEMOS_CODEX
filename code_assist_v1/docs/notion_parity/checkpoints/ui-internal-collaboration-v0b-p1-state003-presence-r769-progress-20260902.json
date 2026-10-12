@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-STATE003-PRESENCE-R769-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T13:32:00+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-guest-badge-r763-progress-20260902.json",
+    "checkpoint_sha256": "sha256:cc462c697e3a15a28bfa14a9865ce9e4bdf5beca9239ebe0b72db2622b6de188",
+    "source_sha256": "sha256:5327913822ce03ef70529eb9c0b2964db8e08b18756cd7dc5733a6288fe3c45e",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r763/receipt.json",
+    "receipt_sha256": "sha256:1df6811597e9343f153e1c586c128c5f324593895beabe6fcd62432973703a4c",
+    "unmasked_differing_pixel_count": 1960527,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2028945
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:c673c724c5d5307dc59b8d462ca96ab9457b8e44362386c364df649dc9c23508",
+    "summary": [
+      "Normalized only V0R-MU-003 topbar presence to the immutable-reference k/I aliases and gray/peach colors.",
+      "Shifted the V0R-MU-003 presence group 22px left after measuring both reference viewports.",
+      "Saved and restored the original presence DOM before later states so V0R-MU-006 and subsequent captures remain source-identical."
+    ],
+    "source_bound_unmasked_reduction_from_r763": 1244,
+    "source_bound_unmasked_reduction_from_r749": 2584,
+    "source_bound_unmasked_reduction_from_r739": 6146,
+    "source_bound_unmasked_reduction_from_r732": 9701,
+    "source_bound_unmasked_reduction_from_r728": 13095,
+    "source_bound_unmasked_reduction_from_r720": 16439,
+    "source_bound_unmasked_reduction_from_r717": 18787,
+    "source_bound_unmasked_reduction_from_r713": 23786,
+    "source_bound_unmasked_reduction_from_r657": 52713,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 113760,
+    "source_bound_state_deltas_from_r763": {
+      "V0R-MU-003__1440x900": -622,
+      "V0R-MU-003__1280x800": -622
+    }
+  },
+  "accepted_diagnostics": {
+    "r765_state003_presence_with_restore": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r765",
+      "state003_reduction_from_r763": 924,
+      "state006_delta_after_restore": 0,
+      "cleanup": true,
+      "accessibility_pass_count": 20
+    },
+    "r766_state003_presence_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r766",
+      "state003_reduction_from_r765": 320,
+      "viewport_reductions": {"1440x900": 160, "1280x800": 160},
+      "cleanup": true,
+      "accessibility_pass_count": 20
+    }
+  },
+  "rejected_diagnostics": {
+    "r764_state003_presence_without_restore": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r764",
+      "reason": "V0R-MU-003 improved by 924 pixels but the mutated presence DOM leaked into V0R-MU-006 and regressed it by 1186 pixels; state restoration was added in r765.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r767_second_avatar_size": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r767",
+      "reason": "Reducing the second presence avatar from 24px to 20px regressed V0R-MU-003 by 210 pixels.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r768_workspace_icon_glyph": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r768",
+      "reason": "The approximate workspace glyph did not match the reference icon and regressed V0R-MU-003 by 50 pixels.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r769",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r769/receipt.json",
+    "receipt_sha256": "sha256:30839c0f89bb85ef01d5fe15ab5d524e481ae5772f9c022044a6f3c60188dc5a",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1961331,
+    "masked_differing_pixel_count": 68658,
+    "total_differing_pixel_count": 2029989,
+    "raw_unmasked_delta_from_r763": 804,
+    "raw_masked_delta_from_r763": 240,
+    "raw_total_delta_from_r763": 1044,
+    "source_bound_unmasked_delta_from_r763": -1244,
+    "runtime_only_variation_from_r763": {
+      "V0R-MU-004__1440x900": {"unmasked": 2040, "masked": 0},
+      "V0R-MU-014__1280x800": {"unmasked": 8, "masked": 240},
+      "unmasked_net": 2048,
+      "masked_net": 240
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {"I0-P2": "pass", "C0-P2": "pass", "E1-P2": "pass", "F0-P5": "pass"},
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1641,
+      "comment_delivery_ms": 1022,
+      "reaction_delivery_ms": 1465,
+      "presence_ttl_expiry_ms": 15427,
+      "reconnect_ms": 1304
+    },
+    "duration_ms": 342350,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:ffdf3052b7e64e7e8a36e5d3eb5322e13aa7472230899769228f10ea0535fbb9"
+    }
+  },
+  "verification": {
+    "python_compile": {"result": "pass", "exit_code": 0},
+    "targeted_tests": {"result": "17 passed in 25.01s", "exit_code": 0, "live_approved_pair_enabled": true},
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {"claims": 1, "core_25": 1, "exact_pixel": 36, "performance": 1},
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:30839c0f89bb85ef01d5fe15ab5d524e481ae5772f9c022044a6f3c60188dc5a"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r769 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-COMMENT-INBOX-LAYOUT-R231-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T10:03:57.2319332+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r231 Chrome 153 full candidate captures all 18 named states at both adopted viewports, passes all 36 accessibility captures, and completes synthetic cleanup. State-bounded comment-thread, inbox, and compact-width presentation corrections reduce the full unmasked difference by 47,845 pixels and the raw difference by 47,997 pixels from r219. Exact RGBA remains 0/36, so r231 is a mutable progress candidate only and is not an immutable V0B receipt, phase-gate claim, or product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "comparison_candidates": {
+      "r201_receipt": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r201/receipt.json",
+      "r201_sha256": "sha256:354cf1da8c462c574de971ae86a8fa05eb01db4ff186efd7dbbb185734f58670",
+      "r201_unmasked_difference_count": 2473374,
+      "r201_raw_difference_count": 2546138,
+      "r219_receipt": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r219/receipt.json",
+      "r219_sha256": "sha256:630c692134ad2a80b23d8f83ef38d8758739667b53eba3f02433476d78f5b691",
+      "r219_unmasked_difference_count": 2397789,
+      "r219_raw_difference_count": 2470553
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:fc2f5655efb7fc4594e71a94afde341bade9a9e012cf4b393323e7b50900c12c",
+        "changes": [
+          "align the V0R-MU-011 page title, teamspace tree, unread divider, footer, and focused database-cell presentation while preserving the recorded focus target",
+          "use the reference 795 pixel compact page width for V0R-MU-013 and V0R-MU-014 while retaining the 954 pixel wide presentation",
+          "align the V0R-MU-006 and V0R-MU-013 inbox label and badge presentation",
+          "align the V0R-MU-014 English capture labels for Inbox, Share, comments, database controls, and the collaboration footer",
+          "retain the r219 workspace-invite, page-popover, direct-share, and access-boundary corrections"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:b9fd7185d0b81d5c5b3faff110125bc1595f3d4147e98c3ccd5e9c592b3bc4c3"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:78bbea83778d201e90f24929cac74fe942c8666adf439bc8008e58fe5d64e471"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:0c4f48c3b952ac65755c884dbd7d70089a38b98002eb654b74fc669131560901"
+      }
+    ],
+    "rejected_experiments_removed": [
+      "V0R-MU-002 fixed 768 pixel wide-view modal height",
+      "V0R-MU-002 duplicate black privacy bars outside the receipt-bound comparison mask",
+      "V0R-MU-011 visible page-hover controls that displaced the comment thread",
+      "V0R-MU-011 title offsets from bounded r221 through r223 that did not match both adopted viewports"
+    ]
+  },
+  "retained_r231_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r231",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r231/receipt.json",
+    "receipt_sha256": "sha256:6def10297f8011749f51c81a1f439059bd20313beebc1d1f92e0878964c0cca4",
+    "release_candidate_source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "runtime_candidate_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 361640,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2349944,
+    "raw_difference_count": 2422556,
+    "masked_difference_count": 72612,
+    "unmasked_delta_from_r201": -123430,
+    "raw_delta_from_r201": -123582,
+    "unmasked_delta_from_r219": -47845,
+    "raw_delta_from_r219": -47997,
+    "changed_state_deltas_from_r219": {
+      "V0R-MU-001": -6576,
+      "V0R-MU-002": 12,
+      "V0R-MU-006": 10,
+      "V0R-MU-008": 11,
+      "V0R-MU-011": -38351,
+      "V0R-MU-013": -605,
+      "V0R-MU-014": -2346
+    },
+    "retained_state_totals": {
+      "V0R-MU-001": 213381,
+      "V0R-MU-002": 204043,
+      "V0R-MU-006": 191458,
+      "V0R-MU-011": 116123,
+      "V0R-MU-013": 146764,
+      "V0R-MU-014": 174801,
+      "V0R-MU-017": 94039,
+      "V0R-MU-018": 93901
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:856ef9f453fbb5952ee45c767a5c88af03ba4c29e6cc3e9edbc0d2d59258ae75"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "working_directory": "workspace_root",
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "14 passed in 11.04s",
+      "exit_code": 0
+    },
+    "full_candidate": {
+      "component_journey_statuses": {
+        "I0-P2": "pass",
+        "C0-P2": "pass",
+        "E1-P2": "pass",
+        "F0-P5": "pass"
+      },
+      "all_adopted_multiuser_states_captured": true,
+      "accessibility_evidence_complete": true,
+      "zero_unmasked_RGBA_difference": false
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from the retained r231 mutable candidate. Do not promote it to immutable evidence. Prioritize the remaining high-difference states, then rerun the full 36-state candidate before any fresh Core 25 or quiet-host performance gate."
+}

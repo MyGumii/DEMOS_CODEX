@@ -1,0 +1,172 @@
+{
+  "contract": "code_assist.notion.core_free_ui.reference_differential.v1",
+  "recorded_at": "2026-08-20T23:57:10+09:00",
+  "scenario_id": "UI-SHELL-002",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "review": {
+    "approved": true,
+    "approved_by": "workspace_owner",
+    "approval_scope": "redacted_summary_only"
+  },
+  "scope": {
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "external_side_effect_attempted": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "screenshot_count": 0
+  },
+  "reference": {
+    "browser": "chrome-signed-in",
+    "submission_file_sha256": "sha256:97a7a96457deae975c1e460120f417d48cc1bc7a0ed44c6c1ffd01a0aa4f569b",
+    "receipt_file_sha256": "sha256:be089095f226d2391c9d6afa285d935c2389a51edbb368e17bab19e609bb5502",
+    "receipt": {
+      "action_log_sha256": "sha256:8b3f3858124cfce75bc8fabc5d2d71ff1d1e7a31cc1873ec98157e8d4b3d5e8d",
+      "c0_sha256": "sha256:56f66c5a126d19af0897143e9a306e1af13bf1ec854bed2b849b4f56ac3c55fb",
+      "capture_count": 2,
+      "captures_sha256": "sha256:521ccb87a7e7a732bacc284852bb86ac8cfa47e39808e9bc6b48bf37e33fcb37",
+      "contract": "notion_core_free_ui_manual_reference_receipt_v1",
+      "external_side_effect_attempted": false,
+      "path_disclosed": false,
+      "personal_page_accessed": false,
+      "personal_workspace_accessed": false,
+      "profile": "free-owner-chrome-desktop-ko-KR",
+      "promotion_allowed": false,
+      "run_id": "ui1-browser-reference-20260820",
+      "scenario_id": "UI-SHELL-002",
+      "screenshot_count": 0,
+      "status": "accepted_reference_observation",
+      "worksheet_sha256": "sha256:ac81d4a2915c80c9dc02b59b45ab947e94e79baba1e552cca0d4d4d9fd960c3c"
+    },
+    "captures": {
+      "UI-SHELL-002-A01": {
+        "a11y": {"name": "SIDEBAR-RESTORE", "role": "BUTTON", "state": "enabled"},
+        "action_log_sha256": "sha256:8b3f3858124cfce75bc8fabc5d2d71ff1d1e7a31cc1873ec98157e8d4b3d5e8d",
+        "capture_schema_version": 1,
+        "error_recovery": {"result": "unchanged"},
+        "focus": {"name": "SIDEBAR-RESTORE", "state": "blurred"},
+        "geometry": {"SIDEBAR": {"height": 863, "width": 0, "x": 0, "y": 0}},
+        "keyboard": {"result": "not_applicable"},
+        "latency_ms": 749,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {"rule_set": "core-free-ui-v1", "status": "pass"},
+        "scenario_id": "UI-SHELL-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {"region": "SIDEBAR", "state": "hidden"},
+        "side": "reference",
+        "source_build_sha256": "sha256:697228a08c9045ffd62defc66edd7a0b51f55e5f16547b6b71d0fd94860ca431",
+        "state": {"state": "collapsed", "visible": false, "workspace_alias": "REF-FREE-A"},
+        "viewport": {"height": 863, "scale": 1, "width": 1920}
+      },
+      "UI-SHELL-002-A02": {
+        "a11y": {"name": "SIDEBAR-COLLAPSE", "role": "BUTTON", "state": "enabled"},
+        "action_log_sha256": "sha256:8b3f3858124cfce75bc8fabc5d2d71ff1d1e7a31cc1873ec98157e8d4b3d5e8d",
+        "capture_schema_version": 1,
+        "error_recovery": {"result": "unchanged"},
+        "focus": {"name": "SIDEBAR-COLLAPSE", "state": "blurred"},
+        "geometry": {"SIDEBAR": {"height": 863, "width": 270, "x": 0, "y": 0}},
+        "keyboard": {"result": "not_applicable"},
+        "latency_ms": 619,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {"rule_set": "core-free-ui-v1", "status": "pass"},
+        "scenario_id": "UI-SHELL-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {"region": "SIDEBAR", "state": "visible"},
+        "side": "reference",
+        "source_build_sha256": "sha256:697228a08c9045ffd62defc66edd7a0b51f55e5f16547b6b71d0fd94860ca431",
+        "state": {"state": "expanded", "visible": true, "workspace_alias": "REF-FREE-A"},
+        "viewport": {"height": 863, "scale": 1, "width": 1920}
+      }
+    }
+  },
+  "local": {
+    "browser": "chrome-ephemeral-headless",
+    "isolated_data_root": true,
+    "capture_sha256": {
+      "UI-SHELL-002-A01": "sha256:90f421acd584b044a1b7440613fdef1cb3eaffddb118ebb2b3d67e6acde4d1d0",
+      "UI-SHELL-002-A02": "sha256:15fc98ff96543a6a6c3c7e7e6093ada0c0a8e3476f5bde47c5d29d543085f108"
+    },
+    "captures": {
+      "UI-SHELL-002-A01": {
+        "a11y": {"name": "SIDEBAR-RESTORE", "role": "BUTTON", "state": "enabled"},
+        "action_log_sha256": "sha256:f2765abea3c1734b8c7db2c651990444daaea575de8ea85366095bad61f5b949",
+        "capture_schema_version": 1,
+        "error_recovery": {"result": "unchanged"},
+        "focus": {"name": "SIDEBAR-RESTORE", "state": "blurred"},
+        "geometry": {"SIDEBAR": {"height": 863, "width": 0, "x": 0, "y": 0}},
+        "keyboard": {"result": "not_applicable"},
+        "latency_ms": 91,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {"rule_set": "core-free-ui-v1", "status": "pass"},
+        "scenario_id": "UI-SHELL-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {"region": "SIDEBAR", "state": "hidden"},
+        "side": "local",
+        "source_build_sha256": "sha256:173ecf60b4722ee8a4ad762a84c32872c6c21dafb4f90a17a920a8b9975b416d",
+        "state": {"state": "collapsed", "visible": false, "workspace_alias": "REF-FREE-A"},
+        "viewport": {"height": 863, "scale": 1, "width": 1920}
+      },
+      "UI-SHELL-002-A02": {
+        "a11y": {"name": "SIDEBAR-COLLAPSE", "role": "BUTTON", "state": "enabled"},
+        "action_log_sha256": "sha256:f2765abea3c1734b8c7db2c651990444daaea575de8ea85366095bad61f5b949",
+        "capture_schema_version": 1,
+        "error_recovery": {"result": "unchanged"},
+        "focus": {"name": "SIDEBAR-COLLAPSE", "state": "blurred"},
+        "geometry": {"SIDEBAR": {"height": 863, "width": 270, "x": 0, "y": 0}},
+        "keyboard": {"result": "not_applicable"},
+        "latency_ms": 48,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {"rule_set": "core-free-ui-v1", "status": "pass"},
+        "scenario_id": "UI-SHELL-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {"region": "SIDEBAR", "state": "visible"},
+        "side": "local",
+        "source_build_sha256": "sha256:173ecf60b4722ee8a4ad762a84c32872c6c21dafb4f90a17a920a8b9975b416d",
+        "state": {"state": "expanded", "visible": true, "workspace_alias": "REF-FREE-A"},
+        "viewport": {"height": 863, "scale": 1, "width": 1920}
+      }
+    }
+  },
+  "differential": {
+    "policy_state": "precalibration",
+    "all_actions_passed": true,
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-SHELL-002-A01": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:0de98f8c45430fd974b55fe9cc820a94a755bd5951cee3d5aa4ea89bc9b9b103",
+        "candidate_sha256": "sha256:90f421acd584b044a1b7440613fdef1cb3eaffddb118ebb2b3d67e6acde4d1d0",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {"SIDEBAR": {"height": 863, "width": 0, "x": 0, "y": 0}},
+          "candidate_geometry": {"SIDEBAR": {"height": 863, "width": 0, "x": 0, "y": 0}},
+          "reference_latency_ms": 749,
+          "candidate_latency_ms": 91
+        }
+      },
+      "UI-SHELL-002-A02": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:88ea176795e375f753577d8556846011784606bf5fe9149d0c076685337c57dc",
+        "candidate_sha256": "sha256:15fc98ff96543a6a6c3c7e7e6093ada0c0a8e3476f5bde47c5d29d543085f108",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {"SIDEBAR": {"height": 863, "width": 270, "x": 0, "y": 0}},
+          "candidate_geometry": {"SIDEBAR": {"height": 863, "width": 270, "x": 0, "y": 0}},
+          "reference_latency_ms": 619,
+          "candidate_latency_ms": 48
+        }
+      }
+    }
+  }
+}

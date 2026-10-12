@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.s0a_o1b.current_sbe_rebind_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-S0A-O1B-CURRENT-SBE-REBIND-V4-20260909",
+  "recorded_at": "2026-09-09T08:18:57+09:00",
+  "status": "local_dynamic_contracts_rebound_and_verified_external_execution_deferred",
+  "immutable_after_recording": true,
+  "packet_ids": [
+    "S0A-P2",
+    "O1B-P1"
+  ],
+  "predecessors": {
+    "combined_rebind": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-s0a-o1b-current-sbe-rebind-v3-20260909.json",
+      "sha256": "sha256:591aaf2e4a712a9f8c9eec8011b18aad0f8bbe5f2218a88df2c018fb16134bc3",
+      "record_sha256": "sha256:9790ecdcaa56b34db06fe59b903773d64a928b8eb9b1277e96eb7ff8a91660c7"
+    }
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    }
+  },
+  "sbe_dynamic_baseline": {
+    "report_path": "capture/o1b-p1-sbe-readiness-contract-audit-20260909-v9.json",
+    "report_sha256": "sha256:a4167425b80ef4556c9c26bd7d4fc6c0ecc14763c861e2ca626411a7e4c3b590",
+    "input_sha256": "sha256:5a4d63e8501680129928649687aa3713a28e02550942569b5898056a9aee38aa",
+    "status": "pass",
+    "error_count": 0,
+    "report_schema_version": 2,
+    "source_file_count": 33,
+    "goal_count": 20,
+    "mandatory_scenario_count": 284,
+    "publication_source": {
+      "path": "code_assist_v1/knowledge_core/services/publication.py",
+      "sha256": "sha256:f5fabdee88fcc216e3574d361543eabf993b55d5c41902ccac690a3042fa6d0f"
+    }
+  },
+  "successor_bindings": {
+    "sbe_audit_successor": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-s0a-current-sbe-audit-successor-v3-20260909.json",
+      "sha256": "sha256:e4e7ee89c20683f6bc74dc9d1d5a20d0823001cae0a4e5072bf16090dd040928",
+      "record_sha256": "sha256:9d57ba88efbfdbda148edbc9c865b214d63ea99b08a4ae2bf7cc46456136030a"
+    },
+    "source_compatibility": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-source-compatibility-inheritance-v29-20260909.json",
+      "sha256": "sha256:c41c73b3515256aadbbeff93df3b01d43611980fd38028ef69ce9acaacdd0e1b",
+      "record_sha256": "sha256:d7f7f60549dfc95c9ac622f0e2c8af09c45ff0827ffb914da5849c6b37126a15"
+    },
+    "s0a_publication": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json",
+      "sha256": "sha256:4e16e79fef55d58a96d99df53ba549b90819bae056cd171b3e8465216b66b249"
+    },
+    "o1b_readiness_policy": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v7.json",
+      "sha256": "sha256:9d4d811f398b5f1c61efba597057d168d541b23c2ab031c181479e17959b136c"
+    }
+  },
+  "implementation_bindings": {
+    "internal_validation": {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:e67c7a81b0b947ad49db0107d69c44200545b092b0639025dbf4fce00173db0c"
+    },
+    "target_restore_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_target_restore.py",
+      "sha256": "sha256:398ebe35386e54127a55eeccae99f0a4e84d6c3dfaf4458e3a4aca028b177576"
+    },
+    "central_harness_test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+      "sha256": "sha256:b6e29bcb3e479d3f1a968698291ab5515af913c8f6991b137bccbc04f2267805"
+    },
+    "target_gate_test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_gate_runner.py",
+      "sha256": "sha256:7d7cd039a3645fb3284624e5b9868ce8a374c24141b2672c1d9bdd1e14441725"
+    },
+    "browser_live_opt_in_test": {
+      "path": "code_assist_v1/tests/notion_collaboration/browser/test_e1_p2_collaborative_editor.py",
+      "sha256": "sha256:e2ddccc3f15a2d21aac67197fd10de29d518662d625cb5157d7dcffde4e1b4e9"
+    },
+    "backup_adr_test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_backup_inventory_contract.py",
+      "sha256": "sha256:5e93c26e4217f518fe2baa958084fc86208ee22463c68610a8a0f01e5a07cecc"
+    },
+    "authority_adr_test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_authority_adr.py",
+      "sha256": "sha256:a392fdffab16fa2b64891ad761008a916da9a03f095425627ad7a17bbd254dfc"
+    }
+  },
+  "verification": {
+    "full_notion_unit_regression": {
+      "status": "pass",
+      "passed": 549,
+      "failed": 0,
+      "deselected": 265,
+      "duration_seconds": 477.05
+    },
+    "source_compatibility_and_e1_focused_regression": {
+      "status": "pass",
+      "passed": 33,
+      "failed": 0,
+      "skipped": 1,
+      "duration_seconds": 61.28
+    },
+    "frozen_adr_drift_regression": {
+      "status": "pass",
+      "passed": 17,
+      "failed": 0,
+      "duration_seconds": 16.39
+    },
+    "s0a_current_binding_audit": {
+      "status": "pass",
+      "exit_code": 0,
+      "error_count": 0,
+      "gate_passed": true,
+      "source_count": 14,
+      "test_count": 6,
+      "sbe_scenario_count": 9,
+      "product_complete": false
+    },
+    "o1b_local_readiness_audit": {
+      "status": "pass",
+      "exit_code": 0,
+      "error_count": 0,
+      "readiness_contract_passed": true,
+      "approval_required": true,
+      "target_operations_handoff_required": true,
+      "gate_passed": false,
+      "production_restore_executed": false,
+      "product_complete": false
+    },
+    "central_read_only_audit": {
+      "status": "pass",
+      "exit_code": 0,
+      "error_count": 0,
+      "completion_state": "incomplete",
+      "gate_passed_required_packets": 44,
+      "required_packet_count": 50,
+      "closed_matrix_rows": 21,
+      "matrix_row_count": 28,
+      "closed_phase_gates": 15,
+      "phase_gate_count": 20,
+      "valid_execution_receipts": 21
+    }
+  },
+  "remaining_boundaries": [
+    "O1B approval, target handoff, trust anchors, target identity, and encrypted off-host destination remain absent",
+    "no target backup, restore, nonce consumption, production action, or paid provisioning occurred",
+    "central catalog, ladder, completion matrix, and current checkpoint pointer remain unchanged",
+    "O1B-P1, Q0-P1, R0A-P1, R0B-P1, R1-P1, and Z0-P1 remain uncredited"
+  ],
+  "claims": {
+    "s0a_dynamic_binding_current": true,
+    "source_compatibility_checkpoint_current": true,
+    "all_local_notion_unit_regression_green": true,
+    "o1b_local_readiness_contract_passed": true,
+    "AP_OPS_TARGET_granted": false,
+    "target_operations_handoff_accepted": false,
+    "target_action_executed": false,
+    "external_system_mutated": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "historical_evidence_overwritten": false,
+    "central_catalogs_modified": false,
+    "sbe_hot_contracts_modified_by_notion_agent": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:e272186d6e21198ecb735214d0a8eec98678fb4163effd5f91f83c27d4845157"
+}

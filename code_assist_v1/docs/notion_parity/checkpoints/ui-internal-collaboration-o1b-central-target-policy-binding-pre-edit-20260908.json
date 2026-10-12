@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b.central_target_policy_binding_pre_edit_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-CENTRAL-TARGET-POLICY-BINDING-PRE-EDIT-20260908",
+  "recorded_at": "2026-09-08T23:24:17+09:00",
+  "status": "verified_local_readiness_with_central_policy_path_mismatch",
+  "immutable_after_recording": true,
+  "packet_id": "O1B-P1",
+  "observed_mismatch": {
+    "direct_target_verifier_policy": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v4.json",
+    "central_receipt_validator_policy": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v1.json",
+    "impact": "a future v4-bound O1B receipt could pass the dedicated verifier but be rejected by central receipt validation"
+  },
+  "pre_edit_bindings": {
+    "internal_validation": {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:fe89f6294119578a8c4c4b9d269a59c123fd1b6fc83ebf01107b27816caa4f8b"
+    },
+    "source_compatibility_v12": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-source-compatibility-inheritance-v12-20260908.json",
+      "sha256": "sha256:26804c57165721b548e5070f9bb71ded66892b6f61ecc1e0c4b4962e6471a177"
+    },
+    "s0a_contract": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json",
+      "sha256": "sha256:d6103913b7c8da3833987a6e91169f29814e068de750f663de4f079d9e7ff84a"
+    },
+    "o1b_policy_v4": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v4.json",
+      "sha256": "sha256:f6ba450334eb337782f57e5c2e1d8a8956d43953f6e9cfd577901a9c3332896d"
+    },
+    "dedicated_target_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_target_restore.py",
+      "sha256": "sha256:37f5a921e5abc67da48ae480c123ebbb2a4176a7cd16db700677bd9ea96d3c6b"
+    }
+  },
+  "authorized_change": {
+    "target_policy_path_alignment_only": true,
+    "source_compatibility_successor_required": true,
+    "central_catalog_ladder_matrix_pointer_change_allowed": false,
+    "external_action_allowed": false
+  },
+  "claims": {
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "historical_evidence_overwritten": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:5a9892e9741fa6846bfe361686ebe6ce967376d59b59dbcba5299e007ad0996a"
+}

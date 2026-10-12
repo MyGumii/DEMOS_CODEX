@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-T0A-P2-GATEWAY-PRE-EDIT-20260823",
+  "recorded_at": "2026-08-23T09:18:52Z",
+  "checkpoint_kind": "packet_pre_edit_ownership",
+  "packet_id": "T0A-P2",
+  "packet_status": "superseded",
+  "purpose": "Freeze exact ownership before implementing the disposable transport-only gateway state machine, origin/expiry/reuse/epoch/stale-client negative paths, bounded durable queues, reconnect-storm control, and gateway-unavailable fail-closed behavior.",
+  "owner_agent": "/root",
+  "ownership_lease": {
+    "lease_id": "T0A-P2-SPIKE-20260823-091852Z",
+    "lane": "SPIKE",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-23T09:18:52Z",
+    "expires_at": "2026-08-23T17:18:52Z",
+    "released_at": "2026-08-23T09:30:36Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json"
+  ],
+  "planned_new_product_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.schema.json",
+    "code_assist_v1/notion_collaboration/transport_gateway_prototype.py",
+    "code_assist_v1/tools/verify_internal_collaborative_gateway_contract.py"
+  ],
+  "planned_new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_backpressure.py"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.json": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.schema.json": null,
+    "code_assist_v1/notion_collaboration/transport_gateway_prototype.py": null,
+    "code_assist_v1/tools/verify_internal_collaborative_gateway_contract.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_backpressure.py": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:3d0110a79e0ffe0451cb38cb5ee069c595db6b2b75ea5b92256d28813ef76fb9",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:d3127801221b31b039b965005668f5316011dfa4733d38c5563120af90b8ce85",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:cf3ae09446d43e2d18265bbc91105bb00958ef9f0eef4211020ec770f8fd5e63",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:ef00bc05f24c17b4d996e92cb3f9a105b3887bdfbed6dfa118ea5cecd7544dce"
+  },
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_protocol_contract.v1.json": "sha256:c2ce4dcecebd4f7da459824f3f012a142ef8ef6d2fd08195490587ad4f954481",
+    "code_assist_v1/notion_collaboration/protocol_contract.py": "sha256:232f090471775e49dc4097911a409c3a45e0c47f0ece279f7452ad1d595e1fe8",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0a-p1-protocol-contract-20260823.json",
+    "sha256": "sha256:fcdd72cd6e4512d3402fdf77ea62b768e876a8606ebcbe72b05ea0d8d8600eea",
+    "packet_id": "T0A-P1",
+    "receipt_id": "T0A-P1-L3-CRDT-PROTOCOL-CORPUS-20260823"
+  },
+  "sbe_contract_audit": {
+    "status": "pass",
+    "error_count": 0,
+    "input_sha256": "sha256:284d70c452fa1b742212d12286d5d3c7da9b7e9a2014d9b29163df2a805c9cf0",
+    "goal_count": 20,
+    "mandatory_scenario_count": 284,
+    "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604"
+  },
+  "approval_state": {
+    "packet_approval_required": false,
+    "ap_runtime_spike_approved": false,
+    "dependency_download_or_install_allowed": false,
+    "actual_service_or_port_start_allowed": false,
+    "production_schema_identity_or_data_root_mutation_allowed": false
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "paths": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/docs/knowledge_spaces",
+      "code_assist_v1/requirements-runtime.lock",
+      "code_assist_v1/notion_store.py",
+      "code_assist_v1/notion_workspace_store.py",
+      "code_assist_v1/routes_notion.py",
+      "code_assist_v1/routes_notion_workspace.py",
+      "code_assist_v1/knowledge_core",
+      "code_assist_v1/user_data",
+      "code_assist_v1/knowledge",
+      "code_assist_v1/.runtime"
+    ]
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "Resume the interrupted implementation goal.",
+    "status": "active",
+    "observed_at": "2026-08-23T09:18:52Z",
+    "goal_completion_claimed": false
+  },
+  "execution_cursor": {
+    "current_packet": "T0A-P2",
+    "current_state": "transferred_to_gate_checkpoint",
+    "parallel_reason": "T0A-P2 has no approval dependency and its T0A-P1 prerequisite is gate_passed; E0-P2 remains awaiting AP-RUNTIME-SPIKE.",
+    "next_primary_packet": "E0-P2",
+    "next_primary_state": "awaiting_conditional_approval",
+    "required_approval_id": "AP-RUNTIME-SPIKE"
+  }
+}

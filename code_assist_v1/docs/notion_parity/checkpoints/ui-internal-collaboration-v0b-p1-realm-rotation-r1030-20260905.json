@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-REALM-ROTATION-R1030-20260905",
+  "recorded_at": "2026-09-05T00:24:49.4074273+09:00",
+  "checkpoint_kind": "approved_development_realm_rotation",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "goal_complete": false,
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-invite-inbox-compact-r1029-progress-20260905.json",
+    "sha256": "sha256:b7af05b11030e962441a07ffa48d74468611591fe1be00e0ab4edc3c59c375d5"
+  },
+  "retired_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1004-20260904",
+    "manager_session_id": 96241,
+    "manager_pid": 35816,
+    "launch_id": "2720c9de63284878bfdaa464de2c2641",
+    "root_id": "ac23c42e-24b7-4bbe-a3f5-ab30c4377ce6",
+    "final_workspace_count": 58,
+    "final_reference_workspace_count": 56,
+    "final_active_membership_count": 58,
+    "final_active_page_binding_count": 60,
+    "final_active_external_membership_count": 0,
+    "final_active_guest_count": 0,
+    "rotation_threshold": 64,
+    "stop_status": "stopped",
+    "owned_gateway_processes_stopped": true,
+    "owned_host_processes_stopped": true,
+    "owned_ports_closed": true,
+    "active_run_marker_removed_by_clean_shutdown": true,
+    "data_preserved_as_evidence": true,
+    "reuse_allowed": false
+  },
+  "approved_dev_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1030-20260905",
+    "manager_session_id": 13102,
+    "manager_pid": 29692,
+    "manager_session_live": true,
+    "ports": [
+      10111,
+      10112,
+      10113
+    ],
+    "port_processes": {
+      "10111": 41684,
+      "10112": 39448,
+      "10113": 45916
+    },
+    "launch_id": "f58a4e74cb144e69a203b392f619132d",
+    "root_id": "fcc38388-f807-45eb-9845-0c591c618167",
+    "root_marker_sha256": "sha256:0504151906852165fac1876acdebba8ec41392a2d4cead0e3ebf63ce6071bc92",
+    "active_run_sha256": "sha256:f1b9b1d685cca03c5c153955a14165ab28a670ec0cfe2ac9fee449375838a8f0",
+    "root_locator_sha256": "sha256:0144f722f74c676eac2531f1deda11b1b7572bc3d1d1e4d08b6ccee88b972945",
+    "run_root_locator_sha256": "sha256:cff049da9963c0a162b88b4d5d607675521f8425a4cb6ba23066b7f56a7ac876",
+    "run_marker_path": ".dev/notion-collaboration-10111-10113-clean-r1030-20260905/runs/f58a4e74cb144e69a203b392f619132d/run-marker.json",
+    "run_marker_sha256": "sha256:4eac673767e82217c772a3bb72d122fcff49b9fd5602c408cc6c9ad5cc5a52e2",
+    "cookie_name": "ca_dev_pair_af77f5e7218dcb72e9c4",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "approved_identity_ids": [
+      "admin",
+      "user01"
+    ],
+    "workspace_count": 0,
+    "reference_workspace_count": 0,
+    "active_membership_count": 0,
+    "active_page_binding_count": 0,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "health": {
+      "agent_10111": 200,
+      "notion_10112": 200,
+      "gateway_10113": 200,
+      "gateway_state": "READY",
+      "ready_for_admission": true,
+      "ready_for_realtime": true,
+      "ready_for_compaction": true,
+      "schema_compatibility": "compatible",
+      "restart_required": false
+    },
+    "isolation": {
+      "new_signing_secret": true,
+      "existing_signing_secret_copied": false,
+      "signing_secret_hash_differs_from_retired_realm": true,
+      "notion_password_authority_copy": false,
+      "personal_content_imported": false,
+      "production_port_or_root_mutated": false
+    }
+  },
+  "retained_candidate": {
+    "label": "r1029",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260905-r1029-state001-row-state003-006-compact/receipt.json",
+    "receipt_sha256": "sha256:80cf7be08d633952eac389f1abbe3e97c600853b9944eb494e36dedbd172ac03",
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 1609578,
+    "masked_difference_count": 68354,
+    "total_difference_count": 1677932,
+    "source_scoped_regressed_capture_count_from_r1017": 0,
+    "cleanup_status": "complete"
+  },
+  "protected_hot_contracts": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "code_assist_v1/notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "protected_hot_contracts_modified": false,
+    "personal_content_imported": false,
+    "retired_realm_data_deleted": false,
+    "final_product_or_sbe_gate_run": false
+  },
+  "next_cursor": {
+    "action": "Continue V0B exact-pixel residual reduction from retained r1029 in the fresh r1030 realm.",
+    "retain_policy": "Retain only full candidates with all four component journeys passing, cleanup complete, accessibility and interaction 36/36, and zero source-attributable regressions against r1029.",
+    "rotation_policy": "Rotate again before the fresh realm workspace count reaches 64 and preserve every retired realm as evidence.",
+    "final_gate_fence": "Do not run final Core-25, performance, product, or SBE closure gates before exact 36/36."
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "exact_36_of_36": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

@@ -1,0 +1,495 @@
+{
+  "contract_version": 1,
+  "name": "np2c5a_official_archive_live_characterization_matrix",
+  "status": "prepared_not_authorized_not_executed",
+  "reference_state": "official_reference_only_live_characterization_pending",
+  "reference_date": "2026-08-14",
+  "timezone": "Asia/Seoul",
+  "predecessor": {
+    "page_tree_contract_version": 19,
+    "page_tree_contract_status": "official_archive_source_contract_designed_source_v5_and_workspace_1318_blocked_default_off",
+    "current_workspace_schema_version": 2026081317,
+    "h5e_reserved_source_version": 2026081304,
+    "candidate_archive_source_version": 2026081305,
+    "candidate_archive_workspace_version": 2026081318,
+    "source_or_catalog_archive_implementation_exists": false
+  },
+  "authorization": {
+    "explicit_live_execution_approval_required": true,
+    "explicit_live_execution_approval_granted": false,
+    "approved_business_or_enterprise_test_tenant_available": false,
+    "synthetic_fixture_only": true,
+    "normal_public_ui_only": true,
+    "production_or_personal_workspace_allowed": false,
+    "public_or_private_api_capture_allowed": false,
+    "private_endpoint_or_network_payload_capture_allowed": false,
+    "scraping_or_rate_limit_bypass_allowed": false,
+    "evidence_root_must_be_outside_repository": true,
+    "raw_artifacts_may_be_committed": false,
+    "source_catalog_or_runtime_mutation_authorized": false
+  },
+  "claims": {
+    "live_characterized": false,
+    "differential_passed": false,
+    "source_v5_implemented": false,
+    "workspace_1318_implemented": false,
+    "runtime_archive_enabled": false,
+    "np2c5a_complete": false,
+    "np2c_complete": false,
+    "overall_parity_complete": false
+  },
+  "reference_sources": [
+    {
+      "id": "SRC-NOTION-ARCHIVE",
+      "kind": "official_help",
+      "url": "https://www.notion.com/help/archive-pages"
+    },
+    {
+      "id": "SRC-NOTION-DELETE-RESTORE",
+      "kind": "official_help",
+      "url": "https://www.notion.com/en-gb/help/duplicate-delete-and-restore-content"
+    },
+    {
+      "id": "SRC-NOTION-ARCHIVE-RELEASE",
+      "kind": "official_release",
+      "url": "https://www.notion.com/releases/2026-03-27"
+    },
+    {
+      "id": "SRC-NOTION-PAGE-OBJECT",
+      "kind": "official_developer",
+      "url": "https://developers.notion.com/reference/page"
+    },
+    {
+      "id": "SRC-NOTION-PAGE-UPDATE",
+      "kind": "official_developer",
+      "url": "https://developers.notion.com/reference/patch-page"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "business_owner_web_ko",
+      "plan": "business",
+      "role": "workspace_owner",
+      "platform": "desktop_web",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "business_member_web_ko",
+      "plan": "business",
+      "role": "workspace_member",
+      "platform": "desktop_web",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "business_guest_editor_web_ko",
+      "plan": "business",
+      "role": "guest_editor",
+      "platform": "desktop_web",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "business_guest_commenter_web_ko",
+      "plan": "business",
+      "role": "guest_commenter",
+      "platform": "desktop_web",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "business_guest_viewer_web_ko",
+      "plan": "business",
+      "role": "guest_viewer",
+      "platform": "desktop_web",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "enterprise_admin_web_en",
+      "plan": "enterprise",
+      "role": "workspace_admin",
+      "platform": "desktop_web",
+      "locale": "en-US"
+    },
+    {
+      "id": "enterprise_member_windows_ko",
+      "plan": "enterprise",
+      "role": "workspace_member",
+      "platform": "desktop_app_windows",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "enterprise_member_macos_en",
+      "plan": "enterprise",
+      "role": "workspace_member",
+      "platform": "desktop_app_macos",
+      "locale": "en-US"
+    },
+    {
+      "id": "business_member_ios_ko",
+      "plan": "business",
+      "role": "workspace_member",
+      "platform": "ios_app",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "enterprise_member_android_en",
+      "plan": "enterprise",
+      "role": "workspace_member",
+      "platform": "android_app",
+      "locale": "en-US"
+    },
+    {
+      "id": "public_anonymous_web_en",
+      "plan": "not_applicable",
+      "role": "public_anonymous",
+      "platform": "public_web",
+      "locale": "en-US"
+    }
+  ],
+  "fixture_contract": {
+    "tenant_is_synthetic_and_dedicated": true,
+    "real_user_or_organization_content_allowed": false,
+    "fixture_manifest_required": true,
+    "fixture_manifest_sha256_required": true,
+    "fixture_ids_are_placeholders_only": true,
+    "cross_run_real_identifier_linkage_allowed": false,
+    "cleanup_must_be_reviewed_before_execution": true,
+    "source_catalog_or_local_user_data_path_allowed": false
+  },
+  "evidence_contract": {
+    "policy": "docs/notion_parity/EVIDENCE_POLICY.md",
+    "one_manifest_per_scenario_profile_run": true,
+    "required_manifest_fields": [
+      "schema_version",
+      "scenario_id",
+      "observation_state",
+      "promotion_status",
+      "reference_date",
+      "reference_sources",
+      "plan",
+      "role",
+      "platform",
+      "app_or_browser_version",
+      "locale",
+      "input_sha256",
+      "result_sha256",
+      "evidence",
+      "reference_conflicts",
+      "reviewer",
+      "reviewed_at"
+    ],
+    "manifest_observation_state_after_review": "live-characterized",
+    "manifest_promotion_status_after_review": "live_characterized",
+    "raw_dom_network_cookie_token_or_user_content_in_repository_allowed": false,
+    "redaction_validation_required": true,
+    "independent_reviewer_required": true,
+    "input_and_result_sha256_required": true,
+    "unobserved_dimensions_remain_unknown": true,
+    "automatic_phase_or_implementation_promotion_allowed": false
+  },
+  "required_scenario_ids": [
+    "NP2-ARCHIVE-PARENT-001",
+    "NP2-ARCHIVE-NESTED-001",
+    "NP2-ARCHIVE-CREATE-MOVE-001",
+    "NP2-ARCHIVE-DUPLICATE-001",
+    "NP2-ARCHIVE-TRASH-001",
+    "NP2-ARCHIVE-RESTORE-001",
+    "NP2-ARCHIVE-EDIT-001",
+    "NP2-ARCHIVE-NAVIGATION-001",
+    "NP2-ARCHIVE-DATABASE-001",
+    "NP2-ARCHIVE-REFERENCES-001",
+    "NP2-ARCHIVE-PERMISSION-001",
+    "NP2-ARCHIVE-PLAN-LOSS-001",
+    "NP2-ARCHIVE-PUBLIC-001",
+    "NP2-ARCHIVE-PLATFORM-001",
+    "NP2-ARCHIVE-CONCURRENCY-001",
+    "NP2-ARCHIVE-DIRECT-LINK-001"
+  ],
+  "scenarios": [
+    {
+      "id": "NP2-ARCHIVE-PARENT-001",
+      "category": "subtree",
+      "title": "Archive a parent containing active descendants",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE", "SRC-NOTION-ARCHIVE-RELEASE"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_admin_web_en"],
+      "fixture_id": "FX-ARCHIVE-PARENT-ACTIVE-DESCENDANTS",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "archive_parent", "target": "fixture_parent"},
+        {"step": 2, "actor": "selected_profile", "operation": "inspect_descendants", "target": "fixture_subtree"}
+      ],
+      "observation_dimensions": ["root_lifecycle", "descendant_lifecycle", "archive_provenance", "direct_link_access", "default_visibility"],
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Do not infer whether every descendant receives an independent state row or only an inherited effective state."
+    },
+    {
+      "id": "NP2-ARCHIVE-NESTED-001",
+      "category": "nested_state",
+      "title": "Unarchive a parent with independently and inherited archived descendants",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_admin_web_en"],
+      "fixture_id": "FX-ARCHIVE-NESTED-MIXED-PROVENANCE",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "archive_child", "target": "fixture_independent_child"},
+        {"step": 2, "actor": "selected_profile", "operation": "archive_parent", "target": "fixture_parent"},
+        {"step": 3, "actor": "selected_profile", "operation": "unarchive_parent", "target": "fixture_parent"},
+        {"step": 4, "actor": "selected_profile", "operation": "attempt_unarchive_inherited_child", "target": "fixture_inherited_child"}
+      ],
+      "observation_dimensions": ["nested_provenance", "unarchive_cohort", "independent_child_state", "inherited_child_action", "ancestor_state"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Do not assume recursive unarchive or independent-child behavior from parent archive documentation."
+    },
+    {
+      "id": "NP2-ARCHIVE-CREATE-MOVE-001",
+      "category": "structural_interaction",
+      "title": "Create under and move across an archived subtree boundary",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE"],
+      "profile_ids": ["business_owner_web_ko", "business_member_web_ko"],
+      "fixture_id": "FX-ARCHIVE-STRUCTURAL-BOUNDARY",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "create_under_archived_parent", "target": "fixture_archived_parent"},
+        {"step": 2, "actor": "selected_profile", "operation": "move_active_page_into_archived_parent", "target": "fixture_active_page"},
+        {"step": 3, "actor": "selected_profile", "operation": "move_archived_child_to_active_parent", "target": "fixture_archived_child"}
+      ],
+      "observation_dimensions": ["create_permission", "created_page_state", "move_in_state", "move_out_state", "placement_visibility", "link_stability"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Do not infer Archive inheritance across create or move operations."
+    },
+    {
+      "id": "NP2-ARCHIVE-DUPLICATE-001",
+      "category": "duplicate_interaction",
+      "title": "Duplicate archived roots and descendants",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE", "SRC-NOTION-DELETE-RESTORE"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_admin_web_en"],
+      "fixture_id": "FX-ARCHIVE-DUPLICATE-SUBTREE",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "duplicate_archived_root", "target": "fixture_archived_parent"},
+        {"step": 2, "actor": "selected_profile", "operation": "duplicate_archived_child", "target": "fixture_archived_child"}
+      ],
+      "observation_dimensions": ["duplicate_root_state", "duplicate_child_state", "new_identity", "subtree_shape", "default_visibility", "link_behavior"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Do not reuse duplicate or Trash semantics as Archive identity rules."
+    },
+    {
+      "id": "NP2-ARCHIVE-TRASH-001",
+      "category": "trash_interaction",
+      "title": "Move archived content to Trash",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE", "SRC-NOTION-DELETE-RESTORE", "SRC-NOTION-PAGE-OBJECT"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_admin_web_en"],
+      "fixture_id": "FX-ARCHIVE-TO-TRASH",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "move_archived_page_to_trash", "target": "fixture_archived_page"},
+        {"step": 2, "actor": "selected_profile", "operation": "inspect_trash_and_archive_views", "target": "fixture_archived_page"}
+      ],
+      "observation_dimensions": ["archive_to_trash_transition", "editability", "direct_link_access", "archive_view_membership", "trash_view_membership", "subtree_effect"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Do not collapse archived and in-trash states or relabel the existing Trash compatibility bit."
+    },
+    {
+      "id": "NP2-ARCHIVE-RESTORE-001",
+      "category": "restore_interaction",
+      "title": "Restore formerly archived content from Trash",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE", "SRC-NOTION-DELETE-RESTORE"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_admin_web_en"],
+      "fixture_id": "FX-ARCHIVE-TRASH-RESTORE",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "restore_from_trash", "target": "fixture_trashed_archived_page"},
+        {"step": 2, "actor": "selected_profile", "operation": "inspect_restored_state", "target": "fixture_restored_page"}
+      ],
+      "observation_dimensions": ["restored_archive_state", "restored_placement", "descendant_state", "direct_link_access", "default_visibility", "editability"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Do not assume restore preserves or clears Archive state."
+    },
+    {
+      "id": "NP2-ARCHIVE-EDIT-001",
+      "category": "content_interaction",
+      "title": "Edit and collaborate on archived content",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE"],
+      "profile_ids": ["business_owner_web_ko", "business_member_web_ko", "business_guest_editor_web_ko", "business_guest_commenter_web_ko"],
+      "fixture_id": "FX-ARCHIVE-COLLABORATION",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "open_archived_page", "target": "fixture_archived_page"},
+        {"step": 2, "actor": "selected_profile", "operation": "attempt_edit_comment_mention", "target": "fixture_archived_page"}
+      ],
+      "observation_dimensions": ["open_outcome", "edit_outcome", "comment_outcome", "mention_outcome", "notification_outcome", "archive_banner"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Edit permission for archive actions does not prove general archived-page editability."
+    },
+    {
+      "id": "NP2-ARCHIVE-NAVIGATION-001",
+      "category": "visibility",
+      "title": "Observe default and explicit Archive-aware navigation and search",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE", "SRC-NOTION-ARCHIVE-RELEASE"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_admin_web_en", "business_member_web_ko"],
+      "fixture_id": "FX-ARCHIVE-NAVIGATION",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "inspect_default_sidebar_search", "target": "fixture_archived_page"},
+        {"step": 2, "actor": "selected_profile", "operation": "inspect_archive_filter_library_search", "target": "fixture_archived_page"}
+      ],
+      "observation_dimensions": ["sidebar_visibility", "default_search_visibility", "archive_filter_visibility", "library_visibility", "enterprise_content_search_visibility", "breadcrumb_behavior"],
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Record each surface independently; one hidden surface does not prove another."
+    },
+    {
+      "id": "NP2-ARCHIVE-DATABASE-001",
+      "category": "database_visibility",
+      "title": "Observe database page and data-source Archive behavior",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE", "SRC-NOTION-ARCHIVE-RELEASE"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_admin_web_en"],
+      "fixture_id": "FX-ARCHIVE-DATABASE-ROWS",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "archive_database_page", "target": "fixture_database_row"},
+        {"step": 2, "actor": "selected_profile", "operation": "inspect_default_and_archived_database_views", "target": "fixture_database"}
+      ],
+      "observation_dimensions": ["default_view_visibility", "archived_view_visibility", "filter_behavior", "property_preservation", "relation_rollup_behavior", "direct_link_access"],
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Do not generalize page-tree behavior to database rows or data sources without observation."
+    },
+    {
+      "id": "NP2-ARCHIVE-REFERENCES-001",
+      "category": "reference_graph",
+      "title": "Observe backlinks, relations, rollups, mentions, and synced blocks",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_admin_web_en"],
+      "fixture_id": "FX-ARCHIVE-REFERENCE-GRAPH",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "archive_reference_target", "target": "fixture_reference_target"},
+        {"step": 2, "actor": "selected_profile", "operation": "inspect_reference_surfaces", "target": "fixture_reference_sources"}
+      ],
+      "observation_dimensions": ["backlink_behavior", "relation_behavior", "rollup_behavior", "mention_behavior", "synced_block_behavior", "access_leakage"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Do not equate direct locator accessibility with reference hydration or search visibility."
+    },
+    {
+      "id": "NP2-ARCHIVE-PERMISSION-001",
+      "category": "authorization",
+      "title": "Characterize edit, comment, view, guest, and admin authority",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE"],
+      "profile_ids": ["business_owner_web_ko", "business_member_web_ko", "business_guest_editor_web_ko", "business_guest_commenter_web_ko", "business_guest_viewer_web_ko", "enterprise_admin_web_en"],
+      "fixture_id": "FX-ARCHIVE-PERMISSION-MATRIX",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "attempt_archive", "target": "fixture_page"},
+        {"step": 2, "actor": "selected_profile", "operation": "attempt_unarchive", "target": "fixture_archived_page"}
+      ],
+      "observation_dimensions": ["archive_authority", "unarchive_authority", "denial_surface", "partial_mutation", "admin_scope", "guest_scope"],
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Record the actual capability for each role; client controls are never authorization evidence."
+    },
+    {
+      "id": "NP2-ARCHIVE-PLAN-LOSS-001",
+      "category": "entitlement",
+      "title": "Observe archived content after Business or Enterprise entitlement loss",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_admin_web_en"],
+      "fixture_id": "FX-ARCHIVE-PLAN-TRANSITION",
+      "actions": [
+        {"step": 1, "actor": "authorized_operator", "operation": "apply_approved_plan_transition", "target": "synthetic_test_tenant"},
+        {"step": 2, "actor": "selected_profile", "operation": "inspect_existing_archived_content", "target": "fixture_archived_page"}
+      ],
+      "observation_dimensions": ["feature_availability", "existing_archive_state", "direct_link_access", "unarchive_availability", "default_visibility", "data_loss"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Run only if the tenant owner separately approves a reversible test-plan transition; otherwise retain unknown."
+    },
+    {
+      "id": "NP2-ARCHIVE-PUBLIC-001",
+      "category": "public_visibility",
+      "title": "Observe public and published-link behavior",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_admin_web_en", "public_anonymous_web_en"],
+      "fixture_id": "FX-ARCHIVE-PUBLIC-LINK",
+      "actions": [
+        {"step": 1, "actor": "authorized_profile", "operation": "archive_published_fixture", "target": "fixture_published_page"},
+        {"step": 2, "actor": "public_anonymous", "operation": "open_existing_public_link", "target": "fixture_public_placeholder"}
+      ],
+      "observation_dimensions": ["public_link_reachability", "published_site_visibility", "child_visibility", "cache_behavior", "unarchive_recovery", "metadata_leakage"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "No public or published-link behavior is assumed from private workspace links."
+    },
+    {
+      "id": "NP2-ARCHIVE-PLATFORM-001",
+      "category": "platform_variance",
+      "title": "Compare web, desktop, iOS, and Android Archive surfaces",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE", "SRC-NOTION-ARCHIVE-RELEASE"],
+      "profile_ids": ["business_owner_web_ko", "enterprise_member_windows_ko", "enterprise_member_macos_en", "business_member_ios_ko", "enterprise_member_android_en"],
+      "fixture_id": "FX-ARCHIVE-CROSS-PLATFORM",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "open_archive_surfaces", "target": "fixture_archived_page"},
+        {"step": 2, "actor": "selected_profile", "operation": "attempt_supported_archive_actions", "target": "fixture_page"}
+      ],
+      "observation_dimensions": ["surface_availability", "sidebar_visibility", "search_visibility", "archive_banner", "action_availability", "focus_and_accessibility"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "A desktop-web result does not certify desktop-app or mobile behavior."
+    },
+    {
+      "id": "NP2-ARCHIVE-CONCURRENCY-001",
+      "category": "concurrency_and_recovery",
+      "title": "Observe concurrent permission, subtree, and connection changes",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE"],
+      "profile_ids": ["business_owner_web_ko", "business_member_web_ko", "enterprise_admin_web_en"],
+      "fixture_id": "FX-ARCHIVE-CONCURRENT-CHANGE",
+      "actions": [
+        {"step": 1, "actor": "client_a", "operation": "begin_archive_action", "target": "fixture_parent"},
+        {"step": 2, "actor": "client_b", "operation": "apply_approved_concurrent_fixture_change", "target": "fixture_subtree_or_permission"},
+        {"step": 3, "actor": "client_a", "operation": "observe_action_result_and_reload", "target": "fixture_parent"}
+      ],
+      "observation_dimensions": ["acknowledged_result", "partial_state", "subtree_consistency", "permission_loss_result", "reload_convergence", "retry_surface"],
+      "observation_state": "unknown",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Do not use private network controls or claim exactly-once behavior from a visible UI result."
+    },
+    {
+      "id": "NP2-ARCHIVE-DIRECT-LINK-001",
+      "category": "addressability",
+      "title": "Observe existing direct workspace links before, during, and after Archive",
+      "reference_source_ids": ["SRC-NOTION-ARCHIVE", "SRC-NOTION-ARCHIVE-RELEASE"],
+      "profile_ids": ["business_owner_web_ko", "business_member_web_ko", "business_guest_editor_web_ko", "business_guest_viewer_web_ko"],
+      "fixture_id": "FX-ARCHIVE-DIRECT-LINK",
+      "actions": [
+        {"step": 1, "actor": "selected_profile", "operation": "open_preexisting_workspace_link", "target": "fixture_active_page"},
+        {"step": 2, "actor": "authorized_profile", "operation": "archive_page", "target": "fixture_active_page"},
+        {"step": 3, "actor": "selected_profile", "operation": "reopen_preexisting_workspace_link", "target": "fixture_archived_page"}
+      ],
+      "observation_dimensions": ["authorized_link_access", "unauthorized_link_access", "url_stability", "archive_banner", "default_navigation_absence", "metadata_leakage"],
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_evidence_manifest_paths": [],
+      "must_not_infer": "Workspace-link behavior does not establish public-link behavior and does not bypass current IAM."
+    }
+  ],
+  "decision_gate": {
+    "all_required_scenarios_must_have_reviewed_live_evidence": true,
+    "all_required_profiles_or_explicit_unknown_exceptions_must_be_accounted_for": true,
+    "reference_conflicts_must_remain_explicit": true,
+    "unobserved_dimensions_must_remain_unknown": true,
+    "reviewed_semantic_decision_record_required": true,
+    "implementation_or_schema_work_before_gate_allowed": false,
+    "automatic_machine_contract_promotion_allowed": false,
+    "next_gate_after_acceptance": "NP2C-5b-exact-v4-to-v5-archive-source-schema-and-route-unregistered-adapter"
+  }
+}

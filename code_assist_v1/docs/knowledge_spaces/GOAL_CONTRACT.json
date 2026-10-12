@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "goal_thread_id": "019fec6f-60b0-7f53-876d-ba9b7acb0c51",
+  "goal_status": "active",
+  "planning_baseline_date": "2026-08-11",
+  "target": {
+    "users": 40,
+    "host_count": 1,
+    "operating_system": "Windows",
+    "knowledge_scope_phase_1": ["personal", "current_part"]
+  },
+  "completion_policy": {
+    "logic": "all_metrics_and_p8_completion_audit",
+    "documentation_only_is_completion": false,
+    "part_write_flag": "KNOWLEDGE_CORE_PART_WRITES",
+    "part_write_required_before_gate": "0"
+  },
+  "metrics": [
+    {
+      "id": "G-01",
+      "metric": "requirements_traceability",
+      "required_requirement_count": 41,
+      "required_ratio": 1.0,
+      "max_unlinked": 0
+    },
+    {
+      "id": "G-02",
+      "metric": "current_path_inventory",
+      "required_ratio": 1.0,
+      "max_unclassified_callsites": 0,
+      "known_job_submit_producers": 8,
+      "max_unmapped_job_submit_producers": 0
+    },
+    {
+      "id": "G-03",
+      "metric": "legacy_migration_reconciliation",
+      "required_manifest_terminal_classification_ratio": 1.0,
+      "max_silent_loss": 0,
+      "max_unreported_orphans": 0,
+      "max_rerun_duplicate_logical_rows": 0
+    },
+    {
+      "id": "G-04",
+      "metric": "dual_publication_atomicity",
+      "max_partial_batches": 0,
+      "max_retry_duplicate_items_or_revisions": 0
+    },
+    {
+      "id": "G-05",
+      "metric": "cross_process_edit_exclusion",
+      "clients": 40,
+      "web_processes": 2,
+      "required_successful_holders_per_item": 1,
+      "max_stale_or_revoked_save_successes": 0
+    },
+    {
+      "id": "G-06",
+      "metric": "mutation_audit_outbox_consistency",
+      "required_mutation_audit_outbox_ratio": 1.0,
+      "required_edge_checksum_preservation_ratio": 1.0
+    },
+    {
+      "id": "G-07",
+      "metric": "space_isolation",
+      "max_cross_space_canary_exposures": 0,
+      "max_outside_corpus_closure_exposures": 0,
+      "max_existing_conversation_space_changes": 0
+    },
+    {
+      "id": "G-08",
+      "metric": "curation_safety",
+      "max_exact_auto_false_positives": 0,
+      "max_prereview_required_hidden_agent_exposures": 0,
+      "max_invalid_or_unauthorized_semantic_edge_auto_commits": 0,
+      "max_automatic_destructive_curation_effects": 0,
+      "max_t3_model_domain_actions": 0
+    },
+    {
+      "id": "G-09",
+      "metric": "steady_load_slo",
+      "clients": 40,
+      "max_non_llm_crud_p95_ms": 500,
+      "max_db_fts_p95_ms": 1500,
+      "max_projection_lag_p95_ms": 5000,
+      "max_final_sqlite_busy_rate": 0.001,
+      "requires_successor_profile_rebaseline": true
+    },
+    {
+      "id": "G-10",
+      "metric": "durable_work_recovery",
+      "max_lost_jobs": 0,
+      "max_duplicate_domain_commits_per_effect_key": 0,
+      "max_settled_projection_mismatches": 0
+    },
+    {
+      "id": "G-11",
+      "metric": "production_runtime_gate",
+      "sqlite_version": "3.53.4",
+      "sqlite_source_id": "2026-07-24 19:02:57 bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e09459bcc",
+      "required_filesystem": "local_ntfs",
+      "requires_production_wsgi": true,
+      "requires_central_inference_worker": true
+    },
+    {
+      "id": "G-12",
+      "metric": "backup_restore",
+      "max_rpo_minutes": 60,
+      "max_rto_minutes": 240,
+      "required_successful_restore_drills": 1,
+      "max_integrity_or_projection_mismatches": 0
+    },
+    {
+      "id": "G-13",
+      "metric": "mandatory_automated_scenarios",
+      "required_named_scenario_count": 284,
+      "max_failed": 0,
+      "max_missing_ids": 0,
+      "max_duplicate_ids": 0,
+      "requires_legacy_regression": true
+    },
+    {
+      "id": "G-14",
+      "metric": "part_write_rollout_gate",
+      "required_completed_phases": ["P1", "P2", "P3", "P4", "P5", "P6", "P7"],
+      "requires_evidence_hashes": true,
+      "requires_explicit_rollout_approval": true
+    },
+    {
+      "id": "G-15",
+      "metric": "multi_wiki_integrity",
+      "max_identity_default_archive_violations": 0,
+      "max_conversation_binding_violations": 0,
+      "requires_unbounded_count_query_plan": true
+    },
+    {
+      "id": "G-16",
+      "metric": "higher_scope_authority_integrity",
+      "max_foreign_closure_exposures": 0,
+      "max_stale_role_commits": 0,
+      "max_distribution_authority_violations": 0
+    },
+    {
+      "id": "G-17",
+      "metric": "automatic_edge_quality",
+      "min_overall_precision": 0.95,
+      "min_high_risk_relation_precision": 0.97,
+      "max_false_active_edge_rate": 0.01,
+      "max_unauthorized_edges": 0
+    },
+    {
+      "id": "G-18",
+      "metric": "retrieval_quality_and_boundedness",
+      "min_recall_at_10": 0.90,
+      "min_ndcg_at_10": 0.85,
+      "min_mrr": 0.85,
+      "min_citation_precision": 0.95,
+      "max_unauthorized_citations": 0,
+      "ranked_document_count_policy": "authorized_full_corpus",
+      "max_agent_excerpt_bytes": 98304,
+      "max_mandatory_contexts": 4
+    },
+    {
+      "id": "G-19",
+      "metric": "temporal_projection_integrity",
+      "max_canonical_hash_changes_from_footer": 0,
+      "max_nondeterministic_projection_bytes": 0,
+      "max_freshness_semantic_violations": 0
+    },
+    {
+      "id": "G-20",
+      "metric": "isolated_preview_handoff",
+      "preview_port": 10111,
+      "requires_isolated_mutable_roots": true,
+      "requires_company_model_handoff": true,
+      "requires_target_server_handoff": true
+    }
+  ],
+  "authoritative_human_contract": "TRACEABILITY.md",
+  "acceptance_scenarios": "TEST_OPERATIONS.md",
+  "ordered_work": "IMPLEMENTATION_BACKLOG.md"
+}

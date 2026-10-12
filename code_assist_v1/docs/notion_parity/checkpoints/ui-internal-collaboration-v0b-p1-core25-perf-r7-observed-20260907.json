@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CORE25-PERF-R7-OBSERVED-20260907",
+  "recorded_at": "2026-09-06T20:01:34.3969635Z",
+  "status": "immutable_current_build_core_and_performance_evidence_ready_for_final_compiler",
+  "packet_id": "V0B-P1",
+  "scope": {
+    "profile": "free-owner-chrome-desktop-ko-KR",
+    "synthetic_only": true,
+    "personal_or_live_data_accessed": false,
+    "external_action_executed": false,
+    "visual_gate_closed": false,
+    "product_complete": false
+  },
+  "core_25": {
+    "junit_path": ".runtime/v0b-p1-core25-r7-20260907/core25.junit.xml",
+    "junit_sha256": "sha256:5d87ff6f2416d1371db22d12b67d8ab453589995acf1298ef156364621948b6a",
+    "collected_test_count": 21,
+    "passed_test_count": 21,
+    "failed_test_count": 0,
+    "covered_scenario_count": 25,
+    "duration_seconds": 542.47,
+    "status": "pass"
+  },
+  "performance": {
+    "scenario_id": "UI-PERF-001",
+    "approved_shell_ready_p95_budget_ms": 1370,
+    "measurement_policy": "precalibration_measurement_only",
+    "notion_timing_parity_claimed": false,
+    "runs": [
+      {
+        "ordinal": 1,
+        "preflight_path": ".runtime/v0b-p1-core25-r7-20260907/perf1-preflight.json",
+        "preflight_sha256": "sha256:b94602bd03745d490bc8204e8bdd1e0a8418fd2a11af296ec05ab1229e319099",
+        "quiet_suffix_cpu_percent": [10.156, 11.026, 11.458, 10.705, 18.75],
+        "junit_path": ".runtime/v0b-p1-core25-r7-20260907/perf1.junit.xml",
+        "junit_sha256": "sha256:8e9061ae65e26fc6f5f14ae709b3b311b50b3b99118eb2bcddb9bb4ca4cf62f7",
+        "report_path": ".runtime/v0b-p1-core25-r7-20260907/perf1-report.json",
+        "report_sha256": "sha256:4752da9e4729cb0c01fddfa86c315994973d79160269536880e4f85b74d79ed0",
+        "shell_ready_p95_ms": 806.014,
+        "test_status": "pass"
+      },
+      {
+        "ordinal": 2,
+        "preflight_path": ".runtime/v0b-p1-core25-r7-20260907/perf2-preflight.json",
+        "preflight_sha256": "sha256:98375b1f771f906857a90cfcf45b7c280ceec156480ace130c3125722b31a6ef",
+        "quiet_suffix_cpu_percent": [29.167, 25.521, 20.833, 20.052, 25.781],
+        "junit_path": ".runtime/v0b-p1-core25-r7-20260907/perf2.junit.xml",
+        "junit_sha256": "sha256:8899cc9a401aae137aa1f2809a62f1d3a9a80af107891ebf6117edfab5c72bab",
+        "report_path": ".runtime/v0b-p1-core25-r7-20260907/perf2-report.json",
+        "report_sha256": "sha256:1ccfc1e39a9160cd15d2e22e6a9069297f6a85fd4fa4f298e0c84ba87f614161",
+        "shell_ready_p95_ms": 831.262,
+        "test_status": "pass"
+      }
+    ],
+    "two_consecutive_quiet_host_runs_passed": true,
+    "status": "pass"
+  },
+  "source_binding": {
+    "ui_source_build_sha256_from_performance_reports": "sha256:7cb2248f7b047f030b6d4139f51b6a96d6df56bd30e66c42eb447a3b26a4a843",
+    "code_assist_v1/notion_static/index.html": "sha256:d3a76391b0b12e96c1e43fa85eb554eabfa3fe144300251146550abdacb1b71d",
+    "code_assist_v1/notion_static/notion.css": "sha256:23a512cd5bc33765f41dd44d21835b9acae9be2cb9842df8bde80c22bf67c35c",
+    "code_assist_v1/notion_static/notion.js": "sha256:26757ac92994df6d2d348abe9c1dba62966dc95be0b561099fe365898728d781"
+  },
+  "decision": {
+    "core_25_ready": true,
+    "performance_ready": true,
+    "capture_receipt_ready": false,
+    "reason": "The current product source passes the complete functional and performance denominator. V0B remains open because the visual acceptance lane must be changed from exact identity to the user-approved strict similarity contract and then recollected from a fresh immutable preflight."
+  },
+  "next_exact_action": "Freeze and bind the reviewed 36-row visual-similarity policy, update the V0B-only collector and verifier without changing the immutable V0R exact transport lane, and run one fresh product capture.",
+  "goal_complete": false
+}

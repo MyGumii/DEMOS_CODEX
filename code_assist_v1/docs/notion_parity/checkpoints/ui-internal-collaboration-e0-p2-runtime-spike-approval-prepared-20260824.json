@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P2-RUNTIME-SPIKE-APPROVAL-PREPARED-20260824",
+  "recorded_at": "2026-08-23T16:54:43Z",
+  "checkpoint_kind": "approval_prepared",
+  "packet_id": "E0-P2",
+  "packet_status": "awaiting_conditional_approval",
+  "purpose": "Seal the side-effect-free AP-RUNTIME-SPIKE scope and fail-closed receipt validator so post-approval E0-P2 execution cannot silently expand into product, service, identity, workspace, schema, or protected-data authority.",
+  "owner_agent": "/root",
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-runtime-spike-pre-edit-20260824.json",
+    "sha256": "sha256:690316a13bfe5c8c6b63b00c6a5c96a9d0b6e7cb3417deae39ba91cef5d34ca0",
+    "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P2-RUNTIME-SPIKE-PRE-EDIT-20260824"
+  },
+  "implemented_files": {
+    "code_assist_v1/tools/notion_parity/crdt_runtime_spike.py": "sha256:c345fd09ef697a968c52559ee3baf6438ea9982bf598628daacbd498828c0cb9",
+    "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_contract.py": "sha256:47987fb5f2fe5c7d9ead9960d139e34144c4083efc899ef39b08b20bd92b70a9"
+  },
+  "unchanged_authority_bindings": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_candidate_matrix.v1.json": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:907287f527fc2493fe154621052080c5d339546ab84b4eef97f30ffd02da5625",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:00f8d071a30e29574b861ed80d981fb918b896a0371ca3036db6e4eeda06daff",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:abc60747effdb8936b2af76105a9eea3daa376bfd73e935c98c0c5601a9ea2c6"
+  },
+  "approval_request": {
+    "contract": "code_assist.notion.crdt_runtime_spike_approval.v1",
+    "approval_id": "AP-RUNTIME-SPIKE",
+    "status": "pending",
+    "reason": "all_frozen_candidate_dependencies_are_unavailable_locally",
+    "matrix_sha256": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57",
+    "scope_sha256": "sha256:15d04969e31156df32f1ebd801ecb3a4ab6cec1f0df9748a74d3850f82293c4d",
+    "candidate_ids": [
+      "NODE_YJS_HOCUSPOCUS",
+      "PY_NATIVE_PYCRDT",
+      "PY_OPAQUE_NODE_COMPACTOR"
+    ],
+    "package_ids": [
+      "@hocuspocus/server",
+      "pycrdt",
+      "pycrdt-websocket",
+      "uvicorn",
+      "websockets",
+      "yjs"
+    ],
+    "user_approval_phrase": "AP-RUNTIME-SPIKE 승인",
+    "explicit_user_approval_observed": false,
+    "network_install_or_execution_allowed": false
+  },
+  "receipt_contract": {
+    "exact_keys": [
+      "approval_id",
+      "approval_source",
+      "approved_at",
+      "approved_by",
+      "candidate_ids",
+      "contract",
+      "matrix_sha256",
+      "package_ids",
+      "scope_sha256",
+      "single_use",
+      "status"
+    ],
+    "required_values": {
+      "contract": "code_assist.notion.crdt_runtime_spike_approval.v1",
+      "approval_id": "AP-RUNTIME-SPIKE",
+      "status": "approved",
+      "approved_by": "user",
+      "approval_source": "explicit_conversation",
+      "scope_sha256": "sha256:15d04969e31156df32f1ebd801ecb3a4ab6cec1f0df9748a74d3850f82293c4d",
+      "matrix_sha256": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57",
+      "single_use": true
+    },
+    "inference_or_blanket_authorization_accepted": false,
+    "scope_or_matrix_drift_invalidates_receipt": true
+  },
+  "implemented_guards": [
+    "strict UTF-8 JSON with duplicate-key and non-finite rejection",
+    "exact E0-P1 matrix SHA-256 and candidate/package/version/artifact/integrity binding",
+    "three-candidate no-winner and E0-P4 winner-owner enforcement",
+    "exact single-use explicit-user approval receipt",
+    "OS-temporary new-child isolation boundary",
+    "direct artifact integrity before installation",
+    "isolated transitive lock before candidate execution",
+    "no persistent service or fixed port",
+    "no product lockfile, runtime, schema, identity, workspace, protected-root, or known-port mutation",
+    "authorized-not-executed manifest with all effect claims false"
+  ],
+  "validation_receipt": {
+    "receipt_id": "E0-P2-APPROVAL-PREFLIGHT-20260824",
+    "status": "pass",
+    "executed_at": "2026-08-23T16:54:15Z",
+    "argv": [
+      ".\\venv\\Scripts\\python.exe",
+      "-E",
+      "-m",
+      "pytest",
+      "-c",
+      "code_assist_v1\\pytest.ini",
+      "-q",
+      "-p",
+      "no:debugging",
+      "-p",
+      "no:cacheprovider",
+      "code_assist_v1\\tests\\notion_collaboration\\test_crdt_candidate_corpus.py",
+      "code_assist_v1\\tests\\notion_collaboration\\test_crdt_runtime_spike_contract.py",
+      "code_assist_v1\\tests\\notion_collaboration\\test_internal_collaborative_harness.py"
+    ],
+    "passed": 37,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 17.61,
+    "initial_red_run": {
+      "passed": 1,
+      "failed": 16,
+      "cause": "The first implementation incorrectly expected the checkpoint state word gate_passed inside the candidate matrix; the authoritative matrix uses frozen_for_isolated_spike_no_winner.",
+      "resolution": "Separate the frozen matrix vocabulary from the predecessor checkpoint gate result and require the exact authoritative matrix state."
+    }
+  },
+  "side_effect_audit": {
+    "package_registry_access_attempted": false,
+    "dependency_downloaded_or_installed": false,
+    "candidate_imported_or_executed": false,
+    "candidate_root_created": false,
+    "process_service_or_port_started": false,
+    "product_lockfile_modified": false,
+    "product_runtime_or_schema_modified": false,
+    "identity_workspace_or_browser_accessed": false,
+    "protected_data_root_accessed": false,
+    "hot_catalog_or_sbe_contract_modified": false
+  },
+  "completion_truth": {
+    "e0_p1_gate_passed": true,
+    "e0_p2_approval_preparation_complete": true,
+    "e0_p2_started": false,
+    "ap_runtime_spike_approved": false,
+    "candidate_adapter_implemented": false,
+    "windows_reproducibility_executed": false,
+    "candidate_winner_selected": false,
+    "real_runtime_implemented": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "current_state": "awaiting_AP_RUNTIME_SPIKE",
+    "next_action_after_approval": "Materialize the exact single-use receipt, revalidate all hashes, then implement and execute isolated candidate adapters in new OS-temporary roots.",
+    "next_action_without_approval": "None; stop before network, install, import, process, service, port, or candidate-root effects.",
+    "catalog_next_packet_remains": "E0-P2",
+    "current_pointer_unchanged": true,
+    "real_service_or_identity_mutation_allowed": false
+  },
+  "rollback_or_cleanup": "Delete only the preflight module, its test, and the two E0-P2 approval-preparation checkpoints. No candidate package, root, process, service, port, product lockfile, schema, identity, workspace, browser profile, protected data, current pointer, hot catalog, or SBE contract was modified."
+}

@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-R1599-STAGED-FIXES-GREEN-PERFORMANCE-CONTRACT-CORRECTED-20260906",
+  "recorded_at": "2026-09-06T13:45:42.8733262+09:00",
+  "status": "protected_fixes_staged_green_performance_rerun_waiting_for_quiet_host",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1595-unified-exact-core25-performance-blocked-20260906.json",
+    "sha256": "sha256:0b6fd7e60e5688f3f8dd2399b7543c4b4f74af645d7ecac0e617bc84a5c7902f",
+    "preserved_without_overwrite": true
+  },
+  "protected_fix_staging": {
+    "run_id": "v0b-p1-r1596-protected-fix-staging",
+    "method": "Intercept only the isolated browser's CSS and JavaScript responses; do not change protected product files; execute the existing Core-25 scenario bodies and their original assertions twice per scenario.",
+    "harness_path": ".runtime/v0b-p1-r1596-protected-fix-staging/test_staged_protected_fixes.py",
+    "harness_sha256": "sha256:faf039bbcf7b02ba893d47c1221e8b9b76da91028b3c1f1ff471a878205c7099",
+    "junit_path": ".runtime/v0b-p1-r1596-protected-fix-staging/junit.xml",
+    "junit_sha256": "sha256:14ac187145ffa883b76893a2511e432c2ac6f5782181f35c25c1e6bdbaf9bf21",
+    "collected_test_count": 2,
+    "passed_test_count": 2,
+    "failed_test_count": 0,
+    "duration_seconds": 63.332,
+    "scenario_results": {
+      "UI-COLLAB-001": "pass_twice_with_original_assertions",
+      "UI-A11Y-001": "pass_twice_with_original_assertions"
+    },
+    "staged_changes": [
+      {
+        "path": "notion_static/notion.css",
+        "change": "Keep the comment panel title row visible in comments mode so the person/status filter controls remain operable."
+      },
+      {
+        "path": "notion_static/notion.js",
+        "change": "On skip-link activation, prevent default navigation and explicitly focus #workspaceMain."
+      }
+    ],
+    "protected_product_source_changed": false,
+    "ownership_handoff_still_required": true
+  },
+  "performance_diagnosis": {
+    "pre_correction_run": {
+      "run_id": "v0b-p1-r1597-performance-green-1",
+      "junit_path": ".runtime/v0b-p1-r1597-performance-green-1-junit.xml",
+      "junit_sha256": "sha256:d94411f01e3a5348ac5be839efecdb6600edd97ca5ae07c94cd073c6fdb0daee",
+      "collected_test_count": 1,
+      "failed_test_count": 1,
+      "observed_shell_ready_p95_ms": 1747.141,
+      "approved_budget_ms": 1370.0,
+      "duration_seconds": 75.166,
+      "quiet_host_preflight_percent": [21.5, 28.9, 17.7, 27.6, 15.6]
+    },
+    "shell_ready_probe": {
+      "script_path": ".runtime/v0b-p1-r1598-shell-ready-diagnostic/diagnose_shell_ready.py",
+      "script_sha256": "sha256:63c0ef72c59d8444255999c0f11a1c2f55fbeb190a12fc083dda4afba6350b08",
+      "ready_ms": [1779.708, 1732.636, 1707.759],
+      "login_click_ms": [231.849, 254.925, 232.062],
+      "login_response_ms": [1104.794, 1205.772, 1136.347],
+      "derived_login_post_to_response_ms": [872.945, 950.847, 904.285],
+      "finding": "The synthetic credential verification dominated shell_ready; post-login UI loading completed in roughly 503-675 ms."
+    },
+    "kdf_benchmark": {
+      "werkzeug_version": "3.1.8",
+      "sample_count_per_method": 5,
+      "all_verifications_passed": true,
+      "pbkdf2_sha256_1000000_verify_ms_range": [800.024, 823.849],
+      "production_default_scrypt_verify_ms_range": [121.044, 125.935],
+      "finding": "The UI fixture's test-only PBKDF2 cost added approximately 675-703 ms relative to the production-default KDF and explains the local budget regression."
+    }
+  },
+  "performance_test_contract_correction": {
+    "source_path": "tests/browser/test_notion_ui1_golden_journey.py",
+    "source_sha256": "sha256:753e359085fc243f0d42626a30682b886ae73c90c512af2f582c3e5e47eff241",
+    "change": "Generate the isolated UI identity with Werkzeug's production-default KDF and retry up to three times outside the measured path if a newly generated hash is not self-verifiable.",
+    "product_authentication_source_changed": false,
+    "performance_budget_changed": false,
+    "measurement_scope_changed": false,
+    "real_login_route_retained": true,
+    "python_compile_pass": true,
+    "fresh_performance_run_after_correction": false,
+    "reason_not_run": "No five-sample CPU-below-30-percent streak was available after the correction."
+  },
+  "quiet_host_observations_after_correction": [
+    {
+      "samples_percent": [19.8, 31.0, 15.8, 25.9, 29.2, 52.5, 59.0, 47.4, 14.5, 31.0, 31.9, 28.0, 32.9, 29.7, 24.8, 16.4, 30.4, 25.1, 29.9, 19.5],
+      "qualifying_streak_found": false
+    },
+    {
+      "samples_percent": [30.1, 28.9, 12.8, 31.9, 8.5, 26.9, 41.0, 43.1, 36.2, 66.1, 36.5, 63.7, 33.5, 80.5, 30.0, 62.2, 51.7, 85.6, 55.6, 89.0, 57.0, 98.2, 72.5, 96.4, 92.6],
+      "qualifying_streak_found": false
+    }
+  ],
+  "protected_contract_hashes": {
+    "AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "unified_exact_progress": "36/36",
+    "unified_accessibility_progress": "36/36",
+    "staged_remaining_core25_regressions_green": "2/2",
+    "protected_fixes_applied_to_product": false,
+    "fresh_full_core25_after_product_fix": false,
+    "performance_green_streak": "0/2",
+    "V0B_P1_gate_passed": false,
+    "O1B_started": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "When a five-sample quiet-host streak is available, run two consecutive unchanged-budget performance measurements using the corrected production-KDF fixture. Separately obtain explicit ownership handoff for notion_static/notion.css and notion_static/notion.js, apply only the two staged-green fixes, then rerun the two isolated scenarios and the fresh full Core-25 suite before issuing a final-source unified V0B receipt."
+}

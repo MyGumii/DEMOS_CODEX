@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict');
+const bridge=require('../notion_static/notion_database_bridge');
+const cell=(db,row,version=0)=>({database_id:db,command_kind:'database.cell.set',target_id:`${row}:score`,payload:{row_id:row,property_id:'score',value:10},expected_target_version:version});
+const create={database_id:'a',command_kind:'database.row.create',target_id:'r3',payload:{}};
+const source=[cell('a','r1',2),cell('a','r2',1),create,cell('a','r3'),cell('b','r1')];
+const supported=[{id:'a',capabilities:{atomic_cell_batch:true,max_cell_batch:1000}}];
+const converted=bridge.atomicCellActions(source,supported);
+assert.deepEqual(converted.map(a=>a.command_kind),['database.cells.set','database.row.create','database.cell.set','database.cell.set']);
+assert.equal(converted[0].target_id,'a');
+assert.deepEqual(converted[0].payload.cells.map(c=>c.expected_target_version),[2,1]);
+assert.deepEqual(bridge.atomicCellActions(source,[]),source);
+assert.throws(()=>bridge.atomicCellActions([cell('a','1'),cell('a','2')],[{id:'a',capabilities:{atomic_cell_batch:true,max_cell_batch:1}}]));
+converted[0].payload.cells[0].value=99;assert.equal(source[0].payload.value,10);
+console.log('UI-D03: cell batches preserve versions, ordering, database boundaries and legacy capabilities');

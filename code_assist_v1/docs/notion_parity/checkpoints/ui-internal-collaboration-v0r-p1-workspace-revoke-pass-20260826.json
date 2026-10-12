@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-WORKSPACE-REVOKE-PASS-20260826",
+  "recorded_at": "2026-08-26T22:43:05+09:00",
+  "checkpoint_kind": "workspace_owner_membership_revoked_non_oracle_pass",
+  "packet_id": "V0R-P1",
+  "packet_status": "execution_in_progress_awaiting_fixture_trash_confirmation",
+  "purpose": "Record removal of the temporary REF-COLLABORATOR workspace-owner membership from synthetic REF-FREE-A and the collaborator-side non-oracle access boundary with no page title, body, database, or row disclosure.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-page-revoke-pass-20260826.json",
+    "sha256": "sha256:4147e4310b379fd560013b4d3a2ad3aebb23e0409a0c20575b3f069b43c11560"
+  },
+  "action_time_confirmation": {
+    "exact_user_text": "A 임시 소유자 권한 및 워크스페이스 멤버십 회수 승인",
+    "bound_action_id": "V0R-WORKSPACE-REVOKE",
+    "bound_target": "REF-FREE-A",
+    "bound_principal": "REF-COLLABORATOR"
+  },
+  "operator_action_result": {
+    "order": 10,
+    "action_id": "V0R-WORKSPACE-REVOKE",
+    "workspace": "REF-FREE-A",
+    "actor": "REF-OWNER",
+    "required_result": "REF-COLLABORATOR_temporary_owner_membership_revoked_non_oracle",
+    "pre_removal_member_count": 2,
+    "pre_removal_workspace_owner_role_count": 2,
+    "post_removal_member_count": 1,
+    "post_removal_collaborator_row_count": 0,
+    "post_removal_workspace_owner_role_count": 1,
+    "collaborator_page_title_visible_count": 0,
+    "collaborator_page_body_visible_count": 0,
+    "collaborator_database_visible_count": 0,
+    "collaborator_row_visible_count": 0,
+    "collaborator_no_access_surface_visible": true,
+    "collaborator_request_access_control_visible": true,
+    "request_access_control_clicked": false,
+    "status": "passed"
+  },
+  "capture_state": {
+    "state_id": "V0R-MU-018",
+    "workspace": "REF-FREE-A",
+    "actor": "REF-COLLABORATOR",
+    "surface": "workspace_access_boundary",
+    "state": "workspace_access_revoked_non_oracle",
+    "status": "captured"
+  },
+  "privacy_processing": {
+    "method": "deterministic_rectangular_redaction",
+    "redacted_elements": [
+      "authenticated account avatar and identifier line"
+    ],
+    "raw_source_location": "temporary_root_only",
+    "raw_source_deleted": true,
+    "redacted_derivative_only_in_repository": true
+  },
+  "screenshots": [
+    {
+      "state_id": "V0R-MU-018",
+      "viewport": "1440x900",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-018__1440x900.png",
+      "sha256": "sha256:2ec906bed6bf96fb1d64d8e7ae557e362a260b2e0124b265949b44620066c9e8"
+    },
+    {
+      "state_id": "V0R-MU-018",
+      "viewport": "1280x800",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-018__1280x800.png",
+      "sha256": "sha256:5d118df786d570682ac2704eb2ad8aed4c51e8336577994f06981be72ded89c7"
+    }
+  ],
+  "evidence_denominator": {
+    "screenshot_file_count": 36,
+    "expected_screenshot_count": 36,
+    "completed_capture_state_count": 18,
+    "expected_capture_state_count": 18,
+    "completed_action_count": 10,
+    "expected_action_count": 11,
+    "dimension_mismatch_count": 0,
+    "cleanup_required_now": true
+  },
+  "scope_attestation": {
+    "REF_FREE_A_workspace_membership_remaining": false,
+    "REF_FREE_B_page_grant_remaining": false,
+    "request_access_button_clicked": false,
+    "message_or_notification_sent_during_validation": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "paid_upgrade_or_purchase_executed": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "confirmation_boundary": {
+    "next_action_id": "V0R-CLEANUP-TRASH",
+    "next_workspace_targets": [
+      "REF-FREE-A/V0R-A-ROOT",
+      "REF-FREE-B/V0R-B-ROOT"
+    ],
+    "next_mutation": "move only the two synthetic V0R fixture roots to Trash, verify zero active fixture roots and grants, and do not permanently delete",
+    "recoverability": "Notion Trash restore only",
+    "fresh_action_time_confirmation_required": true,
+    "next_action_started": false
+  },
+  "claims": {
+    "V0R_WORKSPACE_REVOKE_passed": true,
+    "V0R_CAPTURE_DENOMINATOR_complete": true,
+    "V0R_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Obtain action-time confirmation to move only synthetic V0R-A-ROOT and V0R-B-ROOT to Trash and complete final V0R cleanup verification."
+}

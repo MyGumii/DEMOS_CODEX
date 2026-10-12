@@ -1,0 +1,320 @@
+{
+  "contract": "code_assist.notion.core_free_ui.reference_differential.v1",
+  "recorded_at": "2026-08-22T20:34:39.3932957+09:00",
+  "scenario_id": "UI-EDITOR-002",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "review": {
+    "approved": true,
+    "approved_by": "workspace_owner",
+    "approval_scope": "redacted_summary_only"
+  },
+  "scope": {
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "external_side_effect_attempted": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "screenshot_count": 0
+  },
+  "reference": {
+    "browser": "chrome-signed-in",
+    "submission_file_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+    "receipt_file_sha256": "sha256:90bbbe185470af6493c272c9d8a2a2520053ef5dd51d013e27c04cbfdaa1190f",
+    "receipt": {
+      "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+      "c0_sha256": "sha256:9c122b6ac60d83575ef822c9c822b96e1f0d84f40dcd53a3ed3dae555550e366",
+      "capture_count": 2,
+      "captures_sha256": "sha256:e63675b07091509f9b851f13fc49239cf7202e9415a07acc5c1a9608b823eb24",
+      "contract": "notion_core_free_ui_manual_reference_receipt_v1",
+      "external_side_effect_attempted": false,
+      "path_disclosed": false,
+      "personal_page_accessed": false,
+      "personal_workspace_accessed": false,
+      "profile": "free-owner-chrome-desktop-ko-KR",
+      "promotion_allowed": false,
+      "run_id": "ui59-r1-r3-reference-completion-20260822",
+      "scenario_id": "UI-EDITOR-002",
+      "screenshot_count": 0,
+      "status": "accepted_reference_observation",
+      "worksheet_sha256": "sha256:6ca7ae02f16d8e07aad7ff065c44506ff506b7e01255cb05089bbcd444570d29"
+    },
+    "captures": {
+      "UI-EDITOR-002-A01": {
+        "a11y": {
+          "name": "SLASH-MENU",
+          "role": "DIALOG"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "SLASH-MENU",
+          "state": "focused"
+        },
+        "geometry": {
+          "SLASH-MENU": {
+            "height": 368,
+            "width": 324,
+            "x": 738,
+            "y": 421
+          }
+        },
+        "keyboard": {
+          "result": "pass"
+        },
+        "latency_ms": 3013,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-EDITOR-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SLASH-MENU",
+          "state": "visible"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-EDITOR-002-A02": {
+        "a11y": {
+          "name": "BLOCK-HEADING",
+          "role": "TEXTBOX"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "PAGE-EDITOR-GROUP",
+          "state": "focused"
+        },
+        "geometry": {
+          "BLOCK-HEADING": {
+            "height": 43,
+            "width": 708,
+            "x": 741,
+            "y": 250
+          }
+        },
+        "keyboard": {
+          "result": "pass"
+        },
+        "latency_ms": 851,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-EDITOR-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "PAGE-ROOT",
+          "state": "restored"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "local": {
+    "browser": "chrome-ephemeral-headless",
+    "isolated_data_root": true,
+    "capture_sha256": {
+      "UI-EDITOR-002-A01": "sha256:cbc2f8734442d15776eb2faeef442b91208206c95bb238fa12ec9c32a0cccabc",
+      "UI-EDITOR-002-A02": "sha256:e0cc71c2e76cac62eab6d418e7650e3f01359c8ecd4627f0baea227e640099af"
+    },
+    "captures": {
+      "UI-EDITOR-002-A01": {
+        "a11y": {
+          "name": "SLASH-MENU",
+          "role": "DIALOG"
+        },
+        "action_log_sha256": "sha256:cf6588ac5f4f1e5852b34525458c62f3da5cd271745ca2279c4353a31ab268dc",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "SLASH-MENU",
+          "state": "focused"
+        },
+        "geometry": {
+          "SLASH-MENU": {
+            "height": 430,
+            "width": 306,
+            "x": 421,
+            "y": 323
+          }
+        },
+        "keyboard": {
+          "result": "pass"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-EDITOR-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SLASH-MENU",
+          "state": "visible"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-EDITOR-002-A02": {
+        "a11y": {
+          "name": "BLOCK-HEADING",
+          "role": "TEXTBOX"
+        },
+        "action_log_sha256": "sha256:cf6588ac5f4f1e5852b34525458c62f3da5cd271745ca2279c4353a31ab268dc",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "PAGE-EDITOR-GROUP",
+          "state": "focused"
+        },
+        "geometry": {
+          "BLOCK-HEADING": {
+            "height": 44,
+            "width": 760,
+            "x": 475,
+            "y": 309
+          }
+        },
+        "keyboard": {
+          "result": "pass"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-EDITOR-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "PAGE-ROOT",
+          "state": "restored"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "differential": {
+    "policy_state": "precalibration",
+    "all_actions_passed": true,
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-EDITOR-002-A01": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:5ac4551f3dcad575f68328f13a8f5f25a58a9273e2e63b77f83f3cb37d7ce3b4",
+        "candidate_sha256": "sha256:cbc2f8734442d15776eb2faeef442b91208206c95bb238fa12ec9c32a0cccabc",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "SLASH-MENU": {
+              "height": 368,
+              "width": 324,
+              "x": 738,
+              "y": 421
+            }
+          },
+          "candidate_geometry": {
+            "SLASH-MENU": {
+              "height": 430,
+              "width": 306,
+              "x": 421,
+              "y": 323
+            }
+          },
+          "reference_latency_ms": 3013,
+          "candidate_latency_ms": 0
+        }
+      },
+      "UI-EDITOR-002-A02": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:b75369b55732580a2ed81debd970a4cedd3e3ddea7dd12f4ea8e23809ba68283",
+        "candidate_sha256": "sha256:e0cc71c2e76cac62eab6d418e7650e3f01359c8ecd4627f0baea227e640099af",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "BLOCK-HEADING": {
+              "height": 43,
+              "width": 708,
+              "x": 741,
+              "y": 250
+            }
+          },
+          "candidate_geometry": {
+            "BLOCK-HEADING": {
+              "height": 44,
+              "width": 760,
+              "x": 475,
+              "y": 309
+            }
+          },
+          "reference_latency_ms": 851,
+          "candidate_latency_ms": 0
+        }
+      }
+    }
+  }
+}

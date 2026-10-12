@@ -1,0 +1,81 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T02:26:08.2611135+09:00",
+  "run_id": "ui26-evidence-review-gate-perf-supplement-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-evidence-review-gate-machine-verified-20260822.json",
+    "sha256": "sha256:a79f154eeca02d66ecf7aaf914179a7783527f137d8107d04cc35d4a50e6e5a6",
+    "semantic_status": "superseded_only_for_ui_perf_001_binding"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "Continue the Core Free desktop UI evidence, review, and implementation plan."
+  },
+  "slice": {
+    "id": "UI1-EVIDENCE-REVIEW-GATE-V1/UI-PERF-001-SUPPLEMENT",
+    "status": "machine_verified_pending_owner_approval",
+    "promotion_allowed": false,
+    "completion_matrix_changed": false
+  },
+  "outputs": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:d3da66f488eee5f99b2ffa751ad848e92c371e156ab9b58fe60536f50163ec93",
+      "size": 8173
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-partial-repeat-samples-harness-green-20260822.json",
+      "sha256": "sha256:b5f16e1ce0a2f709a4489ee7e79020ac54f4af1a7576636f4395cce6f7ec0d35",
+      "size": 5450
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+      "sha256": "sha256:324357219752b5ea7f9142072c434bbf890fac9e0f9179eeb7065bac6d68464d",
+      "size": 14095
+    }
+  ],
+  "verification": [
+    {
+      "selection": "UI-PERF-001 exact local browser performance contract",
+      "result": "1 passed in 50.55s",
+      "exit_code": 0
+    },
+    {
+      "selection": "review-gate focused unit suite",
+      "result": "5 passed in 2.82s",
+      "exit_code": 0
+    },
+    {
+      "selection": "verify_notion_core_free_ui_review_gate --compact",
+      "result": "pass; pending_owner_approval; counts 5/10/3/7",
+      "exit_code": 0
+    }
+  ],
+  "reference_result": {
+    "accepted_repeat_measurements": [
+      "search_open",
+      "search_result_ready",
+      "reload_content_ready",
+      "body_edit_visible",
+      "body_edit_post_settle_reload_ready"
+    ],
+    "rejected_measurement": "new_page_create_ready_ms",
+    "rejection_reason": "independent child-page creation was not proven",
+    "reference_root_restored": true,
+    "synthetic_marker_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "review_gate_machine_verified": true,
+    "ui_perf_001_still_partial": true,
+    "owner_approval_recorded": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "goal_should_remain_active": true
+  },
+  "next_exact_action": "Await the two explicit owner review decisions; independently continue only safe partial-scenario evidence work, with UI-PERF-001 remaining unpromoted until its remaining gates are satisfied."
+}

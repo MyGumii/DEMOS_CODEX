@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1395-MODAL-SHADOW-SETTINGS-NAV-20260906",
+  "recorded_at": "2026-09-06T00:02:14.6317810+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1388-fresh-reproduction-20260905.json",
+    "sha256": "sha256:f5d4186eae758bc8952fdf0187be2c1c008bfb5117a26b8bfe0ae9a751a23f41",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 777251
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1394-state001-shadow-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1394-state001-shadow-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:ffe67907a56ea865402ec2cec49d3e7abdfc62ccae4314ed3bb101dca567d93c",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 773348,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 773357,
+    "runtime_variance": {
+      "V0R-MU-002_1440x900_mode": "higher",
+      "V0R-MU-004_1440x900_mode": "lower",
+      "normalization_delta": 9,
+      "normalization_basis": "both known alternating states at their higher stable counts"
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    },
+    "overall_exact_progress": "0/36"
+  },
+  "improvement_since_r1388": {
+    "stable_normalized_total_difference_delta": -3894,
+    "source_bound_reduction_breakdown": {
+      "state002_modal_shadow": -1784,
+      "state002_settings_navigation_raster": -857,
+      "state001_modal_shadow": -1253
+    },
+    "intermediate_standards": [
+      {
+        "run_id": "v0b-p1-i0-r1390-state002-shadow-standard",
+        "raw_total_difference_count": 775458,
+        "stable_normalized_total_difference_count": 775467,
+        "normalization_delta": 9
+      },
+      {
+        "run_id": "v0b-p1-i0-r1392-state002-settings-nav-raster-standard",
+        "raw_total_difference_count": 774610,
+        "stable_normalized_total_difference_count": 774610,
+        "normalization_delta": 0
+      }
+    ]
+  },
+  "capture_source": {
+    "path": "notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:e7d836601fd8fb4bf2f1b7a39241237f809eaba7b38fb1e7049eef3710c94c99",
+    "python_compile_pass": true
+  },
+  "fresh_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1386-20260905",
+    "launch_id": "db28df7113e2432c86b61d411dc56857",
+    "root_id": "9b9e3075-c30b-4c6b-99fd-cdf961985983",
+    "manager_session_id": 21417,
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "current_audit": {
+      "workspace_count": 16,
+      "reference_workspace_count": 14,
+      "active_membership_count": 16,
+      "active_page_binding_count": 14,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    }
+  },
+  "protected_contract_hashes": {
+    "AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1",
+    "unchanged": true
+  },
+  "scope_guard": {
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue exact residual reduction from the stable normalized total of 773357. Do not run final gates before exact parity reaches 36/36."
+}

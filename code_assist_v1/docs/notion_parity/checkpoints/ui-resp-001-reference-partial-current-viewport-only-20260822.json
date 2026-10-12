@@ -1,0 +1,177 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T01:42:50.8527962+09:00",
+  "run_id": "ui20-resp-001-reference-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-RESP-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_page_alias": "UI-PARITY-RUN-RESP-001",
+    "synthetic_body_alias": "UI-PARITY-RESPONSIVE-CONTENT-001",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "browser_window_resized": false,
+    "device_emulation_used": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "synthetic_page_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-RESP-001",
+    "status": "reference_partial_current_viewport_only",
+    "review_required": true,
+    "promotion_allowed": false,
+    "incomplete_requirements": [
+      "reference_1440x900_measurement",
+      "reference_1280x800_measurement",
+      "reference_980x800_measurement",
+      "reference_720x800_measurement"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 10,
+    "local_integration_review_pending": 3,
+    "reference_partially_observed": 6,
+    "reference_unobserved": 1,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_RESP_001_LOCAL_VIEWPORT_RESULT_20260815.md",
+      "sha256": "sha256:e21ba75cea89f5d55a489c5db7a17ed5fe2f8bb2e04b0ee65b0220018c74c1ff"
+    }
+  ],
+  "reference_partial_observation": {
+    "viewport": {
+      "width": 1920,
+      "height": 919,
+      "visual_width": 1920,
+      "visual_height": 919,
+      "scale": 1
+    },
+    "shell": {
+      "document_client_width": 1920,
+      "document_scroll_width": 1920,
+      "horizontal_overflow": false,
+      "new_page_control_count": 1,
+      "search_control_count": 1,
+      "share_control_count": 1
+    },
+    "editor": {
+      "title_rect": {"x": 735, "y": 156, "width": 720, "height": 48},
+      "title_fully_visible": true,
+      "body_rect": {"x": 741, "y": 226, "width": 708, "height": 28},
+      "body_fully_visible": true,
+      "horizontal_overflow": false,
+      "share_control_count": 1,
+      "action_control_count": 1,
+      "icon_control_count": 1
+    },
+    "share_overlay": {
+      "visible_dialog_role_count": 2,
+      "largest_dialog_rect": {"x": 1412, "y": 44, "width": 438, "height": 281},
+      "largest_dialog_fully_visible": true,
+      "email_input_rect": {"x": 1433, "y": 103, "width": 342, "height": 23},
+      "email_input_fully_visible": true,
+      "email_input_empty": true,
+      "horizontal_overflow": false,
+      "share_mutation_executed": false
+    },
+    "synthetic_page_moved_to_trash": true,
+    "synthetic_title_residual_count": 0,
+    "synthetic_body_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_evidence": {
+    "current_exact_test": "1 passed in 21.72s",
+    "test_node": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py::test_ui_resp_001_shell_editor_and_overlays_fit_adopted_viewports",
+    "repeat_runs": 2,
+    "exact_identifier_free_report_equality": true,
+    "viewport_sequence": ["1440x900", "1280x800", "980x800", "720x800"],
+    "all_viewports": {
+      "dismissal_controls_reachable": true,
+      "editor_reachable": true,
+      "global_horizontal_overflow": 0,
+      "primary_navigation_reachable": true
+    },
+    "external_request_count": 0,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "historical_capture_sha256": {
+      "1440x900": "sha256:6362bbebb006dfcb7180234a7403790e1c0be9d6992698dcb34783a8a9ce0f64",
+      "1280x800": "sha256:9257a1f796d639ba7e1636aa3482bd3f15761293b0f30cab47223e3302bd5be3",
+      "980x800": "sha256:092993a64d9ffa25fbeba1039b8c0f4d003238594adbe4119ccb12733afa59bc",
+      "720x800": "sha256:df2a733ddf092e6dde6e88a7333517cc5f68f1ca231cda431148449c1698ab35"
+    },
+    "synthetic_only": true
+  },
+  "partial_differential": {
+    "status": "incomplete",
+    "promotion_allowed": false,
+    "matched_reference_behaviors": [
+      "current_connected_viewport_has_no_global_horizontal_overflow",
+      "current_connected_viewport_keeps_synthetic_editor_content_visible",
+      "current_connected_viewport_keeps_share_overlay_and_dismissal_surface_visible"
+    ],
+    "missing_evidence": [
+      "official_reference_at_1440x900",
+      "official_reference_at_1280x800",
+      "official_reference_at_980x800",
+      "official_reference_at_720x800"
+    ],
+    "interpretation": "The signed-in reference proves the current 1920x919 desktop surface only. The adopted four-width local contract is green, but the connected Chrome window was not resized or emulated, so no multi-viewport reference parity is claimed."
+  },
+  "stop_reason": {
+    "code": "REFERENCE_ADOPTED_VIEWPORT_SEQUENCE_NOT_OBSERVED",
+    "description": "Only the current connected 1920x919 reference viewport was measured; the four adopted comparison viewports remain unobserved."
+  },
+  "claims": {
+    "ui_resp_001_reference_partially_observed": true,
+    "ui_resp_001_reference_observed": false,
+    "ui_resp_001_reference_characterized": false,
+    "ui_resp_001_differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Keep UI-RESP-001 unpromoted. Complete it only after an approved trusted window-resize or emulation channel captures all four adopted reference viewports with the same synthetic shell, editor, and overlay measurements."
+}

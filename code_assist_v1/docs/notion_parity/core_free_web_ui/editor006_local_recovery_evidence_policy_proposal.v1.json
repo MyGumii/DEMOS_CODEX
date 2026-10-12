@@ -1,0 +1,74 @@
+{
+  "contract": "code_assist.notion.core_free_ui.editor006_evidence_policy_proposal.v1",
+  "recorded_at": "2026-08-22T23:23:27+09:00",
+  "scenario_id": "UI-EDITOR-006",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "status": "pending_owner_approval",
+  "proposed_evidence_mode": "local_failure_recovery_contract",
+  "evidence": {
+    "local_result": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_006_LOCAL_DRAFT_RECOVERY_RESULT_20260815.md",
+      "sha256": "sha256:b5379d61fea6102eb460f1f96c507d528a498a4f84bcccf529c6c80a6b80a7c1"
+    },
+    "current_browser_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-006-current-browser-harness-wrapper-20260822.json",
+      "sha256": "sha256:4ae5824beb9c6680f9e5b8aaabdff54ee2cdf03c839b86a22902ed60b84630c0"
+    },
+    "scenario_manifest": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"
+    },
+    "completion_matrix_before_decision": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:e3a58d7a9d79535352940049d133478431fd42147e621040105e6ba631eb2a37"
+    }
+  },
+  "local_contract": {
+    "required_assertions": [
+      "failed_save_keeps_dirty_draft",
+      "reload_restores_tab_scoped_draft_without_server_acknowledgement",
+      "retry_reuses_exact_operation_id_and_request_body",
+      "stale_server_revision_restores_explicit_conflict_state",
+      "conflict_disables_automatic_save_until_user_decision",
+      "discard_loads_latest_server_revision_and_removes_draft",
+      "successful_save_removes_draft",
+      "second_brain_item_delta_is_zero",
+      "second_brain_revision_delta_is_zero"
+    ],
+    "execution_boundary": {
+      "isolated_os_temp_only": true,
+      "synthetic_accounts_and_pages_only": true,
+      "real_browser_required": true,
+      "live_local_data_allowed": false,
+      "personal_notion_content_allowed": false
+    }
+  },
+  "reference_boundary": {
+    "official_notion_failure_injection_required": false,
+    "official_notion_failure_or_stale_state_observed": false,
+    "reason": "Normal signed-in UI use does not provide a safe deterministic way to force Notion network-save failure or a stale-revision race, and inducing one would require unapproved transport manipulation or concurrent mutation.",
+    "reference_state_if_approved": "safely_inapplicable_for_failure_injection",
+    "differential_state_if_approved": "not_applicable_local_recovery_contract"
+  },
+  "decision": {
+    "required_user_text": "UI-EDITOR-006 공식 실패 유도 제외 및 로컬 회복 계약 승인",
+    "effect_if_approved": "allow_ui_editor_006_local_failure_recovery_evidence_satisfaction",
+    "does_not_allow": [
+      "official_notion_failure_ui_parity_claim",
+      "official_notion_error_wording_or_timing_claim",
+      "collaborative_realtime_merge_parity_claim",
+      "personal_workspace_access",
+      "network_or_devtools_failure_injection_against_notion",
+      "completion_of_ui_perf_001",
+      "h8_or_h9_completion_claim",
+      "release_promotion"
+    ]
+  },
+  "safety": {
+    "external_state_change": false,
+    "browser_control_required_for_approval": false,
+    "approval_is_never_inferred": true,
+    "completion_matrix_mutated": false,
+    "product_code_mutated": false
+  }
+}

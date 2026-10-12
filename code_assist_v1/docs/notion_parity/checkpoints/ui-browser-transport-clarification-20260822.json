@@ -1,0 +1,62 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T15:56:27.1020836+09:00",
+  "run_id": "ui40-browser-transport-clarification-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-reference-browser-user-input-blocked-20260822.json",
+    "sha256": "sha256:38f5dc37a48b284a141df6bd53add1787dabc437f7e9e8a248fc2862a7d04349",
+    "semantic_status": "historical_block_record_corrected_by_transport_specific_observation"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective": "그러면 현재 진행된 내용에 이어서 계획을 목표로 다시 goal함수 수행해",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "reference_workspace_alias": "REF-FREE-A",
+    "read_only_transport_inventory": true,
+    "page_state_captured": false,
+    "page_state_mutated": false,
+    "personal_workspace_accessed": false
+  },
+  "transport_observation": {
+    "browser_extension": {
+      "connected_tab_count": 0,
+      "interpretation": "No tabs were exposed through the Browser extension transport. This is not evidence that Chrome or the reference tab is closed."
+    },
+    "windows_computer_use": {
+      "chrome_window_count": 2,
+      "ref_free_a_exact_title_candidate_count": 1,
+      "selected_synthetic_title": "REF-FREE-A | Notion - Chrome",
+      "page_state_capture_result": "stopped_before_capture",
+      "stop_reason": "Computer Use could not determine the current browser URL with enough confidence to enforce policy."
+    }
+  },
+  "correction": {
+    "incorrect_inference": "Chrome has no open REF-FREE-A tab.",
+    "correct_state": "The REF-FREE-A Chrome window exists, but it is not connected to the Browser extension transport; Computer Use can inventory it but cannot act until its URL policy gate succeeds.",
+    "historical_checkpoint_mutated": false
+  },
+  "protected_inputs": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md","sha256":"sha256:463b53d5bed71e5fc52ae02adf9e48be7ec50ef7766f434f698ec3b240707c0c"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json","sha256":"sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json","sha256":"sha256:5106bf14da624728c6ba2bde86e283c1f66b66fc6d18fafc12f0fd1971d6839b"}
+  ],
+  "resume_contract": {
+    "required_external_state": "The existing REF-FREE-A tab is connected to the Browser extension transport; reopening is unnecessary if already visible.",
+    "exact_user_message": "REF-FREE-A 확장 연결했어",
+    "first_action_after_resume": "Verify the extension-exposed tab title is REF-FREE-A without opening the workspace switcher, then perform the independent synthetic create measurement and restore the original tree."
+  },
+  "claims": {
+    "chrome_or_reference_tab_absent": false,
+    "browser_extension_connected": false,
+    "reference_measurement_completed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  }
+}

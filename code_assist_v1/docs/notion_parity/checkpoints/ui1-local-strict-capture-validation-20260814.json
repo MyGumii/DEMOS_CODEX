@@ -1,0 +1,142 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-14T22:46:11+09:00",
+  "run_id": "ui1-local-strict-capture-20260814",
+  "model": {
+    "planning": "ultra",
+    "implementation": "gpt-5.6-sol-xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui1-local-browser-repeatability-sb-gap-20260814.json",
+    "sha256": "sha256:8b068b364307662191dfb18167857ae798fbeeba4c8eb2dbf411863f562d7e90",
+    "semantic_status": "historical"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "user_resume_observed": true
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": [
+      "UI-SHELL-002",
+      "UI-SEARCH-001",
+      "UI-EDITOR-001"
+    ],
+    "extension": [],
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "reference-notion-in-this-run",
+      "personal-notion-content",
+      "live-local-data"
+    ]
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY",
+    "status": "local-strict-captures-validated-reference-pending",
+    "acceptance_ids": [
+      "UI1-LOCAL-ISOLATION",
+      "UI1-LOCAL-REPEATABILITY",
+      "UI1-STRICT-CAPTURE",
+      "UI1-REDACTION",
+      "UI1-ACTION-LOG-BINDING"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "sha256": "sha256:894913a822b5a7c5ce8ac8eaa525aca7ded8da5ab29b365d4bd999ce31a92508"
+      }
+    ],
+    "read_dependencies": [
+      "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "tools/notion_parity/ui_actions.py",
+      "tools/notion_parity/ui_capture.py",
+      "tools/notion_parity/ui_redaction.py"
+    ],
+    "protected": [
+      "AGENTS.md",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "persistent_browser_profile_reused": false
+  },
+  "evidence": {
+    "reference": [],
+    "local": [
+      {
+        "scenario_id": "UI-SHELL-002",
+        "capture_sha256": "sha256:4c828cccbc2e7505cc91c1e05cbfb622a20ed35623a85ff0b801a9596d4e6ecd",
+        "redaction": "pass"
+      },
+      {
+        "scenario_id": "UI-SEARCH-001",
+        "capture_sha256": "sha256:4c15046d5a50712b33c436779ad0af38bd18da9612da8d456a43cabc106a409e",
+        "redaction": "pass"
+      },
+      {
+        "scenario_id": "UI-EDITOR-001",
+        "capture_sha256": "sha256:414eea4c51ed28405f9414fff8dc514172e1d5a546585ffcf9b279f9f5a2656e",
+        "redaction": "pass"
+      }
+    ],
+    "differential": [],
+    "second_brain": [
+      {
+        "gap_id": "UI1-BLOCKER-SB-LEGACY-NONIDEMPOTENT",
+        "status": "open"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py",
+      "result": "1 passed, 1 xfailed in 24.32s",
+      "exit_code": 0
+    },
+    {
+      "selection": "identifier-free local capture extraction",
+      "result": "three strict capture hashes emitted; no raw artifact persisted",
+      "exit_code": 0
+    }
+  ],
+  "tests": {
+    "action_log_binding": "pass",
+    "capture_schema": "pass",
+    "capture_redaction": "pass",
+    "repeatability": "pass",
+    "reference_c0": "not-run-host-connection",
+    "second_brain_replay_zero": "expected-failure"
+  },
+  "claims": {
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": false,
+    "archive_business_complete": false,
+    "overall_notion_parity_complete": false
+  },
+  "remaining": [
+    "recover signed-in Chrome Browser control and run C0",
+    "capture the matching REF-FREE-A/B scenarios",
+    "produce the first reference/local differential",
+    "resolve the Second Brain replay gap without dual-writing legacy and canonical state"
+  ],
+  "next_exact_command": "after Chrome control recovery, run C0 and capture UI-SHELL-002, UI-SEARCH-001, and UI-EDITOR-001 in REF-FREE-A without opening the workspace switcher beyond the synthetic aliases"
+}

@@ -1,0 +1,122 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T03:33:38.3914965+09:00",
+  "run_id": "ui28-owner-approvals-recorded-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-r2-r3-approval-ready-source-map-20260822.json",
+    "sha256": "sha256:dca34f8f2b2e5ab2c49703eaa01f8628f354823daa6608db582915eccd5dba19",
+    "semantic_status": "approval_ready_map_superseded_by_exact_owner_approval_receipt"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "blocked",
+    "user_resume_received": true,
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "reference_summary_scenario_ids": [
+      "UI-SHELL-001",
+      "UI-EDITOR-001",
+      "UI-EDITOR-002",
+      "UI-EDITOR-005",
+      "UI-DB-001",
+      "UI-DB-002",
+      "UI-DB-003",
+      "UI-SEARCH-001",
+      "UI-SEARCH-002",
+      "UI-COLLAB-001",
+      "UI-SHARE-001"
+    ],
+    "local_second_brain_policy_scenario_ids": [
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-SB-003"
+    ],
+    "completion_matrix_changed": false,
+    "product_ui_changed": false,
+    "personal_or_live_data_accessed": false
+  },
+  "slice": {
+    "id": "OWNER-APPROVAL-RECEIPT",
+    "status": "owner_approved_revalidation_authorized",
+    "review_required": false,
+    "promotion_allowed": false,
+    "behavior_change_allowed_only_after_complete_revalidation": true,
+    "local_second_brain_evidence_sealing_allowed": true
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/owner_approval_receipt.20260822.json",
+      "sha256": "sha256:28e8da75e8c06263f221943dfbd19a644783c8ab1dca6716be7c580bb6c2bf5c"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:eca0fd52c8260c80a2a08e197f2589279e56e8e38f2f8731e006e4551ebc6cb8"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json",
+      "sha256": "sha256:632105a29e89ea4facd88bce6db37c8332ab75eee86c69653aa47d94e957420a"
+    },
+    {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_review_gate.py",
+      "sha256": "sha256:40e295b6325be1905e1fa7c2a7ee12114695634bd509dc3b93ee5d1a7fcd3bd6"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_review_gate.py",
+      "sha256": "sha256:0acb6e647d38d55b6f149c3e6507b1e7f19baace638435b870c094d243950a26"
+    }
+  ],
+  "verification": [
+    {
+      "command": "venv\\Scripts\\python.exe -m py_compile code_assist_v1\\tools\\verify_notion_core_free_ui_review_gate.py code_assist_v1\\tests\\test_notion_ui_review_gate.py",
+      "exit_code": 0,
+      "result": "pass"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_review_gate --compact",
+      "exit_code": 0,
+      "result": "pass; owner_approved_revalidation_authorized; errors=0"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_review_gate.py -q",
+      "exit_code": 0,
+      "result": "8 passed in 4.27s"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_completion --compact",
+      "exit_code": 0,
+      "result": "pass; completion_state=incomplete; differential_passed=5/25"
+    }
+  ],
+  "known_host_failures": [
+    {
+      "exit_code": -1073740791,
+      "classification": "windows_0xc0000409_host_wrapper_failure",
+      "result_used_as_evidence": false,
+      "recovery": "The combined inline Python hash check and source search were not repeated. A separate PowerShell-native protected-input hash check passed with six bindings and zero errors."
+    }
+  ],
+  "safety": {
+    "synthetic_data_only": true,
+    "personal_notion_content_accessed": false,
+    "live_second_brain_data_accessed": false,
+    "live_second_brain_mutated": false,
+    "external_publish_or_message_sent": false
+  },
+  "claims": {
+    "owner_approval_hash_bound": true,
+    "reference_revalidation_authorized": true,
+    "local_second_brain_evidence_sealing_authorized": true,
+    "product_behavior_changed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Rehash product UI inputs, then recapture R2-1-WORKSPACE-FOCUS before any product edit. Stop without editing if the reference group difference is only a browser-control transport alias."
+}

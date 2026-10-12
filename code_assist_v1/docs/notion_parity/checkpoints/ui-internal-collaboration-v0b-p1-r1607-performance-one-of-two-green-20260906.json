@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-R1607-PERFORMANCE-ONE-OF-TWO-GREEN-20260906",
+  "recorded_at": "2026-09-06T14:00:07.8080648+09:00",
+  "status": "corrected_performance_contract_one_of_two_consecutive_green",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1602-quiet-host-wait-20260906.json",
+    "sha256": "sha256:fbbff84859c4242a777b41cf09ec47207845418a8bd49bc230e040ca60a94f07",
+    "preserved_without_overwrite": true
+  },
+  "performance_test_source": {
+    "path": "tests/browser/test_notion_ui1_golden_journey.py",
+    "sha256": "sha256:753e359085fc243f0d42626a30682b886ae73c90c512af2f582c3e5e47eff241",
+    "production_default_kdf_fixture": true,
+    "product_authentication_source_changed": false,
+    "approved_budget_changed": false
+  },
+  "measurements": [
+    {
+      "run_id": "v0b-p1-r1603-performance-corrected-green-1",
+      "quiet_host_preflight_percent": [34.4, 28.1, 29.2, 22.5, 28.8, 17.8],
+      "qualifying_final_streak_percent": [28.1, 29.2, 22.5, 28.8, 17.8],
+      "junit_path": ".runtime/v0b-p1-r1603-performance-corrected-green-1-junit.xml",
+      "junit_sha256": "sha256:1fe6b7aa0544bcbcd0cdbeaa4ee57b08ce7e7f1bebee11741bcb70c07b3366ad",
+      "collected_test_count": 1,
+      "failed_test_count": 0,
+      "duration_seconds": 65.433,
+      "status": "pass"
+    },
+    {
+      "run_id": "v0b-p1-r1604-performance-corrected-green-2",
+      "quiet_host_preflight_percent": [30.6, 41.6, 31.7, 29.4, 29.2, 30.1, 36.1, 30.4, 27.6, 23.2, 22.2, 20.1, 28.8],
+      "qualifying_final_streak_percent": [27.6, 23.2, 22.2, 20.1, 28.8],
+      "junit_path": ".runtime/v0b-p1-r1604-performance-corrected-green-2-junit.xml",
+      "junit_sha256": "sha256:c2e3416a96b72bc17d335b9d075246ee3bdaa5232d9e7f16fe94924f2edfdc33",
+      "collected_test_count": 1,
+      "failed_test_count": 1,
+      "duration_seconds": 65.429,
+      "observed_shell_ready_p95_ms": 1608.103,
+      "approved_shell_ready_budget_ms": 1370.0,
+      "status": "fail",
+      "effect": "reset_consecutive_green_count"
+    },
+    {
+      "run_id": "v0b-p1-r1605-performance-corrected-green-restart-1",
+      "quiet_host_preflight_percent": [66.3, 74.5, 58.4, 13.5, 38.6, 39.2, 38.4, 45.1, 38.2, 48.4, 41.8, 45.0, 36.4, 32.8, 34.0, 25.2, 29.5, 24.8, 22.6, 26.0],
+      "qualifying_final_streak_percent": [25.2, 29.5, 24.8, 22.6, 26.0],
+      "junit_path": ".runtime/v0b-p1-r1605-performance-corrected-green-restart-1-junit.xml",
+      "junit_sha256": "sha256:7663861d6b8f167eb9c56061284571537b195a53a5b98eeb05e3bd5dd4b2b1ae",
+      "collected_test_count": 1,
+      "failed_test_count": 0,
+      "duration_seconds": 67.243,
+      "status": "pass"
+    }
+  ],
+  "preflight_only_attempts_after_latest_green": [
+    {
+      "run_id_if_started": "v0b-p1-r1606-performance-corrected-green-restart-2",
+      "performance_process_started": false,
+      "samples_percent": [27.2, 45.7, 31.7, 41.2, 37.2, 70.6, 55.5, 38.8, 24.8, 32.8, 27.4, 28.6, 29.6, 23.5, 47.7, 29.7, 25.7, 27.1, 28.9, 52.2],
+      "qualifying_streak_found": false
+    },
+    {
+      "run_id_if_started": "v0b-p1-r1607-performance-corrected-green-restart-2",
+      "performance_process_started": false,
+      "samples_percent": [41.6, 54.2, 57.9, 54.6, 67.0, 88.7, 64.3, 62.4, 45.9, 66.6, 65.2, 67.8, 44.3, 69.2, 51.8, 65.7, 50.9, 63.1, 36.6, 57.4],
+      "qualifying_streak_found": false
+    }
+  ],
+  "protected_contract_hashes": {
+    "AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "unified_exact_progress": "36/36",
+    "unified_accessibility_progress": "36/36",
+    "accepted_staged_remaining_core25_regressions_green": "2/2",
+    "protected_fixes_applied_to_product": false,
+    "performance_green_streak": "1/2",
+    "V0B_P1_gate_passed": false,
+    "O1B_started": false,
+    "goal_complete": false
+  },
+  "next_action": "Retain r1605 as the first consecutive green. Start the second measurement only after another five-sample CPU-below-30-percent streak. Obtain explicit ownership handoff before changing notion_static/notion.css or notion_static/notion.js."
+}

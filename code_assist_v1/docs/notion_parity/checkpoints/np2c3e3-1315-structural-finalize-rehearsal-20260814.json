@@ -1,0 +1,183 @@
+{
+  "checkpoint_version": 1,
+  "run_id": "np2c3e3-1315-structural-finalize-rehearsal-20260814",
+  "recorded_at": "2026-08-14T11:24:00+09:00",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "observed_goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "resume 현재 우리가 작성한 개발 문서와 계획을 확인하고 goal resume을 해서 목표 확인 후 다시 개발 진행해.",
+    "completion_changed": false
+  },
+  "slice": "NP2C-3e3-1315-structural-finalize-and-exact-sentinel-rehearsal",
+  "status": "contract_tested_offline_quiesced_default_off",
+  "scope": {
+    "workspace_schema_version": 2026081315,
+    "workspace_schema_name": "notion_workspace_v2_np2c_structural_finalize_authority",
+    "workspace_schema_checksum": "sha256:a57f73b41a834c42edcdfbacbbf2aa1fc30dd34366d98d7c40a42337b4f0e932",
+    "workspace_actual_schema_sha256": "sha256:33eaed5b16671104d53443c7cd4b09b3471eabbce805161608a114e4528f5d82",
+    "workspace_schema_object_count": 159,
+    "legacy_source_version": 2026081303,
+    "frozen_1314_preserved": true,
+    "explicit_1314_to_1315_migration_added": true,
+    "source_structural_adapter_added": true,
+    "atomic_catalog_finalizer_added": true,
+    "exact_sentinel_rehearsal_added": true,
+    "route_or_runtime_registration_added": false,
+    "runtime_commands_enabled": false,
+    "resolver_cutover_enabled": false,
+    "permanent_delete_enabled": false,
+    "continuous_worker_enabled": false,
+    "destructive_watermark_ack_enabled": false,
+    "live_migration_applied": false
+  },
+  "behavioral_contract": {
+    "actions": [
+      "create",
+      "move",
+      "reorder"
+    ],
+    "source_delivery_semantics": "at_least_once_state_idempotent",
+    "source_watermark_rule": "all page and block DML for one command are coalesced to one logical watermark generation per affected page before the source transaction commits",
+    "catalog_atomicity": "binding, projection, incarnation attestation, page tree, workspace/security/tree versions, structural manifest/effects and operation/audit/outbox converge in one catalog transaction",
+    "replay_order": "committed catalog finalizer replay is checked before sentinel, path resolver or source I/O",
+    "report_redaction": "identifier_free",
+    "cross_database_exactly_once_claimed": false
+  },
+  "protected_inputs": {
+    "AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "AGENTS.md_modified": false,
+    "shared_knowledge_status_modified": false,
+    "shared_knowledge_traceability_modified": false,
+    "protected_app_auth_config_routes_modified": false,
+    "live_paths_accessed": false
+  },
+  "owned_or_observed_file_hashes": {
+    "notion_workspace_store.py": "238244c69d98e1dc2766b1a64b016a410e576cd23b81a5e2e641972f8658c49d",
+    "notion_legacy_page_structural.py": "680f454aa8de8ef0b2ba19c949b3945f5f422a7b2808be47dd4d176b592c18e9",
+    "notion_workspace_page_structural_rehearsal.py": "198bddfe6e0be08eb9526f62d014a6ca60c69b5699832ca80d29ac091e424a56",
+    "notion_workspace_structural_effect_migration.py": "bb42d9a8ff906c81ae526c21f3c80f289a6c364ae8bcbee17ba391edcdd8cd74",
+    "notion_workspace_structural_finalize_migration.py": "57409daa44dc1add10b39a1b3e50b8c1fb541d129b7f00e0c35eb340740d05c7",
+    "tests/test_notion_legacy_page_structural.py": "14789cd56a5664dded1f13b41e71d360b7c9cc2acfa7ba664ca6c80647c3f430",
+    "tests/test_notion_workspace_page_structural_rehearsal.py": "b3cf5b6e548738f9032eb6b4e72877e1104b6ec54d65654d8acbfb4552227c06",
+    "tests/test_notion_workspace_page_lifecycle_structural_finalize.py": "bf0044cfd0a9f9d0b6f733e474d25111719d6b8a3a94694f05dd5b7a6f8a377e",
+    "tests/test_migrate_notion_workspace_structural_finalize.py": "8f4ce46ae1750a17df59e64b8001621d4bf5b9b61b4c4fd4acb163fffe0737e1",
+    "docs/NOTION_PARITY_MASTER_PLAN.md": "7b8ade893964e9595b3e2b67728469470dfed6d0dbf2563dc2622269fc40fdbe",
+    "docs/NOTION_PARITY_ROADMAP.md": "d99a1d83485b2cae0369e5e9f0fafd24eb8bcd20b9c3211e845572bd31ec229f",
+    "docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "03e61ccd9ec75ad39ae06e5740def632f269ad486b33783e3522f8deb3575ac2",
+    "docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "42a3106c3efd7ca4babfa8201bd5d4d458ab01b6dd42346da62ffc8f8cbba2ce",
+    "docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "60bec6df6c96c00572a472097d34d04078638d3c4d1c8f1ff3aedd602af4fbc6",
+    "docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "07c0290428a7d9105c3c47839168d65aba65735bbe5de0a3f22b36b6ad925f2e",
+    "tools/verify_notion_np2c_page_tree_contract.py": "c3cb87158be1b5f1738364393224b76a780898db2a79bcdb5b26dac683192e79",
+    "tests/test_verify_notion_np2c_page_tree_contract.py": "e97965130b7201cf8968c4cab926b52760736e38f7c43bfa227a0dd34570c676"
+  },
+  "evidence": [
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_legacy_page_structural.py code_assist_v1\\tests\\test_notion_workspace_page_structural_rehearsal.py -q",
+      "exit_code": 0,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 13.78
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest <NP2C-3e3 source, finalizer, 1314/1315 migration focused bundle> -q",
+      "exit_code": 0,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 49.59
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest <incarnation attestation, orchestration and rebind focused bundle> -q",
+      "exit_code": 0,
+      "passed": 37,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 68.44
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest <projection, locator and incarnation migration bundle> -q",
+      "exit_code": 0,
+      "passed": 66,
+      "failed": 2,
+      "skipped": 0,
+      "result": "two historical fixtures stopped at schema 1313; after extending the fixture through frozen 1314 and 1315, both failed cases passed"
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest <healing and outbox regression bundle> -q",
+      "exit_code": 0,
+      "passed": 86,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 123.49
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest <complete workspace migration chain 1303 through 1315> -q",
+      "exit_code": 0,
+      "passed": 148,
+      "failed": 0,
+      "skipped": 2,
+      "duration_seconds": 161.82
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q",
+      "exit_code": 0,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 0.77,
+      "result": "post-document synchronization machine-contract verification"
+    },
+    {
+      "command": ".\\venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_page_tree_contract",
+      "exit_code": 0,
+      "result": "valid=true; status=structural_finalize_schema_1315_and_exact_sentinel_rehearsal_contract_tested; runtime_commands_enabled=false; permanent_delete_enabled=false"
+    }
+  ],
+  "host_dependent_failures": [
+    {
+      "exit_code": -1073740791,
+      "windows_status": "0xc0000409",
+      "phase": "final combined pytest before collection/output",
+      "handling": "the identical command was not repeated; a smaller machine-contract selection passed"
+    },
+    {
+      "exit_code": -1073740791,
+      "windows_status": "0xc0000409",
+      "phase": "split structural pytest and later py_compile process startup",
+      "handling": "the host-dependent gate was stopped after recurrence; prior current-code focused green evidence is retained without claiming a fresh aggregate pass"
+    }
+  ],
+  "claims": {
+    "live_source_accessed": false,
+    "live_catalog_accessed": false,
+    "live_data_mutated": false,
+    "feature_flags_changed": false,
+    "routes_changed": false,
+    "app_or_second_brain_boundary_changed": false,
+    "shared_knowledge_boundary_changed": false,
+    "git_repository_available": false,
+    "git_commit_claimed": false,
+    "formal_live_characterization": false,
+    "formal_differential_parity": false
+  },
+  "status_delta": {
+    "shared_status_update_required": false,
+    "reason": "NP2C is independent from the protected Shared Knowledge development stream; no shared STATUS or TRACEABILITY file was edited.",
+    "notion_status": "NP2C-3e3 is contract-tested on isolated offline/quiesced fixtures; runtime and cutover remain disabled."
+  },
+  "next_slice": {
+    "name": "NP2C-4-duplicate-archive-restore-contract-design",
+    "objective": "Freeze source identity and lifecycle/tombstone semantics, subtree and file cleanup, restore-ancestor constraints, response-loss and rollback behavior before selecting a schema version or implementing mutations.",
+    "implementation_allowed_without_design_review": false,
+    "schema_change_allowed_without_design_review": false,
+    "route_or_runtime_registration_allowed": false,
+    "live_data_allowed": false,
+    "destructive_ack_allowed": false,
+    "resolver_cutover_allowed": false,
+    "next_exact_command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q"
+  },
+  "stop_reason": null
+}

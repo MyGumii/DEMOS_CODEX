@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0r_p1.reference_gate_separation.v1",
+  "packet_id": "V0R-P1",
+  "checkpoint_id": "V0R-P1-SEMANTIC-EXACT-GATE-SEPARATION-20260830",
+  "recorded_at": "2026-08-30T17:31:28.9529683+09:00",
+  "status": "semantic_reference_pass_exact_reference_blocked",
+  "summary": "The reference verifier now distinguishes the V0R semantic capture-and-cleanup gate from exact-reference transport eligibility. It also validates immutable multi-level supersession chains instead of requiring every corrective receipt to point directly to the 2026-08-25 root. The unmodified V2 receipt passes its 11-action, 36-capture, two-viewport, cleanup, and three-link semantic lineage audit with zero errors; its exact-reference gate remains false because Chrome returned JPEG before PNG storage and zero RGBA equivalence is not declared.",
+  "lineage": {
+    "v2_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+      "sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa",
+      "modified": false
+    },
+    "retry67_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-semantic-guard-retry67-progress-20260830.json",
+      "sha256": "sha256:968f5b1df704112ed858c834a1c9c5ba203c060618eab164c3d98472c554434c",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "implementation": {
+    "verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py",
+      "sha256": "sha256:6a56bcf50aaa233c8e4890594733046315de8532c581b129d8b7977635b8cb67",
+      "changes": [
+        "preserve gate_passed as the explicitly named semantic_reference_capture_and_cleanup scope",
+        "add fail-closed capture-transport classification",
+        "add exact_reference_gate_passed independent of semantic completion",
+        "validate safe receipt paths beneath the immutable receipt root",
+        "reject traversal, missing files, cycles, excessive depth, contract drift, and hash mismatch",
+        "accept a fully hash-matched chain that reaches the original semantic receipt"
+      ]
+    },
+    "test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_receipt.py",
+      "sha256": "sha256:779eb520c9128cc24f6e46e7149f310e976c660f2404b2c85c995e2e9ef750d2"
+    }
+  },
+  "actual_v2_audit": {
+    "contract": "code_assist.notion.internal_collaborative_reference_multiuser_receipt.audit.v1",
+    "status": "pass",
+    "error_count": 0,
+    "action_count": 11,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "cleanup_complete": true,
+    "gate_passed": true,
+    "gate_scope": "semantic_reference_capture_and_cleanup",
+    "semantic_reference_gate_passed": true,
+    "exact_reference_gate_passed": false,
+    "exact_reference_transport": {
+      "declared": true,
+      "eligible": false,
+      "browser_capture_returned_codec": "jpeg",
+      "stored_codec": "png_srgb_rgba8",
+      "source_encoding_lossless": false,
+      "zero_RGBA_equivalence_claimed": false,
+      "reason_codes": [
+        "SOURCE_CODEC_NOT_PNG",
+        "SOURCE_ENCODING_NOT_LOSSLESS",
+        "ZERO_RGBA_EQUIVALENCE_NOT_DECLARED"
+      ]
+    },
+    "zero_RGBA_difference_claimed": false,
+    "product_complete": false
+  },
+  "supersession_chain": {
+    "valid": true,
+    "link_count": 3,
+    "reaches_original_semantic_receipt": true,
+    "reason_codes": [],
+    "links": [
+      {
+        "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-20260830.json",
+        "expected_sha256": "sha256:34c40d00d8ed0c2b36bbc23b884919fc86299dafcaf486b9bee689538ec48f36",
+        "actual_sha256": "sha256:34c40d00d8ed0c2b36bbc23b884919fc86299dafcaf486b9bee689538ec48f36",
+        "hash_matches": true
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+        "expected_sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17",
+        "actual_sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17",
+        "hash_matches": true
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+        "expected_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+        "actual_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+        "hash_matches": true
+      }
+    ]
+  },
+  "verification": {
+    "current_reference_verifier_tests": {
+      "result": "13 passed in 55.02s",
+      "exit_code": 0
+    },
+    "transport_and_candidate_regression_before_chain_extension": {
+      "result": "26 passed in 64.08s",
+      "exit_code": 0
+    },
+    "actual_v2_verifier_exit_code": 0
+  },
+  "scope_attestation": {
+    "verifier_changed": true,
+    "test_changed": true,
+    "reference_receipt_modified": false,
+    "reference_screenshot_modified": false,
+    "external_notion_mutation": false,
+    "local_product_source_changed": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "semantic_reference_capture_and_cleanup": "passed",
+    "lossless_exact_reference_transport": "blocked",
+    "corrected_V0R_MU_004_reference": "pending",
+    "corrected_V0R_MU_006_reference": "pending",
+    "exact_pixel_36_of_36": "not_run",
+    "core_25": "not_run",
+    "performance": "not_run",
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Use semantic_reference_gate_passed only for V0R evidence completeness and exact_reference_gate_passed for V0B exact comparison admission. Do not run exact Full36, Core25, or performance until a source-lossless PNG capture transport is available and V0R-MU-004 and V0R-MU-006 are recaptured at their contracted postconditions."
+}

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_checkpoint.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-WORKSPACE-MEMBERS-TEXT-ALIGNMENT-R411-20260901",
+  "recorded_at": "2026-09-01T10:54:22.0061227+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "r411 retains r408 and applies two screenshot-measured workspace-members alignment corrections: a one-pixel right shift for the subtitle and a two-pixel-left, one-pixel-down shift for the directory link. The changes reproduce a 448-pixel source-bound improvement in V0R-MU-002 after removing the established 975-pixel 1440 run-mode delta. All four component journeys, all 36 accessibility checks, all 36 interaction checks, targeted tests, and synthetic cleanup pass. Exact parity remains 0/36 and no completion claim is made.",
+  "immutable_lineage": {
+    "lossless_exact_v4_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+    },
+    "previous_retained_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-workspace-member-link-copy-r408-progress-20260901.json",
+      "sha256": "sha256:a849c8534e99da12ebc206b2a457e0fc2e8dca9ed08aa0c922fd4600c1e24558"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified": false
+    },
+    "main_agent_handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "retained_source_binding": [
+    {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:da11393f39cd2af2725abf6e27e05fe483ae326234ae4ae0f8000683a5464964",
+      "changes_in_r409_r411": []
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+      "changes_in_r409_r411": []
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.css",
+      "sha256": "sha256:8a2e9607dd6f3d880cdc0b936ac7e28e229ec7fd833a2ff520e1a14afcb693f0",
+      "changes": [
+        "shift the workspace-members subtitle one pixel right",
+        "shift the workspace-members directory link two pixels left and one pixel down"
+      ]
+    }
+  ],
+  "measurement_method": {
+    "script": "code_assist_v1/.runtime/analyze_v0b_regions.py",
+    "decoder": "code_assist_v1.tools.notion_parity.exact_pixel.decode_png_srgb_rgba8",
+    "new_dependency_installed": false,
+    "selected_changes": [
+      {
+        "region": "workspace-members subtitle",
+        "simulated_delta_per_viewport": -192,
+        "actual_delta_per_viewport": -192
+      },
+      {
+        "region": "workspace-members directory link",
+        "simulated_best_shift": "-2px,+1px",
+        "actual_delta_per_viewport": -32
+      }
+    ],
+    "unchanged_because_current_position_was_best": [
+      "workspace-members heading",
+      "workspace-members link-copy heading",
+      "workspace-members link description",
+      "workspace-members tabs"
+    ]
+  },
+  "isolated_validation": [
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r409",
+      "change": "workspace-members subtitle x alignment",
+      "state_id": "V0R-MU-002",
+      "observed": {
+        "1440x900": 96267,
+        "1280x800": 90349
+      },
+      "run_mode_adjusted_previous": {
+        "1440x900": 96459,
+        "1280x800": 90541
+      },
+      "delta": {
+        "1440x900": -192,
+        "1280x800": -192
+      },
+      "accepted": true
+    },
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r410",
+      "change": "workspace-members directory-link position",
+      "state_id": "V0R-MU-002",
+      "observed": {
+        "1440x900": 97210,
+        "1280x800": 90317
+      },
+      "run_mode_adjusted_previous": {
+        "1440x900": 97242,
+        "1280x800": 90349
+      },
+      "delta": {
+        "1440x900": -32,
+        "1280x800": -32
+      },
+      "accepted": true
+    }
+  ],
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r411",
+    "receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r411/receipt.json",
+      "sha256": "sha256:990b6777762efaa03bf3ff6a48debb00a10a6d55b9ae806a5cdf80458cc5cc38",
+      "size_bytes": 288647
+    },
+    "candidate_build_sha256": "sha256:8484e076330adba79e083e3e3d17c6fdf0d7e0b4492ed983ef4f1a7fd12a1dc3",
+    "browser": {
+      "channel": "chrome",
+      "major_version": "153",
+      "independent_ephemeral_contexts": 2
+    },
+    "duration_ms": 381962,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2194220,
+    "masked_difference_count": 70240,
+    "total_difference_count": 2264460,
+    "journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1579,
+      "comment_delivery_ms": 1027,
+      "reaction_delivery_ms": 1484,
+      "presence_ttl_expiry_ms": 15322,
+      "reconnect_ms": 1700
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:ed5acf6a522ac7b936d9e69b4161410c73fe1ea10b664b3acbd6f0e577eadab0"
+    }
+  },
+  "comparison_to_r408": {
+    "raw_unmasked_difference_delta": 527,
+    "established_v0r_mu_002_1440_mode_delta": 975,
+    "source_bound_normalized_delta": -448,
+    "state_id": "V0R-MU-002",
+    "r408_raw": {
+      "1440x900": 96459,
+      "1280x800": 90541,
+      "state_total": 187000
+    },
+    "r411_raw": {
+      "1440x900": 97210,
+      "1280x800": 90317,
+      "state_total": 187527
+    },
+    "r408_mode_normalized": {
+      "1440x900": 97434,
+      "1280x800": 90541,
+      "state_total": 187975
+    },
+    "normalized_viewport_deltas": {
+      "1440x900": -224,
+      "1280x800": -224
+    },
+    "all_other_state_deltas": 0
+  },
+  "verification": {
+    "targeted_tests": {
+      "result": "17 passed in 15.66s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:990b6777762efaa03bf3ff6a48debb00a10a6d55b9ae806a5cdf80458cc5cc38"
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from retained r411. Preserve r408 plus the r409 workspace-members subtitle x correction and r410 directory-link position correction. Pass the immutable lossless-exact-v4 reference receipt, screenshots, and masks explicitly. Use code_assist_v1/.runtime/analyze_v0b_regions.py to measure candidate regions before adding transforms. Do not move the heading, link-copy heading, link description, or tabs because the current raster position is already best. Treat the V0R-MU-002 1440 975-pixel mode delta as established variability. Prefer a measured typography or component-shape correction in V0R-MU-002, or move to the next state if the remaining state-002 regions require font rerasterization rather than positional changes. Do not run fresh Core 25 or quiet-host performance gates before exact parity reaches 36/36, and do not mark the product or shared goal complete before all final gates close."
+}

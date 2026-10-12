@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-T0B-P3-CROSS-PROCESS-BROWSER-20260824",
+  "recorded_at": "2026-08-24T21:15:00+09:00",
+  "checkpoint_kind": "packet_gate_passed_status_integration",
+  "packet_id": "T0B-P3",
+  "packet_status": "gate_passed",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+    "code_assist_v1/notion_collaboration/gateway_service.py",
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tools/verify_internal_collaborative_protocol_contract.py",
+    "code_assist_v1/tools/verify_internal_collaborative_gateway_contract.py",
+    "code_assist_v1/tools/verify_internal_collaborative_transport_authority.py",
+    "code_assist_v1/tools/verify_internal_collaborative_runtime_gateway.py",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py"
+  ],
+  "new_product_files": [
+    "code_assist_v1/collaboration_runtime/node/compactor.mjs",
+    "code_assist_v1/notion_collaboration/node_compactor.py",
+    "code_assist_v1/notion_collaboration/cross_process_gateway.py",
+    "code_assist_v1/tools/verify_internal_collaborative_cross_process_gateway.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_cross_process_gateway.v1.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_browser/t0b-p3-manual-browser-20260824.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/t0b-p3-l4-cross-process-browser-20260824.json"
+  ],
+  "modified_product_files": [
+    "code_assist_v1/notion_collaboration/gateway_service.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tools/verify_internal_collaborative_protocol_contract.py",
+    "code_assist_v1/tools/verify_internal_collaborative_gateway_contract.py",
+    "code_assist_v1/tools/verify_internal_collaborative_transport_authority.py",
+    "code_assist_v1/tools/verify_internal_collaborative_runtime_gateway.py",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_corpus.py"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_cross_process.py",
+    "code_assist_v1/tests/notion_collaboration/browser/test_runtime_gateway_browser_transport.py"
+  ],
+  "read_only_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/collaboration_runtime/python-requirements.lock",
+    "code_assist_v1/collaboration_runtime/node/package-lock.json",
+    "code_assist_v1/notion_collaboration/durable_transport.py",
+    "code_assist_v1/notion_collaboration/runtime_gateway.py",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md",
+    "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md"
+  ],
+  "protected_dependencies": [
+    "code_assist_v1/knowledge/",
+    "code_assist_v1/user_data/",
+    "code_assist_v1/.runtime/",
+    "existing per-user Notion databases",
+    "existing 10111 preview roots and processes",
+    "ports 10011, 10012, 10111, 10112, and 10113",
+    "production roots and services"
+  ],
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p3-cross-process-pre-edit-20260824.json",
+    "sha256": "sha256:ecdc559ab7313862bcfb2633d859d2bfe6c1a92169fe4a5b774929643367e610"
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:c31df8f77d66a369665f77815b798d37516da5203c6ef70d834a6070a4cc037a",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:4b8f53f33478af2301f3134995f240b106c2344dc237d73e5088ae01ddb4ec16"
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:27c803d3363d2439a0d0dfa105589271a5f839cbde73333b5c8f85a9be24e2cc",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:2531695608c4e056f55a05b8d5bba260d81f4c3878c1f56f1a42d12bd09d5d0f",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p2-runtime-gateway-20260824.json",
+    "sha256": "sha256:b0686343517e49e940e125ca822d3f9fcee2d824a085decb8ae745c4753f01b9",
+    "packet_id": "T0B-P2",
+    "receipt_id": "T0B-P2-L3-RUNTIME-GATEWAY-20260824"
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-T0B-P3-ROOT-20260824",
+    "lane": "DOC_HARNESS",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-24T11:30:00Z",
+    "expires_at": "2026-08-25T11:30:00Z",
+    "released_at": "2026-08-24T21:15:00+09:00",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "agents_md_sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked",
+    "tool_status_observed": "blocked_stale_after_prior_pause",
+    "user_resume_authority": "The user instructed continued execution and reported PASS for the isolated actual-browser probe.",
+    "goal_status_mutated_by_packet": false
+  },
+  "current_schema_lineage_sha256": "sha256:915c2b57235a52ff8d67996789da01bd415a0d6a981fdedeb673e3fab46308a3",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-24T21:15:00+09:00",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:6f437a3b620f729e4a1ab3ede67ece70aea3d764f9d49eb1751c2ab51f812421",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_active_packet": "SBE-2.3",
+    "sbe_status_sha256": "sha256:aa31806e405047e2282b2075679756e52272f7d27a73450a8abf64cb4b8d0c72",
+    "sbe_backlog_sha256": "sha256:99e9c06c87fcffc4c3b4dc0543249c47136d9837116b528c1c232f3eb56e6292",
+    "exact_path_collision_observed": false,
+    "sbe_hot_contracts_modified_by_this_packet": false,
+    "u0a_p2_checkpoint_sha256": "sha256:64abae55cbf7fb39d7d770b4df969d84db80252510dd40497e97dc8208a85d33"
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:c31df8f77d66a369665f77815b798d37516da5203c6ef70d834a6070a4cc037a",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:4b8f53f33478af2301f3134995f240b106c2344dc237d73e5088ae01ddb4ec16"
+    },
+    "accepted_packet_receipt_ids": [
+      "A0B-P1-L2-CANONICAL-AUTHORITY-20260824",
+      "T0B-P1-L3-DURABLE-TRANSPORT-20260824",
+      "T0B-P2-L3-RUNTIME-GATEWAY-20260824",
+      "T0B-P3-L4-CROSS-PROCESS-BROWSER-20260824"
+    ],
+    "lease": "UI-INTERNAL-COLLABORATION-T0B-P3-ROOT-20260824",
+    "post_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:27c803d3363d2439a0d0dfa105589271a5f839cbde73333b5c8f85a9be24e2cc",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:2531695608c4e056f55a05b8d5bba260d81f4c3878c1f56f1a42d12bd09d5d0f"
+    }
+  },
+  "validation_receipt": {
+    "receipt_id": "T0B-P3-L4-CROSS-PROCESS-BROWSER-20260824",
+    "validation_id": "L4-REAL-MULTIPROCESS-COLLAB",
+    "validation_ids": [
+      "L2-COLLAB-AUTHORITY",
+      "L3-CRDT-PROTOCOL-CORPUS",
+      "L4-REAL-MULTIPROCESS-COLLAB"
+    ],
+    "status": "pass",
+    "error_count": 0,
+    "executed_at": "2026-08-24T21:15:00+09:00",
+    "matrix_row_ids": [
+      "RT-001"
+    ],
+    "phase_local_regression": {
+      "canonical_authority_lane": {
+        "passed": 50,
+        "failed": 0,
+        "errors": 0,
+        "duration_seconds": 139.67
+      },
+      "crdt_protocol_corpus_lane": {
+        "passed": 146,
+        "failed": 0,
+        "errors": 0,
+        "duration_seconds": 221.12
+      },
+      "focused_cross_process_and_browser_contract": {
+        "passed": 2,
+        "failed": 0,
+        "errors": 0,
+        "duration_seconds": 32.34
+      },
+      "actual_browser_manual_probe": {
+        "status": "pass",
+        "actual_browser_user_agent_detected": true,
+        "connected_clients": 2,
+        "durable_update_count": 1,
+        "owned_cleanup_complete": true
+      }
+    },
+    "cross_process_gateway": {
+      "actual_python_gateway_process": true,
+      "actual_node_yjs_compactor_process": true,
+      "actual_browser_websocket_verified": true,
+      "duplicate_operation_rebroadcast_count": 0,
+      "out_of_order_operation_accepted": false,
+      "restart_replay_verified": true,
+      "slow_consumer_fenced_after_durable_commit": true,
+      "revoked_or_old_epoch_delivery_bytes": 0,
+      "OS_assigned_ports_and_owned_process_root_cleanup": true
+    },
+    "claims": {
+      "T0B_P3_gate_passed": true,
+      "matrix_rows_closed": 1,
+      "RT_001_closed": true,
+      "runtime_or_feature_enabled": false,
+      "development_pair_changed": false,
+      "live_or_production_mutation": false,
+      "product_complete": false
+    }
+  },
+  "evidence_artifacts": {
+    "browser_probe": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_browser/t0b-p3-manual-browser-20260824.json",
+      "sha256": "sha256:10c57f5e29bcfeb61381c96517495395cfe9a666b33e7baab036647f96e0a7ff"
+    },
+    "execution_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/t0b-p3-l4-cross-process-browser-20260824.json",
+      "sha256": "sha256:a9b37f70fac286234f20493c1bb52c8126324924829df9591c23efacc66f338b"
+    },
+    "browser_gate_pending_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p3-browser-gate-pending-20260824.json",
+      "sha256": "sha256:64172ac965f41727a09bdbe7df0149b4b44207fdb41d4c7f28afbf15037a5aa2",
+      "semantics": "Historical truthful checkpoint captured before the actual-browser PASS; it is not current."
+    }
+  },
+  "rollback_or_cleanup": "Delete only the unique T0B-P3 gateway/compactor, verifier, contract, tests, browser evidence, receipt, and checkpoint files; restore the exact pre-edit catalog, ladder, gateway service, harness, internal validator, CRDT verifier, CRDT test, and current pointer while this released lease remains the latest owner. Every test SQLite root, owned child PID, OS-assigned loopback port, and manual-probe runtime root was disposed. No live database, development pair, fixed port, service, identity, or production cleanup is required.",
+  "completion_truth": {
+    "T0B_P3_gate_passed": true,
+    "matrix_rows_closed_by_packet": 1,
+    "RT_001_closed": true,
+    "actual_selected_runtime_cross_process_verified": true,
+    "actual_browser_websocket_verified": true,
+    "runtime_or_feature_enabled": false,
+    "development_pair_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "T0B-P3",
+    "current_state": "gate_passed_integrated",
+    "next_packet": "D0B-P1",
+    "next_state": "awaiting_development_pair_approval_and_exclusive_10111_handoff_before_mutation",
+    "required_operator_approval_id": "AP-DEV-PAIR",
+    "required_external_gate_id": "XG-10111-EXCLUSIVE-HANDOFF",
+    "real_service_or_identity_mutation_allowed": false
+  }
+}

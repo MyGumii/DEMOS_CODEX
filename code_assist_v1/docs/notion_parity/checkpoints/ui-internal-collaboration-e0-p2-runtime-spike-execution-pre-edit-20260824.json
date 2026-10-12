@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P2-RUNTIME-SPIKE-EXECUTION-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-23T17:03:33Z",
+  "checkpoint_kind": "pre_edit_approved_spike_execution",
+  "packet_id": "E0-P2",
+  "packet_status": "in_progress",
+  "purpose": "Freeze exact new source/test ownership after explicit AP-RUNTIME-SPIKE approval and before implementing reusable no-port candidate adapters and the isolated Windows lifecycle executor.",
+  "owner_agent": "/root",
+  "approval_binding": {
+    "approval_id": "AP-RUNTIME-SPIKE",
+    "receipt_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-ap-runtime-spike-approval-receipt-20260824.json",
+    "receipt_sha256": "sha256:1da0b899f891191533ec52af8556290f5012da06a5d23269e9aae61573d78b29",
+    "scope_sha256": "sha256:15d04969e31156df32f1ebd801ecb3a4ab6cec1f0df9748a74d3850f82293c4d",
+    "approved_at": "2026-08-23T16:57:19Z",
+    "approved_by": "user",
+    "approval_source": "explicit_conversation",
+    "single_use": true
+  },
+  "owned_existing_files": [],
+  "new_product_files": [
+    "code_assist_v1/tools/notion_parity/crdt_runtime_spike_executor.py",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_pycrdt_adapter.py",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_relay_adapter.py",
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_adapter.cjs",
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_adapter.cjs"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_executor.py"
+  ],
+  "planned_final_checkpoint": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-runtime-spike-20260824.json",
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-runtime-spike-approval-prepared-20260824.json": "sha256:a70c02e5fd683d52a461340242e668f1555fdf1f67eee6fb084f1ff79686d792",
+    "code_assist_v1/tools/notion_parity/crdt_runtime_spike.py": "sha256:c345fd09ef697a968c52559ee3baf6438ea9982bf598628daacbd498828c0cb9",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:907287f527fc2493fe154621052080c5d339546ab84b4eef97f30ffd02da5625",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:00f8d071a30e29574b861ed80d981fb918b896a0371ca3036db6e4eeda06daff",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:ebc30e142ae00c1ac9c1467be36649ddee94fbbf1c396e42c986070050eb702f"
+  },
+  "ownership_lease": {
+    "lease_id": "E0-P2-SPIKE-EXECUTION-20260824",
+    "lane": "SPIKE",
+    "owner_agent": "/root",
+    "status": "held",
+    "acquired_at": "2026-08-23T17:03:33Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false,
+    "release_condition": "Release only after a final E0-P2 evidence checkpoint or exact-path rollback."
+  },
+  "approved_external_effects_observed_before_source_edit": {
+    "run_id": "E0P2-20260824-001",
+    "root_class": "new_OS_temp_child",
+    "root_was_fresh": true,
+    "direct_artifacts_downloaded": 6,
+    "direct_artifact_integrity_passed": 6,
+    "python_transitive_wheels_downloaded": 8,
+    "python_candidate_venvs_created": 2,
+    "npm_candidate_roots_created": 2,
+    "candidate_dependency_installs_succeeded": 4,
+    "python_pip_check_passed": 2,
+    "npm_dependency_tree_check_passed": 2,
+    "npm_lockfiles_with_missing_registry_integrity": 0,
+    "persistent_service_or_fixed_port_started": false,
+    "product_lockfile_or_runtime_modified": false,
+    "live_identity_workspace_or_data_root_accessed": false
+  },
+  "adapter_contract": {
+    "transport": "newline-delimited JSON over inherited stdin/stdout",
+    "network_listener_allowed": false,
+    "fixed_or_ephemeral_port_allowed": false,
+    "state_files": "candidate-owned temporary root only",
+    "required_lifecycle": [
+      "clean_start",
+      "graceful_stop",
+      "forced_process_crash",
+      "restart",
+      "state_replay",
+      "owned_process_cleanup"
+    ],
+    "required_candidate_bindings": [
+      "pycrdt plus pycrdt.websocket plus uvicorn",
+      "uvicorn plus websockets opaque relay and Node Yjs compactor",
+      "Yjs plus Hocuspocus Server construction/destruction without listen"
+    ]
+  },
+  "completion_truth": {
+    "ap_runtime_spike_approved": true,
+    "e0_p2_started": true,
+    "direct_artifacts_verified": true,
+    "candidate_adapters_implemented": false,
+    "windows_start_stop_restart_receipts_complete": false,
+    "e0_p2_gate_passed": false,
+    "candidate_winner_selected": false,
+    "production_dependency_pinned": false,
+    "real_runtime_implemented": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "rollback_or_cleanup": "Terminate only E0P2-20260824-001 candidate-owned processes, verify no listener or child remains, delete only its validated new OS-temporary root, and remove only the declared new source/test plus this checkpoint if implementation is abandoned. Never target an existing root, product lockfile, product runtime, schema, service, port, identity, workspace, browser profile, knowledge, user_data, or SBE contract."
+}

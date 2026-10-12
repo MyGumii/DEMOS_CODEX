@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_runtime_gateway.v1",
+  "contract_id": "T0B-P2-RUNTIME-GATEWAY-001",
+  "recorded_at": "2026-08-24T11:20:00Z",
+  "packet_id": "T0B-P2",
+  "status": "verified_synthetic_runtime_gateway",
+  "authority_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/durable_transport.py",
+      "sha256": "sha256:40604fdb0c5e8611222d3c98998ecd13ed1a555e2a5972acf4abd0d1c16a1d04"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/runtime_gateway.py",
+      "sha256": "sha256:4127795ae2ded09c760ccae105586961e1582976062b80067660a9cd322ce86a"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/gateway_service.py",
+      "sha256": "sha256:d4c4d270e5bdf5f868976a32153ce62b45a897893cf74bd9b4a2a18473cc4db5"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/selected_runtime_contract.py",
+      "sha256": "sha256:31947c8739e5555875e6df8c0e604e987299299726684f2cf3220d11dd1f79fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_topology_adr.v1.json",
+      "sha256": "sha256:ac102389d11e7270d8bb3bacbff37482da81c8cfe0f7389838a9a0f42ee5770f"
+    },
+    {
+      "path": "code_assist_v1/collaboration_runtime/python-requirements.lock",
+      "sha256": "sha256:2910510df5c434104778c4a78f40a6b2368204513c8ac29824c5a1cb13db7c65"
+    },
+    {
+      "path": "code_assist_v1/collaboration_runtime/node/package-lock.json",
+      "sha256": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3"
+    }
+  ],
+  "gateway_kernel": {
+    "canonical_authority_owns_ticket_consumption": true,
+    "canonical_authority_owns_document_sequence": true,
+    "canonical_commit_precedes_ack_and_broadcast": true,
+    "gateway_payload_semantics": "opaque_Yjs_v1_update_bytes",
+    "gateway_direct_canonical_table_writes": false,
+    "same_binding_reconnect_fences_previous_session": true,
+    "maximum_connections": 1024,
+    "maximum_queue_frames_per_session": 64,
+    "maximum_queue_bytes_per_session": 4194304,
+    "reconnect_window_ms": 10000,
+    "maximum_reconnect_attempts_per_window": 5,
+    "backpressure_action": "retain_durable_commit_purge_queue_fence_slow_session_require_replay"
+  },
+  "authorization_and_redaction": {
+    "canonical_binding_checked_before_inbound_command": true,
+    "canonical_binding_checked_by_durable_commit": true,
+    "canonical_binding_checked_before_each_protected_frame_send": true,
+    "replay_revalidates_before_payload_read": true,
+    "stale_epoch_or_revoked_delivery_bytes": 0,
+    "authority_unavailable_delivery_bytes": 0,
+    "protected_derived_frame_kinds": [
+      "cache",
+      "inbox",
+      "search"
+    ],
+    "queued_derived_frames_purged_on_fence": true,
+    "stable_non_oracle_errors": true
+  },
+  "health_and_metrics": {
+    "health_contract": "code_assist.notion.selected_runtime_health.v1",
+    "default_aggregate_enabled": false,
+    "default_realtime_enabled": false,
+    "compactor_handshake_required_for_new_admission": true,
+    "previously_ready_realtime_may_degrade_without_compaction": true,
+    "raw_workspace_or_page_identifiers_exported": false,
+    "raw_ticket_payload_title_member_or_content_exported": false,
+    "identifier_dimensions": [
+      "workspace_id_hash",
+      "page_id_hash"
+    ],
+    "required_counters": [
+      "active_connections",
+      "authority_unavailable_total",
+      "compaction_request_total_by_result",
+      "compactor_restart_total",
+      "durable_ACK_total",
+      "epoch_fence_drop_total",
+      "gateway_restart_total",
+      "inbound_commands_total_by_result",
+      "queue_overflow_disconnect_total",
+      "replay_events_total",
+      "ticket_admission_total_by_result"
+    ],
+    "required_gauges": [
+      "compaction_lag_sequences",
+      "durable_event_tail_length",
+      "oldest_uncompacted_event_age_seconds",
+      "outbound_queue_bytes",
+      "outbound_queue_frames",
+      "process_RSS_bytes"
+    ],
+    "required_histograms": [
+      "ACK_latency_ms",
+      "command_commit_latency_ms",
+      "compaction_duration_ms",
+      "replay_latency_ms",
+      "restart_to_ready_ms",
+      "send_time_epoch_check_latency_ms",
+      "snapshot_bytes"
+    ]
+  },
+  "service_and_lifecycle": {
+    "service_contract": "code_assist.notion.t0b_p2.gateway_asgi.v1",
+    "selected_gateway_runtime": "CPython_3.14.3_uvicorn_0.52.4_websockets_17.0.1",
+    "selected_runtime_import_is_lazy_and_exact_version_checked": true,
+    "http_health_and_metrics_adapter_implemented": true,
+    "websocket_ticket_update_ack_replay_and_drain_adapter_implemented": true,
+    "owned_lifecycle_probe_process_count": 1,
+    "owned_lifecycle_probe_listener": "loopback_OS_assigned_port_zero",
+    "forbidden_operator_ports": [
+      10011,
+      10012,
+      10111,
+      10112,
+      10113
+    ],
+    "exact_PID_and_launch_marker_verified": true,
+    "exact_owned_process_port_and_runtime_root_cleanup_verified": true,
+    "lifecycle_probe_transports_protected_data": false
+  },
+  "deferred_cross_process_boundary": {
+    "selected_python_runtime_installed_or_enabled_by_packet": false,
+    "selected_Node_Yjs_runtime_installed_or_enabled_by_packet": false,
+    "actual_selected_WebSocket_listener_started_by_gate": false,
+    "actual_Node_compactor_started_by_gate": false,
+    "actual_Yjs_merge_or_convergence_claimed": false,
+    "actual_browser_collaboration_claimed": false,
+    "closure_owner": "T0B-P3"
+  },
+  "validation": {
+    "new_test_count": 9,
+    "failed": 0,
+    "skipped": 0,
+    "xfailed": 0,
+    "database_roots": "pytest_temporary_only",
+    "listener_ports": "pytest_OS_assigned_loopback_only",
+    "owned_process_cleanup_complete": true
+  },
+  "claims": {
+    "durable_runtime_gateway_kernel_implemented": true,
+    "ASGI_gateway_service_adapter_implemented": true,
+    "send_time_epoch_fence_and_derived_frame_redaction_implemented": true,
+    "bounded_backpressure_health_metrics_and_owned_lifecycle_implemented": true,
+    "T0B_P2_gate_passed": true,
+    "RT_001_closed": false,
+    "runtime_or_feature_enabled": false,
+    "development_pair_changed": false,
+    "production_target_changed": false,
+    "product_complete": false
+  }
+}

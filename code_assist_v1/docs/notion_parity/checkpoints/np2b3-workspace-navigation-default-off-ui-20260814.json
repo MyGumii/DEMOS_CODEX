@@ -1,0 +1,134 @@
+{
+  "run_id": "np2b3-workspace-navigation-default-off-ui-20260814",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "recorded_at": "2026-08-14T02:17:10.4666879+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "goal_completed": false
+  },
+  "slice": "NP2B-3-workspace-navigation-default-off-ui",
+  "status": "p0_p1_review_passed_default_off",
+  "source_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/np2b2-workspace-navigation-routes-audit-20260814.json",
+    "sha256": "5db16920bb48abd2834cb888edd6b431468dafc11609a20a15133af6990c8874",
+    "pre_edit_ui_hash_mismatch_count": 0
+  },
+  "implementation": {
+    "server_capability": "navigation_ui",
+    "enable_environment_variable": "CODE_ASSIST_NP2B_NAVIGATION_UI",
+    "kill_switch_environment_variable": "CODE_ASSIST_NP2B_NAVIGATION_UI_KILL_SWITCH",
+    "enable_environment_value_observed": "",
+    "kill_switch_environment_value_observed": "",
+    "runtime_ui_enabled": false,
+    "server_snapshot_precedence": true,
+    "member_only_workspace_switcher": true,
+    "guest_workspace_excluded": true,
+    "serialized_navigation_mutations": true,
+    "network_uncertain_exact_replay_attempts": 1,
+    "offline_queue_enabled": false,
+    "stale_response_fencing": true,
+    "canonical_reload_or_rollback": true,
+    "membership_revoke_fail_closed": true,
+    "draft_and_preference_flush_before_switch": true,
+    "section_keyboard_and_focus_restore": true,
+    "responsive_resize_contract": true,
+    "recents_write_enabled": false,
+    "resolver_cutover_enabled": false,
+    "live_migration_applied": false,
+    "live_data_accessed": false
+  },
+  "output_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/routes_notion_workspace.py": "86cea3741de68077d6141aa841138a183e2bf3dda8f953c71047b5b04ded5df3",
+    "code_assist_v1/notion_static/index.html": "b1fd6485303389a972626815863390f054f0c05d43db9eec5fc16ab9cf931004",
+    "code_assist_v1/notion_static/notion.css": "f73c03b02da4bb438aa92c3f5965e98f2d7e1594c86dc009d17e9239e96fe694",
+    "code_assist_v1/notion_static/notion.js": "70db9cf4808d95a9b035b38fb439e1c7882b3ff91d4086d40d44c2fea0cc044b",
+    "code_assist_v1/tests/test_notion_navigation_ui.js": "aab0c0a9161dc70743e858bc05ccc49486cde4626ceb9994b71d375e9d3cab23",
+    "code_assist_v1/tests/test_notion_workspace_navigation_routes.py": "74953877c318fb28711516adb911b6192ff0436481f93f815dfb4965740f2f7e",
+    "code_assist_v1/tests/test_notion_workspace_auth_isolation.py": "826ab5a3bb278ad3c7a09c491a2a65cfadfed995a434c4a20b614d46c18ab703",
+    "code_assist_v1/docs/notion_parity/np2b_navigation_contract.json": "3aa56722ad329e311f6ae107907b6506b6207f2da2126cddac8d2e35e80640fd",
+    "code_assist_v1/tools/verify_notion_np2b_navigation_contract.py": "2ed09a4a69b48941b0949de081e9e8d3deccca6ee3b2ce324fc6dcff334e641a",
+    "code_assist_v1/tests/test_verify_notion_np2b_navigation_contract.py": "cea19dd87d2548e93bcb2da5d358e3f3f500b9d45c283a0b797b9c9f67d1de1e",
+    "code_assist_v1/docs/notion_parity/NP2B_NAVIGATION_STATE_DESIGN.md": "0a7cc230d9810018fef73c86fc458737d8878e067653fab2dda55d90b6209b87",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "17426bf3f12ad8cce34885385e939ff4036d2476f869b9661bf00be8b1036dc7",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "fcba2e46c651fa4862a11dbad8216f12492764e8496a44ca763a19f03dccbc68",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "298b8ac125a6b28bc73f6d681eb2a247957a307f4b33f3ebb7d99843818987de"
+  },
+  "tests": [
+    {
+      "selection": "focused NP2B navigation UI Node contract",
+      "result": "notion_navigation_ui: ok",
+      "exit_code": 0
+    },
+    {
+      "selection": "legacy Notion UI runtime, auth CSRF, atomic save and publication UI Node regressions",
+      "result": "4 scripts passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "navigation routes and NP2B machine contract",
+      "result": "13 passed",
+      "exit_code": 0,
+      "duration_seconds": 16.33
+    },
+    {
+      "selection": "navigation store and 1309-to-1310 migration",
+      "result": "21 passed",
+      "exit_code": 0,
+      "duration_seconds": 26.12
+    },
+    {
+      "selection": "workspace navigation/routes/auth isolation",
+      "result": "41 passed",
+      "exit_code": 0,
+      "duration_seconds": 30.38
+    },
+    {
+      "selection": "workspace/legacy route and Notion parity machine contracts",
+      "result": "49 passed",
+      "exit_code": 0,
+      "duration_seconds": 19.97
+    },
+    {
+      "selection": "Notion auth and HTTP contracts",
+      "result": "66 passed",
+      "exit_code": 0,
+      "duration_seconds": 25.08
+    },
+    {
+      "selection": "legacy Notion routes, publication adapter and Second Brain characterization",
+      "result": "14 passed",
+      "exit_code": 0,
+      "duration_seconds": 9.61
+    },
+    {
+      "selection": "Knowledge hard regression lane",
+      "result": "8 passed",
+      "exit_code": 0,
+      "duration_seconds": 7.43
+    },
+    {
+      "selection": "Python compile and JavaScript syntax checks",
+      "result": "passed",
+      "exit_code": 0
+    }
+  ],
+  "review_outcome": {
+    "p0_remaining": 0,
+    "p1_remaining": 0,
+    "schema_changed": false,
+    "protected_boundaries_changed": false,
+    "findings_closed": [
+      "capability kill switch now fails closed for all nonempty values except exact 0",
+      "canonical empty, membership revoke and capability recheck failure suppress stale local favorites",
+      "snapshot subject and workspace identities are exact and duplicate workspace identities are rejected",
+      "mutation reservation starts before asynchronous capability preflight, preventing concurrent version races"
+    ]
+  },
+  "known_host_failure": null,
+  "git_provenance": "unavailable: workspace .git is not valid repository metadata; no commit or landed claim",
+  "next_exact_work": "Re-hash every output before any edit, then choose one separately gated slice: NP2B-4 Recents retention/coalescing decision, or NP2B-5/NP-2C canonical tree lifecycle design. Do not enable the UI flag, start resolver cutover, apply live migration, implement destructive acknowledgement, or touch protected Shared Knowledge/app_code/Second Brain files.",
+  "stop_reason": "NP2B-3 implementation, regression evidence and P0/P1 review are complete. Runtime flag remains default-off and no live state was touched."
+}

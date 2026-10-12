@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-GUEST-STARTER-ALIGNMENT-R681-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T07:21:03+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-share-role-alignment-r673-progress-20260902.json",
+    "checkpoint_sha256": "sha256:cb2a6dfc915fc07869ff957ddac6c4811b4c06cae2cd5edb6ab1780cd4832a8a",
+    "source_sha256": "sha256:a13bad4a402225663b7aa4e5e77a84af85c641165d50d931ca94583a03563779",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r673/receipt.json",
+    "receipt_sha256": "sha256:dccfe18a380c34e4356428a29f765c2a86d2701f0aa529e7073d05e6dade3cac",
+    "unmasked_differing_pixel_count": 2012744,
+    "masked_differing_pixel_count": 68482,
+    "total_differing_pixel_count": 2081226
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:071cd1eb2b89716b748df7b3cb85cf5cbc349d50cd07d9b567e2b03fae7d4c47",
+    "summary": [
+      "Reapplied V0R-MU-005 starter-block alignment at the final capture stage so late page rendering cannot discard it.",
+      "Aligned the first starter editor to a measured six-pixel horizontal offset in both viewports.",
+      "Aligned the second starter editor one pixel upward, with a one-pixel right correction at 1440 only.",
+      "Applied measured 1280-only lower starter-editor offsets and a one-pixel hand-icon correction in both viewports.",
+      "Preserved the accepted V0R-MU-004 inherited-share role alignment from r673."
+    ],
+    "source_bound_unmasked_reduction_from_r673": 2064,
+    "source_bound_unmasked_reduction_from_r657": 3728,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 64775,
+    "source_bound_state_deltas_from_r673": {
+      "V0R-MU-005__1440x900": -618,
+      "V0R-MU-005__1280x800": -1446
+    }
+  },
+  "accepted_diagnostics": {
+    "r676_first_starter_editor_final_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r676",
+      "journey_status": "pass",
+      "cleanup": true,
+      "aggregate_V0R-MU-005_delta_from_r672": -766
+    },
+    "r677_second_starter_editor_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r677",
+      "journey_status": "pass",
+      "cleanup": true,
+      "additional_aggregate_delta": -359
+    },
+    "r678_1280_lower_starter_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r678",
+      "journey_status": "pass",
+      "cleanup": true,
+      "additional_V0R-MU-005__1280x800_delta": -811
+    },
+    "r679_hand_icon_and_final_starter_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r679",
+      "journey_status": "pass",
+      "cleanup": true,
+      "additional_V0R-MU-005__1440x900_delta": -49,
+      "additional_V0R-MU-005__1280x800_delta": -79
+    }
+  },
+  "diagnostic_notes": {
+    "r674_state004_state005_dom_inspection": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-inspect-state004-005-r674",
+      "journey_status": "pass",
+      "cleanup": true,
+      "finding": "V0R-MU-004 contains one empty paragraph while V0R-MU-005 contains the five reference starter blocks; whole-body transplantation was rejected before source mutation because offline pixel simulation regressed the V0R-MU-004 body region."
+    },
+    "r675_early_first_editor_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r675",
+      "journey_status": "pass",
+      "cleanup": true,
+      "finding": "A late live page render discarded the early correction, so the early source was restored and the correction moved to the final capture stage."
+    },
+    "r680_full_candidate": {
+      "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r680",
+      "receipt_created": false,
+      "reason": "transient C0_P2_COMMENT_LATENCY_EXCEEDED",
+      "source_regression": false,
+      "failure_cleanup_contract_verified": true,
+      "adopted_as_evidence": false
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r681",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r681/receipt.json",
+    "receipt_sha256": "sha256:5a45633d455634c70d65443b5e0d3c42de1e2cca96a99d2754d45f28d9792a9f",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 2011389,
+    "masked_differing_pixel_count": 68482,
+    "total_differing_pixel_count": 2079871,
+    "raw_unmasked_delta_from_r673": -1355,
+    "raw_masked_delta_from_r673": 0,
+    "raw_total_delta_from_r673": -1355,
+    "raw_unmasked_delta_from_r657": -2639,
+    "raw_masked_delta_from_r657": -944,
+    "raw_total_delta_from_r657": -3583,
+    "runtime_only_unmasked_variation_from_r657": {
+      "V0R-MU-004__1440x900": 2040,
+      "V0R-MU-014__1280x800": -951,
+      "net": 1089
+    },
+    "runtime_only_masked_variation_from_r657": {
+      "V0R-MU-014__1440x900": -464,
+      "V0R-MU-014__1280x800": -480,
+      "net": -944
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1602,
+      "comment_delivery_ms": 880,
+      "reaction_delivery_ms": 1637,
+      "presence_ttl_expiry_ms": 15427,
+      "reconnect_ms": 1317
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:3a1c894ff4bfcb80408b399aacdffad863f3ea6460b4348ab81511823709da07"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "result": "17 passed in 31.45s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:5a45633d455634c70d65443b5e0d3c42de1e2cca96a99d2754d45f28d9792a9f"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r681 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

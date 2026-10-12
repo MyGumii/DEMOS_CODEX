@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-SHARE-TAB-CONTENT-R317-PROGRESS-20260901",
+  "recorded_at": "2026-09-01T00:19:17.9623447+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r317 Chrome 153 full candidate preserves the immutable lossless-exact-v4 browser reference, captures all 18 named states at both adopted viewports, passes all 36 accessibility and interaction captures plus all four component journeys, and completes synthetic cleanup. It retains the exact V0R-MU-004/V0R-MU-006 share-tab underline and divider geometry from r313, aligns the inactive tab label, restores the V0R-MU-004 active label baseline, and matches the help-label width and horizontal position with a bounded 13px capture projection. Compared with retained r313, r317 lowers unmasked differences by 1,733 pixels and raw differences by 1,701 pixels. Compared with r303, it lowers unmasked differences by 11,646 pixels and raw differences by 11,630 pixels. Exact RGBA remains 0/36, so r317 is mutable progress evidence only and is not an immutable receipt, phase-gate closure, or product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified_by_this_packet": false,
+      "conflicting_change_detected": false
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-share-tabs-r313-progress-20260831.json",
+      "sha256": "sha256:561e21974a1a92178d2d79ea63f3eec4c745e6933f3368c2f850b6b3f968e65c"
+    },
+    "previous_candidate": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r313/receipt.json",
+      "receipt_sha256": "sha256:f6e0474a2d2f2e44ebdd059957dd6a1d7593371cf6db10ac26f6bd6e553039a2",
+      "unmasked_difference_count": 2221210,
+      "masked_difference_count": 70224,
+      "raw_difference_count": 2291434
+    }
+  },
+  "implementation": {
+    "capture_harness": {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:468d05279f43190d9cc4f7c60cdf4d713c07741395e5bc6a38d35f1b4a78ad0c",
+      "changes": [
+        "keep the V0R-MU-004 active tab label on the reference baseline while moving its pseudo-element independently to the exact underline scanlines",
+        "move both inactive tab labels two pixels left and one pixel up",
+        "render both help labels at 13px and two pixels left so their measured horizontal bounding boxes match the reference",
+        "retain every r313 underline width, color, and full-width divider correction"
+      ]
+    },
+    "experiments": {
+      "r314": {
+        "diagnostic_path": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260831-r314/diagnostic.json",
+        "diagnostic_sha256": "sha256:579a5f93ef65217a19310cb1bbf1a1064f63316c93de6ecb98bffb150690149a",
+        "state_totals": {
+          "V0R-MU-004": 119848,
+          "V0R-MU-006": 183066
+        },
+        "delta_from_r312": {
+          "V0R-MU-004": -754,
+          "V0R-MU-006": -598
+        },
+        "per_viewport_region_reductions": {
+          "V0R-MU-004_active": -78,
+          "V0R-MU-004_inactive": -27,
+          "V0R-MU-004_help": -272,
+          "V0R-MU-006_inactive": -27,
+          "V0R-MU-006_help": -272
+        },
+        "exact_share_line_regression_count": 0,
+        "accepted": true
+      },
+      "r315": {
+        "diagnostic_path": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260901-r315/diagnostic.json",
+        "diagnostic_sha256": "sha256:f4a8bbe59f724a3234754f78359cb204840c068922b3046c5f3a670a5315b9a8",
+        "description": "inactive-tab font-weight 600 experiment",
+        "state_deltas_from_r314": {
+          "V0R-MU-004": 46,
+          "V0R-MU-006": 46
+        },
+        "accepted": false,
+        "reason": "the heavier candidate glyph shape regressed each state despite a closer foreground-pixel count"
+      },
+      "r316": {
+        "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r316",
+        "receipt_written": false,
+        "accepted": false,
+        "reason": "one-time C0 Page.wait_for_function 10000ms timeout during durable reconnect catch-up",
+        "cleanup_contract": "the C0 finally path revokes the synthetic member, trashes the page, and closes all contexts before rethrow"
+      }
+    }
+  },
+  "retained_r317_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r317",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r317/receipt.json",
+    "receipt_sha256": "sha256:98a83bb5f40ce17fba69c8acc54e952140ef7092d88609f56380c806a0a61350",
+    "source_build_sha256": "sha256:649004beed6722fa10f64546624279c33bbdf3a18e114fdd9fc74f1d1397dde4",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 401031,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2219477,
+    "masked_difference_count": 70256,
+    "raw_difference_count": 2289733,
+    "unmasked_delta_from_r313": -1733,
+    "masked_delta_from_r313": 32,
+    "raw_delta_from_r313": -1701,
+    "unmasked_delta_from_r303": -11646,
+    "masked_delta_from_r303": 16,
+    "raw_delta_from_r303": -11630,
+    "unmasked_state_deltas_from_r313": {
+      "V0R-MU-004": -754,
+      "V0R-MU-006": -598,
+      "V0R-MU-010": -713,
+      "V0R-MU-015": 332
+    },
+    "masked_state_deltas_from_r313": {
+      "V0R-MU-014": 32
+    },
+    "unmasked_state_totals": {
+      "V0R-MU-001": 197776,
+      "V0R-MU-002": 189531,
+      "V0R-MU-003": 137453,
+      "V0R-MU-004": 119848,
+      "V0R-MU-005": 56323,
+      "V0R-MU-006": 183066,
+      "V0R-MU-007": 113094,
+      "V0R-MU-008": 115339,
+      "V0R-MU-009": 131745,
+      "V0R-MU-010": 116929,
+      "V0R-MU-011": 113001,
+      "V0R-MU-012": 110620,
+      "V0R-MU-013": 143500,
+      "V0R-MU-014": 171717,
+      "V0R-MU-015": 69301,
+      "V0R-MU-016": 68486,
+      "V0R-MU-017": 90943,
+      "V0R-MU-018": 90805
+    },
+    "c0_p2_measurements_ms": {
+      "presence_delivery_ms": 922,
+      "comment_delivery_ms": 1391,
+      "reaction_delivery_ms": 1108,
+      "presence_ttl_expiry_ms": 15703,
+      "reconnect_ms": 1968
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:79deb0aa703b2a6858df7f71affd893aada7bb59aad8357c63ad10d86dfcf6b0"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "result": "16 passed, 1 skipped in 12.77s",
+      "exit_code": 0
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:98a83bb5f40ce17fba69c8acc54e952140ef7092d88609f56380c806a0a61350"
+    },
+    "component_journey_statuses": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from the retained r317 mutable candidate. Preserve the exact share-tab underline and divider geometry, aligned active/inactive labels, 13px help-label width correction, the direct-guest vector lock, inherited-workspace row and deterministic home icon, canonical rich starter semantics, state-bounded indentation and chip geometry for V0R-MU-005/V0R-MU-015/V0R-MU-016, deterministic F0 reference-context restoration, and all earlier retained corrections. Do not restore the rejected inactive-tab weight 600 experiment or any earlier rejected typography, modal, icon, row-height, display-string, or title-transform experiments. Treat isolated C0 latency, header-status, masked-counter, V0R-MU-010, and V0R-MU-015 differences as run variability unless a source-bounded causal region is proven. Prioritize another reproducible state-bounded structural or rendering difference, and do not run fresh Core 25 or quiet-host performance gates until the 36/36 exact gate closes."
+}

@@ -1,0 +1,2204 @@
+{
+  "schema_version": 2,
+  "contract": "code_assist.notion.internal_collaborative_packets.v2",
+  "recorded_at": "2026-08-23T00:00:00+09:00",
+  "revised_at": "2026-09-07T06:50:00+09:00",
+  "predecessor_sha256": "23b4b1aae469654f0a29b693f6fb11aa594f5e8806164ee1f95358d494cadf00",
+  "catalog_state": "authoritative_planning_contract_not_execution_evidence",
+  "authority_inputs": {
+    "ultra_plan": "INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+    "implementation_handoff": "INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+    "product_matrix": "internal_collaborative_completion_matrix.v1.json",
+    "validation_ladder": "internal_collaborative_validation_ladder.v1.json"
+  },
+  "integrity_binding": {
+    "strategy": "external_checkpoint_hash_bundle",
+    "checkpoint": "../checkpoints/ui-internal-collaboration-plan-alignment-20260823.json",
+    "reason": "The mutually referencing planning artifacts cannot safely embed one another's final hashes."
+  },
+  "status_values": [
+    "planned",
+    "in_progress",
+    "implemented_unverified",
+    "gate_passed",
+    "blocked",
+    "superseded"
+  ],
+  "status_semantics": {
+    "blocked": "Packet-local only; it does not imply that the thread goal is blocked.",
+    "prerequisite_rule": "A normal prerequisite must be gate_passed; G0 means both G0-U and G0-E have valid decision receipts.",
+    "completion_claim_rule": "Only Z0-P1 may set claims.product_complete to true; active shared-goal completion is a separate conjunction with current SBE gates."
+  },
+  "phase_order": [
+    "U0a",
+    "D0a",
+    "H0a",
+    "A0a",
+    "E0",
+    "T0a",
+    "O0a",
+    "UI0",
+    "G0",
+    "K0",
+    "D0b",
+    "A0b",
+    "T0b",
+    "I0",
+    "C0",
+    "E1",
+    "S0",
+    "F0",
+    "V0",
+    "O1",
+    "Q0",
+    "R0",
+    "R1",
+    "Z0"
+  ],
+  "packet_contract": {
+    "required_fields": [
+      "id",
+      "phase",
+      "status",
+      "required",
+      "prerequisites",
+      "conditional_prerequisites",
+      "approval",
+      "ownership_lane",
+      "deliverables",
+      "validation_ids",
+      "matrix_contributes_to",
+      "matrix_closes",
+      "gate_ids"
+    ],
+    "optional_compliance_fields": [
+      "external_prerequisites",
+      "sbe_scenario_ids",
+      "sbe_evolution_scenario_ids",
+      "sbe_preflight_required"
+    ],
+    "matrix_contributes_to_semantics": "Design, fixture, spike, implementation, or supporting evidence only; it never closes a completion row.",
+    "matrix_closes_semantics": "The packet is the exclusive planned closure owner, but closure is derived only from bound validation receipts in gate mode.",
+    "before_in_progress_required": [
+      "owned_existing_files",
+      "new_product_files",
+      "new_test_files",
+      "read_only_dependencies",
+      "protected_dependencies",
+      "pre_edit_sha256",
+      "owner_agent",
+      "ownership_lease",
+      "agents_md_sha256",
+      "goal_observation",
+      "current_schema_lineage_sha256",
+      "cross_catalog_ownership_snapshot",
+      "rollback_or_cleanup"
+    ],
+    "shared_file_rule": "A path may have one active owner at a time even when two packets use the same broad ownership lane.",
+    "cross_catalog_rule": "Exact path ownership, pre-edit hashes, owner, lease, and external prerequisites must be checked against both this catalog and the current SBE ownership/status snapshot; approval never grants file ownership.",
+    "external_prerequisite_rule": "Every listed external prerequisite must have a fresh signed or hash-bound handoff receipt before in_progress; it is not inferred from approval or an apparently idle STATUS row.",
+    "hot_shared_contract_rule": "A packet writes only its predeclared evidence/checkpoint file. AGENTS.md, shared STATUS.md, SBE traceability, and other hot contracts are read-only unless a separately predeclared status/contract integrator owns that exact update.",
+    "protected_change_rule": "Live knowledge/, user_data/, .runtime/, existing per-user Notion databases, existing 10111 preview roots, and production roots are never pytest fixtures or writable automated-test targets. Separately approved operator actions may use an offline production copy or named production scope; protected source changes additionally require exact ownership and the active owning SBE packet."
+  },
+  "authority_precedence": [
+    "current_code_assist_v1_AGENTS.md",
+    "active_second_brain_contracts_and_owning_SBE_packet",
+    "INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+    "INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+    "machine_readable_catalogs"
+  ],
+  "sbe_alignment_contract": {
+    "shared_identity_only": true,
+    "notion_and_sbe_authorization_domains_are_independent": true,
+    "notion_workspace_database_replaces_or_replicates_central_sbe_database": false,
+    "current_goal_count": 20,
+    "current_mandatory_scenario_count": 284,
+    "count_transition_owner": "SBE-0.1",
+    "historical_schema_contracts": "v1-v7_read_only",
+    "successor_schema_contracts": "v8-v11_only_through_active_owning_SBE_packet"
+  },
+  "status_integrator_contract": {
+    "required_before_phase_gate_close": true,
+    "assignment_fields": [
+      "integrator_agent",
+      "exact_hot_contract_paths",
+      "pre_edit_sha256",
+      "accepted_packet_receipt_ids",
+      "lease",
+      "post_edit_sha256"
+    ],
+    "packet_approval_implies_integrator_ownership": false,
+    "non_integrator_hot_contract_writes_forbidden": true
+  },
+  "ownership_lanes": {
+    "DOC_HARNESS": "Plans, catalogs, verifiers, runners, receipts, and tests; same-file ownership is exclusive.",
+    "RUNTIME": "Pair configuration, launchers, app boundary, cookies, origin, CSRF, health, and service lifecycle; app_code.py requires explicit ownership transfer.",
+    "CANONICAL": "Workspace store, forward schema lineage, migrations, authoritative commands, events, epochs, audit, and outbox; one active owner.",
+    "UI": "notion.js, notion.css, index.html, editor core, host adapter, and browser-facing behavior; one active owner.",
+    "SECOND_BRAIN_PRODUCTION": "Protected Second Brain or production paths; explicit ownership transfer, approval where applicable, and full SBE regression.",
+    "SPIKE": "Disposable isolated candidates only; no production dependency or frozen schema before the winner decision."
+  },
+  "approval_registry": [
+    {
+      "id": "AP-DEV-PAIR",
+      "status": "approved",
+      "scope": "Approved dev identity allowlist, new roots and secret/cookie namespace, replacement of development 10111, and start of 10112/10113."
+    },
+    {
+      "id": "AP-RUNTIME-SPIKE",
+      "status": "consumed",
+      "scope": "Download or install an unavailable CRDT, ASGI, Node, or gateway candidate only in the isolated spike environment."
+    },
+    {
+      "id": "AP-REFERENCE-MULTIUSER",
+      "status": "consumed",
+      "scope": "Create, mutate, capture, and clean synthetic multi-user states in the dedicated external Notion reference workspaces."
+    },
+    {
+      "id": "AP-OPS-TARGET",
+      "status": "pending",
+      "scope": "Configure the external encrypted backup destination, key, retention, and target-host restore drill."
+    },
+    {
+      "id": "AP-PROD-REHEARSAL",
+      "status": "pending",
+      "scope": "Create and use an approved offline production-data copy; no production mutation."
+    },
+    {
+      "id": "AP-PROD-DEPLOY",
+      "status": "pending",
+      "scope": "Install the frozen release and gateway at 10012 default-off, restart owned services, and run health checks without user enablement."
+    },
+    {
+      "id": "AP-PROD-CANARY",
+      "status": "pending",
+      "scope": "Enable the frozen generation for named canary principals and workspace under abort thresholds."
+    },
+    {
+      "id": "AP-PROD-RESTORE",
+      "status": "incident_only_not_preapproved",
+      "scope": "Execute a real production restore after an incident; rehearsal never grants this authority."
+    }
+  ],
+  "external_gate_registry": [
+    {
+      "id": "XG-SBE-DYNAMIC-BASELINE",
+      "status": "observe_at_packet_start",
+      "source_paths": [
+        "code_assist_v1/AGENTS.md",
+        "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md",
+        "code_assist_v1/docs/knowledge_spaces/TEST_OPERATIONS.md",
+        "code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md",
+        "code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json",
+        "code_assist_v1/docs/knowledge_spaces/STATUS.md"
+      ],
+      "rule": "Re-read AGENTS.md and its ordered 18-document SBE preflight, bind their manifest plus runtime goal/status/schema observations, and fail closed on drift or conflict. Runtime goal state governs; any disagreement with STATUS.md is preserved and later reconciled only by the assigned status integrator."
+    },
+    {
+      "id": "XG-10111-EXCLUSIVE-HANDOFF",
+      "status": "handoff_accepted",
+      "related_sbe_packets": [
+        "SBE-7.2"
+      ],
+      "rule": "D0B-P1 and SBE-7.2 may not concurrently own or replace 10111, its launcher, auth/config composition, roots, services, or ports. One side must provide an exact-path/hash/service-state handoff receipt to the other."
+    },
+    {
+      "id": "XG-SBE-PROTECTED-CHANGE-OWNER",
+      "status": "conditional_pending",
+      "rule": "S0B-P1 may exist only after S0A-P1 proves necessity, an active SBE packet explicitly owns every protected path and v8-v11 migration, and its rollout dependency gate accepts the change."
+    },
+    {
+      "id": "XG-SBE-TARGET-OPERATIONS-HANDOFF",
+      "status": "pending",
+      "related_sbe_packets": [
+        "SBE-7.2",
+        "rebaselined_P7.8",
+        "rebaselined_P7.9",
+        "rebaselined_P8"
+      ],
+      "rule": "Target load, backup/restore, production service, 10011/10012, canary, and rollout work requires one coordinated target-authority owner and a fresh cross-stream handoff; no Notion receipt may close an SBE target gate or vice versa."
+    }
+  ],
+  "goal_completion_contract": {
+    "notion_product_complete_when": "Z0-P1_gate_passed",
+    "active_shared_goal_complete_when": "Z0-P1_gate_passed AND current TEST_OPERATIONS.md gates AND current TRACEABILITY.md gates AND current GOAL_CONTRACT.json scenarios",
+    "catalog_may_resume_replace_block_or_complete_goal": false
+  },
+  "phase_gates": [
+    {
+      "id": "U0A-GATE-001",
+      "phase": "U0a",
+      "exit": "Draft capability denominator, authority inventory, catalogs, audit/gate modes, and tamper tests are complete; final product choices remain open at G0-U."
+    },
+    {
+      "id": "D0-GATE-001",
+      "phase": "D0",
+      "exit": "The approved 10111/10112 pair shares only the intended dev identity authority and is isolated from production roots, cookies, secrets, origins, CSRF, logout, links, and requests."
+    },
+    {
+      "id": "H0-GATE-001",
+      "phase": "H0",
+      "exit": "Owner, member, internal page guest, and outsider run in independent ephemeral browser contexts with deterministic reset and leak oracles."
+    },
+    {
+      "id": "A0-GATE-001",
+      "phase": "A0",
+      "exit": "One content/IAM/event authority has no request-time directory scan or dual write and passes migration, restart, replay, revocation, and rollback rehearsal."
+    },
+    {
+      "id": "E0-GATE-001",
+      "phase": "E0",
+      "exit": "A pinned Windows-reproducible gateway/CRDT winner passes the common convergence, Korean IME, restart, compaction, fault, and cost corpus."
+    },
+    {
+      "id": "T0-GATE-001",
+      "phase": "T0",
+      "exit": "Ticket, epoch, sequence, ACK, replay, snapshot, compaction, backpressure, restart, and revoke behavior is durable and fail-closed."
+    },
+    {
+      "id": "O0-GATE-001",
+      "phase": "O0",
+      "exit": "The selected update/snapshot format shares one high-water boundary with a coordinated synthetic backup and reproducible new-root restore."
+    },
+    {
+      "id": "UI0-GATE-001",
+      "phase": "UI0",
+      "exit": "A narrow host adapter is the only supported collaboration hook and preserves all six Node contracts plus the historical browser journey."
+    },
+    {
+      "id": "K0-GATE-001",
+      "phase": "K0",
+      "exit": "All new capabilities are default-off, the aggregate switch dominates capability switches, and code rollback never requires schema downgrade."
+    },
+    {
+      "id": "I0-GATE-001",
+      "phase": "I0",
+      "exit": "Workspace roles and page grants, inheritance, invitation, role change, revoke, audit, and outsider non-oracles pass across independent principals."
+    },
+    {
+      "id": "C0-GATE-001",
+      "phase": "C0",
+      "exit": "Presence, comments, reactions, mentions, and inbox are durable or explicitly ephemeral, permission-filtered, revoke-fenced, and proven in two browsers."
+    },
+    {
+      "id": "E1-GATE-001",
+      "phase": "E1",
+      "exit": "Rich text, structure, and adopted database mutations converge with zero acknowledged character loss while IME, selection, focus, undo, reconnect, and offline recovery pass."
+    },
+    {
+      "id": "S0-GATE-001",
+      "phase": "S0",
+      "exit": "Only an explicit canonical revision publication commit enters Second Brain and stale approval, revoke, retry, restart, search, backlink, and session paths remain authorized."
+    },
+    {
+      "id": "F0-GATE-001",
+      "phase": "F0",
+      "exit": "Every adopted database, file, history, search, import/export, reminder, and adjacent capability round-trips canonically; non-adopted visible controls are absent."
+    },
+    {
+      "id": "V0-GATE-001",
+      "phase": "V0",
+      "exit": "The final candidate reruns Core 25 and every adopted multi-user state at both viewports with reviewed strict visual similarity across the full viewport, three broad regions, and one state-specific critical region; exact candidate RGBA remains diagnostic, the immutable V0R reference transport remains exact, and accessibility evidence is complete."
+    },
+    {
+      "id": "O1-GATE-001",
+      "phase": "O1",
+      "exit": "One coordinated encrypted generation restores to a new root with permissions, realtime, files, history, search, and Second Brain checks inside the frozen RPO/RTO."
+    },
+    {
+      "id": "Q0-GATE-001",
+      "phase": "Q0",
+      "exit": "Frozen load, fault, security, accessibility, observability, and kill-switch envelopes pass with no acknowledged-operation loss or authorization leak."
+    },
+    {
+      "id": "R0-GATE-001",
+      "phase": "R0",
+      "exit": "Production-copy rehearsal, restored-copy full suite, compatible rollback, default-off install, gateway packaging, restart, and health checks pass."
+    },
+    {
+      "id": "R1-GATE-001",
+      "phase": "R1",
+      "exit": "Two collaborators and one outsider pass canary, soak, abort, prebuilt kill-switch exercise, rollback, and recovery checks on the frozen generation."
+    },
+    {
+      "id": "Z0-GATE-001",
+      "phase": "Z0",
+      "exit": "All completion rows, gates, approvals, receipts, artifacts, realm derivations, hashes, and deployment bindings pass strict mode with no skip, xfail, open decision, or unresolved host retry."
+    }
+  ],
+  "decision_freeze": {
+    "id": "G0",
+    "status": "frozen",
+    "aggregate_requires": [
+      "G0-U",
+      "G0-E"
+    ],
+    "subgates": [
+      {
+        "id": "G0-U",
+        "decision_owner": "user_product_owner",
+        "status": "frozen",
+        "prerequisites": [
+          "U0A-GATE-001"
+        ],
+        "required_decisions": [
+          "development_identity_import_scope",
+          "target_scale_and_deployment_topology",
+          "adopted_feature_denominator",
+          "recovery_backup_retention_and_history_policy",
+          "offline_editing_policy"
+        ],
+        "scale_fields": [
+          "registered_users",
+          "simultaneous_connections",
+          "simultaneous_editors_per_page",
+          "pages_per_workspace",
+          "blocks_per_page",
+          "rows_per_database",
+          "sustained_operations_per_second",
+          "burst_operations_per_second",
+          "attachment_concurrency",
+          "disk_reserve"
+        ],
+        "recovery_fields": [
+          "rpo",
+          "rto",
+          "write_drain_timeout",
+          "backup_retention",
+          "page_history_retention",
+          "external_destination",
+          "restore_secret_policy"
+        ],
+        "recommended_restore_secret_policy": "rotate_session_signing_secret_and_force_reauthentication",
+        "receipt": {
+          "path": "internal_collaborative_product_decision.v1.json",
+          "sha256": "sha256:19b550449db5af3510f62be6b56f65372faeacdd9f10136aa382b73da84362a8",
+          "product_decision_sha256": "sha256:7133ac23daa03a4d3579a8f9653271b593c378c018920e7a98d50c3e4e035997",
+          "approval_receipt_id": "G0-U-USER-PRODUCT-OWNER-APPROVAL-20260824"
+        }
+      },
+      {
+        "id": "G0-E",
+        "decision_owner": "engineering",
+        "status": "frozen",
+        "prerequisites": [
+          "A0A-P2",
+          "E0-P4",
+          "T0A-P3",
+          "O0A-P3"
+        ],
+        "required_decisions": [
+          "canonical_authority_architecture",
+          "gateway_and_crdt_winner",
+          "protocol_and_compaction_binding",
+          "next_available_forward_schema_version"
+        ],
+        "schema_version_rule": "Derive from the current migration lineage under an exclusive CANONICAL lease; never ask the user to choose a schema number.",
+        "receipt": {
+          "path": "internal_collaborative_engineering_decision.v1.json",
+          "sha256": "sha256:0dc3b39f9eb64b93496026701adf8638785268d0fb1dea9e021a8c8c58b4bb74",
+          "engineering_decision_sha256": "sha256:4326082f768ee4033826abd982ae8831b33b48ac2bb58719d7abb0bef359ca04",
+          "selected_forward_schema_version": 2026082401,
+          "migration_implemented": false
+        }
+      }
+    ],
+    "receipt_required": true,
+    "aggregate_receipt": {
+      "path": "internal_collaborative_product_decision.v1.json",
+      "sha256": "sha256:19b550449db5af3510f62be6b56f65372faeacdd9f10136aa382b73da84362a8",
+      "binds_subgates": [
+        "G0-U",
+        "G0-E"
+      ],
+      "implementation_packets_requiring_G0_may_start": true
+    }
+  },
+  "packets": [
+    {
+      "id": "U0A-P1",
+      "phase": "U0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "current_route_storage_authority_inventory",
+        "capability_visible_state_and_hidden_control_draft",
+        "open_decision_and_risk_register"
+      ],
+      "validation_ids": [
+        "L0-UI-HARNESS-BASELINE"
+      ],
+      "matrix_contributes_to": [
+        "CAP-001",
+        "DB-001",
+        "UI-CORE-25"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "U0A-P2",
+      "phase": "U0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "U0A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "packet_catalog_schema_and_verifier",
+        "validation_runner_ladder_and_verifier",
+        "completion_audit_and_strict_gate_modes",
+        "duplicate_key_hash_drift_false_green_and_tamper_tests",
+        "cross_catalog_exact_path_hash_owner_lease_and_external_gate_verifier",
+        "status_integrator_assignment_and_hot_contract_single_writer_verifier"
+      ],
+      "validation_ids": [
+        "L0-COLLAB-CATALOG-AUDIT"
+      ],
+      "matrix_contributes_to": [
+        "OBS-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": [
+        "U0A-GATE-001"
+      ]
+    },
+    {
+      "id": "D0A-P1",
+      "phase": "D0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "U0A-P2"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "RUNTIME",
+      "deliverables": [
+        "pure_pair_configuration_contract",
+        "distinct_dev_cookie_secret_origin_and_csrf_contract",
+        "fail_closed_peer_link_and_logout_contract",
+        "unit_and_auth_regressions"
+      ],
+      "validation_ids": [
+        "L1-AUTH-PAIR-BASELINE"
+      ],
+      "matrix_contributes_to": [
+        "ENV-002",
+        "SEC-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "D0A-P2",
+      "phase": "D0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "D0A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "RUNTIME",
+      "deliverables": [
+        "empty_marker_bound_synthetic_pair_root_builder",
+        "four_generated_principal_fixture",
+        "no_content_session_secret_audit_or_runtime_copy",
+        "fixture_provenance_manifest"
+      ],
+      "validation_ids": [
+        "L1-APPROVED-DEV-PAIR-LIVE"
+      ],
+      "matrix_contributes_to": [
+        "ENV-001",
+        "ENV-002"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "D0A-P3",
+      "phase": "D0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "D0A-P2"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "RUNTIME",
+      "deliverables": [
+        "os_assigned_port_pair_launcher",
+        "readiness_port_ownership_and_owned_pid_cleanup",
+        "same_subject_and_independent_subject_integration",
+        "attestation_that_10111_10112_production_and_existing_preview_roots_were_not_accessed"
+      ],
+      "validation_ids": [
+        "L1-SYNTHETIC-PAIR-LIVE"
+      ],
+      "matrix_contributes_to": [
+        "ENV-001",
+        "ENV-002",
+        "OBS-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "H0A-P1",
+      "phase": "H0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "D0A-P2"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "owner_member_internal_page_guest_and_outsider_fixture",
+        "deterministic_workspace_page_and_grant_seed",
+        "principal_safe_redaction_contract"
+      ],
+      "validation_ids": [
+        "L1-SYNTHETIC-PAIR-LIVE"
+      ],
+      "matrix_contributes_to": [
+        "IAM-001",
+        "IAM-002",
+        "IAM-003"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "H0A-P2",
+      "phase": "H0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "H0A-P1",
+        "D0A-P3"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "independent_ephemeral_browser_contexts",
+        "cookie_storage_cache_service_worker_and_network_leak_oracles",
+        "outsider_negative_control",
+        "deterministic_reset_and_process_cleanup"
+      ],
+      "validation_ids": [
+        "L1-SYNTHETIC-PAIR-LIVE"
+      ],
+      "matrix_contributes_to": [
+        "IAM-001",
+        "IAM-002",
+        "IAM-003",
+        "RT-002",
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003",
+        "SEC-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": [
+        "H0-GATE-001"
+      ]
+    },
+    {
+      "id": "A0A-P1",
+      "phase": "A0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "U0A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "authority_route_and_storage_map",
+        "atomic_transaction_and_permission_epoch_ADR",
+        "legacy_import_no_dual_write_and_no_directory_scan_contract",
+        "second_brain_revision_boundary",
+        "revoke_commit_gateway_fence_ack_or_send_time_epoch_check_contract"
+      ],
+      "validation_ids": [
+        "L2-WORKSPACE-SUBSTRATE-BASELINE"
+      ],
+      "matrix_contributes_to": [
+        "DATA-001",
+        "DATA-002",
+        "IAM-003",
+        "SB-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "A0A-P2",
+      "phase": "A0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "A0A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "unversioned_disposable_sqlite_authority_prototype",
+        "atomic_content_iam_epoch_event_audit_and_outbox_tests",
+        "restart_replay_revoke_and_gateway_unavailable_prototype"
+      ],
+      "validation_ids": [
+        "L2-COLLAB-AUTHORITY"
+      ],
+      "matrix_contributes_to": [
+        "DATA-001",
+        "DATA-002",
+        "IAM-003",
+        "RT-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "E0-P1",
+      "phase": "E0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "A0A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "candidate_runtime_dependency_and_license_matrix",
+        "common_zero_loss_convergence_and_korean_ime_corpus"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS"
+      ],
+      "matrix_contributes_to": [
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003",
+        "ICN-PERF-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "E0-P2",
+      "phase": "E0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "E0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": {
+        "id": "AP-RUNTIME-SPIKE",
+        "required_when": [
+          "candidate_dependency_not_already_available"
+        ]
+      },
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "candidate_adapters_in_disposable_roots",
+        "windows_install_start_stop_and_reproducibility_receipts"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS"
+      ],
+      "matrix_contributes_to": [
+        "EDIT-001",
+        "RT-001",
+        "OBS-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "E0-P3",
+      "phase": "E0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "E0-P2"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "same_block_structure_database_ime_restart_and_compaction_benchmark",
+        "duplicate_reorder_disconnect_fault_and_resource_cost_report"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS"
+      ],
+      "matrix_contributes_to": [
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003",
+        "ICN-PERF-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "E0-P4",
+      "phase": "E0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "E0-P3"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "winner_ADR",
+        "pinned_dependency_and_reproducible_artifact",
+        "rejected_candidate_evidence_and_removal_plan"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS"
+      ],
+      "matrix_contributes_to": [
+        "EDIT-001",
+        "RT-001",
+        "ICN-PERF-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": [
+        "E0-GATE-001"
+      ]
+    },
+    {
+      "id": "T0A-P1",
+      "phase": "T0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "A0A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "one_time_ticket_threat_model_and_subject_workspace_page_client_binding",
+        "versioned_envelope_payload_hash_and_capabilities",
+        "operation_sequence_ack_replay_and_epoch_contract"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS"
+      ],
+      "matrix_contributes_to": [
+        "RT-001",
+        "IAM-003",
+        "SEC-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "T0A-P2",
+      "phase": "T0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "T0A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "transport_only_gateway_prototype",
+        "origin_expiry_reuse_epoch_and_stale_client_negative_tests",
+        "backpressure_reconnect_storm_and_gateway_unavailable_contract"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS"
+      ],
+      "matrix_contributes_to": [
+        "RT-001",
+        "IAM-003",
+        "SEC-001",
+        "OBS-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "T0A-P3",
+      "phase": "T0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "T0A-P2",
+        "E0-P4"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "gateway_topology_ADR",
+        "health_start_stop_rollback_and_observability_contract",
+        "selected_runtime_protocol_compaction_and_epoch_binding_plan"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS"
+      ],
+      "matrix_contributes_to": [
+        "RT-001",
+        "OBS-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "O0A-P1",
+      "phase": "O0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "A0A-P1",
+        "E0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "external_prerequisites": [
+        "XG-SBE-DYNAMIC-BASELINE"
+      ],
+      "sbe_preflight_required": true,
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "write_barrier_backup_generation_and_restore_ADR",
+        "separate_notion_and_sbe_database_authority_manifest_contract",
+        "event_snapshot_compaction_high_water_contract",
+        "mandatory_and_rebuildable_component_inventory",
+        "secret_rotation_and_forced_reauthentication_restore_contract"
+      ],
+      "validation_ids": [
+        "L7-KNOWLEDGE-BACKUP-BASELINE"
+      ],
+      "matrix_contributes_to": [
+        "ICN-OPS-001",
+        "ICN-OPS-002",
+        "HIST-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "O0A-P2",
+      "phase": "O0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "O0A-P1",
+        "A0A-P2"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "synthetic_coordinated_backup_of_notion_second_brain_identity_event_snapshot_and_blob_sets",
+        "concurrent_writer_and_failpoint_harness",
+        "new_root_restore_projection_regeneration_and_integrity_checks"
+      ],
+      "validation_ids": [
+        "L7-COLLAB-WORKSPACE-RESTORE"
+      ],
+      "matrix_contributes_to": [
+        "ICN-OPS-001",
+        "ICN-OPS-002",
+        "HIST-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "O0A-P3",
+      "phase": "O0a",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "O0A-P2",
+        "E0-P4",
+        "T0A-P3"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "selected_update_snapshot_and_compaction_backup_binding",
+        "crash_restart_replay_and_new_root_restore_benchmark",
+        "provisional_rpo_rto_and_write_drain_measurement"
+      ],
+      "validation_ids": [
+        "L7-COLLAB-WORKSPACE-RESTORE"
+      ],
+      "matrix_contributes_to": [
+        "ICN-OPS-001",
+        "ICN-OPS-002",
+        "RT-001",
+        "HIST-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": [
+        "O0-GATE-001"
+      ]
+    },
+    {
+      "id": "UI0-P1",
+      "phase": "UI0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "U0A-P2"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "UI",
+      "deliverables": [
+        "behavior_preserving_editor_host_adapter",
+        "private_state_access_removed_from_future_collaboration_hooks",
+        "six_node_contracts_and_historical_browser_regression"
+      ],
+      "validation_ids": [
+        "L3-NODE-EDITOR-CORE",
+        "L3-NODE-UI-RUNTIME",
+        "L3-NODE-NAVIGATION",
+        "L3-NODE-PUBLICATION",
+        "L3-NODE-ATOMIC-SAVE",
+        "L3-NODE-CSRF",
+        "L4-EXISTING-GOLDEN-JOURNEY"
+      ],
+      "matrix_contributes_to": [
+        "EDIT-003",
+        "UI-CORE-25"
+      ],
+      "matrix_closes": [],
+      "gate_ids": [
+        "UI0-GATE-001"
+      ]
+    },
+    {
+      "id": "K0-P1",
+      "phase": "K0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "G0",
+        "UI0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "RUNTIME",
+      "deliverables": [
+        "aggregate_and_capability_switch_contract",
+        "notion_only_switch_namespace_with_no_sbe_flag_alias_or_bypass",
+        "default_off_precedence_and_fail_closed_configuration",
+        "dev_canary_and_production_scope_binding",
+        "forward_schema_and_code_rollback_compatibility_tests"
+      ],
+      "validation_ids": [
+        "L8-COLLAB-LOAD-FAULT"
+      ],
+      "matrix_contributes_to": [
+        "ROLL-001",
+        "CAP-001",
+        "SEC-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": [
+        "K0-GATE-001"
+      ]
+    },
+    {
+      "id": "D0B-P1",
+      "phase": "D0b",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "G0",
+        "D0A-P3",
+        "H0A-P2"
+      ],
+      "conditional_prerequisites": [],
+      "external_prerequisites": [
+        "XG-10111-EXCLUSIVE-HANDOFF"
+      ],
+      "sbe_evolution_scenario_ids": [
+        "SBEOPS-014",
+        "SBEOPS-015",
+        "SBEOPS-016",
+        "SBEOPS-017",
+        "SBEOPS-018"
+      ],
+      "approval": {
+        "id": "AP-DEV-PAIR",
+        "required_when": [
+          "always"
+        ]
+      },
+      "ownership_lane": "RUNTIME",
+      "deliverables": [
+        "approved_identity_subset_only_import",
+        "new_dev_roots_secret_and_cookie_namespace",
+        "replace_development_10111_and_start_10112_10113",
+        "two_browser_identity_isolation_and_production_before_after_hash_proof"
+      ],
+      "validation_ids": [
+        "L1-SYNTHETIC-PAIR-LIVE"
+      ],
+      "matrix_contributes_to": [
+        "ENV-001",
+        "ENV-002"
+      ],
+      "matrix_closes": [
+        "ENV-001",
+        "ENV-002"
+      ],
+      "gate_ids": [
+        "D0-GATE-001"
+      ]
+    },
+    {
+      "id": "A0B-P1",
+      "phase": "A0b",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "G0",
+        "K0-P1",
+        "A0A-P2",
+        "E0-P4"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "next_forward_schema_and_migration",
+        "deterministic_legacy_snapshot_importer",
+        "dev_only_default_off_cutover_and_compatibility_projection",
+        "cross_process_restart_replay_revoke_and_rollback_rehearsal"
+      ],
+      "validation_ids": [
+        "L2-WORKSPACE-SUBSTRATE-BASELINE",
+        "L2-FORWARD-MIGRATION-BASELINE",
+        "L2-COLLAB-AUTHORITY"
+      ],
+      "matrix_contributes_to": [
+        "DATA-001",
+        "DATA-002",
+        "IAM-003"
+      ],
+      "matrix_closes": [
+        "DATA-001",
+        "DATA-002"
+      ],
+      "gate_ids": [
+        "A0-GATE-001"
+      ]
+    },
+    {
+      "id": "T0B-P1",
+      "phase": "T0b",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "G0",
+        "K0-P1",
+        "A0B-P1",
+        "T0A-P3"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "durable_ticket_event_ack_replay_snapshot_and_epoch_store",
+        "selected_crdt_payload_and_compaction_binding",
+        "atomic_operation_event_audit_outbox_commit"
+      ],
+      "validation_ids": [
+        "L2-COLLAB-AUTHORITY",
+        "L3-CRDT-PROTOCOL-CORPUS"
+      ],
+      "matrix_contributes_to": [
+        "RT-001",
+        "IAM-003",
+        "SEC-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "T0B-P2",
+      "phase": "T0b",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "T0B-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "RUNTIME",
+      "deliverables": [
+        "dedicated_gateway_ticket_exchange_and_transport",
+        "epoch_fence_active_connection_ack_or_authoritative_send_time_check",
+        "queued_frame_cache_search_and_inbox_redaction",
+        "health_metrics_backpressure_and_owned_service_lifecycle"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS"
+      ],
+      "matrix_contributes_to": [
+        "RT-001",
+        "IAM-003",
+        "SEC-001",
+        "OBS-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "T0B-P3",
+      "phase": "T0b",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "T0B-P2",
+        "H0A-P2"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "real_cross_process_gateway_store_and_browser_transport_tests",
+        "restart_duplicate_reorder_replay_backpressure_and_revoke_tests",
+        "old_epoch_delivery_zero_after_revoke_response"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS",
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "RT-001",
+        "IAM-003",
+        "SEC-001"
+      ],
+      "matrix_closes": [
+        "RT-001"
+      ],
+      "gate_ids": [
+        "T0-GATE-001"
+      ]
+    },
+    {
+      "id": "I0-P1",
+      "phase": "I0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "D0B-P1",
+        "A0B-P1",
+        "T0B-P3",
+        "K0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "workspace_and_page_role_resolver",
+        "direct_inherited_group_and_teamspace_grants",
+        "idempotent_audited_invite_role_change_and_revoke_service",
+        "last_owner_disabled_account_and_outsider_non_oracle_rules"
+      ],
+      "validation_ids": [
+        "L2-IAM-SHARING-AUTHORITY",
+        "L2-COLLAB-AUTHORITY",
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "IAM-001",
+        "IAM-002",
+        "IAM-003",
+        "SEC-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "I0-P2",
+      "phase": "I0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "I0-P1",
+        "UI0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "UI",
+      "deliverables": [
+        "normal_share_invite_role_change_and_revoke_UI",
+        "inherited_access_explanation",
+        "multi_principal_browser_matrix_and_revoke_evidence"
+      ],
+      "validation_ids": [
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "IAM-001",
+        "IAM-002",
+        "IAM-003",
+        "A11Y-001",
+        "PIX-001"
+      ],
+      "matrix_closes": [
+        "IAM-001",
+        "IAM-002"
+      ],
+      "gate_ids": [
+        "I0-GATE-001"
+      ]
+    },
+    {
+      "id": "C0-P1",
+      "phase": "C0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "I0-P1",
+        "T0B-P3",
+        "K0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "ephemeral_presence_ttl",
+        "canonical_comments_reactions_mentions_and_inbox",
+        "durable_before_live_delivery",
+        "revoke_barrier_permission_redaction_and_notification_fence"
+      ],
+      "validation_ids": [
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "RT-002",
+        "IAM-003",
+        "SEC-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "C0-P2",
+      "phase": "C0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "C0-P1",
+        "I0-P2",
+        "UI0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "UI",
+      "deliverables": [
+        "presence_comment_reaction_mention_and_inbox_UI",
+        "two_browser_latency_ttl_reconnect_and_permission_evidence",
+        "post_revoke_HTTP_WebSocket_replay_cache_search_and_inbox_delivery_zero"
+      ],
+      "validation_ids": [
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "RT-002",
+        "IAM-003",
+        "A11Y-001",
+        "PIX-001",
+        "SEC-001"
+      ],
+      "matrix_closes": [
+        "RT-002",
+        "IAM-003"
+      ],
+      "gate_ids": [
+        "C0-GATE-001"
+      ]
+    },
+    {
+      "id": "E1-P1",
+      "phase": "E1",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "I0-P1",
+        "T0B-P3",
+        "E0-P4",
+        "K0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "rich_text_crdt_command_boundary",
+        "server_sequenced_structure_and_database_commands",
+        "revision_checkpoint_and_history_identity"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS",
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "EDIT-001",
+        "EDIT-002",
+        "HIST-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "E1-P2",
+      "phase": "E1",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "E1-P1",
+        "UI0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "UI",
+      "deliverables": [
+        "host_adapter_bound_crdt_editor",
+        "native_korean_ime_selection_focus_undo_redo_and_remote_cursor",
+        "disconnect_buffer_and_frozen_offline_policy_recovery"
+      ],
+      "validation_ids": [
+        "L3-NODE-EDITOR-CORE",
+        "L3-NODE-UI-RUNTIME",
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003",
+        "A11Y-001",
+        "PIX-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "E1-P3",
+      "phase": "E1",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "E1-P2",
+        "H0A-P2"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "different_block_same_block_structure_and_database_conflict_corpus",
+        "real_cross_process_restart_disconnect_reorder_and_fault_evidence",
+        "acknowledged_character_loss_zero_and_canonical_hash_convergence"
+      ],
+      "validation_ids": [
+        "L3-CRDT-PROTOCOL-CORPUS",
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003"
+      ],
+      "matrix_closes": [
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003"
+      ],
+      "gate_ids": [
+        "E1-GATE-001"
+      ]
+    },
+    {
+      "id": "S0A-P1",
+      "phase": "S0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "E1-P3",
+        "I0-P2",
+        "K0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "external_prerequisites": [
+        "XG-SBE-DYNAMIC-BASELINE"
+      ],
+      "sbe_preflight_required": true,
+      "sbe_scenario_ids": [
+        "PUB-001",
+        "PUB-002",
+        "PUB-003",
+        "PUB-004",
+        "AUTH-001",
+        "AUTH-002",
+        "AUTH-004",
+        "REG-002",
+        "REG-003"
+      ],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "notion_side_canonical_document_revision_snapshot_adapter",
+        "exact_committed_revision_hash_epoch_preview_approve_stale_cancel_and_permission_race_contract",
+        "source_auth_then_sbe_service_api_then_target_space_auth_contract",
+        "operation_id_request_hash_replay_and_crash_after_sbe_commit_ADR",
+        "personal_plus_part_independent_item_histories_and_no_auto_sync_contract",
+        "revoke_live_source_without_mutating_existing_sbe_item_contract",
+        "one_wiki_view_corpus_closure_10_result_4_pin_32kib_attachment_contract",
+        "timestamp_exclusion_contract",
+        "read_only_second_brain_dependency_characterization"
+      ],
+      "validation_ids": [
+        "L5-SECOND-BRAIN-REGRESSION",
+        "L5-COLLAB-PUBLICATION-FENCE"
+      ],
+      "matrix_contributes_to": [
+        "SB-001",
+        "IAM-003"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "S0B-P1",
+      "phase": "S0",
+      "status": "planned",
+      "required": false,
+      "required_when": [
+        "S0A-P1_proves_a_protected_second_brain_change_is_unavoidable"
+      ],
+      "prerequisites": [
+        "S0A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "external_prerequisites": [
+        "XG-SBE-DYNAMIC-BASELINE",
+        "XG-SBE-PROTECTED-CHANGE-OWNER"
+      ],
+      "sbe_preflight_required": true,
+      "sbe_scenario_ids": [
+        "PUB-001",
+        "PUB-002",
+        "PUB-003",
+        "PUB-004",
+        "AUTH-001",
+        "AUTH-002",
+        "AUTH-004",
+        "REG-002",
+        "REG-003"
+      ],
+      "approval": null,
+      "ownership_lane": "SECOND_BRAIN_PRODUCTION",
+      "deliverables": [
+        "explicit_protected_file_ownership_transfer",
+        "active_owning_sbe_packet_and_rollout_gate_receipt",
+        "minimal_backward_compatible_second_brain_change",
+        "full_second_brain_evolution_regression"
+      ],
+      "validation_ids": [
+        "L5-SECOND-BRAIN-REGRESSION",
+        "L5-COLLAB-PUBLICATION-FENCE"
+      ],
+      "matrix_contributes_to": [
+        "SB-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "S0A-P2",
+      "phase": "S0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "S0A-P1"
+      ],
+      "conditional_prerequisites": [
+        {
+          "when": "protected_second_brain_change_required",
+          "packet_id": "S0B-P1"
+        }
+      ],
+      "approval": null,
+      "external_prerequisites": [
+        "XG-SBE-DYNAMIC-BASELINE"
+      ],
+      "sbe_preflight_required": true,
+      "sbe_scenario_ids": [
+        "PUB-001",
+        "PUB-002",
+        "PUB-003",
+        "PUB-004",
+        "AUTH-001",
+        "AUTH-002",
+        "AUTH-004",
+        "REG-002",
+        "REG-003"
+      ],
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "exact_revision_publication_and_stale_approval_evidence",
+        "revocation_blocks_live_source_without_hiding_existing_sbe_item_evidence",
+        "restart_search_backlink_authorized_published_revision_attachment_and_session_evidence",
+        "cross_process_commit_response_loss_idempotent_retry_evidence",
+        "current_second_brain_evolution_suite_receipt"
+      ],
+      "validation_ids": [
+        "L5-SECOND-BRAIN-REGRESSION",
+        "L5-COLLAB-PUBLICATION-FENCE"
+      ],
+      "matrix_contributes_to": [
+        "SB-001",
+        "IAM-003",
+        "SEARCH-001"
+      ],
+      "matrix_closes": [
+        "SB-001"
+      ],
+      "gate_ids": [
+        "S0-GATE-001"
+      ]
+    },
+    {
+      "id": "F0-P1",
+      "phase": "F0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "G0",
+        "E1-P3",
+        "K0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "adopted_database_property_view_relation_rollup_formula_and_template_round_trip",
+        "schema_role_and_database_cell_conflict_enforcement"
+      ],
+      "validation_ids": [
+        "L2-COLLAB-AUTHORITY",
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "DB-001",
+        "EDIT-002",
+        "CAP-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "F0-P2",
+      "phase": "F0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "F0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "bounded_memory_stream_or_chunk_file_ingestion",
+        "capacity_reservation_checksum_resume_cancel_and_orphan_cleanup",
+        "authorized_download_delete_and_no_plan_limit_UI"
+      ],
+      "validation_ids": [
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "FILE-001",
+        "SEC-001",
+        "CAP-001"
+      ],
+      "matrix_closes": [
+        "FILE-001"
+      ],
+      "gate_ids": []
+    },
+    {
+      "id": "F0-P3",
+      "phase": "F0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "F0-P2",
+        "E1-P3"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "frozen_history_snapshot_compaction_and_retention_policy",
+        "history_list_diff_restore_and_publication_revision_identity"
+      ],
+      "validation_ids": [
+        "L7-COLLAB-WORKSPACE-RESTORE"
+      ],
+      "matrix_contributes_to": [
+        "HIST-001",
+        "SB-001"
+      ],
+      "matrix_closes": [
+        "HIST-001"
+      ],
+      "gate_ids": []
+    },
+    {
+      "id": "F0-P4",
+      "phase": "F0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "F0-P3",
+        "I0-P2"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "canonical_permission_aware_search_and_backlink_index",
+        "revoke_cache_snippet_and_result_fence",
+        "adopted_import_export_and_reminder_round_trip"
+      ],
+      "validation_ids": [
+        "L4-REAL-MULTIPROCESS-COLLAB",
+        "L5-COLLAB-PUBLICATION-FENCE"
+      ],
+      "matrix_contributes_to": [
+        "SEARCH-001",
+        "IAM-003",
+        "DB-001",
+        "CAP-001"
+      ],
+      "matrix_closes": [
+        "SEARCH-001"
+      ],
+      "gate_ids": []
+    },
+    {
+      "id": "F0-P5",
+      "phase": "F0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "F0-P4",
+        "UI0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "UI",
+      "deliverables": [
+        "frozen_adopted_feature_UI_surface",
+        "hide_or_remove_every_nonfunctional_or_nonadopted_control",
+        "uniform_internal_capabilities_without_upgrade_or_plan_limit_UI",
+        "multi_principal_browser_round_trip"
+      ],
+      "validation_ids": [
+        "L4-REAL-MULTIPROCESS-COLLAB"
+      ],
+      "matrix_contributes_to": [
+        "DB-001",
+        "CAP-001",
+        "A11Y-001",
+        "PIX-001"
+      ],
+      "matrix_closes": [
+        "DB-001",
+        "CAP-001"
+      ],
+      "gate_ids": [
+        "F0-GATE-001"
+      ]
+    },
+    {
+      "id": "V0A-P1",
+      "phase": "V0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "U0A-P2"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "exact_sRGB_RGBA8_comparator",
+        "named_content_independent_mask_manifest_and_verifier",
+        "viewport_scale_font_locale_time_animation_and_geometry_contract",
+        "tamper_and_legacy_semantic_differential_rejection_tests"
+      ],
+      "validation_ids": [
+        "L6-EXACT-RGBA"
+      ],
+      "matrix_contributes_to": [
+        "PIX-001",
+        "UI-CORE-25",
+        "A11Y-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "V0R-P1",
+      "phase": "V0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "G0",
+        "V0A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": {
+        "id": "AP-REFERENCE-MULTIUSER",
+        "required_when": [
+          "always"
+        ]
+      },
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "approved_synthetic_external_Notion_multiuser_state_capture",
+        "reference_action_log_environment_and_screenshot_hashes",
+        "reference_cleanup_receipt"
+      ],
+      "validation_ids": [
+        "L6-EXACT-RGBA"
+      ],
+      "matrix_contributes_to": [
+        "PIX-001",
+        "UI-CORE-25",
+        "A11Y-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "V0B-P1",
+      "phase": "V0",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "V0R-P1",
+        "I0-P2",
+        "C0-P2",
+        "E1-P3",
+        "S0A-P2",
+        "F0-P5"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "final_release_candidate_core_25_rerun",
+        "all_adopted_multiuser_state_capture_at_1440x900_and_1280x800",
+        "reviewed_strict_visual_similarity_receipts_with_state_specific_critical_regions_and_exact_RGBA_diagnostics",
+        "keyboard_focus_name_role_state_and_live_region_evidence"
+      ],
+      "validation_ids": [
+        "L4-EXISTING-GOLDEN-JOURNEY",
+        "L6-EXACT-RGBA",
+        "L6-ACCESSIBILITY"
+      ],
+      "matrix_contributes_to": [
+        "PIX-001",
+        "UI-CORE-25",
+        "A11Y-001"
+      ],
+      "matrix_closes": [
+        "PIX-001",
+        "UI-CORE-25",
+        "A11Y-001"
+      ],
+      "gate_ids": [
+        "V0-GATE-001"
+      ]
+    },
+    {
+      "id": "O1A-P1",
+      "phase": "O1",
+      "status": "gate_passed",
+      "required": true,
+      "prerequisites": [
+        "O0A-P3",
+        "A0B-P1",
+        "T0B-P3",
+        "I0-P2",
+        "C0-P2",
+        "E1-P3",
+        "S0A-P2",
+        "F0-P5"
+      ],
+      "conditional_prerequisites": [],
+      "external_prerequisites": [
+        "XG-SBE-DYNAMIC-BASELINE"
+      ],
+      "sbe_preflight_required": true,
+      "sbe_scenario_ids": [
+        "OPS-001",
+        "OPS-002",
+        "OPS-003",
+        "OPS-004",
+        "OPS-005",
+        "OPS-006"
+      ],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "local_generation_manifest_for_separate_notion_and_sbe_authorities",
+        "write_drain_or_high_water_capture",
+        "new_root_restore_projection_regeneration_and_integrity_audit",
+        "permission_realtime_file_history_search_and_second_brain_smoke"
+      ],
+      "validation_ids": [
+        "L7-COLLAB-WORKSPACE-RESTORE"
+      ],
+      "matrix_contributes_to": [
+        "ICN-OPS-001",
+        "ICN-OPS-002",
+        "OBS-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "O1B-P1",
+      "phase": "O1",
+      "status": "planned",
+      "required": true,
+      "prerequisites": [
+        "O1A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "external_prerequisites": [
+        "XG-SBE-DYNAMIC-BASELINE",
+        "XG-SBE-TARGET-OPERATIONS-HANDOFF"
+      ],
+      "sbe_preflight_required": true,
+      "sbe_scenario_ids": [
+        "OPS-001",
+        "OPS-002",
+        "OPS-003",
+        "OPS-004",
+        "OPS-005",
+        "OPS-006"
+      ],
+      "approval": {
+        "id": "AP-OPS-TARGET",
+        "required_when": [
+          "always_for_product_completion"
+        ]
+      },
+      "ownership_lane": "SECOND_BRAIN_PRODUCTION",
+      "deliverables": [
+        "encrypted_external_generation_publish",
+        "retention_key_and_destination_validation",
+        "target_host_new_root_restore_and_measured_rpo_rto"
+      ],
+      "validation_ids": [
+        "L7-COLLAB-WORKSPACE-RESTORE"
+      ],
+      "matrix_contributes_to": [
+        "ICN-OPS-001",
+        "ICN-OPS-002",
+        "OBS-001"
+      ],
+      "matrix_closes": [
+        "ICN-OPS-001",
+        "ICN-OPS-002"
+      ],
+      "gate_ids": [
+        "O1-GATE-001"
+      ]
+    },
+    {
+      "id": "Q0-P1",
+      "phase": "Q0",
+      "status": "planned",
+      "required": true,
+      "prerequisites": [
+        "K0-P1",
+        "V0B-P1",
+        "O1B-P1"
+      ],
+      "conditional_prerequisites": [],
+      "external_prerequisites": [
+        "XG-SBE-TARGET-OPERATIONS-HANDOFF"
+      ],
+      "sbe_preflight_required": true,
+      "sbe_scenario_ids": [
+        "PERF-001",
+        "OPS-005",
+        "AUTH-004"
+      ],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "scale_contract_derived_load_soak_and_attachment_concurrency",
+        "reconnect_sqlite_busy_backpressure_disk_gateway_and_store_faults",
+        "csrf_origin_ticket_replay_revocation_non_oracle_and_upload_security",
+        "gateway_event_backup_canary_abort_and_kill_switch_observability",
+        "p50_p95_p99_memory_queue_lag_compaction_and_convergence_report"
+      ],
+      "validation_ids": [
+        "L8-EXISTING-PERFORMANCE-BASELINE",
+        "L8-COLLAB-LOAD-FAULT"
+      ],
+      "matrix_contributes_to": [
+        "ICN-PERF-001",
+        "SEC-001",
+        "OBS-001",
+        "ROLL-001"
+      ],
+      "matrix_closes": [
+        "ICN-PERF-001",
+        "SEC-001",
+        "OBS-001"
+      ],
+      "gate_ids": [
+        "Q0-GATE-001"
+      ]
+    },
+    {
+      "id": "R0A-P1",
+      "phase": "R0",
+      "status": "planned",
+      "required": true,
+      "prerequisites": [
+        "Q0-P1"
+      ],
+      "conditional_prerequisites": [],
+      "external_prerequisites": [
+        "XG-SBE-TARGET-OPERATIONS-HANDOFF"
+      ],
+      "sbe_preflight_required": true,
+      "approval": {
+        "id": "AP-PROD-REHEARSAL",
+        "required_when": [
+          "always"
+        ]
+      },
+      "ownership_lane": "SECOND_BRAIN_PRODUCTION",
+      "deliverables": [
+        "release_candidate_freeze",
+        "approved_offline_production_copy_only",
+        "synthetic_root_full_pytest_and_node_suites",
+        "offline_copy_operator_migration_restore_and_redacted_smoke_only",
+        "compatibility_audit",
+        "compatible_code_rollback_and_separate_disaster_recovery_rehearsal"
+      ],
+      "validation_ids": [
+        "L9-FULL-PYTHON-SUITE",
+        "L9-NODE-SUITE",
+        "L9-REALM-PROMOTION"
+      ],
+      "matrix_contributes_to": [
+        "ICN-OPS-002",
+        "ROLL-001",
+        "PILOT-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": []
+    },
+    {
+      "id": "R0B-P1",
+      "phase": "R0",
+      "status": "planned",
+      "required": true,
+      "prerequisites": [
+        "R0A-P1"
+      ],
+      "conditional_prerequisites": [],
+      "external_prerequisites": [
+        "XG-SBE-TARGET-OPERATIONS-HANDOFF"
+      ],
+      "sbe_preflight_required": true,
+      "approval": {
+        "id": "AP-PROD-DEPLOY",
+        "required_when": [
+          "always"
+        ]
+      },
+      "ownership_lane": "SECOND_BRAIN_PRODUCTION",
+      "deliverables": [
+        "frozen_artifact_default_off_install_at_10012",
+        "gateway_service_package_install_restart_and_health",
+        "production_configuration_derivation_and_before_after_hash_receipts",
+        "rollback_ready_no_user_enablement"
+      ],
+      "validation_ids": [
+        "L9-REALM-PROMOTION"
+      ],
+      "matrix_contributes_to": [
+        "ROLL-001",
+        "OBS-001",
+        "PILOT-001"
+      ],
+      "matrix_closes": [],
+      "gate_ids": [
+        "R0-GATE-001"
+      ]
+    },
+    {
+      "id": "R1-P1",
+      "phase": "R1",
+      "status": "planned",
+      "required": true,
+      "prerequisites": [
+        "R0B-P1"
+      ],
+      "conditional_prerequisites": [],
+      "external_prerequisites": [
+        "XG-SBE-TARGET-OPERATIONS-HANDOFF"
+      ],
+      "sbe_preflight_required": true,
+      "approval": {
+        "id": "AP-PROD-CANARY",
+        "required_when": [
+          "always"
+        ]
+      },
+      "ownership_lane": "SECOND_BRAIN_PRODUCTION",
+      "deliverables": [
+        "two_allowed_collaborators_and_one_outsider_canary",
+        "telemetry_soak_abort_threshold_and_no_rebuild_generation_binding",
+        "prebuilt_aggregate_and_capability_kill_switch_exercise",
+        "compatible_rollback_and_recovery_evidence"
+      ],
+      "validation_ids": [
+        "L9-REALM-PROMOTION"
+      ],
+      "matrix_contributes_to": [
+        "PILOT-001",
+        "ROLL-001",
+        "OBS-001"
+      ],
+      "matrix_closes": [
+        "PILOT-001",
+        "ROLL-001"
+      ],
+      "gate_ids": [
+        "R1-GATE-001"
+      ]
+    },
+    {
+      "id": "Z0-P1",
+      "phase": "Z0",
+      "status": "planned",
+      "required": true,
+      "prerequisites": [
+        "R1-P1"
+      ],
+      "conditional_prerequisites": [],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "strict_completion_matrix_gate",
+        "all_phase_gate_approval_receipt_and_artifact_audit",
+        "release_candidate_realm_schema_protocol_browser_and_deployment_generation_binding",
+        "no_skip_xfail_open_decision_unresolved_host_retry_or_false_completion"
+      ],
+      "required_gate_inputs": [
+        "U0A-GATE-001",
+        "D0-GATE-001",
+        "H0-GATE-001",
+        "A0-GATE-001",
+        "E0-GATE-001",
+        "T0-GATE-001",
+        "O0-GATE-001",
+        "UI0-GATE-001",
+        "K0-GATE-001",
+        "I0-GATE-001",
+        "C0-GATE-001",
+        "E1-GATE-001",
+        "S0-GATE-001",
+        "F0-GATE-001",
+        "V0-GATE-001",
+        "O1-GATE-001",
+        "Q0-GATE-001",
+        "R0-GATE-001",
+        "R1-GATE-001"
+      ],
+      "validation_ids": [
+        "L9-FULL-PYTHON-SUITE",
+        "L9-NODE-SUITE",
+        "L9-REALM-PROMOTION"
+      ],
+      "matrix_contributes_to": [],
+      "matrix_closes": [],
+      "gate_ids": [
+        "Z0-GATE-001"
+      ]
+    }
+  ],
+  "matrix_closure_registry": {
+    "ENV-001": "D0B-P1",
+    "ENV-002": "D0B-P1",
+    "DATA-001": "A0B-P1",
+    "DATA-002": "A0B-P1",
+    "IAM-001": "I0-P2",
+    "IAM-002": "I0-P2",
+    "IAM-003": "C0-P2",
+    "RT-001": "T0B-P3",
+    "RT-002": "C0-P2",
+    "EDIT-001": "E1-P3",
+    "EDIT-002": "E1-P3",
+    "EDIT-003": "E1-P3",
+    "SB-001": "S0A-P2",
+    "FILE-001": "F0-P2",
+    "HIST-001": "F0-P3",
+    "DB-001": "F0-P5",
+    "SEARCH-001": "F0-P4",
+    "A11Y-001": "V0B-P1",
+    "SEC-001": "Q0-P1",
+    "OBS-001": "Q0-P1",
+    "CAP-001": "F0-P5",
+    "UI-CORE-25": "V0B-P1",
+    "PIX-001": "V0B-P1",
+    "ICN-PERF-001": "Q0-P1",
+    "ICN-OPS-001": "O1B-P1",
+    "ICN-OPS-002": "O1B-P1",
+    "ROLL-001": "R1-P1",
+    "PILOT-001": "R1-P1"
+  },
+  "next_packet": "O1B-P1",
+  "claims": {
+    "catalog_is_implementation_evidence": false,
+    "any_packet_gate_passed": true,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

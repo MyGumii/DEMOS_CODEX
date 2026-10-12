@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_authority_adr.v1",
+  "adr_id": "A0A-P1-AUTHORITY-ADR-001",
+  "recorded_at": "2026-08-23T07:40:00.2940587Z",
+  "status": "accepted_target_contract_current_runtime_unchanged",
+  "packet_id": "A0A-P1",
+  "authority_inputs": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+    },
+    "planning_documents": [
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_SCOPE_V2.md",
+        "sha256": "sha256:5dda1cc37c4aa8ea968b13227503c0eb27467aacaa25c92baa4186c0ea7cc7d9"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+        "sha256": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+        "sha256": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+      }
+    ],
+    "source_documents": [
+      {
+        "path": "code_assist_v1/app_notion.py",
+        "sha256": "sha256:49c2345c6eeef710e655e37b3ca7cff3821d900f175a585fb6a2ab7f9acaf4f2"
+      },
+      {
+        "path": "code_assist_v1/routes_notion.py",
+        "sha256": "sha256:076693166d04d1b74ad3b369e6516f4452601f89beead432b991ee3e3d518463"
+      },
+      {
+        "path": "code_assist_v1/routes_notion_workspace.py",
+        "sha256": "sha256:f4e71833b4b1b01fea2b0508a1323a3609a19a00014eac967efebf4be8ae5cb8"
+      },
+      {
+        "path": "code_assist_v1/notion_store.py",
+        "sha256": "sha256:46ffcc8f94d584578b3dc93d472db0b00d6b9d17e89ad3f08aa932ee26eee22c"
+      },
+      {
+        "path": "code_assist_v1/notion_workspace_store.py",
+        "sha256": "sha256:19de52d282b6d3adbad2aa72a128a56f9525fdb7f82748138d4e1a009705a979"
+      },
+      {
+        "path": "code_assist_v1/notion_workspace_pages.py",
+        "sha256": "sha256:77e835afdc76b69fc1da4f5710f55ca72cc63dd76f4fb2c03138ed97b54ec05e"
+      },
+      {
+        "path": "code_assist_v1/notion_publication.py",
+        "sha256": "sha256:1c9476b124fbd4d76e61a55ade4065825cc764fc375ad31e2add340d5277de40"
+      },
+      {
+        "path": "code_assist_v1/knowledge_core/services/publication.py",
+        "sha256": "sha256:cc61e3b271ecfffb7013ba354266efc4ade97135e19fc8f857621f4f6b69155d"
+      }
+    ],
+    "sbe_instruction_manifest": [
+      ["code_assist_v1/docs/knowledge_spaces/README.md", "sha256:090d886640ea2dc38e8d015a55530c17f4eaf9dd99c1ddf2ae57e5da358320ea"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/README.md", "sha256:56fd256f6aed116eed9e7c3d1b4d03f8cd83146ea376874be32c25740c7ed34b"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/PRODUCT_CONTRACT.md", "sha256:55fdc53dbf591d9974cf92d4042b6b4849d2e5a0c155bad4960f0a5acb33218c"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md", "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md", "sha256:5883c6955430e04b4149cd69c0b96839fc4a5c7281748b001c4214197e46d15e"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/ACCEPTANCE.md", "sha256:bfd769be8757740f80e534fda6a9d50e7ae0652830e82b7b4e8472f809cb36bb"],
+      ["code_assist_v1/docs/knowledge_spaces/DECISIONS.md", "sha256:f764bec2b35730fc0b012415400059e61787d38f43b78914d46af9bca94ca7db"],
+      ["code_assist_v1/docs/knowledge_spaces/ARCHITECTURE.md", "sha256:bb8552653b0f02128302d7bf1cb7d75f65000215f01e138398be8b81c62520aa"],
+      ["code_assist_v1/docs/knowledge_spaces/SCHEMA_V1.md", "sha256:15de58b4ba6f7dd4c9f77087bed795ba3ab07cb9fbdada36a92e6d7164c91e21"],
+      ["code_assist_v1/docs/knowledge_spaces/API_UI_CONTRACT.md", "sha256:731d920ccf1e72926ca3d5cfbb34e0ff2720bb57a73353ef89c50c32528d9411"],
+      ["code_assist_v1/docs/knowledge_spaces/CURRENT_SYSTEM_INVENTORY.md", "sha256:bdf39d05337d918917e34b9d68187bfeb4799920d871b1688ece9d488735c55d"],
+      ["code_assist_v1/docs/knowledge_spaces/MIGRATION_ROLLOUT.md", "sha256:0008ded180852070f2d9d3a555052695b704651dd72a98c54979c10311354f0f"],
+      ["code_assist_v1/docs/knowledge_spaces/TEST_OPERATIONS.md", "sha256:fa429c36bc5034818fbcd18a79fa66e36a8af863837afb263b4d1258a20fbc5b"],
+      ["code_assist_v1/docs/knowledge_spaces/DEVELOPMENT_BASELINE.md", "sha256:608792faa9998740b5009aa721260b56ad15a6affab7420abbe0b0ecab8a9edc"],
+      ["code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md", "sha256:6c11b28e21f7f38b12e99243cc675e8716b3d32e68fe83d3db0529164b04fd5e"],
+      ["code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md", "sha256:995fb1ecbe83a1e320e6ae2858a69b51c66fa53bbc6c0a9f72414d704ab73735"],
+      ["code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json", "sha256:46ce12ad70e424dc1c381d496dfb71cc9f7955606fe9945a72bff1ccf2d2d71b"],
+      ["code_assist_v1/docs/knowledge_spaces/STATUS.md", "sha256:8159896bafae8bba05c0bfca6f4d7eb530570dabaa7fa2c984cf402c95346f49"]
+    ],
+    "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604"
+  },
+  "current_state": {
+    "classification": "observed_split_legacy_authority_not_collaboration_ready",
+    "legacy_page_authority": {
+      "storage": "USER_DATA_DIR/<owner_subject>/notion/notion.db plus USER_DATA_DIR/<owner_subject>/notion/files",
+      "owns": ["pages", "blocks", "files", "page_shares", "comments", "page_versions", "public_links"],
+      "write_model": "per-owner SQLite mutations; whole-page atomic save uses page revision CAS when the explicit legacy migration is present",
+      "general_resolution": "resolve_page may enumerate known USER_DATA_DIR subjects and open owner shards",
+      "known_owner_resolution": "resolve_page_from_owner and get_page_from_owner use an explicit locator and have no directory-scan fallback"
+    },
+    "workspace_authority": {
+      "storage": "USER_DATA_DIR/.notion-workspace-v2/workspace.db",
+      "schema_version": 2026081317,
+      "owns": ["workspace IAM", "guests", "groups", "teamspaces", "legacy page locators", "navigation", "page tree and lifecycle coordination", "operation ledger", "audit", "outbox"],
+      "does_not_own": ["canonical page bodies", "canonical blocks", "canonical comments", "durable collaboration events", "page access epochs"]
+    },
+    "publication_authority": {
+      "adapter": "notion_publication.py legacy snapshot adapter",
+      "snapshot_binds": ["page id", "owner id", "optional page revision", "updated time", "content hash", "asset manifest hash"],
+      "missing_target_guarantees": ["permission epoch binding", "caller operation_id and request-hash replay", "SBE native-space commit-time authorization through the successor service boundary"]
+    },
+    "collaboration_gateway": "not implemented",
+    "runtime_mutated_by_this_adr": false
+  },
+  "target_state": {
+    "classification": "frozen_target_not_implemented",
+    "notion_authority": "one Notion-owned SQLite authority extending the existing workspace authority for content, IAM, epochs, operations, revisions, collaboration events, audit, and outbox",
+    "identity_authority": "the shared Agent account/session subject remains external to the Notion content database; the Code host is the account-mutation authority",
+    "second_brain_authority": "the central SBE SQLite remains a separate canonical authority and schema lineage",
+    "legacy_shards": "immutable offline import sources before cutover or rebuildable compatibility projections after cutover; never writable authority",
+    "request_time_owner_directory_scan": false,
+    "dual_write": false,
+    "second_permission_authority": false,
+    "runtime_enabled": false
+  },
+  "route_storage_map": [
+    {
+      "id": "legacy_page_api",
+      "route_patterns": ["/api/notion/pages*", "/api/notion/search", "/api/notion/inbox", "/api/notion/files/*", "/api/notion/overview", "/api/notion/trash*"],
+      "current_authority": "routes_notion.py -> notion_store.py per-owner shard authority",
+      "current_storage": "USER_DATA_DIR/<owner_subject>/notion/notion.db and files/",
+      "target_authority": "thin route adapters -> one Notion collaboration service -> extended workspace SQLite authority",
+      "cutover_state": "legacy mutations disabled; compatibility reads are locator-backed projections only"
+    },
+    {
+      "id": "workspace_api",
+      "route_patterns": ["/api/notion/workspaces*"],
+      "current_authority": "routes_notion_workspace.py -> WorkspaceStore for IAM, locators, navigation, tree, lifecycle, operation, audit, and outbox substrate",
+      "current_storage": "USER_DATA_DIR/.notion-workspace-v2/workspace.db",
+      "target_authority": "same Notion-owned database lineage extended by A0B-P1 after schema ownership and version revalidation",
+      "cutover_state": "preserve current substrate; add content/event authority only through a forward migration"
+    },
+    {
+      "id": "second_brain_publication_api",
+      "route_patterns": ["/api/notion/pages/<page_id>/publish_preview", "/api/notion/pages/<page_id>/publish_second_brain"],
+      "current_authority": "routes_notion.py -> notion_publication.py -> legacy Second Brain target adapter",
+      "current_storage": "legacy Notion shard snapshot plus legacy Second Brain target",
+      "target_authority": "Notion-side exact revision/epoch adapter calls the SBE service layer; each database retains its own authority",
+      "cutover_state": "successor path remains default-off until S0; current behavior is not claimed to meet the target boundary"
+    },
+    {
+      "id": "public_link_api",
+      "route_patterns": ["/public/notion/*", "/api/notion/pages/<page_id>/public_link"],
+      "current_authority": "notion_store.py per-owner public-link rows and file/page reads",
+      "current_storage": "legacy owner shard and owner files",
+      "target_authority": "no collaboration cutover until the product decision packet adopts public links and its IAM model",
+      "cutover_state": "excluded from A0A-P1 target activation and never used as a collaboration authority fallback"
+    },
+    {
+      "id": "shared_identity_session",
+      "route_patterns": ["Code host authentication and account mutation", "Notion host authenticated session consumption"],
+      "current_authority": "shared Agent identity registry/session subject",
+      "current_storage": "injected isolated runtime registry for tests; production registry is protected",
+      "target_authority": "Code host remains the only account-mutation authority and Notion consumes the same subject",
+      "cutover_state": "no Notion-local account creation or second identity registry"
+    },
+    {
+      "id": "collaboration_gateway",
+      "route_patterns": ["planned dedicated WebSocket ticket and collaboration endpoint on the isolated gateway role"],
+      "current_authority": "none",
+      "current_storage": "none",
+      "target_authority": "transport-only gateway; every durable command and authorization decision delegates to the single Notion authority",
+      "cutover_state": "planned for T0; no Flask cookie is direct gateway authorization"
+    }
+  ],
+  "atomic_transaction_contract": {
+    "database_boundary": "one Notion SQLite writer transaction",
+    "service_layer_only": true,
+    "route_or_gateway_direct_canonical_write": false,
+    "required_effects": [
+      "commit_time_authorization_revalidation",
+      "relevant_workspace_and_page_access_epoch",
+      "operation_id_and_canonical_request_hash",
+      "stable_replay_result_or_stable_error",
+      "canonical_content_or_IAM_mutation",
+      "document_revision_and_page_sequence_when_content_changes",
+      "durable_collaboration_event_when_observable",
+      "audit_event",
+      "outbox_event"
+    ],
+    "all_required_effects_commit_or_rollback_together": true,
+    "external_work_outside_transaction": ["network", "gateway broadcast", "file copy", "OCR", "embedding", "LLM", "large blob byte transfer"],
+    "external_result_inputs_revalidated_immediately_before_commit": true,
+    "idempotency_scope": "unique actor + operation type + caller operation_id",
+    "same_id_same_hash": "return the original durable semantic result or stable error",
+    "same_id_different_hash": "reject without mutation",
+    "response_loss": "retry reads the committed operation result and never duplicates content, IAM, event, audit, or outbox effects"
+  },
+  "permission_epoch_contract": {
+    "epochs": ["workspace_access_epoch", "page_access_epoch"],
+    "monotonic_no_reuse": true,
+    "permission_mutation_increments_affected_epochs_in_same_transaction": true,
+    "bound_credentials_and_messages": ["ticket", "connection", "subscription", "inbound command", "queued outbound frame", "replay cursor", "snapshot", "publication preview"],
+    "current_epoch_required_for": ["read", "write", "replay", "snapshot", "search", "inbox", "notification", "comment delivery", "subscription", "unpublished preview", "new publication", "live Notion attachment"],
+    "rejoin_uses_new_epoch": true,
+    "stale_epoch_result": "deny or drop with zero protected payload and no existence oracle"
+  },
+  "revoke_delivery_fence_contract": {
+    "selected_strategy": "authoritative_send_time_epoch_check",
+    "revoke_transaction": ["durable deny state", "affected epoch increment", "operation result", "audit event", "gateway fence outbox event"],
+    "gateway_wakeup": "best-effort immediate signal backed by the durable outbox; it may close stale physical connections but is not the authorization authority",
+    "before_every_protected_send": "read the current canonical epochs and compare them with the frame, connection, subject, workspace, and page binding immediately before the network write; cached allow state is insufficient",
+    "queued_old_epoch_frame": "drop without protected payload and without advancing an authorized delivery cursor",
+    "authority_check_unavailable": "fail closed by dropping the frame or closing the subscription; never send and never acknowledge authorization",
+    "inbound_command_ack": "emit only after durable command acceptance and commit-time epoch revalidation",
+    "delivery_cursor_ack": "accept only for an already authorized durable sequence at the current epoch; stale ACK never advances replay state",
+    "gateway_available_response": {
+      "http_status": 200,
+      "state": "revoked",
+      "fence": "authoritative_send_time_epoch_check"
+    },
+    "gateway_unavailable_response": {
+      "http_status": 200,
+      "state": "revoked",
+      "gateway_notification": "durable_outbox_pending",
+      "safety": "the unavailable gateway sends nothing; after restart every send checks the canonical epoch before writing"
+    },
+    "notion_authority_unavailable_response": {
+      "http_status": 503,
+      "state": "not_committed",
+      "success_claimed": false
+    },
+    "completion_point": "the deny state and fence event are committed and the globally enforced send-time check makes every old-epoch delivery impossible; an active-connection ACK is not required by the selected strategy",
+    "post_response_old_epoch_protected_delivery_count": 0
+  },
+  "legacy_cutover_contract": {
+    "import_mode": "offline_explicit_manifest_only",
+    "allowed_sources": "sanitized deterministic copies under a marker-bound disposable root",
+    "live_source_import": false,
+    "request_time_directory_enumeration": false,
+    "request_time_legacy_source_database_open": false,
+    "compatibility_dual_write": false,
+    "pre_cutover_legacy_role": "authoritative only while successor flags are disabled",
+    "cutover": "stop legacy mutation, verify the frozen import high-water and hashes, import once, atomically enable the dev-only resolver, then keep legacy shards immutable",
+    "post_cutover_legacy_role": "immutable evidence or generated compatibility projection",
+    "rollback_before_first_candidate_write": "disable candidate reads/writes and return to the unchanged legacy authority",
+    "rollback_after_first_candidate_write": "roll forward or restore the candidate authority; never replay legacy data over newer candidate state",
+    "production_cutover_authorized": false
+  },
+  "second_brain_boundary": {
+    "shared_identity_only": true,
+    "notion_and_sbe_database_authorities_separate": true,
+    "notion_and_sbe_schema_lineages_separate": true,
+    "preview_binds": ["exact committed Notion document revision", "canonical content hash", "asset manifest hash", "workspace access epoch", "page access epoch"],
+    "approval_behavior": "publish the exact previewed revision or fail stale; cancel creates no SBE item or revision",
+    "ordered_publication_contract": [
+      "resolve one exact committed Notion revision, hash, and epochs",
+      "revalidate current Notion source authorization and publication eligibility",
+      "call the SBE service layer with caller operation_id and canonical request hash",
+      "revalidate target SBE native-space authority at SBE commit time",
+      "commit SBE item/revision, audit, and outbox in the SBE transaction",
+      "return or replay the original result for the same operation_id and hash"
+    ],
+    "cross_database_atomic_transaction_claimed": false,
+    "linearization_and_crash_after_sbe_commit_owned_by": "S0A-P1/S0A-P2 ADR and tests",
+    "later_notion_edit_auto_sync": false,
+    "later_notion_revoke_effect": "blocks unpublished preview, new publication, and live Notion attachment access; it does not hide, deactivate, delete, or rewrite an independently committed SBE item",
+    "sbe_files_modified_by_a0a_p1": false
+  },
+  "prototype_boundary": {
+    "next_packet": "A0A-P2",
+    "artifact": "unversioned disposable SQLite authority prototype",
+    "root": "test-created temporary directory only",
+    "real_schema_migration_number_allocated": false,
+    "existing_workspace_schema_modified": false,
+    "prototype_tables_are_production_contract": false,
+    "a0b_p1_obligation": "re-read the current schema lineage and cross-stream ownership, then allocate the next forward migration and prove deterministic import/cutover",
+    "ports_or_services_started": false
+  },
+  "validation_contract": {
+    "declared_lane": "L2-WORKSPACE-SUBSTRATE-BASELINE",
+    "workspace_substrate_tests": [
+      "code_assist_v1/tests/test_notion_workspace_store.py",
+      "code_assist_v1/tests/test_notion_workspace_store_p1.py",
+      "code_assist_v1/tests/test_notion_workspace_routes.py",
+      "code_assist_v1/tests/test_notion_workspace_pages.py",
+      "code_assist_v1/tests/test_notion_workspace_locator_projection.py",
+      "code_assist_v1/tests/test_notion_workspace_projection.py",
+      "code_assist_v1/tests/test_notion_workspace_outbox.py",
+      "code_assist_v1/tests/test_notion_workspace_outbox_delivery.py",
+      "code_assist_v1/tests/test_notion_workspace_navigation.py",
+      "code_assist_v1/tests/test_notion_workspace_navigation_routes.py",
+      "code_assist_v1/tests/test_notion_workspace_page_tree.py"
+    ],
+    "adr_verifier": "code_assist_v1/tools/verify_internal_collaborative_authority_adr.py",
+    "adr_tests": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_authority_adr.py",
+    "live_knowledge_user_data_runtime_notion_database_or_real_port_allowed": false
+  },
+  "claims": {
+    "adr_complete": true,
+    "runtime_implemented": false,
+    "schema_migration_allocated": false,
+    "dev_cutover_enabled": false,
+    "production_changed": false,
+    "product_complete": false
+  }
+}

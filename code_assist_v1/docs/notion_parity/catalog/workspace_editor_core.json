@@ -1,0 +1,549 @@
+{
+  "schema_version": 1,
+  "catalog_id": "workspace_editor_core",
+  "title": "NP-2 workspace and NP-3 editor core baseline slice",
+  "baseline": {
+    "reference_date": "2026-08-13",
+    "timezone": "Asia/Seoul",
+    "source_priority": [
+      "official_help",
+      "official_developer",
+      "official_release",
+      "approved_live_characterization"
+    ],
+    "live_observation": {
+      "availability": "unavailable",
+      "observation_state": "unknown",
+      "reason": "No authorized signed-in Notion browser session was available for this catalog slice. Official pages are references only; no UI, DOM, accessibility-tree, network, or visual state was captured."
+    }
+  },
+  "scope": {
+    "phases": ["NP-2", "NP-3"],
+    "catalog_completeness": "partial",
+    "phase_completion_claim": false,
+    "description": "First NP-0 catalog slice for workspace navigation, IAM, page lifecycle, block editing, keyboard behavior, and save-conflict characterization. It is not an exhaustive NP-2 or NP-3 inventory."
+  },
+  "claims": {
+    "live_characterized": false,
+    "differential_passed": false,
+    "np2_gate_complete": false,
+    "np3_gate_complete": false
+  },
+  "profiles": [
+    { "id": "desktop_web_free_owner", "plan": "free", "role": "workspace_owner", "platform": "desktop_web", "locale": "ko-KR" },
+    { "id": "desktop_web_plus_member", "plan": "plus", "role": "workspace_member", "platform": "desktop_web", "locale": "ko-KR" },
+    { "id": "desktop_windows_business_member", "plan": "business", "role": "workspace_member", "platform": "desktop_app_windows", "locale": "ko-KR" },
+    { "id": "desktop_macos_enterprise_admin", "plan": "enterprise", "role": "workspace_admin", "platform": "desktop_app_macos", "locale": "ko-KR" },
+    { "id": "desktop_web_business_guest_editor", "plan": "business", "role": "guest_editor", "platform": "desktop_web", "locale": "ko-KR" },
+    { "id": "desktop_web_business_guest_commenter", "plan": "business", "role": "guest_commenter", "platform": "desktop_web", "locale": "ko-KR" },
+    { "id": "desktop_web_business_guest_viewer", "plan": "business", "role": "guest_viewer", "platform": "desktop_web", "locale": "ko-KR" },
+    { "id": "mobile_web_free_owner", "plan": "free", "role": "workspace_owner", "platform": "mobile_web", "locale": "ko-KR" },
+    { "id": "ios_plus_member", "plan": "plus", "role": "workspace_member", "platform": "ios_app", "locale": "ko-KR" },
+    { "id": "android_plus_member", "plan": "plus", "role": "workspace_member", "platform": "android_app", "locale": "ko-KR" },
+    { "id": "public_web_anonymous", "plan": "not_applicable", "role": "public_anonymous", "platform": "public_web", "locale": "ko-KR" }
+  ],
+  "sources": [
+    {
+      "id": "SRC-NOTION-SIDEBAR",
+      "kind": "official_help",
+      "title": "Navigate with the sidebar",
+      "url": "https://www.notion.com/help/navigate-with-the-sidebar",
+      "reference_date": "2026-08-13",
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_observation_status": "unknown",
+      "claim_summary": "The official help page describes workspace switching, sidebar sections, nesting, collapse, drag-and-drop reorganization, favorites, private pages, shared pages, teamspaces, and trash navigation."
+    },
+    {
+      "id": "SRC-NOTION-SHARING",
+      "kind": "official_help",
+      "title": "Sharing and permissions",
+      "url": "https://www.notion.com/help/sharing-and-permissions",
+      "reference_date": "2026-08-13",
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_observation_status": "unknown",
+      "claim_summary": "The official help page is the reference for members, guests, page access levels, sharing, and permission behavior; no plan-role combination was exercised here."
+    },
+    {
+      "id": "SRC-NOTION-DELETE-RESTORE",
+      "kind": "official_help",
+      "title": "Duplicate, delete and restore content",
+      "url": "https://www.notion.com/help/duplicate-delete-and-restore-content",
+      "reference_date": "2026-08-13",
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_observation_status": "unknown",
+      "claim_summary": "The official help page is the reference for duplicating content, moving content to trash, restoring it, and page history availability."
+    },
+    {
+      "id": "SRC-NOTION-WRITING",
+      "kind": "official_help",
+      "title": "Writing and editing basics",
+      "url": "https://www.notion.com/help/writing-and-editing-basics",
+      "reference_date": "2026-08-13",
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_observation_status": "unknown",
+      "claim_summary": "The official help page describes content types, rich text, block selection, drag-and-drop, Markdown shortcuts, inline mentions, and a distinct mobile editing toolbar."
+    },
+    {
+      "id": "SRC-NOTION-BLOCKS",
+      "kind": "official_help",
+      "title": "What is a block?",
+      "url": "https://www.notion.com/help/what-is-a-block",
+      "reference_date": "2026-08-13",
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_observation_status": "unknown",
+      "claim_summary": "The official help page is the block-model reference. This catalog does not infer serialization or unsupported-block round-trip behavior from it."
+    },
+    {
+      "id": "SRC-NOTION-KEYBOARD",
+      "kind": "official_help",
+      "title": "Keyboard shortcuts",
+      "url": "https://www.notion.com/help/keyboard-shortcuts",
+      "reference_date": "2026-08-13",
+      "observation_state": "reference-only",
+      "promotion_status": null,
+      "live_observation_status": "unknown",
+      "claim_summary": "The official help page lists desktop and Markdown shortcuts and explicitly frames its instructions around English/QWERTY keyboards."
+    }
+  ],
+  "reference_conflicts": [
+    {
+      "id": "RC-NP2-PERMISSION-SCOPE-001",
+      "status": "open",
+      "type": "scope_ambiguity",
+      "scenario_ids": ["NP2-IAM-PERMISSION-001", "NP2-PAGE-RESTORE-001"],
+      "source_ids": ["SRC-NOTION-SIDEBAR", "SRC-NOTION-SHARING"],
+      "summary": "The sidebar reference states that moving shared content into Private removes others' access, while the sharing reference owns the broader page, guest, group, and inherited permission model. The precise cross-surface capability matrix is not fully specified by either reference alone.",
+      "impact": "Do not infer search, mention, relation, comment, public-link, or API visibility from sidebar placement. Each role and surface requires authorized live characterization.",
+      "blocks_status_at_or_above": "live-characterized",
+      "resolution": null
+    },
+    {
+      "id": "RC-NP3-KEYBOARD-PLATFORM-001",
+      "status": "open",
+      "type": "platform_variance",
+      "scenario_ids": ["NP3-EDITOR-KEYBOARD-001", "NP3-EDITOR-BLOCKS-001"],
+      "source_ids": ["SRC-NOTION-WRITING", "SRC-NOTION-KEYBOARD"],
+      "summary": "The shortcut reference is scoped to English/QWERTY keyboards, while the writing reference describes a separate mobile toolbar and states that mobile has no slash commands. Neither source characterizes Korean IME composition across every listed platform.",
+      "impact": "Desktop shortcut, mobile editing, Korean IME, focus, and caret expectations remain separate samples and cannot be generalized across profiles.",
+      "blocks_status_at_or_above": "live-characterized",
+      "resolution": null
+    }
+  ],
+  "second_brain_hard_gates": [
+    {
+      "id": "SB-AGENT-LINK",
+      "source_manifest_gate_id": "SB-AGENT-LINK",
+      "title": "Second Brain Agent navigation remains available and host-adapted",
+      "blocking": true,
+      "applies_to_phases": ["NP-2", "NP-3"],
+      "assertions": [
+        "The Agent navigation entry remains available in every supported workspace profile.",
+        "Navigation preserves the existing host and port adaptation contract."
+      ],
+      "evidence": {
+        "observation_state": "unknown",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "This catalog slice records the blocking contract but did not execute a Second Brain regression.",
+        "records": []
+      }
+    },
+    {
+      "id": "SB-TEMPLATE-CREATION",
+      "source_manifest_gate_id": "SB-TEMPLATE-CREATION",
+      "title": "Second Brain template creation remains idempotently usable",
+      "blocking": true,
+      "applies_to_phases": ["NP-2", "NP-3"],
+      "assertions": [
+        "The template entry point remains visible.",
+        "Workspace and editor changes preserve the established template creation flow."
+      ],
+      "evidence": {
+        "observation_state": "unknown",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "This catalog slice records the blocking contract but did not execute a Second Brain regression.",
+        "records": []
+      }
+    },
+    {
+      "id": "SB-SESSION-ATTACHMENT",
+      "source_manifest_gate_id": "SB-SESSION-ATTACHMENT",
+      "title": "Current-page attachment to an Agent session remains explicit and temporary",
+      "blocking": true,
+      "applies_to_phases": ["NP-2", "NP-3"],
+      "assertions": [
+        "A user explicitly selects a session before attachment.",
+        "Attachment does not silently publish page content or become canonical knowledge."
+      ],
+      "evidence": {
+        "observation_state": "unknown",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "This catalog slice records the blocking contract but did not execute a Second Brain regression.",
+        "records": []
+      }
+    },
+    {
+      "id": "SB-PUBLISH-PREVIEW",
+      "source_manifest_gate_id": "SB-PUBLISH-PREVIEW",
+      "title": "Second Brain publishing presents a Markdown preview before mutation",
+      "blocking": true,
+      "applies_to_phases": ["NP-2", "NP-3"],
+      "assertions": [
+        "Dirty main and peek drafts are safely flushed before preview generation.",
+        "No publication mutation occurs before explicit approval."
+      ],
+      "evidence": {
+        "observation_state": "unknown",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "This catalog slice records the blocking contract but did not execute a Second Brain regression.",
+        "records": []
+      }
+    },
+    {
+      "id": "SB-PUBLISH-CONTRACT",
+      "source_manifest_gate_id": "SB-PUBLISH-CONTRACT",
+      "title": "Approved Second Brain publication preserves its endpoint and response workflow",
+      "blocking": true,
+      "applies_to_phases": ["NP-2", "NP-3"],
+      "assertions": [
+        "Approval invokes the existing publish_second_brain adapter exactly once.",
+        "Cancellation, conflict, or preview failure performs no publication."
+      ],
+      "evidence": {
+        "observation_state": "unknown",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "This catalog slice records the blocking contract but did not execute a Second Brain regression.",
+        "records": []
+      }
+    },
+    {
+      "id": "SB-SERIALIZATION-COMPATIBILITY",
+      "source_manifest_gate_id": "SB-SERIALIZATION-COMPATIBILITY",
+      "title": "Editor migration preserves Second Brain serialization and publication lineage",
+      "blocking": true,
+      "applies_to_phases": ["NP-2", "NP-3"],
+      "assertions": [
+        "Preview and committed source serialize the same acknowledged page revision.",
+        "Blocks, files, and relations consumed by Second Brain are not silently dropped.",
+        "Notion page revision and Second Brain knowledge revision remain separate and publication uses an immutable snapshot with lineage."
+      ],
+      "evidence": {
+        "observation_state": "unknown",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "This catalog slice records the blocking contract but did not execute a Second Brain regression.",
+        "records": []
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "NP2-SIDEBAR-NAVIGATE-001",
+      "feature_id": "sidebar.workspace_navigation",
+      "phase": "NP-2",
+      "title": "Navigate, collapse, favorite, and reorder the workspace sidebar",
+      "reference_date": "2026-08-13",
+      "source_ids": ["SRC-NOTION-SIDEBAR"],
+      "profile_ids": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor",
+        "desktop_web_business_guest_commenter",
+        "desktop_web_business_guest_viewer"
+      ],
+      "plan": ["free", "plus", "business", "enterprise"],
+      "role": ["workspace_owner", "workspace_member", "workspace_admin", "guest_editor", "guest_commenter", "guest_viewer"],
+      "platform": ["desktop_web", "desktop_app_windows", "desktop_app_macos"],
+      "locale": ["ko-KR"],
+      "preconditions": [
+        { "id": "P1", "statement": "Use a synthetic workspace containing nested Private, Shared, Teamspace, and favorite pages appropriate to the selected profile." },
+        { "id": "P2", "statement": "The selected role has no permissions beyond those declared by its fixture." }
+      ],
+      "actions": [
+        { "step": 1, "actor": "selected_profile", "operation": "open_sidebar", "target": "workspace_sidebar", "input": null },
+        { "step": 2, "actor": "selected_profile", "operation": "toggle_section", "target": "private_section", "input": "collapse_then_expand" },
+        { "step": 3, "actor": "selected_profile", "operation": "favorite_page", "target": "fixture_page", "input": true },
+        { "step": 4, "actor": "selected_profile", "operation": "drag_page", "target": "fixture_page", "input": { "destination": "fixture_parent" } }
+      ],
+      "assertions": [
+        { "id": "A1", "channel": "state", "comparison": "reference_to_characterize", "expected": "Collapse and expansion preserve the nested page tree and the active page." },
+        { "id": "A2", "channel": "state", "comparison": "reference_to_characterize", "expected": "Favorite and drag operations produce only role-authorized sidebar state changes." },
+        { "id": "A3", "channel": "focus", "comparison": "reference_to_characterize", "expected": "Keyboard and pointer operations restore focus to an observable sidebar target." }
+      ],
+      "reference_conflict_ids": [],
+      "second_brain_hard_gate_ids": ["SB-AGENT-LINK", "SB-TEMPLATE-CREATION", "SB-SESSION-ATTACHMENT", "SB-PUBLISH-PREVIEW", "SB-PUBLISH-CONTRACT", "SB-SERIALIZATION-COMPATIBILITY"],
+      "evidence": {
+        "observation_state": "reference-only",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "The official help page was reviewed, but the actions were not executed in an authorized Notion session.",
+        "records": [
+          { "id": "EV-NP2-SIDEBAR-NAVIGATE-001", "kind": "official_reference", "observation_state": "reference-only", "promotion_status": null, "source_id": "SRC-NOTION-SIDEBAR", "description": "Official documentation reference only; not a live capture." }
+        ]
+      },
+      "notes": "Ordering, hover targets, focus restoration, narrow viewport behavior, and plan-specific sections remain uncharacterized."
+    },
+    {
+      "id": "NP2-IAM-PERMISSION-001",
+      "feature_id": "workspace.iam",
+      "phase": "NP-2",
+      "title": "Apply role and page permission boundaries without cross-surface leakage",
+      "reference_date": "2026-08-13",
+      "source_ids": ["SRC-NOTION-SHARING", "SRC-NOTION-SIDEBAR"],
+      "profile_ids": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor",
+        "desktop_web_business_guest_commenter",
+        "desktop_web_business_guest_viewer"
+      ],
+      "plan": ["free", "plus", "business", "enterprise"],
+      "role": ["workspace_owner", "workspace_member", "workspace_admin", "guest_editor", "guest_commenter", "guest_viewer"],
+      "platform": ["desktop_web", "desktop_app_windows", "desktop_app_macos"],
+      "locale": ["ko-KR"],
+      "preconditions": [
+        { "id": "P1", "statement": "Create synthetic parent and child pages with explicit fixture members, guests, and access levels." },
+        { "id": "P2", "statement": "Prepare inaccessible sibling content with a unique synthetic marker for leakage detection." }
+      ],
+      "actions": [
+        { "step": 1, "actor": "workspace_owner", "operation": "set_page_permission", "target": "fixture_parent", "input": { "access": "profile_specific" } },
+        { "step": 2, "actor": "selected_profile", "operation": "open_page", "target": "fixture_child", "input": null },
+        { "step": 3, "actor": "selected_profile", "operation": "query_surfaces", "target": "sidebar_search_mention_relation_comment_public_api", "input": "inaccessible_marker" }
+      ],
+      "assertions": [
+        { "id": "A1", "channel": "security", "comparison": "no_leakage", "expected": "A profile cannot discover content or metadata outside its effective permission." },
+        { "id": "A2", "channel": "state", "comparison": "reference_to_characterize", "expected": "Parent, child, explicit share, and workspace-role interactions produce a profile-specific capability matrix." },
+        { "id": "A3", "channel": "error_recovery", "comparison": "no_mutation", "expected": "Denied mutations do not partially change page, permission, audit, or publication state." }
+      ],
+      "reference_conflict_ids": ["RC-NP2-PERMISSION-SCOPE-001"],
+      "second_brain_hard_gate_ids": ["SB-AGENT-LINK", "SB-TEMPLATE-CREATION", "SB-SESSION-ATTACHMENT", "SB-PUBLISH-PREVIEW", "SB-PUBLISH-CONTRACT", "SB-SERIALIZATION-COMPATIBILITY"],
+      "evidence": {
+        "observation_state": "reference-conflict",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "Official references establish sharing and sidebar concepts but do not resolve the complete cross-surface plan-role capability matrix.",
+        "records": [
+          { "id": "EV-NP2-IAM-PERMISSION-001", "kind": "official_reference", "observation_state": "reference-only", "promotion_status": null, "source_id": "SRC-NOTION-SHARING", "description": "Official sharing documentation reference only; no permission matrix was executed." },
+          { "id": "EV-NP2-IAM-PERMISSION-002", "kind": "official_reference", "observation_state": "reference-only", "promotion_status": null, "source_id": "SRC-NOTION-SIDEBAR", "description": "Official sidebar documentation reference only; no permission matrix was executed." }
+        ]
+      },
+      "notes": "The open scope ambiguity blocks live-characterized and differential-passed claims until each surface is sampled."
+    },
+    {
+      "id": "NP2-PAGE-RESTORE-001",
+      "feature_id": "workspace.page_lifecycle",
+      "phase": "NP-2",
+      "title": "Duplicate, trash, and restore a page tree without confusing Second Brain purge policy",
+      "reference_date": "2026-08-13",
+      "source_ids": ["SRC-NOTION-DELETE-RESTORE", "SRC-NOTION-SIDEBAR"],
+      "profile_ids": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor"
+      ],
+      "plan": ["free", "plus", "business", "enterprise"],
+      "role": ["workspace_owner", "workspace_member", "workspace_admin", "guest_editor"],
+      "platform": ["desktop_web", "desktop_app_windows", "desktop_app_macos"],
+      "locale": ["ko-KR"],
+      "preconditions": [
+        { "id": "P1", "statement": "Use a synthetic parent page with a child, backlink, and disabled public link." },
+        { "id": "P2", "statement": "The selected profile has fixture permission to perform each requested lifecycle action." }
+      ],
+      "actions": [
+        { "step": 1, "actor": "selected_profile", "operation": "duplicate_page", "target": "fixture_parent", "input": { "include_children": true } },
+        { "step": 2, "actor": "selected_profile", "operation": "move_to_trash", "target": "duplicated_parent", "input": null },
+        { "step": 3, "actor": "selected_profile", "operation": "restore_from_trash", "target": "duplicated_parent", "input": null }
+      ],
+      "assertions": [
+        { "id": "A1", "channel": "state", "comparison": "reference_to_characterize", "expected": "Duplicate, trash, and restore transitions preserve a coherent page subtree and stable observable identity rules." },
+        { "id": "A2", "channel": "security", "comparison": "no_leakage", "expected": "Lifecycle transitions do not broaden page, backlink, or public-link access." },
+        { "id": "A3", "channel": "state", "comparison": "no_mutation", "expected": "Notion-style trash behavior does not deactivate or purge Second Brain knowledge, and it does not alter the administrator-only 90-day purge eligibility contract." }
+      ],
+      "reference_conflict_ids": ["RC-NP2-PERMISSION-SCOPE-001"],
+      "second_brain_hard_gate_ids": ["SB-AGENT-LINK", "SB-TEMPLATE-CREATION", "SB-SESSION-ATTACHMENT", "SB-PUBLISH-PREVIEW", "SB-PUBLISH-CONTRACT", "SB-SERIALIZATION-COMPATIBILITY"],
+      "evidence": {
+        "observation_state": "reference-only",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "Official lifecycle references were recorded, but no plan-role lifecycle was executed.",
+        "records": [
+          { "id": "EV-NP2-PAGE-RESTORE-001", "kind": "official_reference", "observation_state": "reference-only", "promotion_status": null, "source_id": "SRC-NOTION-DELETE-RESTORE", "description": "Official duplicate, delete, and restore reference only." },
+          { "id": "EV-NP2-PAGE-RESTORE-002", "kind": "official_reference", "observation_state": "reference-only", "promotion_status": null, "source_id": "SRC-NOTION-SIDEBAR", "description": "Official sidebar trash reference only." }
+        ]
+      },
+      "notes": "Retention duration, permanent-delete authority, subtree identity, backlink behavior, and public-link effects require separate profile samples."
+    },
+    {
+      "id": "NP3-EDITOR-BLOCKS-001",
+      "feature_id": "editor.block_transactions",
+      "phase": "NP-3",
+      "title": "Create, transform, move, select, and round-trip representative blocks",
+      "reference_date": "2026-08-13",
+      "source_ids": ["SRC-NOTION-WRITING", "SRC-NOTION-BLOCKS"],
+      "profile_ids": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor",
+        "mobile_web_free_owner",
+        "ios_plus_member",
+        "android_plus_member"
+      ],
+      "plan": ["free", "plus", "business", "enterprise"],
+      "role": ["workspace_owner", "workspace_member", "workspace_admin", "guest_editor"],
+      "platform": ["desktop_web", "desktop_app_windows", "desktop_app_macos", "mobile_web", "ios_app", "android_app"],
+      "locale": ["ko-KR"],
+      "preconditions": [
+        { "id": "P1", "statement": "Open an editable synthetic page with one empty text block and no external embeds." },
+        { "id": "P2", "statement": "Record the selected profile and platform before any action." }
+      ],
+      "actions": [
+        { "step": 1, "actor": "selected_profile", "operation": "insert_blocks", "target": "fixture_page", "input": ["text", "heading", "todo", "toggle", "quote", "callout", "divider", "code", "table"] },
+        { "step": 2, "actor": "selected_profile", "operation": "transform_block", "target": "text_block", "input": "heading" },
+        { "step": 3, "actor": "selected_profile", "operation": "multi_select", "target": "adjacent_blocks", "input": { "count": 3 } },
+        { "step": 4, "actor": "selected_profile", "operation": "drag_and_nest", "target": "selected_blocks", "input": { "destination": "toggle_block" } },
+        { "step": 5, "actor": "selected_profile", "operation": "reload_page", "target": "fixture_page", "input": null }
+      ],
+      "assertions": [
+        { "id": "A1", "channel": "state", "comparison": "reference_to_characterize", "expected": "Each supported block retains type, content, rich-text marks, order, and parent after reload." },
+        { "id": "A2", "channel": "keyboard", "comparison": "reference_to_characterize", "expected": "Selection and transform commands produce a deterministic block selection and caret result." },
+        { "id": "A3", "channel": "state", "comparison": "preserve", "expected": "Unsupported or degraded blocks are preserved by an explicit round-trip policy rather than silently dropped." }
+      ],
+      "reference_conflict_ids": ["RC-NP3-KEYBOARD-PLATFORM-001"],
+      "second_brain_hard_gate_ids": ["SB-AGENT-LINK", "SB-TEMPLATE-CREATION", "SB-SESSION-ATTACHMENT", "SB-PUBLISH-PREVIEW", "SB-PUBLISH-CONTRACT", "SB-SERIALIZATION-COMPATIBILITY"],
+      "evidence": {
+        "observation_state": "reference-conflict",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "Official references describe blocks and platform-specific editing, but no cross-platform action sequence or round-trip was observed.",
+        "records": [
+          { "id": "EV-NP3-EDITOR-BLOCKS-001", "kind": "official_reference", "observation_state": "reference-only", "promotion_status": null, "source_id": "SRC-NOTION-WRITING", "description": "Official writing and editing documentation reference only." },
+          { "id": "EV-NP3-EDITOR-BLOCKS-002", "kind": "official_reference", "observation_state": "reference-only", "promotion_status": null, "source_id": "SRC-NOTION-BLOCKS", "description": "Official block-model documentation reference only." }
+        ]
+      },
+      "notes": "This sample intentionally excludes external embed payloads and does not claim block-schema parity."
+    },
+    {
+      "id": "NP3-EDITOR-KEYBOARD-001",
+      "feature_id": "editor.surface_parity",
+      "phase": "NP-3",
+      "title": "Characterize desktop shortcuts, Korean IME boundaries, focus, and mobile divergence",
+      "reference_date": "2026-08-13",
+      "source_ids": ["SRC-NOTION-KEYBOARD", "SRC-NOTION-WRITING"],
+      "profile_ids": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor"
+      ],
+      "plan": ["free", "plus", "business", "enterprise"],
+      "role": ["workspace_owner", "workspace_member", "workspace_admin", "guest_editor"],
+      "platform": ["desktop_web", "desktop_app_windows", "desktop_app_macos"],
+      "locale": ["ko-KR"],
+      "preconditions": [
+        { "id": "P1", "statement": "Use a Korean input method on a synthetic editable page and record exact OS, app or browser, and input-method versions in future live evidence." },
+        { "id": "P2", "statement": "Start with a known text block, collapsed selection, and empty undo history." }
+      ],
+      "actions": [
+        { "step": 1, "actor": "selected_profile", "operation": "compose_text", "target": "text_block", "input": "한글 입력" },
+        { "step": 2, "actor": "selected_profile", "operation": "press_key_sequence", "target": "text_block", "input": ["Enter", "Backspace", "Tab", "Shift+Tab"] },
+        { "step": 3, "actor": "selected_profile", "operation": "invoke_slash_menu", "target": "empty_block", "input": "/" },
+        { "step": 4, "actor": "selected_profile", "operation": "undo_redo", "target": "fixture_page", "input": ["undo", "redo"] }
+      ],
+      "assertions": [
+        { "id": "A1", "channel": "state", "comparison": "preserve", "expected": "Composition commits complete grapheme clusters without duplicate, missing, or prematurely split text." },
+        { "id": "A2", "channel": "keyboard", "comparison": "reference_to_characterize", "expected": "Enter, Backspace, Tab, menu navigation, undo, and redo have profile-specific deterministic results." },
+        { "id": "A3", "channel": "focus", "comparison": "ordered", "expected": "Menus dismiss to the originating editor surface with a preserved observable caret or selection." },
+        { "id": "A4", "channel": "a11y", "comparison": "reference_to_characterize", "expected": "Every keyboard-reachable command exposes an accessible name, role, state, and visible focus indication." }
+      ],
+      "reference_conflict_ids": ["RC-NP3-KEYBOARD-PLATFORM-001"],
+      "second_brain_hard_gate_ids": ["SB-AGENT-LINK", "SB-TEMPLATE-CREATION", "SB-SESSION-ATTACHMENT", "SB-PUBLISH-PREVIEW", "SB-PUBLISH-CONTRACT", "SB-SERIALIZATION-COMPATIBILITY"],
+      "evidence": {
+        "observation_state": "reference-conflict",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "The official shortcut reference is English/QWERTY-scoped and no Korean IME or platform sample was captured.",
+        "records": [
+          { "id": "EV-NP3-EDITOR-KEYBOARD-001", "kind": "official_reference", "observation_state": "reference-only", "promotion_status": null, "source_id": "SRC-NOTION-KEYBOARD", "description": "Official keyboard documentation reference only." },
+          { "id": "EV-NP3-EDITOR-KEYBOARD-002", "kind": "official_reference", "observation_state": "reference-only", "promotion_status": null, "source_id": "SRC-NOTION-WRITING", "description": "Official desktop/mobile editing distinction reference only." }
+        ]
+      },
+      "notes": "Mobile editing is retained as a separate future scenario because the official reference describes different controls and no slash commands."
+    },
+    {
+      "id": "NP3-EDITOR-CONFLICT-001",
+      "feature_id": "editor.persistence_conflict",
+      "phase": "NP-3",
+      "title": "Preserve a dirty draft across autosave retry, stale revision, and peek transitions",
+      "reference_date": "2026-08-13",
+      "source_ids": ["SRC-NOTION-WRITING"],
+      "profile_ids": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin"
+      ],
+      "plan": ["free", "plus", "business", "enterprise"],
+      "role": ["workspace_owner", "workspace_member", "workspace_admin"],
+      "platform": ["desktop_web", "desktop_app_windows", "desktop_app_macos"],
+      "locale": ["ko-KR"],
+      "preconditions": [
+        { "id": "P1", "statement": "Open the same synthetic page revision in two authorized clients." },
+        { "id": "P2", "statement": "Keep client A dirty while client B commits a conflicting revision." },
+        { "id": "P3", "statement": "Use only isolated test storage; live user_data, knowledge, .runtime, sessions, and workspace paths are forbidden." }
+      ],
+      "actions": [
+        { "step": 1, "actor": "client_a", "operation": "edit_without_flush", "target": "fixture_page", "input": "draft-a" },
+        { "step": 2, "actor": "client_b", "operation": "commit_revision", "target": "fixture_page", "input": "revision-b" },
+        { "step": 3, "actor": "client_a", "operation": "trigger_autosave", "target": "fixture_page", "input": null },
+        { "step": 4, "actor": "client_a", "operation": "switch_editor_surface", "target": "main_side_center_full", "input": "preserve_dirty_draft" }
+      ],
+      "assertions": [
+        { "id": "A1", "channel": "error_recovery", "comparison": "preserve", "expected": "A stale save does not overwrite the acknowledged revision or discard client A's draft." },
+        { "id": "A2", "channel": "state", "comparison": "no_mutation", "expected": "A failed save creates no partial page, block, revision, idempotency, audit, outbox, or Second Brain publication mutation." },
+        { "id": "A3", "channel": "state", "comparison": "preserve", "expected": "Main, side-peek, center-peek, and full-page transitions retain the same recoverable dirty draft until explicit resolution." }
+      ],
+      "reference_conflict_ids": [],
+      "second_brain_hard_gate_ids": ["SB-AGENT-LINK", "SB-TEMPLATE-CREATION", "SB-SESSION-ATTACHMENT", "SB-PUBLISH-PREVIEW", "SB-PUBLISH-CONTRACT", "SB-SERIALIZATION-COMPATIBILITY"],
+      "evidence": {
+        "observation_state": "unknown",
+        "promotion_status": null,
+        "live_characterization": "unknown",
+        "differential": "unknown",
+        "unverified_reason": "The cited writing reference does not define autosave conflict wire or recovery semantics, and no live product observation was performed.",
+        "records": [
+          { "id": "EV-NP3-EDITOR-CONFLICT-001", "kind": "official_reference", "observation_state": "reference-only", "promotion_status": null, "source_id": "SRC-NOTION-WRITING", "description": "Official editor scope reference only; it does not evidence conflict behavior." }
+        ]
+      },
+      "notes": "Repository behavior, contract tests, live characterization, and differential results must be attached as separate evidence before any promotion status is set."
+    }
+  ]
+}

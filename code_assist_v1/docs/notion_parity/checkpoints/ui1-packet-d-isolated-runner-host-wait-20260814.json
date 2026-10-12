@@ -1,0 +1,149 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-14T22:07:05+09:00",
+  "run_id": "ui1-packet-d-isolated-runner-host-wait-20260814",
+  "status": "packet_d_process_boundary_complete_real_browser_pending_host_recovery",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-packets-a-c-contract-foundation-20260814.json",
+    "sha256": "61c05e926929eb4558d2817e8c83d89360d165b492713e21c5eef063374d4efe",
+    "semantic_status": "packets_a_b_c_complete_packet_d_ready"
+  },
+  "prior_stop": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-packet-d-live-path-stop-20260814.json",
+    "sha256": "7c1fee56a9464cd53bc0d813f9ac68db4cf7ac0543434d928fd17c61a2666904",
+    "resume_protocol_followed": true,
+    "forbidden_recursive_search_repeated": false
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective_status": "in_progress",
+    "completion_claimed": false,
+    "blocked_claimed": false
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY",
+    "packet": "D-isolated-local-browser-smoke",
+    "process_isolation": "passed",
+    "real_browser_execution": "not_started",
+    "repeatability": "not_proven"
+  },
+  "implementation": {
+    "added": [
+      "code_assist_v1/tools/notion_parity/ui_local_fixture.py",
+      "code_assist_v1/tests/test_notion_ui_local_fixture.py",
+      "code_assist_v1/docs/notion_parity/adr/UI_BROWSER_RUNNER_ADR_20260814.md",
+      "code_assist_v1/docs/notion_parity/checkpoints/ui1-packet-d-isolated-runner-host-wait-20260814.json"
+    ],
+    "production_ui_files_modified": [],
+    "protected_files_modified": [],
+    "persistent_browser_dependency_added": false,
+    "git_repository_available": false,
+    "commit_or_landed_claimed": false
+  },
+  "local_fixture_contract": {
+    "contract": "notion_core_free_ui_local_fixture_v1",
+    "bind_host": "127.0.0.1",
+    "data_root": "unique trusted OS temporary root",
+    "mutable_path_proof": [
+      "AUTH_SECRET_FILE",
+      "AUTH_USERS_FILE",
+      "DATA_ROOT",
+      "KNOWLEDGE_DIR",
+      "RUNTIME_DIR",
+      "SESSIONS_DIR",
+      "TOKEN_FILE",
+      "USER_DATA_DIR",
+      "WORKSPACE_DIR"
+    ],
+    "credentials_removed": true,
+    "model_autoload_disabled": true,
+    "codex_bridge_disabled": true,
+    "token_available": false,
+    "path_free_evidence_descriptor": true
+  },
+  "browser_connection": {
+    "requested_surface": "Chrome",
+    "plugin_entrypoint_exists": true,
+    "plugin_entrypoint_sha256": "8676faca28eddb6424d4b54116fe8305e2da6a0ca4e5271e8758fc3c55c3b8fc",
+    "attempts": 2,
+    "clean_kernel_retry": true,
+    "result": "host_automation_failure",
+    "sanitized_error": "failed_to_write_kernel_assets_path_not_found",
+    "browser_selected": false,
+    "tab_opened": false,
+    "local_page_opened": false,
+    "notion_page_opened": false,
+    "product_result_inferred": false,
+    "adr": "code_assist_v1/docs/notion_parity/adr/UI_BROWSER_RUNNER_ADR_20260814.md"
+  },
+  "runtime_boundary": {
+    "isolated_data_root_used": true,
+    "synthetic_only": true,
+    "browser_accessed_this_run": false,
+    "reference_workspace_accessed_this_run": false,
+    "personal_workspace_accessed": false,
+    "live_local_data_accessed_this_run": false,
+    "raw_dom_or_network_captured": false,
+    "external_messages_or_invites_sent": false,
+    "public_links_created": false,
+    "plan_or_trial_changed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false
+  },
+  "validation": {
+    "fixture_focused": {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_local_fixture.py -q",
+      "exit_code": 0,
+      "result": "7 passed in 4.23s"
+    },
+    "fixture_cli_check": {
+      "exit_code": 0,
+      "status": "pass",
+      "isolated": true,
+      "token_available": false
+    },
+    "combined_h1_contracts": {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_core_free_ui_plan.py code_assist_v1\\tests\\test_notion_ui_evidence_harness.py code_assist_v1\\tests\\test_notion_ui_local_fixture.py code_assist_v1\\tests\\test_notion_evidence_policy.py code_assist_v1\\tests\\test_notion_differential.py -q",
+      "exit_code": 0,
+      "result": "56 passed in 17.11s"
+    },
+    "node_ui_contracts": {
+      "execution": "serial",
+      "exit_code": 0,
+      "result": "6 of 6 scripts passed",
+      "tests": [
+        "test_notion_editor_core.js",
+        "test_notion_ui_runtime.js",
+        "test_notion_navigation_ui.js",
+        "test_notion_publication_ui.js",
+        "test_notion_atomic_save.js",
+        "test_auth_csrf_frontend.js"
+      ]
+    },
+    "python_route_publication_contracts": {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_routes.py code_assist_v1\\tests\\test_notion_atomic_save_compat.py code_assist_v1\\tests\\test_notion_publication_adapter.py -q",
+      "exit_code": 0,
+      "result": "25 passed in 13.15s"
+    }
+  },
+  "source_hashes": {
+    "code_assist_v1/tools/notion_parity/ui_local_fixture.py": "fc7b22033ee3fbe7fbcaa81d4fd0e170da963dfe4e02b44b605ee49a9e8e991b",
+    "code_assist_v1/tests/test_notion_ui_local_fixture.py": "f85aa1ce8ddb605d402d2dab191585af08b54ee0a31b30c72e5ed3202b73f250",
+    "code_assist_v1/docs/notion_parity/adr/UI_BROWSER_RUNNER_ADR_20260814.md": "10ee63785ff42ec1db11809ccbcc068a302b550b686fef61cea0f5963771b45a",
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md": "db724d46a94cd8b5d6bc3b7b4207257ef9cc95c156184079f6bfaf8317ad8014",
+    "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md": "1334cf537c174a21307cb76e92883db5b78b08e2450fa70f9518d16f45a4e350"
+  },
+  "claims": {
+    "packets_a_b_c_complete": true,
+    "packet_d_process_isolation_complete": true,
+    "packet_d_real_browser_complete": false,
+    "reference_characterized": false,
+    "first_differential_complete": false,
+    "ui1_golden_journey_passed": false,
+    "core_ui_complete": false,
+    "overall_notion_parity_complete": false
+  },
+  "next_exact_action": "After Chrome automation host recovery, rerun the exact fixture check, start the local fixture with the same launcher, bind Chrome, read its complete control documentation, and execute the local shell/search/edit/reload subset twice before any Notion reference access."
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CAPTURE-CLOSURE-BINDING-PRE-EDIT-20260907",
+  "recorded_at": "2026-09-07T03:26:00+09:00",
+  "status": "pre_edit_sealed",
+  "purpose": "bind every local module that directly creates, collects, or supports the 36-state browser capture so the verifier can detect journey drift",
+  "pre_edit_bindings": {
+    "tools/verify_internal_collaborative_v0b_p1_receipt.py": "sha256:b0a84f3fdfa4f3cef51e578ecda4d643db63af64aa9227796bd8386e8b2096fc",
+    "tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py": "sha256:2b4c6ecefdb0e478bb2a249e97dce5a52c05879a3d4e78151eed951e462b0a9b",
+    "notion_collaboration/v0b_p1_product_capture.py": "sha256:b9522ef82ba07ae1450f1a3aacaf1ae5c9b1bd355dcb94c92f18750003431f75",
+    "notion_collaboration/v0b_p1_browser.py": "sha256:9db9f69121b6132403bee765d171f72ca28536aa2511dd8817386bcc176414c3",
+    "notion_collaboration/v0b_p1_capture.py": "sha256:137aed460f602a39a2daedd492c4b25c7fe474561c21ace8140ea36d332dad4b",
+    "notion_collaboration/approved_dev_pair.py": "sha256:5a9ae04cd3cfa4311f16a80c03a1c9bc8efe3dfbd00cb5b47ff320b92aec01f0",
+    "notion_collaboration/v0b_p1_iam_browser.py": "sha256:0813772bb6b1ec75c439de624a9b9df5cc2b08d735b2b1f33416587abe4eda1e",
+    "notion_collaboration/c0_p2_browser.py": "sha256:7b7337cb4688861ed3ce99c0b4c8331d3f914ae2576e5989d4a491435d38345d",
+    "notion_collaboration/e1_p2_browser.py": "sha256:1bfbc002b7a8ce7a2d33635874d30c4835941a56159790597a150a4019aca522",
+    "notion_collaboration/f0_p5_browser.py": "sha256:bdf9b3d1b24534428d5a31e9c055482e7828f183277423504cfcebe73d09f230"
+  },
+  "editable_paths": [
+    "notion_collaboration/v0b_p1_product_capture.py",
+    "tools/verify_internal_collaborative_v0b_p1_receipt.py",
+    "tests/notion_collaboration/test_v0b_p1_product_capture_integrity.py",
+    "tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+  ],
+  "protected_paths": ["AGENTS.md", "docs/knowledge_spaces/**", "static/knowledge_core_browser.js"],
+  "historical_receipts_immutable": true,
+  "scope_complete": false,
+  "goal_complete": false
+}

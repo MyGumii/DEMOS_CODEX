@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P2-RUNTIME-SPIKE-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-23T16:50:25Z",
+  "checkpoint_kind": "pre_edit_approval_preparation",
+  "packet_id": "E0-P2",
+  "packet_status": "awaiting_conditional_approval",
+  "purpose": "Acquire exact-path ownership only for an approval-gated, side-effect-free E0-P2 manifest builder and its negative tests. No candidate package may be downloaded, installed, imported, started, or selected until AP-RUNTIME-SPIKE is explicitly approved by the user.",
+  "owner_agent": "/root",
+  "owned_existing_files": [],
+  "new_product_files": [
+    "code_assist_v1/tools/notion_parity/crdt_runtime_spike.py"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_contract.py"
+  ],
+  "planned_final_checkpoint": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-runtime-spike-approval-prepared-20260824.json",
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p1-candidate-corpus-20260823.json": "sha256:739f9d99736f39860796b638a7ca8c774e15775d721ad2551f9adc87aeec4b06",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_candidate_matrix.v1.json": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_corpus.v1.json": "sha256:9be012b8150b3db48c66f743369a2b9905e234582056e28e427d77f311fca8b2",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:907287f527fc2493fe154621052080c5d339546ab84b4eef97f30ffd02da5625",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:00f8d071a30e29574b861ed80d981fb918b896a0371ca3036db6e4eeda06daff",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:abc60747effdb8936b2af76105a9eea3daa376bfd73e935c98c0c5601a9ea2c6",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_authority_adr.v1.json": "sha256:0dfa4ad9fd30a8daf50d42e9fe60ea0126928a2f4a73c8a51d7b518d28c439c2",
+    "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md": "sha256:6cb9abe671b87401196e33acf3d2fd2c16d4c951ae0c90dc8c6331a64f1be7fc",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md": "sha256:62e4aa857461c3cc5eb3b4f7c73dbdb5e1f59fec21f043d454b07e4305db7015"
+  },
+  "ownership_lease": {
+    "lease_id": "E0-P2-APPROVAL-PREPARATION-20260824",
+    "lane": "SPIKE",
+    "owner_agent": "/root",
+    "status": "held_approval_preparation_only",
+    "acquired_at": "2026-08-23T16:50:25Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false,
+    "release_condition": "Release after the approval-prepared checkpoint is written, or delete only the declared new files and this pre-edit checkpoint if preparation is abandoned."
+  },
+  "approval_request": {
+    "approval_id": "AP-RUNTIME-SPIKE",
+    "status": "pending",
+    "trigger_proven": true,
+    "trigger": "candidate_dependency_not_already_available",
+    "missing_package_ids": [
+      "@hocuspocus/server",
+      "pycrdt",
+      "pycrdt-websocket",
+      "uvicorn",
+      "websockets",
+      "yjs"
+    ],
+    "scope": "Download and install the exact E0-P1 candidate dependencies and their recorded isolated transitive closure only into a new OS-temporary child per candidate, verify integrity before execution, and remove candidate-owned roots and processes after evidence capture.",
+    "forbidden_effects": [
+      "candidate_winner_selection",
+      "existing_product_lockfile_change",
+      "production_runtime_import_or_enablement",
+      "schema_migration_allocation",
+      "persistent_service_or_fixed_port_start",
+      "live_identity_or_workspace_access",
+      "knowledge_or_user_data_access",
+      "10111_10112_10113_10011_10012_10013_mutation"
+    ],
+    "explicit_user_approval_observed": false
+  },
+  "preflight_observations": {
+    "python_packages_locally_installed": [],
+    "npm_packages_locally_installed": [],
+    "candidate_dependency_locally_available_count": 0,
+    "network_or_install_attempted": false,
+    "subprocess_or_service_started": false,
+    "filesystem_root_created": false,
+    "product_or_hot_contract_modified": false,
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_input_sha256": "sha256:59c9eac679584ec7a7a879989245964e9bf5f12c608870860de57ac7b94ca22b",
+    "internal_collaborative_harness_passed": 11,
+    "internal_collaborative_harness_failed": 0
+  },
+  "implementation_boundary": {
+    "allowed_before_approval": [
+      "pure approval request descriptor",
+      "strict approval receipt validator",
+      "pure candidate execution manifest builder",
+      "negative and tamper tests without package import, network, process, service, port, or root creation"
+    ],
+    "allowed_after_approval_only": [
+      "artifact download",
+      "isolated candidate root creation",
+      "candidate dependency installation",
+      "candidate import or execution",
+      "candidate-owned process start and stop",
+      "candidate evidence capture and cleanup"
+    ]
+  },
+  "completion_truth": {
+    "e0_p1_gate_passed": true,
+    "e0_p2_started": false,
+    "e0_p2_approval_preparation_started": true,
+    "ap_runtime_spike_approved": false,
+    "dependency_downloaded_or_installed": false,
+    "candidate_winner_selected": false,
+    "real_runtime_implemented": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "V0A-P1",
+    "current_activity": "E0-P2 approval preparation only",
+    "next_external_action": "Obtain explicit AP-RUNTIME-SPIKE user approval",
+    "action_if_not_approved": "Stop before every network, installation, candidate execution, root creation, or process action",
+    "real_service_or_identity_mutation_allowed": false
+  },
+  "rollback_or_cleanup": "Delete only the two declared new tool/test paths plus this pre-edit checkpoint if preparation is abandoned. No package, candidate root, process, service, port, lockfile, schema, account, workspace, browser profile, protected data root, product runtime, or SBE contract is in scope."
+}

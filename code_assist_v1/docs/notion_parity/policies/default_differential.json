@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "policy_id": "notion-parity-semantic-v1",
+  "comparators": [
+    "state",
+    "keyboard",
+    "a11y",
+    "semantic_visual",
+    "error_recovery",
+    "geometry",
+    "latency"
+  ],
+  "geometry_tolerance_px": 2,
+  "latency_budget_ms": 500,
+  "pixel_identity_required": false,
+  "brand_identity_compared": false,
+  "notes": [
+    "State, focus, keyboard, accessibility, recovery and approved geometry are compared.",
+    "Notion names, logos, icons, illustrations, help copy and visual identity are outside the comparison target.",
+    "Each scenario may narrow comparators or declare a stricter reviewed budget; it may not enable pixel or brand cloning."
+  ]
+}

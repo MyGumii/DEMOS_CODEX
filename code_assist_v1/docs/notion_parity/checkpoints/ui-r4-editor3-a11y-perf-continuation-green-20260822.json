@@ -1,0 +1,64 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T13:48:12.7202402+09:00",
+  "run_id": "ui36-r4-editor3-a11y-perf-continuation-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-r4-a11y-perf-continuation-green-20260822.json",
+    "sha256": "sha256:d558698c16334ed6a8ce09f30188d409f000799768c1e4f276e4fd492befb2c9",
+    "semantic_status": "superseded_by_safe_editor003_reference_observation"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective": "개발된거 확인하고 계획들 이어서 계속 진행해줘.",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenarios_advanced": ["UI-A11Y-001", "UI-EDITOR-003", "UI-PERF-001"],
+    "synthetic_only": true,
+    "personal_or_live_data_accessed": false,
+    "os_clipboard_or_history_read": false,
+    "external_publish_or_message_performed": false
+  },
+  "source_bindings": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/notion_static/index.html","sha256":"sha256:2771c9fd9975fdf6306b11f6cd4cab85d6fc1cfe88eb12d16c9cdda7035584c8"},
+    {"path":"code_assist_v1/notion_static/notion.css","sha256":"sha256:4288697c676f9913a614a2b8e0c6095de58638e5b12df8f01528d46af9f6986f"},
+    {"path":"code_assist_v1/notion_static/notion.js","sha256":"sha256:0d8d52313f7e1bb8920348af4be3407d2ca80daca6c3b71afeca3fd03e7b7102"},
+    {"path":"code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py","sha256":"sha256:683159022d00e32c367e348f19c4df9977177431959730abda0f7f09c345f3cd"},
+    {"path":"code_assist_v1/tests/test_notion_ui_runtime.js","sha256":"sha256:c18d6440700daeafac6fae39ddee24dbb6692bf88f44cf40182f01880c2dd3f7"},
+    {"path":"code_assist_v1/tests/test_notion_ui_review_gate.py","sha256":"sha256:19a73a709fbae2f0d9c46fbc696d2618afb1711df2a9e9cecdc9da4786903f5d"},
+    {"path":"code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md","sha256":"sha256:e81c1abe55016b261a08178fade5563a332ba70b8de18c63d45b4a0974a8d3a0"}
+  ],
+  "evidence_bindings": [
+    {"path":"code_assist_v1/docs/notion_parity/checkpoints/ui-a11y-001-reference-native-tab-skip-link-green-20260822.json","sha256":"sha256:8505b2f12317fa24390193127da71503f85c9286064074f8a0f3326153c22b4f"},
+    {"path":"code_assist_v1/docs/notion_parity/checkpoints/ui-editor-003-reference-session-clipboard-green-20260822.json","sha256":"sha256:5a63f8d1321b3b3a3116a5f76629bd36b4703584328d8415a1bf8b32e51ed49b"},
+    {"path":"code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-warm-search-samples-20260822.json","sha256":"sha256:cd7dddc9f234567790c024944fce73eea505ff1e364575b6c6383b995a934a7e"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json","sha256":"sha256:033e39cd1fa8510629701742adad7eec5be21f6447d9fb0e775812a303afbe37"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json","sha256":"sha256:5f4cca88644dec4b2e75c13d16de269e368e9f0b9f90c694b14cf3c9fbf5c144"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json","sha256":"sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"}
+  ],
+  "verification": [
+    {"selection":"current review gate verifier","result":"pass"},
+    {"selection":"current completion verifier","result":"pass and incomplete; 5/25 differential-passed, 24/25 local real-browser-green, promoted 0"},
+    {"selection":"review gate and completion matrix tests","result":"14 passed in 8.16s"},
+    {"selection":"Second Brain hard regression","result":"5 passed in 5.33s"},
+    {"selection":"UI-EDITOR-003 cleanup reload","result":"original REF-FREE-A textbox shape restored; synthetic marker residual count 0"}
+  ],
+  "claims": {
+    "r1_r3_queue_implemented_current_source_green": true,
+    "ui_a11y_001_reference_summary_owner_reviewed": false,
+    "ui_editor_003_reference_summary_owner_reviewed": false,
+    "ui_perf_001_budget_approved": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next": {
+    "owner_review_requested_for": ["UI-A11Y-001", "UI-EDITOR-003"],
+    "next_external_observation": "UI-EDITOR-004 native Korean composition",
+    "reason_user_input_is_needed": "Browser automation can type Korean text but cannot prove native OS IME compositionstart/update/end semantics without a human native composition action."
+  }
+}

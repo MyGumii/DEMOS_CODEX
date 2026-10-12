@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-SUCCESSOR-NEGATIVE-TEST-REPAIR-PRE-EDIT-20260906",
+  "recorded_at": "2026-09-06T14:54:56Z",
+  "checkpoint_kind": "successor_negative_test_and_manifest_rebind_pre_edit",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-SUCCESSOR-NEGATIVE-TEST-REPAIR-20260906",
+  "purpose": "Repair two fail-closed negative tests so they tamper the current F0-P5 adopted-surface successor rather than an older successor that is legitimately bypassed by the latest exact binding. Also update the C0 current route totals and only the manifests that bind the changed test sources.",
+  "predecessor_declaration": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-specialized-regression-expectation-repair-pre-edit-20260906.json",
+    "sha256": "sha256:eda565490fc1df7715217795ecf7fdee2288a6b3f2467d6615e8631a0f96aa8e"
+  },
+  "exact_owned_paths": [
+    "code_assist_v1/tests/notion_collaboration/test_internal_live_collaboration_runtime_contract.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_editor_ui.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editor_ui.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_convergence_corpus.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_search_authority.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_boundary.v1.json"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/tests/notion_collaboration/test_internal_live_collaboration_runtime_contract.py": "sha256:aff8bd6083ea9ca2c653646b35c5fa4237173c50b3a3a33c3e60f1685fca6df5",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_editor_ui.py": "sha256:f2906e65e25bbe016dea1d4077344bd766690f7658e1caeca5fc178c3990c078",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editor_ui.v1.json": "sha256:9f3de799ea802fd96da66a9446ff2c03ec4064f2b00ada21edba32c5323f3055",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_convergence_corpus.v1.json": "sha256:f38e77265ef4de6eddb3807b9e4334315075c561c44f3a21d2cda155e27fabe8",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_search_authority.v1.json": "sha256:fb0b6a986f7b5ee46cade60f636e1af92c678170a92e1b538e1172d2e37ab680",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_boundary.v1.json": "sha256:1644e16aa182af128d4b5dd71d711dfdcd0395275c41b5a2d089e4366c9deea4"
+  },
+  "observed_contract_regression": {
+    "artifact": "code_assist_v1/.runtime/notion-specialized-contract-regression-20260906.xml",
+    "passed": 34,
+    "failed": 3,
+    "product_failure_count": 0,
+    "stale_route_total_count": 1,
+    "stale_successor_tamper_target_count": 2
+  },
+  "guards": {
+    "modify_product_source": false,
+    "modify_verifier_source": false,
+    "modify_agents_md": false,
+    "modify_sbe_contracts_or_runtime": false,
+    "modify_catalog_ladder_matrix_or_pointer": false,
+    "run_external_or_live_browser_mutations": false,
+    "overwrite_historical_receipts": false,
+    "product_complete": false,
+    "goal_complete": false
+  }
+}

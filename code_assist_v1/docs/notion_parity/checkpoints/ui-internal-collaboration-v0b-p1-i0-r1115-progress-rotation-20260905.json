@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1115-PROGRESS-ROTATION-20260905",
+  "recorded_at": "2026-09-05T06:18:37.2846134+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1103-progress-20260905.json",
+    "sha256": "sha256:95d19780d27c716ccf247b532e8b1a5fc65415495cbc16e3d93feececad0f83d"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1115-state001-final-tree-reassert-repro-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1115-state001-final-tree-reassert-repro-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:0e6ff1ffe73de4250ea324a7dd76ea18b020104aebe526d4f2f8961afb4713d0",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:2caccc706e972e28bf996acf8b658f042e555e7836067fe7576339e48a95eae8",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 839574,
+    "masked_difference_count": 46800,
+    "total_difference_count": 886374,
+    "overall_exact_progress": "0/36"
+  },
+  "comparison": {
+    "baseline_run_id": "v0b-p1-i0-r1099-state004-final-icon-standard",
+    "baseline_unmasked_difference_count": 841212,
+    "retained_unmasked_difference_count": 839574,
+    "net_unmasked_improvement": 1638,
+    "source_attributable_regression_count": 0,
+    "stable_improvements": [
+      "V0R-MU-003 first inbox-row copy horizontal correction: 4px at both viewports.",
+      "V0R-MU-006 first inbox-row copy horizontal correction: 3px at both viewports.",
+      "V0R-MU-003 and V0R-MU-006 top navigation correction: left 2px and down 3px at both viewports.",
+      "V0R-MU-003 and V0R-MU-006 inbox-head child correction: right 1px and up 1px at both viewports.",
+      "V0R-MU-003 and V0R-MU-006 first inbox-row age correction: down 3px at both viewports.",
+      "V0R-MU-001 final pre-screenshot teamspace tree reassertion removes the 1440x900 async collapsed-tree branch."
+    ]
+  },
+  "determinism_evidence": {
+    "unstable_runs_not_retained": [
+      {
+        "run_id": "v0b-p1-i0-r1108-inbox-head-standard",
+        "reason": "A non-target V0R-MU-002 frame transiently improved by 975 pixels and did not reproduce."
+      },
+      {
+        "run_id": "v0b-p1-i0-r1111-inbox-age-standard",
+        "reason": "The target age correction improved by 78 pixels, but V0R-MU-001@1440x900 asynchronously collapsed its teamspace tree and regressed by 12444 pixels."
+      },
+      {
+        "run_id": "v0b-p1-i0-r1113-fresh-realm-age-replay-standard",
+        "reason": "The fresh realm reproduced the same V0R-MU-001 collapsed-tree branch, proving a capture-time race rather than realm contamination."
+      }
+    ],
+    "consecutive_equal_runs": [
+      {
+        "run_id": "v0b-p1-i0-r1114-state001-final-tree-reassert-standard",
+        "unmasked_difference_count": 839574,
+        "status": "pass"
+      },
+      {
+        "run_id": "v0b-p1-i0-r1115-state001-final-tree-reassert-repro-standard",
+        "unmasked_difference_count": 839574,
+        "status": "pass"
+      }
+    ]
+  },
+  "realm_rotation": {
+    "preserved_previous_realm": {
+      "path": ".dev/notion-collaboration-10111-10113-clean-r1082-20260905",
+      "final_audit": {
+        "workspace_count": 60,
+        "reference_workspace_count": 58,
+        "active_membership_count": 60,
+        "active_page_binding_count": 58,
+        "active_external_membership_count": 0,
+        "active_guest_count": 0
+      },
+      "owned_processes_stopped": true,
+      "ports_closed_before_replacement_start": true,
+      "filesystem_preserved": true
+    },
+    "replacement_realm": {
+      "path": ".dev/notion-collaboration-10111-10113-clean-r1112-20260905",
+      "manager_session_id": 78641,
+      "manager_pid": 47412,
+      "launch_id": "3b2c706b4b7d4cf89891258d3e3275b8",
+      "root_id": "1f7d4928-8355-4ba9-9737-b41aba93c0a5",
+      "processes": {
+        "agent_10111": 30152,
+        "notion_10112": 32884,
+        "gateway_10113": 47572,
+        "compactor": 45636
+      },
+      "gateway_state": "READY",
+      "ready_for_admission": true,
+      "ready_for_realtime": true,
+      "ready_for_compaction": true,
+      "schema_compatibility": "compatible",
+      "restart_required": false,
+      "initial_audit": {
+        "workspace_count": 0,
+        "reference_workspace_count": 0,
+        "active_membership_count": 0,
+        "active_page_binding_count": 0,
+        "active_external_membership_count": 0,
+        "active_guest_count": 0
+      },
+      "current_audit": {
+        "workspace_count": 8,
+        "reference_workspace_count": 6,
+        "active_membership_count": 8,
+        "active_page_binding_count": 6,
+        "active_external_membership_count": 0,
+        "active_guest_count": 0
+      },
+      "rotation_threshold": 64
+    }
+  },
+  "verification": {
+    "pytest": {
+      "status": "pass",
+      "passed": 21,
+      "duration_seconds": 11.45
+    },
+    "python_compile": "pass",
+    "cleanup": {
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless I0 exact residual reduction from stable r1115 in the fresh r1112 realm. Do not run final product or SBE gates before exact 36/36."
+}

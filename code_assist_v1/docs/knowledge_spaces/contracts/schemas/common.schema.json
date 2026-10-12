@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/contracts/common.schema.json",
+  "title": "Knowledge API common values and envelopes",
+  "$defs": {
+    "Uuid": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "RequestId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "OperationId": {
+      "$ref": "#/$defs/Uuid"
+    },
+    "NullableUuid": {
+      "oneOf": [
+        {"$ref": "#/$defs/Uuid"},
+        {"type": "null"}
+      ]
+    },
+    "PositiveVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9223372036854775807
+    },
+    "NullablePositiveVersion": {
+      "oneOf": [
+        {"$ref": "#/$defs/PositiveVersion"},
+        {"type": "null"}
+      ]
+    },
+    "UserId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{0,63}$"
+    },
+    "Sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "UtcTimestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "Cursor": {
+      "type": ["string", "null"],
+      "maxLength": 4096
+    },
+    "ErrorCode": {
+      "type": "string",
+      "enum": [
+        "AUTHENTICATION_REQUIRED",
+        "CORPUS_CLOSURE_STALE",
+        "CURATION_BLOCKED",
+        "DIFF_TOO_LARGE",
+        "DISTRIBUTION_STATE_CONFLICT",
+        "EDGE_HOME_INVALID",
+        "EDGE_SUPPRESSED",
+        "FORBIDDEN",
+        "IDEMPOTENCY_CONFLICT",
+        "INTERNAL_ERROR",
+        "LEASE_HELD",
+        "LEASE_LOST",
+        "LEASE_REQUIRED",
+        "NATIVE_WRITE_DISABLED",
+        "NOT_FOUND",
+        "OPERATION_ID_REQUIRED",
+        "PURGED_TOMBSTONE",
+        "PROJECTION_MANIFEST_UNTRUSTED",
+        "REFERENCE_TARGET_INVALID",
+        "REVISION_CONFLICT",
+        "REVISION_BODY_UNAVAILABLE",
+        "ROLE_EPISODE_STALE",
+        "SCOPE_STALE",
+        "STATE_CONFLICT",
+        "TEMPORAL_HEAD_CONFLICT",
+        "TEMPORAL_VALUE_INVALID",
+        "VERIFICATION_NONCURRENT",
+        "WIKI_ARCHIVED_HISTORY_ONLY",
+        "WIKI_DEFAULT_REQUIRED",
+        "WIKI_NAME_CONFLICT",
+        "VALIDATION_ERROR"
+      ]
+    },
+    "Error": {
+      "type": "object",
+      "required": ["code", "message", "retryable", "details"],
+      "properties": {
+        "code": {"$ref": "#/$defs/ErrorCode"},
+        "message": {"type": "string", "minLength": 1, "maxLength": 2000},
+        "retryable": {"type": "boolean"},
+        "details": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "ErrorEnvelope": {
+      "type": "object",
+      "required": ["request_id", "error"],
+      "properties": {
+        "request_id": {"$ref": "#/$defs/RequestId"},
+        "error": {"$ref": "#/$defs/Error"}
+      },
+      "additionalProperties": false
+    },
+    "OperationRequest": {
+      "type": "object",
+      "required": ["operation_id"],
+      "properties": {
+        "operation_id": {"$ref": "#/$defs/OperationId"}
+      },
+      "additionalProperties": false
+    },
+    "ExpectedVersionRequest": {
+      "type": "object",
+      "required": ["operation_id", "expected_row_version"],
+      "properties": {
+        "operation_id": {"$ref": "#/$defs/OperationId"},
+        "expected_row_version": {"$ref": "#/$defs/PositiveVersion"}
+      },
+      "additionalProperties": false
+    },
+    "MutationResponse": {
+      "type": "object",
+      "required": ["request_id", "operation_id", "status"],
+      "properties": {
+        "request_id": {"$ref": "#/$defs/RequestId"},
+        "operation_id": {"$ref": "#/$defs/OperationId"},
+        "status": {"type": "string", "minLength": 1, "maxLength": 80},
+        "resource_id": {"$ref": "#/$defs/NullableUuid"},
+        "row_version": {"$ref": "#/$defs/NullablePositiveVersion"}
+      },
+      "additionalProperties": false
+    },
+    "ResourceResponse": {
+      "type": "object",
+      "required": ["request_id", "data"],
+      "properties": {
+        "request_id": {"$ref": "#/$defs/RequestId"},
+        "data": {"type": "object"}
+      },
+      "additionalProperties": false
+    },
+    "CursorPage": {
+      "type": "object",
+      "required": ["request_id", "items", "next_cursor", "has_more"],
+      "properties": {
+        "request_id": {"$ref": "#/$defs/RequestId"},
+        "items": {"type": "array"},
+        "next_cursor": {"$ref": "#/$defs/Cursor"},
+        "has_more": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

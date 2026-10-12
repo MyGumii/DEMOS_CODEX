@@ -1,0 +1,176 @@
+{
+  "contract": "np2c4c_lifecycle_subtree_schema_guards_checkpoint_v1",
+  "recorded_at": "2026-08-14T13:22:05+09:00",
+  "run_id": "np2c4c-lifecycle-subtree-schema-guards-20260814",
+  "model_handoff_profile": "ultra_current_xhigh_ready",
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "resume current development documents and plan, verify the goal, and continue development",
+    "completion_claimed": false
+  },
+  "slice": {
+    "id": "NP2C-4c-frozen-1315-to-1316-lifecycle-subtree-schema-and-guards",
+    "status": "contract_tested_complete",
+    "next_slice": "NP2C-4d-atomic-catalog-finalizers-and-exact-sentinel-rehearsal",
+    "next_slice_authorized": false,
+    "live_or_differential_pass_claimed": false,
+    "overall_np2c_complete_claimed": false
+  },
+  "schema": {
+    "source_version": 2026081315,
+    "source_name": "notion_workspace_v2_np2c_structural_finalize_authority",
+    "source_checksum": "sha256:a57f73b41a834c42edcdfbacbbf2aa1fc30dd34366d98d7c40a42337b4f0e932",
+    "source_actual_schema_sha256": "sha256:33eaed5b16671104d53443c7cd4b09b3471eabbce805161608a114e4528f5d82",
+    "source_object_count": 159,
+    "target_version": 2026081316,
+    "target_name": "notion_workspace_v2_np2c_lifecycle_subtree_guards",
+    "target_checksum": "sha256:04db7799402ea563228c6be4b016907c0f51ae4ba376fb176bb2a15ca588d81c",
+    "target_actual_schema_sha256": "sha256:cb375ac9e36d42fb3896eabf11f32d6b35a131f5075c1512a51add3da6d32981",
+    "target_object_count": 179,
+    "frozen_1315_independent": true,
+    "request_or_startup_migration_enabled": false,
+    "operational_catalog_migrated": false
+  },
+  "implemented": {
+    "explicit_offline_migration_and_dry_run_cli": true,
+    "canonical_duplicate_trash_restore_action": true,
+    "canonical_active_archived_trashed_deleted_state": true,
+    "immutable_subtree_manifest_effect_and_object_mapping": true,
+    "bounded_page_mapping_and_aggregate_file_commitments": true,
+    "duplicate_pending_binding_create_guard": true,
+    "trash_and_restore_binding_transition_guards": true,
+    "canonical_tree_transition_guards": true,
+    "configured_command_source_receipt_and_generation_udfs": true,
+    "operation_audit_outbox_result_and_deep_health_correlation": true,
+    "migration_refuses_live_commands": true,
+    "migration_refuses_historical_duplicate_trash_restore_commands": true,
+    "migration_refuses_ambiguous_nonactive_tree_history": true,
+    "migration_fabricates_evidence_or_success": false,
+    "catalog_finalizer": false,
+    "exact_sentinel_rehearsal": false,
+    "runtime_registration": false,
+    "live_data_access": false
+  },
+  "machine_contract": {
+    "version": 16,
+    "status": "duplicate_trash_restore_1316_lifecycle_subtree_guards_contract_tested_finalizer_pending",
+    "verified_valid": true,
+    "runtime_commands_enabled": false,
+    "permanent_delete_enabled": false
+  },
+  "tests": [
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_subtree.py -q",
+      "result": "9 passed in 16.42s",
+      "exit_code": 0,
+      "snapshot_note": "focused result obtained after final 1316 hash freeze"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_finalize.py code_assist_v1\\tests\\test_migrate_notion_workspace_structural_effects.py code_assist_v1\\tests\\test_migrate_notion_workspace_structural_finalize.py code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_subtree.py -q",
+      "result": "29 passed in 41.90s",
+      "exit_code": 0
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_migrate_notion_workspace_page_tree.py code_assist_v1\\tests\\test_notion_workspace_page_tree.py code_assist_v1\\tests\\test_notion_workspace_locator_projection.py code_assist_v1\\tests\\test_notion_workspace_outbox_delivery.py -q",
+      "result": "54 passed in 101.20s",
+      "exit_code": 0
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_workspace_migration_chain_rehearsal.py code_assist_v1\\tests\\test_notion_workspace_offline_rehearsal.py -q",
+      "result": "4 passed in 11.37s",
+      "exit_code": 0
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q",
+      "result": "3 passed in 0.78s",
+      "exit_code": 0
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_page_tree_contract",
+      "result": "valid=true, current=1316, candidate=1316, runtime_commands=false, permanent_delete=false",
+      "exit_code": 0
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m py_compile code_assist_v1\\notion_workspace_store.py code_assist_v1\\notion_workspace_structural_finalize_migration.py code_assist_v1\\notion_workspace_lifecycle_subtree_migration.py code_assist_v1\\tools\\migrate_notion_workspace_lifecycle_subtree.py code_assist_v1\\tools\\verify_notion_np2c_page_tree_contract.py",
+      "result": "passed",
+      "exit_code": 0
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py code_assist_v1\\tests\\test_notion_workspace_migration_chain_rehearsal.py::test_current_notional_plans_match_frozen_workspace_versions -q",
+      "result": "4 passed in 1.71s",
+      "exit_code": 0
+    },
+    {
+      "command": "read-only import assertion for frozen 1315/1316 hashes and object counts",
+      "result": "schema=1316, objects_1315=159, objects_1316=179, runtime_imported_app_code=false",
+      "exit_code": 0
+    },
+    {
+      "command": "read-only protected runtime registration search",
+      "result": "protected-runtime-registration-hits=0",
+      "exit_code": 0
+    }
+  ],
+  "observed_corrected_failures": [
+    {
+      "failure": "adjacent migration command referenced nonexistent singular test_migrate_notion_workspace_structural_effect.py",
+      "classification": "test command typo before collection",
+      "correction": "used test_migrate_notion_workspace_structural_effects.py",
+      "final_result": "29 passed"
+    },
+    {
+      "failure": "migration-chain assertion still compared current 1316 marker with frozen 1315 actual hash",
+      "classification": "historical fixture expectation drift",
+      "correction": "bound current marker to migration_1316 target and renamed the test",
+      "final_result": "subsequent chain progressed to retained-snapshot check"
+    },
+    {
+      "failure": "retained final snapshot was pre-1316 but test reapplied migration_1315",
+      "classification": "migration-chain final-step fixture drift",
+      "correction": "reapplied migration_1316 to the retained pre-1316 snapshot",
+      "final_result": "4 passed"
+    }
+  ],
+  "files": {
+    "code_assist_v1/notion_workspace_store.py": "9e198fec3a611a927ba6bf745f59ac333669ddd1852a5218a6b5bbbfae271e37",
+    "code_assist_v1/notion_workspace_structural_finalize_migration.py": "96269c3ce6c6160a32a1527d3ee9c77095dabec017efe90763477594de9afb0b",
+    "code_assist_v1/notion_workspace_lifecycle_subtree_migration.py": "42c75d0037e8ae88b8d764e66a0bb002e7fe6ea5e2b3c748e244c1dae0c0af37",
+    "code_assist_v1/tools/migrate_notion_workspace_lifecycle_subtree.py": "b43f9047343b319d34294ee55d4df9bb5dee6f86460910b2e99e904e8a0d43ea",
+    "code_assist_v1/tools/verify_notion_np2c_page_tree_contract.py": "88e39e5766b6a636047fa06cb74f1e25ad90566756861dcc9b76965b4ba4321e",
+    "code_assist_v1/tests/test_migrate_notion_workspace_lifecycle_subtree.py": "e426c04cd50788b0461ee9e931e585bce5fd4f7f12a138d28c7ba9d656d9c6e8",
+    "code_assist_v1/tests/test_notion_workspace_migration_chain_rehearsal.py": "2cd325d40228c2c6d9f4e631263b09f70c3796b9d27335ff273fa9babe0c1ca0",
+    "code_assist_v1/tests/test_verify_notion_np2c_page_tree_contract.py": "e8e0bdfd791905b583143ae4a61d431b1f4f73c6fe2fca5974b25e27234e420a",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "42f41838651c510444156aec14201e71e9752852dfc75686463f3a371284220b",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "4a921b0b35dbc3d9b41c323917acb470353dcc239564deb230541a7923ce53ca",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "fe37eeb7c886ddf96d173adc70bb25b0264fd8abfa3425a994362b58fb0aa7e9",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "d82d0a841833b2841cbf11c4cfe0ca665a9fe471025edd7494dc8bee762e966a",
+    "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "5a73a089feb813adee49b7646fd4f416f0f75fa8b9cf08e3b076a5b7cde884e2",
+    "code_assist_v1/docs/notion_parity/NP2C_DUPLICATE_TRASH_RESTORE_DESIGN.md": "a70c3d0f3600bb5e27a8e8bd69842e646b0d7bd6fcfdfdb73e61bd3d3f59c503",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "e0aaf44f239d45b2fb35a02563c5153fcb8c086f177b79ea8f935b31144ef8a1"
+  },
+  "protected_boundaries": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/notion_store.py": "06c5680d0d73f775787ac5d793f7bc1ffdfc36fcd6e37e1db75d0d566f00cb02",
+    "code_assist_v1/app_code.py": "ac4133046c7b1b7e48129056fcee943f93c8f478e11fd08619aa3838734f3767",
+    "modified_by_slice": false,
+    "live_runtime_or_user_data_accessed": false,
+    "knowledge_or_second_brain_boundary_modified": false
+  },
+  "vcs": {
+    "git_repository_available": false,
+    "git_init_performed": false,
+    "commit_or_landed_claimed": false
+  },
+  "resume": {
+    "first_action": "re-read AGENTS.md, get the active goal, and recompute every current hash before editing",
+    "next_exact_gate": "design and review NP2C-4d without changing frozen 1316 DDL",
+    "stop_if": [
+      "file ownership or hash drift",
+      "frozen 1315 or 1316 contract mismatch",
+      "protected boundary change required",
+      "live migration, route, UI, worker, resolver, watermark acknowledgement, official Archive, public duplicate, or purge required",
+      "source receipt, subtree scope, file outcome, or cross-database response-loss state cannot be proven exactly"
+    ]
+  }
+}

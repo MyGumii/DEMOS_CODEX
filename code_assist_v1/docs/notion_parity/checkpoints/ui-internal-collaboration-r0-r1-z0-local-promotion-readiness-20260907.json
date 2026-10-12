@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.r0_r1_z0.local_promotion_readiness_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-R0-R1-Z0-LOCAL-PROMOTION-READINESS-20260907",
+  "recorded_at": "2026-09-07T03:31:00Z",
+  "packet_ids": [
+    "R0A-P1",
+    "R0B-P1",
+    "R1-P1",
+    "Z0-P1"
+  ],
+  "status": "local_l9_promotion_verifier_ready_external_gates_pending",
+  "purpose": "Record the fail-closed local implementation of the L9 operator-action receipt verifier without claiming or executing an offline production-copy rehearsal, production install, canary, packet gate, product completion, or shared-goal completion.",
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    },
+    "prior_q0_local_readiness": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-p1-local-readiness-20260907.json",
+      "sha256": "sha256:b6b3798acad616ea96545c277fa1cab84d72c915d40d12bb06e583be8ee51bb5"
+    },
+    "o1b_target_infrastructure_blocker": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-p1-target-infrastructure-blocked-20260907.json",
+      "sha256": "sha256:c393e455414f524262ad83be7dd26248b65ce30fff4ecfa4b84d7cd5b3e61edf"
+    }
+  },
+  "implementation": {
+    "files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/realm_promotion.py",
+        "sha256": "sha256:67b9ae4108c006aaa93604b665983c5b25ba24d6d2d181915b9affb7b16c7ec6",
+        "role": "Strict, data-only L9 promotion-manifest and operator-action receipt verifier."
+      },
+      {
+        "path": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+        "sha256": "sha256:244586e8a308ce31b415b58c5a13c02503a62337c841542c1c82df4f68ad983c",
+        "role": "Gate/audit dispatcher and aggregate create-only L9 execution receipt builder."
+      },
+      {
+        "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+        "sha256": "sha256:dd365f46dda56050ac0606eee60fc91a836d1459ba9da0ee06433ce8cf8d0205",
+        "role": "Generic receipt validation with same-authority multi-packet checkpoint support."
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/test_realm_promotion.py",
+        "sha256": "sha256:097de719be65fd481e458378cad6ab5f094e16c66393c7544f744a75ddf637e0",
+        "role": "L9 positive, negative, runner, schema, and future checkpoint compatibility regression coverage."
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+        "sha256": "sha256:033b00f1325193cd03ae08c82c57de1bc0fa6ba02543aded9767d5ece6f63754",
+        "role": "Current checked-in completion counters rebaselined from stale 43/18/14 to the already integrated 44/21/15 state."
+      }
+    ],
+    "corrected_defects": [
+      "Gate mode without --lane can no longer return a successful audit result.",
+      "The exact planned L9 invocation can no longer pass without an explicit immutable promotion manifest.",
+      "Selecting L9-REALM-PROMOTION cannot recursively invoke the same runner.",
+      "L9 now requires three separate hash-bound operator-action receipts for offline rehearsal, default-off install, and production canary.",
+      "Approval receipts bind exact hashed scope, root, ports, principals, workspace, argv, forbidden scope, preconditions, expiry, rollback, release candidate, realm fingerprint, and deployment generation.",
+      "The verifier requires an accepted XG-SBE-TARGET-OPERATIONS-HANDOFF receipt and current AGENTS.md, goal-observation, and schema-lineage bindings.",
+      "The same release candidate, artifact manifest, derivation proof, and deployment generation must span rehearsal, install, and canary; any rebuild attestation fails.",
+      "The install receipt requires port 10012, default-off state, zero user enablement, gateway package/restart/health, configuration derivation, before/after hashes, and rollback readiness.",
+      "The canary receipt requires exactly two collaborator identities and one outsider negative control, telemetry soak, abort thresholds, aggregate and capability kill-switch exercises, rollback/recovery, and zero loss, post-revoke delivery, or convergence mismatch.",
+      "A multi-packet L9 aggregate receipt is accepted across later R0A/R0B/R1 checkpoints only when all historical authority bindings are identical; drift remains fail-closed."
+    ],
+    "safety_properties": {
+      "operator_actions_executed_by_verifier": false,
+      "pytest_invoked_against_operator_roots": false,
+      "live_or_offline_production_root_opened_by_verifier": false,
+      "absolute_manifest_path_accepted_by_runner": false,
+      "promotion_receipt_output_outside_execution_receipt_root_accepted": false,
+      "raw_private_fields_accepted": false,
+      "broader_rollout_enabled_by_verifier": false,
+      "receipt_files_overwritten": false
+    }
+  },
+  "validation": {
+    "focused_current_regression": {
+      "command_shape": "pytest test_realm_promotion.py plus generic receipt schema, V0 wrapper, cross-rung receipt, and argv-without-shell harness selections",
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 13.44
+    },
+    "python_compile": {
+      "files": [
+        "code_assist_v1/notion_collaboration/realm_promotion.py",
+        "code_assist_v1/tools/internal_collaborative_validation.py",
+        "code_assist_v1/tools/run_internal_collaborative_validation.py",
+        "code_assist_v1/tests/notion_collaboration/test_realm_promotion.py"
+      ],
+      "result": "pass"
+    },
+    "redundant_full_harness_attempt": {
+      "result_credit": false,
+      "terminated_by_owner": true,
+      "elapsed_minutes_before_termination": 37,
+      "reason": "The suite repeatedly recomputed the already preserved V0 image and receipt bundle. One early stale summary assertion expected 43/18/14 while the integrated central state is 44/21/15; no new L9 failure was observed before termination.",
+      "stale_summary_assertion_corrected": true,
+      "full_suite_pass_claimed": false
+    }
+  },
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1",
+    "o1b_gate_passed": false,
+    "q0_gate_passed": false,
+    "r0_gate_passed": false,
+    "r1_gate_passed": false,
+    "z0_gate_passed": false,
+    "catalog_ladder_matrix_or_pointer_modified": false
+  },
+  "remaining_gate_requirements": [
+    "O1B-P1 requires the missing approved external encrypted destination, key custody, retention authority, target Windows host, and sealed target restore runner; its target gate remains blocked.",
+    "Q0-P1 requires an actual sealed target_windows_load run and immutable target report at all frozen denominators; local synthetic results are not a substitute.",
+    "R0A-P1 requires a current XG-SBE-TARGET-OPERATIONS-HANDOFF and exact AP-PROD-REHEARSAL before any approved offline production-copy action.",
+    "R0B-P1 requires exact AP-PROD-DEPLOY before the frozen generation may be installed default-off at 10012 or owned services restarted.",
+    "R1-P1 requires exact AP-PROD-CANARY naming the two collaborators, outsider, workspace, duration, abort thresholds, kill switches, and rollback scope.",
+    "The three real operator actions must emit create-only receipts and a create-only promotion manifest satisfying this verifier; no such production receipt is claimed here.",
+    "L9-FULL-PYTHON-SUITE, all six Node lanes, L9-REALM-PROMOTION, all remaining packet/matrix/phase gates, and the strict Z0 audit must pass on the frozen release before completion."
+  ],
+  "claims": {
+    "external_system_mutated": false,
+    "target_or_production_service_started": false,
+    "offline_production_copy_read_or_written": false,
+    "real_user_content_read_or_written": false,
+    "operator_approval_consumed": false,
+    "promotion_manifest_created": false,
+    "local_l9_verifier_ready": true,
+    "o1b_gate_passed": false,
+    "q0_gate_passed": false,
+    "r0_gate_passed": false,
+    "r1_gate_passed": false,
+    "z0_gate_passed": false,
+    "sbe_hot_contract_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  }
+}

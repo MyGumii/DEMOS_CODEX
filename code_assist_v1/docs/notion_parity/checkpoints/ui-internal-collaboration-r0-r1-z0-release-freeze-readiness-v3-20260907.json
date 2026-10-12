@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.r0_r1_z0.release_freeze_readiness_checkpoint.v3",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-R0-R1-Z0-RELEASE-FREEZE-READINESS-V3-20260907",
+  "recorded_at": "2026-09-07T03:41:59.5012936Z",
+  "packet_ids": ["R0A-P1", "R0B-P1", "R1-P1", "Z0-P1"],
+  "status": "local_release_freeze_and_l9_verifier_ready_external_infrastructure_required",
+  "supersedes_local_readiness": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-r0-r1-z0-release-freeze-readiness-v2-20260907.json",
+    "sha256": "sha256:9543956a20015a17b0cb178b9d96fc7ee534f29cef163ebfa6b459e8f1350e6e",
+    "reason": "Binds the final release-freezer validation inventory, including the freezer CLI itself, and records the final focused regression. The v2 checkpoint remains immutable historical evidence."
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    },
+    "o1b_target_infrastructure_blocker": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-p1-target-infrastructure-blocked-20260907.json",
+      "sha256": "sha256:c393e455414f524262ad83be7dd26248b65ce30fff4ecfa4b84d7cd5b3e61edf"
+    }
+  },
+  "implementation_bindings": [
+    {
+      "path": "code_assist_v1/notion_collaboration/release_candidate.py",
+      "sha256": "sha256:02f7e958da0a47f2f81a005a1d7150ddf068b5e48b26176f82b32bbb8e43befb"
+    },
+    {
+      "path": "code_assist_v1/tools/freeze_internal_collaborative_release.py",
+      "sha256": "sha256:f00a87bac6c8a2f9f0e82e190d9a1c61fa65dfc114d8d8ae33a6779a3b116de4"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/realm_promotion.py",
+      "sha256": "sha256:62e0b32e0be90c2dd2ccf6c092949b31d582baef060aff35c14c49ef9f795cfe"
+    },
+    {
+      "path": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+      "sha256": "sha256:244586e8a308ce31b415b58c5a13c02503a62337c841542c1c82df4f68ad983c"
+    },
+    {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:dd365f46dda56050ac0606eee60fc91a836d1459ba9da0ee06433ce8cf8d0205"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_release_candidate.py",
+      "sha256": "sha256:f250601d2ac3468edbec77a50251e2c255bfab50b278fcf4fafefe04db67e532"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_realm_promotion.py",
+      "sha256": "sha256:f8aa61d70fccca14a00e42545b258a25d47fb9573b5de9aeb18b24616cde510f"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+      "sha256": "sha256:033b00f1325193cd03ae08c82c57de1bc0fa6ba02543aded9767d5ece6f63754"
+    }
+  ],
+  "release_inventory_policy": {
+    "policy_id": "internal-collaboration-r0-release-inventory-v1",
+    "product_source_files": 341,
+    "dependency_lock_files": 3,
+    "database_schema_and_migration_files": 54,
+    "collaboration_protocol_files": 7,
+    "frontend_build_files": 13,
+    "validation_source_files": 120,
+    "freezer_cli_bound_in_validation_inventory": true,
+    "runtime_evidence_in_release_candidate_id": false,
+    "validation_source_in_release_candidate_id": false
+  },
+  "diagnostic_current_tree_derivation": {
+    "deployment_generation_id": "readiness-audit-0003",
+    "release_candidate_id": "sha256:9fc718f64a78b14c0a6dc1f91b907d19027018d09d8d3deee925d872b9ee79ed",
+    "artifact_manifest_sha256": "sha256:8d67f6743c6861b9a02aab0a8d8486b3223beac5779e13fce2d655bde159bd8c",
+    "derivation_proof_sha256": "sha256:f579c58cab2918c6e1c1a9884ac98c78ab8f302e52878cbd4e10bb1f6d972d04",
+    "status": "diagnostic_only_not_frozen_not_gate_evidence"
+  },
+  "validation": {
+    "focused_release_promotion_and_legacy_receipt_regression": {
+      "passed": 57,
+      "failed": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "deselected": 32,
+      "duration_seconds": 17.52
+    },
+    "python_compile": "pass"
+  },
+  "external_resolution_required": [
+    "approved encrypted off-host backup destination or explicit authority to provision one",
+    "approved distinct Windows target host and connection method or explicit authority to provision a compliant Windows VM",
+    "reviewed release identity and four distinct Ed25519 public trust anchors with private keys kept outside the repository and chat",
+    "fresh execution-specific AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF after target policy review"
+  ],
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1",
+    "o1b_gate_passed": false,
+    "q0_gate_passed": false,
+    "r0_gate_passed": false,
+    "r1_gate_passed": false,
+    "z0_gate_passed": false,
+    "catalog_ladder_matrix_or_pointer_modified": false
+  },
+  "claims": {
+    "external_system_mutated": false,
+    "target_or_production_service_started": false,
+    "offline_production_copy_read_or_written": false,
+    "actual_release_manifest_created": false,
+    "operator_approval_consumed": false,
+    "local_release_freezer_ready": true,
+    "local_l9_verifier_ready": true,
+    "sbe_hot_contract_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  }
+}

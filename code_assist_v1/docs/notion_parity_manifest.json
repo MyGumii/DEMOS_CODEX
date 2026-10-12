@@ -1,0 +1,1147 @@
+{
+  "schema_version": 1,
+  "manifest_id": "notion-parity-np0",
+  "reference": {
+    "product": "Notion",
+    "baseline_date": "2026-08-12",
+    "locale": "ko-KR",
+    "timezone": "Asia/Seoul",
+    "comparison_policy": "Official documentation is scope evidence only. A status of live_characterized requires a dated authenticated observation artifact for every referenced profile, and differential_passed additionally requires an executable differential result. No such live comparison is claimed by this baseline."
+  },
+  "vocabulary": {
+    "statuses": [
+      "exists",
+      "contract_tested",
+      "live_characterized",
+      "differential_passed"
+    ],
+    "equivalences": [
+      "exact_behavioral",
+      "semantic_equivalent",
+      "adapter",
+      "deferred_beta",
+      "excluded_legal"
+    ],
+    "platforms": [
+      "desktop_web",
+      "desktop_app_windows",
+      "desktop_app_macos",
+      "mobile_web",
+      "ios_app",
+      "android_app",
+      "public_web"
+    ],
+    "subscription_plans": [
+      "free",
+      "plus",
+      "business",
+      "enterprise",
+      "not_applicable"
+    ],
+    "roles": [
+      "workspace_owner",
+      "workspace_admin",
+      "workspace_member",
+      "guest_editor",
+      "guest_commenter",
+      "guest_viewer",
+      "public_anonymous"
+    ],
+    "evidence_kinds": [
+      "source",
+      "contract_test",
+      "specification",
+      "official_reference",
+      "live_characterization",
+      "differential_test",
+      "adapter_contract",
+      "legal_review"
+    ]
+  },
+  "baseline_profiles": [
+    {
+      "id": "desktop_web_free_owner",
+      "platform": "desktop_web",
+      "subscription_plan": "free",
+      "role": "workspace_owner",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "desktop_web_plus_member",
+      "platform": "desktop_web",
+      "subscription_plan": "plus",
+      "role": "workspace_member",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "desktop_windows_business_member",
+      "platform": "desktop_app_windows",
+      "subscription_plan": "business",
+      "role": "workspace_member",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "desktop_macos_enterprise_admin",
+      "platform": "desktop_app_macos",
+      "subscription_plan": "enterprise",
+      "role": "workspace_admin",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "desktop_web_business_guest_editor",
+      "platform": "desktop_web",
+      "subscription_plan": "business",
+      "role": "guest_editor",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "desktop_web_business_guest_commenter",
+      "platform": "desktop_web",
+      "subscription_plan": "business",
+      "role": "guest_commenter",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "desktop_web_business_guest_viewer",
+      "platform": "desktop_web",
+      "subscription_plan": "business",
+      "role": "guest_viewer",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "mobile_web_free_owner",
+      "platform": "mobile_web",
+      "subscription_plan": "free",
+      "role": "workspace_owner",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "ios_plus_member",
+      "platform": "ios_app",
+      "subscription_plan": "plus",
+      "role": "workspace_member",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "android_plus_member",
+      "platform": "android_app",
+      "subscription_plan": "plus",
+      "role": "workspace_member",
+      "locale": "ko-KR"
+    },
+    {
+      "id": "public_web_anonymous",
+      "platform": "public_web",
+      "subscription_plan": "not_applicable",
+      "role": "public_anonymous",
+      "locale": "ko-KR"
+    }
+  ],
+  "delivery_phases": [
+    {
+      "id": "NP-0",
+      "title": "기준선·검증",
+      "depends_on": [],
+      "exit_gate": "Taxonomy coverage, baseline profiles, evidence redaction, deterministic characterization and differential harness contracts, legal review, and all Second Brain hard gates validate without overclaiming live parity."
+    },
+    {
+      "id": "NP-1",
+      "title": "런타임·호환",
+      "depends_on": [
+        "NP-0"
+      ],
+      "exit_gate": "Runtime, route, authentication, storage capability, transaction, idempotency, stable error, legacy compatibility, atomic-save, and Second Brain regression contracts pass without touching live stores."
+    },
+    {
+      "id": "NP-2",
+      "title": "Workspace·IAM",
+      "depends_on": [
+        "NP-0",
+        "NP-1"
+      ],
+      "exit_gate": "Workspace shell, page tree lifecycle, members, guests, groups, teamspaces, inheritance, destructive actions, and role capability matrices pass without permission leakage."
+    },
+    {
+      "id": "NP-3",
+      "title": "Document·Editor",
+      "depends_on": [
+        "NP-1",
+        "NP-2"
+      ],
+      "exit_gate": "Document schema, block round-trip, rich text, IME, selection, clipboard, undo, drag, autosave, conflict, history, focus, accessibility, and Second Brain publication snapshot scenarios pass."
+    },
+    {
+      "id": "NP-4",
+      "title": "Database",
+      "depends_on": [
+        "NP-1",
+        "NP-2",
+        "NP-3"
+      ],
+      "exit_gate": "Canonical data sources, schema and property matrices, row pages, linked databases, saved views, personal/shared settings, formulas, relations, rollups, peek modes, and scale gates pass."
+    },
+    {
+      "id": "NP-5",
+      "title": "Realtime·협업",
+      "depends_on": [
+        "NP-1",
+        "NP-2",
+        "NP-3",
+        "NP-4"
+      ],
+      "exit_gate": "Two-client presence, operation ordering, convergence, reconnect, permission changes, comments, inbox, notifications, and suggested edits pass deterministic fault and recovery tests."
+    },
+    {
+      "id": "NP-6",
+      "title": "탐색·업무",
+      "depends_on": [
+        "NP-2",
+        "NP-3",
+        "NP-4",
+        "NP-5"
+      ],
+      "exit_gate": "Workspace and database search, quick find, recents, backlinks, mentions, reminders, templates, buttons, wiki, feed, dashboards, charts, maps, layouts, print, and moving-workflow tracks pass permission and freshness gates."
+    },
+    {
+      "id": "NP-7",
+      "title": "Forms·Sharing·Sites",
+      "depends_on": [
+        "NP-2",
+        "NP-4",
+        "NP-5",
+        "NP-6"
+      ],
+      "exit_gate": "Database-backed forms, sharing permissions, public links and subtrees, publish lifecycle, Sites navigation, SEO, domain, analytics, files, and embeds pass anonymous and leakage matrices."
+    },
+    {
+      "id": "NP-8",
+      "title": "Mobile·Offline",
+      "depends_on": [
+        "NP-1",
+        "NP-2",
+        "NP-3",
+        "NP-4",
+        "NP-5"
+      ],
+      "exit_gate": "Responsive web, iOS and Android navigation, touch, virtual keyboard, mobile inbox, device integrations, offline downloads, cache limits, queue, rebase, and conflict UI pass device and recovery matrices."
+    },
+    {
+      "id": "NP-9",
+      "title": "자동화·연결",
+      "depends_on": [
+        "NP-1",
+        "NP-4",
+        "NP-5",
+        "NP-7"
+      ],
+      "exit_gate": "Automation triggers and actions, webhooks, OAuth lifecycle, external connections, sync databases, MCP, CLI and Workers moving tracks pass idempotency, replay, sandbox, privacy, and provider contract gates."
+    },
+    {
+      "id": "NP-10",
+      "title": "AI·Agents·Enterprise",
+      "depends_on": [
+        "NP-1",
+        "NP-2",
+        "NP-3",
+        "NP-4",
+        "NP-5",
+        "NP-6",
+        "NP-7",
+        "NP-8",
+        "NP-9"
+      ],
+      "exit_gate": "AI and Agent permission, citation, action, refusal, meeting artifact, red-team, retention, enterprise role, audit, security, privacy, and moving-beta gates have reviewable evidence."
+    },
+    {
+      "id": "NP-11",
+      "title": "이관·Pilot·최종",
+      "depends_on": [
+        "NP-0",
+        "NP-1",
+        "NP-2",
+        "NP-3",
+        "NP-4",
+        "NP-5",
+        "NP-6",
+        "NP-7",
+        "NP-8",
+        "NP-9",
+        "NP-10"
+      ],
+      "exit_gate": "Approved migrations, backup and restore drills, reconciliation, canary and pilot soak, rollback, support, telemetry, performance, accessibility, security, legal, full differential, and Second Brain regression reports pass."
+    }
+  ],
+  "feature_areas": [
+    {
+      "id": "persistence",
+      "title": "Persistence and conflict safety",
+      "owner_phase": "NP-1",
+      "required": true
+    },
+    {
+      "id": "editor",
+      "title": "Block and rich-text editor",
+      "owner_phase": "NP-3",
+      "required": true
+    },
+    {
+      "id": "sidebar",
+      "title": "Workspace sidebar and navigation",
+      "owner_phase": "NP-2",
+      "required": true
+    },
+    {
+      "id": "search",
+      "title": "Workspace, database, and in-page search",
+      "owner_phase": "NP-6",
+      "required": true
+    },
+    {
+      "id": "database_views_properties",
+      "title": "Database sources, views, properties, and row pages",
+      "owner_phase": "NP-4",
+      "required": true
+    },
+    {
+      "id": "comments_inbox",
+      "title": "Comments, mentions, reminders, suggestions, and inbox",
+      "owner_phase": "NP-5",
+      "required": true
+    },
+    {
+      "id": "public",
+      "title": "Sharing, public Sites, and Forms",
+      "owner_phase": "NP-7",
+      "required": true
+    },
+    {
+      "id": "mobile_offline",
+      "title": "Mobile, touch, and offline behavior",
+      "owner_phase": "NP-8",
+      "required": true
+    },
+    {
+      "id": "accessibility",
+      "title": "Keyboard, screen-reader, contrast, motion, and zoom behavior",
+      "owner_phase": "NP-0",
+      "required": true
+    },
+    {
+      "id": "realtime_states",
+      "title": "Presence, convergence, reconnect, and recovery states",
+      "owner_phase": "NP-5",
+      "required": true
+    },
+    {
+      "id": "second_brain",
+      "title": "Second Brain compatibility adapters",
+      "owner_phase": "NP-1",
+      "required": true
+    },
+    {
+      "id": "automation_connections",
+      "title": "Automations, webhooks, external connections, OAuth, sync, and developer platform adapters",
+      "owner_phase": "NP-9",
+      "required": true
+    },
+    {
+      "id": "ai_agents_enterprise",
+      "title": "AI, Agents, meeting artifacts, enterprise search, IAM, audit, security, and governance",
+      "owner_phase": "NP-10",
+      "required": true
+    },
+    {
+      "id": "migration_pilot_final",
+      "title": "Migration, reconciliation, canary, pilot, rollback, support, and final acceptance",
+      "owner_phase": "NP-11",
+      "required": true
+    },
+    {
+      "id": "legal_boundaries",
+      "title": "Clean-room and protected-asset exclusions",
+      "owner_phase": "NP-0",
+      "required": true
+    }
+  ],
+  "features": [
+    {
+      "id": "persistence.atomic_save",
+      "area": "persistence",
+      "title": "Atomic page metadata and block save with revision CAS and idempotent operation identity",
+      "status": "contract_tested",
+      "equivalence": "semantic_equivalent",
+      "phase": "NP-1",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "mobile_web_free_owner"
+      ],
+      "evidence": [
+        "EV-ATOMIC-SOURCE",
+        "EV-ATOMIC-CONTRACT"
+      ],
+      "dependencies": [],
+      "notes": "This verifies only the local save contract and failure safety. It is not a live Notion characterization or differential pass."
+    },
+    {
+      "id": "editor.block_transactions",
+      "area": "editor",
+      "title": "Block insertion, conversion, selection, nesting, drag, clipboard, rich text, IME, and undo transactions",
+      "status": "exists",
+      "equivalence": "exact_behavioral",
+      "phase": "NP-3",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "mobile_web_free_owner",
+        "ios_plus_member",
+        "android_plus_member"
+      ],
+      "evidence": [
+        "EV-EDITOR-SOURCE",
+        "EV-EDITOR-OFFICIAL"
+      ],
+      "dependencies": [
+        "persistence.atomic_save"
+      ],
+      "notes": "The current block catalog and editor entry points exist; exact IME, selection, and browser behavior has not been characterized."
+    },
+    {
+      "id": "editor.surface_parity",
+      "area": "editor",
+      "title": "Identical editing semantics in main, side peek, center peek, and full-page surfaces",
+      "status": "exists",
+      "equivalence": "exact_behavioral",
+      "phase": "NP-3",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "mobile_web_free_owner"
+      ],
+      "evidence": [
+        "EV-SURFACE-SOURCE",
+        "EV-EDITOR-OFFICIAL"
+      ],
+      "dependencies": [
+        "editor.block_transactions"
+      ],
+      "notes": "Main and side-peek renderers currently differ; this row records the required convergence without claiming parity."
+    },
+    {
+      "id": "editor.suggested_edits",
+      "area": "editor",
+      "title": "Suggested edits with review, accept, reject, attribution, and notification behavior",
+      "status": "exists",
+      "equivalence": "deferred_beta",
+      "phase": "NP-5",
+      "profiles": [
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor"
+      ],
+      "evidence": [
+        "EV-PARITY-SPEC"
+      ],
+      "dependencies": [
+        "editor.block_transactions"
+      ],
+      "notes": "Deferred until the shared transaction and realtime layers exist; no implemented behavior is claimed."
+    },
+    {
+      "id": "sidebar.workspace_navigation",
+      "area": "sidebar",
+      "title": "Workspace sections, page tree, favorites, teamspaces, shared/private navigation, sorting, pinning, and drag nesting",
+      "status": "exists",
+      "equivalence": "exact_behavioral",
+      "phase": "NP-2",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor",
+        "desktop_web_business_guest_commenter",
+        "desktop_web_business_guest_viewer"
+      ],
+      "evidence": [
+        "EV-SIDEBAR-SOURCE",
+        "EV-SIDEBAR-OFFICIAL"
+      ],
+      "dependencies": [
+        "persistence.atomic_save"
+      ],
+      "notes": "Basic recent, shared, private, favorite, tree, and drag surfaces exist; live ordering and section behavior is uncharacterized."
+    },
+    {
+      "id": "search.workspace_database_page",
+      "area": "search",
+      "title": "Workspace search, database search, page find, filters, relevance, exact phrases, previews, and keyboard navigation",
+      "status": "exists",
+      "equivalence": "exact_behavioral",
+      "phase": "NP-6",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor",
+        "desktop_web_business_guest_commenter",
+        "desktop_web_business_guest_viewer",
+        "mobile_web_free_owner",
+        "ios_plus_member",
+        "android_plus_member"
+      ],
+      "evidence": [
+        "EV-SEARCH-SOURCE",
+        "EV-SEARCH-OFFICIAL"
+      ],
+      "dependencies": [
+        "sidebar.workspace_navigation"
+      ],
+      "notes": "Search entry points exist; query semantics and permission-sensitive indexing have not been differentially tested."
+    },
+    {
+      "id": "database.views_properties",
+      "area": "database_views_properties",
+      "title": "Canonical data sources, view tabs, table, board, timeline, calendar, list, gallery, chart, form, feed, map, dashboard, properties, formulas, relations, and rollups",
+      "status": "exists",
+      "equivalence": "exact_behavioral",
+      "phase": "NP-4",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor",
+        "desktop_web_business_guest_commenter",
+        "desktop_web_business_guest_viewer",
+        "mobile_web_free_owner",
+        "ios_plus_member",
+        "android_plus_member",
+        "public_web_anonymous"
+      ],
+      "evidence": [
+        "EV-DATABASE-SOURCE",
+        "EV-DATABASE-OFFICIAL"
+      ],
+      "dependencies": [
+        "persistence.atomic_save"
+      ],
+      "notes": "Multiple local renderers exist, but rows, views, and properties remain embedded in block props and are not a characterized canonical data-source model."
+    },
+    {
+      "id": "comments_inbox.collaboration",
+      "area": "comments_inbox",
+      "title": "Page, block, and database comments, replies, reactions, resolve/reopen, mentions, reminders, inbox grouping, read/archive, and notification actions",
+      "status": "exists",
+      "equivalence": "exact_behavioral",
+      "phase": "NP-5",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor",
+        "desktop_web_business_guest_commenter",
+        "desktop_web_business_guest_viewer",
+        "mobile_web_free_owner",
+        "ios_plus_member",
+        "android_plus_member"
+      ],
+      "evidence": [
+        "EV-COMMENTS-INBOX-SOURCE",
+        "EV-COMMENTS-OFFICIAL"
+      ],
+      "dependencies": [
+        "editor.block_transactions"
+      ],
+      "notes": "CRUD surfaces exist. Realtime delivery, server read/archive state, suggestions, grouping, and action parity are not characterized."
+    },
+    {
+      "id": "public.sites_forms",
+      "area": "public",
+      "title": "Share versus Publish separation, public links, expiry, subpage inheritance, Sites navigation, theme, SEO, domain, embeds, duplication, and anonymous Forms",
+      "status": "exists",
+      "equivalence": "exact_behavioral",
+      "phase": "NP-7",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_macos_enterprise_admin",
+        "public_web_anonymous"
+      ],
+      "evidence": [
+        "EV-PUBLIC-SOURCE",
+        "EV-PUBLIC-OFFICIAL"
+      ],
+      "dependencies": [
+        "database.views_properties",
+        "comments_inbox.collaboration",
+        "search.workspace_database_page"
+      ],
+      "notes": "Basic public-link and duplicate controls exist; a complete Site publication lifecycle has not been characterized."
+    },
+    {
+      "id": "mobile.offline_interactions",
+      "area": "mobile_offline",
+      "title": "Mobile navigation, keyboard toolbar, persistent controls, touch selection and drag, responsive columns, offline cache, queue, reconnect, and recovery",
+      "status": "exists",
+      "equivalence": "exact_behavioral",
+      "phase": "NP-8",
+      "profiles": [
+        "mobile_web_free_owner",
+        "ios_plus_member",
+        "android_plus_member"
+      ],
+      "evidence": [
+        "EV-MOBILE-SOURCE",
+        "EV-MOBILE-OFFICIAL"
+      ],
+      "dependencies": [
+        "editor.block_transactions",
+        "database.views_properties",
+        "realtime.convergence_presence"
+      ],
+      "notes": "Responsive CSS exists. Native touch, virtual-keyboard, and offline behavior is not implemented or live-characterized."
+    },
+    {
+      "id": "accessibility.cross_platform",
+      "area": "accessibility",
+      "title": "Keyboard-only operation, focus order and restoration, semantic controls, screen readers, zoom, contrast, reduced motion, and high contrast",
+      "status": "exists",
+      "equivalence": "semantic_equivalent",
+      "phase": "NP-0",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor",
+        "desktop_web_business_guest_commenter",
+        "desktop_web_business_guest_viewer",
+        "mobile_web_free_owner",
+        "ios_plus_member",
+        "android_plus_member",
+        "public_web_anonymous"
+      ],
+      "evidence": [
+        "EV-ACCESSIBILITY-SOURCE",
+        "EV-PARITY-SPEC"
+      ],
+      "dependencies": [],
+      "notes": "Some ARIA roles exist, but no automated or manual accessibility conformance claim is made."
+    },
+    {
+      "id": "realtime.convergence_presence",
+      "area": "realtime_states",
+      "title": "Presence, live cursors, remote updates, ordered acknowledgements, convergence, offline queue, reconnect, rebase, permission revocation, deletion, and recovery states",
+      "status": "exists",
+      "equivalence": "exact_behavioral",
+      "phase": "NP-5",
+      "profiles": [
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "desktop_web_business_guest_editor",
+        "mobile_web_free_owner",
+        "ios_plus_member",
+        "android_plus_member"
+      ],
+      "evidence": [
+        "EV-REALTIME-BASELINE",
+        "EV-REALTIME-OFFICIAL"
+      ],
+      "dependencies": [
+        "editor.block_transactions",
+        "database.views_properties"
+      ],
+      "notes": "The local baseline has revision conflicts and polling only. This row records the required realtime state machine and does not claim an event transport."
+    },
+    {
+      "id": "second_brain.adapters",
+      "area": "second_brain",
+      "title": "Preserved Agent link, template creation, session attachment, publish preview, publish approval, and serialization adapters",
+      "status": "exists",
+      "equivalence": "adapter",
+      "phase": "NP-1",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "mobile_web_free_owner"
+      ],
+      "evidence": [
+        "EV-SB-SHELL",
+        "EV-SB-TEMPLATE",
+        "EV-SB-ATTACH",
+        "EV-SB-PUBLISH"
+      ],
+      "dependencies": [
+        "persistence.atomic_save"
+      ],
+      "notes": "These are product-specific adapters, not behaviors to replace with a Notion-native equivalent. Every delivery phase is blocked by their hard gates."
+    },
+    {
+      "id": "automation.connections",
+      "area": "automation_connections",
+      "title": "Database automations, schedules, buttons, webhooks, OAuth lifecycle, external connections, sync databases, MCP, CLI, Workers, and usage controls",
+      "status": "exists",
+      "equivalence": "adapter",
+      "phase": "NP-9",
+      "profiles": [
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin"
+      ],
+      "evidence": [
+        "EV-ROADMAP-SPEC"
+      ],
+      "dependencies": [
+        "database.views_properties",
+        "realtime.convergence_presence",
+        "public.sites_forms"
+      ],
+      "notes": "This row establishes the adapter and moving-track scope only; no provider contract or live external account parity is claimed."
+    },
+    {
+      "id": "ai_agents.enterprise",
+      "area": "ai_agents_enterprise",
+      "title": "AI writing and Q&A, citations, meeting artifacts, Custom and External Agents, tool actions, enterprise search, SAML, SCIM, audit, retention, DLP, and analytics",
+      "status": "exists",
+      "equivalence": "semantic_equivalent",
+      "phase": "NP-10",
+      "profiles": [
+        "desktop_web_plus_member",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "ios_plus_member",
+        "android_plus_member"
+      ],
+      "evidence": [
+        "EV-ROADMAP-SPEC"
+      ],
+      "dependencies": [
+        "automation.connections",
+        "search.workspace_database_page",
+        "comments_inbox.collaboration"
+      ],
+      "notes": "Exact proprietary model wording and stochastic output are excluded from equivalence; capability, authority, tool, citation, provenance, refusal, and error behavior remain in scope."
+    },
+    {
+      "id": "migration.pilot_final",
+      "area": "migration_pilot_final",
+      "title": "Legacy capability migration, reconciliation, flags, canary, pilot, telemetry, support, rollback, restore, moving-release rebaseline, and final acceptance",
+      "status": "exists",
+      "equivalence": "adapter",
+      "phase": "NP-11",
+      "profiles": [
+        "desktop_web_free_owner",
+        "desktop_windows_business_member",
+        "desktop_macos_enterprise_admin",
+        "public_web_anonymous"
+      ],
+      "evidence": [
+        "EV-ROADMAP-SPEC"
+      ],
+      "dependencies": [
+        "ai_agents.enterprise",
+        "mobile.offline_interactions",
+        "public.sites_forms",
+        "second_brain.adapters"
+      ],
+      "notes": "NP-11 is an adoption and final-decision gate, not permission to migrate a live store or claim unfinished phases complete."
+    },
+    {
+      "id": "legal.proprietary_assets",
+      "area": "legal_boundaries",
+      "title": "Proprietary source, protected branding, undisclosed internals, and copied assets remain outside the clean-room parity scope",
+      "status": "exists",
+      "equivalence": "excluded_legal",
+      "phase": "NP-0",
+      "profiles": [
+        "desktop_web_free_owner",
+        "public_web_anonymous"
+      ],
+      "evidence": [
+        "EV-LEGAL-SCOPE"
+      ],
+      "dependencies": [],
+      "notes": "Only observable behavior and independently created assets are in scope."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-ATOMIC-SOURCE",
+      "kind": "source",
+      "subjects": [
+        "persistence.atomic_save"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "1-77, 6760-7110",
+      "description": "Independent edit and server revisions, atomic capability state, conflict handling, external mutation refresh, and atomic save entry point."
+    },
+    {
+      "id": "EV-ATOMIC-CONTRACT",
+      "kind": "contract_test",
+      "subjects": [
+        "persistence.atomic_save"
+      ],
+      "path": "tests/test_notion_atomic_save.js",
+      "locator": "547-719",
+      "description": "Local atomic request, legacy capability gate, idempotent retry, dirty draft preservation, 409 stop, and revision refresh contract assertions."
+    },
+    {
+      "id": "EV-EDITOR-SOURCE",
+      "kind": "source",
+      "subjects": [
+        "editor.block_transactions"
+      ],
+      "path": "notion_static/notion_editor_core.js",
+      "locator": "10-325",
+      "description": "Current block catalog and pure split, merge, duplicate, move, indent, paste, and history helpers."
+    },
+    {
+      "id": "EV-SURFACE-SOURCE",
+      "kind": "source",
+      "subjects": [
+        "editor.surface_parity"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "2253-2582, 3581-4148",
+      "description": "Current separate side-peek textarea renderer and main contenteditable renderer."
+    },
+    {
+      "id": "EV-EDITOR-OFFICIAL",
+      "kind": "official_reference",
+      "subjects": [
+        "editor.block_transactions",
+        "editor.surface_parity"
+      ],
+      "url": "https://www.notion.com/help/writing-and-editing-basics",
+      "description": "Official editor behavior scope reference; it is not live characterization evidence."
+    },
+    {
+      "id": "EV-SIDEBAR-SOURCE",
+      "kind": "source",
+      "subjects": [
+        "sidebar.workspace_navigation"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "472-840",
+      "description": "Current page loading, section rendering, tree keyboard handling, and drag nesting."
+    },
+    {
+      "id": "EV-SIDEBAR-OFFICIAL",
+      "kind": "official_reference",
+      "subjects": [
+        "sidebar.workspace_navigation"
+      ],
+      "url": "https://www.notion.com/help/navigate-with-the-sidebar",
+      "description": "Official sidebar scope reference; it is not live characterization evidence."
+    },
+    {
+      "id": "EV-SEARCH-SOURCE",
+      "kind": "source",
+      "subjects": [
+        "search.workspace_database_page"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "7717-7953",
+      "description": "Current search overlay, workspace API query, result navigation, preview, and page-find behavior."
+    },
+    {
+      "id": "EV-SEARCH-OFFICIAL",
+      "kind": "official_reference",
+      "subjects": [
+        "search.workspace_database_page"
+      ],
+      "url": "https://www.notion.com/help/search",
+      "description": "Official search scope reference; it is not live characterization evidence."
+    },
+    {
+      "id": "EV-DATABASE-SOURCE",
+      "kind": "source",
+      "subjects": [
+        "database.views_properties"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "4405-5268",
+      "description": "Current embedded database rows, properties, view state, formulas, relations, rollups, renderers, and form submission."
+    },
+    {
+      "id": "EV-DATABASE-OFFICIAL",
+      "kind": "official_reference",
+      "subjects": [
+        "database.views_properties"
+      ],
+      "url": "https://www.notion.com/help/views-filters-and-sorts",
+      "description": "Official database view scope reference; it is not live characterization evidence."
+    },
+    {
+      "id": "EV-COMMENTS-INBOX-SOURCE",
+      "kind": "source",
+      "subjects": [
+        "comments_inbox.collaboration"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "1091-1359, 8488",
+      "description": "Current local inbox seen state, polling, comment threads, replies, reactions, resolution, and CRUD."
+    },
+    {
+      "id": "EV-COMMENTS-OFFICIAL",
+      "kind": "official_reference",
+      "subjects": [
+        "comments_inbox.collaboration"
+      ],
+      "url": "https://www.notion.com/help/updates-and-notifications",
+      "description": "Official inbox and notification scope reference; it is not live characterization evidence."
+    },
+    {
+      "id": "EV-PUBLIC-SOURCE",
+      "kind": "source",
+      "subjects": [
+        "public.sites_forms"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "7275-7385",
+      "description": "Current public-link enable, disable, copy, and duplicate permission controls."
+    },
+    {
+      "id": "EV-PUBLIC-OFFICIAL",
+      "kind": "official_reference",
+      "subjects": [
+        "public.sites_forms"
+      ],
+      "url": "https://www.notion.com/help/public-pages-and-web-publishing",
+      "description": "Official public publishing scope reference; it is not live characterization evidence."
+    },
+    {
+      "id": "EV-MOBILE-SOURCE",
+      "kind": "source",
+      "subjects": [
+        "mobile.offline_interactions"
+      ],
+      "path": "notion_static/notion.css",
+      "locator": "3545-3553, 4352-4515",
+      "description": "Current side-peek and workspace responsive CSS breakpoints."
+    },
+    {
+      "id": "EV-MOBILE-OFFICIAL",
+      "kind": "official_reference",
+      "subjects": [
+        "mobile.offline_interactions"
+      ],
+      "url": "https://www.notion.com/help/notion-for-mobile",
+      "description": "Official mobile scope reference; it is not live characterization evidence."
+    },
+    {
+      "id": "EV-ACCESSIBILITY-SOURCE",
+      "kind": "source",
+      "subjects": [
+        "accessibility.cross_platform"
+      ],
+      "path": "notion_static/index.html",
+      "locator": "14-31, 83, 225-330",
+      "description": "Current partial roles, labels, toolbar, search, inbox, trash, help, and modal structures."
+    },
+    {
+      "id": "EV-REALTIME-BASELINE",
+      "kind": "source",
+      "subjects": [
+        "realtime.convergence_presence"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "6760-7110, 8488",
+      "description": "Current snapshot conflict handling and inbox polling baseline; this does not evidence a realtime transport."
+    },
+    {
+      "id": "EV-REALTIME-OFFICIAL",
+      "kind": "official_reference",
+      "subjects": [
+        "realtime.convergence_presence"
+      ],
+      "url": "https://www.notion.com/help/sharing-and-permissions",
+      "description": "Official collaboration and presence scope reference; it is not live characterization evidence."
+    },
+    {
+      "id": "EV-ROADMAP-SPEC",
+      "kind": "specification",
+      "subjects": [
+        "automation.connections",
+        "ai_agents.enterprise",
+        "migration.pilot_final"
+      ],
+      "path": "docs/NOTION_PARITY_ROADMAP.md",
+      "locator": "sections 5-8, NP-9 through NP-11",
+      "description": "Canonical NP-0 through NP-11 taxonomy, dependencies, rollout boundaries, and completion gates."
+    },
+    {
+      "id": "EV-PARITY-SPEC",
+      "kind": "specification",
+      "subjects": [
+        "editor.suggested_edits",
+        "accessibility.cross_platform",
+        "legal.proprietary_assets"
+      ],
+      "path": "docs/NOTION_PARITY_SPEC.md",
+      "locator": "full document",
+      "description": "Existing local scope and explicit non-parity caveats."
+    },
+    {
+      "id": "EV-SB-SHELL",
+      "kind": "source",
+      "subjects": [
+        "second_brain.adapters",
+        "SB-AGENT-LINK",
+        "SB-TEMPLATE-CREATION",
+        "SB-SESSION-ATTACHMENT",
+        "SB-PUBLISH-PREVIEW"
+      ],
+      "path": "notion_static/index.html",
+      "locator": "64, 81, 98-100",
+      "description": "Second Brain Agent link, template, temporary chat attachment, and publish entry points."
+    },
+    {
+      "id": "EV-SB-TEMPLATE",
+      "kind": "adapter_contract",
+      "subjects": [
+        "second_brain.adapters",
+        "SB-TEMPLATE-CREATION"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "2011-2026",
+      "description": "Second Brain template creation adapter."
+    },
+    {
+      "id": "EV-SB-ATTACH",
+      "kind": "adapter_contract",
+      "subjects": [
+        "second_brain.adapters",
+        "SB-SESSION-ATTACHMENT"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "7444-7456",
+      "description": "Current-page temporary attachment to a selected Second Brain Agent session."
+    },
+    {
+      "id": "EV-SB-PUBLISH",
+      "kind": "adapter_contract",
+      "subjects": [
+        "second_brain.adapters",
+        "SB-PUBLISH-PREVIEW",
+        "SB-PUBLISH-CONTRACT",
+        "SB-SERIALIZATION-COMPATIBILITY"
+      ],
+      "path": "notion_static/notion.js",
+      "locator": "7530-7582",
+      "description": "Save-before-publish, Markdown preview, explicit approval, and Second Brain publication adapter."
+    },
+    {
+      "id": "EV-LEGAL-SCOPE",
+      "kind": "legal_review",
+      "subjects": [
+        "legal.proprietary_assets"
+      ],
+      "path": "docs/notion_parity_manifest.json",
+      "locator": "feature legal.proprietary_assets",
+      "description": "Machine-readable clean-room boundary: protected assets and undisclosed implementation details are excluded."
+    }
+  ],
+  "second_brain_hard_gates": [
+    {
+      "id": "SB-AGENT-LINK",
+      "title": "Second Brain Agent navigation remains available and resolves for the active host",
+      "status": "exists",
+      "equivalence": "adapter",
+      "blocking": true,
+      "evidence": [
+        "EV-SB-SHELL"
+      ],
+      "acceptance": [
+        "The Agent navigation entry remains visible in supported workspace profiles.",
+        "The link targets the existing Second Brain Agent service without changing its port or host adaptation contract."
+      ]
+    },
+    {
+      "id": "SB-TEMPLATE-CREATION",
+      "title": "Second Brain template creation remains available and idempotently usable",
+      "status": "exists",
+      "equivalence": "adapter",
+      "blocking": true,
+      "evidence": [
+        "EV-SB-SHELL",
+        "EV-SB-TEMPLATE"
+      ],
+      "acceptance": [
+        "The template entry point remains visible.",
+        "Editor, sidebar, and data-model migrations preserve the established template creation flow."
+      ]
+    },
+    {
+      "id": "SB-SESSION-ATTACHMENT",
+      "title": "Current-page temporary attachment to an Agent session remains non-persistent and explicit",
+      "status": "exists",
+      "equivalence": "adapter",
+      "blocking": true,
+      "evidence": [
+        "EV-SB-SHELL",
+        "EV-SB-ATTACH"
+      ],
+      "acceptance": [
+        "A user explicitly selects a session before attachment.",
+        "Attachment remains temporary session context and does not silently publish page content."
+      ]
+    },
+    {
+      "id": "SB-PUBLISH-PREVIEW",
+      "title": "Second Brain publishing always presents a Markdown preview before mutation",
+      "status": "exists",
+      "equivalence": "adapter",
+      "blocking": true,
+      "evidence": [
+        "EV-SB-SHELL",
+        "EV-SB-PUBLISH"
+      ],
+      "acceptance": [
+        "Dirty page and side-peek drafts are safely flushed before preview generation.",
+        "No publication mutation occurs until the user approves the rendered preview."
+      ]
+    },
+    {
+      "id": "SB-PUBLISH-CONTRACT",
+      "title": "Approved Second Brain publication keeps its existing endpoint and response workflow",
+      "status": "exists",
+      "equivalence": "adapter",
+      "blocking": true,
+      "evidence": [
+        "EV-SB-PUBLISH"
+      ],
+      "acceptance": [
+        "Approval invokes the existing publish_second_brain adapter exactly once.",
+        "Cancellation, conflict, or preview failure performs no publication."
+      ]
+    },
+    {
+      "id": "SB-SERIALIZATION-COMPATIBILITY",
+      "title": "Editor and database migrations preserve Second Brain Markdown, file, and relation serialization",
+      "status": "exists",
+      "equivalence": "adapter",
+      "blocking": true,
+      "evidence": [
+        "EV-SB-PUBLISH"
+      ],
+      "acceptance": [
+        "The preview and committed source serialize the same acknowledged page revision.",
+        "Block, database, file, and relation migrations do not silently drop content consumed by Second Brain."
+      ]
+    }
+  ]
+}

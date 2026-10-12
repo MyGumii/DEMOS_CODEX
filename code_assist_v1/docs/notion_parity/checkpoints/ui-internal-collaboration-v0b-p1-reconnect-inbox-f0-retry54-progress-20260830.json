@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-RECONNECT-INBOX-F0-RETRY54-20260830",
+  "recorded_at": "2026-08-30T05:13:56.6315808+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry54 completed all four browser journeys, all 36 captures, all accessibility and interaction checks, and cleanup. It reduced full-candidate unmasked differences by 31,166 from retry52 to 2,758,777. Post-candidate bounded C0 and F0 diagnostics additionally recover the transient V0R-MU-011 regression and improve shared sidebar geometry. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-inbox-reference-layout-retry52-progress-20260830.json",
+      "sha256": "sha256:e020d224f7528173b2627943b39259362b04c367836094697d5c22853b4c8fda"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260830-retry54-lossless-reconnect-inbox-f0",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260830-retry54-lossless-reconnect-inbox-f0/receipt.json",
+    "receipt_sha256": "sha256:14d0250c7ee8ae181f482928d15211e9c2993fc80bb5b43a5220bd20dde00942",
+    "ui_source_build_sha256": "sha256:b27c6c6ed3389261fc5defd88dfacea9533527ac2ffe4d7163231a81f6fb28d5",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {"I0-P2":129725,"C0-P2":98230,"E1-P2":57196,"F0-P5":44819},
+    "run_duration_ms": 362396,
+    "unmasked_difference_count": 2758777,
+    "masked_difference_count": 211388,
+    "raw_difference_count": 2970165,
+    "delta_from_retry52_unmasked": -31166,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:21efa2e1910d436b43c352bbb60341d7476f58a1fe6548195dd40094b03bbfc6"
+    }
+  },
+  "accepted_changes": {
+    "reconnect_canvas": "The comment-role reconnect canvas now has exact title and body text geometry, exact database title and row text geometry, exact table lines, corrected scrollbar, toolbar, reaction, composer, breadcrumb, and list-icon presentation. V0R-MU-014 decreased from 88,845 to 25,345 unmasked pixels.",
+    "inbox_layout": "The inbox workspace focus decoration was removed, the notification first-line flow, relative time, badge, unread dot, and selected pill were aligned to the adopted reference. V0R-MU-013 decreased from 26,114 to 24,442 in retry54 and to 24,380 in the current bounded C0 run.",
+    "content_role_boundary": "Schema controls are absent from the edit_content DOM as required by F0. Visual-only inert ghost elements preserve the adopted toolbar shape without exposing schema actions. The comment role retains disabled schema presentation needed by V0R-MU-014.",
+    "sidebar_header": "Collaborative workspace icon, grid, and title alignment now match the shared REF-FREE header more closely across C0 states."
+  },
+  "failed_or_rejected_diagnostics": [
+    {
+      "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260830-retry53-lossless-reconnect-inbox",
+      "status": "incomplete_diagnostic",
+      "capture_count_before_failure": 34,
+      "failure": "F0_P5_CONTENT_ROLE_SCHEMA_CONTROL_EXPOSED",
+      "resolution": "Conditioned read-only schema presentation to comment role and removed schema-control selectors from edit_content; standalone and full F0 subsequently passed."
+    },
+    {
+      "experiment": "Approximate fixed help button",
+      "result": "Increased V0R-MU-014 by 1,228 pixels per viewport and was reverted."
+    }
+  ],
+  "post_candidate_source_binding": {
+    "ui_source_build_sha256": "sha256:b3ba30f437b7dcf9c87330cd10daa072d7527bb12da0c782aaebcf38ab25d240",
+    "files": [
+      {"path":"code_assist_v1/notion_static/index.html","sha256":"sha256:b2d3291918038cf361e6eb9e5c1d30f1eb48fc4780d5ca202a7830a8a7e3a105"},
+      {"path":"code_assist_v1/notion_static/notion.css","sha256":"sha256:952e6ae00407d74a5485c85ca300b665bd0990bd4e601621e4bac78da118f635"},
+      {"path":"code_assist_v1/notion_static/notion.js","sha256":"sha256:10d1e86f2e65213f14b628b1a90b2bf6a119d5e698544d56f079d6c6f4be0b9e"}
+    ],
+    "note": "This source binding includes bounded post-retry54 improvements and is not promoted to a 36-capture full candidate until the next full run."
+  },
+  "post_candidate_bounded_diagnostics": {
+    "c0_sidebar_header_r26": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260830-sidebar-header-r26",
+      "journey_status": "pass",
+      "cleanup_verified": true,
+      "state_unmasked": {"V0R-MU-007":103341,"V0R-MU-012":134174,"V0R-MU-013":24380,"V0R-MU-014":25345}
+    },
+    "f0_viewport_teamspace_r28": {
+      "root": "code_assist_v1/.runtime/v0b-p1-f0-diagnostic-20260830-viewport-teamspace-r28",
+      "journey_status": "pass",
+      "cleanup_verified": true,
+      "state_011_unmasked": 135614,
+      "viewport_unmasked": {"1440x900":70201,"1280x800":65413},
+      "delta_from_retry54_state_011": -36573
+    },
+    "conservative_projected_full_unmasked": 2721776,
+    "projection_policy": "Projection is diagnostic only and must not replace a full 36-capture receipt."
+  },
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "receipt_sha256": "sha256:14d0250c7ee8ae181f482928d15211e9c2993fc80bb5b43a5220bd20dde00942",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {"EXACT_PIXEL_GATE":36,"CORE_25_GATE":1,"PERFORMANCE_GATE":1,"CLAIMS_GATE":1},
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "focused_regression": {
+    "selection": [
+      "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+      "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py"
+    ],
+    "result": "11 passed in 8.46s",
+    "exit_code": 0
+  },
+  "next_focus": {
+    "primary": "Run the next 36-capture full candidate from the post-retry54 source binding, then continue exact-pixel decomposition starting with V0R-MU-002, V0R-MU-001, V0R-MU-006, V0R-MU-003, V0R-MU-017, and V0R-MU-018.",
+    "secondary": "Continue V0R-MU-014 help/cursor/topbar residuals and V0R-MU-013 cursor/icon residuals only with bounded evidence-backed changes.",
+    "full_candidate_policy": "Do not rerun Core25 or performance until exact pixel is 36/36."
+  },
+  "open_gates": {
+    "exact_pixel":{"passed":0,"required":36,"status":"open"},
+    "core_25":{"status":"not_run_until_exact_36_of_36"},
+    "performance":{"status":"not_run_until_exact_36_of_36"},
+    "claims":{"status":"open"},
+    "V0B_P1_gate_passed":false,
+    "product_complete":false,
+    "active_shared_goal_complete":false
+  },
+  "scope_attestation": {
+    "production_changed":false,
+    "second_brain_changed":false,
+    "user_chrome_touched":false,
+    "persistent_browser_profile_used":false,
+    "public_publish_or_link_used":false,
+    "personal_workspace_or_page_used":false,
+    "permanent_delete_used":false,
+    "reference_receipts_modified":false,
+    "agents_md_modified":false,
+    "other_sbe_hot_contract_modified":false
+  }
+}

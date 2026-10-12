@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-UI0-P1-EDITOR-HOST-20260824",
+  "recorded_at": "2026-08-23T16:17:25Z",
+  "checkpoint_kind": "packet_evidence_and_status_integration",
+  "packet_id": "UI0-P1",
+  "packet_status": "gate_passed",
+  "purpose": "Bind a narrow immutable editor-host adapter as the only future collaboration hook into the existing main editor, preserve lifecycle, local mutation, composition, selection, focus, and remote projection boundaries without exposing private State, and prove the six declared Node contracts plus the complete historical browser journey. This packet does not implement transport, CRDT, multi-user collaboration, backend authority, schema, routes, live services, identity migration, or production rollout.",
+  "owner_agent": "/root",
+  "owned_existing_files": [
+    "code_assist_v1/notion_static/notion_editor_core.js",
+    "code_assist_v1/notion_static/notion.js",
+    "code_assist_v1/tests/test_notion_editor_core.js",
+    "code_assist_v1/tests/test_notion_ui_runtime.js",
+    "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py"
+  ],
+  "new_product_files": [],
+  "new_test_files": [],
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/auth.py": "sha256:4185e74b9ddd8826b7a115bee87fa3965bb440fe10b1ea14d77cbd8bbffe8bc2"
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "paths": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/docs/knowledge_spaces",
+      "code_assist_v1/requirements-runtime.lock",
+      "code_assist_v1/app_notion.py",
+      "code_assist_v1/routes_notion.py",
+      "code_assist_v1/routes_notion_workspace.py",
+      "code_assist_v1/notion_store.py",
+      "code_assist_v1/notion_workspace_store.py",
+      "code_assist_v1/notion_static/index.html",
+      "code_assist_v1/notion_static/notion.css",
+      "code_assist_v1/user_data",
+      "code_assist_v1/knowledge",
+      "code_assist_v1/.runtime"
+    ]
+  },
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-ui0-p1-editor-host-pre-edit-20260823.json",
+    "sha256": "sha256:2313bf8e4072bf4c108cb222c9616bd0e5cdd1e713722d1ac083f677da52e0ce"
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/notion_static/notion_editor_core.js": "sha256:4e1e7b6c216314b58e4b6aa0f27ed2932ce9834385d99022d7fc8bd78841db18",
+    "code_assist_v1/notion_static/notion.js": "sha256:f001846798fba1cfb5e3f025a8f15dea90e072a3fa06056d0d79b06c23ecfc05",
+    "code_assist_v1/tests/test_notion_editor_core.js": "sha256:91f619a0b4e3d03de5925f11e28015030fac9c7b2546b93487ac3448fbbdb3db",
+    "code_assist_v1/tests/test_notion_ui_runtime.js": "sha256:85f73680f7c0c03ede069851d72dbfefdd65a35fd4f46d8b04b0010ce41280ba",
+    "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py": "sha256:c51e1b001cb9e90d5f92cd4aada22f261007d50237ef25d3e68690faf8242da3",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:8f7026c7c461d15a74930fab178702dfc783cd01eb8878a55d7cfdffeff4c325",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:d4b1c33493a987a15db974fad5ef6dfabe56c308c29efdfb5d3950d4183af4a1",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:a20dfb88b924bdc1554e290eb7189f63ff3316ff301072ce540773d83bf18672"
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/notion_static/notion_editor_core.js": "sha256:c2b25b7156076e70c68b7fe96d1fc41234e329bca4e54850676afc6fd0020367",
+    "code_assist_v1/notion_static/notion.js": "sha256:6803c7783109426035c79dad139cb0cde87d2050000b08694aa16a4ffa10a739",
+    "code_assist_v1/tests/test_notion_editor_core.js": "sha256:bb04bc3bec64b28e7b780d83119af7e95a3846e275b9260531286f19b21df2de",
+    "code_assist_v1/tests/test_notion_ui_runtime.js": "sha256:2ef38774972eeab11b86aea77f2d4ad41c7d05554af6933efd18a19d52988964",
+    "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py": "sha256:a8b3312f09c1c6ebebf2fda772bfb5d313996574f7966970afdcfe3540cb7ca0",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:ff3861bd15d1b788255ca05dc92e39276d409d1bf69a4fc28c6c24401f88c640",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:b80f1b8fc1e7d82c0d79aab7999ca572ee93228b2d0b5523391a96cc3c79e5b8",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:643c5f40be4854486db17fb5ffbb11756b6fa2b6d62677c10f58fd418a1c3489"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o0a-p2-synthetic-restore-20260823.json",
+    "sha256": "sha256:480c90c05ffb4b0cd713abab7578f6eef554b926d57696183199c71f56a74629",
+    "packet_id": "O0A-P2",
+    "receipt_id": "O0A-P2-L7-COLLAB-WORKSPACE-RESTORE-20260823"
+  },
+  "ownership_lease": {
+    "lease_id": "UI0-P1-UI-20260823-145124Z",
+    "lane": "UI",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-23T14:51:24Z",
+    "expires_at": "2026-08-23T22:51:24Z",
+    "released_at": "2026-08-23T16:17:25Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false,
+    "release_condition": "The immutable editor host, existing behavior bindings, six Node lanes, clean 21-scenario browser lane, catalog integration, checkpoint chain, and current pointer are hash-bound."
+  },
+  "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "Resume the interrupted implementation goal.",
+    "status": "active",
+    "persisted_tool_status": "active",
+    "resumed_by_user": true,
+    "observed_at": "2026-08-23T16:17:25Z",
+    "goal_completion_claimed": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-23T16:17:25Z",
+    "predecessor_checkpoint_sha256": "sha256:480c90c05ffb4b0cd713abab7578f6eef554b926d57696183199c71f56a74629",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:59c9eac679584ec7a7a879989245964e9bf5f12c608870860de57ac7b94ca22b",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_hot_contracts_modified_by_this_packet": false,
+    "exact_path_collision_observed": false,
+    "schema_migration_version_allocated": false,
+    "dependency_download_or_install_authorized": false,
+    "actual_network_service_or_port_started": false,
+    "live_identity_or_data_root_mutated": false
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:8f7026c7c461d15a74930fab178702dfc783cd01eb8878a55d7cfdffeff4c325",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:d4b1c33493a987a15db974fad5ef6dfabe56c308c29efdfb5d3950d4183af4a1"
+    },
+    "accepted_packet_receipt_ids": [
+      "O0A-P2-L7-COLLAB-WORKSPACE-RESTORE-20260823"
+    ],
+    "lease": "UI0-P1-UI-20260823-145124Z",
+    "post_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:ff3861bd15d1b788255ca05dc92e39276d409d1bf69a4fc28c6c24401f88c640",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:b80f1b8fc1e7d82c0d79aab7999ca572ee93228b2d0b5523391a96cc3c79e5b8"
+    }
+  },
+  "validation_receipt": {
+    "receipt_id": "UI0-P1-L3-L4-EDITOR-HOST-20260824",
+    "validation_ids": [
+      "L3-NODE-EDITOR-CORE",
+      "L3-NODE-UI-RUNTIME",
+      "L3-NODE-NAVIGATION",
+      "L3-NODE-PUBLICATION",
+      "L3-NODE-ATOMIC-SAVE",
+      "L3-NODE-CSRF",
+      "L4-EXISTING-GOLDEN-JOURNEY"
+    ],
+    "status": "pass",
+    "error_count": 0,
+    "executed_at": "2026-08-23T16:17:25Z",
+    "node_contracts": {
+      "passed": 6,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "execution": "one script per process with --unhandled-rejections=strict"
+    },
+    "exact_browser_lane": {
+      "argv": [
+        ".\\venv\\Scripts\\python.exe",
+        "-E",
+        "-m",
+        "pytest",
+        "-c",
+        "code_assist_v1/pytest.ini",
+        "-q",
+        "-p",
+        "no:debugging",
+        "-p",
+        "no:cacheprovider",
+        "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py"
+      ],
+      "passed": 21,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 575.53,
+      "realm_id": "synthetic_isolated",
+      "pytest_owned_default_temp": true,
+      "live_data_accessed": false
+    },
+    "targeted_regressions": {
+      "historical_and_korean_ime": {"passed": 2, "failed": 0, "duration_seconds": 39.38},
+      "side_peek_full_page_focus": {"passed": 1, "failed": 0, "duration_seconds": 19.49},
+      "database_multi_view_after_pbkdf2_seed": {"passed": 1, "failed": 0, "duration_seconds": 51.95}
+    },
+    "diagnostic_history": {
+      "forced_d_temp_overlong_attempts": "Retained as non-pass evidence; the declared browser argv uses the pytest-managed default temporary root and completed normally.",
+      "initial_product_regression": "One 21-scenario run produced 20 pass and one UI-EDITOR-005 focus mismatch; explicit blur after side-peek-to-full transition fixed and targeted/full evidence confirmed the focus contract.",
+      "synthetic_scrypt_finding": "A direct 100-sample Werkzeug generate/check diagnostic reproduced one mismatch; a fail-until-observed run reproduced an unverifiable fresh hash after 255 attempts. UI0 did not modify auth.py.",
+      "pbkdf2_fixture_boundary": "Fifty direct PBKDF2-SHA256-1000000 generate/check samples had zero mismatches. The L4 fixture pre-seeds only its pytest-owned registry and verifies the real cookie-less login route before every browser launch.",
+      "playwright_bootstrap_finding": "One full attempt produced two pre-journey Node parser failures with transiently corrupted identifier text. On-disk bundle hashes stayed stable, node --check passed, 100 subsequent driver starts passed, and the final exact full lane passed without an in-test retry wrapper."
+    },
+    "implementation_contract": {
+      "public_adapter_contract": "code_assist.notion.editor_host.v1",
+      "adapter_object_frozen": true,
+      "snapshot_detached_and_frozen": true,
+      "private_state_exposed": false,
+      "event_sequence_monotonic": true,
+      "composition_defers_remote_projection": true,
+      "selection_capture_restore_bound": true,
+      "same_page_projection_required": true,
+      "legacy_editor_behavior_preserved": true
+    },
+    "sbe_contract_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "input_sha256": "sha256:59c9eac679584ec7a7a879989245964e9bf5f12c608870860de57ac7b94ca22b",
+      "goal_count": 20,
+      "scenario_count": 284
+    },
+    "post_integration_validation": {
+      "status": "pass",
+      "finalized_at": "2026-08-23T16:22:02Z",
+      "harness_tests": {
+        "passed": 11,
+        "failed": 0,
+        "errors": 0,
+        "duration_seconds": 8.30
+      },
+      "completion_audit": {
+        "status": "pass",
+        "error_count": 0,
+        "completion_state": "incomplete",
+        "gate_passed_required_packets": 15,
+        "required_packets": 50,
+        "closed_matrix_rows": 0,
+        "matrix_rows": 28,
+        "closed_phase_gates": 3,
+        "phase_gates": 20,
+        "open_decisions": 5,
+        "planned_required_lanes": 9,
+        "product_complete": false
+      },
+      "strict_completion_gate": {
+        "status": "expected_fail",
+        "exit_code": 1,
+        "error_codes": [
+          "STRICT_COMPLETION_INCOMPLETE"
+        ],
+        "false_green_or_integrity_error_observed": false
+      }
+    },
+    "claims": {
+      "editor_host_adapter_implemented": true,
+      "six_node_contracts_passed": true,
+      "historical_browser_lane_passed": true,
+      "collaboration_runtime_implemented": false,
+      "transport_or_crdt_selected": false,
+      "production_auth_runtime_changed": false,
+      "dependency_installed_or_downloaded": false,
+      "production_schema_route_store_service_port_or_data_root_changed": false,
+      "live_or_production_mutation": false
+    }
+  },
+  "open_runtime_findings": [
+    {
+      "id": "AUTH-SCRYPT-RUNTIME-001",
+      "scope": "local Python 3.14.3 / Werkzeug 3.1.8 / OpenSSL 3.0.18 runtime",
+      "status": "open_not_owned_by_ui0",
+      "impact": "Fresh default scrypt hashes can be intermittently unverifiable in this environment; an auth-lane packet must reproduce and resolve or replace the affected KDF path before release evidence relies on it."
+    },
+    {
+      "id": "PLAYWRIGHT-BOOTSTRAP-RUNTIME-001",
+      "scope": "local Playwright driver bootstrap",
+      "status": "open_environment_observation_not_ui0_product_failure",
+      "impact": "Two transient driver parser failures occurred with unchanged valid on-disk bundles; the final exact lane and 100-start diagnostic passed, but release-candidate environment qualification must retain this observation."
+    }
+  ],
+  "rollback_or_cleanup": "Restore only the five product/test paths plus catalog, ladder, and harness to their recorded pre-edit hashes; remove the UI0-P1 pre-edit/final checkpoint files and restore the previous current pointer. Pytest-owned roots were isolated and runner-cleaned. No package, lockfile, schema, route, store, runtime service, port, browser profile, live identity, protected root, or SBE contract was modified.",
+  "completion_truth": {
+    "ui0_p1_started": true,
+    "ui0_p1_gate_passed": true,
+    "editor_host_adapter_complete": true,
+    "real_time_multi_user_collaboration_complete": false,
+    "selected_transport_crdt_binding_complete": false,
+    "production_auth_runtime_finding_resolved": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "UI0-P1",
+    "current_state": "gate_passed_integrated",
+    "next_packet": "V0A-P1",
+    "next_state": "ready_approval_free_after_ui0_integration",
+    "approval_required_for_next_packet": false,
+    "parallel_primary_packet": "E0-P2",
+    "parallel_primary_state": "awaiting_conditional_approval",
+    "parallel_required_approval_id": "AP-RUNTIME-SPIKE",
+    "real_service_or_identity_mutation_allowed": false
+  }
+}

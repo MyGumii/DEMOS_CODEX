@@ -1,0 +1,327 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-15T02:55:53+09:00",
+  "run_id": "ui-tree-003-local-lifecycle-green-20260815",
+  "model": {
+    "planning": "gpt-5.6-sol-ultra",
+    "implementation": "gpt-5.6-sol-xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-tree-002-local-mutations-green-reference-pending-20260815.json",
+    "sha256": "sha256:15bfc14e612e93e49c13aeec503806d90cc38e5f89951116a66e696f964b744b",
+    "semantic_status": "historical-parent-preserved"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T02:55:53+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": [
+      "UI-TREE-003"
+    ],
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "trial-or-payment",
+      "invite-or-public-posting",
+      "operational-migration",
+      "live-feature-flag",
+      "continuous-consumer",
+      "resolver-cutover",
+      "permanent-delete"
+    ]
+  },
+  "slice": {
+    "id": "UI-TREE-003-DUPLICATE-TRASH-RESTORE",
+    "status": "local-real-browser-green-reference-pending",
+    "acceptance_ids": [
+      "WORKSPACE-SCOPED-SUBTREE-DUPLICATE",
+      "BOUNDED-EXACT-REPLAY",
+      "DEFAULT-OFF-CAPABILITY",
+      "TRASH-SUBTREE-REMOVAL",
+      "EXACT-ARCHIVED-LIST",
+      "SAME-IDENTITY-HIERARCHY-RESTORE",
+      "NO-PERMANENT-DELETE-ROUTE",
+      "NO-GLOBAL-LEGACY-LIFECYCLE-REQUEST",
+      "TREE-AND-BREADCRUMB-COHERENT",
+      "FOCUS-PRESERVED",
+      "SECOND-BRAIN-ZERO-DELTA",
+      "LOCAL-REPEATABILITY",
+      "STRICT-ROUTE-CONTRACT"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "notion_store.py",
+        "pre_sha256": "sha256:0964afb12def35bd853514f7e33722db3aa1e8dd9b11c1ae22110efaf02aaa68",
+        "post_sha256": "sha256:46ffcc8f94d584578b3dc93d472db0b00d6b9d17e89ad3f08aa932ee26eee22c",
+        "change": "hidden exact-replay marker and bounded idempotent subtree duplicate plus lifecycle primitives"
+      },
+      {
+        "path": "notion_workspace_store.py",
+        "post_sha256": "sha256:19de52d282b6d3adbad2aa72a128a56f9525fdb7f82748138d4e1a009705a979",
+        "change": "bounded exact-replay batch source binding mutation"
+      },
+      {
+        "path": "notion_workspace_pages.py",
+        "pre_sha256": "sha256:46f0564fe89ed328c8a904f553f275670ee91e3f9de59e9177756a95be70302c",
+        "post_sha256": "sha256:77e835afdc76b69fc1da4f5710f55ca72cc63dd76f4fb2c03138ed97b54ec05e",
+        "change": "workspace-scoped duplicate, archive, trash listing, and restore orchestration"
+      },
+      {
+        "path": "routes_notion_workspace.py",
+        "pre_sha256": "sha256:50bb9ede95a16dfe453d6439ada876c564a0f3b7bcbe29fab7a24fbaf3d2f0f4",
+        "post_sha256": "sha256:7dc5d21a5ad59afb66819611ab8fd8125d63720fa9d606f45f4ddf0e508be5bf",
+        "change": "strict default-off create, duplicate, Trash, list, and restore routes"
+      },
+      {
+        "path": "notion_static/notion.js",
+        "pre_sha256": "sha256:a4b44ca145f90585a0b6878212f5e7989f45dc14ddc1402510d5cbb418dbe12a",
+        "post_sha256": "sha256:9a2f5a32326c9dd2ed6c1c7eb8d0d7d963a132955a517a33722c54b80de144b1",
+        "change": "workspace lifecycle intents, Trash UI, and focus restoration"
+      },
+      {
+        "path": "tests/test_notion_workspace_pages.py",
+        "post_sha256": "sha256:68af9df2388affd27e0e5124c4077a6c74a89617f0a24fd44421d12e5f4877b1",
+        "change": "bounded duplicate and lifecycle service regressions"
+      },
+      {
+        "path": "tests/test_notion_workspace_auth_isolation.py",
+        "post_sha256": "sha256:8c5b79582918e2592840bb1f3ea6e77fd6d7eeb46f370fa0547a344c4529e86a",
+        "change": "exact host-only 16-rule route surface"
+      },
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "post_sha256": "sha256:1e5e93be0b99c00c32ec190b05014923652d0ef7441a8bdf3f79c80d95b0c34a",
+        "change": "repeated real-Chrome UI-TREE-003 lifecycle journey and redacted capture"
+      },
+      {
+        "path": "docs/notion_workspace_route_contract.json",
+        "pre_sha256": "sha256:08371eeec33177469ce37ff11b6005315c53d6f759a90ed6627aaafd5edde6b6",
+        "post_sha256": "sha256:8c8d177974e69ad8318dd03e9360297fdd8b0fa534dc8d81abc8b2e82e95bc45",
+        "change": "16-rule and 24-hard-operation workspace lifecycle surface"
+      },
+      {
+        "path": "docs/notion_workspace_route_semantics.json",
+        "pre_sha256": "sha256:aaaa03b09eecfd5a0645145f6a88276efc6c93375c56c1f873a17b69748e3444",
+        "post_sha256": "sha256:c0a23d614f0f9b8891d65c1b2c4ff9cf9f7b9ccf45bcb74551ac394d2a8a838a",
+        "change": "exact lifecycle request, status, response, and error semantics"
+      },
+      {
+        "path": "tools/verify_notion_workspace_route_contract.py",
+        "pre_sha256": "sha256:53947933776eec915ba2632276a08a12fd278ab20cc78c9a16627037ab6bca13",
+        "post_sha256": "sha256:6f2a7765f65218b4f393b03f8d18fad16901a782cbeb74e899ff3356e2c5cfba",
+        "change": "strict 16/24 expected surface and lifecycle operation validators"
+      },
+      {
+        "path": "tests/test_verify_notion_workspace_route_contract.py",
+        "pre_sha256": "sha256:c911284eec087f378a2509948c770cec4461022267acc8bfacb41f7edb3ec6c3",
+        "post_sha256": "sha256:45d87b0101b9843bcbd67e37fea415bf751e1b0ca4b5fb6c6ed26ee78d6266d0",
+        "change": "strict lifecycle contract and exact response assertions"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:8371eaf5fec0d541db51f93c3011a2059b2dfb90f0b545994698964311285121",
+        "post_sha256": "sha256:bae4f6457eb043925ecc1d02d2745e42f5fd0cfc7e130dcb6aeea3d2f4272eed",
+        "change": "current authoritative plan and harness source hashes"
+      },
+      {
+        "path": "docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:7b987b7eac4f067d99e9135e1c2cadc6face92431be9f80827411ab15fac0464",
+        "post_sha256": "sha256:4572f21ec6ca810f79a44756b51280b876595c698925cbc3a72938b5f952a4a8",
+        "change": "current UI-TREE-003 checkpoint and non-promotion state"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:034ff23330b4320aa22f19aad17bbb46a53418ab896b77a9d00885b886bfb104",
+        "post_sha256": "sha256:aed5a62c9c9e522cfa21c1f741358ef4607cd2a965c6487362f0c2278ef0395c",
+        "change": "current repeated lifecycle evidence and pending reference gate"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI_TREE_003_LOCAL_LIFECYCLE_RESULT_20260815.md",
+        "post_sha256": "sha256:fb7a1cff863a5cd1b3c6e27d904ccc3bcd92f647deeb4d47cb4a0d4fe4bba22c",
+        "change": "new identifier-free local lifecycle result"
+      }
+    ],
+    "read_dependencies": [
+      "docs/notion_parity/checkpoints/ui-tree-002-local-mutations-green-reference-pending-20260815.json",
+      "tests/test_notion_workspace_routes.py",
+      "tests/test_notion_workspace_navigation_routes.py",
+      "tools/notion_parity/ui_local_fixture.py"
+    ],
+    "protected_unchanged": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      },
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "persistent_browser_profile_reused": false,
+    "local_browser": "installed-stable-chrome-ephemeral-playwright-context"
+  },
+  "evidence": {
+    "source_build_sha256": "sha256:a6738f744a6c64b2b2410b016cb8e0aa8d0a4337f2e4bb2160d8a68247c1b7d9",
+    "reference": [],
+    "local": [
+      {
+        "scenario_id": "UI-TREE-003",
+        "capture_sha256": "sha256:73de771c93be474617fffb2b80f8be2b88cb13cf9da2e6440747189d77ee7522",
+        "redaction": "pass",
+        "repeat_runs": 2
+      }
+    ],
+    "differential": [],
+    "focus_sequence": [
+      "DUPLICATE-PAGE-ROW",
+      "TRASH",
+      "RESTORED-PAGE-ROW"
+    ],
+    "reference_status": {
+      "state": "blocked-before-browser-or-tab-selection",
+      "stage": "browser-runtime-initialization",
+      "error_code": "kernel-assets-path-not-found-os-error-3",
+      "content_accessed": false,
+      "parity_promoted": false,
+      "retry_in_same_environment": false
+    }
+  },
+  "commands": [
+    {
+      "selection": "strict workspace route contract before contract synchronization",
+      "result": "3 failed, 19 passed; expected stale 12/19 surface and uncharacterized lifecycle routes",
+      "exit_code": 1
+    },
+    {
+      "selection": "python -m code_assist_v1.tools.verify_notion_workspace_route_contract --compact",
+      "result": "pass: 16 rules, 24 operations, 24 hard operations, zero collisions",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/test_verify_notion_workspace_route_contract.py",
+      "result": "15 passed in 6.00s",
+      "exit_code": 0
+    },
+    {
+      "selection": "page service, workspace routes, navigation routes, and auth isolation serial runs",
+      "result": "47 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py -k ui_tree_003",
+      "result": "1 passed, 6 deselected in 23.90s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py full current-source run",
+      "result": "7 passed in 149.09s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion routes, atomic-save compatibility, and publication adapter serial runs",
+      "result": "25 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication/job restart and chat characterization serial runs",
+      "result": "5 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "six Node UI/editor/navigation/publication/atomic-save/CSRF scripts",
+      "result": "6 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Core UI plan verifier and isolated local fixture serial runs",
+      "result": "21 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "UI evidence harness, packet, and reference guard serial runs",
+      "result": "47 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "direct verifier file invocation",
+      "result": "host invocation error: package root unavailable; canonical module invocation passed",
+      "exit_code": 1,
+      "classification": "invocation-shape-not-product-failure"
+    },
+    {
+      "selection": "signed-in Chrome C0 connection",
+      "result": "host initialization failed before browser or tab selection: kernel assets path not found (os error 3)",
+      "exit_code": 1,
+      "classification": "environment-connection-failure-no-content-access"
+    }
+  ],
+  "tests": {
+    "workspace_subtree_duplicate": "pass-bounded-exact-replay",
+    "trash_and_restore": "pass-same-identities-and-hierarchy",
+    "strict_route_contract": "pass-16-rules-24-operations",
+    "default_off": "pass",
+    "legacy_lifecycle_requests": "pass-zero",
+    "permanent_delete_requests": "pass-zero",
+    "focus_preservation": "pass",
+    "second_brain_delta": "pass-zero-items-zero-revisions",
+    "local_repeatability": "pass-twice",
+    "reference_c0": "blocked-before-browser-selection"
+  },
+  "claims": {
+    "h1_local_six_scenario_green": true,
+    "h1_complete": false,
+    "h3_shell_001_local_green": true,
+    "h3_shell_002_local_green": true,
+    "h3_shell_003_local_green": true,
+    "h3_tree_001_local_green": true,
+    "h3_tree_002_local_green": true,
+    "h3_tree_003_local_green": true,
+    "h3_local_implementation_green": true,
+    "h3_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_or_production_content_exposed": false,
+    "live_local_data_accessed": false,
+    "protected_file_edit_required": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false,
+    "trial_payment_invite_public_action_required": false
+  },
+  "remaining": [
+    "run identifier-free C0 against the signed-in synthetic REF-FREE-A/B workspaces",
+    "capture matching reference shell/tree evidence and seal the first differentials",
+    "begin H4 editor interactions with Korean IME, block round-trip, autosave, reload, and conflict gates",
+    "continue H5-H9 through evidence-bound cohesive vertical slices"
+  ],
+  "next_exact_command": "read the in-app browser control skill, run identifier-free C0 without opening personal workspaces, and capture only synthetic REF-FREE-A/B evidence; if C0 cannot prove the safe workspace boundary, stop before content access and begin the isolated H4 editor slice"
+}

@@ -1,0 +1,111 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T16:40:48.194862+09:00",
+  "run_id": "ui42-resp-001-reference-multiviewport-green-review-pending-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-resp-001-reference-partial-current-viewport-only-20260822.json",
+    "sha256": "sha256:c2e1f5b29804e7a12cc62530ff73562114d6eb8e9f18d45ae4b9183619107a4d",
+    "semantic_status": "reference_current_viewport_only"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective": "Accumulate approval-dependent work, continue safe independent development, and preserve exact resumable evidence.",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-RESP-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_page_alias": "UI-PERF-001-REFERENCE-CREATE",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "raw_url_or_page_id_persisted": false,
+    "raw_dom_network_cookie_or_storage_persisted": false,
+    "screenshot_persisted": false,
+    "reference_mutation_executed": false,
+    "share_or_message_submitted": false,
+    "trash_or_permanent_delete_executed": false
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-RESP-001",
+    "status": "reference_multiviewport_observed_review_pending",
+    "review_required": true,
+    "promotion_allowed": false,
+    "completion_matrix_mutation_allowed": false
+  },
+  "measurement_method": {
+    "browser_family": "chrome",
+    "transport": "connected_extension",
+    "viewport_capability": "browser_viewport_override",
+    "viewport_sequence": ["1440x900", "1280x800", "980x800", "720x800"],
+    "viewport_reset_after_measurement": true,
+    "tab_disposition": "handoff_pending_existing_synthetic_page_cleanup",
+    "other_tabs_inspected": false
+  },
+  "reference_observation": [
+    {
+      "viewport": {"width": 1440, "height": 900, "scale": 1},
+      "shell_horizontal_overflow": false,
+      "editor_horizontal_overflow": false,
+      "title_rect": {"x": 495, "y": 156, "width": 720, "height": 48},
+      "title_fully_visible": true,
+      "semantic_controls": {"sidebar": true, "search": true, "new_page": true, "main": true, "title": true, "share": true, "actions": true},
+      "share_overlay": {"x": 914, "y": 44, "width": 456, "height": 293, "fully_visible": true, "email_input_fully_visible": true, "email_input_empty": true, "horizontal_overflow": false}
+    },
+    {
+      "viewport": {"width": 1280, "height": 800, "scale": 1},
+      "shell_horizontal_overflow": false,
+      "editor_horizontal_overflow": false,
+      "title_rect": {"x": 415, "y": 156, "width": 720, "height": 48},
+      "title_fully_visible": true,
+      "semantic_controls": {"sidebar": true, "search": true, "new_page": true, "main": true, "title": true, "share": true, "actions": true},
+      "share_overlay": {"x": 754, "y": 44, "width": 456, "height": 293, "fully_visible": true, "email_input_fully_visible": true, "email_input_empty": true, "horizontal_overflow": false}
+    },
+    {
+      "viewport": {"width": 980, "height": 800, "scale": 1},
+      "shell_horizontal_overflow": false,
+      "editor_horizontal_overflow": false,
+      "title_rect": {"x": 366, "y": 156, "width": 518, "height": 96},
+      "title_fully_visible": true,
+      "semantic_controls": {"sidebar": true, "search": true, "new_page": true, "main": true, "title": true, "share": true, "actions": true},
+      "share_overlay": {"x": 454, "y": 44, "width": 456, "height": 293, "fully_visible": true, "email_input_fully_visible": true, "email_input_empty": true, "horizontal_overflow": false}
+    },
+    {
+      "viewport": {"width": 720, "height": 800, "scale": 1},
+      "shell_horizontal_overflow": false,
+      "editor_horizontal_overflow": false,
+      "title_rect": {"x": 366, "y": 184, "width": 258, "height": 192},
+      "title_fully_visible": true,
+      "semantic_controls": {"sidebar": true, "search": true, "new_page": true, "main": true, "title": true, "share": true, "actions": true},
+      "share_overlay": {"x": 194, "y": 44, "width": 456, "height": 293, "fully_visible": true, "email_input_fully_visible": true, "email_input_empty": true, "horizontal_overflow": false}
+    }
+  ],
+  "result": {
+    "all_adopted_viewports_measured": true,
+    "horizontal_overflow_count": 0,
+    "unreachable_primary_control_count": 0,
+    "unreachable_editor_count": 0,
+    "unreachable_share_dismissal_surface_count": 0,
+    "reference_summary_review_status": "pending_user_approval",
+    "differential_status": "pending_review_and_exact_local_pair_recalculation"
+  },
+  "protected_inputs": [
+    {"path": "code_assist_v1/AGENTS.md", "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md", "sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9"},
+    {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json", "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"},
+    {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json", "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"},
+    {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_RESP_001_LOCAL_VIEWPORT_RESULT_20260815.md", "sha256": "sha256:e21ba75cea89f5d55a489c5db7a17ed5fe2f8bb2e04b0ee65b0220018c74c1ff"},
+    {"path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py", "sha256": "sha256:683159022d00e32c367e348f19c4df9977177431959730abda0f7f09c345f3cd"}
+  ],
+  "claims": {
+    "ui_resp_001_reference_observed": true,
+    "ui_resp_001_reference_characterized": false,
+    "ui_resp_001_differential_passed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next_exact_action": "Add the redacted UI-RESP-001 summary to the approval batch. Continue local verification while approval-dependent evidence remains queued; only after approval seal the receipt and recompute the exact reference/local differential."
+}

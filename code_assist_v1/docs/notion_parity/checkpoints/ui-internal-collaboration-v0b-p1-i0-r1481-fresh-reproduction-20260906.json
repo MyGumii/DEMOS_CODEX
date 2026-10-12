@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1481-FRESH-REPRODUCTION-20260906",
+  "recorded_at": "2026-09-06T05:42:37.2400760+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1479-shared-chrome-shadow-refinement-20260906.json",
+    "sha256": "sha256:41560748e6615a71be010e3d0d2d95f0879dc6c226dd915bbcda5b77057e1132",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 762316
+  },
+  "reproduction": {
+    "run_id": "v0b-p1-i0-r1481-fresh-reproduction-receipt",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1481-fresh-reproduction-receipt/diagnostic.json",
+    "diagnostic_sha256": "sha256:6823280d1559d71fd1f6475f753ed4af2b334df298e6f236e5efe2c6f3cea084",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 762316,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 762316,
+    "fresh_realm_exact_reproduction": true,
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "capture_source": {
+    "path": "notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:b72870a90e85ff9b13c31d367e4af4984dae2fe0d69679f2c0f36051b3676317",
+    "python_compile_pass": true
+  },
+  "fresh_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1480-20260906",
+    "launch_id": "3a28f512261b480ab8d48ff3f82fe9e0",
+    "root_id": "891fe4a5-337f-4dd5-8956-eb90655825d6",
+    "manager_session_id": 68803,
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "initial_audit": {
+      "workspace_count": 0,
+      "reference_workspace_count": 0,
+      "active_membership_count": 0,
+      "active_page_binding_count": 0,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "current_audit": {
+      "workspace_count": 4,
+      "reference_workspace_count": 2,
+      "active_membership_count": 4,
+      "active_page_binding_count": 2,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue exact residual reduction from stable normalized total 762316 on the fresh isolated realm. Do not run final gates before exact parity reaches 36/36."
+}

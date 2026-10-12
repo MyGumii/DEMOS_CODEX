@@ -1,0 +1,1092 @@
+{
+  "openapi": "3.1.0",
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "info": {
+    "title": "Code Assist Knowledge Spaces API",
+    "version": "2.0.0-successor-registered",
+    "description": "Registered v7 plus Second Brain successor contract. Route availability remains controlled by disabled-by-default packet feature flags and IMPLEMENTATION_BACKLOG.md."
+  },
+  "servers": [{"url": "/"}],
+  "security": [{"sessionCookie": []}],
+  "x-contract-source": "../API_UI_CONTRACT.md",
+  "x-requirements-covered": [
+    "R-001", "R-002", "R-003", "R-004", "R-005", "R-006", "R-007", "R-008",
+    "R-009", "R-010", "R-011", "R-012", "R-013", "R-014", "R-015", "R-016",
+    "R-017", "R-018", "R-019", "R-020", "R-021", "R-022", "R-023", "R-024",
+    "R-025", "R-026", "R-027", "R-028", "R-029", "R-030", "R-031", "R-032",
+    "R-033", "R-034", "R-035", "R-036", "R-037", "R-038", "R-039", "R-040",
+    "R-041"
+  ],
+  "tags": [
+    {"name": "spaces"},
+    {"name": "conversations"},
+    {"name": "knowledge"},
+    {"name": "publication"},
+    {"name": "leases"},
+    {"name": "lifecycle"},
+    {"name": "curation"},
+    {"name": "jobs"},
+    {"name": "organization"},
+    {"name": "successor"},
+    {"name": "temporal"},
+    {"name": "graph"}
+  ],
+  "paths": {
+    "/api/knowledge/v1/spaces": {
+      "get": {
+        "operationId": "listKnowledgeSpaces",
+        "summary": "List phase-1 selectable personal and current-part spaces",
+        "tags": ["spaces"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-002", "R-004", "R-007", "R-017", "R-024", "R-026"],
+        "responses": {
+          "200": {"description": "Selectable spaces", "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/SpaceListResponse"}}}},
+          "default": {"$ref": "#/components/responses/ErrorResponse"}
+        }
+      }
+    },
+    "/api/knowledge/v1/conversations": {
+      "get": {
+        "operationId": "listConversations",
+        "summary": "List the current actor's conversations with immutable space badges",
+        "tags": ["conversations"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-007", "R-008"],
+        "parameters": [{"$ref": "#/components/parameters/Cursor"}, {"$ref": "#/components/parameters/Limit"}],
+        "responses": {
+          "200": {"description": "Conversation page", "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/ConversationListResponse"}}}},
+          "default": {"$ref": "#/components/responses/ErrorResponse"}
+        }
+      },
+      "post": {
+        "operationId": "createConversation",
+        "summary": "Create a conversation bound to one authorized space",
+        "tags": ["conversations"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-007", "R-008", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/CreateConversationRequest"}}}},
+        "responses": {"201": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/conversations/{conversation_id}": {
+      "parameters": [{"$ref": "#/components/parameters/ConversationId"}],
+      "get": {
+        "operationId": "getConversation",
+        "summary": "Get messages, metadata, pins, bindings, summary, and immutable space",
+        "tags": ["conversations"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-007", "R-008"],
+        "responses": {"200": {"description": "Conversation detail", "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/ConversationDetailResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      },
+      "patch": {
+        "operationId": "updateConversationMetadata",
+        "summary": "Rename or archive without changing conversation space",
+        "tags": ["conversations"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-007", "R-008", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/UpdateConversationRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/conversations/{conversation_id}/compact": {
+      "parameters": [{"$ref": "#/components/parameters/ConversationId"}],
+      "post": {
+        "operationId": "compactConversation",
+        "summary": "Create an idempotent same-space compact summary",
+        "tags": ["conversations"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-007", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/CompactConversationRequest"}}}},
+        "responses": {"202": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/conversations/{conversation_id}/turns/stream": {
+      "parameters": [{"$ref": "#/components/parameters/ConversationId"}],
+      "post": {
+        "operationId": "streamConversationTurn",
+        "summary": "Start or resume one idempotent conversation turn",
+        "tags": ["conversations"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-007", "R-008", "R-020", "R-023", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/TurnStreamRequest"}}}},
+        "responses": {
+          "200": {"description": "SSE turn events with monotonically increasing event sequence", "headers": {"X-Request-ID": {"$ref": "#/components/headers/RequestId"}}, "content": {"text/event-stream": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/TurnEvent"}}}},
+          "default": {"$ref": "#/components/responses/ErrorResponse"}
+        }
+      }
+    },
+    "/api/knowledge/v1/conversations/{conversation_id}/pins": {
+      "parameters": [{"$ref": "#/components/parameters/ConversationId"}],
+      "post": {
+        "operationId": "addConversationPin",
+        "summary": "Pin one visible revision from the conversation space",
+        "tags": ["conversations"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-007", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/AddPinRequest"}}}},
+        "responses": {"201": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/conversations/{conversation_id}/pins/{item_id}": {
+      "parameters": [{"$ref": "#/components/parameters/ConversationId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "delete": {
+        "operationId": "removeConversationPin",
+        "summary": "Remove the current actor's pin idempotently",
+        "tags": ["conversations"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-007", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/RemovePinRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/conversations/{conversation_id}/context-bindings": {
+      "parameters": [{"$ref": "#/components/parameters/ConversationId"}],
+      "post": {
+        "operationId": "addConversationContextBinding",
+        "summary": "Explicitly bind an authorized snapshot or live context reference",
+        "tags": ["conversations"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-007", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/ContextBindingRequest"}}}},
+        "responses": {"201": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/conversations/{conversation_id}/context-bindings/{binding_id}": {
+      "parameters": [{"$ref": "#/components/parameters/ConversationId"}, {"$ref": "#/components/parameters/BindingId"}],
+      "delete": {
+        "operationId": "removeConversationContextBinding",
+        "summary": "Remove a binding without deleting source data",
+        "tags": ["conversations"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-007", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/conversation.schema.json#/$defs/RemoveContextBindingRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "get": {
+        "operationId": "listKnowledgeItems",
+        "summary": "List authorized items in exactly one space",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-004", "R-007", "R-009", "R-012", "R-021", "R-024", "R-026"],
+        "parameters": [{"$ref": "#/components/parameters/Cursor"}, {"$ref": "#/components/parameters/Limit"}],
+        "responses": {"200": {"description": "Item page", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/ItemListResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "get": {
+        "operationId": "getKnowledgeItem",
+        "summary": "Get current item metadata, content, capabilities, and lease summary",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-007", "R-009", "R-012", "R-014", "R-021", "R-026", "R-040"],
+        "responses": {"200": {"description": "Knowledge item", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/ItemResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      },
+      "put": {
+        "operationId": "updateKnowledgeItem",
+        "summary": "Commit one immutable revision under token, fence, and revision CAS",
+        "tags": ["knowledge", "leases"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-009", "R-011", "R-014", "R-021", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}, {"$ref": "#/components/parameters/LeaseToken"}, {"$ref": "#/components/parameters/Fence"}, {"$ref": "#/components/parameters/IfMatch"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/UpdateItemRequest"}}}},
+        "responses": {"200": {"description": "New immutable revision", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/UpdateItemResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/source-artifacts": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "get": {
+        "operationId": "listItemSourceArtifacts",
+        "summary": "List retained original-file metadata for an authorized item in the selected view",
+        "description": "SBE-8.12 additive contract registration. Session identity and server-owned selected-view authorization determine revision-bounded native, inherited or overlay provenance. Returns the complete retained metadata list for one item; query parameters are rejected. Missing or concealed items return the stable error envelope without exposing provenance.",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-007", "R-009", "R-012", "R-021", "R-026"],
+        "responses": {
+          "200": {"description": "Authorized original-file metadata, possibly empty", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/ItemSourceArtifactListResponse"}}}},
+          "default": {"$ref": "#/components/responses/ErrorResponse"}
+        }
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/source-artifacts/{artifact_id}/download": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}, {"$ref": "#/components/parameters/ArtifactId"}],
+      "get": {
+        "operationId": "downloadItemSourceArtifact",
+        "summary": "Download verified original bytes from authorized revision-bounded item provenance",
+        "description": "SBE-8.12 additive contract registration. Query parameters are rejected. Authorization is resolved before and after the out-of-transaction CAS read; missing, unretained or concealed provenance is denied without disclosure. Content-Type is the original media type, not a fixed PDF or octet-stream type. The success body is raw bytes, not a JSON envelope; errors retain the shared JSON error envelope.",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-007", "R-009", "R-012", "R-021", "R-026"],
+        "responses": {
+          "200": {
+            "description": "Verified original file bytes with an attachment filename",
+            "headers": {
+              "Content-Disposition": {"description": "Attachment with header-safe ASCII fallback and RFC 5987 UTF-8 filename", "required": true, "schema": {"type": "string", "pattern": "^attachment;"}},
+              "Cache-Control": {"required": true, "schema": {"type": "string", "const": "private, no-store, max-age=0"}},
+              "Pragma": {"required": true, "schema": {"type": "string", "const": "no-cache"}},
+              "X-Content-Type-Options": {"required": true, "schema": {"type": "string", "const": "nosniff"}},
+              "X-Original-Content-SHA256": {"required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Sha256"}},
+              "X-Request-ID": {"$ref": "#/components/headers/RequestId"},
+              "Content-Length": {"required": true, "schema": {"type": "integer", "minimum": 0}}
+            },
+            "content": {"*/*": {"schema": {"type": "string", "format": "binary"}}}
+          },
+          "default": {"$ref": "#/components/responses/ErrorResponse"}
+        }
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/revisions": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "get": {
+        "operationId": "listKnowledgeRevisions",
+        "summary": "List immutable revision metadata",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-014", "R-021"],
+        "parameters": [{"$ref": "#/components/parameters/Cursor"}, {"$ref": "#/components/parameters/Limit"}],
+        "responses": {"200": {"description": "Revision page", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/RevisionListResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/revisions/{revision_id}": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}, {"$ref": "#/components/parameters/RevisionId"}],
+      "get": {
+        "operationId": "getKnowledgeRevision",
+        "summary": "Get one historical revision or retained purged metadata",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-013", "R-014", "R-021"],
+        "responses": {"200": {"description": "Revision", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/RevisionResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/compare": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}, {"$ref": "#/components/parameters/FromRevision"}, {"$ref": "#/components/parameters/ToRevision"}],
+      "get": {
+        "operationId": "compareKnowledgeRevisions",
+        "summary": "Return a safe server-side diff between two authorized revisions",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-011", "R-019", "R-029"],
+        "responses": {"200": {"description": "Safe diff", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/CompareResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/search": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "post": {
+        "operationId": "searchKnowledgeSpace",
+        "summary": "Search canonical DB and FTS in exactly one authorized space",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-004", "R-007", "R-020", "R-021", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/SearchRequest"}}}},
+        "responses": {"200": {"description": "Search results", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/SearchResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/graph": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "get": {
+        "operationId": "getKnowledgeGraph",
+        "summary": "Get effective graph without mutating canonical edges",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-007", "R-015", "R-018", "R-021", "R-028"],
+        "responses": {"200": {"description": "Effective graph", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/GraphResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/activity": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "get": {
+        "operationId": "listKnowledgeActivity",
+        "summary": "List an authorized audit projection",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-014", "R-021"],
+        "parameters": [{"$ref": "#/components/parameters/Cursor"}, {"$ref": "#/components/parameters/Limit"}],
+        "responses": {"200": {"description": "Activity page", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/ActivityResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/projection-status": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "get": {
+        "operationId": "getProjectionStatus",
+        "summary": "Get desired and built projection generations and lag",
+        "tags": ["knowledge"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-020", "R-021", "R-023", "R-025"],
+        "responses": {"200": {"description": "Projection status", "content": {"application/json": {"schema": {"$ref": "schemas/projection-manifest.schema.json#/$defs/ProjectionStatusResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/publication-previews": {
+      "post": {
+        "operationId": "createPublicationPreview",
+        "summary": "Capture or enqueue one immutable source extraction preview",
+        "tags": ["publication"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-005", "R-016", "R-022", "R-023", "R-027", "R-031", "R-038"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {"schema": {"$ref": "schemas/publication.schema.json#/$defs/PublicationPreviewRequest"}},
+            "multipart/form-data": {"schema": {"$ref": "schemas/publication.schema.json#/$defs/UploadPreviewRequest"}}
+          }
+        },
+        "responses": {
+          "200": {"description": "Ready preview", "content": {"application/json": {"schema": {"$ref": "schemas/publication.schema.json#/$defs/PublicationPreviewResponse"}}}},
+          "202": {"description": "Durably queued preview", "content": {"application/json": {"schema": {"$ref": "schemas/publication.schema.json#/$defs/PublicationPreviewResponse"}}}},
+          "default": {"$ref": "#/components/responses/ErrorResponse"}
+        }
+      }
+    },
+    "/api/knowledge/v1/publication-previews/{preview_id}": {
+      "parameters": [{"$ref": "#/components/parameters/PreviewId"}],
+      "get": {
+        "operationId": "getPublicationPreview",
+        "summary": "Get durable publication preview state and immutable ready result",
+        "tags": ["publication"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-022", "R-023", "R-027"],
+        "responses": {"200": {"description": "Preview state", "content": {"application/json": {"schema": {"$ref": "schemas/publication.schema.json#/$defs/PublicationPreviewResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      },
+      "delete": {
+        "operationId": "cancelPublicationPreview",
+        "summary": "Cancel only cancellable pre-commit preview work",
+        "tags": ["publication"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-022", "R-023", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/common.schema.json#/$defs/OperationRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/publications": {
+      "post": {
+        "operationId": "commitPublication",
+        "summary": "Atomically commit personal, part, combined, or exact higher-role outcomes",
+        "tags": ["publication"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-005", "R-006", "R-009", "R-016", "R-022", "R-023", "R-026", "R-027", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/publication.schema.json#/$defs/PublicationRequest"}}}},
+        "responses": {"201": {"description": "Stable per-target outcomes", "content": {"application/json": {"schema": {"$ref": "schemas/publication.schema.json#/$defs/PublicationResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/jobs/{job_id}": {
+      "parameters": [{"$ref": "#/components/parameters/JobId"}],
+      "get": {
+        "operationId": "getKnowledgeJob",
+        "summary": "Get an actor-authorized durable job state",
+        "tags": ["jobs"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-020", "R-023", "R-025", "R-026"],
+        "responses": {"200": {"description": "Durable job", "content": {"application/json": {"schema": {"$ref": "schemas/job.schema.json#/$defs/JobResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/jobs/{job_id}/cancel": {
+      "parameters": [{"$ref": "#/components/parameters/JobId"}],
+      "post": {
+        "operationId": "cancelKnowledgeJob",
+        "summary": "Request cancellation of an actor-authorized cancellable job",
+        "tags": ["jobs"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-023", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/job.schema.json#/$defs/CancelJobRequest"}}}},
+        "responses": {"200": {"description": "Cancellation result", "content": {"application/json": {"schema": {"$ref": "schemas/job.schema.json#/$defs/CancelJobResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/lease/acquire": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "post": {
+        "operationId": "acquireItemLease",
+        "summary": "Acquire the one persistent item lease with a client-generated token",
+        "tags": ["leases"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-009", "R-010", "R-011", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}, {"$ref": "#/components/parameters/LeaseToken"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/AcquireLeaseRequest"}}}},
+        "responses": {"201": {"description": "Lease without raw token echo", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/LeaseResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/lease/heartbeat": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "post": {
+        "operationId": "heartbeatItemLease",
+        "summary": "Conditionally renew a valid lease without creating audit/idempotency rows",
+        "tags": ["leases"],
+        "x-idempotency": "lease-conditional",
+        "x-requirements": ["R-011", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/LeaseToken"}, {"$ref": "#/components/parameters/Fence"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/HeartbeatLeaseRequest"}}}},
+        "responses": {"200": {"description": "Renewed lease", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/HeartbeatLeaseResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/lease/release": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "post": {
+        "operationId": "releaseItemLease",
+        "summary": "Release the actor's lease while retaining monotonic generation",
+        "tags": ["leases"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-011", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}, {"$ref": "#/components/parameters/LeaseToken"}, {"$ref": "#/components/parameters/Fence"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/ReleaseLeaseRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/lease/force-release": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "post": {
+        "operationId": "forceReleaseItemLease",
+        "summary": "Part-leader or administrator force release with audit reason",
+        "tags": ["leases"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-010", "R-011", "R-014", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/ForceReleaseRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/deactivate": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "post": {
+        "operationId": "deactivateKnowledgeItem",
+        "summary": "Reversibly deactivate an item without changing edge rows",
+        "tags": ["lifecycle"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-009", "R-012", "R-013", "R-014", "R-015", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/DeactivateRequest"}}}},
+        "responses": {"200": {"description": "Deactivation episode", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/DeactivateResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/restore": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "post": {
+        "operationId": "restoreKnowledgeItem",
+        "summary": "Restore the same item identity and effective eligible edges",
+        "tags": ["lifecycle"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-009", "R-012", "R-014", "R-015", "R-026", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/RestoreRequest"}}}},
+        "responses": {"200": {"description": "Restored item", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/RestoreResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/purge-preview": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "get": {
+        "operationId": "getKnowledgePurgePreview",
+        "summary": "Preview administrator-only eligible body purge and blockers",
+        "tags": ["lifecycle"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-012", "R-013", "R-014", "R-021"],
+        "responses": {"200": {"description": "Purge impact", "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/PurgePreviewResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/items/{item_id}/purge": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "post": {
+        "operationId": "purgeKnowledgeItemBodies",
+        "summary": "Manually purge eligible bodies while retaining tombstone and audit metadata",
+        "tags": ["lifecycle"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-012", "R-013", "R-014", "R-021", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/knowledge.schema.json#/$defs/PurgeRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/curation/findings": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "get": {
+        "operationId": "listCurationFindings",
+        "summary": "List the versioned curation review inbox",
+        "tags": ["curation"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-009", "R-018", "R-028"],
+        "parameters": [{"$ref": "#/components/parameters/Cursor"}, {"$ref": "#/components/parameters/Limit"}],
+        "responses": {"200": {"description": "Finding page", "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/FindingListResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/curation/findings/{finding_id}": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/FindingId"}],
+      "get": {
+        "operationId": "getCurationFinding",
+        "summary": "Get evidence, detector versions, fixed revisions, and policy",
+        "tags": ["curation"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-018", "R-028"],
+        "responses": {"200": {"description": "Finding", "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/FindingResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/curation/findings/{finding_id}/review": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/FindingId"}],
+      "post": {
+        "operationId": "reviewCurationFinding",
+        "summary": "Approve, reject, or ignore a current finding without model-executed T3 effects",
+        "tags": ["curation"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-009", "R-018", "R-028", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/ReviewFindingRequest"}}}},
+        "responses": {"200": {"description": "Versioned human review result", "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/ReviewFindingResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/curation/shadow-metrics": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "get": {
+        "operationId": "getCurationShadowMetrics",
+        "summary": "Read bounded body-free shadow precision and zero-auto-effect evidence",
+        "tags": ["curation"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-009", "R-018", "R-028", "R-031"],
+        "parameters": [{"name": "sample_size", "in": "query", "required": false, "schema": {"type": "integer", "minimum": 1, "maximum": 100, "default": 25}}],
+        "responses": {"200": {"description": "Shadow precision report", "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/CurationShadowMetricsResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/change-proposals/{proposal_id}/preview": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ProposalId"}],
+      "post": {
+        "operationId": "previewChangeProposal",
+        "summary": "Build a fixed source/base/target three-way preview without mutation",
+        "tags": ["curation"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-018", "R-027", "R-029", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/ProposalPreviewRequest"}}}},
+        "responses": {"200": {"description": "Three-way proposal preview", "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/ProposalPreviewResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/change-proposals/{proposal_id}/rebase": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ProposalId"}],
+      "post": {
+        "operationId": "rebaseChangeProposal",
+        "summary": "Create a new proposal version and obsolete the stale one atomically",
+        "tags": ["curation"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-018", "R-027", "R-029", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/RebaseProposalRequest"}}}},
+        "responses": {"201": {"description": "New pending proposal version", "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/RebaseProposalResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/change-proposals/{proposal_id}/apply": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ProposalId"}],
+      "post": {
+        "operationId": "applyChangeProposal",
+        "summary": "Apply one current proposal under target lease, fence, and revision CAS",
+        "tags": ["curation", "leases"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-009", "R-011", "R-014", "R-018", "R-027", "R-029", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}, {"$ref": "#/components/parameters/LeaseToken"}, {"$ref": "#/components/parameters/Fence"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/ApplyProposalRequest"}}}},
+        "responses": {"200": {"description": "Applied proposal", "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/ApplyProposalResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/merges/preview": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "post": {
+        "operationId": "previewKnowledgeMerge",
+        "summary": "Build a fixed three-pane merge and edge/reference impact preview",
+        "tags": ["curation"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-018", "R-019", "R-029", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/MergePreviewRequest"}}}},
+        "responses": {"200": {"description": "Merge preview", "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/MergePreviewResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/merges/apply": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "post": {
+        "operationId": "applyKnowledgeMerge",
+        "summary": "Atomically apply a reviewed merge under two leases and revisions",
+        "tags": ["curation", "leases"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-009", "R-011", "R-014", "R-018", "R-019", "R-028", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}, {"$ref": "#/components/parameters/SourceLeaseToken"}, {"$ref": "#/components/parameters/SourceFence"}, {"$ref": "#/components/parameters/TargetLeaseToken"}, {"$ref": "#/components/parameters/TargetFence"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/MergeApplyRequest"}}}},
+        "responses": {"200": {"description": "Atomic merge result", "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/MergeApplyResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/edges/proposals/{proposal_id}/approve": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ProposalId"}],
+      "post": {
+        "operationId": "approveSemanticEdgeProposal",
+        "summary": "Commit one human-reviewed semantic edge with fixed evidence revisions",
+        "tags": ["curation"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-015", "R-018", "R-028", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/ApproveEdgeRequest"}}}},
+        "responses": {"201": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v1/spaces/{space_id}/edges/{edge_id}/deactivate": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/EdgeId"}],
+      "post": {
+        "operationId": "deactivateKnowledgeEdge",
+        "summary": "Explicitly deactivate only the selected edge",
+        "tags": ["curation"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-015", "R-018", "R-028", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/curation.schema.json#/$defs/DeactivateEdgeRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v1/org/tree": {
+      "get": {
+        "operationId": "getOrganizationTree",
+        "summary": "Get the AMHS responsibility tree, leaders, counts, and warnings",
+        "tags": ["organization"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-001", "R-003", "R-010", "R-017", "R-030"],
+        "responses": {"200": {"description": "Organization tree", "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/OrgTreeResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v1/org/units": {
+      "post": {
+        "operationId": "createOrganizationUnit",
+        "summary": "Create a team under responsibility or part under team",
+        "tags": ["organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-001", "R-003", "R-017", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/CreateOrgUnitRequest"}}}},
+        "responses": {"201": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v1/org/units/{unit_id}/change-preview": {
+      "parameters": [{"$ref": "#/components/parameters/OrgUnitId"}],
+      "post": {
+        "operationId": "previewOrganizationUnitChange",
+        "summary": "Validate move/inactivation impact and issue a short-lived preview token",
+        "tags": ["organization"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-001", "R-003", "R-010", "R-030", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/OrgChangePreviewRequest"}}}},
+        "responses": {"200": {"description": "Organization change impact", "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/OrgChangePreviewResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v1/org/units/{unit_id}": {
+      "parameters": [{"$ref": "#/components/parameters/OrgUnitId"}],
+      "patch": {
+        "operationId": "updateOrganizationUnit",
+        "summary": "Rename or update status while retaining stable unit identity",
+        "tags": ["organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-001", "R-003", "R-010", "R-030", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/UpdateOrgUnitRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v1/org/units/{unit_id}/move": {
+      "parameters": [{"$ref": "#/components/parameters/OrgUnitId"}],
+      "post": {
+        "operationId": "moveOrganizationUnit",
+        "summary": "Move a unit with stable identity and explicit impact resolution",
+        "tags": ["organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-001", "R-003", "R-010", "R-017", "R-030", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/MoveOrgUnitRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v1/users/{user_id}/part-membership": {
+      "parameters": [{"$ref": "#/components/parameters/UserId"}],
+      "put": {
+        "operationId": "setUserPartMembership",
+        "summary": "Atomically assign, move, or intentionally unassign one active part",
+        "tags": ["organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-002", "R-003", "R-010", "R-026", "R-030", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/SetMembershipRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v1/org/parts/{part_id}/leader": {
+      "parameters": [{"$ref": "#/components/parameters/PartId"}],
+      "put": {
+        "operationId": "setPartLeader",
+        "summary": "Replace the active part leader atomically",
+        "tags": ["organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-003", "R-010", "R-026", "R-030", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/SetLeaderRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v1/users/{user_id}/disable": {
+      "parameters": [{"$ref": "#/components/parameters/UserId"}],
+      "post": {
+        "operationId": "disableUserAccount",
+        "summary": "Disable account, revoke capabilities, and preserve canonical history",
+        "tags": ["organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-003", "R-010", "R-014", "R-023", "R-026", "R-030", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/SetUserStatusRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v1/users/{user_id}/enable": {
+      "parameters": [{"$ref": "#/components/parameters/UserId"}],
+      "post": {
+        "operationId": "enableUserAccount",
+        "summary": "Restore login without reviving stale sessions, leases, jobs, or membership",
+        "tags": ["organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-003", "R-010", "R-014", "R-023", "R-026", "R-030", "R-031"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/SetUserStatusRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v1/purge-eligible": {
+      "get": {
+        "operationId": "listPurgeEligibleItems",
+        "summary": "List administrator-only purge-eligible inactive items and blockers",
+        "tags": ["organization", "lifecycle"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-012", "R-013", "R-014", "R-030"],
+        "parameters": [{"$ref": "#/components/parameters/Cursor"}, {"$ref": "#/components/parameters/Limit"}],
+        "responses": {"200": {"description": "Purge-eligible page", "content": {"application/json": {"schema": {"$ref": "schemas/organization.schema.json#/$defs/PurgeEligibleResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/personal-wikis": {
+      "get": {
+        "operationId": "personalWikisList",
+        "summary": "List the authenticated owner's active or archived personal Wikis with a bounded cursor",
+        "tags": ["successor", "spaces"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-032", "R-033", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/Cursor"}, {"$ref": "#/components/parameters/Limit"}, {"$ref": "#/components/parameters/PersonalWikiLifecycleStatus"}, {"$ref": "#/components/parameters/PersonalWikiQuery"}],
+        "responses": {"200": {"description": "Personal Wiki page", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/PersonalWikiPageResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      },
+      "post": {
+        "operationId": "personalWikisCreate",
+        "summary": "Create an owner-scoped personal Wiki without changing the active default",
+        "tags": ["successor", "spaces"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-032", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/PersonalWikiCreateRequest"}}}},
+        "responses": {"201": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/personal-wikis/search": {
+      "post": {
+        "operationId": "personalWikisSearch",
+        "summary": "Search all active owner Wikis for management navigation without entering Agent context",
+        "tags": ["successor", "spaces"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-031", "R-032", "R-037", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/ManagementSearchRequest"}}}},
+        "responses": {"200": {"description": "At most ten owner-Wiki management results", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/SuccessorPageResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/personal-wikis/{space_id}": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "patch": {
+        "operationId": "personalWikiRename",
+        "summary": "Rename an owner Wiki with normalized-key and row-version CAS",
+        "tags": ["successor", "spaces"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-032", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/PersonalWikiRenameRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/personal-wikis/{space_id}/default": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "put": {
+        "operationId": "personalWikiSetDefault",
+        "summary": "Set exactly one active owner Wiki as default",
+        "tags": ["successor", "spaces"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-032", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/PersonalWikiVersionRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/personal-wikis/{space_id}/archive": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "post": {
+        "operationId": "personalWikiArchive",
+        "summary": "Archive a non-default owner Wiki while preserving identity and history",
+        "tags": ["successor", "spaces"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-032", "R-033", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/PersonalWikiArchiveRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/personal-wikis/{space_id}/restore": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "post": {
+        "operationId": "personalWikiRestore",
+        "summary": "Restore an archived owner Wiki with the same identity and a new lifecycle generation",
+        "tags": ["successor", "spaces"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-032", "R-033", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/PersonalWikiRestoreRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v2/org/teams/{team_id}/leader": {
+      "parameters": [{"$ref": "#/components/parameters/TeamId"}],
+      "get": {
+        "operationId": "teamKnowledgeLeaderGet",
+        "summary": "Read the exact current Team knowledge-leader episode and native write state",
+        "tags": ["successor", "organization"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-034", "R-041"],
+        "responses": {"200": {"description": "Higher-role status", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/HigherRoleStatusResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      },
+      "put": {
+        "operationId": "teamKnowledgeLeaderPut",
+        "summary": "Assign, replace, or end-and-disable the exact Team knowledge-leader episode",
+        "tags": ["successor", "organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-034", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/HigherRoleSetRequest"}}}},
+        "responses": {"200": {"description": "Higher-role mutation result", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/HigherRoleMutationResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/admin/v2/org/responsibilities/{responsibility_id}/executive": {
+      "parameters": [{"$ref": "#/components/parameters/ResponsibilityId"}],
+      "get": {
+        "operationId": "responsibilityKnowledgeExecutiveGet",
+        "summary": "Read the exact current responsibility-executive episode and native write state",
+        "tags": ["successor", "organization"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-034", "R-041"],
+        "responses": {"200": {"description": "Higher-role status", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/HigherRoleStatusResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      },
+      "put": {
+        "operationId": "responsibilityKnowledgeExecutivePut",
+        "summary": "Assign, replace, or end-and-disable the exact responsibility executive episode",
+        "tags": ["successor", "organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-034", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/HigherRoleSetRequest"}}}},
+        "responses": {"200": {"description": "Higher-role mutation result", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/HigherRoleMutationResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/spaces/{space_id}/distribution-targets": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "get": {
+        "operationId": "distributionTargetsList",
+        "summary": "List server-derived descendant organization targets allowed by the current source-native role episode",
+        "tags": ["successor", "organization"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-034", "R-041"],
+        "responses": {"200": {"description": "Authorized distribution target list", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/DistributionTargetListResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/spaces/{space_id}/distributions": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}],
+      "get": {
+        "operationId": "distributionsList",
+        "summary": "List bounded current or historical downward distribution grants",
+        "tags": ["successor", "organization"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-034", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/Cursor"}, {"$ref": "#/components/parameters/Limit"}],
+        "responses": {"200": {"description": "Distribution grant page", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/DistributionPageResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      },
+      "post": {
+        "operationId": "distributionsCreate",
+        "summary": "Grant a higher-native item to an authorized descendant scope as a read-only overlay",
+        "tags": ["successor", "organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-034", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/DistributionCreateRequest"}}}},
+        "responses": {"201": {"description": "Distribution mutation result", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/DistributionMutationResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/spaces/{space_id}/distributions/{grant_id}/revoke": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/GrantId"}],
+      "post": {
+        "operationId": "distributionRevoke",
+        "summary": "Revoke an exact distribution grant through current source authority or confirmed break-glass",
+        "tags": ["successor", "organization"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-034", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/DistributionRevokeRequest"}}}},
+        "responses": {"200": {"description": "Distribution mutation result", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/DistributionMutationResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/spaces/{space_id}/edges/{edge_id}/suppress": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/EdgeId"}],
+      "post": {
+        "operationId": "semanticEdgeSuppress",
+        "summary": "Suppress a local or aggregate semantic edge with exact home authority and evidence",
+        "tags": ["successor", "graph"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-035", "R-036", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/OperationRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/spaces/{space_id}/edges/{edge_id}/suppression/lift": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/EdgeId"}],
+      "post": {
+        "operationId": "semanticEdgeSuppressionLift",
+        "summary": "Lift suppression through current home authority and enqueue current-revision re-evaluation",
+        "tags": ["successor", "graph"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-035", "R-036", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/OperationRequest"}}}},
+        "responses": {"202": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/spaces/{space_id}/items/{item_id}/temporal": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "get": {
+        "operationId": "itemTemporalGet",
+        "summary": "Read typed temporal heads, current attestation, and bounded history",
+        "tags": ["successor", "temporal"],
+        "x-idempotency": "not-applicable",
+        "x-requirements": ["R-039", "R-040", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/Cursor"}, {"$ref": "#/components/parameters/Limit"}],
+        "responses": {"200": {"description": "Temporal detail", "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/SuccessorDetailResponse"}}}}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/spaces/{space_id}/items/{item_id}/temporal-assertions": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "post": {
+        "operationId": "temporalAssertionCreate",
+        "summary": "Assert a typed source-modified or information-effective head with expected-head CAS",
+        "tags": ["successor", "temporal"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-039", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/OperationRequest"}}}},
+        "responses": {"201": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/spaces/{space_id}/items/{item_id}/temporal-assertions/{assertion_id}/revoke": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}, {"$ref": "#/components/parameters/AssertionId"}],
+      "post": {
+        "operationId": "temporalAssertionRevoke",
+        "summary": "Revoke the exact current temporal head without falling back to superseded evidence",
+        "tags": ["successor", "temporal"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-039", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/OperationRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/spaces/{space_id}/items/{item_id}/verification-attestations": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}],
+      "post": {
+        "operationId": "verificationAttestationCreate",
+        "summary": "Attest the current revision and exact temporal-summary hash",
+        "tags": ["successor", "temporal"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-039", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/OperationRequest"}}}},
+        "responses": {"201": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    },
+    "/api/knowledge/v2/spaces/{space_id}/items/{item_id}/verification-attestations/{attestation_id}/revoke": {
+      "parameters": [{"$ref": "#/components/parameters/SpaceId"}, {"$ref": "#/components/parameters/ItemId"}, {"$ref": "#/components/parameters/AttestationId"}],
+      "post": {
+        "operationId": "verificationAttestationRevoke",
+        "summary": "Revoke the exact current verification attestation without fallback",
+        "tags": ["successor", "temporal"],
+        "x-idempotency": "required",
+        "x-requirements": ["R-031", "R-039", "R-041"],
+        "parameters": [{"$ref": "#/components/parameters/CsrfToken"}, {"$ref": "#/components/parameters/IdempotencyKey"}],
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "schemas/second-brain.schema.json#/$defs/OperationRequest"}}}},
+        "responses": {"200": {"$ref": "#/components/responses/MutationResponse"}, "default": {"$ref": "#/components/responses/ErrorResponse"}}
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "sessionCookie": {"type": "apiKey", "in": "cookie", "name": "session"}
+    },
+    "headers": {
+      "RequestId": {"description": "Request correlation identifier for streaming and binary responses", "required": true, "schema": {"type": "string", "minLength": 1, "maxLength": 128}}
+    },
+    "parameters": {
+      "CsrfToken": {"name": "X-CSRF-Token", "in": "header", "required": true, "schema": {"type": "string", "minLength": 16}},
+      "IdempotencyKey": {"name": "Idempotency-Key", "in": "header", "required": false, "schema": {"$ref": "schemas/common.schema.json#/$defs/OperationId"}, "description": "Optional alias; when present it must match body operation_id."},
+      "LeaseToken": {"name": "X-Knowledge-Lease-Token", "in": "header", "required": true, "schema": {"type": "string", "minLength": 43}, "description": "Client-generated 256-bit token; redact from all logs."},
+      "Fence": {"name": "X-Knowledge-Fence", "in": "header", "required": true, "schema": {"type": "integer", "minimum": 1}},
+      "SourceLeaseToken": {"name": "X-Knowledge-Source-Lease-Token", "in": "header", "required": true, "schema": {"type": "string", "minLength": 43}},
+      "SourceFence": {"name": "X-Knowledge-Source-Fence", "in": "header", "required": true, "schema": {"type": "integer", "minimum": 1}},
+      "TargetLeaseToken": {"name": "X-Knowledge-Target-Lease-Token", "in": "header", "required": true, "schema": {"type": "string", "minLength": 43}},
+      "TargetFence": {"name": "X-Knowledge-Target-Fence", "in": "header", "required": true, "schema": {"type": "integer", "minimum": 1}},
+      "IfMatch": {"name": "If-Match", "in": "header", "required": false, "schema": {"type": "string"}},
+      "Cursor": {"name": "cursor", "in": "query", "required": false, "schema": {"type": "string", "maxLength": 4096}},
+      "Limit": {"name": "limit", "in": "query", "required": false, "schema": {"type": "integer", "minimum": 1, "maximum": 100}},
+      "PersonalWikiLifecycleStatus": {"name": "lifecycle_status", "in": "query", "required": false, "schema": {"enum": ["active", "archived"], "default": "active"}},
+      "PersonalWikiQuery": {"name": "query", "in": "query", "required": false, "schema": {"type": "string", "minLength": 1, "maxLength": 120}, "description": "Optional owner-local normalized profile-name prefix; archived mode is management-only."},
+      "SpaceId": {"name": "space_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "ItemId": {"name": "item_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "ArtifactId": {"name": "artifact_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "RevisionId": {"name": "revision_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "ConversationId": {"name": "conversation_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "BindingId": {"name": "binding_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "PreviewId": {"name": "preview_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "JobId": {"name": "job_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "FindingId": {"name": "finding_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "ProposalId": {"name": "proposal_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "EdgeId": {"name": "edge_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "OrgUnitId": {"name": "unit_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "UserId": {"name": "user_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/UserId"}},
+      "PartId": {"name": "part_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "TeamId": {"name": "team_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "ResponsibilityId": {"name": "responsibility_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "GrantId": {"name": "grant_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "AssertionId": {"name": "assertion_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "AttestationId": {"name": "attestation_id", "in": "path", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "FromRevision": {"name": "from", "in": "query", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}},
+      "ToRevision": {"name": "to", "in": "query", "required": true, "schema": {"$ref": "schemas/common.schema.json#/$defs/Uuid"}}
+    },
+    "responses": {
+      "MutationResponse": {
+        "description": "Stable mutation result",
+        "content": {"application/json": {"schema": {"$ref": "schemas/common.schema.json#/$defs/MutationResponse"}}}
+      },
+      "ErrorResponse": {
+        "description": "Stable API error envelope",
+        "content": {"application/json": {"schema": {"$ref": "schemas/common.schema.json#/$defs/ErrorEnvelope"}}}
+      }
+    }
+  }
+}

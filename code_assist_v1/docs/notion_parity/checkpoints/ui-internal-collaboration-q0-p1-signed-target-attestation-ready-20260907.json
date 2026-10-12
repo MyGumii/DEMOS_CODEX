@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.q0_p1.signed_target_attestation_readiness_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-Q0-P1-SIGNED-TARGET-ATTESTATION-READY-20260907",
+  "recorded_at": "2026-09-07T05:22:30.1300697Z",
+  "packet_ids": [
+    "O1B-P1",
+    "Q0-P1"
+  ],
+  "status": "local_signed_target_attestation_hardening_pass_external_target_gate_still_blocked",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-q0-target-receipt-false-green-closed-20260907.json",
+    "sha256": "sha256:eecacfecf1be884a1d1bb00488c6de8299376ac6fc41ec2341d3d80ee925c9e0"
+  },
+  "defect_closed": {
+    "description": "A structurally valid Q0 report could claim target_windows_load from three process environment labels and then be paired with an independently valid O1B evidence set without a cryptographic binding between the report, release candidate, target machine, and external reviewer.",
+    "former_false_green_path": "fabricated_or_replayed_Q0_report_combined_with_unrelated_valid_O1B_receipt",
+    "enforced_invariants": [
+      "L8 requires a separate strict-JSON Q0 target attestation in addition to the Q0 report and complete O1B evidence set",
+      "the attestation binds the exact Q0 report file SHA-256 and Q0 run and synthetic-root identities",
+      "the attestation binds the exact O1B target receipt file SHA-256",
+      "the attestation release candidate equals the release candidate authorized by the bound O1B policy",
+      "the attestation realm configuration fingerprint equals the exact reviewed O1B policy bytes",
+      "the target host and target machine identity equal the verified AP-OPS-TARGET resource scope",
+      "the reviewer identity and Ed25519 key equal the verified O1B receipt reviewer and policy trust anchor",
+      "the attestation timestamp cannot predate the verified O1B receipt",
+      "the attestation cannot claim product or shared-goal completion",
+      "the central receipt validator freshly repeats the same signature and cross-binding verification"
+    ]
+  },
+  "architecture_boundary": {
+    "validation_only_module": "code_assist_v1/tools/q0_target_attestation.py",
+    "product_q0_module_unchanged": true,
+    "product_q0_module_sha256": "sha256:8d3cdebe1ccf28ccf6c25e3cdf07dbdc7db10f60350100bf0072b9353362bdbe",
+    "release_candidate_product_source_changed_by_this_hardening": false,
+    "private_keys_stored_in_repository_or_chat": false
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "schema_lineage": {
+      "path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md",
+      "sha256": "sha256:b31ec2d1801e80e0410a1decdd126f2d53f1bf72729fecf3703492fb7e61da31"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    }
+  },
+  "implementation_bindings": [
+    {
+      "path": "code_assist_v1/tools/q0_target_attestation.py",
+      "before_sha256": null,
+      "sha256": "sha256:f900a504d598ec6da05482e53d6214e4ce4f7d0c6b58d3caf2d00f25b9aafe0d"
+    },
+    {
+      "path": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+      "before_sha256": "sha256:4f92d257f16e6797a3f368083a2a28c41f8afec27c8f6a7725044724cf77ba4d",
+      "sha256": "sha256:18c782b14b3f4e4b8133090ea1ed21eb38efdae841a32a1d0d7fb31b1d54fe21"
+    },
+    {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "before_sha256": "sha256:486793a05d16d027130acb22b35458e25928103a80d6bcbba3955454f4497d59",
+      "sha256": "sha256:3dc932038a974469aa65ae66534a277ffd60372e86d3333df8437feba0523880"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_q0_target_attestation.py",
+      "before_sha256": null,
+      "sha256": "sha256:c74f685eb08b5389be3d41951d18f2b77023318324e65ffed02096bac3435c0b"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_gate_runner.py",
+      "before_sha256": "sha256:6466773a3bb584dd25a85cc67bf5b356ffc6c7396ed4123cc799797d06fc6a2f",
+      "sha256": "sha256:69488fc5da971f0d98d7448f3679f5b0e1c98b1609065e9a6b0c6edcc208768d"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/q0_validation.py",
+      "before_sha256": "sha256:8d3cdebe1ccf28ccf6c25e3cdf07dbdc7db10f60350100bf0072b9353362bdbe",
+      "sha256": "sha256:8d3cdebe1ccf28ccf6c25e3cdf07dbdc7db10f60350100bf0072b9353362bdbe"
+    }
+  ],
+  "verification": {
+    "focused_attestation_regression": {
+      "passed": 18,
+      "failed": 0,
+      "deselected": 2,
+      "exit_code": 0,
+      "duration_seconds": 7.38
+    },
+    "expanded_target_regression": {
+      "scope": [
+        "Q0 signed target attestation",
+        "dedicated O1B and Q0 target gate runner",
+        "O1B target restore verifier",
+        "O1B target policy binding",
+        "Q0 target concurrency and report validation"
+      ],
+      "passed": 76,
+      "failed": 0,
+      "exit_code": 0,
+      "duration_seconds": 102.07
+    },
+    "syntax_compile": {
+      "exit_code": 0
+    },
+    "new_attestation_tests": 7,
+    "cross_binding_substitutions_rejected": [
+      "release_candidate_id",
+      "target_machine_identity_sha256",
+      "q0_report_sha256",
+      "o1b_target_receipt_sha256",
+      "post_signature_timestamp_change",
+      "duplicate_JSON_key"
+    ]
+  },
+  "central_audit_observation": {
+    "mode": "audit",
+    "status": "fail",
+    "error_count": 15,
+    "catalog_packet_progress": "44/50",
+    "effective_completion_matrix_progress": "18/28",
+    "effective_phase_gate_progress": "14/20",
+    "valid_execution_receipt_count": 20,
+    "invalidated_or_unbound_areas": [
+      "C0-P1,C0-P2",
+      "E1-P1",
+      "E1-P2",
+      "E1-P3",
+      "F0-P1",
+      "F0-P2",
+      "F0-P3",
+      "F0-P4",
+      "F0-P5",
+      "I0-P2",
+      "O1A-P1",
+      "S0A-P2",
+      "T0B-P3",
+      "V0B-P1"
+    ],
+    "interpretation": "The catalog still records earlier gate decisions, but current source and validation bindings no longer let those immutable receipts close every current audit row. No catalog, ladder, matrix, receipt, or current pointer was overwritten to hide this drift.",
+    "promotion_credit_awarded": false
+  },
+  "external_resolution_required": [
+    "approved encrypted off-host backup destination or explicit authority to provision one",
+    "approved distinct Windows target host and connection method or explicit authority to provision a compliant Windows VM",
+    "reviewed release identity and four distinct Ed25519 public trust anchors with private keys kept outside the repository and chat",
+    "fresh execution-specific AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF after target policy review",
+    "actual signed target_windows_load Q0 report and matching reviewer attestation produced on the sealed target runner"
+  ],
+  "claims": {
+    "external_system_mutated": false,
+    "target_or_production_service_started": false,
+    "backup_restore_or_load_executed": false,
+    "approval_or_handoff_consumed": false,
+    "local_Q0_false_green_path_closed": true,
+    "catalog_ladder_matrix_receipts_or_pointer_modified": false,
+    "O1B_P1_gate_passed": false,
+    "Q0_P1_gate_passed": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  }
+}

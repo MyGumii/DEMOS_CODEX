@@ -1,0 +1,121 @@
+{
+  "contract": "code_assist.notion.internal_collaborative_ultra_checkpoint.v1",
+  "recorded_at": "2026-08-23T02:50:18+09:00",
+  "run_id": "ui72-internal-collaboration-ultra-replan-20260823",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-unified-capabilities-dev-pair-rebase-20260823.json",
+    "sha256": "sha256:a9b4341457f82bc2e09264c6c49a8e751a15eaa01bca696d0a2f539e5279b2c1",
+    "semantic_status": "historical_v2_scope_predecessor"
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "paused",
+    "objective_preserved": true,
+    "goal_replaced_or_completed": false
+  },
+  "authority": {
+    "agents_instructions": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:9d8f56da8328dd1790b8d690ce3df02acacc1b616a5332f708b8440b18a3cfca"
+    },
+    "scope_predecessor": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_SCOPE_V2.md",
+      "sha256": "sha256:5dda1cc37c4aa8ea968b13227503c0eb27467aacaa25c92baa4186c0ea7cc7d9"
+    },
+    "execution_plan": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+      "sha256": "sha256:16d15a2294b72ff3cda9a95006baaefca689059ea8ca20b5e399f6337036446c"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:81191efe5d581d669409430c73339cf3cef793586db6a2b80b4168aa860c0eaf",
+      "required_rows": 23,
+      "satisfied_rows": 0
+    }
+  },
+  "current_state_evidence": {
+    "workspace_runtime_schema_version": 2026081317,
+    "workspace_runtime_resolver_cutover_proven": false,
+    "legacy_page_save_mode": "whole_page_revision_cas",
+    "websocket_or_crdt_runtime_dependency_present": false,
+    "production_or_development_ports_listening_at_snapshot": [],
+    "existing_10111_preview_root_synthetic_only": false,
+    "existing_core_scenario_count": 25,
+    "existing_core_evidence_final_collaboration_proof": false,
+    "aggregate_collaboration_kill_switch_present": false
+  },
+  "source_bindings": [
+    {
+      "path": "code_assist_v1/notion_workspace_store.py",
+      "sha256": "sha256:19de52d282b6d3adbad2aa72a128a56f9525fdb7f82748138d4e1a009705a979",
+      "access": "read_only_snapshot"
+    },
+    {
+      "path": "code_assist_v1/notion_store.py",
+      "sha256": "sha256:46ffcc8f94d584578b3dc93d472db0b00d6b9d17e89ad3f08aa932ee26eee22c",
+      "access": "read_only_snapshot"
+    },
+    {
+      "path": "code_assist_v1/app_code.py",
+      "sha256": "sha256:e125cb9ba71ede6bb260afc042b2bd1d048288b0d464e8e1ea79488a3130d592",
+      "access": "protected_read_only_snapshot"
+    },
+    {
+      "path": "code_assist_v1/app_notion.py",
+      "sha256": "sha256:49c2345c6eeef710e655e37b3ca7cff3821d900f175a585fb6a2ab7f9acaf4f2",
+      "access": "read_only_snapshot"
+    },
+    {
+      "path": "code_assist_v1/tools/full_second_brain_preview.py",
+      "sha256": "sha256:57a43f53cc0be93468197272f90aaf1c235d8694608ed395b34c94aa75d71993",
+      "access": "read_only_snapshot"
+    }
+  ],
+  "ultra_corrections": {
+    "reuse_existing_10111_identity_possible": true,
+    "reuse_existing_10111_data_root_allowed": false,
+    "sanitized_paired_dev_root_required": true,
+    "canonical_authority_before_share_ui": true,
+    "crdt_spike_before_schema_freeze": true,
+    "pixel_evidence_per_visible_slice": true,
+    "backup_consistency_designed_with_event_schema": true,
+    "final_canary_requires_two_collaborators_and_outsider": true
+  },
+  "open_interview_decisions": [
+    "development_identity_import_scope",
+    "target_scale_and_single_host_topology",
+    "adopted_database_and_adjacent_feature_set",
+    "rpo_rto_write_drain_backup_retention_and_history_policy",
+    "transient_or_durable_offline_editing"
+  ],
+  "dependency_order": "U0_then_D0_parallel_A0_H0_E0_O0_then_I0_T0_then_C0_E1_then_S0_F0_with_continuous_V0_then_O1_Q0_then_R0_R1",
+  "approval_packets": [
+    "AP-DEV-PAIR",
+    "AP-REFERENCE-MULTIUSER",
+    "AP-OPS-TARGET",
+    "AP-PROD-DEPLOY",
+    "AP-PROD-CANARY"
+  ],
+  "safety": {
+    "existing_product_source_modified": false,
+    "existing_plan_or_agents_file_modified": false,
+    "service_started_or_stopped": false,
+    "live_or_personal_content_read": false,
+    "account_or_auth_registry_modified": false,
+    "migration_or_restore_run": false,
+    "feature_flag_changed": false,
+    "production_data_changed": false,
+    "git_commit_claimed": false
+  },
+  "claims": {
+    "ultra_plan_created": true,
+    "completion_denominator_created": true,
+    "product_implementation_complete": false,
+    "development_pair_ready": false,
+    "canonical_authority_ready": false,
+    "real_time_collaboration_ready": false,
+    "pixel_complete": false,
+    "recovery_complete": false
+  },
+  "next_exact_action": "Resolve the five U0 interview decisions, then re-hash protected inputs and implement only D0 sanitized paired-root configuration and its isolated tests under explicit file ownership."
+}

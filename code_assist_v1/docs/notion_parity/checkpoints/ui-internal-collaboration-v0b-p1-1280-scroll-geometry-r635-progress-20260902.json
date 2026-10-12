@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaboration.v0b_p1_progress_checkpoint.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-1280-SCROLL-GEOMETRY-R635-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T04:28:45.8770021+09:00",
+  "status": "progress_only_gate_open",
+  "summary": "Matched the remaining reference-required 1280x800 right-edge scrollbar geometry in V0R-MU-007, V0R-MU-013, and V0R-MU-014. Isolated C0 r633 reproduces 2,357 fewer unmasked pixels. Full r635 preserves all four journeys, 36 accessibility passes, 36 keyboard paths, cleanup, 17 targeted tests, and receipt integrity. Exact remains 0/36.",
+  "immutable_lineage": {
+    "reference_receipt_sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-1280-scroll-pseudo-r631-progress-20260902.json",
+      "sha256": "sha256:a6bcde502196d6a57bb8ca54d80b48219b3064aa0a9d5d0a2191532aaee732cb"
+    },
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "main_agent_handoff_sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "protected_files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+      }
+    ],
+    "protected_files_modified": false
+  },
+  "retained_source_binding": {
+    "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:b66bba90b21d69d880d821247077c5881ac83282b1b25dc2e6bfd944217d2ba6",
+    "size_bytes": 198060,
+    "change": {
+      "viewport": "1280x800 only",
+      "V0R-MU-007": {
+        "workspace_main_before_height_px": 347
+      },
+      "V0R-MU-013": {
+        "workspace_main_before_top_px": 130,
+        "workspace_main_before_height_px": 466,
+        "redundant_outer_thumb_hidden": true
+      },
+      "V0R-MU-014": {
+        "workspace_main_before_top_px": 273,
+        "workspace_main_before_height_px": 466,
+        "redundant_outer_thumb_hidden": true
+      },
+      "production_changed": false,
+      "second_brain_changed": false
+    }
+  },
+  "isolated_validation": {
+    "C0_r633": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-candidate-20260902-r633",
+      "states": {
+        "V0R-MU-007": {
+          "candidate_1280_sha256": "sha256:0ba5a4c00a8c1cb7791f7aa64e4df1a6099a122a753d1efa989f6f505b5bb461",
+          "before_unmasked": 53780,
+          "after_unmasked": 52712,
+          "delta": -1068
+        },
+        "V0R-MU-013": {
+          "candidate_1280_sha256": "sha256:c7c2f939fa43d6033725ae90805044e48a5adf8cac68135cef98051c90e65376",
+          "before_unmasked": 59181,
+          "after_unmasked": 58785,
+          "delta": -396
+        },
+        "V0R-MU-014": {
+          "candidate_1280_sha256": "sha256:d63495cdbf93267eed5f9749545b32c168c3c89253953779cf3a4acd914957ac",
+          "before_unmasked": 73880,
+          "after_unmasked": 72987,
+          "delta": -893
+        }
+      },
+      "V0R-MU-012_delta": 0,
+      "all_1440_deltas": 0,
+      "aggregate_source_bound_unmasked_delta": -2357,
+      "journey_status": "pass",
+      "cleanup_passed": true
+    }
+  },
+  "non_promotable_runs": {
+    "r634": {
+      "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r634",
+      "failure": "C0_P2_COMMENT_LATENCY_EXCEEDED",
+      "receipt_created": false,
+      "source_rejected": false,
+      "reason": "Timing-only C0 latency failure; no candidate receipt was produced. The same source completed in r635."
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r635",
+    "receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r635/receipt.json",
+      "sha256": "sha256:bf50b35afe72f671b3bd828367c453472920b3a222639f29de3c2d502214cd6b",
+      "size_bytes": 287108
+    },
+    "started_at": "2026-09-01T19:19:05.862047Z",
+    "ended_at": "2026-09-01T19:24:39.181877Z",
+    "duration_ms": 333319,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "keyboard_path_record_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2040397,
+    "masked_difference_count": 69442,
+    "total_difference_count": 2109839,
+    "journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1865,
+      "comment_delivery_ms": 1384,
+      "reaction_delivery_ms": 1380,
+      "presence_ttl_expiry_ms": 15570,
+      "reconnect_ms": 1332
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:c562f74d7ed154f3dbb076280960b310732931f202a3daa7bdd71036c4786674"
+    }
+  },
+  "comparison_to_r631": {
+    "raw_unmasked_delta": -2376,
+    "raw_masked_delta": 0,
+    "raw_total_delta": -2376,
+    "source_bound_unmasked_delta": -2357,
+    "runtime_only_variations": {
+      "V0R-MU-008_unmasked": -19
+    }
+  },
+  "cumulative_source_bound_improvement_from_r581": {
+    "pre_r635": -31566,
+    "scroll_geometry_r635": -2357,
+    "aggregate_unmasked": -33923
+  },
+  "verification": {
+    "python_compile": "pass",
+    "targeted_tests": {
+      "result": "17 passed in 30.76s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:bf50b35afe72f671b3bd828367c453472920b3a222639f29de3c2d502214cd6b"
+    }
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel remains 0/36. Core25 and performance remain forbidden before exact 36/36 and were not run.",
+    "claims_closed": false,
+    "product_complete": false,
+    "goal_complete": false
+  },
+  "next_cursor": {
+    "phase": "V0B-P1 exact-pixel local correction",
+    "start_from": "Retain source sha256:b66bba90b21d69d880d821247077c5881ac83282b1b25dc2e6bfd944217d2ba6 and r635. Continue region-measured proposals; reject any per-state source-bound regression; do not run Core25/performance before exact 36/36."
+  }
+}

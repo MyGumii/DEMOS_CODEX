@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-WORKSPACE-MODAL-BACKDROP-PINNED-CHROME-RETRY23-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T16:07:42.1660265+09:00",
+  "checkpoint_kind": "fresh_36_capture_workspace_modal_backdrop_and_reproducible_browser_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Adopt the generic grayscale workspace-modal backdrop correction after a bounded IAM run and a fresh 36-capture run, bind subsequent evidence to an exact workspace-local Chrome for Testing build after the system Chrome auto-update, and preserve honest open-gate and cleanup truth.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-guest-banner-access-epoch-race-retry20-progress-20260828.json",
+    "sha256": "sha256:46fc15abca68d63f2b3e905ffd617d05b40ebfe0dde7f54c825e5aff0c9a93e9"
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:a73833096c80e0da2deae263dcb22c21d8030e3d40355b8e3f158eebcc808587",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:f5eaab5980b6a6ff7dee75835adfbc54ab9b7bb43b8a542631fb1043a864f6a5"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:954a06a027a846526f7c277b441bc7767237c6dde69009ebe100b89fd06255f3"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:aa742086137a1cb7e2a29d1b6ae6c51574894d2e066ecaea85421dcf6b3bcda4"
+      }
+    ],
+    "regression_test_file": {
+      "path": "code_assist_v1/tests/test_notion_navigation_ui.js",
+      "sha256": "sha256:a1201d33dde59c3bca627864625644d5f497bc1b300ed11b82974694b8445f0b"
+    }
+  },
+  "adopted_correction": {
+    "kind": "generic_workspace_modal_backdrop_raster",
+    "implementation": "When either the workspace invite or workspace member inspector is visibly open, the shared body backdrop uses the reference-aligned dark overlay plus grayscale filtering.",
+    "selectors": [
+      "body:has(.inspector[data-share-surface=workspace-invite]:not([hidden]))::before",
+      "body:has(.inspector[data-share-surface=workspace-members]:not([hidden]))::before"
+    ],
+    "affected_named_states": [
+      "V0R-MU-001",
+      "V0R-MU-002"
+    ],
+    "state_id_or_capture_specific_selector_used": false,
+    "focus_specific_styling_used": false,
+    "permission_semantics_changed": false,
+    "outside_modal_residual_targeted": true
+  },
+  "bounded_iam_evidence": {
+    "label": "retry55-workspace-modal-backdrop",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry55/receipt.json",
+    "receipt_sha256": "sha256:68a145d48ecb7b0e2a1e30a065e6f0f58dd69ef8204cbc045d06381c48fc7610",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "unmasked_difference_count": 3328397,
+    "masked_difference_count": 129676,
+    "raw_difference_count": 3458073,
+    "journey_status": "pass",
+    "browser_closed": true,
+    "test_root_moved_to_trash": true,
+    "synthetic_member_absent_after_cleanup": true,
+    "accepted": true,
+    "delta_from_retry54_unmasked": -356780,
+    "non_target_capture_delta_count": 0,
+    "target_capture_deltas": {
+      "V0R-MU-001__1280x800": -141179,
+      "V0R-MU-001__1440x900": -164256,
+      "V0R-MU-002__1280x800": -23246,
+      "V0R-MU-002__1440x900": -28099
+    }
+  },
+  "browser_reproducibility_boundary": {
+    "trigger": "The machine Chrome auto-updated from major 151 to major 153 while the immutable reference environment requires major 151.",
+    "system_chrome_modified": false,
+    "user_chrome_profile_touched": false,
+    "workspace_local_tool": {
+      "kind": "official_Chrome_for_Testing",
+      "version": "151.0.7922.173",
+      "archive_path": ".dev/browser-tools/chrome-for-testing-151.0.7922.173/chrome-win64.zip",
+      "archive_sha256": "sha256:362f6a19d0a0198c9a84c248a0ee99c473c94646093f4379c443374b0f6ac40e",
+      "archive_length_bytes": 201444440,
+      "executable_path": ".dev/browser-tools/chrome-for-testing-151.0.7922.173/extracted/chrome-win64/chrome.exe",
+      "executable_sha256": "sha256:5f24a7d74d204ca419f8fbdfd565dc98135b44382ccf9bb40ebfb2db0b998951",
+      "executable_length_bytes": 3988992
+    },
+    "environment_variable": "CODE_ASSIST_V0B_CHROME_EXECUTABLE_PATH",
+    "fallback_when_unset": "Existing Playwright channel=chrome launch behavior remains unchanged.",
+    "fail_closed_major_version_check_preserved": true
+  },
+  "harness_binding": {
+    "product_runtime_source_build_includes_harness": false,
+    "files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:e2e3149ee7bf228d54c9d793426c0c6f941362b0200268af3dfbc787b684df3c"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_browser.py",
+        "sha256": "sha256:b7255cfdbad191493e9ae43daebca54b494a23dee5a48548ee0a802cc804111d"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:60d092578a87861486e7a3844caa249f226096371f27c9aa2348dd49f7165c34"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/c0_p2_browser.py",
+        "sha256": "sha256:dd45b7ddba5ed1d698e8f9bb3aa34dfe0cd35852e7af3f24295a4e112ebed631"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/e1_p2_browser.py",
+        "sha256": "sha256:ec055234c6b030a615d92e2bac7a3a8634be862f9252f11644975f7bdb932716"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/f0_p5_browser.py",
+        "sha256": "sha256:aab933d7c0500f2c3b4b8bb945fc09c20ccd9ee7edfd50aeb3716cfe0eb49d7f"
+      }
+    ],
+    "change": "All normal and cleanup browser launches consume the validated optional exact executable path through one shared launch-options helper.",
+    "python_compile": "pass",
+    "pinned_browser_version_probe": "151.0.7922.173"
+  },
+  "approved_dev_pair_restart": {
+    "reason": "The prior manager and all three approved development ports were no longer alive after the interrupted turn.",
+    "stale_active_record_preserved_as": ".dev/notion-collaboration-10111-10113/active-run.stale-15c950c33dec4378b09c1d62356fc239.json",
+    "new_active_record_path": ".dev/notion-collaboration-10111-10113/active-run.json",
+    "new_active_record_sha256_at_checkpoint": "sha256:f6f80766f7c4648dbfaea15e5bd432d41f2167bda750ba8d383a9fa3af39e9e6",
+    "launch_id": "e1fdd25fb2fc40ec830ed696babb7a68",
+    "ports": [10111, 10112, 10113],
+    "health_status": "all_200_gateway_ready",
+    "approved_registry_path": ".tmp/second-brain-full-preview-10111/.runtime/users.json",
+    "approved_registry_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "approved_principals": ["admin", "user01"]
+  },
+  "rejected_or_transient_attempts": [
+    {
+      "label": "retry21-pre-service-attempt",
+      "failure": "approved_dev_pair_not_listening",
+      "receipt_written": false,
+      "accepted": false
+    },
+    {
+      "label": "retry21-system-chrome-attempt",
+      "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry21",
+      "failure": "V0B_BROWSER_MAJOR_MISMATCH:153:151",
+      "receipt_written": false,
+      "capture_artifact_count": 1,
+      "diff_artifact_count": 0,
+      "classification": "expected_fail_closed_environment_mismatch",
+      "cleanup_audit": {
+        "latest_reference_free_A_B_active_user01_membership_count": 0,
+        "latest_reference_free_A_B_active_user01_guest_count": 0,
+        "latest_reference_free_A_B_active_access_grant_count": 0,
+        "latest_reference_free_A_B_active_page_grant_count": 0,
+        "status": "complete"
+      },
+      "accepted": false
+    },
+    {
+      "label": "retry22-pinned-chrome-transient-latency",
+      "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry22",
+      "failure": "C0_P2_REACTION_LATENCY_EXCEEDED",
+      "receipt_written": false,
+      "capture_artifact_count": 22,
+      "diff_artifact_count": 22,
+      "cleanup_finalizer_ran": true,
+      "classification": "one_time_reaction_delivery_latency_spike",
+      "accepted": false
+    }
+  ],
+  "bounded_c0_recheck": {
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260828-retry17/receipt.json",
+    "receipt_sha256": "sha256:5b6591066549495b799772fb334689dd7f368fecf7d0f1138597f4004b1b159a",
+    "capture_count": 8,
+    "accessibility_pass_count": 8,
+    "unmasked_difference_count": 1234565,
+    "masked_difference_count": 109416,
+    "raw_difference_count": 1343981,
+    "journey_status": "pass",
+    "measurements_ms": {
+      "comment_delivery": 1835,
+      "presence_delivery": 332,
+      "presence_ttl_expiry": 15408,
+      "reaction_delivery": 2129,
+      "reconnect": 1267
+    },
+    "browser_version": "151.0.7922.173",
+    "browser_closed": true,
+    "test_page_moved_to_trash": true,
+    "synthetic_member_absent_after_cleanup": true,
+    "conclusion": "The retry22 C0 failure was a non-reproducing latency spike; the pinned current product path remains functionally green."
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry23",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry23/receipt.json",
+    "receipt_sha256": "sha256:bfee4015ebad867a3c38070b23e83d17ef5231492f88990c3954483cc8f87ae1",
+    "ui_source_build_sha256": "sha256:a73833096c80e0da2deae263dcb22c21d8030e3d40355b8e3f158eebcc808587",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_version": "151.0.7922.173",
+    "journey_count": 4,
+    "journey_statuses": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "state_count": 18,
+    "viewport_count": 2,
+    "capture_count": 36,
+    "interaction_pass_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "component_cleanup_verified": true,
+    "active_fixture_root_count": 0,
+    "active_test_grant_count": 0,
+    "active_test_member_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "gate_passed": false
+  },
+  "pixel_summary": {
+    "metric": "sum_of_unmasked_differing_pixel_count_across_36_full_candidate_captures",
+    "baseline_difference_count": 16116120,
+    "predecessor_retry16_difference_count": 6689505,
+    "predecessor_retry20_difference_count": 6625236,
+    "current_retry23_difference_count": 6268490,
+    "masked_difference_count": 250732,
+    "raw_difference_count": 6519222,
+    "change_from_retry20_count": -356746,
+    "change_from_retry20_percent": -5.38,
+    "change_from_retry16_count": -421015,
+    "change_from_retry16_percent": -6.29,
+    "reduction_from_baseline_count": 9847630,
+    "reduction_from_baseline_percent": 61.10,
+    "capture_deltas_from_retry20": {
+      "V0R-MU-001__1280x800": -141179,
+      "V0R-MU-001__1440x900": -164256,
+      "V0R-MU-002__1280x800": -23246,
+      "V0R-MU-002__1440x900": -28099,
+      "V0R-MU-011__1440x900": 379,
+      "V0R-MU-012__1280x800": 17,
+      "V0R-MU-012__1440x900": 17,
+      "V0R-MU-014__1440x900": -379
+    },
+    "unchanged_capture_count": 28,
+    "target_capture_change_count": 4,
+    "non_target_dynamic_raster_variation_count": 4,
+    "conclusion": "The four intended workspace-modal captures improved by 356780 pixels in total; the remaining net 34-pixel offset is explained by bounded notification/dynamic raster variation in four non-target captures."
+  },
+  "largest_remaining_state_aggregates": [
+    {"state_id": "V0R-MU-002", "unmasked_difference_count": 489469},
+    {"state_id": "V0R-MU-001", "unmasked_difference_count": 478075},
+    {"state_id": "V0R-MU-010", "unmasked_difference_count": 472964},
+    {"state_id": "V0R-MU-009", "unmasked_difference_count": 454130},
+    {"state_id": "V0R-MU-008", "unmasked_difference_count": 423556},
+    {"state_id": "V0R-MU-007", "unmasked_difference_count": 386245}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "receipt_sha256": "sha256:bfee4015ebad867a3c38070b23e83d17ef5231492f88990c3954483cc8f87ae1",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "release_candidate_binding_error_count": 0,
+    "runtime_candidate_binding_error_count": 0,
+    "reference_binding_error_count": 0,
+    "capture_or_diff_binding_error_count": 0,
+    "accessibility_error_count": 0,
+    "cleanup_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "verification": {
+    "json_parse": "pass",
+    "harness_python_compile": "pass",
+    "pinned_browser_version_probe": "pass",
+    "navigation_and_share_ui_test": "pass",
+    "share_and_workspace_membership_browser_tests": "4 passed in 22.44s",
+    "I0_P2_bounded_regression": "20/20 pass",
+    "C0_P2_bounded_regression": "8/8 pass",
+    "full_36_capture_current_build": "pass",
+    "interaction_matrix": "36/36 pass",
+    "accessibility_matrix": "36/36 pass",
+    "component_journeys": "4/4 pass",
+    "cleanup": "pass",
+    "independent_verifier_truthfulness": "pass_expected_gate_fail"
+  },
+  "inherited_open_gates": {
+    "exact_pixel": {
+      "passed": 0,
+      "required": 36,
+      "status": "open"
+    },
+    "core25": {
+      "source": "inherited_preflight_not_fresh_gate_evidence",
+      "passed": 20,
+      "failed": 1,
+      "failed_scenario": "UI-COLLAB-001",
+      "fresh_current_build_gate_evidence": false
+    },
+    "performance": {
+      "source": "busy_host_preflight_not_fresh_gate_evidence",
+      "observed_p95_ms": 4514.289,
+      "approved_budget_ms": 1370,
+      "quiet_host_verified": false,
+      "status": "fail"
+    }
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "persistent_or_signed_in_browser_profile_used": false,
+    "user_chrome_touched": false,
+    "system_chrome_modified": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "all_adopted_multiuser_states_captured": true,
+    "accessibility_evidence_complete": true,
+    "component_cleanup_complete": true,
+    "reproducible_browser_boundary_closed": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "O1B_entry_allowed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue exact-pixel convergence from retry23. First quantify the remaining inside-modal geometry and typography residuals for V0R-MU-001 and V0R-MU-002 against the largest collaboration-shell states V0R-MU-010, V0R-MU-009, and V0R-MU-008. Apply only cross-viewport and cross-journey-safe generic corrections. After 36/36 exact convergence, run fresh current-build Core25 and quiet-host performance gates. Do not enter O1B until every V0B gate passes."
+}

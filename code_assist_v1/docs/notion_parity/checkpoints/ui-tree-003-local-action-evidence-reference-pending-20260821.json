@@ -1,0 +1,130 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T19:28:40+09:00",
+  "run_id": "ui-tree-003-local-action-evidence-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-002-reference-differential-green-20260821.json",
+    "sha256": "sha256:03c69e0e13ce1f48fcc0b6ff5c9259af9c866658fb846bfd5e33bff875ec50c0",
+    "semantic_status": "current_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "complete the adopted 25-scenario Core Free Web UI and Second Brain plan",
+    "observed_at": "2026-08-21T19:28:40+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-TREE-003",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "live_local_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "permanent_delete_attempted": false,
+    "screenshot_count": 0,
+    "raw_dom_captured": false,
+    "network_payload_captured": false
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-TREE-003",
+    "status": "local_action_evidence_green_reference_c0_pending",
+    "implemented_corrections": [
+      "capture the duplicate-visible state immediately after UI-TREE-003-A01",
+      "capture the page-in-trash state immediately after UI-TREE-003-A02",
+      "capture the restored-page state immediately after UI-TREE-003-A03",
+      "bind all three captures to the verified local action log and exact viewport",
+      "retain exact assertions for no permanent delete and no Second Brain item or revision change"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 4,
+    "differential_passed": 4,
+    "reference_pending": 21,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json","sha256":"sha256:5324fe2a9a79d16377a72e1c5d81ca20ccce6366203db7be990d65e77921bbf9"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json","sha256":"sha256:7854732055e52999910f3a09a78a234458aaad50b70c64cf190dd42e9a8f88d6"}
+  ],
+  "owned_outputs": [
+    {"path":"code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py","sha256":"sha256:9f5c900afbf45aa5c23d4961918d89a1509db1086e150252ef3d375f9147431c"}
+  ],
+  "local_reference_viewport": {"width":1920,"height":863,"scale":1},
+  "local_source_build_sha256": "sha256:15b646fbd45fcd34ed9c8dde33e2920a9751e47024cda4c671885eb4626e419c",
+  "local_action_log_sha256": "sha256:407c25cfeb70a9d326a1772db8374a627bd4c4957d97fe02700fd4e4bbe6397f",
+  "local_action_captures": {
+    "UI-TREE-003-A01": {
+      "sha256": "sha256:4075bc2cc184b2747a547f73a788f1b9d9b95f750fd04914eacad095d8efd570",
+      "state": {"count":2,"state":"committed"},
+      "focus": {"name":"DUPLICATE-PAGE-ROW","state":"focused"},
+      "a11y": {"name":"DUPLICATE-PAGE-ROW","role":"TREEITEM"},
+      "geometry": {"PAGE-TREE":{"height":115,"width":223,"x":8,"y":510}}
+    },
+    "UI-TREE-003-A02": {
+      "sha256": "sha256:fcd39915389c795f4a2f98eec467a760b2db573066af1fcec33c59781dddb3d6",
+      "state": {"count":2,"state":"committed"},
+      "focus": {"name":"TRASH","state":"focused"},
+      "a11y": {"name":"TRASH","role":"BUTTON"},
+      "geometry": {"PAGE-TREE":{"height":57,"width":223,"x":8,"y":452}}
+    },
+    "UI-TREE-003-A03": {
+      "sha256": "sha256:89991fc1517ccc1b61fd54a4a969e1d05f012d18f31716817163781e42486e2a",
+      "state": {"count":2,"state":"committed"},
+      "focus": {"name":"RESTORED-PAGE-ROW","state":"focused"},
+      "a11y": {"name":"RESTORED-PAGE-ROW","role":"TREEITEM"},
+      "geometry": {"PAGE-TREE":{"height":115,"width":223,"x":8,"y":510}}
+    }
+  },
+  "local_exact_results": {
+    "duplicate_subtree_count": 2,
+    "workspace_duplicate_requests": 1,
+    "workspace_archive_requests": 1,
+    "workspace_restore_requests": 1,
+    "legacy_lifecycle_requests": 0,
+    "permanent_delete_requests": 0,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0
+  },
+  "reference_intake_preparation": {
+    "run_id": "ui3-tree-003-reference-20260821",
+    "worksheet_sha256": "sha256:2716153f36563d77f1335a7ba5afc3fcd4032565f5cd615cc65bacc33fe01037",
+    "capture_after_action_ids": ["UI-TREE-003-A01","UI-TREE-003-A02","UI-TREE-003-A03"],
+    "c0_status": "fail",
+    "c0_sha256": "sha256:1ae87821b84b9626fad6666485858a953dad97ccd4780485122431effea33868",
+    "failure_codes": ["synthetic_workspace_boundary_unconfirmed"],
+    "ref_free_a_confirmed": false,
+    "ref_free_b_confirmed": true,
+    "personal_workspace_opened": false,
+    "personal_page_opened": false,
+    "interpretation": "The Chrome connection and REF-FREE-B were verified, but no open tab or exact switcher entry exposed REF-FREE-A. Unknown tabs were not claimed or inspected."
+  },
+  "commands": [
+    {"selection":"current-source UI-TREE-003 isolated Chrome journey after action-capture patch","result":"1 passed in 36.29s","exit_code":0},
+    {"selection":"1920x863 isolated local UI-TREE-003 evidence reproduction","result":"3 action captures; duplicate/trash/restore request counts 1 each; permanent delete and Second Brain deltas 0","exit_code":0},
+    {"selection":"UI-TREE-002 and UI-TREE-003 adjacent real-browser regressions","result":"2 passed in 54.17s","exit_code":0},
+    {"selection":"Notion navigation interaction contract","result":"notion_navigation_ui: ok","exit_code":0},
+    {"selection":"Second Brain publication restart and chat characterization regressions","result":"5 passed in 5.98s","exit_code":0}
+  ],
+  "claims": {
+    "ui_tree_003_action_level_local_evidence_green": true,
+    "fifth_reference_characterized": false,
+    "fifth_differential_passed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_content_exposed": false,
+    "live_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "permanent_delete_attempted": false,
+    "protected_file_modified": false,
+    "owned_file_concurrent_drift": false,
+    "second_brain_regression": false
+  },
+  "next_exact_action": "Open a Chrome tab whose visible title is exactly REF-FREE-A | Notion, leave it open, and say REF-FREE-A tab opened. Then rerun C0 and perform the three approved synthetic UI-TREE-003 actions."
+}

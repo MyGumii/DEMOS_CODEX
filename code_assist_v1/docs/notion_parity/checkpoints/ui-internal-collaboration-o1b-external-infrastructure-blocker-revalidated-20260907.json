@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b.external_infrastructure_blocker_revalidation.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-EXTERNAL-INFRASTRUCTURE-BLOCKER-REVALIDATED-20260907",
+  "recorded_at": "2026-09-07T06:39:39.5108190Z",
+  "status": "blocked_after_local_implementation_complete",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-q0-r0-r1-z0-pretarget-revalidated-20260907.json",
+    "sha256": "sha256:e34297ac3c4dc1ab755f3fc62073e005d7a37e1d699e4e0e04d105cb6c0547c9"
+  },
+  "original_blocker": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-p1-target-infrastructure-blocked-20260907.json",
+    "sha256": "sha256:c393e455414f524262ad83be7dd26248b65ce30fff4ecfa4b84d7cd5b3e61edf"
+  },
+  "read_only_revalidation": {
+    "hyper_v_cmdlets_present": false,
+    "windows_sandbox_present": false,
+    "smb_mapping_available": false,
+    "physical_disk_count": 4,
+    "usb_disk_count": 1,
+    "usb_is_off_host_destination": false,
+    "wsl2_distribution_present": true,
+    "wsl2_is_distinct_windows_target": false,
+    "target_specific_bound_policy_present": false,
+    "actual_release_manifest_present": false
+  },
+  "local_readiness_evidence": {
+    "pretarget_test_count": 100,
+    "pretarget_test_status": "pass",
+    "central_audit_error_count": 0,
+    "local_required_implementation_gap_detected": false
+  },
+  "required_external_resolution": [
+    "approved encrypted off-host backup destination or explicit authority to provision one",
+    "approved distinct Windows target host and connection method or explicit authority to provision a compliant Windows VM",
+    "reviewed release identity and four distinct Ed25519 public trust anchors",
+    "fresh execution-specific AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF after target policy review"
+  ],
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1",
+    "product_complete": false
+  },
+  "claims": {
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "provisioning_authority_inferred": false,
+    "private_key_requested_in_chat": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "shared_goal_complete": false
+  },
+  "resume_condition": "Provide or explicitly authorize provisioning of a compliant isolated Windows target and encrypted off-host backup destination, then supply reviewed release identity and four distinct Ed25519 public trust anchors; private keys remain outside chat and repository.",
+  "record_sha256": "sha256:0d29d107b6edba10d0b89d3763ccae99af9925fa3a3dd824a1ad5b29af6a0d42"
+}

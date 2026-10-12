@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-PURITY-R6B-PREFLIGHT-20260907",
+  "recorded_at": "2026-09-06T19:22:00Z",
+  "status": "ready_after_interpreter_correction",
+  "packet_id": "V0B-P1",
+  "supersedes_preflight_only": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-purity-r6-preflight-20260907.json",
+  "supersede_reason": "The R6 launcher used system Python, whose child environment lacked Flask. It exited before either host became ready; owned processes stopped and ports 10111/10112/10113 remained closed. R6 artifacts are preserved and are not evidence.",
+  "runtime": {
+    "root": "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113-product-purity-r6b-20260907",
+    "allowed_parent": "G:/AI_Agent/DEMOS_CODEX/.dev",
+    "root_exists_before_start": false,
+    "ports": [10111, 10112, 10113],
+    "ports_listening_before_start": [],
+    "approval_id": "AP-DEV-PAIR",
+    "python": "G:/AI_Agent/DEMOS_CODEX/venv/Scripts/python.exe",
+    "flask_version": "3.1.3",
+    "identity_source": "G:/AI_Agent/DEMOS_CODEX/.tmp/second-brain-full-preview-10111/.runtime/users.json",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "identity_allowlist": ["admin", "user01"]
+  },
+  "capture": {
+    "output": "G:/AI_Agent/DEMOS_CODEX/.runtime/v0b-p1-product-purity-r6b-20260907/receipt.json",
+    "candidate_root": "G:/AI_Agent/DEMOS_CODEX/.runtime/v0b-p1-product-purity-r6b-20260907/candidates",
+    "diff_root": "G:/AI_Agent/DEMOS_CODEX/.runtime/v0b-p1-product-purity-r6b-20260907/diffs",
+    "expected_capture_count": 36,
+    "capture_pipeline_contract": "code_assist.notion.internal_collaborative_v0b_p1.product_capture.v3",
+    "create_only": true
+  },
+  "source_bindings_inherited_unchanged_from": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-purity-r6-preflight-20260907.json",
+  "safety": {
+    "failed_r6_root_preserved": true,
+    "personal_content_imported": false,
+    "production_mutation": false,
+    "SBE_hot_contract_edit": false,
+    "historical_receipt_overwrite": false
+  },
+  "goal_complete": false
+}

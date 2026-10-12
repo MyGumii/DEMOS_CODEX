@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-EVIDENCE-REVOCATION-STATUS-PRE-EDIT-20260907",
+  "recorded_at": "2026-09-07T01:43:55.8347239+09:00",
+  "checkpoint_kind": "hot_contract_corrective_pre_integration",
+  "packet_id": "V0B-P1",
+  "packet_status": "gate_passed_stale_pending_correction",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Register an immutable, hash-bound revocation of the contaminated V0 generic closing receipt; demote V0R-P1 and V0B-P1 until clean product-only evidence is accepted; and make the stable checkpoint represent this corrective state without erasing historical evidence.",
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-EVIDENCE-REVOCATION-STATUS-20260907",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "approval_implies_ownership": false,
+    "exact_paths_only": true
+  },
+  "owned_existing_files": [
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json"
+  ],
+  "new_product_files": [],
+  "new_test_files": [],
+  "new_evidence_files": [
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-evidence-revocation-20260907.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-evidence-revoked-current-20260907.json"
+  ],
+  "read_only_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-gate-passed-20260906.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-capture-integrity-verified-20260907.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-l6-final-generic-wrapper-20260906.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json"
+  ],
+  "protected_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/",
+    "code_assist_v1/knowledge/",
+    "code_assist_v1/user_data/",
+    "existing development and production roots",
+    "external accounts and reference workspaces"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:d0d3f16af3543ee4ef7a03270c19bbc4baa7b94b975521c5ce5b5d2b86337e77",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:4001baa442f0ba4dbe0914668e8171d1102c5b474d5cc6fd65385d6bee5ff078",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:db9e6b0183631f690e6961a431a697d047722a68aa433c6a98a6785b2710ab08",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:81209f312b9ae51c7e20c686c6ca2d7d156af3dcf148fb7e94bc8b0b7957bc0f",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:95185ec8baef234e581ed0112134fbaf91fc5e5dd7e53644fd4c491e060452fc"
+  },
+  "revoked_evidence_targets": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-l6-final-generic-wrapper-20260906.json",
+      "sha256": "sha256:c6538ebd028a0e139fca55cd0bd4328a694e1ebe0930ae6cadbe86ecd2116039",
+      "receipt_id": "V0B-P1-L6-FINAL-GENERIC-WRAPPER-20260907"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json",
+      "sha256": "sha256:d9fd95c7ed462bde80d50c86eaf6714405fbc5738c24cc3f8f05efbc9cda0d96",
+      "receipt_id": "V0B-P1-L6-FINAL-CANDIDATE-FRESH-1F606FC8F1826AAA",
+      "note": "specialized source receipt remains preserved and reviewable; the generic wrapper is the only execution-credit target"
+    }
+  ],
+  "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+  "current_schema_lineage_sha256": "sha256:b31ec2d1801e80e0410a1decdd126f2d53f1bf72729fecf3703492fb7e61da31",
+  "cross_catalog_ownership_snapshot": {
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_input_sha256": "sha256:a30f7f6674c00b30f7a3207329c8c7a5e25edef02d3b38738ba7ea969b2155f9",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "exact_path_collision_observed": false,
+    "SBE_hot_contract_write_planned": false,
+    "production_or_target_operation_planned": false
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-EVIDENCE-REVOCATION-STATUS-20260907",
+    "owner_agent": "/root",
+    "lane": "DOC_HARNESS",
+    "status": "active",
+    "acquired_at": "2026-09-07T01:43:55.8347239+09:00",
+    "expires_at": "2026-09-07T05:43:55.8347239+09:00",
+    "exact_paths_only": true
+  },
+  "goal_observation": {
+    "thread_id": "01a0399e-4edc-7792-9c0c-9c050b30e177",
+    "status": "active",
+    "objective_continued": true
+  },
+  "preflight": {
+    "central_audit_status": "fail",
+    "central_audit_error_count": 3,
+    "error_codes": [
+      "PACKET_FALSE_GREEN:V0B-P1",
+      "PACKET_FALSE_GREEN:V0R-P1",
+      "V0_FINAL_EVIDENCE_VERIFICATION_FAILED"
+    ],
+    "derived_counts": {
+      "gate_passed_required_packets_declared": 44,
+      "receipt_closed_matrix_rows": 18,
+      "receipt_closed_phase_gates": 14,
+      "valid_execution_receipts": 19
+    }
+  },
+  "rollback_or_cleanup": "Restore only the exact owned files to their pre-edit hashes and remove only the two newly declared evidence files if the correction fails. Never modify or delete the historical V0R/V0B receipts or their artifacts.",
+  "mutation_guard": {
+    "historical_receipt_overwrite": false,
+    "completion_matrix_edit": false,
+    "AGENTS_md_edit": false,
+    "SBE_hot_contract_edit": false,
+    "product_source_edit": false,
+    "runtime_service_start": false,
+    "external_or_production_mutation": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

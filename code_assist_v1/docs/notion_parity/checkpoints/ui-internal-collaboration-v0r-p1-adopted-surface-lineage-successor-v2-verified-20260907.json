@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-ADOPTED-SURFACE-LINEAGE-SUCCESSOR-V2-VERIFIED-20260907",
+  "recorded_at": "2026-09-07T02:58:00+09:00",
+  "checkpoint_kind": "immutable_v0r_historical_source_transition_successor",
+  "packet_id": "V0R-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Extend the sealed V0R adopted-surface lineage only across the central CLI timeout correction required by fresh 36-capture verification. It grants no V0B visual credit and rejects every undeclared future hash.",
+  "transition_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+  "historical_receipt_bound_sha256": "sha256:660f3a738d4835ecfe57be7fa9473da76129399de7095f508577ba297587dc77",
+  "current_sha256": "sha256:8bc53f2cd7fb07d272c6a04db99a02f86f7995ccf9f21491e8d42fef7fee501d",
+  "predecessor_transition_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-adopted-surface-lineage-successor-verified-20260907.json",
+    "sha256": "sha256:83c482ab58e7f0f481bcee22f6789c27ea8a1d077690c3dd539ec8ecb834f992",
+    "pre_sha256": "sha256:660f3a738d4835ecfe57be7fa9473da76129399de7095f508577ba297587dc77",
+    "post_sha256": "sha256:50f5a8710d9fc7806637f60ca40eb080fb4f14d5e414f2ce11df832761ae9173"
+  },
+  "transition_chain": [
+    {
+      "evidence_checkpoint": {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-adopted-surface-lineage-successor-verified-20260907.json",
+        "sha256": "sha256:83c482ab58e7f0f481bcee22f6789c27ea8a1d077690c3dd539ec8ecb834f992"
+      },
+      "pre_sha256": "sha256:660f3a738d4835ecfe57be7fa9473da76129399de7095f508577ba297587dc77",
+      "post_sha256": "sha256:50f5a8710d9fc7806637f60ca40eb080fb4f14d5e414f2ce11df832761ae9173",
+      "reason": "sealed V0R corrective adopted-surface lineage"
+    },
+    {
+      "pre_edit_checkpoint": {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-s0a-successor-rebind-pre-edit-20260907.json",
+        "sha256": "sha256:d3b3395102ba778b06949f1c5752e8c647cc8716cb2a4a7e691a9b9136fb79a7"
+      },
+      "pre_sha256": "sha256:50f5a8710d9fc7806637f60ca40eb080fb4f14d5e414f2ce11df832761ae9173",
+      "post_sha256": "sha256:8bc53f2cd7fb07d272c6a04db99a02f86f7995ccf9f21491e8d42fef7fee501d",
+      "reason": "central CLI audit and strict-gate timeout raised from 30 to 120 seconds after measured 55-second fresh V0R verification"
+    }
+  ],
+  "immutable_evidence": {
+    "v0r_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+    "v0r_receipt_sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "v0b_revocation_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-evidence-revocation-20260907.json",
+    "v0b_revocation_receipt_sha256": "sha256:e769c97dd58e85d184aecd42e90ab92ea29df436f3ab7e00fe36e7c6177a6739",
+    "modified": false
+  },
+  "guards": {
+    "verification_scope_reduced": false,
+    "v0r_evidence_recollected": false,
+    "v0b_visual_credit_granted": false,
+    "historical_receipt_overwritten": false,
+    "product_source_modified": false,
+    "sbe_modified": false,
+    "external_mutation_executed": false,
+    "product_complete": false,
+    "goal_complete": false
+  }
+}

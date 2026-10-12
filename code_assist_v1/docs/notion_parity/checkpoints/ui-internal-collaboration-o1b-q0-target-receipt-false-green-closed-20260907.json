@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b_q0.target_receipt_false_green_closure_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-Q0-TARGET-RECEIPT-FALSE-GREEN-CLOSED-20260907",
+  "recorded_at": "2026-09-07T04:20:57.8919083Z",
+  "packet_ids": [
+    "O1B-P1",
+    "Q0-P1"
+  ],
+  "status": "local_target_gate_receipt_hardening_pass_external_target_inputs_still_required",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-q0-pretarget-regression-20260907.json",
+    "sha256": "sha256:81677bb83532081fd0cf47a6b669981e8eb53fd47ebb413035464ffed6947428"
+  },
+  "defect_closed": {
+    "description": "The generic ladder runner previously allowed the L7 restore and L8 load lanes to execute local pytest and copy caller-supplied target realm labels into a gate receipt without reconstructing external target evidence.",
+    "former_false_green_paths": [
+      "L7-COLLAB-WORKSPACE-RESTORE local pytest labeled target_restore",
+      "L8-COLLAB-LOAD-FAULT local pytest labeled target_windows_load",
+      "handcrafted generic O1B-P1 or Q0-P1 receipts accepted without specialized target evidence"
+    ],
+    "enforced_invariants": [
+      "gate mode for L7 and L8 cannot enter the generic pytest runner",
+      "L7 requires the exact target_restore realm and L8 requires the exact target_windows_load realm",
+      "both gates require the complete repository-relative O1B policy approval handoff signed evidence index sanitized evidence root and target receipt set",
+      "policy bytes caller-pinned policy hash and realm-config fingerprint must be identical",
+      "release candidate must equal the release candidate authorized by the bound O1B trust-anchor policy",
+      "the O1B verifier is rerun with require_execution true before either target gate receipt is produced",
+      "Q0 additionally requires a create-only report that passes validate_q0_report with require_target_realm true",
+      "O1B and Q0 generic receipts each bind only their own packet and are freshly reverified by the central receipt validator",
+      "the verifier executes no target action and no pytest and never claims product completion"
+    ]
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "schema_lineage": {
+      "path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md",
+      "sha256": "sha256:b31ec2d1801e80e0410a1decdd126f2d53f1bf72729fecf3703492fb7e61da31"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    }
+  },
+  "implementation_bindings": [
+    {
+      "path": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+      "before_sha256": "sha256:244586e8a308ce31b415b58c5a13c02503a62337c841542c1c82df4f68ad983c",
+      "sha256": "sha256:4f92d257f16e6797a3f368083a2a28c41f8afec27c8f6a7725044724cf77ba4d"
+    },
+    {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "before_sha256": "sha256:dd365f46dda56050ac0606eee60fc91a836d1459ba9da0ee06433ce8cf8d0205",
+      "sha256": "sha256:486793a05d16d027130acb22b35458e25928103a80d6bcbba3955454f4497d59"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_gate_runner.py",
+      "before_sha256": null,
+      "sha256": "sha256:6466773a3bb584dd25a85cc67bf5b356ffc6c7396ed4123cc799797d06fc6a2f"
+    },
+    {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_target_restore.py",
+      "sha256": "sha256:a3a692ad03465cb35e0949d4f2c3b3cdac999ad64c5bbfb555e155a1f952b85a"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/q0_validation.py",
+      "sha256": "sha256:8d3cdebe1ccf28ccf6c25e3cdf07dbdc7db10f60350100bf0072b9353362bdbe"
+    }
+  ],
+  "verification": {
+    "focused_target_gate_regression": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m pytest -q -p no:debugging -p no:cacheprovider code_assist_v1\\tests\\notion_collaboration\\test_internal_collaborative_target_gate_runner.py code_assist_v1\\tests\\notion_collaboration\\test_internal_collaborative_target_restore.py code_assist_v1\\tests\\notion_collaboration\\load\\test_target_concurrency.py::test_q0_frozen_scale_and_local_realm_cannot_be_promoted_as_target_evidence code_assist_v1\\tests\\notion_collaboration\\test_internal_collaborative_harness.py::test_runner_uses_argv_without_shell_and_receipt_matches_schema code_assist_v1\\tests\\notion_collaboration\\test_realm_promotion.py::test_gate_mode_without_lane_never_falls_back_to_audit code_assist_v1\\tests\\notion_collaboration\\test_realm_promotion.py::test_l9_runner_rejects_private_or_escaping_evidence_paths code_assist_v1\\tests\\notion_collaboration\\test_realm_promotion.py::test_l9_aggregate_receipt_matches_generic_receipt_schema",
+      "passed": 65,
+      "failed": 0,
+      "exit_code": 0,
+      "duration_seconds": 25.82
+    },
+    "syntax_compile": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m py_compile code_assist_v1\\tools\\run_internal_collaborative_validation.py code_assist_v1\\tools\\internal_collaborative_validation.py code_assist_v1\\tests\\notion_collaboration\\test_internal_collaborative_target_gate_runner.py",
+      "exit_code": 0
+    },
+    "new_regression_count": 10,
+    "current_policy_state": "pending",
+    "current_external_execution_result": "fail_closed_before_target_verification"
+  },
+  "external_resolution_required": [
+    "approved encrypted off-host backup destination or explicit authority to provision one",
+    "approved distinct Windows target host and connection method or explicit authority to provision a compliant Windows VM",
+    "reviewed release identity and four distinct Ed25519 public trust anchors with private keys kept outside the repository and chat",
+    "fresh execution-specific AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF after target policy review",
+    "actual target_windows_load Q0 report produced by the sealed target runner"
+  ],
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1",
+    "O1B_P1_gate_passed": false,
+    "Q0_P1_gate_passed": false,
+    "catalog_ladder_matrix_or_pointer_modified": false
+  },
+  "claims": {
+    "external_system_mutated": false,
+    "target_or_production_service_started": false,
+    "backup_restore_or_load_executed": false,
+    "approval_or_handoff_consumed": false,
+    "local_false_green_path_closed": true,
+    "product_complete": false,
+    "shared_goal_complete": false
+  }
+}

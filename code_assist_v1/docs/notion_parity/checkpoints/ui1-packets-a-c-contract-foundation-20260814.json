@@ -1,0 +1,175 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-14T21:52:37+09:00",
+  "run_id": "ui1-packets-a-c-contract-foundation-20260814",
+  "status": "packets_a_b_c_complete_packet_d_ready",
+  "model": {
+    "implementation": "gpt-5.6-sol/xhigh",
+    "planning_contract": "gpt-5.6-sol/ultra"
+  },
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-xhigh-goal-bootstrap-20260814.json",
+    "sha256": "7f04fa765e40d0c7fe517c6f6568e2394e60110b0025dfefaf0987e5f7915e45",
+    "semantic_status": "xhigh_implementation_bootstrap"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective_status": "in_progress",
+    "completion_claimed": false
+  },
+  "scope": {
+    "primary_profile": "notion-free-owner-chrome-desktop-ko-KR",
+    "reference_workspaces": [
+      "REF-FREE-A",
+      "REF-FREE-B"
+    ],
+    "required_scenario_count": 25,
+    "ui1_scenario_count": 6,
+    "ui1_scenarios": [
+      "UI-SHELL-002",
+      "UI-SEARCH-001",
+      "UI-EDITOR-001",
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-A11Y-001"
+    ],
+    "conditional": [
+      "Business or Enterprise plan behavior",
+      "official Archive beta",
+      "native and offline clients",
+      "Enterprise administration and compliance"
+    ],
+    "excluded": [
+      "personal Notion workspace or page content",
+      "live user_data, knowledge, or .runtime data",
+      "Notion billing and entitlement replication",
+      "private API or raw network capture"
+    ]
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY",
+    "status": "contract_foundation_complete_browser_execution_pending",
+    "packets": {
+      "A-baseline-ownership": "completed",
+      "B-scenario-overlay-verifier": "completed",
+      "C-action-capture-redaction-library": "completed",
+      "D-isolated-local-browser-smoke": "pending",
+      "E-synthetic-reference-observation": "pending",
+      "F-first-differential-and-next-ui-correction": "pending"
+    }
+  },
+  "ownership": {
+    "modified": [
+      "code_assist_v1/tests/test_notion_workspace_auth_isolation.py"
+    ],
+    "added": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/policies/precalibration.v1.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/scenario.schema.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "code_assist_v1/tools/verify_notion_core_free_ui_plan.py",
+      "code_assist_v1/tests/test_verify_notion_core_free_ui_plan.py",
+      "code_assist_v1/tools/notion_parity/ui_redaction.py",
+      "code_assist_v1/tools/notion_parity/ui_actions.py",
+      "code_assist_v1/tools/notion_parity/ui_capture.py",
+      "code_assist_v1/tools/notion_parity/ui_evidence.py",
+      "code_assist_v1/tests/test_notion_ui_evidence_harness.py",
+      "code_assist_v1/docs/notion_parity/checkpoints/ui1-packets-a-c-contract-foundation-20260814.json"
+    ],
+    "production_ui_files_modified": [],
+    "protected_files_modified": [],
+    "git_repository_available": false,
+    "commit_or_landed_claimed": false
+  },
+  "source_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md": "db724d46a94cd8b5d6bc3b7b4207257ef9cc95c156184079f6bfaf8317ad8014",
+    "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md": "1334cf537c174a21307cb76e92883db5b78b08e2450fa70f9518d16f45a4e350",
+    "code_assist_v1/tests/test_notion_workspace_auth_isolation.py": "2f4ddd76c21c75730fc5328bf2406a64e3622fefa45b14b3a25e3945ef2c7cc5",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/policies/precalibration.v1.json": "bb09ffc7cb1b2fadffccfa8d4f48f0f944ffdb931514aaf25ac3469f9407d174",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/scenario.schema.json": "f7deb513be6dde9932791372880570c9048b2fa8828927f82c753f51223daa1b",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json": "385a81bcc818c146eff347a34d26323dcc5ce715b5ad1d37525a3cb0a0744a6d",
+    "code_assist_v1/tools/verify_notion_core_free_ui_plan.py": "788a4485b3161a425a6128b3e137976a31ccaa5fc6ce6851e7bcce7077e87ff6",
+    "code_assist_v1/tests/test_verify_notion_core_free_ui_plan.py": "3953e67e1f5761814e9c45dc746bfd12650584b40aa50389192b06ab10daf224",
+    "code_assist_v1/tools/notion_parity/ui_redaction.py": "28b1c240e8ee705fd62869fa5113bdba855042525cea05e43f86218e7a7a1087",
+    "code_assist_v1/tools/notion_parity/ui_actions.py": "2e03dbdd3c7490e02433df7de38c9ac2961342cdda849eb71a6fd69a049852b4",
+    "code_assist_v1/tools/notion_parity/ui_capture.py": "d2cacc294e1f432bb92979b9802723b3a554bc0aa7892c17bb6c542b07283c7d",
+    "code_assist_v1/tools/notion_parity/ui_evidence.py": "10076b9067b46e8faa818a0342392ab62e3fde1f0dcd3496bc4c55abbd655c5c",
+    "code_assist_v1/tests/test_notion_ui_evidence_harness.py": "c0d4997b244f8c54d0b6e67c5e762c000b40e0bdae2bef92e03eddcae5f09c8b"
+  },
+  "runtime_boundary": {
+    "isolated_data_root_used": true,
+    "synthetic_only": true,
+    "browser_accessed_this_run": false,
+    "reference_workspace_accessed_this_run": false,
+    "personal_workspace_accessed": false,
+    "live_local_data_accessed": false,
+    "raw_dom_or_network_captured": false,
+    "external_messages_or_invites_sent": false,
+    "public_links_created": false,
+    "plan_or_trial_changed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false
+  },
+  "validation": {
+    "ui0a_single_regression": {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_workspace_auth_isolation.py::test_app_code_factory_import_graph_excludes_workspace_overlay_modules -q",
+      "exit_code": 0,
+      "result": "1 passed in 1.79s"
+    },
+    "ui0a_adjacent_regression": {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_workspace_routes.py code_assist_v1\\tests\\test_notion_workspace_navigation_routes.py code_assist_v1\\tests\\test_notion_workspace_auth_isolation.py code_assist_v1\\tests\\test_notion_workspace_pages.py -q",
+      "exit_code": 0,
+      "result": "45 passed in 50.70s"
+    },
+    "scenario_verifier": {
+      "exit_code": 0,
+      "result": "12 passed in 3.55s",
+      "plan_sha256": "sha256:b4341876bd5ab2d0eb239a5cae3ca0431e6d421222bf72eff5e631986ee5960f",
+      "schema_sha256": "sha256:5e473d1cd33ba768527c91c07c3c5d550c4fda6b5c7a72f348f1dddd95a743e7"
+    },
+    "ui_harness_focused": {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_evidence_harness.py -q",
+      "exit_code": 0,
+      "result": "15 passed in 3.38s"
+    },
+    "combined_contract_and_historical_compatibility": {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_core_free_ui_plan.py code_assist_v1\\tests\\test_notion_ui_evidence_harness.py code_assist_v1\\tests\\test_notion_evidence_policy.py code_assist_v1\\tests\\test_notion_differential.py -q",
+      "exit_code": 0,
+      "result": "49 passed in 11.90s"
+    },
+    "py_compile": {
+      "exit_code": 0,
+      "result": "verifier, four harness modules, and two focused test modules compiled"
+    }
+  },
+  "claims": {
+    "ui0a_baseline_resolved": true,
+    "core_scenario_overlay_implemented": true,
+    "strict_scenario_verifier_implemented": true,
+    "action_capture_redaction_evidence_contracts_implemented": true,
+    "import_side_effect_boundary_verified": true,
+    "real_browser_harness_implemented": false,
+    "official_free_reference_characterized": false,
+    "ui1_golden_journey_passed": false,
+    "core_ui_complete": false,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "owned_file_drift": false,
+    "personal_content_exposure": false,
+    "live_local_data_access": false,
+    "protected_file_modification": false,
+    "operational_state_change": false,
+    "unredacted_artifact": false,
+    "unresolved_goal_conflict": false
+  },
+  "remaining": [
+    "Establish a repeatable isolated local real-browser smoke run",
+    "Observe only REF-FREE-A and REF-FREE-B using synthetic content",
+    "Create redacted reference and local UI1 evidence artifacts",
+    "Run the first pre-calibration differential",
+    "Make and verify the first measured cohesive UI correction"
+  ],
+  "next_exact_action": "Re-read the in-app Browser control skill, verify local isolated startup requirements, then perform Packet D without accessing personal or live local data."
+}

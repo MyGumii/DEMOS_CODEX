@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/schemas/internal-collaborative-authority-adr-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract",
+    "adr_id",
+    "recorded_at",
+    "status",
+    "packet_id",
+    "authority_inputs",
+    "current_state",
+    "target_state",
+    "route_storage_map",
+    "atomic_transaction_contract",
+    "permission_epoch_contract",
+    "revoke_delivery_fence_contract",
+    "legacy_cutover_contract",
+    "second_brain_boundary",
+    "prototype_boundary",
+    "validation_contract",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "contract": {"const": "code_assist.notion.internal_collaborative_authority_adr.v1"},
+    "adr_id": {"const": "A0A-P1-AUTHORITY-ADR-001"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "status": {"const": "accepted_target_contract_current_runtime_unchanged"},
+    "packet_id": {"const": "A0A-P1"},
+    "authority_inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agents_md", "planning_documents", "source_documents", "sbe_instruction_manifest", "current_schema_lineage_sha256"],
+      "properties": {
+        "agents_md": {"$ref": "#/$defs/hashRef"},
+        "planning_documents": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"$ref": "#/$defs/hashRef"}},
+        "source_documents": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"$ref": "#/$defs/hashRef"}},
+        "sbe_instruction_manifest": {
+          "type": "array",
+          "minItems": 18,
+          "maxItems": 18,
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {"type": "string", "pattern": "^code_assist_v1/docs/knowledge_spaces/"},
+              {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+            ],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "current_schema_lineage_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "current_state": {"type": "object"},
+    "target_state": {"type": "object"},
+    "route_storage_map": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "route_patterns", "current_authority", "current_storage", "target_authority", "cutover_state"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]+$"},
+          "route_patterns": {"$ref": "#/$defs/stringList"},
+          "current_authority": {"type": "string", "minLength": 1},
+          "current_storage": {"type": "string", "minLength": 1},
+          "target_authority": {"type": "string", "minLength": 1},
+          "cutover_state": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "atomic_transaction_contract": {"type": "object"},
+    "permission_epoch_contract": {"type": "object"},
+    "revoke_delivery_fence_contract": {"type": "object"},
+    "legacy_cutover_contract": {"type": "object"},
+    "second_brain_boundary": {"type": "object"},
+    "prototype_boundary": {"type": "object"},
+    "validation_contract": {"type": "object"},
+    "claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adr_complete", "runtime_implemented", "schema_migration_allocated", "dev_cutover_enabled", "production_changed", "product_complete"],
+      "properties": {
+        "adr_complete": {"const": true},
+        "runtime_implemented": {"const": false},
+        "schema_migration_allocated": {"const": false},
+        "dev_cutover_enabled": {"const": false},
+        "production_changed": {"const": false},
+        "product_complete": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "hashRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^code_assist_v1/"},
+        "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "stringList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

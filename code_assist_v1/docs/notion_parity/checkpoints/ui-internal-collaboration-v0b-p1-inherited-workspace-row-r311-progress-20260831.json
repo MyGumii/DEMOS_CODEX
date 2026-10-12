@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-INHERITED-WORKSPACE-ROW-R311-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T23:35:41.4317917+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r311 Chrome 153 full candidate preserves the immutable lossless-exact-v4 browser reference, captures all 18 named states at both adopted viewports, passes all 36 accessibility and interaction captures plus all four component journeys, and completes synthetic cleanup. V0R-MU-006 now aligns its inherited-workspace row five pixels upward, renders a deterministic reference-colored vector home icon, and places the general-access divider on the exact reference scanline. Compared with retained r308, r311 lowers the unmasked and raw difference totals by 5,262 pixels with no masked-count increase; compared with r303 it lowers both totals by 7,428 pixels. Exact RGBA remains 0/36, so r311 is mutable progress evidence only and is not an immutable receipt, phase-gate closure, or product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified_by_this_packet": false,
+      "conflicting_change_detected": false
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-direct-guest-lock-divider-r308-progress-20260831.json",
+      "sha256": "sha256:bed4b9d96d5daf231d8ef5ef01552a459d22a57f4038c9063fa34b8f29846161"
+    },
+    "previous_candidate": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r308/receipt.json",
+      "receipt_sha256": "sha256:af57c4e5d55f2d0ea4124ace34e1466316aeffaef2574528ac560276522f94f6",
+      "unmasked_difference_count": 2228957,
+      "masked_difference_count": 70240,
+      "raw_difference_count": 2299197
+    }
+  },
+  "implementation": {
+    "capture_harness": {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:4d0830140b7cd4bb91b11c36a99b2b69b9f3cf6aed091744f6d811bb21cae1ca",
+      "changes": [
+        "move only the V0R-MU-006 inherited-workspace row upward by the measured five pixels",
+        "replace only the V0R-MU-006 capture projection home glyph with an aria-hidden 16px SVG on the measured #f9f8f7 background and #55534e foreground",
+        "generalize the reference divider helper so V0R-MU-004 remains at local y=286 and V0R-MU-006 uses local y=334",
+        "restore the ordinary row border and remove the reference divider outside the two bounded share states"
+      ]
+    },
+    "retained_product_sources": [
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:9f0d6d09ff14523d9522bec7e9f82ece06597af40939470111d2cacb6a29a07d"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:ebf9a70d7462960e4e78ff860912c1550dfa845906e25e1465acdff1eee970bc"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/f0_p5_browser.py",
+        "sha256": "sha256:b18a47c140da544fb5e8407bc68ed297f5bcb44263cc67567d45b4dbf49f7a3c"
+      }
+    ],
+    "isolated_experiments": {
+      "r309": {
+        "description": "five-pixel inherited-workspace row alignment, deterministic home icon, and first divider coordinate",
+        "V0R-MU-006": 187616,
+        "delta_from_r308": -2358,
+        "home_icon_exact_pixel_count": 893,
+        "home_icon_pixel_count": 1024,
+        "accepted_with_divider_followup": true
+      },
+      "r310": {
+        "description": "correct the V0R-MU-006 divider from page y=379 to exact reference page y=378",
+        "diagnostic_path": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260831-r310/diagnostic.json",
+        "diagnostic_sha256": "sha256:79cabbd1bb5cd0881281881987acaef90833f77fac45d1c7f9186b41bc7d0469",
+        "V0R-MU-006": 185792,
+        "delta_from_r309": -1824,
+        "changed_pixels_per_viewport": 912,
+        "changed_bbox_wide": [884, 378, 1340, 380],
+        "changed_bbox_compact": [724, 378, 1180, 380],
+        "capture_count": 20,
+        "accessibility_pass_count": 20,
+        "browser_closed": true,
+        "test_root_moved_to_trash": true,
+        "synthetic_member_absent_after_cleanup": true,
+        "accepted": true
+      }
+    }
+  },
+  "retained_r311_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r311",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r311/receipt.json",
+    "receipt_sha256": "sha256:6071d3367ab05cc2a208a26955e3949f972fc39365cac1868cae668e709d1c95",
+    "source_build_sha256": "sha256:649004beed6722fa10f64546624279c33bbdf3a18e114fdd9fc74f1d1397dde4",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 382203,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2223695,
+    "masked_difference_count": 70240,
+    "raw_difference_count": 2293935,
+    "unmasked_delta_from_r308": -5262,
+    "masked_delta_from_r308": 0,
+    "raw_delta_from_r308": -5262,
+    "unmasked_delta_from_r303": -7428,
+    "masked_delta_from_r303": 0,
+    "raw_delta_from_r303": -7428,
+    "unmasked_state_deltas_from_r308": {
+      "V0R-MU-002": -975,
+      "V0R-MU-004": -106,
+      "V0R-MU-006": -4182,
+      "V0R-MU-008": 1
+    },
+    "unmasked_state_totals": {
+      "V0R-MU-001": 197776,
+      "V0R-MU-002": 188556,
+      "V0R-MU-003": 137453,
+      "V0R-MU-004": 121602,
+      "V0R-MU-005": 56323,
+      "V0R-MU-006": 185792,
+      "V0R-MU-007": 113094,
+      "V0R-MU-008": 115339,
+      "V0R-MU-009": 131745,
+      "V0R-MU-010": 117642,
+      "V0R-MU-011": 113001,
+      "V0R-MU-012": 110620,
+      "V0R-MU-013": 143500,
+      "V0R-MU-014": 171717,
+      "V0R-MU-015": 69301,
+      "V0R-MU-016": 68486,
+      "V0R-MU-017": 90943,
+      "V0R-MU-018": 90805
+    },
+    "c0_p2_measurements_ms": {
+      "presence_delivery_ms": 233,
+      "comment_delivery_ms": 1656,
+      "reaction_delivery_ms": 1578,
+      "presence_ttl_expiry_ms": 15389,
+      "reconnect_ms": 1296
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:e5aabdfaf767804b686eb03f47652646bbe641214185d9b7951a6b6b3f94cc56"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_i0_semantic_diagnostic.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+        "code_assist_v1/tests/notion_collaboration/browser/test_f0_p5_adopted_surface.py"
+      ],
+      "result": "16 passed, 1 skipped in 12.67s",
+      "exit_code": 0
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:6071d3367ab05cc2a208a26955e3949f972fc39365cac1868cae668e709d1c95"
+    },
+    "full_candidate": {
+      "component_journey_statuses": {
+        "I0-P2": "pass",
+        "C0-P2": "pass",
+        "E1-P2": "pass",
+        "F0-P5": "pass"
+      },
+      "all_adopted_multiuser_states_captured": true,
+      "accessibility_evidence_complete": true,
+      "interaction_evidence_complete": true,
+      "zero_unmasked_RGBA_difference": false
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from the retained r311 mutable candidate. Preserve the direct-guest vector lock and V0R-MU-004 divider from r308, the V0R-MU-006 five-pixel inherited-workspace alignment, deterministic home icon, exact general-access divider, canonical rich starter semantics, state-bounded indentation and chip geometry for V0R-MU-005/V0R-MU-015/V0R-MU-016, deterministic F0 reference-context restoration, and all earlier retained corrections. Treat isolated header-status differences as run variability unless a source-bounded causal region is proven. Do not restore the rejected 700-weight guest-banner button label, white guest-banner button background, 78-pixel page-icon override, 30-pixel all-row minimum height, 13-pixel toggle experiment, later-editor letter-spacing transform, 495px workspace-invite modal, 55px workspace-invite role control, V0R-MU-015 Korean display-string substitution, or V0R-MU-016 title transform. Prioritize another reproducible state-bounded structural or rendering difference, and do not run fresh Core 25 or quiet-host performance gates until the 36/36 exact gate closes."
+}

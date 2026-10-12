@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/schemas/internal-collaborative-crdt-candidate-matrix-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract",
+    "matrix_id",
+    "recorded_at",
+    "packet_id",
+    "status",
+    "authority_inputs",
+    "target_environment",
+    "source_observations",
+    "candidates",
+    "decision_criteria",
+    "license_policy",
+    "spike_boundary",
+    "availability_conclusion",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "contract": {"const": "code_assist.notion.internal_collaborative_crdt_candidate_matrix.v1"},
+    "matrix_id": {"const": "E0-P1-CRDT-CANDIDATE-MATRIX-001"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "packet_id": {"const": "E0-P1"},
+    "status": {"const": "frozen_for_isolated_spike_no_winner"},
+    "authority_inputs": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/hashRef"}
+    },
+    "target_environment": {"type": "object"},
+    "source_observations": {
+      "type": "array",
+      "minItems": 6,
+      "items": {"$ref": "#/$defs/sourceObservation"}
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/candidate"}
+    },
+    "decision_criteria": {
+      "type": "array",
+      "minItems": 10,
+      "items": {"$ref": "#/$defs/criterion"}
+    },
+    "license_policy": {"type": "object"},
+    "spike_boundary": {"type": "object"},
+    "availability_conclusion": {"type": "object"},
+    "claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "matrix_complete",
+        "candidate_winner_selected",
+        "dependency_downloaded_or_installed",
+        "production_dependency_pinned",
+        "runtime_implemented",
+        "product_complete"
+      ],
+      "properties": {
+        "matrix_complete": {"const": true},
+        "candidate_winner_selected": {"const": false},
+        "dependency_downloaded_or_installed": {"const": false},
+        "production_dependency_pinned": {"const": false},
+        "runtime_implemented": {"const": false},
+        "product_complete": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "hashRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^code_assist_v1/"},
+        "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "stringList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "sourceObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "package_id",
+        "ecosystem",
+        "observed_version",
+        "license_spdx",
+        "requires_runtime",
+        "registry_url",
+        "repository_url",
+        "target_artifact",
+        "target_artifact_integrity",
+        "target_artifact_available",
+        "locally_installed"
+      ],
+      "properties": {
+        "package_id": {"type": "string", "minLength": 1},
+        "ecosystem": {"enum": ["npm", "pypi"]},
+        "observed_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+        "license_spdx": {"enum": ["BSD-3-Clause", "MIT"]},
+        "requires_runtime": {"type": "string", "minLength": 1},
+        "registry_url": {"type": "string", "pattern": "^https://"},
+        "repository_url": {"type": "string", "pattern": "^https://github\\.com/"},
+        "target_artifact": {"type": "string", "minLength": 1},
+        "target_artifact_integrity": {"type": "string", "pattern": "^(sha256:[0-9a-f]{64}|sha512:[A-Za-z0-9+/=]+)$"},
+        "target_artifact_available": {"const": true},
+        "locally_installed": {"const": false}
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "architecture",
+        "package_ids",
+        "gateway_execution_owner",
+        "crdt_execution_owner",
+        "opaque_relay",
+        "wire_family",
+        "strengths",
+        "risks",
+        "required_probe_ids",
+        "eligibility"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"},
+        "architecture": {"type": "string", "minLength": 1},
+        "package_ids": {"$ref": "#/$defs/stringList"},
+        "gateway_execution_owner": {"enum": ["node", "python"]},
+        "crdt_execution_owner": {"enum": ["node", "python"]},
+        "opaque_relay": {"type": "boolean"},
+        "wire_family": {"type": "string", "minLength": 1},
+        "strengths": {"$ref": "#/$defs/stringList"},
+        "risks": {"$ref": "#/$defs/stringList"},
+        "required_probe_ids": {"$ref": "#/$defs/stringList"},
+        "eligibility": {"const": "eligible_for_isolated_spike_not_selected"}
+      }
+    },
+    "criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "measurement"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"},
+        "kind": {"enum": ["mandatory_gate", "measured_comparison"]},
+        "measurement": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

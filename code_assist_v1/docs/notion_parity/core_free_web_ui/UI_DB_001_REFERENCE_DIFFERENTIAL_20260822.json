@@ -1,0 +1,320 @@
+{
+  "contract": "code_assist.notion.core_free_ui.reference_differential.v1",
+  "recorded_at": "2026-08-22T20:34:39.3932957+09:00",
+  "scenario_id": "UI-DB-001",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "review": {
+    "approved": true,
+    "approved_by": "workspace_owner",
+    "approval_scope": "redacted_summary_only"
+  },
+  "scope": {
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "external_side_effect_attempted": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "screenshot_count": 0
+  },
+  "reference": {
+    "browser": "chrome-signed-in",
+    "submission_file_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+    "receipt_file_sha256": "sha256:90bbbe185470af6493c272c9d8a2a2520053ef5dd51d013e27c04cbfdaa1190f",
+    "receipt": {
+      "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+      "c0_sha256": "sha256:9c122b6ac60d83575ef822c9c822b96e1f0d84f40dcd53a3ed3dae555550e366",
+      "capture_count": 2,
+      "captures_sha256": "sha256:29b513faf3dd6ed592ce3aa480ff2616d6f404ace4e9a21c73ffc24c297cf047",
+      "contract": "notion_core_free_ui_manual_reference_receipt_v1",
+      "external_side_effect_attempted": false,
+      "path_disclosed": false,
+      "personal_page_accessed": false,
+      "personal_workspace_accessed": false,
+      "profile": "free-owner-chrome-desktop-ko-KR",
+      "promotion_allowed": false,
+      "run_id": "ui59-r1-r3-reference-completion-20260822",
+      "scenario_id": "UI-DB-001",
+      "screenshot_count": 0,
+      "status": "accepted_reference_observation",
+      "worksheet_sha256": "sha256:6ca7ae02f16d8e07aad7ff065c44506ff506b7e01255cb05089bbcd444570d29"
+    },
+    "captures": {
+      "UI-DB-001-A01": {
+        "a11y": {
+          "name": "DATABASE-TABLE",
+          "role": "NONE"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "DATABASE-GRID",
+          "state": "not_focused"
+        },
+        "geometry": {
+          "DATABASE-TABLE": {
+            "height": 72,
+            "width": 880,
+            "x": 374,
+            "y": 166
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 1800,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-DB-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "DATABASE-TABLE",
+          "state": "visible"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 4,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-DB-001-A02": {
+        "a11y": {
+          "name": "DATABASE-ROW",
+          "role": "textbox"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "DATABASE-ROW",
+          "state": "focused"
+        },
+        "geometry": {
+          "DATABASE-ROW": {
+            "height": 919,
+            "width": 960,
+            "x": 960,
+            "y": 0
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 650,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-DB-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "DATABASE-ROW",
+          "state": "visible"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "local": {
+    "browser": "chrome-ephemeral-headless",
+    "isolated_data_root": true,
+    "capture_sha256": {
+      "UI-DB-001-A01": "sha256:e1ff06b559af713cb76dd69bfbf73a6657d0ab1f31b1100ca1120705961ff0e7",
+      "UI-DB-001-A02": "sha256:6d8e317f69f68572abae9422e12480be22ae6a8c3dce225f51fc87d76db18088"
+    },
+    "captures": {
+      "UI-DB-001-A01": {
+        "a11y": {
+          "name": "DATABASE-TABLE",
+          "role": "NONE"
+        },
+        "action_log_sha256": "sha256:7656665222d1a8fd24b43449695a8827102ee5f8d1d2a38625a99280507d359d",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "DATABASE-GRID",
+          "state": "not_focused"
+        },
+        "geometry": {
+          "DATABASE-TABLE": {
+            "height": 76,
+            "width": 760,
+            "x": 475,
+            "y": 380
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-DB-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "DATABASE-TABLE",
+          "state": "visible"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 4,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-DB-001-A02": {
+        "a11y": {
+          "name": "DATABASE-ROW",
+          "role": "textbox"
+        },
+        "action_log_sha256": "sha256:7656665222d1a8fd24b43449695a8827102ee5f8d1d2a38625a99280507d359d",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "DATABASE-ROW",
+          "state": "focused"
+        },
+        "geometry": {
+          "DATABASE-ROW": {
+            "height": 160,
+            "width": 596,
+            "x": 768,
+            "y": 200
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-DB-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "DATABASE-ROW",
+          "state": "visible"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "differential": {
+    "policy_state": "precalibration",
+    "all_actions_passed": true,
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-DB-001-A01": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:09136a40221fcd4c6b46f8812dc1f77f264bf4231dc74666441853715734e810",
+        "candidate_sha256": "sha256:e1ff06b559af713cb76dd69bfbf73a6657d0ab1f31b1100ca1120705961ff0e7",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "DATABASE-TABLE": {
+              "height": 72,
+              "width": 880,
+              "x": 374,
+              "y": 166
+            }
+          },
+          "candidate_geometry": {
+            "DATABASE-TABLE": {
+              "height": 76,
+              "width": 760,
+              "x": 475,
+              "y": 380
+            }
+          },
+          "reference_latency_ms": 1800,
+          "candidate_latency_ms": 0
+        }
+      },
+      "UI-DB-001-A02": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:a0db1137e682ccbb9e891667dc1bbc71bce5c0892e131a418e556106181d0eaf",
+        "candidate_sha256": "sha256:6d8e317f69f68572abae9422e12480be22ae6a8c3dce225f51fc87d76db18088",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "DATABASE-ROW": {
+              "height": 919,
+              "width": 960,
+              "x": 960,
+              "y": 0
+            }
+          },
+          "candidate_geometry": {
+            "DATABASE-ROW": {
+              "height": 160,
+              "width": 596,
+              "x": 768,
+              "y": 200
+            }
+          },
+          "reference_latency_ms": 650,
+          "candidate_latency_ms": 0
+        }
+      }
+    }
+  }
+}

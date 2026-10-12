@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-LOSSLESS-PREFLIGHT-CLEAN-PASS-20260828",
+  "recorded_at": "2026-08-28T20:56:34.8991764+09:00",
+  "checkpoint_kind": "lossless_superseding_reference_preflight_clean_pass_before_external_mutation",
+  "packet_id": "V0R-P1",
+  "packet_status": "lossless_supersede_approved_preflight_passed",
+  "purpose": "Record the fresh privacy-safe preflight for the user-approved lossless corrective reference recollection. The predecessor semantic and corrective receipts remain immutable. Two independent dedicated Chrome contexts each expose one distinct primary Notion account; only the owner context exposes one exact REF-FREE-A and one exact REF-FREE-B target, while the collaborator context exposes neither target and retains one renamed non-target workspace. No active V0R-A-ROOT or V0R-B-ROOT fixture is visible in either target workspace, so a new synthetic run may start from its declared clean state.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-preflight-clean-pass-20260828.json"
+  ],
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "execution_manifest": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_reference_multiuser_execution.v1.json",
+    "sha256": "sha256:924b3812e81bffc024bd386a5735c69a676f08e5b8c3f8ce52dffc6e0b9d7cf5",
+    "expected_action_count": 11,
+    "expected_capture_state_count": 18,
+    "expected_screenshot_count": 36
+  },
+  "supersede_approval": {
+    "received": true,
+    "scope": "V0R-P1 lossless corrective reference recollection and new immutable superseding receipt",
+    "predecessor_receipts_must_remain_immutable": true,
+    "approval_is_test_evidence": false
+  },
+  "immutable_predecessors": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+      "sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+      "disposition": "preserved_semantic_evidence"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+      "sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+      "disposition": "preserved_corrective_evidence"
+    }
+  ],
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-reference-encoding-diagnostic-20260828.json",
+    "sha256": "sha256:0ff8460909785fa7cf253711c471af110b4a938410639c8948f3c4831e3e1189"
+  },
+  "fresh_computer_use_preflight": {
+    "attempted": true,
+    "native_pipe_available": false,
+    "documented_recovery_attempts_exhausted": true,
+    "ui_action_executed": false,
+    "fallback": "browser_plugin_two_independent_chrome_extension_contexts"
+  },
+  "read_only_identity_and_workspace_observation": {
+    "independent_chrome_instances_observed": 2,
+    "single_primary_account_identifier_per_context": true,
+    "primary_account_identifiers_differ_between_contexts": true,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_or_non_synthetic_workspace_label_persisted": false,
+    "owner_context_exact_REF_FREE_A_menu_item_count": 1,
+    "owner_context_exact_REF_FREE_B_menu_item_count": 1,
+    "collaborator_context_exact_REF_FREE_A_menu_item_count": 0,
+    "collaborator_context_exact_REF_FREE_B_menu_item_count": 0,
+    "collaborator_context_non_target_renamed_workspace_item_count": 1,
+    "unique_REF_FREE_A_binding_proven": true,
+    "unique_REF_FREE_B_binding_proven": true,
+    "exact_role_mapping_basis": "owner_has_unique_exact_A_and_B_targets_while_collaborator_has_neither_target_alias",
+    "active_REF_FREE_A_V0R_A_ROOT_count": 0,
+    "active_REF_FREE_B_V0R_B_ROOT_count": 0,
+    "clean_pre_invite_state_proven": true
+  },
+  "goal_observation": {
+    "thread_id": "01a0399e-4edc-7792-9c0c-9c050b30e177",
+    "tool_status_at_resume_observation": "blocked",
+    "explicit_user_resume_and_named_approval_received": true,
+    "resumed_blocked_audit_reset": true,
+    "logical_execution_state": "resumed",
+    "goal_status_mutated_by_packet": false
+  },
+  "operator_action_result": {
+    "order": 1,
+    "action_id": "V0R-PREFLIGHT",
+    "mutation_class": "read_only",
+    "status": "passed",
+    "required_result": "two_exact_workspace_aliases_two_independent_test_identities_and_clean_active_fixture_state_confirmed",
+    "required_result_satisfied": true
+  },
+  "scope_attestation": {
+    "external_notion_mutation_executed": false,
+    "workspace_or_page_invitation_sent": false,
+    "permission_or_role_changed": false,
+    "synthetic_fixture_created": false,
+    "comment_reaction_or_mention_sent": false,
+    "reference_screenshot_persisted": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "claims": {
+    "V0R_P1_lossless_preflight_passed": true,
+    "V0R_P1_lossless_execution_started": false,
+    "V0R_P1_lossless_gate_passed": false,
+    "V0_GATE_001_closed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "V0R-CREATE-A"
+}

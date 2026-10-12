@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-PURITY-R6B-OBSERVED-20260907",
+  "recorded_at": "2026-09-06T19:46:22.8553038Z",
+  "status": "immutable_full_run_diagnostic_not_gate_evidence",
+  "packet_id": "V0B-P1",
+  "preflight": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-purity-r6b-preflight-20260907.json",
+    "source_hashes_drifted_during_iterative_correction": true,
+    "runtime_reused_across_failed_retries": true,
+    "gate_eligible": false
+  },
+  "artifact": {
+    "receipt_path": ".runtime/v0b-p1-product-purity-r6b-retry5-20260907/receipt.json",
+    "receipt_sha256": "sha256:21e1636ad281b69dd0ef90703c9947bd2fec6d42de7659a71c0f48d3349b9114",
+    "candidate_root": ".runtime/v0b-p1-product-purity-r6b-retry5-20260907/candidates",
+    "diff_root": ".runtime/v0b-p1-product-purity-r6b-retry5-20260907/diffs",
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "capture_pipeline_contract": "code_assist.notion.internal_collaborative_v0b_p1.product_capture.v3"
+  },
+  "observations": {
+    "full_browser_journey_completed": true,
+    "accessibility_pass_count": 36,
+    "interaction_outcome_pass_count": 36,
+    "capture_only_visual_mutation_count": 0,
+    "reference_pixel_injection_count": 0,
+    "cleanup_status": "complete",
+    "active_fixture_root_count": 0,
+    "active_test_grant_count": 0,
+    "active_test_member_count": 0,
+    "permanent_delete_used": false,
+    "verifier_error_count": 39,
+    "verifier_error_classes": {
+      "claims_gate": 1,
+      "core_25_gate": 1,
+      "exact_pixel_gate": 36,
+      "performance_gate": 1
+    }
+  },
+  "visual_diagnostic": {
+    "policy": "legacy exact-pixel v1 diagnostic only; strict visual-similarity v1 is implemented but not yet bound to a reviewed state/viewport policy",
+    "exact_pixel_pass_count": 0,
+    "mean_unmasked_differing_pixel_percent": 10.826244748799727,
+    "median_unmasked_differing_pixel_percent": 11.364798538773147,
+    "minimum": {
+      "capture": "V0R-MU-018@1440x900",
+      "percent": 4.78125
+    },
+    "maximum": {
+      "capture": "V0R-MU-006@1280x800",
+      "percent": 18.54384765625
+    },
+    "comparison_to_r5": {
+      "r5_mean_percent": 10.756739118494941,
+      "r5_median_percent": 11.136841121720678,
+      "mean_delta_percentage_points": 0.069505630304786,
+      "interpretation": "Pixel coverage remained effectively flat while capture-only facades were removed and visible share and inbox surfaces became data-driven product controls. This run is a truthful functionality-first baseline, not a claim of visual gate closure."
+    }
+  },
+  "implemented_corrections": [
+    "V0R-MU-011 no longer mutates iam_role or injects a rendered comment preview for capture.",
+    "Product capture transitively binds only the small v0b_p1_product_runtime helper module and not the legacy reference-shaped capture implementation.",
+    "The page share surface exposes real invite, role, revoke, advanced, and copy controls backed by canonical collaboration state.",
+    "The inbox renders real timestamp-derived Today, Yesterday, and Earlier groups without fixed pseudo-element counts or timestamps.",
+    "Guest-facing locale strings and the Home accessible label are consistently Korean."
+  ],
+  "current_source_binding": {
+    "code_assist_v1/notion_collaboration/f0_p5_browser.py": "sha256:21a99310f7d3e8f586ec1c37459873bc6633b640d8754c910ba69bcbd77e6bff",
+    "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py": "sha256:f22deb3f040279bcef2e7351dac06ffbcfe7e7ee602120fc05d88dd37d7ed147",
+    "code_assist_v1/notion_collaboration/v0b_p1_product_capture.py": "sha256:25ad23c460407b3b96985442aa42e7cd5ab8db08490ebfdece45dfa80d42f600",
+    "code_assist_v1/notion_collaboration/v0b_p1_product_runtime.py": "sha256:a0f4b565a8e4521347a2f0708a2dfbf0179f2c844dda23c049d3bef36ad490be",
+    "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py": "sha256:81cd6abdf2685aa36da6d136a787efd372acefa60b3dd19bbae46318fcbc8ac9",
+    "code_assist_v1/tools/notion_parity/visual_similarity.py": "sha256:30c129bf67cebe138a3b90a9e251744543c3345d81d8613cb62ffdeb87a9de10",
+    "code_assist_v1/notion_static/index.html": "sha256:d3a76391b0b12e96c1e43fa85eb554eabfa3fe144300251146550abdacb1b71d",
+    "code_assist_v1/notion_static/notion.css": "sha256:23a512cd5bc33765f41dd44d21835b9acae9be2cb9842df8bde80c22bf67c35c",
+    "code_assist_v1/notion_static/notion.js": "sha256:26757ac92994df6d2d348abe9c1dba62966dc95be0b561099fe365898728d781"
+  },
+  "verification": {
+    "frontend_node_suites": {
+      "passed": 8,
+      "failed": 0
+    },
+    "targeted_python_tests": {
+      "passed": 43,
+      "failed": 0
+    },
+    "runtime_ports_10111_10112_10113_closed": true,
+    "runtime_root_preserved": true
+  },
+  "next_gate_work": [
+    "Create and independently review a state/viewport-specific strict visual-similarity policy before binding the new comparator to V0B evidence.",
+    "Run one fresh create-only capture from a matching immutable preflight after the policy and source set are frozen.",
+    "Collect fresh current-build Core-25 and quiet-host performance evidence.",
+    "Reverify and promote only after every required V0B gate passes."
+  ],
+  "scope_guard": {
+    "V0B_P1_gate_passed": false,
+    "O1B_started": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

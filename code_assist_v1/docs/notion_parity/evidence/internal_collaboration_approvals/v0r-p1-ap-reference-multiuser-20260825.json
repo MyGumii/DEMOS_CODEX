@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_reference_multiuser_approval.v0r_p1.v1",
+  "packet_id": "V0R-P1",
+  "approval_id": "AP-REFERENCE-MULTIUSER",
+  "recorded_at": "2026-08-25T22:20:53+09:00",
+  "approval": {
+    "exact_user_text": "AP-REFERENCE-MULTIUSER \uc2b9\uc778. REF-FREE-A/B\uc5d0\uc11c \ud14c\uc2a4\ud2b8 \uacc4\uc815\uacfc \ud569\uc131 \ud398\uc774\uc9c0\ub9cc \uc0ac\uc6a9\ud574 \ucd08\ub300\u00b7\uacf5\ub3d9 \ud3b8\uc9d1\u00b7\uad8c\ud55c \ud68c\uc218\u00b7\ud654\uba74 \ucea1\ucc98\ub97c \uc218\ud589\ud558\uace0, \uc0dd\uc131 \ud56d\ubaa9\uc740 Trash\ub85c \uc815\ub9ac\ud574\ub3c4 \ub428. \uac1c\uc778 \ucf58\ud150\uce20\u00b7\uacf5\uac1c \uac8c\uc2dc\u00b7\uc601\uad6c \uc0ad\uc81c\ub294 \uae08\uc9c0.",
+    "approval_sha256": "sha256:0da2525700605fbc99e5f416a785bc88766e74a12615f94cdb543045618afb68",
+    "status": "owner_approved",
+    "approval_is_test_evidence": false
+  },
+  "execution_manifest": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_reference_multiuser_execution.v1.json",
+    "sha256": "sha256:924b3812e81bffc024bd386a5735c69a676f08e5b8c3f8ce52dffc6e0b9d7cf5",
+    "audit_status": "pass"
+  },
+  "authorization": {
+    "workspace_aliases": [
+      "REF-FREE-A",
+      "REF-FREE-B"
+    ],
+    "identity_aliases": [
+      "REF-OWNER",
+      "REF-COLLABORATOR"
+    ],
+    "operator_action_ids": [
+      "V0R-PREFLIGHT",
+      "V0R-CREATE-A",
+      "V0R-CREATE-B",
+      "V0R-WORKSPACE-INVITE",
+      "V0R-PAGE-SHARE",
+      "V0R-MULTIUSER-CAPTURE",
+      "V0R-PAGE-ROLE-COMMENT",
+      "V0R-PAGE-ROLE-VIEW",
+      "V0R-PAGE-REVOKE",
+      "V0R-WORKSPACE-REVOKE",
+      "V0R-CLEANUP"
+    ],
+    "capture_state_ids": [
+      "V0R-MU-001",
+      "V0R-MU-002",
+      "V0R-MU-003",
+      "V0R-MU-004",
+      "V0R-MU-005",
+      "V0R-MU-006",
+      "V0R-MU-007",
+      "V0R-MU-008",
+      "V0R-MU-009",
+      "V0R-MU-010",
+      "V0R-MU-011",
+      "V0R-MU-012",
+      "V0R-MU-013",
+      "V0R-MU-014",
+      "V0R-MU-015",
+      "V0R-MU-016",
+      "V0R-MU-017",
+      "V0R-MU-018"
+    ],
+    "expected_screenshot_count": 36,
+    "external_reference_mutation_authorized": true,
+    "test_identity_invite_role_change_and_revoke_authorized": true,
+    "synthetic_page_edit_comment_reaction_mention_and_database_mutation_authorized": true,
+    "capture_authorized": true,
+    "cleanup_authorized": true,
+    "cleanup_mode": "trash_only_recoverable",
+    "cleanup_required_after_success_or_failure": true,
+    "personal_workspace_access_allowed": false,
+    "personal_page_access_allowed": false,
+    "non_test_identity_invite_allowed": false,
+    "public_publish_or_public_link_allowed": false,
+    "message_outside_test_identities_allowed": false,
+    "permanent_delete_allowed": false,
+    "production_or_second_brain_mutation_allowed": false
+  },
+  "validity": {
+    "starts_at": "2026-08-25T22:20:53+09:00",
+    "expires_on_manifest_hash_drift": true,
+    "expires_on_workspace_or_identity_alias_mismatch": true,
+    "expires_on_browser_control_or_identity_certainty_loss": true,
+    "cannot_be_reused_for_other_packets": true
+  },
+  "claims": {
+    "owner_approval_received": true,
+    "execution_authorized": true,
+    "external_reference_mutation_executed": false,
+    "reference_screenshots_captured": false,
+    "cleanup_executed": false,
+    "V0R_P1_gate_passed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "production_changed": false,
+    "second_brain_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

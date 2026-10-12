@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_checkpoint.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-WORKSPACE-INVITE-ROLE-ROW-R387-20260901",
+  "recorded_at": "2026-09-01T08:57:12.2030493+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "r387 retains r378 and corrects the workspace-invite owner-role description copy plus the measured description, heading, icon, and chevron positions. The full 36-capture candidate improves V0R-MU-001 by 1,042 unmasked pixels with no source-bound regression. All four component journeys, all 36 accessibility checks, all 36 interaction checks, targeted tests, and synthetic cleanup passed. Exact parity remains 0/36, so V0B-P1 and the product goal remain open.",
+  "immutable_lineage": {
+    "lossless_exact_v4_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+    },
+    "reference_screenshot_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/screenshots",
+    "reference_mask_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/masks",
+    "previous_retained_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-share-tab-general-label-r378-progress-20260901.json",
+      "sha256": "sha256:a761b5313532673768ac0b7a705eae80058705277efe1ebb2aed4f22126899e0"
+    },
+    "previous_rejected_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-share-general-arrow-r379-rejected-20260901.json",
+      "sha256": "sha256:84d7f4fba8f9cd3c43bc4002267f9aab3f6383fdeb5c9e5856fb8f722717f350"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified": false
+    },
+    "main_agent_handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "retained_source_binding": [
+    {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:da11393f39cd2af2725abf6e27e05fe483ae326234ae4ae0f8000683a5464964",
+      "changes_in_r383_r387": []
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+      "changes": [
+        "match the V0R-MU-001 workspace-owner role description to the lossless reference copy"
+      ]
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.css",
+      "sha256": "sha256:9755018e221907b66a0edf30424b253bb07c16fda2864e9c60d63376c6ea44c2",
+      "changes": [
+        "align the workspace-invite role description four pixels left and three pixels down",
+        "align the workspace-invite role heading four pixels left",
+        "align the workspace-invite role icon five pixels up",
+        "align and recolor the workspace-invite role chevron to the measured reference presentation"
+      ]
+    }
+  ],
+  "isolated_validation": {
+    "r380_copy_probe": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r380",
+      "change": "reference workspace-owner role description copy",
+      "result": "semantically required but one viewport was variable; retained only as part of the later coordinate-corrected r383 candidate"
+    },
+    "r381_rejected": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r381",
+      "change": "move both role heading and description two additional pixels left",
+      "V0R_MU_001": {
+        "1440x900": 104201,
+        "1280x800": 93849
+      },
+      "reason": "mixed viewport result; the 1280 capture regressed by 862 pixels relative to r380",
+      "source_reverted": true
+    },
+    "r382_rejected": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r382",
+      "change": "increase workspace-member link explanation max width from 570 to 580 pixels",
+      "reason": "rendered text layout was unchanged and the observed V0R-MU-002 975-pixel delta matched established run variability",
+      "source_reverted": true
+    },
+    "r383_accepted": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r383",
+      "change": "reference copy plus measured role-description position",
+      "V0R_MU_001_previous": {
+        "1440x900": 104257,
+        "1280x800": 93905
+      },
+      "V0R_MU_001_current": {
+        "1440x900": 103803,
+        "1280x800": 93451
+      },
+      "per_viewport_delta": -454,
+      "accepted": true
+    },
+    "r384_accepted": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r384",
+      "change": "role heading four pixels left",
+      "V0R_MU_001_current": {
+        "1440x900": 103595,
+        "1280x800": 93243
+      },
+      "per_viewport_delta": -208,
+      "accepted": true
+    },
+    "r385_accepted": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r385",
+      "change": "role icon five pixels up",
+      "V0R_MU_001_current": {
+        "1440x900": 103554,
+        "1280x800": 93202
+      },
+      "per_viewport_delta": -41,
+      "accepted": true
+    },
+    "r386_accepted": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r386",
+      "change": "role chevron eight pixels right, three pixels up, and measured color",
+      "V0R_MU_001_current": {
+        "1440x900": 103543,
+        "1280x800": 93191
+      },
+      "per_viewport_delta": -11,
+      "accepted": true
+    },
+    "common_invariants": {
+      "journey_status": "pass",
+      "accessibility": "pass",
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "development_runtime_recovery": {
+    "reason": "the desktop/CLI host transition ended the prior AP-DEV-PAIR manager; authoritative status showed its recorded PID absent and ports 10111, 10112, and 10113 closed",
+    "recovery_authority": "previously recorded AP-DEV-PAIR and exclusive 10111 handoff",
+    "identity_source_sha256_verified": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "approved_identity_ids": [
+      "admin",
+      "user01"
+    ],
+    "development_root_locator_sha256": "sha256:0925faed3812255e51cd92852de3bb7b3a7e538a84ce8b1ae0009e5a3abda978",
+    "launch_id": "a0ba1ecc60b548ccbbe626273d045e3d",
+    "run_root_locator_sha256": "sha256:3e1fd92bab6cc230e88ef29795262b3172a8907daf0a625004f314c09a105a2d",
+    "ports_healthy": [
+      10111,
+      10112,
+      10113
+    ],
+    "personal_content_imported": false,
+    "production_port_or_root_mutated": false,
+    "new_approval_or_scope_expansion_used": false
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r387",
+    "receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r387/receipt.json",
+      "sha256": "sha256:b1663531d68eb5b0fcf09ef5f1d1e6b4e136953924d929790021deb63c1cc318"
+    },
+    "browser": {
+      "channel": "chrome",
+      "version": "153.0.8010.12",
+      "independent_ephemeral_contexts": 2
+    },
+    "duration_ms": 417238,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2198916,
+    "masked_difference_count": 70240,
+    "total_difference_count": 2269156,
+    "journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:2c406fa3dc9b21d939ff06d2c2ee8bda1bf40e9638956184a6948496d9ea6591"
+    }
+  },
+  "comparison_to_r378": {
+    "r378_unmasked_difference_count": 2199957,
+    "r387_unmasked_difference_count": 2198916,
+    "aggregate_delta": -1041,
+    "state_deltas": [
+      {
+        "state_id": "V0R-MU-001",
+        "previous": 197776,
+        "current": 196734,
+        "delta": -1042,
+        "source_bound": true
+      },
+      {
+        "state_id": "V0R-MU-008",
+        "previous": 115338,
+        "current": 115339,
+        "delta": 1,
+        "source_bound": false,
+        "classification": "unrelated run variability"
+      }
+    ],
+    "all_other_state_deltas": 0
+  },
+  "verification": {
+    "targeted_tests": {
+      "command_scope": [
+        "test_internal_collaborative_v0b_p1_receipt.py",
+        "test_v0b_p1_capture_matte.py",
+        "test_v0b_p1_i0_semantic_diagnostic.py",
+        "browser/test_exact_pixel_parity.py"
+      ],
+      "result": "17 passed in 26.16s",
+      "exit_code": 0
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:b1663531d68eb5b0fcf09ef5f1d1e6b4e136953924d929790021deb63c1cc318"
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from retained r387. Preserve r378 and the r383-r386 workspace-invite owner-role copy and measured role description, heading, icon, and chevron corrections. Preserve the immutable lossless-exact-v4 reference and pass its receipt, screenshot root, and mask root explicitly to every full candidate and verifier. Treat r381 and r382 as rejected and r379 as previously rejected. Treat the unrelated V0R-MU-008 +1 delta and the known V0R-MU-002 975-pixel mode as run variability unless a source-bounded cause is proven. Prefer the next reproducible state-bounded residual in V0R-MU-001 or V0R-MU-002. Do not run fresh Core 25 or quiet-host performance gates until exact pixel parity is 36/36, and do not mark the product or shared goal complete before all final gates close."
+}

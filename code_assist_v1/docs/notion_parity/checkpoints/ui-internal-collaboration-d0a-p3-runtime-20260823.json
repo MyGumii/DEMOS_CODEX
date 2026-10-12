@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-D0A-P3-RUNTIME-20260823",
+  "recorded_at": "2026-08-23T06:36:37.5715791Z",
+  "checkpoint_kind": "packet_ownership_status_integrator_and_validation_evidence",
+  "packet_id": "D0A-P3",
+  "packet_status": "gate_passed",
+  "purpose": "Implement an isolated two-process synthetic pair on OS-assigned loopback ports, prove readiness and PID/port ownership, same-subject reuse and independent-subject isolation, then clean only launcher-owned processes and runtime state.",
+  "owner_agent": "/root",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py"
+  ],
+  "new_product_files": [
+    "code_assist_v1/notion_collaboration/dev_pair_runtime.py"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_dev_pair_runtime.py"
+  ],
+  "read_only_dependencies": [
+    "code_assist_v1/notion_collaboration/pair_config.py",
+    "code_assist_v1/notion_collaboration/synthetic_pair_root.py",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-d0a-p2-synthetic-root-20260823.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-d0a-p1-pair-config-20260823.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-u0a-p2-harness-20260823.json",
+    "code_assist_v1/AGENTS.md"
+  ],
+  "protected_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/",
+    "code_assist_v1/app_code.py",
+    "code_assist_v1/app_notion.py",
+    "code_assist_v1/auth.py",
+    "code_assist_v1/knowledge/",
+    "code_assist_v1/user_data/",
+    "code_assist_v1/.runtime/",
+    "existing per-user Notion databases and 10111/10112/10113/10011/10012 service roots"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:857bc464fa462f21c0b935b6915270425a3d991a2c40bc0f41ce202e97a5a9c3",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:44211d130f7e3f9b284c74c2649ef35f2447e0835dd74e72ed227a131167b33b",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:87db4427eeda7f82a27017c561bb2ad9a32ee30a1f1f4edcac9800a31d01e3bb",
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:e588eca005e175507893fa60318d9032807030f70824018763a32f05a62df781",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:961ad2f19d9d9454775c1f2270ec4dc4e51610904d4082869f5fc90da4058003"
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:486660f09152746b8c3e5ad3f0f96258a867f7a160bf29740ab855fc556318bc",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:506ec32e045f930cff23eab702c0737472ae26b7b3c5222b8c7f5de15067ee81",
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:1fa1cc85c886b82b6fef620f0e6eb9fc8d0b1f29139b5350bfd85d8caa39bc8e",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:b773ebeafab7546ac21ed603f552380570147076a8c8d8abc30ef7b408834954"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-d0a-p2-synthetic-root-20260823.json",
+    "sha256": "sha256:c00fe4bb10264ccb8cbada591d6bae301b64feaee2052a468eb9f55c9423ec63",
+    "packet_id": "D0A-P2",
+    "receipt_id": "D0A-P2-L1-SYNTHETIC-PAIR-ROOT-20260823"
+  },
+  "ownership_lease": {
+    "lease_id": "D0A-P3-RUNTIME-20260823-063637Z",
+    "lane": "RUNTIME",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-23T06:36:37.5715791Z",
+    "expires_at": "2026-08-23T14:36:37.5715791Z",
+    "released_at": "2026-08-23T06:49:50Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false,
+    "release_condition": "D0A-P3 multiprocess validation, recursive checkpoint-chain validation, and current-pointer publication are hash-bound."
+  },
+  "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked",
+    "resumed_by_user": true,
+    "prior_blocker_resolved": true,
+    "goal_completion_claimed": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-23T06:36:37.5715791Z",
+    "predecessor_checkpoint_sha256": "sha256:c00fe4bb10264ccb8cbada591d6bae301b64feaee2052a468eb9f55c9423ec63",
+    "d0a_p2_gate_passed": true,
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:7519df3f8c65a855e857a3a609d1c3159fc3554c39559e172f09655ba44593da",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_hot_contracts_modified_by_this_packet": false,
+    "exact_path_collision_observed": false
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:857bc464fa462f21c0b935b6915270425a3d991a2c40bc0f41ce202e97a5a9c3",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:44211d130f7e3f9b284c74c2649ef35f2447e0835dd74e72ed227a131167b33b"
+    },
+    "accepted_packet_receipt_ids": [
+      "D0A-P2-L1-SYNTHETIC-PAIR-ROOT-20260823"
+    ],
+    "lease": "D0A-P3-RUNTIME-20260823-063637Z",
+    "post_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:486660f09152746b8c3e5ad3f0f96258a867f7a160bf29740ab855fc556318bc",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:506ec32e045f930cff23eab702c0737472ae26b7b3c5222b8c7f5de15067ee81"
+    }
+  },
+  "execution_boundary": {
+    "automated_tests_use_runner_owned_temp_roots_only": true,
+    "os_assigned_loopback_ports_only": true,
+    "forbidden_operator_ports": [10011, 10012, 10111, 10112, 10113],
+    "real_identity_import": false,
+    "service_started_stopped_or_replaced": false,
+    "production_or_existing_preview_root_access": false,
+    "approval_required": false,
+    "future_approval_boundary": "D0B-P1 plus AP-DEV-PAIR"
+  },
+  "validation_receipt": {
+    "receipt_id": "D0A-P3-L1-SYNTHETIC-PAIR-LIVE-20260823",
+    "validation_id": "L1-SYNTHETIC-PAIR-LIVE",
+    "status": "pass",
+    "error_count": 0,
+    "executed_at": "2026-08-23T06:49:50Z",
+    "runtime_tests": {
+      "passed": 7,
+      "failed": 0,
+      "duration_seconds": 23.30,
+      "test_file": "code_assist_v1/tests/notion_collaboration/test_dev_pair_runtime.py"
+    },
+    "combined_d0a_contract_harness": {
+      "passed": 48,
+      "failed": 0,
+      "duration_seconds": 52.20,
+      "test_files": [
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+        "code_assist_v1/tests/notion_collaboration/test_pair_configuration.py",
+        "code_assist_v1/tests/notion_collaboration/test_synthetic_pair_root.py",
+        "code_assist_v1/tests/notion_collaboration/test_dev_pair_runtime.py"
+      ]
+    },
+    "u0a_d0a_cross_regression": {
+      "passed": 98,
+      "failed": 0,
+      "duration_seconds": 88.61,
+      "scope": "exact L0 UI baseline plus D0A-P1 through D0A-P3 contract and multiprocess tests"
+    },
+    "multiprocess_execution": {
+      "process_count": 2,
+      "distinct_process_ids": [28296, 36804],
+      "host_roles": ["code", "notion"],
+      "os_assigned_ports": [6394, 6395],
+      "shared_fixture_root_id": "39aa2591-7d84-46b2-9cd2-1f9674aee79b",
+      "root_locator_sha256": "sha256:d3e92b825550f0bd6c5b2e65de4d6ce2981c96c7313161528aff8e95cb71b085",
+      "secret_fingerprint": "sha256:9137a4499c22d41a379b70679fec3e7cb648c455421f00065d6c6b528ed42b18",
+      "fault_points": ["code_child_failure_before_readiness"],
+      "cleanup": {
+        "owned_processes_stopped": true,
+        "owned_ports_closed": true,
+        "runtime_root_removed": true
+      }
+    },
+    "claims": {
+      "os_assigned_port_pair_launcher": true,
+      "readiness_port_ownership_and_owned_pid_cleanup": true,
+      "same_subject_across_hosts": true,
+      "independent_subject_contexts": true,
+      "account_mutation_authority_code_host_only": true,
+      "peer_origin_unsafe_mutation_rejected": true,
+      "production_or_existing_preview_root_access": false,
+      "real_identity_import": false,
+      "real_service_launch": false,
+      "plaintext_secret_credentials_or_private_content_recorded": false
+    },
+    "artifact_sha256": {
+      "code_assist_v1/notion_collaboration/dev_pair_runtime.py": "sha256:acfbd87a72efc3e266318e11b2c0d291350c114ecde5ae1d38e38708788a2292",
+      "code_assist_v1/tests/notion_collaboration/test_dev_pair_runtime.py": "sha256:4d9f1ed45e9601475c8e5f3b841ce5adc702f2687b131432566da710974c2107",
+      "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:1fa1cc85c886b82b6fef620f0e6eb9fc8d0b1f29139b5350bfd85d8caa39bc8e",
+      "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:b773ebeafab7546ac21ed603f552380570147076a8c8d8abc30ef7b408834954"
+    }
+  },
+  "rollback_or_cleanup": "Terminate only subprocess handles created by this packet, verify their OS-assigned ports close, remove only the marker-bound runner-owned runtime root, remove this packet's new source/test/checkpoint paths if rejected, and restore only declared existing files from their exact pre-edit hashes.",
+  "completion_truth": {
+    "d0a_p2_gate_passed": true,
+    "d0a_p3_started": true,
+    "d0a_p3_gate_passed": true,
+    "d0_gate_001_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "D0A-P3",
+    "next_packet": "H0A-P1",
+    "next_state": "ready_to_start",
+    "approval_required_for_next_packet": false,
+    "real_service_or_identity_mutation_allowed": false,
+    "future_operator_boundary": "D0B-P1 plus AP-DEV-PAIR"
+  }
+}

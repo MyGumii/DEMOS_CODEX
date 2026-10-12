@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-CAPTURE-INTEGRITY-PRE-EDIT-20260907",
+  "recorded_at": "2026-09-07T01:30:05+09:00",
+  "status": "in_progress_truthful_visual_evidence_remediation",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Replace the future V0B capture path with a product-rendered browser screenshot pipeline and make the verifier reject reference-pixel injection, capture-only visual mutation, and post-capture reference mattes. Preserve all historical immutable receipts without treating their visual claims as current product evidence.",
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-gate-passed-20260906.json",
+    "sha256": "sha256:d44d0c5f71e8d76689408393591f3a2ca30b4704f57373d25d2e7e48bb7061f2",
+    "preserved_without_overwrite": true
+  },
+  "finding": {
+    "affected_historical_capture_source": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "affected_historical_capture_source_sha256": "sha256:137aed460f602a39a2daedd492c4b25c7fe474561c21ace8140ea36d332dad4b",
+    "evidence": [
+      "The source passes base64-encoded reference PNG pixels into the page before page.screenshot for V0R-MU-007 through V0R-MU-014.",
+      "The source inserts multiple other reference-derived raster overlays and applies a reference-derived capture matte to the candidate after screenshot.",
+      "The same source hash is bound by the historical r1617 36-of-36 checkpoint."
+    ],
+    "impact": "Historical semantic, interaction, accessibility, cleanup, Core, and performance evidence remains independently reviewable, but the historical exact-pixel and V0B visual-closure claims are not accepted as proof of an unmodified product render."
+  },
+  "owned_existing_files": [
+    "code_assist_v1/notion_collaboration/v0b_p1_browser.py",
+    "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+  ],
+  "new_product_files": [
+    "code_assist_v1/notion_collaboration/v0b_p1_product_capture.py"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_v0b_p1_product_capture_integrity.py"
+  ],
+  "new_evidence_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-capture-integrity-verified-20260907.json"
+  ],
+  "read_only_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+    "code_assist_v1/docs/knowledge_spaces/"
+  ],
+  "protected_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/",
+    "code_assist_v1/knowledge/",
+    "code_assist_v1/user_data/",
+    "existing development and production roots",
+    "external accounts and reference workspaces"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/notion_collaboration/v0b_p1_browser.py": "sha256:7cf22b851e82cd1932c956f05f52a5449f493c762f7a3dc97f5c680a347c3c40",
+    "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py": "sha256:96d54bf9ef049f9c83e1589e6335a2e7dcda70b479ab1997503c74c201f01b50",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py": "sha256:11771528aaf1d768995410f0fc4504b9e26c8661e150e13e80b8c91b2cf00eda"
+  },
+  "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+  "goal_observation": {
+    "thread_id": "01a0399e-4edc-7792-9c0c-9c050b30e177",
+    "status": "active",
+    "objective_continued": true
+  },
+  "current_schema_lineage_sha256": "sha256:b31ec2d1801e80e0410a1decdd126f2d53f1bf72729fecf3703492fb7e61da31",
+  "cross_catalog_ownership_snapshot": {
+    "sbe_contract_audit_input_sha256": "sha256:a30f7f6674c00b30f7a3207329c8c7a5e25edef02d3b38738ba7ea969b2155f9",
+    "exact_path_collision_observed": false,
+    "sbe_hot_contract_write_planned": false,
+    "production_or_target_operation_planned": false
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-CAPTURE-INTEGRITY-20260907",
+    "owner_agent": "/root",
+    "lane": "DOC_HARNESS",
+    "status": "active",
+    "acquired_at": "2026-09-07T01:30:05+09:00",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "rollback_or_cleanup": "Preserve the immutable historical receipts and legacy capture source. Revert only the exact owned source/test files to their recorded pre-edit hashes and remove only the two newly declared files if this remediation fails before producing accepted evidence. Do not touch AGENTS.md, SBE hot contracts, runtime data, identities, services, external accounts, or production.",
+  "scope_guard": {
+    "historical_receipt_overwrite_allowed": false,
+    "catalog_or_ladder_status_edit_allowed_in_this_packet": false,
+    "runtime_service_start_allowed_in_this_packet": false,
+    "external_or_production_mutation_allowed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Implement and test a product-only capture pipeline, bind its provenance into future receipts, and make the V0B verifier fail closed for receipts that do not prove that pipeline."
+}

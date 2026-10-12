@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-REALM-ROTATION-R1083-20260905",
+  "recorded_at": "2026-09-05T04:08:44.3055739+09:00",
+  "checkpoint_kind": "approved_realm_rotation_with_exact_i0_replay_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "goal_complete": false,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1081-progress-20260905.json",
+    "sha256": "sha256:6717ea4017a9592abfe654ce06ad2f769c50b6cc311c7bf7eaa0ed1b504d6496"
+  },
+  "preserved_previous_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1055-20260905",
+    "last_audit": {
+      "workspace_count": 54,
+      "reference_workspace_count": 52,
+      "active_membership_count": 54,
+      "active_page_binding_count": 52,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "owned_processes_stopped": true,
+    "ports_closed_before_replacement_start": true,
+    "filesystem_preserved": true
+  },
+  "replacement_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1082-20260905",
+    "manager_session_id": 61568,
+    "manager_pid": 28092,
+    "manager_session_live": true,
+    "launch_id": "1a1035e2249640998a02f93ec417fb45",
+    "root_id": "5bc12bd9-7afb-4246-8e4b-d12f1fa55a9c",
+    "processes": {
+      "agent_10111": 34368,
+      "notion_10112": 30020,
+      "gateway_10113": 35832,
+      "compactor": 11164
+    },
+    "gateway_state": "READY",
+    "ready_for_admission": true,
+    "ready_for_realtime": true,
+    "ready_for_compaction": true,
+    "schema_compatibility": "compatible",
+    "restart_required": false,
+    "initial_audit": {
+      "workspace_count": 0,
+      "reference_workspace_count": 0,
+      "active_membership_count": 0,
+      "active_page_binding_count": 0,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "post_replay_audit": {
+      "workspace_count": 4,
+      "reference_workspace_count": 2,
+      "active_membership_count": 4,
+      "active_page_binding_count": 2,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64,
+    "status": "safe_for_further_bounded_mutating_browser_runs"
+  },
+  "fresh_realm_replay": {
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-i0-r1083-fresh-realm-replay-standard/diagnostic.json",
+    "receipt_sha256": "sha256:9430687631bcb77768202e362aa5183cc4c79b84eb5de19e89f2a19f1c86b397",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 852636,
+    "masked_difference_count": 46800,
+    "total_difference_count": 899436,
+    "delta_from_r1081_unmasked": 0,
+    "source_attributable_regression_count": 0,
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "scope_guard": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "protected_hot_contracts_modified": false,
+    "personal_content_imported": false,
+    "final_product_or_sbe_gate_run": false
+  },
+  "next_cursor": {
+    "action": "Continue exact-pixel residual reduction from fresh-realm-stable r1083.",
+    "retain_policy": "Retain only standard candidates with journey, cleanup, accessibility, and interaction passing and zero source-attributable regressions.",
+    "rotation_policy": "Rotate before a mutating browser run when the replacement realm approaches 64 workspaces.",
+    "final_gate_fence": "Do not run final Core-25, performance, product, or SBE closure gates before exact 36/36."
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "exact_36_of_36": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "contract": "code_assist.notion.core_free_ui_checkpoint.v2",
+  "recorded_at": "2026-08-20T18:57:56+09:00",
+  "run_id": "ui-reference-observation-host-blocked-20260820",
+  "model": {
+    "implementation_profile": "gpt-5.6-sol-xhigh",
+    "planning_and_review_profile": "gpt-5.6-sol-ultra"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-manual-reference-intake-temp-output-green-browser-pending-20260820.json",
+    "sha256": "sha256:480c89bb3bb6b7a310d32307f4fb27e5eb5adaca92c41d322becde9b324b3f6b",
+    "semantic_status": "manual reference intake and trusted OS-temporary transport green; actual observation pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_before_checkpoint": "active",
+    "objective_preserved": true,
+    "blocked_threshold_satisfied": true
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": 25,
+    "synthetic_only": true,
+    "business_enterprise_archive_conditional": true
+  },
+  "slice_state": {
+    "id": "UI1-REFERENCE-OBSERVATION",
+    "status": "blocked-external-browser-or-operator-observation-required",
+    "completed_foundation": [
+      "machine-readable 25-scenario denominator",
+      "strict plan and completion verifiers",
+      "import-side-effect-free action, capture, redaction, evidence, and manual intake libraries",
+      "24 local real-browser functional scenarios",
+      "1 local performance measurement scenario",
+      "C0-gated manual worksheet, draft, verify, and trusted-temp output transport"
+    ],
+    "missing_required_evidence": [
+      "first accepted UI-SHELL-002 REF-FREE-A/B reference observation",
+      "first reference-to-local differential",
+      "first cohesive UI correction derived from that differential"
+    ]
+  },
+  "ownership": {
+    "owned": [],
+    "read_dependencies": [
+      {
+        "path": "code_assist_v1/AGENTS.md",
+        "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+      },
+      {
+        "path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "sha256": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "sha256": "sha256:ee7fa3537dc953f33a2f029830a3463f30f4af6f65de776552ee3349b2252fdd"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "sha256": "sha256:d98237fe1fb7d19faf1205204e0eed105130cb54a0250b3e3c23dbc94e4a2df0"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+        "sha256": "sha256:5419717d3a9a449b9b5ad3ddc1b6f3b34f353b5a51b759c763a77a775ac22ab4"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-manual-reference-intake-temp-output-green-browser-pending-20260820.json",
+        "sha256": "sha256:480c89bb3bb6b7a310d32307f4fb27e5eb5adaca92c41d322becde9b324b3f6b"
+      }
+    ],
+    "protected_unchanged": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/app_code.py",
+      "code_assist_v1/auth.py",
+      "code_assist_v1/config.py",
+      "code_assist_v1/tests/conftest.py",
+      "code_assist_v1/docs/knowledge_spaces/**",
+      "code_assist_v1/knowledge_core/**",
+      "code_assist_v1/tests/knowledge_spaces/**",
+      "live user_data/**, knowledge/**, .runtime/**, and sessions/**"
+    ]
+  },
+  "runtime": {
+    "personal_notion_accessed": false,
+    "reference_workspace_accessed": false,
+    "browser_tab_selected": false,
+    "live_local_data_accessed": false,
+    "live_mutation": false,
+    "flags_unchanged": true,
+    "fallback_browser_surface_used": false
+  },
+  "evidence": {
+    "scenario_plan_file_sha256": "sha256:d98237fe1fb7d19faf1205204e0eed105130cb54a0250b3e3c23dbc94e4a2df0",
+    "scenario_plan_canonical_sha256": "sha256:c74d858f730443d1efb4e485d7dc6610aaaf0d21af64970107c6c9f1a0ddde6f",
+    "completion_matrix_sha256": "sha256:5419717d3a9a449b9b5ad3ddc1b6f3b34f353b5a51b759c763a77a775ac22ab4",
+    "required_scenarios": 25,
+    "local_real_browser_green": 24,
+    "local_measurement_green": 1,
+    "reference_characterized": 0,
+    "differential_passed": 0,
+    "promoted": 0
+  },
+  "blocker": {
+    "code": "CHROME-HOST-KERNEL-ASSET-PATH-MISSING",
+    "message": "failed to write kernel assets: specified path not found (os error 3)",
+    "boundary": "failure occurs before browser runtime code, Chrome selection, documentation, tab selection, or Notion access",
+    "consecutive_resumed_goal_turns": 3,
+    "safe_automated_alternatives_exhausted": true,
+    "manual_contract_available": true
+  },
+  "unblock_conditions": [
+    "Repair the signed-in Chrome browser-control host so the approved Browser connection initializes, then resume the goal.",
+    "Or follow CORE_FREE_WEB_UI_MANUAL_REFERENCE_INTAKE_RUNBOOK.md in REF-FREE-A/B only, create the verified UI-SHELL-002 submission and receipt under the OS temporary root, and provide their paths before resuming."
+  ],
+  "claims": {
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "overall_goal_complete": false,
+    "blocked_on_required_external_observation": true
+  },
+  "next_exact_action": "After either unblock condition is satisfied, re-read AGENTS.md, re-hash this checkpoint and its dependencies, validate the received C0/submission without opening personal content, seal the first reference packet, and run the first UI-SHELL-002 differential."
+}

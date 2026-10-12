@@ -1,0 +1,151 @@
+{
+  "contract": "code_assist.notion.core_free_ui.approval_batch_queue.v1",
+  "recorded_at": "2026-08-22T16:32:05.3469065+09:00",
+  "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "policy": {
+    "mode": "accumulate_then_process_serially",
+    "independent_work_continues": true,
+    "approval_is_never_inferred": true,
+    "action_time_confirmation_required_for_destructive_external_actions": true,
+    "manual_evidence_input_is_not_approval": true,
+    "personal_workspace_access_allowed": false,
+    "live_local_data_access_allowed": false,
+    "completion_matrix_mutation_allowed": false
+  },
+  "entries": [
+    {
+      "entry_id": "UI-A11Y-001-UI-EDITOR-003-SUMMARY-REVIEW",
+      "kind": "human_evidence_acceptance",
+      "status": "pending_user_approval",
+      "scenario_ids": ["UI-A11Y-001", "UI-EDITOR-003"],
+      "required_user_text": "UI-A11Y-001, UI-EDITOR-003 요약 승인",
+      "external_state_change": false,
+      "may_be_batched": true,
+      "blocks": [
+        "seal_reference_review_receipts",
+        "advance_reference_review_state"
+      ],
+      "does_not_block": [
+        "UI-EDITOR-006-reference-evidence",
+        "UI-RESP-001-reference-evidence",
+        "local-verification"
+      ],
+      "evidence": [
+        {
+          "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-a11y-001-reference-native-tab-skip-link-green-20260822.json",
+          "sha256": "sha256:8505b2f12317fa24390193127da71503f85c9286064074f8a0f3326153c22b4f"
+        },
+        {
+          "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-003-reference-session-clipboard-green-20260822.json",
+          "sha256": "sha256:5a63f8d1321b3b3a3116a5f76629bd36b4703584328d8415a1bf8b32e51ed49b"
+        }
+      ]
+    },
+    {
+      "entry_id": "UI-EDITOR-004-NATIVE-IME-INPUT",
+      "kind": "manual_evidence_input",
+      "status": "pending_user_input",
+      "scenario_ids": ["UI-EDITOR-004"],
+      "required_user_text": "한글 조합 테스트 입력 후 UI-EDITOR-004 IME 입력 완료",
+      "external_state_change": false,
+      "may_be_batched": false,
+      "blocks": ["complete_native_ime_reference_observation"],
+      "does_not_block": [
+        "UI-EDITOR-006-reference-evidence",
+        "UI-RESP-001-reference-evidence",
+        "local-verification"
+      ],
+      "evidence": [
+        {
+          "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-004-reference-partial-ime-events-deferred-20260821.json",
+          "sha256": "sha256:2cdb101f8930254714c934a804c267935bde6efb8d4b700465e446d18e42efe2"
+        }
+      ]
+    },
+    {
+      "entry_id": "UI-RESP-001-MULTIVIEWPORT-SUMMARY-REVIEW",
+      "kind": "human_evidence_acceptance",
+      "status": "pending_user_approval",
+      "scenario_ids": ["UI-RESP-001"],
+      "required_user_text": "UI-RESP-001 다중 뷰포트 요약 승인",
+      "external_state_change": false,
+      "may_be_batched": true,
+      "blocks": [
+        "seal_reference_review_receipt",
+        "recompute_exact_reference_local_differential"
+      ],
+      "does_not_block": ["local-verification"],
+      "evidence": [
+        {
+          "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-resp-001-reference-multiviewport-green-review-pending-20260822.json",
+          "sha256": "sha256:872fdc7f77d7cf5684154283e03a34cc8c078da89834db8db52a7c269fe085aa"
+        }
+      ]
+    },
+    {
+      "entry_id": "UI-PERF-001-REFERENCE-CREATE-TRASH",
+      "kind": "destructive_external_action",
+      "status": "pending_action_time_confirmation",
+      "scenario_ids": ["UI-PERF-001"],
+      "required_user_text": "UI-PERF-001-REFERENCE-CREATE 휴지통 이동 승인",
+      "external_state_change": true,
+      "may_be_batched": true,
+      "blocks": [
+        "reference_create_cleanup_complete",
+        "reference_tree_restored"
+      ],
+      "does_not_block": [
+        "UI-EDITOR-006-reference-evidence",
+        "UI-RESP-001-reference-evidence",
+        "local-verification"
+      ],
+      "evidence": [
+        {
+          "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-independent-create-pending-cleanup-20260822.json",
+          "sha256": "sha256:4129b507b65c3578cb652d55799726e72d9b6a6300f77a6d1d018e8d9ef96bc1"
+        }
+      ]
+    }
+  ],
+  "batch_execution": {
+    "status": "waiting_for_exact_user_text",
+    "exact_user_text": "UI-A11Y-001, UI-EDITOR-003 요약 승인; UI-RESP-001 다중 뷰포트 요약 승인; UI-PERF-001-REFERENCE-CREATE 휴지통 이동 승인",
+    "entry_ids": [
+      "UI-A11Y-001-UI-EDITOR-003-SUMMARY-REVIEW",
+      "UI-RESP-001-MULTIVIEWPORT-SUMMARY-REVIEW",
+      "UI-PERF-001-REFERENCE-CREATE-TRASH"
+    ],
+    "processing_order": [
+      "seal_non_mutating_summary_receipts",
+      "reclaim_and_revalidate_exact_synthetic_page",
+      "move_only_the_exact_synthetic_page_to_trash",
+      "verify_reference_tree_restoration",
+      "rerun_all_three_machine_verifiers"
+    ],
+    "manual_input_excluded": "UI-EDITOR-004-NATIVE-IME-INPUT"
+  },
+  "independent_lane": {
+    "status": "ready_for_local_verification_only",
+    "ordered_work": ["local-verification"],
+    "next_exact_work": "Run the serial approval-queue, review-gate, completion, and UI-RESP-001 local regression checks. Do not induce an official Notion network failure or stale-revision conflict without a separately reviewed method.",
+    "forbidden_without_new_authorization": [
+      "personal-workspace-access",
+      "external-publish-or-message",
+      "invite-or-share-membership-change",
+      "purchase-or-plan-upgrade",
+      "production-migration-or-feature-enable"
+    ]
+  },
+  "claims": {
+    "pending_entry_count": 4,
+    "pending_human_approval_count": 2,
+    "pending_manual_input_count": 1,
+    "pending_destructive_external_action_count": 1,
+    "approval_inferred_count": 0,
+    "external_action_executed_count": 0,
+    "independent_work_blocked": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

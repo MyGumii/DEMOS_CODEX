@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.s0a.current_sbe_rebind_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-S0A-P2-CURRENT-SBE-REBIND-V2-20260908",
+  "recorded_at": "2026-09-08T22:57:39+09:00",
+  "status": "local_dynamic_contracts_rebound_and_verified_external_execution_deferred",
+  "immutable_after_recording": true,
+  "packet_id": "S0A-P2",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "predecessors": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-s0a-p2-active-contract-rebind-pre-edit-20260908.json",
+      "sha256": "sha256:31004e90a03e96fe08560cb4d2ad516f8cb42d240daf4ff77498aaa2d70d048c",
+      "role": "pre_edit_preservation"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-local-readiness-current-sbe-green-v2-20260908.json",
+      "sha256": "sha256:0194ceb5e6a9581315d1642b0b670ce67bce0bccdc06e6646b26fbea2530a04f",
+      "role": "superseded_o1b_readiness"
+    }
+  ],
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    }
+  },
+  "source_compatibility": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-source-compatibility-inheritance-v12-20260908.json",
+    "sha256": "sha256:26804c57165721b548e5070f9bb71ded66892b6f61ecc1e0c4b4962e6471a177",
+    "record_sha256": "sha256:f7e382e1b73295f087af372c502615bc3a92cff3e54e943225ca894c121746f3",
+    "self_hash_verified": true
+  },
+  "sbe_dynamic_baseline": {
+    "path": "capture/o1b-p1-sbe-readiness-contract-audit-20260908-v4.json",
+    "sha256": "sha256:5b5e063cf39488ec3853e3ea22cf7b86698d6fc9aa4f13c3f2db74bb0e81ccb4",
+    "input_sha256": "sha256:4f3e995b27e6a1e2cb0b130212217c62dae9aae688785676b7daf8dd1e4b1e5b",
+    "status": "pass",
+    "error_count": 0,
+    "report_schema_version": 2,
+    "source_file_count": 33,
+    "goal_count": 20,
+    "mandatory_scenario_count": 284
+  },
+  "active_contracts": {
+    "s0a_publication_fence": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json",
+      "sha256": "sha256:d6103913b7c8da3833987a6e91169f29814e068de750f663de4f079d9e7ff84a",
+      "verification_status": "pass",
+      "gate_passed": true
+    },
+    "o1b_target_operations_readiness": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v4.json",
+      "sha256": "sha256:f6ba450334eb337782f57e5c2e1d8a8956d43953f6e9cfd577901a9c3332896d",
+      "readiness_contract_passed": true,
+      "gate_passed": false,
+      "authorized_execution_policy_sha256": null
+    }
+  },
+  "implementation_bindings": {
+    "internal_validation": {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:fe89f6294119578a8c4c4b9d269a59c123fd1b6fc83ebf01107b27816caa4f8b"
+    },
+    "target_restore_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_target_restore.py",
+      "sha256": "sha256:37f5a921e5abc67da48ae480c123ebbb2a4176a7cd16db700677bd9ea96d3c6b"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "status": "pass",
+      "files": [
+        "code_assist_v1/tools/internal_collaborative_validation.py",
+        "code_assist_v1/tools/verify_internal_collaborative_second_brain_publication.py",
+        "code_assist_v1/tools/verify_internal_collaborative_target_restore.py"
+      ]
+    },
+    "s0a_direct_verifier": {
+      "status": "pass",
+      "exit_code": 0,
+      "error_count": 0,
+      "scenario_count": 9,
+      "source_count": 14,
+      "test_count": 6
+    },
+    "source_harness_s0a_v0b_regression": {
+      "status": "expected_single_central_snapshot_failure",
+      "passed": 105,
+      "failed": 1,
+      "duration_seconds": 249.74,
+      "only_failure": "test_cli_audit_is_zero_and_gate_is_nonzero",
+      "only_error_code": "SBE_AUDIT_HASH_DRIFT"
+    },
+    "target_restore_policy_and_gate_regression": {
+      "status": "pass",
+      "passed": 80,
+      "failed": 0,
+      "duration_seconds": 34.32
+    },
+    "o1b_readiness_verifier": {
+      "status": "pass",
+      "exit_code": 0,
+      "error_count": 0,
+      "readiness_contract_passed": true,
+      "approval_required": true,
+      "target_operations_handoff_required": true,
+      "target_execution_required": true,
+      "gate_passed": false
+    },
+    "execution_required_mode": {
+      "status": "expected_fail_closed",
+      "exit_code": 1,
+      "error_count": 1,
+      "error_code": "TARGET_EXECUTION_EVIDENCE_REQUIRED",
+      "readiness_contract_passed": true,
+      "gate_passed": false
+    },
+    "central_read_only_audit": {
+      "status": "expected_fail_closed_on_unpromoted_dynamic_sbe_snapshot",
+      "exit_code": 1,
+      "error_count": 1,
+      "error_code": "SBE_AUDIT_HASH_DRIFT",
+      "gate_passed_required_packets": 44,
+      "required_packet_count": 50,
+      "closed_matrix_rows": 21,
+      "matrix_row_count": 28,
+      "closed_phase_gates": 15,
+      "phase_gate_count": 20,
+      "valid_execution_receipts": 21
+    }
+  },
+  "remaining_boundaries": [
+    "central catalog, ladder, completion matrix, and current checkpoint remain unchanged until the actual downstream gates",
+    "external target identity, encrypted off-host destination, trust anchors, and signed approval/handoff remain absent",
+    "O1B-P1, Q0-P1, R0A-P1, R0B-P1, R1-P1, and Z0-P1 remain uncredited",
+    "no production migration, feature-flag activation, target traffic, company API call, or paid resource provisioning occurred"
+  ],
+  "claims": {
+    "current_sbe_contract_audit_green": true,
+    "s0a_dynamic_binding_current": true,
+    "o1b_local_readiness_contract_passed": true,
+    "historical_receipt_or_checkpoint_overwritten": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:532d366f64e80a8a6ddd46d3da80268b9b7711b3d4f9ccdabceebef023cf4a0e"
+}

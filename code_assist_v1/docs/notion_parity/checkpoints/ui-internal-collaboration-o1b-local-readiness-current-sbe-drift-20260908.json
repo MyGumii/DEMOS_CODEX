@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b.local_readiness_current_sbe_drift_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-LOCAL-READINESS-CURRENT-SBE-DRIFT-20260908",
+  "recorded_at": "2026-09-08T12:31:00+09:00",
+  "status": "o1b_through_z0_local_readiness_fail_closed_on_concurrent_sbe_drift",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-local-browser-visual-hardening-v8-20260908.json",
+    "sha256": "sha256:c420bc8bfa598649b469b6c125472044d942d0a1b7d9f93d4b43cbce53e9fb96"
+  },
+  "target_policy_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_o1b_p1_target_operations.v1.json",
+    "sha256": "sha256:345572f54a67af8ac853a64a78b2556bcb4d1298f3de21e871efa78036b90c15"
+  },
+  "target_verifier_binding": {
+    "path": "code_assist_v1/tools/verify_internal_collaborative_target_restore.py",
+    "sha256": "sha256:e2bbde1fadd3ed577042d88cdeafcd49d79e46c8c0b265fe22cf241dd56f7bcf"
+  },
+  "verification": {
+    "o1b_through_z0_six_module_readiness": {
+      "status": "fail_closed_on_sbe_dynamic_baseline",
+      "passed": 100,
+      "failed": 14,
+      "duration_seconds": 41.66,
+      "direct_target_verifier_error_count": 1,
+      "direct_target_verifier_errors": [
+        {
+          "code": "SBE_AUDIT_REPORT_INVALID",
+          "subject": "$.sbe_dynamic_baseline.report_path",
+          "message": "fresh immutable report/hash with zero-error SBE audit is required"
+        }
+      ],
+      "non_sbe_root_failure_count": 0
+    },
+    "target_verifier_readiness": {
+      "status": "fail",
+      "error_count": 1,
+      "readiness_contract_passed": false,
+      "gate_passed": false,
+      "target_execution_required": true,
+      "approval_required": true,
+      "target_operations_handoff_required": true,
+      "policy_sha256": "sha256:345572f54a67af8ac853a64a78b2556bcb4d1298f3de21e871efa78036b90c15"
+    }
+  },
+  "dependency_diagnosis": {
+    "frozen_policy_sbe_audit_input_sha256": "sha256:4fbbf741aece1a5ee3ddd6e24479b3662dd76d04ed10566e642e300360ceedc7",
+    "current_observed_sbe_audit_input_sha256": "sha256:82a0b5dc8314c5a635c451f8e6552d7c95323aa69a588e674b3e4a272fa1f8a2",
+    "current_central_errors": [
+      "S0A_PUBLICATION_FENCE_RECEIPT_INVALID",
+      "SBE_AUDIT_HASH_DRIFT"
+    ],
+    "sbe_hot_contract_ownership_transferred_to_this_work": false,
+    "target_policy_resealed_against_invalid_sbe_state": false
+  },
+  "remaining_external_prerequisites": [
+    "fresh zero-error SBE contract audit after the concurrent SBE owner stabilizes its state",
+    "reviewed target-specific policy and exact code pin",
+    "approved encrypted off-host backup destination",
+    "approved distinct Windows target host and connection method",
+    "four reviewed Ed25519 public trust anchors",
+    "fresh signed AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF",
+    "durable single-use nonce ledger and external evidence destination"
+  ],
+  "claims": {
+    "sbe_drift_accepted_as_green": false,
+    "target_policy_rewritten": false,
+    "approval_inferred": false,
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:a60801987273cfe9edcee9a730dd1209343e50c1f0b6ffc77a1794c657a13575"
+}

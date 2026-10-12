@@ -1,0 +1,67 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T14:10:31.7431172+09:00",
+  "run_id": "ui39-reference-browser-user-input-blocked-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-r5-approval-reaffirmation-local-perf-create-green-20260822.json",
+    "sha256": "sha256:be6a6249c105c8bbef823db11b3c1f24618ffa4557e28843ffde9f1af7d49787",
+    "semantic_status": "current_source_green_waiting_for_reference_browser_and_owner_input"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active_before_block_transition",
+    "objective": "개발된거 확인하고 계획들 이어서 계속 진행해줘.",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": 25,
+    "local_real_browser_green": 24,
+    "local_measurement_green": 1,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "promoted": 0,
+    "personal_or_live_data_accessed": false
+  },
+  "blocked_audit": {
+    "blocking_condition": "The connected Chrome control surface contains zero open tabs, while every remaining safe reference scenario needs the owner-opened synthetic REF-FREE-A tab; separate owner review and native Korean IME inputs also remain outstanding.",
+    "consecutive_goal_turns": 3,
+    "same_condition_confirmed": true,
+    "meaningful_local_work_exhausted": true,
+    "unsafe_fallbacks_refused": [
+      "guessing or reconstructing a Notion URL",
+      "opening or inspecting a personal workspace",
+      "reading browser storage, cookies, profiles, history, or clipboard",
+      "changing the completion matrix without authorization",
+      "implementing UI differences not proven by reference evidence"
+    ]
+  },
+  "protected_inputs": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json","sha256":"sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json","sha256":"sha256:5106bf14da624728c6ba2bde86e283c1f66b66fc6d18fafc12f0fd1971d6839b"}
+  ],
+  "verification": [
+    {"selection":"Chrome open-tab audit, first blocked goal turn","result":"open tab count 0"},
+    {"selection":"Chrome open-tab audit, second blocked goal turn","result":"open tab count 0"},
+    {"selection":"Chrome open-tab audit, third blocked goal turn","result":"open tab count 0"},
+    {"selection":"latest review gate verifier","result":"pass; all 25 scenarios categorized exactly once"},
+    {"selection":"latest completion verifier","result":"pass and incomplete; differential 5/25"},
+    {"selection":"latest local unblocked regression","result":"UI-EDITOR-006 exact recovery 1 passed in 24.46s"}
+  ],
+  "resume_contract": {
+    "exact_user_message": "REF-FREE-A 다시 연결했어",
+    "required_external_state": "Only the synthetic REF-FREE-A Notion tab is open and connected to Chrome control.",
+    "first_action_after_resume": "Re-hash this checkpoint and protected inputs, confirm the active tab is REF-FREE-A without opening the workspace switcher, then measure one independent synthetic page creation and restore the original tree by moving only the created page to Trash.",
+    "other_pending_user_inputs": [
+      "UI-A11Y-001, UI-EDITOR-003 요약 승인",
+      "UI-EDITOR-004 IME 입력 완료 after typing 한글 조합 테스트 once with the native Korean IME in the last empty REF-FREE-A block"
+    ]
+  },
+  "claims": {
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "completion_matrix_changed": false,
+    "git_commit_claimed": false
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_capability_switch_contract.k0_p1.v1",
+  "packet_id": "K0-P1",
+  "recorded_at": "2026-08-24T08:25:00Z",
+  "status": "implemented_default_off",
+  "prerequisite_evidence": {
+    "G0": {
+      "path": "internal_collaborative_product_decision.v1.json",
+      "sha256": "sha256:19b550449db5af3510f62be6b56f65372faeacdd9f10136aa382b73da84362a8",
+      "status": "frozen"
+    },
+    "G0-E": {
+      "path": "internal_collaborative_engineering_decision.v1.json",
+      "sha256": "sha256:0dc3b39f9eb64b93496026701adf8638785268d0fb1dea9e021a8c8c58b4bb74",
+      "status": "frozen"
+    },
+    "UI0-P1": {
+      "path": "../checkpoints/ui-internal-collaboration-ui0-p1-editor-host-20260824.json",
+      "sha256": "sha256:55a86a8629afdb43e3a5e2eb3ba4b1c4a3fb07f1cb57a407039eb4a9fa25ee78",
+      "status": "gate_passed"
+    }
+  },
+  "implementation": {
+    "path": "../../../notion_collaboration/capability_switches.py",
+    "sha256": "sha256:2c332043fa9e771523a71edcf5239fb72529bb5948845f89b04a43d8aa0d2f7c",
+    "ambient_environment_read": false,
+    "database_or_filesystem_write": false,
+    "process_or_listener_start": false
+  },
+  "namespace_contract": {
+    "prefix": "CODE_ASSIST_NOTION_COLLAB_",
+    "aggregate_key": "CODE_ASSIST_NOTION_COLLAB_ENABLED",
+    "unknown_prefixed_key_behavior": "fail_closed",
+    "missing_aggregate_behavior": "disabled",
+    "individual_capability_may_bypass_aggregate": false,
+    "SBE_flag_alias_or_bypass_allowed": false,
+    "existing_single_user_Notion_behavior_controlled_by_this_namespace": false
+  },
+  "capability_registry": [
+    "canonical_authority",
+    "realtime_transport",
+    "workspace_iam",
+    "presence_comments_mentions",
+    "collaborative_editing",
+    "second_brain_publication",
+    "database_features",
+    "files",
+    "history",
+    "search",
+    "offline_outbox"
+  ],
+  "non_adopted_capabilities_absent": [
+    "public_links",
+    "external_guests",
+    "pricing",
+    "ai"
+  ],
+  "evaluation_order": [
+    "aggregate_enabled",
+    "known_registered_capability_enabled",
+    "exact_realm",
+    "exact_deployment_generation",
+    "schema_compatible",
+    "request_subject_and_workspace_present",
+    "canary_subject_and_workspace_or_separate_full_rollout_authority"
+  ],
+  "realm_and_rollout_contract": {
+    "realms": [
+      "development",
+      "production"
+    ],
+    "rollouts": [
+      "canary",
+      "full"
+    ],
+    "canary_requires": [
+      "subject_allowlist",
+      "workspace_allowlist"
+    ],
+    "full_requires": "separate_runtime_full_rollout_authority",
+    "development_pair_or_identity_import_started_by_K0": false,
+    "production_deployed_or_enabled_by_K0": false
+  },
+  "schema_and_rollback_contract": {
+    "base_schema_version": 2026081317,
+    "parallel_archive_schema_version": 2026081318,
+    "reserved_collaboration_schema_version": 2026082401,
+    "collaboration_requires_exact_reserved_schema_and_additive_compatibility_attestation": true,
+    "aggregate_off_on_forward_additive_schema_allows_compatible_code_rollback": true,
+    "schema_downgrade_required_by_code_rollback": false,
+    "migration_implemented_by_K0": false,
+    "rollback_action": "disable_Notion_collaboration_aggregate_and_run_compatible_code"
+  },
+  "product_policy_binding": {
+    "commercial_plan_or_storage_quota_enforced": false,
+    "registered_connection_editor_profile": [
+      100,
+      30,
+      10
+    ],
+    "external_email_guests_public_links_pricing_and_AI_enabled": false
+  },
+  "claims": {
+    "aggregate_and_capability_switch_contract_implemented": true,
+    "default_off": true,
+    "SBE_flags_unchanged": true,
+    "schema_migration_implemented": false,
+    "identity_import_executed": false,
+    "runtime_or_feature_enabled": false,
+    "service_or_port_started": false,
+    "live_or_production_data_accessed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/contracts/goal-contract.schema.json",
+  "title": "Shared Knowledge Agent quantitative goal contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "goal_thread_id",
+    "goal_status",
+    "planning_baseline_date",
+    "target",
+    "completion_policy",
+    "metrics",
+    "authoritative_human_contract",
+    "acceptance_scenarios",
+    "ordered_work"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "goal_thread_id": {"type": "string", "format": "uuid"},
+    "goal_status": {"enum": ["active", "paused"]},
+    "planning_baseline_date": {"type": "string", "format": "date"},
+    "target": {
+      "type": "object",
+      "required": ["users", "host_count", "operating_system", "knowledge_scope_phase_1"],
+      "properties": {
+        "users": {"const": 40},
+        "host_count": {"const": 1},
+        "operating_system": {"const": "Windows"},
+        "knowledge_scope_phase_1": {
+          "type": "array",
+          "prefixItems": [{"const": "personal"}, {"const": "current_part"}],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "additionalProperties": false
+    },
+    "completion_policy": {
+      "type": "object",
+      "required": ["logic", "documentation_only_is_completion", "part_write_flag", "part_write_required_before_gate"],
+      "properties": {
+        "logic": {"const": "all_metrics_and_p8_completion_audit"},
+        "documentation_only_is_completion": {"const": false},
+        "part_write_flag": {"const": "KNOWLEDGE_CORE_PART_WRITES"},
+        "part_write_required_before_gate": {"const": "0"}
+      },
+      "additionalProperties": false
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 20,
+      "maxItems": 20,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["id", "metric", "required_requirement_count", "required_ratio", "max_unlinked"],
+            "properties": {
+              "id": {"const": "G-01"},
+              "metric": {"const": "requirements_traceability"},
+              "required_requirement_count": {"const": 41},
+              "required_ratio": {"const": 1.0},
+              "max_unlinked": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "required_ratio", "max_unclassified_callsites", "known_job_submit_producers", "max_unmapped_job_submit_producers"],
+            "properties": {
+              "id": {"const": "G-02"},
+              "metric": {"const": "current_path_inventory"},
+              "required_ratio": {"const": 1.0},
+              "max_unclassified_callsites": {"const": 0},
+              "known_job_submit_producers": {"const": 8},
+              "max_unmapped_job_submit_producers": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "required_manifest_terminal_classification_ratio", "max_silent_loss", "max_unreported_orphans", "max_rerun_duplicate_logical_rows"],
+            "properties": {
+              "id": {"const": "G-03"},
+              "metric": {"const": "legacy_migration_reconciliation"},
+              "required_manifest_terminal_classification_ratio": {"const": 1.0},
+              "max_silent_loss": {"const": 0},
+              "max_unreported_orphans": {"const": 0},
+              "max_rerun_duplicate_logical_rows": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "max_partial_batches", "max_retry_duplicate_items_or_revisions"],
+            "properties": {
+              "id": {"const": "G-04"},
+              "metric": {"const": "dual_publication_atomicity"},
+              "max_partial_batches": {"const": 0},
+              "max_retry_duplicate_items_or_revisions": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "clients", "web_processes", "required_successful_holders_per_item", "max_stale_or_revoked_save_successes"],
+            "properties": {
+              "id": {"const": "G-05"},
+              "metric": {"const": "cross_process_edit_exclusion"},
+              "clients": {"const": 40},
+              "web_processes": {"const": 2},
+              "required_successful_holders_per_item": {"const": 1},
+              "max_stale_or_revoked_save_successes": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "required_mutation_audit_outbox_ratio", "required_edge_checksum_preservation_ratio"],
+            "properties": {
+              "id": {"const": "G-06"},
+              "metric": {"const": "mutation_audit_outbox_consistency"},
+              "required_mutation_audit_outbox_ratio": {"const": 1.0},
+              "required_edge_checksum_preservation_ratio": {"const": 1.0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "max_cross_space_canary_exposures", "max_outside_corpus_closure_exposures", "max_existing_conversation_space_changes"],
+            "properties": {
+              "id": {"const": "G-07"},
+              "metric": {"const": "space_isolation"},
+              "max_cross_space_canary_exposures": {"const": 0},
+              "max_outside_corpus_closure_exposures": {"const": 0},
+              "max_existing_conversation_space_changes": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "max_exact_auto_false_positives", "max_prereview_required_hidden_agent_exposures", "max_invalid_or_unauthorized_semantic_edge_auto_commits", "max_automatic_destructive_curation_effects", "max_t3_model_domain_actions"],
+            "properties": {
+              "id": {"const": "G-08"},
+              "metric": {"const": "curation_safety"},
+              "max_exact_auto_false_positives": {"const": 0},
+              "max_prereview_required_hidden_agent_exposures": {"const": 0},
+              "max_invalid_or_unauthorized_semantic_edge_auto_commits": {"const": 0},
+              "max_automatic_destructive_curation_effects": {"const": 0},
+              "max_t3_model_domain_actions": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "clients", "max_non_llm_crud_p95_ms", "max_db_fts_p95_ms", "max_projection_lag_p95_ms", "max_final_sqlite_busy_rate", "requires_successor_profile_rebaseline"],
+            "properties": {
+              "id": {"const": "G-09"},
+              "metric": {"const": "steady_load_slo"},
+              "clients": {"const": 40},
+              "max_non_llm_crud_p95_ms": {"const": 500},
+              "max_db_fts_p95_ms": {"const": 1500},
+              "max_projection_lag_p95_ms": {"const": 5000},
+              "max_final_sqlite_busy_rate": {"const": 0.001},
+              "requires_successor_profile_rebaseline": {"const": true}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "max_lost_jobs", "max_duplicate_domain_commits_per_effect_key", "max_settled_projection_mismatches"],
+            "properties": {
+              "id": {"const": "G-10"},
+              "metric": {"const": "durable_work_recovery"},
+              "max_lost_jobs": {"const": 0},
+              "max_duplicate_domain_commits_per_effect_key": {"const": 0},
+              "max_settled_projection_mismatches": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "sqlite_version", "sqlite_source_id", "required_filesystem", "requires_production_wsgi", "requires_central_inference_worker"],
+            "properties": {
+              "id": {"const": "G-11"},
+              "metric": {"const": "production_runtime_gate"},
+              "sqlite_version": {"const": "3.53.4"},
+              "sqlite_source_id": {"const": "2026-07-24 19:02:57 bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e09459bcc"},
+              "required_filesystem": {"const": "local_ntfs"},
+              "requires_production_wsgi": {"const": true},
+              "requires_central_inference_worker": {"const": true}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "max_rpo_minutes", "max_rto_minutes", "required_successful_restore_drills", "max_integrity_or_projection_mismatches"],
+            "properties": {
+              "id": {"const": "G-12"},
+              "metric": {"const": "backup_restore"},
+              "max_rpo_minutes": {"const": 60},
+              "max_rto_minutes": {"const": 240},
+              "required_successful_restore_drills": {"const": 1},
+              "max_integrity_or_projection_mismatches": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "required_named_scenario_count", "max_failed", "max_missing_ids", "max_duplicate_ids", "requires_legacy_regression"],
+            "properties": {
+              "id": {"const": "G-13"},
+              "metric": {"const": "mandatory_automated_scenarios"},
+              "required_named_scenario_count": {"const": 284},
+              "max_failed": {"const": 0},
+              "max_missing_ids": {"const": 0},
+              "max_duplicate_ids": {"const": 0},
+              "requires_legacy_regression": {"const": true}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "required_completed_phases", "requires_evidence_hashes", "requires_explicit_rollout_approval"],
+            "properties": {
+              "id": {"const": "G-14"},
+              "metric": {"const": "part_write_rollout_gate"},
+              "required_completed_phases": {
+                "type": "array",
+                "prefixItems": [
+                  {"const": "P1"}, {"const": "P2"}, {"const": "P3"},
+                  {"const": "P4"}, {"const": "P5"}, {"const": "P6"},
+                  {"const": "P7"}
+                ],
+                "items": false,
+                "minItems": 7,
+                "maxItems": 7
+              },
+              "requires_evidence_hashes": {"const": true},
+              "requires_explicit_rollout_approval": {"const": true}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "max_identity_default_archive_violations", "max_conversation_binding_violations", "requires_unbounded_count_query_plan"],
+            "properties": {
+              "id": {"const": "G-15"},
+              "metric": {"const": "multi_wiki_integrity"},
+              "max_identity_default_archive_violations": {"const": 0},
+              "max_conversation_binding_violations": {"const": 0},
+              "requires_unbounded_count_query_plan": {"const": true}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "max_foreign_closure_exposures", "max_stale_role_commits", "max_distribution_authority_violations"],
+            "properties": {
+              "id": {"const": "G-16"},
+              "metric": {"const": "higher_scope_authority_integrity"},
+              "max_foreign_closure_exposures": {"const": 0},
+              "max_stale_role_commits": {"const": 0},
+              "max_distribution_authority_violations": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "min_overall_precision", "min_high_risk_relation_precision", "max_false_active_edge_rate", "max_unauthorized_edges"],
+            "properties": {
+              "id": {"const": "G-17"},
+              "metric": {"const": "automatic_edge_quality"},
+              "min_overall_precision": {"const": 0.95},
+              "min_high_risk_relation_precision": {"const": 0.97},
+              "max_false_active_edge_rate": {"const": 0.01},
+              "max_unauthorized_edges": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "min_recall_at_10", "min_ndcg_at_10", "min_mrr", "min_citation_precision", "max_unauthorized_citations", "ranked_document_count_policy", "max_agent_excerpt_bytes", "max_mandatory_contexts"],
+            "properties": {
+              "id": {"const": "G-18"},
+              "metric": {"const": "retrieval_quality_and_boundedness"},
+              "min_recall_at_10": {"const": 0.9},
+              "min_ndcg_at_10": {"const": 0.85},
+              "min_mrr": {"const": 0.85},
+              "min_citation_precision": {"const": 0.95},
+              "max_unauthorized_citations": {"const": 0},
+              "ranked_document_count_policy": {"const": "authorized_full_corpus"},
+              "max_agent_excerpt_bytes": {"const": 98304},
+              "max_mandatory_contexts": {"const": 4}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "max_canonical_hash_changes_from_footer", "max_nondeterministic_projection_bytes", "max_freshness_semantic_violations"],
+            "properties": {
+              "id": {"const": "G-19"},
+              "metric": {"const": "temporal_projection_integrity"},
+              "max_canonical_hash_changes_from_footer": {"const": 0},
+              "max_nondeterministic_projection_bytes": {"const": 0},
+              "max_freshness_semantic_violations": {"const": 0}
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["id", "metric", "preview_port", "requires_isolated_mutable_roots", "requires_company_model_handoff", "requires_target_server_handoff"],
+            "properties": {
+              "id": {"const": "G-20"},
+              "metric": {"const": "isolated_preview_handoff"},
+              "preview_port": {"const": 10111},
+              "requires_isolated_mutable_roots": {"const": true},
+              "requires_company_model_handoff": {"const": true},
+              "requires_target_server_handoff": {"const": true}
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "authoritative_human_contract": {"const": "TRACEABILITY.md"},
+    "acceptance_scenarios": {"const": "TEST_OPERATIONS.md"},
+    "ordered_work": {"const": "IMPLEMENTATION_BACKLOG.md"}
+  },
+  "additionalProperties": false
+}

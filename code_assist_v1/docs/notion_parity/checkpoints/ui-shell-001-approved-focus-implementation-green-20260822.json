@@ -1,0 +1,133 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T03:53:20.6738688+09:00",
+  "run_id": "ui36-shell-001-approved-focus-implementation-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-owner-approvals-recorded-20260822.json",
+    "sha256": "sha256:0b5c2449edf73c1aad3d3a058318c39330b182d0a27b55a5179ec3f709caee35",
+    "semantic_status": "exact_owner_approval_consumed_by_r2_1_workspace_focus"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "blocked",
+    "user_resume_received": true,
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-SHELL-001",
+    "slice_id": "R2-1-WORKSPACE-FOCUS",
+    "synthetic_workspaces": ["REF-FREE-A", "REF-FREE-B"],
+    "personal_workspace_entered": false,
+    "personal_page_accessed": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "screenshot_count": 0,
+    "external_side_effect_attempted": false,
+    "product_ui_changed": true,
+    "completion_matrix_changed": false
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-SHELL-001/R2-1",
+    "status": "approved_behavior_implemented_local_green_packet_sealing_pending",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/owner_approval_receipt.20260822.json",
+      "sha256": "sha256:28e8da75e8c06263f221943dfbd19a644783c8ab1dca6716be7c580bb6c2bf5c"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:23b552074fe484fadb6ea1397334a5e805b45da0da6dfd966df62946afb319f4"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json",
+      "sha256": "sha256:73b820b9d42cc7911964b237f0c6cc8fd8ac264aa01e7be0cea4becc68a08305"
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:c39cc152ee3a4a528cd59aac9833833d6246354c2e18bde820ee281d3d2c3999"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "sha256": "sha256:c884a911d8d0409283913e93c53de27dd8ad459ce3a29a530b2241cd344a88a0"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:0f0c3bb58b6bbe13902677bc748a49d6040be2f32bf7c47a9705de2750702fd2"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_navigation_ui.js",
+      "sha256": "sha256:14ca07205952fe91603a171a30973c932e0c0dc1e282b71d6b31167d68a5fc05"
+    }
+  ],
+  "reference_revalidation": {
+    "browser": "signed_in_chrome",
+    "mode": "visible_synthetic_controls_and_minimal_focus_state_only",
+    "UI-SHELL-001-A01": {
+      "repetitions": 2,
+      "target_workspace": "REF-FREE-B",
+      "focus": {"name": "WORKSPACE-SIDEBAR-GROUP", "role": "GROUP", "tabindex": "0"},
+      "switcher_focused": false
+    },
+    "UI-SHELL-001-A02": {
+      "repetitions": 2,
+      "target_workspace": "REF-FREE-A",
+      "focus": {"name": "WORKSPACE-SWITCHER", "role": "BUTTON", "tabindex": "0"},
+      "switcher_focused": true
+    },
+    "final_tab_state": "REF-FREE-A"
+  },
+  "implementation": {
+    "focus_policy": "The initially loaded workspace is visited. Switching to an unvisited workspace focuses an explicit workspace-sidebar group; returning to an already visited workspace focuses the operable switcher button.",
+    "workspace_isolation_unchanged": true,
+    "draft_flush_and_capability_fences_unchanged": true,
+    "first_visit_group_is_named_and_focusable": true,
+    "return_switcher_remains_operable": true
+  },
+  "local_differential": {
+    "UI-SHELL-001-A01": {"difference_count": 0, "focus": "WORKSPACE-SIDEBAR-GROUP", "role": "GROUP"},
+    "UI-SHELL-001-A02": {"difference_count": 0, "focus": "WORKSPACE-SWITCHER", "role": "BUTTON"},
+    "geometry_and_latency": "measurement_only",
+    "formal_reference_differential_packet_sealed": false
+  },
+  "verification": [
+    {"selection":"Node navigation UI","result":"pass"},
+    {"selection":"Node UI runtime","result":"pass"},
+    {"selection":"Node publication UI","result":"pass"},
+    {"selection":"UI-SHELL-001 exact browser journey","result":"1 passed in 28.80s"},
+    {"selection":"UI-SHELL-003 adjacent browser journey","result":"1 passed in 22.10s"},
+    {"selection":"UI-RESP-001 exact browser journey","result":"1 passed in 23.36s"},
+    {"selection":"UI-A11Y-001 permitted serial retry","result":"1 passed in 23.57s"},
+    {"selection":"UI-SB-001/UI-SB-002 and UI-SB-003 exact browser journeys","result":"2 passed in 44.36s"},
+    {"selection":"Second Brain publication/job-restart and chat regressions","result":"5 passed in 4.81s"},
+    {"selection":"owner-approved review gate verifier","result":"pass; errors=0"},
+    {"selection":"review gate unit tests","result":"8 passed in 4.77s"}
+  ],
+  "known_failures_and_repairs": [
+    "The first updated shell run showed that a same-tab security probe reloaded the application and erased visit context; the probe moved to a second isolated tab while retaining the exact security assertion.",
+    "The next shell run exposed one missing request-listener binding on that probe tab; the binding was added and the exact test passed.",
+    "UI-A11Y-001 reached an existing asynchronous search-modal Tab-wrap boundary once; the unchanged permitted serial retry passed.",
+    "UI-EDITOR-006 timed out once waiting for its intended response in an aggregate run; the isolated permitted serial retry passed in 24.39s.",
+    "Several read-only PowerShell search wrappers returned Windows 0xC0000409 after producing output; none were used as test evidence and subsequent direct commands completed normally."
+  ],
+  "claims": {
+    "approved_reference_behavior_implemented": true,
+    "semantic_difference_count": 0,
+    "local_browser_repeatable": true,
+    "second_brain_hard_gate_green": true,
+    "formal_evidence_packet_sealed": false,
+    "differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Build and validate the immutable UI-SHELL-001 reference-differential packet from the approved receipt and current complete captures before changing the completion matrix; otherwise continue only with R2-2 as a separate owned slice."
+}

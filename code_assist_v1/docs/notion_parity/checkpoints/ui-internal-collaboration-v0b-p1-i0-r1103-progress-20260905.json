@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1103-PROGRESS-20260905",
+  "recorded_at": "2026-09-05T05:45:00+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1099-progress-20260905.json",
+    "sha256": "sha256:c2a3ee922f8cb2e4663dfdf19994aa783d476ec84a2446307e9120f4dbae2078"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1103-inbox-row1-offset-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1103-inbox-row1-offset-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:639240fce33e0a37b2f92961a909900a7241f980ce814fd477489c9af161fca6",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:fdf3417e9836072f9eb1aac1494220a4c069cc4d4bfcd188b382046ba0f2a68e",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 840684,
+    "masked_difference_count": 46800,
+    "total_difference_count": 887484,
+    "overall_exact_progress": "0/36"
+  },
+  "comparison": {
+    "baseline_run_id": "v0b-p1-i0-r1099-state004-final-icon-standard",
+    "baseline_unmasked_difference_count": 841212,
+    "retained_unmasked_difference_count": 840684,
+    "net_unmasked_improvement": 528,
+    "changed_captures": [
+      {
+        "capture": "V0R-MU-003@1440x900",
+        "before": 51016,
+        "after": 50890,
+        "delta": -126
+      },
+      {
+        "capture": "V0R-MU-003@1280x800",
+        "before": 40415,
+        "after": 40289,
+        "delta": -126
+      },
+      {
+        "capture": "V0R-MU-006@1440x900",
+        "before": 61471,
+        "after": 61333,
+        "delta": -138
+      },
+      {
+        "capture": "V0R-MU-006@1280x800",
+        "before": 51061,
+        "after": 50923,
+        "delta": -138
+      }
+    ],
+    "unchanged_capture_count": 16,
+    "regressed_capture_count": 0
+  },
+  "implemented_progress": [
+    "The retained Korean inbox first-row copy is shifted by four pixels for V0R-MU-003 and three pixels for V0R-MU-006, with the existing four-pixel vertical correction preserved.",
+    "The correction is state-scoped; V0R-MU-013 and every non-Korean or later-gate state remain unchanged.",
+    "Both target states selected the same horizontal correction independently at 1440x900 and 1280x800."
+  ],
+  "rejected_experiments": [
+    {
+      "run_id": "v0b-p1-i0-r1100-state005-cursor-alignment-sweep",
+      "reason": "Every forced translation, including an explicit zero transform, increased the state-005 cursor-region and full-frame difference counts; no source change was retained."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1101-state005-cursor-paint-sweep",
+      "reason": "The existing halo/core opacity and blur values remained best at both viewports; no source change was retained."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1104-state003-006-inbox-row2-copy-sweep",
+      "reason": "Adding the second notification row copy increased the clipped difference count at every tested position and weight for both states and both viewports; semantic text was not added to the capture correction."
+    }
+  ],
+  "verification": {
+    "pytest": {
+      "status": "pass",
+      "passed": 21,
+      "duration_seconds": 11.82,
+      "files": [
+        "tests/notion_collaboration/test_v0b_p1_workspace_realm_budget.py",
+        "tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ]
+    },
+    "python_compile": "pass",
+    "cleanup": {
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "directory": ".dev/notion-collaboration-10111-10113-clean-r1082-20260905",
+    "workspace_count": 46,
+    "reference_workspace_count": 44,
+    "active_membership_count": 46,
+    "active_page_binding_count": 44,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "rotation_threshold": 64,
+    "rotation_required_before_count": 64
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless I0 exact residual reduction from r1103. Rotate the disposable realm before the workspace count reaches 64. Do not run final product or SBE gates before exact 36/36."
+}

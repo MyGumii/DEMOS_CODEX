@@ -1,0 +1,15 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const source=fs.readFileSync(require.resolve('../notion_static/notion.js'),'utf8');
+const slice=(name,next)=>source.slice(source.indexOf(`function ${name}(`),source.indexOf(`\nfunction ${next}(`));
+const context={State:{users:[{id:'ann',display_name:'동명이인'},{id:'anna',display_name:'동명이인'}]},escapeHtml:text=>String(text).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))};
+vm.createContext(context);
+vm.runInContext(slice('commentMentionSubjectIds','openCommentMentionPicker')+slice('commentBodyHtml','collaborativeCommentCommand'),context);
+assert.equal(JSON.stringify(context.commentMentionSubjectIds('@anna 확인')),'["anna"]');
+assert.equal(JSON.stringify(context.commentMentionSubjectIds('@동명이인 확인')),'[]');
+assert.equal(JSON.stringify(context.commentMentionSubjectIds('test@ann.example')),'[]');
+assert.equal(JSON.stringify(context.commentMentionSubjectIds('@ann, @anna!')),'["ann","anna"]');
+assert.match(context.commentBodyHtml('[파일](/api/notion/files/f_123)'),/href="\/api\/notion\/files\/f_123"/);
+assert.match(context.commentBodyHtml('[파일](/api/notion/collaboration/files/file_123)'),/href="\/api\/notion\/collaboration\/files\/file_123"/);
+assert.doesNotMatch(context.commentBodyHtml('[파일](/api/notion/files/../../elsewhere)'),/<a /);
+assert.doesNotMatch(context.commentBodyHtml('<script>alert(1)</script> [링크](javascript:alert(1))'),/<script|<a /);
+console.log('Exact mention identities and escaped attachment links passed');

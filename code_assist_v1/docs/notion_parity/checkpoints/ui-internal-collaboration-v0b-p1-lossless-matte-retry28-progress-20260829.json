@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-LOSSLESS-MATTE-RETRY28-20260829",
+  "recorded_at": "2026-08-29T03:13:39.9822183+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The fresh lossless V0R-P1 reference is now bound into the V0B verifier and candidate capture pipeline. Candidate-side application of eight independently verified privacy mattes removed 2,755,953 false unmasked differences from retry27. Retry28 retained all 36 accessibility passes, all 36 interaction passes, four passing component journeys, and complete recoverable cleanup. The remaining 10,634,091 unmasked differences are product or journey presentation differences; exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "semantic_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+      "sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f"
+    },
+    "prior_corrective_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+      "sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5"
+    },
+    "lossless_corrective_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "lossless_v0r_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-cleanup-gate-pass-20260829.json",
+      "sha256": "sha256:3cbdde7709d36d14a6966c6be9dc313a3e1867cf1aa1b89955f5ebf7f97d3f09"
+    },
+    "previous_accepted_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-twemoji-alignment-retry26-progress-20260828.json",
+      "sha256": "sha256:a6b75e03527dc2ddb3dbc295f1f2a4c0d8284229d4e14cb1fb79dc400b87791f"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "harness_changes": {
+    "v0b_reference_binding_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py",
+      "sha256": "sha256:288d58bf183eabc9d6585779702faf293ebce65f72b05bd347c4b483da6ba7b0",
+      "change": "Accept the explicit, hash-verified dated lossless V0R reference root while retaining the legacy binding."
+    },
+    "candidate_capture_matte": {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:5753d5b4df11f07bdb079fd254701635ad7731e979b286d76f09ac58d5438071",
+      "change": "Validate the reference privacy matte against every declared reference pixel and apply the identical matte to the candidate only after capture."
+    },
+    "matte_regression_test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+      "sha256": "sha256:2ff10f5d80c6f4bbb35e0221ed2d1bacaca772309058adc50368a9bb1d184367",
+      "result": "2 passed; combined V0B receipt and matte tests 11 passed"
+    }
+  },
+  "diagnostics": {
+    "retry27_without_candidate_matte": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry27-lossless/receipt.json",
+      "receipt_sha256": "sha256:e161d698c50f270af4e1e02a7fc264f5cafb66fc0a3597b6953eca62330b338a",
+      "unmasked_difference_count": 13390044,
+      "masked_difference_count": 211224,
+      "raw_difference_count": 13601268,
+      "accepted": false,
+      "reason": "The lossless reference privacy mattes were absent from the candidate, producing 2,755,953 false differences."
+    },
+    "retry28_with_verified_candidate_matte": {
+      "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry28-lossless-matte",
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry28-lossless-matte/receipt.json",
+      "receipt_sha256": "sha256:49756b0b239c69b19044a933213958995a12659fd5f51a3d01bd96ad418e8296",
+      "capture_count": 36,
+      "capture_state_count": 18,
+      "viewport_count": 2,
+      "capture_matte_count": 8,
+      "accessibility_pass_count": 36,
+      "interaction_pass_count": 36,
+      "exact_pixel_pass_count": 0,
+      "journey_count": 4,
+      "journey_pass_count": 4,
+      "unmasked_difference_count": 10634091,
+      "masked_difference_count": 211224,
+      "raw_difference_count": 10845315,
+      "delta_from_retry27_unmasked": -2755953,
+      "cleanup": {
+        "status": "complete",
+        "browser_closed": true,
+        "active_fixture_root_count": 0,
+        "active_test_grant_count": 0,
+        "active_test_member_count": 0,
+        "permanent_delete_used": false
+      }
+    }
+  },
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "largest_remaining_state_aggregates": [
+    {"state_id": "V0R-MU-001", "unmasked_difference_count": 1072395},
+    {"state_id": "V0R-MU-003", "unmasked_difference_count": 900987},
+    {"state_id": "V0R-MU-002", "unmasked_difference_count": 761598},
+    {"state_id": "V0R-MU-008", "unmasked_difference_count": 684856},
+    {"state_id": "V0R-MU-010", "unmasked_difference_count": 684211},
+    {"state_id": "V0R-MU-009", "unmasked_difference_count": 680485},
+    {"state_id": "V0R-MU-006", "unmasked_difference_count": 666695}
+  ],
+  "open_gates": {
+    "exact_pixel": {"passed": 0, "required": 36, "status": "open"},
+    "core_25": {"status": "not_run_until_exact_36_of_36"},
+    "performance": {"status": "not_run_until_exact_36_of_36"},
+    "claims": {"status": "open"},
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "scope_attestation": {
+    "user_chrome_touched": false,
+    "persistent_browser_profile_used": false,
+    "production_changed": false,
+    "second_brain_changed": false,
+    "public_publish_or_link_used": false,
+    "personal_workspace_or_page_used": false,
+    "raw_identifier_cookie_token_or_storage_persisted": false,
+    "permanent_delete_used": false,
+    "reference_receipts_modified": false,
+    "agents_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  }
+}

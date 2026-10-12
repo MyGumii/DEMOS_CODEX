@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-S0A-DYNAMIC-SBE-REBIND-PRE-EDIT-20260907",
+  "recorded_at": "2026-09-07T00:25:56+09:00",
+  "checkpoint_kind": "read_only_dynamic_sbe_binding_pre_edit",
+  "packet_id": "S0A-P2",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Preserve the S0A publication contract before rebinding its read-only SBE preflight to the concurrently extended current SBE documentation. No SBE file is owned or modified by this lease.",
+  "exact_owned_paths": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json": "sha256:6b8429e1804b5f67a6edf9494de24bee01286c88d625c750dcec9700db43ea04"
+  },
+  "dynamic_transition": {
+    "code_assist_v1/docs/knowledge_spaces/README.md": {
+      "previous_bound_sha256": "sha256:877e8c7718a8c0ec1d12761a7a0d50f8ddd4ccdf8053b32fc30510e8785d09ce",
+      "current_read_only_sha256": "sha256:a0cb4043364df5110e1805c9415c5e5f2b896adbc68d365344ab70341d0cd945"
+    },
+    "sbe_contract_audit_input": {
+      "previous_bound_sha256": "sha256:ccd4eaa7e11a4b5416ef3f089e78f2f518daae48d7ffff19583914a0d2e687de",
+      "current_passed_sha256": "sha256:a30f7f6674c00b30f7a3207329c8c7a5e25edef02d3b38738ba7ea969b2155f9",
+      "goal_count": 20,
+      "mandatory_scenario_count": 284
+    }
+  },
+  "guards": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "sbe_files_modified": false,
+    "product_source_modified": false,
+    "external_mutation_executed": false,
+    "product_complete": false,
+    "goal_complete": false
+  }
+}

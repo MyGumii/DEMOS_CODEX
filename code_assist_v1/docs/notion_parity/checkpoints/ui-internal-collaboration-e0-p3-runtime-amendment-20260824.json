@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P3-RUNTIME-AMENDMENT-20260824",
+  "recorded_at": "2026-08-23T23:24:18Z",
+  "checkpoint_kind": "same_scope_runtime_harness_amendment",
+  "packet_id": "E0-P3",
+  "owner_agent": "/root",
+  "approval_scope": {
+    "approval_id": "AP-RUNTIME-SPIKE-E0-P3-REINSTALL",
+    "scope_sha256": "sha256:f9245d712751e874ac24e35f37ef66be9dea3b706a8aa4af5712c1019d0283d0",
+    "scope_changed_by_amendment": false,
+    "new_package_version_or_artifact_added": false,
+    "new_effect_added": false
+  },
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p3-benchmark-approval-prepared-20260824.json",
+    "sha256": "sha256:bd28a3868ba147a7e6a929368a8728f0373e0d13586737b968634b2a0786b82a"
+  },
+  "pre_runtime_sha256": {
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark.py": "sha256:e72e352cd602ada2249b3daaf6c2a3443f524c00700109e13be69b3c9041b8ef",
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark_executor.py": "sha256:bbf4f9e92d91d444541b3e329df20c1e4a07812dcf46aa788545d4cebd623c84",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_benchmark_adapter.py": "sha256:f651b9d2175b43750fa5d93f97d44c2711d8e4160c1bc46bbc98dd1eab3d2a5d",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_benchmark_relay_adapter.py": "sha256:6be93eedcdc0d672c0c415a0fecdffd1db7743171b7f4ba25b1a2e24398a1d14",
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_benchmark_adapter.cjs": "sha256:c106bcc593ad200f3371521106707d93c8c0a5e730adff021391286510db47dc",
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_benchmark_adapter.cjs": "sha256:833180039d60c2d1d783806816827f4dddfd9eec6aa017717b18c18051ccba52"
+  },
+  "post_runtime_sha256": {
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark.py": "sha256:e72e352cd602ada2249b3daaf6c2a3443f524c00700109e13be69b3c9041b8ef",
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark_executor.py": "sha256:de320448b5fa7f9144afe89572ea8ded609103fa15a0c2dc4fbdc33c77f7cd91",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_benchmark_adapter.py": "sha256:9c60f2c52241b20238c73dd5512e10c80a9622c9a780e2215906c495ce16760b",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_benchmark_relay_adapter.py": "sha256:6be93eedcdc0d672c0c415a0fecdffd1db7743171b7f4ba25b1a2e24398a1d14",
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_benchmark_adapter.cjs": "sha256:90cd6f8bdabb766ee7d473271d50ccd533a22e1d1e6c87ad89be6d779fa81f89",
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_benchmark_adapter.cjs": "sha256:833180039d60c2d1d783806816827f4dddfd9eec6aa017717b18c18051ccba52"
+  },
+  "observations": [
+    {
+      "classification": "pre_candidate_npm_cache_binding_bug",
+      "resolution": "explicit existing cache path plus exact offline tarball URL reconstruction and SHA-512 verification"
+    },
+    {
+      "classification": "pycrdt_adapter_utf8_index_contract_bug",
+      "resolution": "UTF-8 byte offsets for append, delete, and undo plus ASCII operation request hashes"
+    },
+    {
+      "classification": "windows_rss_collector_pointer_contract_bug",
+      "resolution": "explicit Win32 HANDLE/DWORD/BOOL/pointer bindings and complete remeasurement"
+    }
+  ],
+  "accepted_runtime_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p3-candidate-benchmark-receipt-20260824.json",
+    "sha256": "sha256:15f7d5fa52844adc5b576d34d6ebe8cd5415446c61f465431c67c9b0f75d67cc",
+    "status": "pass"
+  },
+  "claims": {
+    "candidate_failure_observed": false,
+    "harness_failures_fixed_within_approved_scope": true,
+    "rejected_rss_measurement_used": false,
+    "candidate_winner_selected": false,
+    "product_dependency_or_runtime_changed": false
+  }
+}

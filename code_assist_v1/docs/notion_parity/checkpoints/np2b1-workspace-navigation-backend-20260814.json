@@ -1,0 +1,184 @@
+{
+  "run_id": "np2b1-workspace-navigation-backend-20260814",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "ultra",
+  "recorded_at": "2026-08-14T00:47:34.1461049+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "resume the documented plan, confirm the goal, and continue safe development",
+    "goal_completed": false
+  },
+  "slice": "NP2B-1-workspace-navigation-backend-foundation",
+  "status": "contract_tested_backend_foundation_routes_disabled",
+  "scope": {
+    "workspace_schema_changed": true,
+    "workspace_schema_version": 2026081310,
+    "legacy_source_schema_changed": false,
+    "explicit_offline_migration_implemented": true,
+    "route_unregistered_store_api_implemented": true,
+    "live_mutation": false,
+    "live_migration_applied": false,
+    "feature_flags_changed": false,
+    "routes_enabled": false,
+    "ui_enabled": false,
+    "recents_write_enabled": false,
+    "resolver_cutover_enabled": false,
+    "destructive_watermark_ack": false,
+    "continuous_consumer_registered": false,
+    "git_provenance": "unavailable: workspace .git is not valid repository metadata"
+  },
+  "schema_contract": {
+    "source_version": 2026081309,
+    "source_name": "notion_workspace_v2_np2a_incarnation_attestations",
+    "source_checksum": "sha256:ecc2a8b40e8d114015e05b1772701dd97bb99ac513db9fd041626408f5f127ec",
+    "source_actual_schema_sha256": "sha256:d79ecc5b79faacf3ca4db288e7978b8192df91b8c3f9e1d5a99f0d859e2e06b1",
+    "target_version": 2026081310,
+    "target_name": "notion_workspace_v2_np2b_navigation_state",
+    "target_checksum": "sha256:72058812be6f0b92db756d5648d2cd9a0741d4ad4f4f9c62377d128ca0b581b3",
+    "target_actual_schema_sha256": "sha256:d8935af134fa12cdd5f0f803e15cba798dece1831cfeeee7673e0dc0ef7d7b33",
+    "persistent_object_count": 119
+  },
+  "owned_files": [
+    "code_assist_v1/notion_workspace_store.py",
+    "code_assist_v1/notion_workspace_incarnation_migration.py",
+    "code_assist_v1/notion_workspace_navigation_migration.py",
+    "code_assist_v1/notion_workspace_rehearsal.py",
+    "code_assist_v1/tools/migrate_notion_workspace_navigation.py",
+    "code_assist_v1/tools/verify_notion_np2b_navigation_contract.py",
+    "code_assist_v1/tests/test_migrate_notion_workspace_navigation.py",
+    "code_assist_v1/tests/test_notion_workspace_navigation.py",
+    "code_assist_v1/tests/test_migrate_notion_workspace_incarnation.py",
+    "code_assist_v1/tests/test_migrate_notion_workspace_healing_apply.py",
+    "code_assist_v1/tests/test_migrate_notion_workspace_schema.py",
+    "code_assist_v1/tests/test_migrate_notion_workspace_healing.py",
+    "code_assist_v1/tests/test_notion_workspace_migration_chain_rehearsal.py",
+    "code_assist_v1/tests/test_notion_workspace_offline_rehearsal.py",
+    "code_assist_v1/tests/test_notion_workspace_outbox_delivery.py",
+    "code_assist_v1/tests/test_notion_workspace_locator_projection.py",
+    "code_assist_v1/tests/test_verify_notion_np2b_navigation_contract.py",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md",
+    "code_assist_v1/docs/notion_parity/NP2B_NAVIGATION_STATE_DESIGN.md",
+    "code_assist_v1/docs/notion_parity/np2b_navigation_contract.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/np2b1-workspace-navigation-backend-20260814.json"
+  ],
+  "protected_files": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/**",
+    "code_assist_v1/knowledge_core/**",
+    "code_assist_v1/tests/knowledge_spaces/**",
+    "code_assist_v1/app_code.py",
+    "code_assist_v1/app_notion.py",
+    "code_assist_v1/routes_notion_bridge.py",
+    "code_assist_v1/routes_chat_stream.py",
+    "code_assist_v1/routes_notion_workspace.py",
+    "code_assist_v1/auth.py",
+    "code_assist_v1/config.py",
+    "code_assist_v1/data_paths.py",
+    "code_assist_v1/tests/conftest.py",
+    "live knowledge/user_data/.runtime/sessions/workspace paths"
+  ],
+  "input_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "pre_slice_handoff_document": "6338e3dcc9bbeb736f1648bd8fc4be5c2b02ea1a8459003bd2468f9c80e53482",
+    "frozen_1309_schema_checksum": "sha256:ecc2a8b40e8d114015e05b1772701dd97bb99ac513db9fd041626408f5f127ec",
+    "frozen_1309_actual_schema_sha256": "sha256:d79ecc5b79faacf3ca4db288e7978b8192df91b8c3f9e1d5a99f0d859e2e06b1",
+    "note": "Full pre-edit file provenance is unavailable because .git is invalid; no landed/commit claim is made."
+  },
+  "output_hashes": {
+    "code_assist_v1/notion_workspace_store.py": "8375e530223fbf29a8852247b5191389cc490cc1ebaf7ce7f5570c002a1208ba",
+    "code_assist_v1/notion_workspace_incarnation_migration.py": "6da874e4f9c9aa516986a9500c42c2b0d854c71d2d496c4ed53b753c7121d40b",
+    "code_assist_v1/notion_workspace_navigation_migration.py": "eb5c941f2c40e1a7efaefa1eeb8c1930122f2246af37d8f7b799e141867cd793",
+    "code_assist_v1/notion_workspace_rehearsal.py": "d456c5e9ae8ed80013e4e41800796d98267144b1def9356cb9f5a6ba227afb2d",
+    "code_assist_v1/tools/migrate_notion_workspace_navigation.py": "38d3751904ad383c3ee63fa6659ef2a69fe1a0ebf23015f9358a803e66637133",
+    "code_assist_v1/tools/verify_notion_np2b_navigation_contract.py": "242922b9a9afb4fcb36c661eb0e2994fde89fd0adb1b54ca85f290eb7f2087a5",
+    "code_assist_v1/tests/test_migrate_notion_workspace_navigation.py": "2c287c478f700fc2a13b0983b12247cba01f1f30ffe40b10dc0d7e820c8880ab",
+    "code_assist_v1/tests/test_notion_workspace_navigation.py": "c2cd10e67f60a1d5cc296631ff17664e3344eb9f2a465e85f7806518cd5a22ba",
+    "code_assist_v1/tests/test_migrate_notion_workspace_incarnation.py": "60813646706c6c25b429a172dca9965f35265aa90de963d5de9451e760a6de66",
+    "code_assist_v1/tests/test_migrate_notion_workspace_healing_apply.py": "b2d517306b97e64623496c20d94933f9024f942e7200e2fb06fbfae6c8e1429a",
+    "code_assist_v1/tests/test_migrate_notion_workspace_schema.py": "71fc73320c18fface1470a48742c88e651eb27e8e597190169fc438d65d92e7e",
+    "code_assist_v1/tests/test_migrate_notion_workspace_healing.py": "2d5369df60e51b4b6b61ed51c98dff93fe4da539e416574083aa6b5762465327",
+    "code_assist_v1/tests/test_notion_workspace_migration_chain_rehearsal.py": "22cadfbae493c547328c6383c804758e3a64b03b05d36ac6f64d0abbb58dec4a",
+    "code_assist_v1/tests/test_notion_workspace_offline_rehearsal.py": "8f4a63b3935b149f62fae10aa8a6285f27106ca298b5be3698664c4cb1b28ec8",
+    "code_assist_v1/tests/test_notion_workspace_outbox_delivery.py": "86afaf1dd0532d17771e54e42571899542c8c13e92781139ab7f4e795c76e048",
+    "code_assist_v1/tests/test_notion_workspace_locator_projection.py": "2a287a9eb5f8609c8c3e320e6d3227faefa7529755ae505eb2d7c483425439be",
+    "code_assist_v1/tests/test_verify_notion_np2b_navigation_contract.py": "69f900cc684a9815d074c2ec85cbeb491d8d6fefea4ebf3587c0febb93c5505b",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "bf566fea27f0f46000603cb409d2a51b0c2856cb3ead5b93c2392e7566fe4422",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "fdc075a37932728b3e1412a41f956f9c4803af96895a87e554ed20f50149e890",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "379ff3dff86b19cf17e3bcd97bdda9f7248e22be9311404a5ad99d82663819bf",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "ab27078cc58ec50a3edae0593e40338729d7740640a7a73f25d11112a7996498",
+    "code_assist_v1/docs/notion_parity/NP2B_NAVIGATION_STATE_DESIGN.md": "0475123b202b0dcfb4a8682aa4212740cf90e4ff9acce4cbab24281964db8f65",
+    "code_assist_v1/docs/notion_parity/np2b_navigation_contract.json": "c9f8eef647c3d1267544309ae01827b3a2bd8b034a5e84bc0055b2fb96176c80",
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+  },
+  "tests": [
+    {
+      "selection": "navigation migration, navigation store and NP2B contract focused lane",
+      "result": "23 passed",
+      "exit_code": 0,
+      "duration_seconds": 21.90
+    },
+    {
+      "selection": "workspace store plus navigation",
+      "result": "32 passed",
+      "exit_code": 0,
+      "duration_seconds": 37.28
+    },
+    {
+      "selection": "restored migration chain plus 1309 and 1310 focused migrations",
+      "result": "16 passed",
+      "exit_code": 0,
+      "duration_seconds": 16.85
+    },
+    {
+      "selection": "incarnation attestation/rebind/orchestration, projection and healing",
+      "result": "115 passed",
+      "exit_code": 0,
+      "duration_seconds": 148.85
+    },
+    {
+      "selection": "workspace pages/routes, machine contracts and Second Brain hard regression",
+      "result": "86 passed",
+      "exit_code": 0,
+      "duration_seconds": 47.96
+    },
+    {
+      "selection": "workspace 1303 through 1310 migration component suites",
+      "result": "96 passed, 1 platform skip",
+      "exit_code": 0,
+      "duration_seconds": 74.80
+    },
+    {
+      "selection": "locator projection, outbox delivery and offline rehearsal",
+      "result": "39 passed",
+      "exit_code": 0,
+      "duration_seconds": 49.83
+    },
+    {
+      "selection": "changed production, CLI, verifier and focused test modules py_compile",
+      "result": "passed",
+      "exit_code": 0,
+      "duration_seconds": 1.30
+    }
+  ],
+  "invariants": [
+    "Navigation reads require a current workspace membership, create no default row, and open no legacy source database or directory scan.",
+    "Sidebar preference and favorite versions are independent exact CAS families; only an actual favorite state change increments favorite_version.",
+    "Favorites use stable workspace/subject/owner/page identity, recompute catalog visibility on every read, omit hidden rows, and return dense public positions.",
+    "An owned hidden favorite can be removed without reopening or reauthorizing the target source page.",
+    "Every accepted navigation mutation commits domain state, operation, audit, and outbox atomically; exact replay reauthorizes current membership and validates the canonical commitment.",
+    "Raw writers without exact service context, including NULL-returning actor/action functions, fail closed.",
+    "Navigation mutations do not bump workspace row_version or security_epoch.",
+    "The explicit 1309 to 1310 migration fabricates no user navigation rows and is not imported or invoked from request/startup paths.",
+    "No route, UI, Recents writer, resolver cutover, feature flag, destructive acknowledgement, continuous worker, live migration, or live data access occurred."
+  ],
+  "known_non_product_failure": {
+    "description": "An initial fault-injection test monkeypatch omitted the staticmethod calling convention and failed before exercising the implementation. The test harness was corrected; production code was unchanged by that failure. One recursive rg command exited with the known Windows 0xC0000409 host code after printing its matches; subsequent direct commands completed normally.",
+    "final_status": "resolved_or_host_only_and_green"
+  },
+  "next_exact_work": "Re-read AGENTS.md and this checkpoint, verify the active goal and every output hash, then perform an independent P0/P1 review. Only after a new file-ownership approval may NP2B-2 add the four protected workspace navigation routes with strict auth, CSRF, Origin, no-store, JSON and route-count regression. Do not combine UI, Recents, resolver, live migration or feature-flag activation with that route slice.",
+  "stop_reason": "NP2B-1 reached its documented boundary: explicit schema/migration and route-unregistered store APIs are contract-tested. Route registration, UI, Recents, resolver and live rollout are separate authorization and evidence gates."
+}

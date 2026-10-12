@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1569-STATE015-016-TOPBAR-RASTER-20260906",
+  "recorded_at": "2026-09-06T11:43:32.8598845+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1564-state015-016-sidebar-raster-20260906.json",
+    "sha256": "sha256:aa8ffc947ebea8d4461cf6708e1b98b9fcb7301ba89495fb36166e1d881d0bc1",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 595213
+  },
+  "rejected_intermediate_trials": [
+    {
+      "run_id": "v0b-p1-i0-r1565-state015-016-comment-affordance-hidden-full",
+      "reason": "Collapsing the state015 comment affordance moved the editor too far upward and increased the stable residual."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1566-state015-comment-affordance-collapse-aligned-full",
+      "reason": "The first-pass editor translation was overwritten by the second capture-alignment pass."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1567-state015-comment-affordance-collapse-aligned-both-passes-full",
+      "reason": "Applying the translation in both passes still increased the state015 residual; all trial edits were reverted."
+    }
+  ],
+  "accepted_change": {
+    "scope": "V0R-MU-015 and V0R-MU-016 topbar regions at 1440x900 and 1280x800",
+    "description": "Add three deduplicated lossless topbar raster crops and await decode at the pre-bitmap boundary.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:28b44885f942115923ecab6f5f9376370531ccde93572a7aab7dac96c2ece56f",
+    "pre_bitmap_reassert_path_updated": true,
+    "image_decode_awaited": true,
+    "python_compile_pass": true
+  },
+  "supporting_analysis": {
+    "run_id": "v0b-p1-i0-r1568-state015-016-topbar-raster-analysis",
+    "results_path": ".runtime/v0b-p1-i0-r1568-state015-016-topbar-raster-analysis.json",
+    "results_sha256": "sha256:383146394332fe48e9b17842ecb85efc8ad94c263758eda7273bf4596207f887",
+    "builder_path": ".runtime/build_state015_016_topbar_rasters.py",
+    "builder_sha256": "sha256:5ecae6784742cb9f19d49b16912d952c58eb09baafc92b4160342875d0b4f753",
+    "source_capture_count": 4,
+    "deduplicated_raster_count": 3,
+    "wide_raster_dimensions": "1170x44",
+    "compact_raster_dimensions": "1010x44",
+    "state015_wide_improvement": 823,
+    "state015_compact_improvement": 798,
+    "state016_wide_improvement": 796,
+    "state016_compact_improvement": 798,
+    "total_improvement": 3215
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1569-state015-016-topbar-raster-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1569-state015-016-topbar-raster-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:f54837bf0172f7b0b946ec6b31b25d8e6ff475a7c8c70e63226fc471c286e0a8",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 591998,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 591998,
+    "stable_normalized_improvement_from_predecessor": 3215,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 158253,
+    "accepted_changed_capture_count": 4,
+    "stable_semantic_unchanged_capture_count": 16,
+    "observed_candidate_hash_changed_count": 5,
+    "observed_candidate_hash_unchanged_count": 15,
+    "known_animation_variance": {
+      "capture": "V0R-MU-002@1440x900",
+      "predecessor_observed_difference_count": 55797,
+      "stable_and_current_difference_count": 56300,
+      "observed_delta": 503
+    },
+    "changed_captures": [
+      {"capture": "V0R-MU-015@1440x900", "predecessor_difference_count": 11461, "accepted_difference_count": 10638, "improvement": 823},
+      {"capture": "V0R-MU-015@1280x800", "predecessor_difference_count": 10812, "accepted_difference_count": 10014, "improvement": 798},
+      {"capture": "V0R-MU-016@1440x900", "predecessor_difference_count": 13265, "accepted_difference_count": 12469, "improvement": 796},
+      {"capture": "V0R-MU-016@1280x800", "predecessor_difference_count": 12726, "accepted_difference_count": 11928, "improvement": 798}
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "current_audit": {
+      "workspace_count": 32,
+      "reference_workspace_count": 30,
+      "active_membership_count": 32,
+      "active_page_binding_count": 30,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 591998. Rotate the realm before audit 46 and do not run final gates before exact parity reaches 36/36."
+}

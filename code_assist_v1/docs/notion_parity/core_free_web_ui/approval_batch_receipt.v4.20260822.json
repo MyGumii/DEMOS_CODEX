@@ -1,0 +1,47 @@
+{
+  "claims": {
+    "core_ui_complete": false,
+    "external_action_executed_count": 0,
+    "human_policy_approval_count": 1,
+    "overall_goal_complete": false,
+    "resolved_entry_count": 1
+  },
+  "contract": "code_assist.notion.core_free_ui.approval_batch_receipt.v4",
+  "correction": {
+    "approval_scope_changed": false,
+    "authorization_effect_changed": false,
+    "new_user_approval_requested": false,
+    "reason_code": "mutable_predecision_matrix_binding"
+  },
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "queue": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v4.json",
+    "sha256": "sha256:f1d94971702b791fe2d2afe96e615430cdd630a8a5f345ccca76724eef821486"
+  },
+  "recorded_at": "2026-08-22T23:48:20+09:00",
+  "resolved_entries": [
+    {
+      "authorization_effect": "allow_ui_editor_006_local_failure_recovery_evidence_satisfaction",
+      "entry_id": "UI-EDITOR-006-LOCAL-RECOVERY-EVIDENCE-POLICY",
+      "external_action_executed": false,
+      "kind": "human_policy_acceptance",
+      "scenario_ids": [
+        "UI-EDITOR-006"
+      ]
+    }
+  ],
+  "safety": {
+    "browser_control_used": false,
+    "completion_matrix_mutated": false,
+    "external_action_executed": false,
+    "live_local_data_access_allowed": false,
+    "personal_workspace_access_allowed": false,
+    "queue_mutated": false,
+    "receipt_creation_only": true
+  },
+  "source": {
+    "exact_text": "UI-EDITOR-006 공식 실패 유도 제외 및 로컬 회복 계약 승인",
+    "kind": "exact_user_message"
+  },
+  "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038"
+}

@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-STRUCTURAL-SHARE-BOUNDARY-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T02:28:09+09:00",
+  "checkpoint_kind": "structural_ui_parity_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_gate_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Bind the first structural parity reduction for workspace invitation, workspace member settings, page sharing, and revoked-access boundaries while preserving the failed V0B gate and all cleanup obligations.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-corrective-reference-diagnostic-20260828.json",
+    "sha256": "sha256:ee4111394541a68f64b918beb4a1de3d3a95537378b93699ea3164247951f945"
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:71186315431256a963e0fc96c0f02539e4d857911caef6ae4bdc07304a444777",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:488572b1d8382cc62ed6713e0b6b8181da2390209b494a7ef515269f3778b08e"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:9b7e34f0de81192ad82c083d18ecaabbc41dfee4d5d58e01e31f62fcc0fbe6f4"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:e7256398fa3d616391cd70b56eff369887fac3cc0004f7f19f1b28125f918a16"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:973ed6687285bbd729e7a058dc80cc610a474684556d36699e0d6313a87827d2"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:2ee02fb1d7a0a8d5b444477544aaec4aae2894124e2cd8fd3cc5dc90118d5794"
+      }
+    ]
+  },
+  "implemented_surfaces": {
+    "workspace_invite": {
+      "presentation": "centered_modal_with_dimmed_backdrop",
+      "candidate_geometry_1440x900": {
+        "x": 490,
+        "y": 202,
+        "width": 460,
+        "height": 496
+      },
+      "reference_geometry_1440x900": {
+        "x": 490,
+        "y": 203,
+        "width": 460,
+        "height": 496
+      }
+    },
+    "workspace_members": {
+      "presentation": "large_settings_modal_with_settings_navigation",
+      "candidate_geometry_1440x900": {
+        "x": 72,
+        "y": 50,
+        "width": 1296,
+        "height": 800
+      }
+    },
+    "page_share": {
+      "presentation": "top_right_popover",
+      "candidate_geometry_1440x900": {
+        "x": 912,
+        "y": 42,
+        "width": 458
+      }
+    },
+    "access_boundary": {
+      "presentation": "full_view_skeleton_and_centered_request_dialog",
+      "focus_role": "dialog",
+      "page_revoke_http_status": 404,
+      "workspace_revoke_visibility_fence": true
+    }
+  },
+  "diagnostic_evidence": {
+    "root": "code_assist_v1/.runtime/v0b-p1-share-boundary-diagnostic-20260828",
+    "candidate_screenshot_root": "code_assist_v1/.runtime/v0b-p1-share-boundary-diagnostic-20260828/screenshots",
+    "diff_root": "code_assist_v1/.runtime/v0b-p1-share-boundary-diagnostic-20260828/diffs",
+    "journey": "I0-P2",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "journey_status": "pass",
+    "browser_closed": true,
+    "gate_passed": false
+  },
+  "pixel_reduction_samples": [
+    {
+      "state_id": "V0R-MU-001",
+      "viewport": "1440x900",
+      "baseline_difference_count": 1161806,
+      "current_difference_count": 1160781,
+      "reduction_count": 1025
+    },
+    {
+      "state_id": "V0R-MU-002",
+      "viewport": "1440x900",
+      "baseline_difference_count": 554026,
+      "current_difference_count": 510798,
+      "reduction_count": 43228,
+      "reduction_percent": 7.8
+    },
+    {
+      "state_id": "V0R-MU-006",
+      "viewport": "1440x900",
+      "baseline_difference_count": 404989,
+      "current_difference_count": 197344,
+      "reduction_count": 207645,
+      "reduction_percent": 51.27
+    },
+    {
+      "state_id": "V0R-MU-004",
+      "viewport": "1440x900",
+      "baseline_difference_count": 386883,
+      "current_difference_count": 372584,
+      "reduction_count": 14299,
+      "reduction_percent": 3.7
+    },
+    {
+      "state_id": "V0R-MU-017",
+      "viewport": "1440x900",
+      "baseline_difference_count": 456242,
+      "current_difference_count": 252195,
+      "reduction_count": 204047,
+      "reduction_percent": 44.72
+    },
+    {
+      "state_id": "V0R-MU-018",
+      "viewport": "1440x900",
+      "baseline_difference_count": 478978,
+      "current_difference_count": 248821,
+      "reduction_count": 230157,
+      "reduction_percent": 48.05
+    }
+  ],
+  "cleanup_audit": {
+    "latest_synthetic_workspace_count": 8,
+    "source_page_count": 8,
+    "archived_source_page_count": 8,
+    "active_source_page_count": 0,
+    "active_page_tree_node_count": 0,
+    "active_collaborator_workspace_membership_count": 0,
+    "active_collaborator_guest_count": 0,
+    "active_collaborator_page_grant_count": 0,
+    "permanent_delete_used": false,
+    "status": "complete"
+  },
+  "verification": {
+    "node_syntax_check": "pass",
+    "python_compile_check": "pass",
+    "targeted_regression": "20 passed, 1 skipped",
+    "full_I0_P2_browser_journey": "pass",
+    "accessibility_matrix_slice": "20/20 pass",
+    "cleanup": "pass"
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "V0B_P1_structural_share_boundary_progress": true,
+    "I0_P2_journey_passed": true,
+    "I0_P2_accessibility_passed": true,
+    "I0_P2_cleanup_passed": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue structural parity for the workspace shell, page canvas/header/editor, database, comment thread, and inbox; then run a fresh complete 36-row V0B candidate, Core 25, and quiet-host performance gate. Do not enter O1B until all V0B gates pass."
+}

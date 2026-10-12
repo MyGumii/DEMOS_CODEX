@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_second_brain_boundary.s0a_p1.v1",
+  "packet_id": "S0A-P1",
+  "recorded_at": "2026-08-25T11:14:04+09:00",
+  "status": "implemented_and_validated",
+  "prerequisite_evidence": {
+    "E1-P3": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e1-p3-convergence-native-ime-20260825.json",
+      "sha256": "sha256:e0baf2c6a144a7c74586591de18dbc5b32b51b66a7e135c2d624ebdb5b03dcac",
+      "status": "gate_passed"
+    }
+  },
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "write_policy": "read_only"
+  },
+  "sbe_dynamic_preflight": {
+    "status": "pass",
+    "error_count": 0,
+    "input_sha256": "sha256:0beefd78448cdd19767be0e0276fdbf6951ff417c39c135105e7754d755df494",
+    "goal_count": 20,
+    "mandatory_scenario_count": 284,
+    "required_scenario_ids": [
+      "PUB-001",
+      "PUB-002",
+      "PUB-003",
+      "PUB-004",
+      "AUTH-001",
+      "AUTH-002",
+      "AUTH-004",
+      "REG-002",
+      "REG-003"
+    ],
+    "ordered_document_manifest": [
+      {"path": "code_assist_v1/docs/knowledge_spaces/README.md", "sha256": "sha256:e41a7c93614863ea63d8c26f425c82c65024fb5b3287078e7173f660136f4478"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/README.md", "sha256": "sha256:40bd11db3767fbbba1fb3c6e6cbfee6fa1ad98a05ed115f71cfaa22dbaf19dd1"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/PRODUCT_CONTRACT.md", "sha256": "sha256:55fdc53dbf591d9974cf92d4042b6b4849d2e5a0c155bad4960f0a5acb33218c"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md", "sha256": "sha256:a4d67b11b17c61d95609cdd600093555c6cd8af209688eab51cab976d0491b98"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md", "sha256": "sha256:d78c351a4e1b9cb1fe17c74946fe5d8375f860a3e5b9439fdac79a511ae6f2d4"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/ACCEPTANCE.md", "sha256": "sha256:0cefe981b05ad8a675877e4832dcb5f7bcbdf2cb90b96d7a03226b000bfa3e7a"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/DECISIONS.md", "sha256": "sha256:f764bec2b35730fc0b012415400059e61787d38f43b78914d46af9bca94ca7db"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/ARCHITECTURE.md", "sha256": "sha256:bb8552653b0f02128302d7bf1cb7d75f65000215f01e138398be8b81c62520aa"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/SCHEMA_V1.md", "sha256": "sha256:52585d2e42b6e00e1931c72e4164f6e014720e748c985b376e5ab15272606bbd"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/API_UI_CONTRACT.md", "sha256": "sha256:27014fcb44343d6d288c97e8dcc0ef9865f826f39e3767f2e6bd1276db5ca38f"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/CURRENT_SYSTEM_INVENTORY.md", "sha256": "sha256:bdf39d05337d918917e34b9d68187bfeb4799920d871b1688ece9d488735c55d"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/MIGRATION_ROLLOUT.md", "sha256": "sha256:4c146ceff04d1740634c91a95a585311e139567af1f86a79870082561e6cdbef"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/TEST_OPERATIONS.md", "sha256": "sha256:fa429c36bc5034818fbcd18a79fa66e36a8af863837afb263b4d1258a20fbc5b"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/DEVELOPMENT_BASELINE.md", "sha256": "sha256:608792faa9998740b5009aa721260b56ad15a6affab7420abbe0b0ecab8a9edc"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md", "sha256": "sha256:48f148233afda50a53bc1caa5024fa4dc595161665f2afa33fa51c2b0a2f2375"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md", "sha256": "sha256:ec44830103df6366a8b11b472dec0372ea413057b6868bd09a83769e57bfd35f"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json", "sha256": "sha256:46ce12ad70e424dc1c381d496dfb71cc9f7955606fe9945a72bff1ccf2d2d71b"},
+      {"path": "code_assist_v1/docs/knowledge_spaces/STATUS.md", "sha256": "sha256:d48c75c2800720a2f204b51a9fa8e6b23eab238590f811ca82005d89074de895"}
+    ]
+  },
+  "notion_source_boundary": {
+    "schema_version": 2026082405,
+    "minimum_source_role": "edit_content",
+    "current_revision_checkpoint_required": true,
+    "checkpoint_document_sequence_must_equal_current": true,
+    "checkpoint_revision_must_equal_current": true,
+    "canonical_document_checkpoint_hash_chain_verified": true,
+    "workspace_and_document_access_epochs_bound": true,
+    "source_authorization_revalidated_before_sbe_commit": true,
+    "uncheckpointed_document_events_rejected": true,
+    "timestamp_fields_in_publication_identity": [],
+    "attachment_source_policy": "reject_until_F0_asset_boundary",
+    "sbe_adapter_type": "AuthorizedNotionPageSnapshot",
+    "sbe_updated_at_value": null,
+    "notion_revision_and_sbe_publication_revision_are_distinct": true
+  },
+  "cross_database_publication_adr": {
+    "adr_id": "S0A-P1-CROSS-DB-PUBLICATION-LINEARIZATION",
+    "canonical_databases": [
+      "notion_workspace_catalog",
+      "second_brain_central_sqlite"
+    ],
+    "cross_database_sql_transaction_forbidden": true,
+    "notion_intent_states": [
+      "prepared",
+      "sbe_committing",
+      "committed",
+      "canceled",
+      "reconciliation_required"
+    ],
+    "prepare_contract": [
+      "capture_exact_checkpointed_revision_and_access_epochs",
+      "persist_caller_operation_id_request_hash_and_source_fence",
+      "cancel_creates_no_sbe_item_or_revision"
+    ],
+    "commit_linearization_contract": [
+      "revalidate_current_notion_source_authority_revision_and_epochs",
+      "durably_transition_prepared_to_sbe_committing_before_sbe_call",
+      "invoke_only_sbe_service_layer_with_same_operation_id_and_request_hash",
+      "sbe_revalidates_target_native_space_authority_in_its_commit_transaction",
+      "record_exact_sbe_result_or_reconciliation_required"
+    ],
+    "revocation_contract": [
+      "revoke_prevents_new_prepared_to_sbe_committing_transitions",
+      "revoke_response_is_not_complete_while_matching_sbe_committing_intent_is_unresolved",
+      "post_revoke_preview_live_attachment_and_new_publication_delivery_is_zero",
+      "already_committed_sbe_item_is_not_hidden_deactivated_deleted_or_live_synced"
+    ],
+    "ambiguous_response_contract": [
+      "retry_same_sbe_operation_id_and_request_hash",
+      "sbe_returns_original_committed_result",
+      "different_request_hash_is_rejected",
+      "notion_reconciliation_records_original_result_without_duplicate_effect"
+    ],
+    "personal_plus_part_contract": [
+      "one_sbe_transaction",
+      "two_independent_items",
+      "two_independent_revision_histories",
+      "permanent_sync_none_lineage",
+      "later_notion_edits_never_auto_sync"
+    ],
+    "expensive_work_outside_both_transactions": [
+      "rendering",
+      "file_copy",
+      "ocr",
+      "embedding",
+      "llm",
+      "network"
+    ],
+    "implementation_owner_after_this_packet": "S0A-P2_Notion_side_intent_and_revocation_fence"
+  },
+  "agent_context_boundary": {
+    "live_notion_source_enters_agent_corpus": false,
+    "attachment_requires_published_sbe_item": true,
+    "attachment_pins_immutable_sbe_revision": true,
+    "attachment_grants_authority": false,
+    "conversation_selected_view_count": 1,
+    "selection_change_creates_new_conversation": true,
+    "server_owned_corpus_closure": true,
+    "maximum_reranked_results": 10,
+    "maximum_separately_labeled_pins_and_stable_references": 4,
+    "combined_excerpt_budget_bytes": 32768,
+    "notion_timestamps_excluded_from": [
+      "canonical_body",
+      "content_hash",
+      "fts",
+      "deduplication",
+      "semantic_analysis",
+      "reranker_text",
+      "agent_excerpt"
+    ]
+  },
+  "protected_sbe_characterization": {
+    "files_modified": false,
+    "existing_service_api_sufficient": true,
+    "conditional_packet_S0B_P1_required": false,
+    "required_existing_symbols": [
+      "AuthorizedNotionPageSnapshot",
+      "CreateNotionPreviewCommand",
+      "CancelPublicationPreviewCommand",
+      "PublishPreviewCommand",
+      "PublicationService.create_notion_preview",
+      "PublicationService.cancel_preview",
+      "PublicationService.publish"
+    ],
+    "verified_existing_behaviors": [
+      "preview_exact_replay_and_cancel",
+      "target_authorization_revalidated_at_commit",
+      "personal_part_dual_target_atomicity",
+      "same_operation_response_loss_replays_exact_result",
+      "different_request_hash_rejected",
+      "later_notion_change_becomes_proposal_not_auto_sync",
+      "one_conversation_one_server_authorized_corpus_closure"
+    ],
+    "read_only_manifest": [
+      {"path": "code_assist_v1/knowledge_core/services/publication.py", "sha256": "sha256:0b77e848de455a34426bae95f89e118487485040005fc1c3763af8b71bf4357b"},
+      {"path": "code_assist_v1/knowledge_core/services/rich_publication.py", "sha256": "sha256:1183ba3f3d59adcce1b2d63c39ec60757bae75c87e1db4ae2ca8858c63cfc925"},
+      {"path": "code_assist_v1/knowledge_core/scope.py", "sha256": "sha256:b3fc13d40608eaa180ac7387a17240b6eb134d781ac6fdd9e84b6e891797345d"},
+      {"path": "code_assist_v1/tests/knowledge_spaces/regression/test_notion_publication_and_job_restart.py", "sha256": "sha256:8efa9c7b2730a8ec44413b06f5cfef13d360201f5b2a070173ee4b17dbe67020"},
+      {"path": "code_assist_v1/tests/knowledge_spaces/regression/test_second_brain_chat_characterization.py", "sha256": "sha256:e1341a7e28e07ace9076dbb5c779650c1a978c9180158650d7f32168c0feba16"},
+      {"path": "code_assist_v1/tests/knowledge_spaces/integration/test_full_second_brain_preview.py", "sha256": "sha256:4d42b926d789af3e2f15efc61cf803d3da7c855ec87f7eb445b3572256ad7680"},
+      {"path": "code_assist_v1/tests/test_notion_publication_adapter.py", "sha256": "sha256:cf4b1a6831f15c9d15580e4efe2f6a976b1b3b05e0480c958db0fdc9578a63dc"},
+      {"path": "code_assist_v1/tests/test_notion_atomic_save_compat.py", "sha256": "sha256:9ead0063896d04be7c39331a2145d6228b6e722a6279796dc29a9e2cdfaa15c1"}
+    ]
+  },
+  "validation": {
+    "sbe_existing_regression": {
+      "passed": 31,
+      "failed": 0,
+      "duration_seconds": 131.86
+    },
+    "notion_boundary_authority": {
+      "passed": 5,
+      "failed": 0,
+      "duration_seconds": 27.09
+    },
+    "production_10011_10012_changed": false,
+    "persistent_development_schema_changed": false
+  },
+  "source_manifest": [
+    {"path": "code_assist_v1/notion_collaboration/second_brain_boundary.py", "sha256": "sha256:3a8ef18d581d92ab0d438e395929d6090541fa1bf03efcb7a739e61008d24475"},
+    {"path": "code_assist_v1/tools/verify_internal_collaborative_convergence_corpus.py", "sha256": "sha256:b963c36f48bed5657fbd5493d3e832dbb708b8d6be5becee261db5dbcffc333c"},
+    {"path": "code_assist_v1/tools/verify_internal_live_collaboration_runtime.py", "sha256": "sha256:eacdbb821110e4e653f544808f935220f516f9859a84eefae001d346b6891f6d"}
+  ],
+  "test_manifest": [
+    {"path": "code_assist_v1/tests/notion_collaboration/test_second_brain_boundary_authority.py", "sha256": "sha256:deb93c8205a5d6e9c69bbf5b255cc8a5b76509959d43d99833d316c10aa87673"},
+    {"path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py", "sha256": "sha256:0b79f4715ce555f39712aae28048fddcbe0b0d37ee504465bd72d8610941dc98"},
+    {"path": "code_assist_v1/tests/notion_collaboration/test_internal_live_collaboration_runtime_contract.py", "sha256": "sha256:aff8bd6083ea9ca2c653646b35c5fa4237173c50b3a3a33c3e60f1685fca6df5"}
+  ],
+  "claims": {
+    "S0A_P1_gate_passed": true,
+    "exact_committed_revision_boundary_verified": true,
+    "source_and_target_authority_domains_remain_separate": true,
+    "cross_database_linearization_adr_frozen": true,
+    "protected_sbe_change_required": false,
+    "S0B_P1_activated": false,
+    "S0_phase_gate_closed": false,
+    "production_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

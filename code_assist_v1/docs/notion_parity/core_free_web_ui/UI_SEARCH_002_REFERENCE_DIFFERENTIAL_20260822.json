@@ -1,0 +1,324 @@
+{
+  "contract": "code_assist.notion.core_free_ui.reference_differential.v1",
+  "recorded_at": "2026-08-22T20:34:39.3932957+09:00",
+  "scenario_id": "UI-SEARCH-002",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "review": {
+    "approved": true,
+    "approved_by": "workspace_owner",
+    "approval_scope": "redacted_summary_only"
+  },
+  "scope": {
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "external_side_effect_attempted": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "screenshot_count": 0
+  },
+  "reference": {
+    "browser": "chrome-signed-in",
+    "submission_file_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+    "receipt_file_sha256": "sha256:90bbbe185470af6493c272c9d8a2a2520053ef5dd51d013e27c04cbfdaa1190f",
+    "receipt": {
+      "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+      "c0_sha256": "sha256:9c122b6ac60d83575ef822c9c822b96e1f0d84f40dcd53a3ed3dae555550e366",
+      "capture_count": 2,
+      "captures_sha256": "sha256:28815ca9ed907711dfebd10daed5f810a69273dd3b1267374c2885d522a4edd5",
+      "contract": "notion_core_free_ui_manual_reference_receipt_v1",
+      "external_side_effect_attempted": false,
+      "path_disclosed": false,
+      "personal_page_accessed": false,
+      "personal_workspace_accessed": false,
+      "profile": "free-owner-chrome-desktop-ko-KR",
+      "promotion_allowed": false,
+      "run_id": "ui59-r1-r3-reference-completion-20260822",
+      "scenario_id": "UI-SEARCH-002",
+      "screenshot_count": 0,
+      "status": "accepted_reference_observation",
+      "worksheet_sha256": "sha256:6ca7ae02f16d8e07aad7ff065c44506ff506b7e01255cb05089bbcd444570d29"
+    },
+    "captures": {
+      "UI-SEARCH-002-A01": {
+        "a11y": {
+          "name": "PAGE-FIND-INPUT",
+          "role": "searchbox"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "PAGE-FIND-INPUT"
+          ]
+        },
+        "geometry": {
+          "PAGE-FIND": {
+            "height": 42,
+            "width": 396,
+            "x": 968,
+            "y": 8
+          }
+        },
+        "keyboard": {
+          "result": "pass"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-SEARCH-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "PAGE-FIND",
+          "state": "visible"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-SEARCH-002-A02": {
+        "a11y": {
+          "name": "PAGE-CANVAS",
+          "role": "region"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "PAGE-CANVAS"
+          ]
+        },
+        "geometry": {
+          "PAGE-CANVAS": {
+            "height": 168,
+            "width": 760,
+            "x": 460,
+            "y": 151
+          }
+        },
+        "keyboard": {
+          "result": "pass"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-SEARCH-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SYNTHETIC-BACKLINK",
+          "state": "visible"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "local": {
+    "browser": "chrome-ephemeral-headless",
+    "isolated_data_root": true,
+    "capture_sha256": {
+      "UI-SEARCH-002-A01": "sha256:e0d19cdf41c31d84fb9b69a86cf973e3a710db1775499c049689ce844fba2eae",
+      "UI-SEARCH-002-A02": "sha256:3c25b09fa5e119d11e121ccae7a118af8957a783e46db4e87029923844e1c7ab"
+    },
+    "captures": {
+      "UI-SEARCH-002-A01": {
+        "a11y": {
+          "name": "PAGE-FIND-INPUT",
+          "role": "searchbox"
+        },
+        "action_log_sha256": "sha256:de06b16ee6361ae1172144db1cb4c7f600c0c6e4e8181608f97e5ce056436140",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "PAGE-FIND-INPUT"
+          ]
+        },
+        "geometry": {
+          "PAGE-FIND": {
+            "height": 42,
+            "width": 396,
+            "x": 968,
+            "y": 8
+          }
+        },
+        "keyboard": {
+          "result": "pass"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-SEARCH-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "PAGE-FIND",
+          "state": "visible"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-SEARCH-002-A02": {
+        "a11y": {
+          "name": "PAGE-CANVAS",
+          "role": "region"
+        },
+        "action_log_sha256": "sha256:de06b16ee6361ae1172144db1cb4c7f600c0c6e4e8181608f97e5ce056436140",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "PAGE-CANVAS"
+          ]
+        },
+        "geometry": {
+          "PAGE-CANVAS": {
+            "height": 168,
+            "width": 760,
+            "x": 460,
+            "y": 151
+          }
+        },
+        "keyboard": {
+          "result": "pass"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-SEARCH-002",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SYNTHETIC-BACKLINK",
+          "state": "visible"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 1,
+          "result": "pass"
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "differential": {
+    "policy_state": "precalibration",
+    "all_actions_passed": true,
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-SEARCH-002-A01": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:ebeb69b75c0e6abea72b716f719cf173908938dc629066859d3eae78af05d2c1",
+        "candidate_sha256": "sha256:e0d19cdf41c31d84fb9b69a86cf973e3a710db1775499c049689ce844fba2eae",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "PAGE-FIND": {
+              "height": 42,
+              "width": 396,
+              "x": 968,
+              "y": 8
+            }
+          },
+          "candidate_geometry": {
+            "PAGE-FIND": {
+              "height": 42,
+              "width": 396,
+              "x": 968,
+              "y": 8
+            }
+          },
+          "reference_latency_ms": 0,
+          "candidate_latency_ms": 0
+        }
+      },
+      "UI-SEARCH-002-A02": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:f49c7a404f1f2c9be15993ff9d54a372cb159d3c3a1147cb67e1471cba0a88a3",
+        "candidate_sha256": "sha256:3c25b09fa5e119d11e121ccae7a118af8957a783e46db4e87029923844e1c7ab",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "PAGE-CANVAS": {
+              "height": 168,
+              "width": 760,
+              "x": 460,
+              "y": 151
+            }
+          },
+          "candidate_geometry": {
+            "PAGE-CANVAS": {
+              "height": 168,
+              "width": 760,
+              "x": 460,
+              "y": 151
+            }
+          },
+          "reference_latency_ms": 0,
+          "candidate_latency_ms": 0
+        }
+      }
+    }
+  }
+}

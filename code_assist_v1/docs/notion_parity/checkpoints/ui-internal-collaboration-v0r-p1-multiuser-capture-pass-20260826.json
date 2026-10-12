@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-MULTIUSER-CAPTURE-PASS-20260826",
+  "recorded_at": "2026-08-26T21:21:37+09:00",
+  "checkpoint_kind": "two_principal_edit_comment_mention_reconnect_pass",
+  "packet_id": "V0R-P1",
+  "packet_status": "execution_in_progress_awaiting_B_comment_role_confirmation",
+  "purpose": "Record the confirmed REF-FREE-A two-principal workspace collaboration capture: inherited access, presence, remote cursor, text/block/database convergence, synthetic comment/reply/reaction, mention notification, and reconnect catch-up. Only dedicated test identities and synthetic fixtures were used.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-page-edit-share-pass-20260826.json",
+    "sha256": "sha256:2d9568a1cb9c6721c576ecb95e53efd7c73a3da4adb1e5ab3ef26772d29ba461"
+  },
+  "action_time_confirmation": {
+    "exact_user_text": "A 공동 편집·댓글·반응·멘션 실행 승인",
+    "bound_action_id": "V0R-MULTIUSER-CAPTURE",
+    "bound_workspace": "REF-FREE-A",
+    "bound_principals": [
+      "REF-OWNER",
+      "REF-COLLABORATOR"
+    ],
+    "future_blanket_confirmation_accepted": false,
+    "future_policy": "Proceed without questions for ordinary in-scope edits, validation, and capture; obtain fresh action-time confirmation only where required for invitations, permission changes, messages/notifications, deletion, or other consequential actions."
+  },
+  "operator_action_result": {
+    "order": 6,
+    "action_id": "V0R-MULTIUSER-CAPTURE",
+    "workspace": "REF-FREE-A",
+    "actor": "REF-OWNER+REF-COLLABORATOR",
+    "required_result": "workspace_presence_edit_comment_mention_reconnect_states_captured",
+    "inherited_workspace_access_explained": true,
+    "two_principal_presence_visible": true,
+    "remote_cursor_visible": true,
+    "text_convergence_verified_in_both_sessions": true,
+    "block_convergence_verified_in_both_sessions": true,
+    "database_convergence_verified_in_both_sessions": true,
+    "synthetic_owner_comment_posted": true,
+    "synthetic_collaborator_reply_posted": true,
+    "synthetic_reaction": "party_face",
+    "synthetic_collaborator_mention_notification_visible": true,
+    "reconnect_catch_up_marker": "V0R-A-ROW-RECONNECT",
+    "reconnect_catch_up_verified": true,
+    "status": "passed"
+  },
+  "synthetic_fixture_final_markers": {
+    "text": "V0R-A-TEXT-BASE | V0R-A-TEXT-OWNER | V0R-A-TEXT-COLLABORATOR",
+    "block": "V0R-A-BLOCK-BASE | V0R-A-BLOCK-OWNER | V0R-A-BLOCK-COLLABORATOR",
+    "database_rows": [
+      "V0R-A-ROW-BASE",
+      "V0R-A-ROW-OWNER",
+      "V0R-A-ROW-COLLABORATOR",
+      "V0R-A-ROW-RECONNECT"
+    ],
+    "comment": "V0R-A-COMMENT-OWNER",
+    "reply": "V0R-A-REPLY-COLLABORATOR"
+  },
+  "corrected_transient_focus_incident": {
+    "occurred": true,
+    "scope": "synthetic_REF_FREE_A_database_row_only",
+    "description": "The first reply input attempt retained focus in the collaborator database cell and temporarily replaced V0R-A-ROW-COLLABORATOR with the synthetic reply marker.",
+    "detected_before_reply_submission": true,
+    "database_row_restored": true,
+    "restoration_verified_in_both_sessions": true,
+    "accidental_marker_remaining_in_database": false,
+    "personal_production_or_non_test_data_affected": false
+  },
+  "capture_states": [
+    {
+      "state_id": "V0R-MU-006",
+      "state": "inherited_workspace_access_explained",
+      "status": "captured"
+    },
+    {
+      "state_id": "V0R-MU-007",
+      "state": "two_principal_presence_visible",
+      "status": "captured"
+    },
+    {
+      "state_id": "V0R-MU-008",
+      "state": "remote_cursor_and_selection_visible",
+      "status": "captured"
+    },
+    {
+      "state_id": "V0R-MU-009",
+      "state": "simultaneous_text_edit_converged",
+      "status": "captured"
+    },
+    {
+      "state_id": "V0R-MU-010",
+      "state": "simultaneous_block_edit_converged",
+      "status": "captured"
+    },
+    {
+      "state_id": "V0R-MU-011",
+      "state": "simultaneous_database_edit_converged",
+      "status": "captured"
+    },
+    {
+      "state_id": "V0R-MU-012",
+      "state": "comment_reply_and_reaction_visible",
+      "status": "captured"
+    },
+    {
+      "state_id": "V0R-MU-013",
+      "state": "synthetic_mention_notification_visible",
+      "status": "captured"
+    },
+    {
+      "state_id": "V0R-MU-014",
+      "state": "reconnect_catch_up_complete",
+      "status": "captured"
+    }
+  ],
+  "privacy_processing": {
+    "method": "deterministic_rectangular_redaction",
+    "redacted_elements": [
+      "non_synthetic_sidebar content",
+      "raw profile names and account identifiers",
+      "presence and remote-cursor initials while preserving principal count",
+      "mention display identity while preserving synthetic comment and notification context"
+    ],
+    "raw_source_location": "temporary_root_only",
+    "raw_source_deleted": true,
+    "redacted_derivative_only_in_repository": true
+  },
+  "screenshots": [
+    {"state_id":"V0R-MU-006","viewport":"1440x900","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-006__1440x900.png","sha256":"sha256:bcc74cb65c8172cdfdf373a8f2394fa5c6c21deaf58d1b739c9e913d71cb5d30"},
+    {"state_id":"V0R-MU-006","viewport":"1280x800","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-006__1280x800.png","sha256":"sha256:834496a437f3239449e737a444898bb91872806078ee3026ecf744596e62ac1f"},
+    {"state_id":"V0R-MU-007","viewport":"1440x900","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-007__1440x900.png","sha256":"sha256:c09b2b5afb4ae06d31a3dacc9fb45e4a4d329674db7317e0c5a186b772bc1a78"},
+    {"state_id":"V0R-MU-007","viewport":"1280x800","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-007__1280x800.png","sha256":"sha256:422c5703716d72b4391d1f44e5f3f40033a21954c62c18e0b0f1c2c05ceb0b62"},
+    {"state_id":"V0R-MU-008","viewport":"1440x900","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-008__1440x900.png","sha256":"sha256:b307ba979ee32d3ea65947b52f9c8a01d2deaec670272e41c92df09f36f48c86"},
+    {"state_id":"V0R-MU-008","viewport":"1280x800","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-008__1280x800.png","sha256":"sha256:6f27a36489984bbdefcf26b05d247c2caf467f40fd4fa447a6dc7a716a756531"},
+    {"state_id":"V0R-MU-009","viewport":"1440x900","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-009__1440x900.png","sha256":"sha256:1aa2bb925a55e4dac785731ab552999ef928b294d8cbe091750f63c8d116535a"},
+    {"state_id":"V0R-MU-009","viewport":"1280x800","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-009__1280x800.png","sha256":"sha256:bc0f884e18f7c0baaf9d4e7dca5839cf11a71392c0f35cf80314c1e4e6630e2d"},
+    {"state_id":"V0R-MU-010","viewport":"1440x900","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-010__1440x900.png","sha256":"sha256:667bae34456a5d0b8642cd9edb7dd38254e4177228c39113fbee580d9a6b6133"},
+    {"state_id":"V0R-MU-010","viewport":"1280x800","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-010__1280x800.png","sha256":"sha256:51721164d6bcedeba885e12505044930cdfb73c26ec325bb330a18c92b4de7ee"},
+    {"state_id":"V0R-MU-011","viewport":"1440x900","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-011__1440x900.png","sha256":"sha256:a03c83480cd25beec7cc69ade3be481e2e000639447fb8976d1ff14620365406"},
+    {"state_id":"V0R-MU-011","viewport":"1280x800","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-011__1280x800.png","sha256":"sha256:6da38987569f7dd2206475075e54fef4afa95f5d08787bcee9a8430be52859c9"},
+    {"state_id":"V0R-MU-012","viewport":"1440x900","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-012__1440x900.png","sha256":"sha256:6527b5b210a9b532ed7873840077693ebc11658bf87bd6a24dc03e2c6f3bcf53"},
+    {"state_id":"V0R-MU-012","viewport":"1280x800","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-012__1280x800.png","sha256":"sha256:940e45387deaf7ae0e9023031370e8268b251ee15e2887be35b39f035da49421"},
+    {"state_id":"V0R-MU-013","viewport":"1440x900","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-013__1440x900.png","sha256":"sha256:17ac470da610ab56fd3f65d4a4cbcff99a4ec22c5ae1708310bd4b2bda38da3f"},
+    {"state_id":"V0R-MU-013","viewport":"1280x800","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-013__1280x800.png","sha256":"sha256:6aae6012a00bb70e0fa2180c1ff138af5d20172f89a213a559ed7f178e9725e7"},
+    {"state_id":"V0R-MU-014","viewport":"1440x900","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-014__1440x900.png","sha256":"sha256:52f687d415794a70adc2ff199d8300d74c0f35cc503b01467b3480da484265ec"},
+    {"state_id":"V0R-MU-014","viewport":"1280x800","path":"code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-014__1280x800.png","sha256":"sha256:9155498b1fb2eea5ed5b6ffa14f235c1f0b83fbe37f4fb813d2babb86764afda"}
+  ],
+  "evidence_denominator": {
+    "screenshot_file_count": 28,
+    "expected_screenshot_count": 36,
+    "completed_capture_state_count": 14,
+    "expected_capture_state_count": 18,
+    "completed_action_count": 6,
+    "expected_action_count": 11,
+    "cleanup_required_now": true
+  },
+  "scope_attestation": {
+    "test_identities_only": true,
+    "synthetic_content_only": true,
+    "message_or_notification_outside_test_identities_sent": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "paid_upgrade_or_purchase_executed": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "confirmation_boundary": {
+    "next_action_id": "V0R-PAGE-ROLE-COMMENT",
+    "next_workspace": "REF-FREE-B",
+    "next_page": "V0R-B-ROOT",
+    "next_mutation": "change REF-COLLABORATOR page permission from full page access to comment-only and capture V0R-MU-015",
+    "fresh_action_time_confirmation_required": true,
+    "next_action_started": false
+  },
+  "claims": {
+    "V0R_MULTIUSER_CAPTURE_passed": true,
+    "V0R_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Obtain action-time confirmation for the REF-FREE-B V0R-B-ROOT comment-only permission transition."
+}

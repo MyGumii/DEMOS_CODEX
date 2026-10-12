@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1542-STATE004-SHADOW-LINES-20260906",
+  "recorded_at": "2026-09-06T09:55:27.7561213+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1540-state006-side-lines-20260906.json",
+    "sha256": "sha256:c534783b5dcc7cd6e1410605bf7d8ec132849f6367daf34fb1d0aafe7ab96843",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 713871
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-004 at 1440x900 and 1280x800",
+    "description": "Add viewport-specific reference-exact rows for the edit-share panel lower border and shadow.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:16589642585794831e66ce0fe223de7c62d8e5150e7979dbd623d30f262a6a0a",
+    "duplicated_capture_paths_updated": 2,
+    "python_compile_pass": true
+  },
+  "supporting_sweep": {
+    "run_id": "v0b-p1-i0-r1541-state004-shadow-exact-lines-sweep",
+    "results_path": ".runtime/v0b-p1-i0-r1541-state004-shadow-exact-lines-sweep/state004-shadow-exact-lines-results.json",
+    "results_sha256": "sha256:ea080794fef46477a442b00855e07de60b9fadbf3c66810f895090edd20ad7ae",
+    "wide_stable_baseline_difference_count": 43885,
+    "wide_accepted_difference_count": 37549,
+    "wide_improvement": 6336,
+    "compact_validation_baseline_difference_count": 45652,
+    "compact_accepted_difference_count": 43188,
+    "compact_improvement": 2464,
+    "candidate_groups_individually_improved": true,
+    "journey_status": "pass",
+    "cleanup_pass": true
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1542-state004-shadow-exact-lines-receipt",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1542-state004-shadow-exact-lines-receipt/diagnostic.json",
+    "diagnostic_sha256": "sha256:4d59b0220d3aa7906b4a45b86f044cf8d3deaef080fd471e26aec076e449b433",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 705071,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 705071,
+    "stable_normalized_improvement_from_predecessor": 8800,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 45180,
+    "changed_capture_count": 2,
+    "unchanged_capture_hash_count": 18,
+    "changed_captures": [
+      {"capture": "V0R-MU-004@1440x900", "stable_predecessor_difference_count": 43885, "accepted_difference_count": 37549, "improvement": 6336},
+      {"capture": "V0R-MU-004@1280x800", "predecessor_difference_count": 45652, "accepted_difference_count": 43188, "improvement": 2464}
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1525-20260906",
+    "launch_id": "cd39c9dc305a4f6e89b7ac620f1bdbfa",
+    "root_id": "7417e295-3edb-4ffd-923d-8fffb0adeb60",
+    "manager_session_id": 79532,
+    "current_audit": {
+      "workspace_count": 36,
+      "reference_workspace_count": 34,
+      "active_membership_count": 36,
+      "active_page_binding_count": 34,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 705071. Rotate the realm at 46. Do not run final gates before exact parity reaches 36/36."
+}

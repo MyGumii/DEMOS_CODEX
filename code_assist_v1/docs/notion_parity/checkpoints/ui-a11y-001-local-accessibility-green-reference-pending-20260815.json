@@ -1,0 +1,258 @@
+{
+  "contract": "code_assist.notion.core_free_ui_checkpoint.v2",
+  "recorded_at": "2026-08-15T08:40:34+09:00",
+  "run_id": "ui-a11y-001-local-accessibility-green-reference-pending-20260815",
+  "model": {
+    "implementation_profile": "gpt-5.6-sol-xhigh",
+    "planning_and_review_profile": "gpt-5.6-sol-ultra"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-resp-001-local-viewport-green-reference-pending-20260815.json",
+    "sha256": "sha256:9dad3f0fc477d733dfc315a6f2833385bce2a0339267a0f4e1a1f20e6acd3f9d",
+    "semantic_status": "historical parent; responsive local Chrome green, official reference pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T08:40:34+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": 25,
+    "conditional_scenarios": 6,
+    "extension_scenarios": 5,
+    "synthetic_only": true,
+    "business_enterprise_archive_conditional": true,
+    "excluded": [
+      "personal Notion workspaces and content",
+      "live user_data, knowledge, .runtime, and sessions",
+      "trial, payment, invite, and public posting",
+      "operational migration and live feature flags",
+      "continuous consumer and resolver cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI-A11Y-001-FULL-SURFACE-KEYBOARD-FOCUS",
+    "status": "local-real-browser-green-reference-pending",
+    "acceptance_ids": [
+      "ACCESSIBLE-NAME-ROLE-STATE",
+      "DOM-TAB-ORDER-EXACT",
+      "VISIBLE-FOCUS-ALL-TARGETS",
+      "SEARCH-FOCUS-TRAP",
+      "PUBLICATION-FOCUS-TRAP",
+      "ESCAPE-FOCUS-RESTORE",
+      "LOCKED-PREVIEW-EXPLICIT-CANCEL",
+      "REDUCED-MOTION",
+      "FORCED-COLORS-FOCUS",
+      "EXTERNAL-REQUEST-ZERO",
+      "PUBLICATION-ZERO-DELTA",
+      "LOCAL-REPEATABILITY"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "pre_sha256": "sha256:e3e80cfef0ffb770a9cbb810dc0fc7df52def9174a2d7de91d391f749fdbd783",
+        "post_sha256": "sha256:97f597288f6b33c56a0a58efa59752b0855648f56575885881a8a78b967b77a1",
+        "change": "stable accessible labels for sidebar, page title, and drawer controls"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "pre_sha256": "sha256:6688786efc8b6b8e216ef3acae778bad61e16aefcfba3755b1d5441c5fe72243",
+        "post_sha256": "sha256:7f7b723aa10cbbb425e47227c6863c59efc0970d87e018a22850dc2e53bdad1d",
+        "change": "visible focus, reduced-motion, and forced-colors contracts"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "pre_sha256": "sha256:9c90553bc82742e27dc1f5e730ebcdcdfcc7678f5a3b1df12168e4cad309b15b",
+        "post_sha256": "sha256:6076ce4834310ee521ec8093e7ffe0fee8d4b2935da4e940c0ba10c12ba56626",
+        "change": "editor label, visible-modal focus trap, and focus-restoring unlocked-modal Escape"
+      },
+      {
+        "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+        "pre_sha256": "sha256:cde739007e209d2eea5365034a731f16893e76a6b5b65a90fd6758900265e25f",
+        "post_sha256": "sha256:fcd9d8bbc70d41de141adc2ebf4559340e31fc09b1dfdac750a1f762952db492",
+        "change": "two-run real-Chrome keyboard, focus, dialog, media, isolation, and redaction journey"
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_ui_runtime.js",
+        "pre_sha256": "sha256:807fddf02b31f058be82920d4341db4b31b54eb80353f13fd8e20fedb2beaa93",
+        "post_sha256": "sha256:ff05f65f113f63755f0b59e586b121a215c025156a2388807eddfb0427450e46",
+        "change": "static ARIA, modal focus, focus-visible, reduced-motion, and forced-colors guards"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_A11Y_001_LOCAL_ACCESSIBILITY_RESULT_20260815.md",
+        "pre_sha256": null,
+        "post_sha256": "sha256:5ec048e23a82dae632207e8f080380266c5c8e29365e0e8f6cafb292df0522f5"
+      },
+      {
+        "path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:8f85be953e4879196cf62e822b985a6ec844d9a05e9f4fb0d3f46720ceb53921",
+        "post_sha256": "sha256:aaf9a1c53f154d094a6e2d0be2877505689fa7650dcf69b32aac0e13680f3b40"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:8f45329fc61159a5ac3b72e4787fd4b87034ad217456ae63d21096ffb9abad2f",
+        "post_sha256": "sha256:236112dc65a6aa0bc9dfc6a8dc42fd1ff42ffd5cc2bf9758431ed106c352f164"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:438be79317577010f7ba160507b57bec053b5d94c4cea5befb20e4ef151c883c",
+        "post_sha256": "sha256:b2dde9efa53bebb00b49a906454ef806ce9a4c5cfd6778fc502d71ce97083957",
+        "change": "synchronize authoritative source-reference hashes only; no scenario status promotion"
+      }
+    ],
+    "read_dependencies": [
+      {
+        "path": "code_assist_v1/AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      }
+    ],
+    "protected_unchanged": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/app_code.py",
+      "code_assist_v1/auth.py",
+      "code_assist_v1/config.py",
+      "code_assist_v1/tests/conftest.py",
+      "code_assist_v1/docs/knowledge_spaces/**",
+      "code_assist_v1/knowledge_core/**",
+      "code_assist_v1/tests/knowledge_spaces/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_accessed": false,
+    "reference_workspace_accessed": false,
+    "live_mutation": false,
+    "flags_unchanged": true,
+    "git_provenance_available": false
+  },
+  "evidence": {
+    "scenario_plan_sha256": "sha256:aca9a449a2c06b817e325e6f153290779b348e26f06eab9fbfe70d36bfc2bb30",
+    "local_report_sha256": "sha256:7fe4776405495725eec8fb59b4e55ab767a461c446c872297247c27df00554e2",
+    "capture_sha256": "sha256:d4d5978642158fc616477674f3bb0c11b3ad9f519d449b330ce8764a9cfc225c",
+    "accessible_tab_target_count": 36,
+    "focus_indicator_count": 36,
+    "modal_focus_traps": 2,
+    "external_request_count": 0,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "reference": "pending_safe_signed_in_ref_free_a_b_capture",
+    "differential": "pending_reference_capture",
+    "redaction": "pass",
+    "result_document": "docs/notion_parity/core_free_web_ui/UI_A11Y_001_LOCAL_ACCESSIBILITY_RESULT_20260815.md"
+  },
+  "commands": [
+    {
+      "selection": "in-app Chrome runtime initialization, first and exact retry",
+      "result": "host path initialization error before browser or tab selection; no reference or personal workspace accessed",
+      "exit_code": null
+    },
+    {
+      "selection": "UI-A11Y-001 first product-red real-Chrome run",
+      "result": "1 failed, 20 deselected in 14.42s; missing page-title accessible name",
+      "exit_code": 1
+    },
+    {
+      "selection": "UI-A11Y-001 intermediate browser-contract corrections",
+      "result": "semantic tree naming and dynamic dialog endpoint assumptions corrected; no false green retained",
+      "exit_code": 1
+    },
+    {
+      "selection": "UI-A11Y-001 final focused repeated real-Chrome journey",
+      "result": "1 passed, 20 deselected in 19.42s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py final current-source run",
+      "result": "21 passed in 428.19s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six Node UI/editor/navigation/publication/atomic-save/CSRF scripts",
+      "result": "6 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion route, atomic-save compatibility, and publication adapter",
+      "result": "25 passed in 11.33s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication/job restart and chat characterization",
+      "result": "5 passed in 4.62s",
+      "exit_code": 0
+    },
+    {
+      "selection": "initial exact plan/evidence/reference-guard bundle",
+      "result": "89 passed, 1 failed because two authoritative document source hashes were stale",
+      "exit_code": 1
+    },
+    {
+      "selection": "exact plan/evidence/reference-guard bundle after source-ref synchronization",
+      "result": "90 passed in 24.49s",
+      "exit_code": 0
+    },
+    {
+      "selection": "isolated identifier-free UI-A11Y-001 report extraction",
+      "result": "pass; 36 accessible targets, 36 focus indicators, two focus traps, external zero, publication delta zero",
+      "exit_code": 0
+    },
+    {
+      "selection": "Python syntax and compact Core Free UI plan verifier",
+      "result": "pass with 25 required scenarios and zero promotions",
+      "exit_code": 0
+    }
+  ],
+  "tests": {
+    "local_real_chrome": "21 passed",
+    "ui_a11y_001_real_chrome": "1 passed",
+    "node_contracts": "6 passed",
+    "notion_routes_and_storage": "25 passed",
+    "second_brain": "5 passed",
+    "evidence_and_reference_guards": "90 passed",
+    "scenario_verifier": "pass"
+  },
+  "claims": {
+    "h3_local_implementation_green": true,
+    "h3_complete": false,
+    "h4_local_scenario_set_green": true,
+    "h4_complete": false,
+    "h5_local_scenario_set_green": true,
+    "h5_complete": false,
+    "h6_local_scenario_set_green": true,
+    "h6_complete": false,
+    "h7_local_scenario_set_green": true,
+    "h7_complete": true,
+    "h8_responsive_local_green": true,
+    "h8_accessibility_local_green": true,
+    "h8_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "owned_file_drift": false,
+    "personal_content_exposure": false,
+    "live_data_access": false,
+    "protected_file_edit": false,
+    "auth_or_csrf_regression": false,
+    "second_brain_regression": false,
+    "purchase_invite_or_public_post_required": false,
+    "browser_plugin_initialization_failed_before_selection": true,
+    "host_failure_blocking_current_slice": false
+  },
+  "remaining": [
+    "recover safe signed-in Chrome control and run identifier-free C0 against synthetic REF-FREE-A/B only",
+    "capture and seal reference differentials for all applicable local-green scenarios",
+    "measure UI-PERF-001 and approve budgets only after reference calibration or explicit local budget review",
+    "complete H9 pilot and rollback gates"
+  ],
+  "next_exact_command": "run the isolated real-Chrome UI-PERF-001 two-root measurement journey unless safe signed-in Chrome C0 becomes available first"
+}

@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_checkpoint.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-CURSOR-BODY-R581-20260902",
+  "recorded_at": "2026-09-02T00:37:53.3652337+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "r581 retains r574 and aligns the black pointer body for every repeated cursor, every additional cursor, the V0R-MU-002 dedicated cursor, and the V0R-MU-004/V0R-MU-006 right-edge cursor. Source-bound improvement against r574 is 281 unmasked pixels plus 16 masked pixels. All affected full-run captures improve; no cursor capture regresses. Full capture, four journeys, 36 accessibility and keyboard-path records, 17 targeted tests, synthetic cleanup, receipt integrity, and the official verifier all pass their non-gate checks. Exact parity remains 0/36 and no completion claim is made.",
+  "immutable_lineage": {
+    "reference_receipt_sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-shared-topbar-checkbox-r574-progress-20260902.json",
+      "sha256": "sha256:9b5633225b994336bfd050e7c867ee76aa7488d2032ebee94e26be55b991e4e4"
+    },
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "main_agent_handoff_sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "protected_files_modified": false
+  },
+  "retained_source_binding": {
+    "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:417e122dec58afe7c92b92c3e4a6e1aed66e484450e1d69079173b0ae301d5d9",
+    "changes_from_r574": [
+      "use the measured 20x20 pointer body and corrected origin for all repeated cursor states V0R-MU-003, V0R-MU-005, V0R-MU-016, V0R-MU-017, and V0R-MU-018",
+      "use the measured 20x20 pointer body and corrected origin for additional cursor states V0R-MU-007 through V0R-MU-015 where configured",
+      "align the V0R-MU-002 dedicated pointer body to the reference bbox",
+      "align the partially visible V0R-MU-004/V0R-MU-006 right-edge pointer bodies",
+      "preserve every cursor halo and semantic accessibility exclusion",
+      "retain every r574 correction and leave release-candidate static files unchanged"
+    ],
+    "protected_static": {
+      "index_html_sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+      "notion_css_sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    }
+  },
+  "isolated_validation": {
+    "accepted_r576": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r576",
+      "proposal": "extend the r567 pointer-body correction to all repeated cursor states",
+      "source_bound_unmasked_delta": -80,
+      "affected_states": ["V0R-MU-003", "V0R-MU-016", "V0R-MU-017", "V0R-MU-018"],
+      "accepted": true
+    },
+    "accepted_r577_state015": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r577",
+      "proposal": "align the V0R-MU-015 additional cursor body",
+      "source_bound_unmasked_delta": -20,
+      "accepted": true
+    },
+    "accepted_r578": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r578",
+      "proposal": "align the V0R-MU-002 dedicated cursor body",
+      "source_bound_unmasked_delta": -20,
+      "masked_delta": 0,
+      "accepted": true
+    },
+    "accepted_r579": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r579",
+      "proposal": "align the V0R-MU-004/V0R-MU-006 right-edge cursor bodies",
+      "source_bound_unmasked_delta": -32,
+      "accepted": true
+    },
+    "rejected_r580": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r580",
+      "reason": "reducing the right-edge cursor height regressed V0R-MU-004 and V0R-MU-006 by 8 pixels each",
+      "accepted": false
+    },
+    "full_only_additional_cursor_validation": {
+      "source_bound_unmasked_delta": -129,
+      "source_bound_masked_delta": -16,
+      "affected_states": ["V0R-MU-007", "V0R-MU-008", "V0R-MU-009", "V0R-MU-011", "V0R-MU-012", "V0R-MU-013", "V0R-MU-014"],
+      "all_affected_captures_improved": true
+    },
+    "total_source_bound_delta": {
+      "unmasked": -281,
+      "masked": -16,
+      "combined": -297
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r581",
+    "receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r581/receipt.json",
+      "sha256": "sha256:28a15a8f651e9989a44380cfa64db5edacf6b8dc56f2c57fc1d9e3f377eec36c",
+      "size_bytes": 287108
+    },
+    "started_at": "2026-09-01T15:28:06.619290Z",
+    "ended_at": "2026-09-01T15:33:38.976921Z",
+    "duration_ms": 332357,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "keyboard_path_record_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2075274,
+    "masked_difference_count": 69506,
+    "total_difference_count": 2144780,
+    "journeys": {"I0-P2": "pass", "C0-P2": "pass", "E1-P2": "pass", "F0-P5": "pass"},
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 2080,
+      "comment_delivery_ms": 1396,
+      "reaction_delivery_ms": 1381,
+      "presence_ttl_expiry_ms": 15358,
+      "reconnect_ms": 1300
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:dceb426c7a13d4dcec20e1e2bb77935014a0e8bdf3409931778a460dad52946e"
+    }
+  },
+  "comparison_to_r574": {
+    "raw_unmasked_difference_delta": -1452,
+    "source_bound_unmasked_delta": -281,
+    "runtime_only_net_unmasked_delta": -1171,
+    "masked_difference_delta": -16,
+    "raw_total_difference_delta": -1468,
+    "runtime_variations": {
+      "V0R-MU-002-1440x900": 975,
+      "V0R-MU-004-1440x900": -2146
+    },
+    "normalized_lineage_delta_from_r482": -33089
+  },
+  "verification": {
+    "python_compile": "pass",
+    "targeted_tests": {"result": "17 passed in 32.04s", "exit_code": 0, "live_approved_pair_enabled": true},
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {"claims": 1, "core_25": 1, "exact_pixel": 36, "performance": 1},
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:28a15a8f651e9989a44380cfa64db5edacf6b8dc56f2c57fc1d9e3f377eec36c"
+    }
+  },
+  "promotion": {
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from retained r581. Preserve every validated 20x20 cursor body correction, all r574 shared topbar and checked-control corrections, every r563 correction, and all earlier exact subregions. Continue with isolated halo, sidebar icon, banner glyph, comment-affordance, or editor-glyph corrections. Do not run Core 25 or quiet-host performance before exact 36/36 and do not mark completion before all final gates close."
+}

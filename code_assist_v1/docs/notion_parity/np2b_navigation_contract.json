@@ -1,0 +1,192 @@
+{
+  "contract_version": 4,
+  "name": "np2b_server_backed_navigation_state",
+  "status": "ui_contract_tested_default_off",
+  "as_of": "2026-08-14",
+  "reference_state": "official_reference_only_live_characterization_pending",
+  "implementation": {
+    "workspace_schema_version": 2026081310,
+    "backend_schema_implemented": true,
+    "explicit_migration_implemented": true,
+    "backend_store_api_implemented": true,
+    "backend_foundation_contract_tested": true,
+    "route_contract_tested": true,
+    "ui_implemented": true,
+    "ui_contract_tested": true,
+    "migration_applied_to_live_data": false,
+    "routes_enabled": true,
+    "ui_enabled": false,
+    "recents_write_enabled": false,
+    "resolver_cutover_enabled": false
+  },
+  "schema_contract": {
+    "source_version": 2026081309,
+    "source_checksum": "sha256:ecc2a8b40e8d114015e05b1772701dd97bb99ac513db9fd041626408f5f127ec",
+    "source_actual_schema_sha256": "sha256:d79ecc5b79faacf3ca4db288e7978b8192df91b8c3f9e1d5a99f0d859e2e06b1",
+    "target_version": 2026081310,
+    "target_checksum": "sha256:72058812be6f0b92db756d5648d2cd9a0741d4ad4f4f9c62377d128ca0b581b3",
+    "target_actual_schema_sha256": "sha256:d8935af134fa12cdd5f0f803e15cba798dece1831cfeeee7673e0dc0ef7d7b33",
+    "request_or_startup_migration_enabled": false
+  },
+  "first_slice": {
+    "id": "NP2B-1",
+    "features": [
+      "sidebar_width_and_collapsed_state",
+      "sidebar_section_preferences",
+      "page_favorites"
+    ],
+    "excluded": [
+      "recents_view_events",
+      "tree_lifecycle_mutations",
+      "drag_drop_commands",
+      "runtime_ui_registration",
+      "resolver_cutover"
+    ]
+  },
+  "authorization": {
+    "workspace_active_member_required": true,
+    "guest_navigation_state_allowed": false,
+    "current_membership_rechecked_on_replay": true,
+    "invisible_favorite_add_returns_not_found": true,
+    "owned_stale_favorite_remove_allowed": true
+  },
+  "canonical_identity": {
+    "favorite_key": [
+      "workspace_id",
+      "subject_id",
+      "source_owner_subject_id",
+      "source_page_id"
+    ],
+    "binding_generation_in_favorite_key": false,
+    "visibility_recomputed_on_every_read": true,
+    "hidden_rows_omitted_and_dense_reindexed": true
+  },
+  "mutation_invariants": {
+    "strict_json_object_required": true,
+    "duplicate_json_keys_rejected": true,
+    "nonfinite_json_numbers_rejected": true,
+    "navigation_json_max_bytes": 65536,
+    "operation_id_required": true,
+    "request_hash_conflict_required": true,
+    "operation_audit_outbox_atomic": true,
+    "workspace_row_version_bumped": false,
+    "workspace_security_epoch_bumped": false,
+    "preference_and_favorite_versions_independent": true,
+    "source_io_inside_write_transaction": false,
+    "network_io_inside_write_transaction": false
+  },
+  "read_invariants": {
+    "legacy_directory_scan_count": 0,
+    "legacy_source_database_open_count": 0,
+    "cache_control_no_store": true,
+    "current_visibility_filter_required": true
+  },
+  "section_allowlist": [
+    "favorites",
+    "recents",
+    "teamspaces",
+    "shared",
+    "private"
+  ],
+  "route_contract": {
+    "contract_id": "notion-workspace-route-contract-np2a",
+    "expected_rule_count": 12,
+    "expected_operation_count": 19,
+    "required_hard_operation_count": 19
+  },
+  "ui_contract": {
+    "slice_id": "NP2B-3",
+    "implementation_status": "implemented_contract_tested_default_off",
+    "server_capability_key": "navigation_ui",
+    "enable_environment_variable": "CODE_ASSIST_NP2B_NAVIGATION_UI",
+    "kill_switch_environment_variable": "CODE_ASSIST_NP2B_NAVIGATION_UI_KILL_SWITCH",
+    "default_enabled": false,
+    "kill_switch_overrides_enable": true,
+    "kill_switch_nonzero_or_unknown_value_fails_closed": true,
+    "legacy_ui_unchanged_when_disabled": true,
+    "server_snapshot_overrides_local_cache": true,
+    "snapshot_subject_identity_required": true,
+    "duplicate_workspace_identity_rejected": true,
+    "malformed_canonical_payload_fails_closed_without_blocking_legacy_content": true,
+    "member_workspaces_only": true,
+    "guest_workspaces_excluded": true,
+    "content_resolver_switched": false,
+    "draft_flush_before_workspace_switch": true,
+    "stale_response_fencing_required": true,
+    "maximum_navigation_mutations_in_flight": 1,
+    "network_uncertain_replay_attempts": 1,
+    "offline_action_queue_enabled": false,
+    "mutation_failure_requires_canonical_reload_or_local_rollback": true,
+    "hidden_or_revoked_favorites_removed_by_canonical_reload": true,
+    "authoritative_empty_state_suppresses_local_cache": true,
+    "membership_revoke_fails_closed": true,
+    "capability_recheck_failure_fails_closed": true,
+    "section_keyboard_controls_required": true,
+    "section_focus_restore_required": true,
+    "sidebar_resize_keyboard_required": true,
+    "narrow_viewport_resize_disabled": true,
+    "recents_write_enabled": false
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/navigation"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/notion/workspaces/<workspace_id>/navigation/preferences"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/notion/workspaces/<workspace_id>/navigation/favorites"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/notion/workspaces/<workspace_id>/navigation/favorites"
+    }
+  ],
+  "public_forbidden_data": [
+    "page_title",
+    "page_content",
+    "source_path",
+    "file_name",
+    "raw_public_token",
+    "lease_token",
+    "hidden_favorite_count",
+    "hidden_favorite_ordinal_gap"
+  ],
+  "required_fault_tests": [
+    "navigation_state_insert_or_update_fault",
+    "section_replace_middle_fault",
+    "favorite_insert_fault",
+    "favorite_delete_fault",
+    "operation_insert_fault",
+    "audit_insert_fault",
+    "outbox_insert_fault",
+    "response_loss_after_commit",
+    "membership_revoked_before_commit",
+    "teamspace_access_revoked_before_read",
+    "binding_quarantined_before_read",
+    "safe_binding_generation_rebind"
+  ],
+  "recents_decision_gates": [
+    "immutable_audit_and_outbox_retention",
+    "view_event_coalescing_window",
+    "trusted_clock_and_multi_device_ordering",
+    "maximum_rows_and_pruning_authority",
+    "archive_delete_revoke_visibility_and_retention",
+    "telemetry_separated_from_user_facing_state"
+  ],
+  "stop_conditions": [
+    "file_ownership_or_hash_drift",
+    "frozen_1309_contract_mismatch",
+    "source_directory_scan_or_database_open_required",
+    "visibility_or_existence_leak",
+    "mutation_without_operation_audit_outbox",
+    "workspace_security_epoch_bumped_for_preference",
+    "recents_implemented_before_retention_decision",
+    "route_or_ui_enabled_before_backend_gate",
+    "live_migration_or_feature_flag_enable_required",
+    "protected_boundary_conflict"
+  ]
+}

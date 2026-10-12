@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-INBOX-FOOTER-AND-EDITOR-ALIGNMENT-R189-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T06:54:42.9095517+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r189 Chrome 153 full candidate captures all 18 named states at both adopted viewports, passes all 36 accessibility captures, and completes synthetic cleanup. State-bounded editor alignment for V0R-MU-003, 006, and 013 plus reuse of the existing collaborative footer below the inbox surface for V0R-MU-003, 006, 013, and 014 reduces the full unmasked difference by 113,539 pixels from r178. Exact RGBA remains 0/36, so r189 is a mutable progress candidate only and is not an immutable V0B receipt, phase-gate claim, or product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "comparison_candidates": {
+      "r131_unmasked_difference_count": 3072668,
+      "r144_unmasked_difference_count": 3017076,
+      "r159_unmasked_difference_count": 2918902,
+      "r165_unmasked_difference_count": 2891606,
+      "r178_receipt": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r178/receipt.json",
+      "r178_sha256": "sha256:1875325af970eda84425c462bc5a1649604c087da805ef539bc0923fcd5a5200",
+      "r178_unmasked_difference_count": 2590302
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:0b9f7b15d8258e6d7bc2e657de1a5abb4fda9f626802012ac6c3c77a1b040e88",
+        "changes": [
+          "remove the 30 pixel upward editor translation from V0R-MU-003",
+          "remove the 30 pixel downward editor translation from V0R-MU-006",
+          "reduce the V0R-MU-013 editor translation from 30 pixels to 3 pixels",
+          "shorten the inbox dialog only in V0R-MU-003, 006, 013, and 014 so the existing collaborative footer remains visible",
+          "retain the invite card for V0R-MU-003 and 014 and suppress it for V0R-MU-006 and 013 while retaining the existing new-chat controls"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:a2f6dc796ba4867dd97d9e21c4a9dfe163f49cba26e92d076750f0bfe54c1abc"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:78bbea83778d201e90f24929cac74fe942c8666adf439bc8008e58fe5d64e471"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:0c4f48c3b952ac65755c884dbd7d70089a38b98002eb654b74fc669131560901"
+      }
+    ],
+    "rejected_experiments_removed": [
+      "V0R-MU-014 comment preview and composer 21 pixel upward translation; isolated r181 showed a net two-viewport increase of 1,213 pixels",
+      "V0R-MU-013 title and comment preview micro-translations; isolated r183 showed a net two-viewport increase of 5,565 pixels",
+      "capture-only historical inbox visual overlay; isolated r184 increased V0R-MU-003 by 31,605 pixels and V0R-MU-006 by 7,243 pixels",
+      "inbox footer micro-translation and label, badge, and English footer substitutions; isolated r187 and r188 showed net increases"
+    ]
+  },
+  "isolated_validation": {
+    "I0_r179_editor_alignment": {
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "state_totals": {
+        "V0R-MU-003": 151709,
+        "V0R-MU-006": 206913
+      }
+    },
+    "C0_r181_editor_alignment": {
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "state_totals": {
+        "V0R-MU-013": 159263,
+        "V0R-MU-014": 188640
+      }
+    },
+    "I0_r185_existing_footer_reuse": {
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "state_totals": {
+        "V0R-MU-003": 141183,
+        "V0R-MU-006": 195982
+      }
+    },
+    "C0_r186_existing_footer_reuse": {
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "state_totals": {
+        "V0R-MU-013": 147369,
+        "V0R-MU-014": 177147
+      }
+    }
+  },
+  "retained_r189_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r189",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r189/receipt.json",
+    "receipt_sha256": "sha256:01040305e242e12b7ed1ce02eae549b8975d537dae69055791962d04aab5ddee",
+    "release_candidate_source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "runtime_candidate_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 356952,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2476763,
+    "raw_difference_count": 2611687,
+    "unmasked_delta_from_r178": -113539,
+    "unmasked_delta_from_r165": -414843,
+    "unmasked_delta_from_r159": -442139,
+    "unmasked_delta_from_r144": -540313,
+    "unmasked_delta_from_r131": -595905,
+    "changed_state_deltas_from_r178": {
+      "V0R-MU-003": -37178,
+      "V0R-MU-006": -29144,
+      "V0R-MU-008": 20,
+      "V0R-MU-010": 713,
+      "V0R-MU-013": -37670,
+      "V0R-MU-014": -10280
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:a15f7a85126f4276a48fd113afaa9e2f9ae9737e894aa0f61fe4af869ef35d0c"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "working_directory": "workspace_root",
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "14 passed in 10.95s",
+      "exit_code": 0
+    }
+  },
+  "scope_attestation": {
+    "local_product_source_changed": false,
+    "local_capture_harness_changed": true,
+    "external_reference_receipt_modified": false,
+    "external_reference_screenshot_modified": false,
+    "personal_workspace_or_page_used": false,
+    "cookie_local_storage_profile_or_password_inspected": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "exact_pixel_36_of_36": "0_of_36",
+    "remaining_unmasked_difference_count": 2476763,
+    "core_25_final_rerun": "not_run",
+    "ui_performance_final_rerun": "not_run",
+    "V0B_P1_gate_passed": false,
+    "later_packets": ["O1B", "Q0", "R0", "R1", "Z0"],
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue exact-RGBA convergence from the retained r189 source and candidate. Prefer the largest remaining state-bounded main-surface regions, validate each correction in an isolated journey, and do not promote r189 to immutable evidence or mark any later gate complete."
+}

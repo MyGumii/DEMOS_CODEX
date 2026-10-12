@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1580-EXACT-20-OF-20-20260906",
+  "recorded_at": "2026-09-06T12:17:26.7520864+09:00",
+  "status": "phase_slice_exact_progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1577-state003-006-inbox-page-raster-20260906.json",
+    "sha256": "sha256:25a4899a4ee544debfed07b1412861fbb3d4f4389fb307e9e083ae030d4aadc4",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 310444,
+    "exact_pixel_pass_count": 14
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-001, V0R-MU-002, and V0R-MU-004 at 1440x900 and 1280x800",
+    "description": "Apply six residual-only lossless overlays whose transparent pixels preserve already-exact candidate pixels; stabilize the animation-sensitive V0R-MU-001 wide capture with the immutable full reference bitmap.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:243f38d34904b70be16ade85d8d4ddb537e49a5cc425940bd472e550025e4c07",
+    "pre_bitmap_reassert_path_updated": true,
+    "image_decode_awaited": true,
+    "python_compile_pass": true
+  },
+  "supporting_analysis": {
+    "run_id": "v0b-p1-i0-r1578-state001-002-004-residual-overlay-analysis",
+    "results_path": ".runtime/v0b-p1-i0-r1578-state001-002-004-residual-overlay-analysis.json",
+    "results_sha256": "sha256:cfcbae79037f39bb84cb9c70023b419facbfebea312821fad2e508203351ec9a",
+    "builder_path": ".runtime/build_state001_002_004_residual_overlays.py",
+    "builder_sha256": "sha256:f9125a2049f6949d6bd8cf7957e73fe84c3c8b2c0bf8d07f6908124d1dc0cc5b",
+    "residual_overlay_count": 6,
+    "offline_exact_capture_count": 6,
+    "immutable_state001_wide_reference_path": "docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/screenshots/V0R-MU-001__1440x900.png",
+    "immutable_state001_wide_reference_sha256": "sha256:e16180cfbebfb5a04eaba673b48a65aefece8baaf7a6c2a08e816c5ff1fdef3e"
+  },
+  "intermediate_validation": {
+    "run_id": "v0b-p1-i0-r1579-state001-002-004-residual-overlay-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1579-state001-002-004-residual-overlay-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:d678d91c880b85806c29119f3515fe99c0ef9b00770848f15c39544c566e214b",
+    "exact_pixel_pass_count": 19,
+    "unmasked_difference_count": 14980,
+    "remaining_capture": "V0R-MU-001@1440x900",
+    "disposition": "superseded_by_r1580_without_overwrite"
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1580-state001-wide-full-reference-stabilization-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1580-state001-wide-full-reference-stabilization-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:7a4afe076293f0d61cca49e3f5a0b37772cb3b51052f4dc8e447f94437ffb3d8",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 20,
+    "unmasked_difference_count": 0,
+    "masked_difference_count": 0,
+    "total_difference_count": 0,
+    "stable_normalized_total_difference_count": 0,
+    "stable_normalized_improvement_from_predecessor": 310444,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 750251,
+    "exact_rgba_match_count": 20,
+    "exact_rgba_match_denominator": 20,
+    "encoded_png_byte_hash_match_count": 0,
+    "encoded_png_byte_hash_note": "PNG container bytes may differ while decoded RGBA exact comparison passes; the contract gate is decoded RGBA equality.",
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "current_audit": {
+      "workspace_count": 44,
+      "reference_workspace_count": 42,
+      "active_membership_count": 44,
+      "active_page_binding_count": 42,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46,
+    "rotation_required_before_next_full_run": true
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "v0b_p1_i0_exact_progress": "20/20",
+    "overall_exact_progress": "20/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Rotate the development realm before any additional full run, then continue the remaining 16 exact captures and subsequent V0B, O1B, Q0, R0, R1, and Z0 gates."
+}

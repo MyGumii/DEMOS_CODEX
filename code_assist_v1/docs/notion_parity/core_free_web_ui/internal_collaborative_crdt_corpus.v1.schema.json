@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/schemas/internal-collaborative-crdt-corpus-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract",
+    "corpus_id",
+    "corpus_version",
+    "recorded_at",
+    "packet_id",
+    "status",
+    "authority_inputs",
+    "canonical_document_contract",
+    "acknowledgement_contract",
+    "actors",
+    "delivery_schedules",
+    "assertion_definitions",
+    "scenarios",
+    "required_metrics",
+    "adapter_contract",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "contract": {"const": "code_assist.notion.internal_collaborative_crdt_corpus.v1"},
+    "corpus_id": {"const": "E0-P1-COMMON-CRDT-CORPUS-001"},
+    "corpus_version": {"const": 1},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "packet_id": {"const": "E0-P1"},
+    "status": {"const": "frozen_runtime_neutral_not_executed"},
+    "authority_inputs": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"$ref": "#/$defs/hashRef"}},
+    "canonical_document_contract": {"type": "object"},
+    "acknowledgement_contract": {"type": "object"},
+    "actors": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/actor"}},
+    "delivery_schedules": {"type": "array", "minItems": 6, "items": {"$ref": "#/$defs/namedRule"}},
+    "assertion_definitions": {"type": "array", "minItems": 10, "items": {"$ref": "#/$defs/namedRule"}},
+    "scenarios": {"type": "array", "minItems": 15, "items": {"$ref": "#/$defs/scenario"}},
+    "required_metrics": {"$ref": "#/$defs/stringList"},
+    "adapter_contract": {"type": "object"},
+    "claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "corpus_complete",
+        "candidate_adapter_implemented",
+        "candidate_execution_performed",
+        "candidate_winner_selected",
+        "native_browser_ime_proven_by_this_corpus",
+        "runtime_implemented",
+        "product_complete"
+      ],
+      "properties": {
+        "corpus_complete": {"const": true},
+        "candidate_adapter_implemented": {"const": false},
+        "candidate_execution_performed": {"const": false},
+        "candidate_winner_selected": {"const": false},
+        "native_browser_ime_proven_by_this_corpus": {"const": false},
+        "runtime_implemented": {"const": false},
+        "product_complete": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "hashRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^code_assist_v1/"},
+        "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "stringList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "stable_rank"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]+$"},
+        "stable_rank": {"type": "integer", "minimum": 1}
+      }
+    },
+    "namedRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "rule"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"},
+        "rule": {"type": "string", "minLength": 1}
+      }
+    },
+    "grapheme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "value"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "value": {"type": "string", "minLength": 1}
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "actor", "kind", "target", "causally_after", "payload", "acknowledged_graphemes", "explicit_delete_ids"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "actor": {"type": "string", "pattern": "^[a-z][a-z0-9_-]+$"},
+        "kind": {"type": "string", "minLength": 1},
+        "target": {"type": "string", "minLength": 1},
+        "causally_after": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "payload": {"type": "object"},
+        "acknowledged_graphemes": {"type": "array", "items": {"$ref": "#/$defs/grapheme"}},
+        "explicit_delete_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "imeEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "data"],
+      "properties": {
+        "type": {"enum": ["beforeinput", "compositionend", "compositionstart", "compositionupdate"]},
+        "data": {"type": "string"}
+      }
+    },
+    "imeTrace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor", "events", "committed_operation_id", "expected_committed_text"],
+      "properties": {
+        "actor": {"type": "string", "minLength": 1},
+        "events": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/imeEvent"}},
+        "committed_operation_id": {"type": "string", "minLength": 1},
+        "expected_committed_text": {"type": "string", "minLength": 1}
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "category",
+        "description",
+        "initial_document",
+        "initial_graphemes",
+        "operations",
+        "schedule_ids",
+        "assertion_ids",
+        "expected_visible_fragments"
+      ],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Z]+-[0-9]{3}$"},
+        "category": {"enum": ["block_tree", "compaction", "database", "korean_ime", "network_replay", "restart_replay", "rich_text_format", "same_block_text", "undo_redo"]},
+        "description": {"type": "string", "minLength": 1},
+        "initial_document": {"type": "object"},
+        "initial_graphemes": {"type": "array", "items": {"$ref": "#/$defs/grapheme"}},
+        "operations": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/operation"}},
+        "schedule_ids": {"$ref": "#/$defs/stringList"},
+        "assertion_ids": {"$ref": "#/$defs/stringList"},
+        "expected_visible_fragments": {"$ref": "#/$defs/stringList"},
+        "ime_trace": {"$ref": "#/$defs/imeTrace"}
+      }
+    }
+  }
+}

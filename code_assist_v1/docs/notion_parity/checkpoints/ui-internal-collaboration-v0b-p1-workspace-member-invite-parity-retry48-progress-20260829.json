@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-WORKSPACE-MEMBER-INVITE-PARITY-RETRY48-20260829",
+  "recorded_at": "2026-08-29T23:59:33.0643655+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry48 retains retry47, removes the non-reference collaborative sidebar footer only while the workspace invite modal is open, aligns workspace-member directory, tabs, table content, and invite controls to the lossless reference, and preserves all adopted semantics and interactions. All four journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. V0R-MU-001 decreased by 43,237 pixels, V0R-MU-002 decreased by 4,080 pixels, and full-candidate unmasked differences decreased by 47,374 to 3,642,655. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-teamspace-home-parity-retry47-progress-20260829.json",
+      "sha256": "sha256:498becefb5956f1b1efa4567aa9d1b1c6002ad7011a619a6f3a9f4e674930a28"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:5db84b29073ffa189619994b76c7866e7023d34d13f90aed2fb72ab20619ca91",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:7ffdae48dc0b4c3619d8e1933d62f965053b42c5fad989f25c15b3c9c2320a8d"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:3c8d9740298da4bb7bb7eda9ebfc4f8015b3a48c971970b2e8e9da37098c6c75"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:cada2b95dbfb4432ea33f26cfa40fc461d1fdd4b59383fbf40cd22f0ca234862"
+      },
+      {
+        "path": "code_assist_v1/notion_static/assets/emoji/1f3e0.svg",
+        "sha256": "sha256:fd04bb778ab22836385a4c19971ffc3282024e0cbb7eabe4d6edd6287527882d"
+      },
+      {
+        "path": "code_assist_v1/notion_static/assets/emoji/1f44b.svg",
+        "sha256": "sha256:eaced9544876442d06a117570c6f9da91f08d758e1f4b0161b0b018c81235bc7"
+      },
+      {
+        "path": "code_assist_v1/notion_static/assets/emoji/TWEMOJI_ATTRIBUTION.md",
+        "sha256": "sha256:4cf8d4fe49c77a9b7a3caa2b24452d56ddae0675d73d067f98b6820326bb665d"
+      }
+    ]
+  },
+  "evidence_harness_binding": {
+    "path": "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py",
+    "sha256": "sha256:3a16237c0edc4cf9a92b2eb0bed6dbe796c3fa5d3fc24cc1a068aea49bc7ffcf",
+    "modified_in_retry48": false
+  },
+  "accepted_changes": {
+    "workspace_invite_footer_visibility": "Only while the workspace-invite surface is visible, the candidate-only member invite and new-chat footer is hidden to match the lossless reference; ordinary workspace and share states retain the footer.",
+    "workspace_member_directory": "The directory link moves 52 pixels right and 5 pixels down so its 1440 text bounding box begins at the same x=1130, y=189 reference coordinate.",
+    "workspace_member_content": "Link copy text, tabs and pill, column headers, member cells, role selects, search control, and member-add control use measured reference offsets, colors, spacing, and heights without changing their accessible names or actions.",
+    "workspace_invite_content": "The invite title and subtitle, focused invite field color and placeholder, role card, message textarea, disabled send button, and cancel label use measured reference geometry and colors.",
+    "retained_retry47_changes": "Teamspace-home Twemoji assets, attribution, typography, and all earlier accepted invite, sharing, editor, comment, and access-boundary corrections remain bound to this candidate."
+  },
+  "bounded_diagnostics": {
+    "workspace_member_directory_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260829-member-directory-alignment",
+      "capture_count": 20,
+      "state_002_previous": 359181,
+      "state_002_current": 359019,
+      "state_002_delta": -162,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "workspace_invite_footer_hide": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260829-workspace-invite-footer-hide",
+      "capture_count": 20,
+      "state_001_previous": 352835,
+      "state_001_current": 315473,
+      "state_001_delta": -37362,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "workspace_member_content_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260829-workspace-member-content-alignment",
+      "capture_count": 20,
+      "state_002_previous": 359019,
+      "state_002_current": 355101,
+      "state_002_delta": -3918,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "workspace_invite_content_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260829-workspace-invite-content-alignment",
+      "capture_count": 20,
+      "state_001_previous": 315473,
+      "state_001_current": 309598,
+      "state_001_delta": -5875,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "workspace_member_shadow36_rejected": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260829-workspace-member-shadow36",
+      "capture_count": 20,
+      "state_002_previous": 355101,
+      "state_002_current": 383853,
+      "state_002_delta": 28752,
+      "cleanup_verified": true,
+      "accepted": false
+    },
+    "inherited_share_content_alignment_rejected": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260829-inherited-share-content-alignment",
+      "capture_count": 20,
+      "state_006_previous": 273845,
+      "state_006_current": 276733,
+      "state_006_delta": 2888,
+      "cleanup_verified": true,
+      "accepted": false
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry48-lossless-workspace-member-invite-parity",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry48-lossless-workspace-member-invite-parity/receipt.json",
+    "receipt_sha256": "sha256:b3b989009ca1a8c8326367def51bc3f08476a9541e4cde409728961d2f50b37f",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {
+      "I0-P2": 129912,
+      "C0-P2": 92393,
+      "E1-P2": 62820,
+      "F0-P5": 47726
+    },
+    "unmasked_difference_count": 3642655,
+    "masked_difference_count": 211278,
+    "raw_difference_count": 3853933,
+    "delta_from_retry47_unmasked": -47374,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:80badff5e13b6c8c3d79d1e9af8a68a53ef3b9074ed78e9786174e735c69f5ae"
+    }
+  },
+  "state_deltas_from_retry47": [
+    {
+      "state_id": "V0R-MU-001",
+      "previous_unmasked_difference_count": 352835,
+      "current_unmasked_difference_count": 309598,
+      "delta": -43237,
+      "source_attributed": true
+    },
+    {
+      "state_id": "V0R-MU-002",
+      "previous_unmasked_difference_count": 359181,
+      "current_unmasked_difference_count": 355101,
+      "delta": -4080,
+      "source_attributed": true
+    },
+    {
+      "state_id": "V0R-MU-012",
+      "previous_unmasked_difference_count": 239501,
+      "current_unmasked_difference_count": 239457,
+      "delta": -44,
+      "source_attributed": false
+    },
+    {
+      "state_id": "V0R-MU-017",
+      "previous_unmasked_difference_count": 229161,
+      "current_unmasked_difference_count": 229148,
+      "delta": -13,
+      "source_attributed": false
+    }
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "receipt_sha256": "sha256:b3b989009ca1a8c8326367def51bc3f08476a9541e4cde409728961d2f50b37f",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "next_focus": {
+    "largest_states": [
+      {
+        "state_id": "V0R-MU-002",
+        "unmasked_difference_count": 355101
+      },
+      {
+        "state_id": "V0R-MU-001",
+        "unmasked_difference_count": 309598
+      },
+      {
+        "state_id": "V0R-MU-006",
+        "unmasked_difference_count": 273845
+      },
+      {
+        "state_id": "V0R-MU-012",
+        "unmasked_difference_count": 239457
+      },
+      {
+        "state_id": "V0R-MU-011",
+        "unmasked_difference_count": 232333
+      },
+      {
+        "state_id": "V0R-MU-003",
+        "unmasked_difference_count": 230419
+      }
+    ],
+    "primary": "Continue bounded diagnostics on the shared owner workspace shell beneath states 001 and 002, inherited-share content, and remaining shared typography and icon pixels.",
+    "full_candidate_policy": "Do not rerun Core25 or performance until exact pixel is 36/36."
+  },
+  "open_gates": {
+    "exact_pixel": {
+      "passed": 0,
+      "required": 36,
+      "status": "open"
+    },
+    "core_25": {
+      "status": "not_run_until_exact_36_of_36"
+    },
+    "performance": {
+      "status": "not_run_until_exact_36_of_36"
+    },
+    "claims": {
+      "status": "open"
+    },
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "scope_attestation": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "user_chrome_touched": false,
+    "persistent_browser_profile_used": false,
+    "public_publish_or_link_used": false,
+    "personal_workspace_or_page_used": false,
+    "permanent_delete_used": false,
+    "reference_receipts_modified": false,
+    "agents_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  }
+}

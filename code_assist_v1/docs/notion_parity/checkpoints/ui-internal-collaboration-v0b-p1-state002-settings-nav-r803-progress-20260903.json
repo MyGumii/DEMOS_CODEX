@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-STATE002-SETTINGS-NAV-R803-PROGRESS-20260903",
+  "recorded_at": "2026-09-03T00:54:15+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state004-private-section-r799-progress-20260903.json",
+    "checkpoint_sha256": "sha256:c65b4fb35b7052da05ac477f740850e16de046f69a6a1cceaa3f5095a20ad49d",
+    "source_sha256": "sha256:6e8ab962054b1f45070cb0c2fceb7feaac8258783726a77a5bdf3959cff8d003",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r799/receipt.json",
+    "receipt_sha256": "sha256:cc1b59d4adba2121887d4e7cec464f20f97bd85dd889a521b334e23b0843ff82",
+    "unmasked_differing_pixel_count": 1832788,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1901206,
+    "V0R_MU_002_unmasked_differing_pixel_count": 186513
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:88be2e4241ce3f154722a2387ef0c6ac955c649badd7fd82204c16f1f628a200",
+    "summary": [
+      "Matched the V0R-MU-002 workspace-settings navigation text, section-heading, icon, and upgrade-action colors to the immutable reference palette.",
+      "Aligned each reference-visible navigation row without changing its grid flow, shortened the active People highlight to the measured height, and restored the reference Mail and calendar label.",
+      "Replaced the text-arrow approximation with the measured blue circular upgrade icon while preserving all r799 state-specific corrections."
+    ],
+    "source_bound_V0R_MU_002_reduction_from_r799": 9403,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 252711,
+    "source_bound_state_deltas_from_r799": {
+      "V0R-MU-002__1440x900": -5205,
+      "V0R-MU-002__1280x800": -4198
+    }
+  },
+  "accepted_diagnostics": {
+    "r800_state002_navigation_palette": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-state002-nav-colors-r800",
+      "capture_count": 20,
+      "V0R_MU_002_unmasked_differing_pixel_count": 183773,
+      "reduction_from_r799": 2740,
+      "journey_status": "pass",
+      "cleanup": true
+    },
+    "r802_state002_navigation_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-state002-nav-alignment-r802",
+      "capture_count": 20,
+      "V0R_MU_002_unmasked_differing_pixel_count": 177110,
+      "reduction_from_r800": 6663,
+      "reduction_from_r799": 9403,
+      "journey_status": "pass",
+      "cleanup": true
+    }
+  },
+  "rejected_diagnostics": {
+    "r801_state002_navigation_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-state002-nav-alignment-r801",
+      "status": "rejected_before_capture",
+      "reason": "The first URL-embedded SVG spelling caused a JavaScript parse error. It emitted no screenshot, was corrected with percent-encoded quotes before r802, and is not present in the accepted source.",
+      "failure_root_file_count": 0
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r803",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r803/receipt.json",
+    "receipt_sha256": "sha256:b8149c666332429da0fe0895987fb86e242772d30e409d3b99de4abea16c3ffe",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1828133,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1896551,
+    "raw_unmasked_delta_from_r799": -4655,
+    "raw_masked_delta_from_r799": 0,
+    "raw_total_delta_from_r799": -4655,
+    "source_bound_unmasked_delta_from_r799": -9403,
+    "run_to_run_non_target_variation_from_r799": {
+      "V0R-MU-004__1440x900": 5084,
+      "V0R-MU-005__1440x900": -335,
+      "V0R-MU-008__1280x800": -1,
+      "unmasked_net": 4748,
+      "masked_net": 0
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "duration_ms": 341668,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:0975898bab4db38aedb30fa8be1b2f1456f1d45a9171daa434466d4b6145a1a9"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "result": "17 passed in 24.29s",
+      "exit_code": 0,
+      "scope_count": 4,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:b8149c666332429da0fe0895987fb86e242772d30e409d3b99de4abea16c3ffe"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r803 source and immutable receipt. Preserve the V0R-MU-002 navigation palette, per-row alignment, active-row geometry, reference label, and circular upgrade icon plus all r799 corrections; reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

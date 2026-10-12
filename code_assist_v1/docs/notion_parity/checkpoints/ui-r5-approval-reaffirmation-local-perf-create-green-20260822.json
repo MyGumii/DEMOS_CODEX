@@ -1,0 +1,78 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T14:04:26.2718095+09:00",
+  "run_id": "ui38-r5-approval-reaffirmation-local-perf-create-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-r4-editor3-a11y-perf-continuation-green-20260822.json",
+    "sha256": "sha256:a3028be3e8e1cf1af03da55de1214c68121c384747f51ec5b626875fb59ce6fd",
+    "semantic_status": "supplemented_by_owner_reaffirmation_and_local_independent_create_harness"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective": "개발된거 확인하고 계획들 이어서 계속 진행해줘.",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenarios_advanced": ["UI-PERF-001"],
+    "approvals_reaffirmed": [
+      "UI-SHELL-001",
+      "UI-EDITOR-001",
+      "UI-EDITOR-002",
+      "UI-EDITOR-005",
+      "UI-DB-001",
+      "UI-DB-002",
+      "UI-DB-003",
+      "UI-SEARCH-001",
+      "UI-SEARCH-002",
+      "UI-COLLAB-001",
+      "UI-SHARE-001",
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-SB-003"
+    ],
+    "approval_not_inferred_for": ["UI-A11Y-001", "UI-EDITOR-003", "UI-EDITOR-004"],
+    "synthetic_only": true,
+    "personal_or_live_data_accessed": false,
+    "external_publish_or_message_performed": false
+  },
+  "source_bindings": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/tests/browser/test_notion_ui_performance.py","sha256":"sha256:07fb4dda23e450b9fef9b98ca1091c1d34abd8817fbf72a83a5f4c5b426bef46"},
+    {"path":"code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md","sha256":"sha256:ea73f9e0cdba6f22ef8741ac0cd64059e560824aa25367bb3e907bb241328b3e"}
+  ],
+  "evidence_bindings": [
+    {"path":"code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-local-independent-create-harness-green-20260822.json","sha256":"sha256:d183c1e677d59b8e6581b5b2cbbd926bd10978b997f14fea3fd0e81c51c8fd99"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json","sha256":"sha256:5106bf14da624728c6ba2bde86e283c1f66b66fc6d18fafc12f0fd1971d6839b"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json","sha256":"sha256:f6ee8e9b272bc22dfb6e080517671f99b0a2d05a494b13a951c52388a0a8e7b6"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json","sha256":"sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/owner_approval_receipt.20260822.json","sha256":"sha256:28e8da75e8c06263f221943dfbd19a644783c8ab1dca6716be7c580bb6c2bf5c"}
+  ],
+  "verification": [
+    {"selection":"UI-PERF-001 isolated local Chrome measurement","result":"1 passed in 68.63s"},
+    {"selection":"UI-EDITOR-006 exact local failed-save and stale-revision recovery","result":"1 passed in 24.46s"},
+    {"selection":"review gate and completion matrix tests","result":"14 passed in 8.78s"},
+    {"selection":"review gate verifier","result":"pass; certified 5, reference review pending 11, local integration review pending 3, partial 6"},
+    {"selection":"completion verifier","result":"pass and incomplete; differential 5/25, local real-browser 24/25, local measurement 1, promoted 0"},
+    {"selection":"Chrome synthetic reference continuation","result":"not run; connected Chrome surface reported zero open tabs in two consecutive goal turns, so no URL or workspace was guessed"}
+  ],
+  "claims": {
+    "owner_approval_scope_reaffirmed": true,
+    "local_independent_page_create_measurement_proven": true,
+    "reference_independent_page_create_measurement_proven": false,
+    "ui_a11y_001_reference_summary_owner_reviewed": false,
+    "ui_editor_003_reference_summary_owner_reviewed": false,
+    "ui_editor_004_native_ime_observed": false,
+    "performance_budget_approved": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next": {
+    "user_action": "Reopen and connect only the synthetic REF-FREE-A tab, then report that it is ready; separately provide the requested native Korean IME action when convenient.",
+    "owner_review_requested_for": ["UI-A11Y-001", "UI-EDITOR-003"],
+    "reference_measurement_after_reconnect": "Create exactly one independent synthetic reference page through normal UI, bind the new identity and ready state in redacted evidence, then move only that page to Trash and verify the original synthetic tree is restored."
+  }
+}

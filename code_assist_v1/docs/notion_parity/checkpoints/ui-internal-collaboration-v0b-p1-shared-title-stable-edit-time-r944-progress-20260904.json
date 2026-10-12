@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-SHARED-TITLE-STABLE-EDIT-TIME-R944-PROGRESS-20260904",
+  "recorded_at": "2026-09-04T17:16:59.3427694+09:00",
+  "checkpoint_kind": "bounded_shared_title_and_edit_time_stability_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "goal_complete": false,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state007-title-exact-r938-progress-20260904.json",
+    "sha256": "sha256:a9d183a9b9071c6279ee6922aeb4a4af40baa7d320deb7e12cbeda68bba27d6c"
+  },
+  "retained_candidate": {
+    "label": "r944",
+    "supersedes": "r938",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260904-r944-shared-title-stable-edit-time/receipt.json",
+    "receipt_sha256": "sha256:683e886a209430e3e3d14aa3191f71448a7b7a1e509e0b64b7ba3162e78c48cd",
+    "release_source_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 1658653,
+    "masked_difference_count": 68418,
+    "total_difference_count": 1727071,
+    "delta_from_r938_unmasked": -20985,
+    "delta_from_r938_masked": 0,
+    "delta_from_r938_total": -20985,
+    "improved_capture_count_from_r938": 6,
+    "unchanged_capture_count_from_r938": 30,
+    "regressed_capture_count_from_r938": 0,
+    "changed_capture_deltas_from_r938_unmasked": {
+      "V0R-MU-008@1440": -3578,
+      "V0R-MU-008@1280": -3577,
+      "V0R-MU-009@1440": -3096,
+      "V0R-MU-009@1280": -3578,
+      "V0R-MU-010@1440": -3578,
+      "V0R-MU-010@1280": -3578
+    },
+    "component_journeys": {
+      "C0-P2": "pass",
+      "I0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "run_started_at": "2026-09-04T08:06:02.256048Z",
+    "run_ended_at": "2026-09-04T08:11:18.450874Z",
+    "duration_ms": 316194,
+    "cleanup": {
+      "status": "complete",
+      "synthetic_only": true,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "active_fixture_root_count": 0,
+      "component_cleanup_verified": true,
+      "browser_closed": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:b641e5a5a1dae5f6ee334554f7a96b68fa4ccdd559afee70f00ed97fb7c67a44"
+    }
+  },
+  "implemented_progress": {
+    "shared_comment_page_titles": {
+      "change": "Preserve the existing page-title transform and apply an independent reference-aligned translate for V0R-MU-008, V0R-MU-009, and V0R-MU-010 without changing V0R-MU-012, whose title was already exact.",
+      "targeted_validation": "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260904-r939-shared-title-exact",
+      "exact_title_region_rules": {
+        "V0R-MU-008@1440": "translate 4px -3px",
+        "V0R-MU-008@1280": "translate 4px -3px",
+        "V0R-MU-009@1440": "translate 4px -1px",
+        "V0R-MU-009@1280": "translate 4px -3px",
+        "V0R-MU-010@1440": "translate 4px -3px",
+        "V0R-MU-010@1280": "translate 4px -3px"
+      },
+      "targeted_journey_accessibility_and_cleanup": "pass"
+    },
+    "guest_edit_time_stability": {
+      "observed_variance": "The rejected r940 full run moved only the V0R-MU-016@1280 pageEditTime glyphs and regressed that capture by 237 pixels.",
+      "reproduction": "The r941 IAM rerun returned all 20 IAM captures to the retained r938 values, proving a transient flex-layout variance.",
+      "rejected_probe": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260904-r942-edit-time-fixed",
+      "accepted_validation": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260904-r943-edit-time-stable",
+      "change": "Fix pageEditTime for V0R-MU-015 and V0R-MU-016 at top 13px and right 78px during the adopted screenshot, matching the stable retained placement.",
+      "targeted_capture_delta_from_r941": 0,
+      "targeted_journey_accessibility_and_cleanup": "pass"
+    }
+  },
+  "rejected_candidates": {
+    "r940": {
+      "reason": "One non-target V0R-MU-016@1280 regression of 237 pixels despite a net improvement; not retained under the zero-regression rule."
+    },
+    "r942": {
+      "reason": "Initial edit-time fixed coordinates moved four targeted glyph regions away from the retained stable placement; corrected and revalidated in r943."
+    }
+  },
+  "regression_validation": {
+    "python_compile": {
+      "status": "pass",
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py"
+    },
+    "pytest": {
+      "status": "pass",
+      "passed": 23,
+      "skipped": 1,
+      "failed": 0,
+      "scope": [
+        "test_v0b_p1_workspace_realm_budget.py",
+        "test_v0b_p1_i0_semantic_diagnostic.py",
+        "test_v0b_p1_capture_matte.py",
+        "test_internal_collaborative_v0b_p1_receipt.py",
+        "browser/test_f0_p5_adopted_surface.py"
+      ]
+    },
+    "official_receipt_verifier": {
+      "status": "expected_fail_open_gates_only",
+      "exit_code": 1,
+      "reference_paths_explicit": true,
+      "error_count": 39,
+      "expected_error_counts": {
+        "EXACT_PIXEL_GATE": 36,
+        "CORE_25_GATE": 1,
+        "PERFORMANCE_GATE": 1,
+        "CLAIMS_GATE": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:683e886a209430e3e3d14aa3191f71448a7b7a1e509e0b64b7ba3162e78c48cd"
+    }
+  },
+  "approved_dev_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r935-20260904",
+    "manager_session_id": 92582,
+    "manager_session_live": true,
+    "launch_id": "51d9527e832c4153ab912e5052c3b362",
+    "root_id": "b50c55f0-b26c-48dc-97c8-965846712e91",
+    "run_marker_sha256": "sha256:1a27f3d0c76d2663ed8e26856c521c2f182556d0960cc62a845235f1139dabf0",
+    "workspace_count": 26,
+    "reference_workspace_count": 24,
+    "reference_active_page_binding_count": 33,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "rotation_threshold": 64
+  },
+  "modified_sources": {
+    "code_assist_v1/notion_collaboration/v0b_p1_capture.py": "sha256:c293dd271b37f1625f4d2403340f9eb6cdbffed4d189b7cea4d4db080c615eff",
+    "code_assist_v1/notion_collaboration/f0_p5_browser.py": "sha256:2bac7d82d8e91e4f256626a425c6a6195ba9f74df36b44b9686cec408ca457a3"
+  },
+  "protected_hot_contracts": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "code_assist_v1/notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "protected_hot_contracts_modified": false,
+    "final_product_or_sbe_gate_run": false
+  },
+  "next_cursor": {
+    "action": "Continue V0B exact-pixel residual reduction from retained r944 in the approved r935 realm.",
+    "priority": [
+      "Preserve the exact shared title placements and stable guest edit-time placement recorded by r944.",
+      "Measure the next repeated main-middle or sidebar residual independently.",
+      "Retain only full candidates with all four journeys passing, cleanup complete, accessibility and interaction 36/36, and zero regressed captures against r944.",
+      "Rotate before workspace count reaches 64.",
+      "Do not run final Core-25, performance, product, or SBE closure gates before exact 36/36."
+    ]
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "exact_36_of_36": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

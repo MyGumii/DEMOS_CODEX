@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-PROVENANCE-UI-LEASE-20260907",
+  "recorded_at": "2026-09-07T03:14:15.6440118+09:00",
+  "status": "active_exact_ui_lane_lease",
+  "authorization": {
+    "basis": "continued execution of the already approved Internal Collaborative Notion goal and prior temporary notion.css/notion.js ownership",
+    "scope": "remove capture-only visual mutations before product UI similarity work",
+    "new_external_authority_claimed": false
+  },
+  "pre_edit_bindings": {
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_static/notion.css": "sha256:797eadb7689d231dfcd34e23ad5ac1ea06ee2a8b1a92feb098ae3f948c4489c9",
+    "notion_static/notion.js": "sha256:c3c4ee95236243f73a02256643d1199dfe155488f835c5b18e9bbb7b4272ae30",
+    "notion_collaboration/v0b_p1_iam_browser.py": "sha256:06e935af4eb5a4aeb481cc1a37d149de38d68cd5e49af6a47d26eed57d74e995",
+    "notion_collaboration/e1_p2_browser.py": "sha256:cb2c9b1c7bb2625a4de8f3ae5f559794e22503d8bc1b4ce717f2ee4a6830511d",
+    "notion_collaboration/f0_p5_browser.py": "sha256:2bac7d82d8e91e4f256626a425c6a6195ba9f74df36b44b9686cec408ca457a3",
+    "notion_collaboration/v0b_p1_product_capture.py": "sha256:bbdf61a5654f65dbb5bdba6a5834e2f4155f3ad4ec89f2ba4fca1296c990c3cf",
+    "tests/notion_collaboration/test_v0b_p1_product_capture_integrity.py": "sha256:05ac2541066a66de0c49689586d99620e34f9240fcedfb8ab2fa1406423eb20e"
+  },
+  "editable_paths": [
+    "notion_static/notion.css",
+    "notion_static/notion.js",
+    "notion_collaboration/v0b_p1_iam_browser.py",
+    "notion_collaboration/e1_p2_browser.py",
+    "notion_collaboration/f0_p5_browser.py",
+    "notion_collaboration/v0b_p1_product_capture.py",
+    "tests/notion_collaboration/test_v0b_p1_product_capture_integrity.py"
+  ],
+  "protected_paths": [
+    "AGENTS.md",
+    "docs/knowledge_spaces/**",
+    "static/knowledge_core_browser.js",
+    "notion_static/index.html"
+  ],
+  "constraints": {
+    "historical_receipts_immutable": true,
+    "reference_pixels_must_not_reach_candidate_page": true,
+    "capture_only_geometry_text_color_raster_or_state_mutation_forbidden": true,
+    "functional_behavior_must_be_preserved": true,
+    "fresh_create_only_runtime_required_after_source_change": true
+  },
+  "scope_complete": false,
+  "goal_complete": false
+}

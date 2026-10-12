@@ -1,0 +1,160 @@
+{
+  "run_id": "h5e-conditional-ack-design-freeze-20260813",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "recorded_at": "2026-08-13T23:34:31.6696364+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "resume current development documents and plans, confirm the active goal, and continue development",
+    "document_status": "Shared Knowledge remains a separate protected development track; AGENTS.md and knowledge_spaces files were not modified."
+  },
+  "slice": "H5e-0-superseded-pending-invariants-and-conditional-ack-design-freeze",
+  "status": "tested_design_only_no_ack",
+  "parent_checkpoints": [
+    "h5a-source-fenced-effect-receipt-20260813",
+    "h5b-legacy-source-consumer-foundation-20260813",
+    "h5c-offline-effect-terminal-full-sweep-20260813",
+    "h5d-multi-workspace-no-ack-rehearsal-20260813"
+  ],
+  "scope": {
+    "workspace_schema_changed": false,
+    "legacy_source_schema_changed": false,
+    "live_mutation": false,
+    "feature_flags_changed": false,
+    "superseded_source_work_kept_pending": true,
+    "watermark_semantic_inspection_hardened": true,
+    "conditional_ack_design_documented": true,
+    "machine_readable_design_contract": true,
+    "source_v4_implemented": false,
+    "destructive_watermark_ack": false,
+    "continuous_consumer_registered": false,
+    "resolver_or_ui_cutover": false,
+    "git_provenance": "unavailable: workspace .git is not valid repository metadata"
+  },
+  "authorization": {
+    "destructive_ack_authorized": false,
+    "source_v4_implementation_authorized": false,
+    "continuous_runtime_authorized": false,
+    "live_migration_authorized": false
+  },
+  "owned_files": [
+    "code_assist_v1/notion_legacy_change_consumer_contract.py",
+    "code_assist_v1/notion_legacy_change_consumer.py",
+    "code_assist_v1/notion_legacy_change_consumer_orchestration.py",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer.py",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer_orchestration.py",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md",
+    "code_assist_v1/docs/notion_parity/H5E_CONDITIONAL_ACK_DESIGN.md",
+    "code_assist_v1/docs/notion_parity/h5e_conditional_ack_contract.json",
+    "code_assist_v1/tools/verify_notion_h5e_ack_contract.py",
+    "code_assist_v1/tests/test_verify_notion_h5e_ack_contract.py",
+    "code_assist_v1/docs/notion_parity/checkpoints/h5e-conditional-ack-design-freeze-20260813.json"
+  ],
+  "protected_files": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/**",
+    "code_assist_v1/knowledge_core/**",
+    "code_assist_v1/tests/knowledge_spaces/**",
+    "code_assist_v1/app_code.py",
+    "code_assist_v1/app_notion.py",
+    "code_assist_v1/routes_notion_bridge.py",
+    "code_assist_v1/routes_chat_stream.py",
+    "code_assist_v1/auth.py",
+    "code_assist_v1/config.py",
+    "code_assist_v1/data_paths.py",
+    "code_assist_v1/tests/conftest.py",
+    "code_assist_v1/test_safety.py",
+    "live knowledge/user_data/.runtime/sessions/workspace paths"
+  ],
+  "input_hashes": {
+    "parent_checkpoint": "code_assist_v1/docs/notion_parity/checkpoints/h5d-multi-workspace-no-ack-rehearsal-20260813.json",
+    "code_assist_v1/notion_legacy_change_consumer_contract.py": "de3fd2a1d37e68c9c316065fb404dee900b2e39c51849c00ee0a652df2a42c7b",
+    "code_assist_v1/notion_legacy_change_consumer.py": "c6a51c78cc3d87b31793ff5fb16b7b1e27cfa615ec864ff01ea78b4f5f336e17",
+    "code_assist_v1/notion_legacy_change_consumer_orchestration.py": "30d041490655d41e9a6acc57649c48b80a1a59926b2da26007a4b2a88df94a86",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer.py": "222dbbfb26506edea9b56b95c1a241731e23edbd7dc177621a7c4ce5097262ae",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer_orchestration.py": "43682515ac40af1ac76bfde0b9afd38bf12da88df6c47909a1b10d8c806b8526"
+  },
+  "output_hashes": {
+    "code_assist_v1/notion_legacy_change_consumer_contract.py": "0e107bfed985957d965b2a9e89000fae16422998326dfb82548cabfa033e5758",
+    "code_assist_v1/notion_legacy_change_consumer.py": "daafa3d96a8a9ebf9e265fe4d1236aa96dcf405c8d0bd41e0effc20c4163eb0a",
+    "code_assist_v1/notion_legacy_change_consumer_orchestration.py": "198db1dd1eff5eedc8ff8065c8a2d07246fd89ab9d0a8cd83ea89cc3f77d6526",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer.py": "fbe3fcb709f6c34d223ab795b5ccc30db93a543fba44c2f7ee462dd51b4aa75b",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer_orchestration.py": "e6847ce3968af27eebb59398d1d0e2c0260a565f009a7da55d9ac8967660c8f5",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "b65419d9205589d421bb8e2b0f5cec7d7a57e406e3eaa3e9f71b6413081446a7",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "037b2462d74a20be54c177276bb5fd7d6efd3e931cf75a94479eae93ca808567",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "742f0ae7dd7c7c8e4598a60301f40786e14cbfac227b3470c2aa9e6ef32f44b7",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "053e22bd28fd84f0a909ea08f1da9785b954de21c3315a10b423b8f1c2ff458b",
+    "code_assist_v1/docs/notion_parity/H5E_CONDITIONAL_ACK_DESIGN.md": "b0714752d07973ef90714a661e9a9bffe9974321eab0a5183e026f4312759c75",
+    "code_assist_v1/docs/notion_parity/h5e_conditional_ack_contract.json": "9f8c33f6cf4b718e48df6c9475060e62ea2db5db79828322abc5ccd7b944cf6e",
+    "code_assist_v1/tools/verify_notion_h5e_ack_contract.py": "4aea46e492c2d18d7f5e331b85206f5395546e03f36bf28462b2a3fdbfd5e90a",
+    "code_assist_v1/tests/test_verify_notion_h5e_ack_contract.py": "2abc57555a86550f01756a3d3f208e9573dc884501b849d8b2470166bad8f992",
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+  },
+  "schema_contract": {
+    "workspace_version": 2026081309,
+    "workspace_checksum": "sha256:ecc2a8b40e8d114015e05b1772701dd97bb99ac513db9fd041626408f5f127ec",
+    "workspace_actual_schema_sha256": "sha256:d79ecc5b79faacf3ca4db288e7978b8192df91b8c3f9e1d5a99f0d859e2e06b1",
+    "legacy_source_version": 2026081303,
+    "legacy_source_checksum": "sha256:9fc07c846c9e3e1aae98b3a8a8f0507a37fcf06a9ed203e4a5d650c4f3f71495",
+    "legacy_source_object_hash": "sha256:69a96d7b7c2affd2c0ea83ce80064853d8e12ee8d3f0fbcf27fae3a14f429e6b",
+    "candidate_legacy_source_v4": 2026081304,
+    "candidate_v4_frozen_or_implemented": false
+  },
+  "tests": [
+    {
+      "selection": "legacy change consumer focused contract",
+      "result": "9 passed",
+      "exit_code": 0,
+      "duration_seconds": 10.81
+    },
+    {
+      "selection": "legacy change consumer orchestration focused contract",
+      "result": "5 passed",
+      "exit_code": 0,
+      "duration_seconds": 12.51
+    },
+    {
+      "selection": "legacy v1/v2/v3 migrations, reader, consumer and orchestration lane",
+      "result": "67 passed",
+      "exit_code": 0,
+      "duration_seconds": 63.85
+    },
+    {
+      "selection": "H5e focused consumer, orchestration and design verifier lane",
+      "result": "18 passed",
+      "exit_code": 0,
+      "duration_seconds": 26.24
+    },
+    {
+      "selection": "Notion manifest/catalog/route/evidence/differential plus H5e machine-contract lane",
+      "result": "83 passed",
+      "exit_code": 0,
+      "duration_seconds": 36.83
+    },
+    {
+      "selection": "related production/test modules py_compile",
+      "result": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.9
+    }
+  ],
+  "known_non_product_failure": {
+    "description": "The first focused run correctly rejected a deleted watermark but a new test expected the narrower state-error wording. The public fail-closed wrapper normalizes that lower-contract failure to schema-error wording. The test expectation was corrected and the full file passed. Pytest cleanup also reported the expected Windows file lock after the assertion aborted before explicit connection close.",
+    "final_status": "resolved_and_green"
+  },
+  "invariants": [
+    "A superseded catalog binding generation does not prove that a coalesced source change is obsolete; source work remains pending for a later binding.",
+    "Full-sweep completion and future acknowledgement reject pending, ignored/no_binding, and superseded work.",
+    "Every latest incarnation has a current watermark in frozen v3 no-ack semantics, and current watermark generation/mask cannot regress behind materialized work.",
+    "Candidate v4 acknowledgement is exact-fence, exact-incarnation, exact-watermark, exact-catalog-effect and exact-completion conditional; page-id-only deletion is forbidden.",
+    "One stable logical acknowledgement consumer owns destructive deletion for one owner shard unless a future durable fan-out inbox is designed.",
+    "Acknowledgement never increments source_epoch or full_sweep_generation; a later source mutation recreates a watermark under a newer epoch.",
+    "No source v4 schema, watermark DELETE, clear or acknowledgement, runtime registration, resolver/UI cutover, feature flag change, live migration or live data access occurred."
+  ],
+  "next_exact_work": "Re-read AGENTS.md and the H5e design, verify the active goal and all file hashes, then request or verify explicit authorization. Without destructive authorization, do not implement source v4 or ack; choose another non-destructive planned slice. With authorization, implement only H5e-1 frozen v3-to-v4 schema/migrator with acknowledgement disabled, then stop for migration/fault/restore review before any DELETE API.",
+  "stop_reason": "The next H5e implementation changes source retention and introduces a destructive acknowledgement capability. The current user request authorized planning and documentation, not destructive source semantics, live migration, or runtime scheduling."
+}

@@ -1,0 +1,103 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T17:23:03.6505187+09:00",
+  "run_id": "ui48-editor-004-native-ime-reference-observed-review-pending-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-004-native-ime-report-verification-mismatch-20260822.json",
+    "sha256": "sha256:dd4929b42834702be68fe50ad49442664c52297b5dfef86c40306f55f2bda92c",
+    "semantic_status": "first_manual_input_report_failed_final_state_verification"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "exact manual IME completion text supplied again after the focused-block retry",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-EDITOR-004",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-EDITOR-004-NATIVE-IME",
+    "status": "reference_observed_review_pending",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "manual_evidence": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/manual_ime_input_verified_receipt.20260822.json",
+    "sha256": "sha256:ae8e3daa4b94c7591431ff6fce6f8a1688782cd41db4c236d8193c1cb5440464",
+    "status": "accepted_native_ime_reference_observation"
+  },
+  "reference_exact_results": {
+    "user_attested_native_korean_ime_input": true,
+    "synthetic_korean_string_committed_exactly_once": true,
+    "synthetic_korean_string_stable_after_save_delay": true,
+    "synthetic_korean_string_occurrence_count_after_reload": 1,
+    "synthetic_korean_string_round_trip_after_reload_exact": true,
+    "duplicate_or_loss_observed": false,
+    "intermediate_composition_events_claimed_as_browser_observed": false,
+    "intermediate_reference_save_count_claimed_as_observed": false
+  },
+  "local_evidence": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_004_LOCAL_IME_RESULT_20260815.md",
+    "sha256": "sha256:2f689c934834d575866eb8fbe8a50d83336c15efa46a57b24999b9086e12a8db",
+    "known_outcome": "one composition block, zero intermediate saves, one committed save, exact durable text"
+  },
+  "observable_differential": {
+    "status": "redacted_summary_review_pending",
+    "reference_final_text_count": 1,
+    "local_final_text_count": 1,
+    "reference_round_trip_exact": true,
+    "local_round_trip_exact": true,
+    "reference_duplicate_or_loss": false,
+    "local_duplicate_or_loss": false,
+    "internal_reference_save_count_comparison": "not_claimed_unobservable_from_normal_ui"
+  },
+  "verification": [
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_manual_ime_receipt --compact",
+      "exit_code": 0,
+      "result": "pass; manual_input_resolved=true; reference_summary_review_required=true"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_manual_ime_receipt.py -q",
+      "exit_code": 0,
+      "result": "5 passed in 1.40s"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_manual_ime_receipt.py code_assist_v1\\tests\\test_notion_ui_approval_batch_receipt.py code_assist_v1\\tests\\test_notion_ui_approval_batch_queue.py code_assist_v1\\tests\\test_notion_ui_review_gate.py code_assist_v1\\tests\\test_notion_ui_completion_matrix.py -q",
+      "exit_code": 0,
+      "result": "29 passed in 12.80s"
+    }
+  ],
+  "implementation": {
+    "verifier": {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_manual_ime_receipt.py",
+      "sha256": "sha256:f62a5e05bdb389fa49498faa17abe02a67edee9fd6411d43a6ad469db649be3c"
+    },
+    "tests": {
+      "path": "code_assist_v1/tests/test_notion_ui_manual_ime_receipt.py",
+      "sha256": "sha256:495ea04c8412a2c7a9ea8ad2db22194b47fadb32e6598e620652368f0ae80d3d"
+    }
+  },
+  "claims": {
+    "manual_input_resolved": true,
+    "ui_editor_004_reference_observed": true,
+    "ui_editor_004_reference_characterized": false,
+    "ui_editor_004_differential_passed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next_exact_action": "Add the redacted UI-EDITOR-004 observable-outcome summary to the next owner-review batch; do not claim browser-observed composition events or reference save-count internals."
+}

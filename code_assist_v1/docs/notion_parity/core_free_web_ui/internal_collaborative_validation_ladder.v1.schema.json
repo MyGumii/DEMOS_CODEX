@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/schemas/internal-collaborative-validation-ladder-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "contract", "recorded_at", "revised_at",
+    "predecessor_sha256", "catalog_state", "authority_inputs",
+    "matrix_binding", "execution_contract", "authority_precedence",
+    "scenario_binding", "lane_state_semantics", "scope", "claims",
+    "modes", "release_binding", "realms", "receipt_contract",
+    "sbe_preflight_contract", "schema_lineage_branch_contract",
+    "multiprocess_evidence_contract", "phase_local_regression_contract",
+    "isolation_policy", "windows_native_crash_policy", "rungs",
+    "operator_action_contract", "operator_gates", "final_gate",
+    "gate_failure_conditions", "implementation_targets"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "contract": {"const": "code_assist.notion.internal_collaborative_validation_ladder.v1"},
+    "recorded_at": {"type": "string", "minLength": 1},
+    "revised_at": {"type": "string", "minLength": 1},
+    "predecessor_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "catalog_state": {"type": "string", "minLength": 1},
+    "authority_inputs": {"type": "object"},
+    "matrix_binding": {"type": "object"},
+    "execution_contract": {"type": "object"},
+    "authority_precedence": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "scenario_binding": {"type": "object"},
+    "lane_state_semantics": {"type": "object"},
+    "scope": {"type": "object"},
+    "claims": {"type": "object"},
+    "modes": {"type": "object"},
+    "release_binding": {"type": "object"},
+    "realms": {"type": "array"},
+    "receipt_contract": {"type": "object"},
+    "sbe_preflight_contract": {"type": "object"},
+    "schema_lineage_branch_contract": {"type": "object"},
+    "multiprocess_evidence_contract": {"type": "object"},
+    "phase_local_regression_contract": {"type": "object"},
+    "isolation_policy": {"type": "object"},
+    "windows_native_crash_policy": {"type": "object"},
+    "rungs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/rung"}},
+    "operator_action_contract": {"type": "object"},
+    "operator_gates": {"type": "array"},
+    "final_gate": {"type": "object"},
+    "gate_failure_conditions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "implementation_targets": {"type": "object"}
+  },
+  "$defs": {
+    "stringList": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "argvList": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "lane": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "state", "evidence_types"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^L[0-9]-[A-Z0-9-]+$"},
+        "state": {"enum": ["existing_baseline", "existing_command_future_gate", "composite_existing_lanes_future_gate", "planned_required"]},
+        "runner": {"enum": ["process", "pytest", "node", "pytest_playwright", "browser", "operator"]},
+        "working_directory": {"type": "string", "minLength": 1},
+        "argv": {"$ref": "#/$defs/argvList"},
+        "required_deliverable": {"type": "string", "minLength": 1},
+        "required_deliverables": {"$ref": "#/$defs/stringList"},
+        "evidence_types": {"$ref": "#/$defs/stringList"},
+        "matrix_row_ids": {"$ref": "#/$defs/stringList"},
+        "sbe_scenario_ids": {"$ref": "#/$defs/stringList"},
+        "allowed_realm_ids": {"$ref": "#/$defs/stringList"},
+        "closure_requires_realm_id": {"type": "string", "minLength": 1},
+        "required_realm_id": {"type": "string", "minLength": 1},
+        "live_or_production_copy_fixture_forbidden": {"type": "boolean"},
+        "comparison_contract": {"type": "object"},
+        "includes": {"$ref": "#/$defs/stringList"},
+        "included_lane_ids": {"$ref": "#/$defs/stringList"},
+        "execution_contract": {"type": "string", "minLength": 1}
+      }
+    },
+    "rung": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "order", "purpose", "prerequisites", "packets", "lanes", "exit"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^L[0-9]-[A-Z0-9-]+$"},
+        "order": {"type": "integer", "minimum": 0},
+        "purpose": {"type": "string", "minLength": 1},
+        "prerequisites": {"$ref": "#/$defs/stringList"},
+        "packets": {"$ref": "#/$defs/stringList"},
+        "lanes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/lane"}},
+        "exit": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

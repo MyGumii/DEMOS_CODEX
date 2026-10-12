@@ -1,0 +1,17 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T04:33:03.6700125+09:00",
+  "run_id": "ui30-editor-003-r2-r3-green-20260822",
+  "parent_checkpoint": {"path":"code_assist_v1/docs/notion_parity/checkpoints/ui1-owner-approvals-recorded-20260822.json","sha256":"sha256:0b5c2449edf73c1aad3d3a058318c39330b182d0a27b55a5179ec3f709caee35","semantic_status":"owner_approval_recorded"},
+  "goal": {"thread_id":"019ff607-9116-78a1-9f40-c580c87c0038","tool_status_observed":"blocked","user_resume_received":true},
+  "scope": {"primary_profile":"free-owner-chrome-desktop-ko-KR","scenario_id":"UI-EDITOR-003","synthetic_only":true,"personal_or_live_data_accessed":false},
+  "slice": {"status":"reference_partially_observed_current_source_green","review_required":true,"promotion_allowed":false},
+  "protected_inputs": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/notion_static/index.html","sha256":"sha256:35fc4fd4ec17c9e3ab62925517e2eb9a78744d9081ada92775e8926e619797e9"},
+    {"path":"code_assist_v1/notion_static/notion.js","sha256":"sha256:0d8d52313f7e1bb8920348af4be3407d2ca80daca6c3b71afeca3fd03e7b7102"},
+    {"path":"code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py","sha256":"sha256:2608922bb7d645b61537a619a2de875550cf45d3b68fa84883696d657df91d38"}
+  ],
+  "verification": [{"selection":"UI-EDITOR-003 plus UI-SEARCH-002 adjacent browser journeys","result":"2 passed in 42.61s"}],
+  "claims": {"current_source_revalidated":true,"clipboard_reference_gate_open":true,"completion_matrix_changed":false,"core_ui_complete":false,"overall_goal_complete":false}
+}

@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O0A-P2-SYNTHETIC-RESTORE-20260823",
+  "recorded_at": "2026-08-23T10:19:54Z",
+  "checkpoint_kind": "packet_evidence_and_status_integration",
+  "packet_id": "O0A-P2",
+  "packet_status": "gate_passed",
+  "purpose": "Bind the marker-bound standard-library synthetic coordinator that takes independently verified Notion, Second Brain, and sanitized identity snapshots under a real cross-process admission barrier, seals the exact eleven-component generation, fails closed at seven failpoints, and restores only to a new root with zero copied sessions/secrets, fresh signing material, forced reauthentication, exact blob/event replay, and rebuilt projections. No cross-database transaction, product runtime, target restore, production RPO/RTO, service, port, schema, route, SBE contract, or live data is claimed.",
+  "owner_agent": "/root",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py"
+  ],
+  "new_product_files": [
+    "code_assist_v1/notion_collaboration/coordinated_backup_prototype.py"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py",
+    "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py",
+    "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py"
+  ],
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/notion_collaboration/canonical_authority_prototype.py": "sha256:a5cc2b84f0763f37ffff3745da2b67984c34e35e14e8bab74617ab2e44661376",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_backup_adr.v1.json": "sha256:d6798594ec6b7e79d6a04f5d6fdff6fa0fff28e1f34f2457960162ca81e3b084",
+    "code_assist_v1/knowledge_core/backup_manifest.py": "sha256:a7e4695aad59d02f3fb8aae82ee3308b1c4943bc89936a82d562ad47612a856a",
+    "code_assist_v1/knowledge_core/services/backup.py": "sha256:744f2f8c602518f538e5a292e7eb841aedc7a4bb28a432eb4b5373777935048f",
+    "code_assist_v1/knowledge_core/services/restore.py": "sha256:3ea7b1477451959e7a58da10a951067c8c388da1992f5158b672042f4142e0cd"
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "paths": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/docs/knowledge_spaces",
+      "code_assist_v1/requirements-runtime.lock",
+      "code_assist_v1/notion_store.py",
+      "code_assist_v1/notion_workspace_store.py",
+      "code_assist_v1/routes_notion.py",
+      "code_assist_v1/routes_notion_workspace.py",
+      "code_assist_v1/knowledge_core",
+      "code_assist_v1/user_data",
+      "code_assist_v1/knowledge",
+      "code_assist_v1/.runtime"
+    ]
+  },
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o0a-p2-synthetic-restore-pre-edit-20260823.json",
+    "sha256": "sha256:7222f4cd5117d892dd14e42319e9cb5e3310a0404c800495e0f937f49c2f4b17"
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/notion_collaboration/coordinated_backup_prototype.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:60a9e7caf8d16ba581392e15bd1cb29058a0c09479a7ae9045cf6572f4e591b4",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:b79a3a493ee2709f12fb265334c688e46e47b933b55b3afc8741d089ab548d1a",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:5909d1166006ce3b6165ed6496cd42a47b4d2682a21b9287933d886f78b93883"
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/notion_collaboration/coordinated_backup_prototype.py": "sha256:191799ed1ae9b2a95b4fdc68d0d9b84f3a499f7d32414e3cf86edfb6775e3ced",
+    "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py": "sha256:f0b03818b7d740e79e1d27e51147c193cd2a5dcedec874fde80549a08e64676c",
+    "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py": "sha256:4703aad772ab327f9ffbfc29c7eccf5eab6a17ca5d1384c51781110cef1e4ced",
+    "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py": "sha256:a0d5ae7596bdfd80ad813de9288d1b1b57fdebe409ae869c498e513f0b66ff65",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:8f7026c7c461d15a74930fab178702dfc783cd01eb8878a55d7cfdffeff4c325",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:d4b1c33493a987a15db974fad5ef6dfabe56c308c29efdfb5d3950d4183af4a1",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:a20dfb88b924bdc1554e290eb7189f63ff3316ff301072ce540773d83bf18672"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o0a-p1-backup-adr-20260823.json",
+    "sha256": "sha256:ce7f3c279c6bb5dca135fa8f46a15412678053567d72dec501b538a02bc80738",
+    "packet_id": "O0A-P1",
+    "receipt_id": "O0A-P1-L7-KNOWLEDGE-BACKUP-BASELINE-20260823"
+  },
+  "ownership_lease": {
+    "lease_id": "O0A-P2-SPIKE-20260823-100230Z",
+    "lane": "SPIKE",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-23T10:02:30Z",
+    "expires_at": "2026-08-23T18:02:30Z",
+    "released_at": "2026-08-23T10:19:54Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false,
+    "release_condition": "The synthetic coordinator, three exact L7 files, real cross-process/failpoint/new-root evidence, catalog integration, checkpoint chain, and current pointer are hash-bound."
+  },
+  "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "Resume the interrupted implementation goal.",
+    "status": "active",
+    "persisted_tool_status": "active",
+    "resumed_by_user": true,
+    "observed_at": "2026-08-23T10:19:54Z",
+    "goal_completion_claimed": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-23T10:19:54Z",
+    "predecessor_checkpoint_sha256": "sha256:ce7f3c279c6bb5dca135fa8f46a15412678053567d72dec501b538a02bc80738",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:284d70c452fa1b742212d12286d5d3c7da9b7e9a2014d9b29163df2a805c9cf0",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_hot_contracts_modified_by_this_packet": false,
+    "exact_path_collision_observed": false,
+    "schema_migration_version_allocated": false,
+    "dependency_download_or_install_authorized": false,
+    "actual_network_service_or_port_started": false,
+    "target_or_live_restore_executed": false,
+    "real_service_identity_or_data_root_authority_requested": false
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:60a9e7caf8d16ba581392e15bd1cb29058a0c09479a7ae9045cf6572f4e591b4",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:b79a3a493ee2709f12fb265334c688e46e47b933b55b3afc8741d089ab548d1a"
+    },
+    "accepted_packet_receipt_ids": [
+      "O0A-P1-L7-KNOWLEDGE-BACKUP-BASELINE-20260823"
+    ],
+    "lease": "O0A-P2-SPIKE-20260823-100230Z",
+    "post_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:8f7026c7c461d15a74930fab178702dfc783cd01eb8878a55d7cfdffeff4c325",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:d4b1c33493a987a15db974fad5ef6dfabe56c308c29efdfb5d3950d4183af4a1"
+    }
+  },
+  "validation_receipt": {
+    "receipt_id": "O0A-P2-L7-COLLAB-WORKSPACE-RESTORE-20260823",
+    "validation_id": "L7-COLLAB-WORKSPACE-RESTORE",
+    "status": "pass",
+    "error_count": 0,
+    "executed_at": "2026-08-23T10:19:54Z",
+    "exact_packet_tests": {
+      "argv": [
+        ".\\venv\\Scripts\\python.exe",
+        "-E",
+        "-m",
+        "pytest",
+        "-c",
+        "code_assist_v1/pytest.ini",
+        "-q",
+        "-p",
+        "no:debugging",
+        "-p",
+        "no:cacheprovider",
+        "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py",
+        "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py",
+        "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py"
+      ],
+      "passed": 16,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 15.08,
+      "realm_id": "synthetic_isolated"
+    },
+    "full_notion_collaboration_regression": {
+      "passed": 162,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 140.69,
+      "test_root": "code_assist_v1/tests/notion_collaboration"
+    },
+    "executed_denominators": {
+      "real_cross_process_barrier_writer": true,
+      "independently_verified_authority_snapshots": 3,
+      "mandatory_component_count": 11,
+      "injected_generation_failpoint_count": 7,
+      "copied_session_count": 0,
+      "copied_secret_material_count": 0,
+      "forced_reauthentication_subject_count": 2,
+      "fresh_secret_per_restore_verified": true,
+      "event_replay_gap_count": 0,
+      "projection_canonical_mismatch_count": 0,
+      "target_restore_executed": false
+    },
+    "sbe_contract_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "input_sha256": "sha256:284d70c452fa1b742212d12286d5d3c7da9b7e9a2014d9b29163df2a805c9cf0",
+      "goal_count": 20,
+      "scenario_count": 284
+    },
+    "post_integration_validation": {
+      "status": "pass",
+      "finalized_at": "2026-08-23T10:23:55Z",
+      "harness_tests": {
+        "passed": 11,
+        "failed": 0,
+        "errors": 0,
+        "duration_seconds": 7.29
+      },
+      "combined_packet_and_harness_tests": {
+        "passed": 27,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "xfailed": 0,
+        "duration_seconds": 22.03
+      },
+      "completion_audit": {
+        "status": "pass",
+        "error_count": 0,
+        "completion_state": "incomplete",
+        "gate_passed_required_packets": 14,
+        "required_packets": 50,
+        "closed_matrix_rows": 0,
+        "matrix_rows": 28,
+        "closed_phase_gates": 2,
+        "phase_gates": 20,
+        "open_decisions": 5,
+        "planned_required_lanes": 9,
+        "product_complete": false
+      },
+      "strict_completion_gate": {
+        "status": "expected_fail",
+        "exit_code": 1,
+        "error_codes": [
+          "STRICT_COMPLETION_INCOMPLETE"
+        ],
+        "false_green_or_integrity_error_observed": false
+      }
+    },
+    "claims": {
+      "synthetic_coordinated_generation_executed": true,
+      "real_cross_process_writer_and_failpoint_harness_executed": true,
+      "synthetic_new_root_restore_and_projection_regeneration_executed": true,
+      "full_L7_collab_workspace_restore_lane_closed": false,
+      "actual_product_backup_runtime_implemented": false,
+      "target_restore_executed": false,
+      "cross_database_transaction_claimed": false,
+      "production_recovery_contract_frozen": false,
+      "production_dependency_schema_route_store_runtime_or_data_root_changed": false,
+      "live_or_production_mutation": false
+    }
+  },
+  "rollback_or_cleanup": "Delete only the four O0A-P2 product/test paths and the two O0A-P2 checkpoint files, then restore the exact pre-edit catalog, ladder, harness, and current pointer hashes. All generated databases, blobs, manifests, secrets, and restores were under pytest-owned OS-temporary roots and were cleaned by the runner; no package, lockfile, schema migration, route, store, runtime service, port, browser profile, target destination, SBE contract, or protected data root is in scope.",
+  "completion_truth": {
+    "o0a_p2_started": true,
+    "o0a_p2_gate_passed": true,
+    "synthetic_generation_and_restore_passed": true,
+    "full_l7_backup_restore_lane_closed": false,
+    "selected_runtime_compaction_binding_complete": false,
+    "target_restore_executed": false,
+    "production_recovery_contract_frozen": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "O0A-P2",
+    "current_state": "gate_passed",
+    "blocked_successor_packet": "O0A-P3",
+    "blocked_successor_waiting_on": [
+      "E0-P4 selected runtime winner",
+      "T0A-P3 selected gateway/protocol binding"
+    ],
+    "next_packet": "UI0-P1",
+    "next_state": "ready_approval_free",
+    "approval_required_for_next_packet": false,
+    "parallel_ready_packet": "V0A-P1",
+    "parallel_primary_packet": "E0-P2",
+    "parallel_primary_state": "awaiting_conditional_approval",
+    "parallel_required_approval_id": "AP-RUNTIME-SPIKE",
+    "real_service_or_identity_mutation_allowed": false
+  }
+}

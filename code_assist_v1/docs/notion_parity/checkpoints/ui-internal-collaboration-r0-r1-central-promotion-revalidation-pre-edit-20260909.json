@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.r0_r1.central_promotion_revalidation_pre_edit_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-R0-R1-CENTRAL-PROMOTION-REVALIDATION-PRE-EDIT-20260909",
+  "recorded_at": "2026-09-09T00:07:44+09:00",
+  "status": "verified_l9_runner_strict_but_central_receipt_revalidation_missing",
+  "immutable_after_recording": true,
+  "packet_ids": ["R0A-P1", "R0B-P1", "R1-P1"],
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-central-target-policy-functional-reconstruction-v2-20260909.json",
+    "sha256": "sha256:bddf9d7450be93d6e6177b6d092e201bd32511fb2cd5c5d1db155b0180d4fb1a",
+    "record_sha256": "sha256:7b98659be5679eaf37e9451e18a7b1ddb5d1f2b238e3b8d12a66c340b242d53c"
+  },
+  "pre_edit_bindings": {
+    "central_validation": {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "sha256": "sha256:fb6862d8cf598a712c0f25415161fe0cc562a3ca3cac4042024a3bc60ca70043"
+    },
+    "gate_runner": {
+      "path": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+      "sha256": "sha256:18c782b14b3f4e4b8133090ea1ed21eb38efdae841a32a1d0d7fb31b1d54fe21"
+    },
+    "promotion_verifier": {
+      "path": "code_assist_v1/notion_collaboration/realm_promotion.py",
+      "sha256": "sha256:62e0b32e0be90c2dd2ccf6c092949b31d582baef060aff35c14c49ef9f795cfe"
+    },
+    "promotion_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_realm_promotion.py",
+      "sha256": "sha256:f8aa61d70fccca14a00e42545b258a25d47fb9573b5de9aeb18b24616cde510f"
+    },
+    "generic_receipt_schema": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_execution_receipt.v1.schema.json",
+      "sha256": "sha256:27b4c253a6485744d53167f4b72ccb174cd8340fa7ea182d6cae54dcc5890bfc"
+    }
+  },
+  "observed_gap": {
+    "runner_freshly_verifies_promotion_manifest": true,
+    "runner_receipt_declares_selected_promotion_manifest": false,
+    "central_receipt_validator_freshly_reverifies_promotion_manifest": false,
+    "impact": "a schema-valid handcrafted L9 generic gate receipt could be accepted without reconstructing the three operator-action receipts"
+  },
+  "authorized_local_correction": {
+    "bind_promotion_manifest_in_runner_receipt": true,
+    "freshly_reverify_bound_manifest_in_central_validator": true,
+    "add_false_green_and_functional_regressions": true,
+    "external_action_allowed": false,
+    "central_catalog_ladder_matrix_pointer_change_allowed": false
+  },
+  "claims": {
+    "external_system_mutated": false,
+    "operator_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "historical_evidence_overwritten": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:ef58f98207851e7cf5b6b0fda3c31cc6df4f5ef6387febb7a5ba13934e8d38c9"
+}

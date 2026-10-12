@@ -1,0 +1,203 @@
+{
+  "contract": "np2c5a_authorization_inspection_flow_checkpoint_v1",
+  "recorded_at": "2026-08-14T17:17:23.7660328+09:00",
+  "run_id": "np2c5a-authorization-inspection-flow-20260814",
+  "model_handoff_profile": "ultra-authored-plan_xhigh-execution-ready_model-runtime-not-asserted",
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "resume current development documents and plan, verify the goal, and continue development",
+    "completion_claimed": false
+  },
+  "slice": {
+    "id": "NP2C-5a-authorization-inspection-flow",
+    "status": "inspection_and_preflight_contract_tested_actual_user_approval_and_live_execution_pending",
+    "predecessor_slice": "NP2C-5a-live-authorization-preflight",
+    "next_slice": "NP2C-5a-approved-business-enterprise-live-characterization",
+    "actual_external_authorization_record_inspected": false,
+    "actual_user_approved_authorization_digest_received": false,
+    "actual_current_time_preflight_passed": false,
+    "browser_opened": false,
+    "live_observation_count": 0,
+    "accepted_live_bundle_count": 0,
+    "source_or_catalog_implementation_authorized": false,
+    "runtime_or_live_execution_authorized_by_this_checkpoint": false,
+    "np2c5a_live_characterization_complete": false,
+    "differential_passed": false,
+    "overall_np2c_complete_claimed": false,
+    "overall_parity_complete_claimed": false
+  },
+  "lineage": {
+    "page_tree_machine_contract_version": 19,
+    "page_tree_machine_contract_status": "official_archive_source_contract_designed_source_v5_and_workspace_1318_blocked_default_off",
+    "current_legacy_source_version": 2026081303,
+    "h5e_reserved_source_version": 2026081304,
+    "h5e_source_version_implemented": false,
+    "candidate_archive_source_version": 2026081305,
+    "candidate_archive_source_version_implemented": false,
+    "current_workspace_version": 2026081317,
+    "current_workspace_checksum": "sha256:6cb890ccc026435715a1c9171b4d1fd0f74ae6896f63d3cdf66a27b6eec5b61b",
+    "current_workspace_actual_schema_sha256": "sha256:650a031ff1f7d1794bde06d9f9479794d0c89fa2faba8e07762badfe3c500aad",
+    "current_workspace_object_count": 179,
+    "candidate_archive_workspace_version": 2026081318,
+    "candidate_archive_workspace_implemented": false,
+    "request_or_startup_migration_enabled": false,
+    "operational_source_or_catalog_migrated": false
+  },
+  "authorization_flow": {
+    "record_contract": "np2c5a_archive_live_authorization_v1",
+    "record_schema_version": 1,
+    "step_1": "inspect the explicit redacted external record and expose only its canonical authorization digest candidate",
+    "step_1_command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_archive_authorization <external-authorization.json> --evidence-root <absolute-external-redacted-root> --inspect-only",
+    "inspection_success_status": "inspection_only_not_authorized",
+    "inspection_success_can_set_valid_true": false,
+    "inspection_success_can_authorize_characterization": false,
+    "inspection_success_can_match_approval_digest": false,
+    "inspection_success_can_authorize_implementation_or_completion": false,
+    "step_2": "the user reviews the full redacted record and explicitly approves the exact candidate digest through a separate approval channel",
+    "agent_computed_digest_may_be_self_approved": false,
+    "record_mutation_preserves_prior_approval": false,
+    "step_3": "immediately before browser use, run current-time preflight with the exact user-approved digest",
+    "step_3_command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_archive_authorization <external-authorization.json> --evidence-root <absolute-external-redacted-root> --approved-authorization-sha256 <out-of-band-user-approved-sha256>",
+    "preflight_success_status": "authorized_preflight",
+    "maximum_authorization_window_hours": 24,
+    "maximum_approval_lead_time_hours": 24,
+    "synthetic_business_and_enterprise_tenants_required": true,
+    "operator_and_reviewer_must_be_independent": true,
+    "normal_public_ui_only": true,
+    "production_or_personal_workspace_allowed": false,
+    "private_api_endpoint_or_network_capture_allowed": false,
+    "source_catalog_or_runtime_mutation_authorized": false,
+    "same_approved_digest_required_by_completion_bundle": true
+  },
+  "tests": [
+    {
+      "command": "venv\\Scripts\\python.exe -m py_compile code_assist_v1\\tools\\verify_notion_np2c_archive_authorization.py code_assist_v1\\tools\\verify_notion_np2c_archive_evidence_bundle.py code_assist_v1\\tests\\test_verify_notion_np2c_archive_authorization.py",
+      "result": "passed",
+      "exit_code": 0,
+      "coverage": "authorization inspection/preflight modules and focused tests compile"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_archive_authorization.py -q",
+      "result": "8 passed in 2.14s",
+      "exit_code": 0,
+      "coverage": "non-authorizing inspection report and CLI, exact candidate digest, inspection-to-approved-preflight flow, record-mutation digest invalidation, privilege drift, current preflight, root/path/JSON bounds, no scans and import isolation"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_archive_evidence_bundle.py -q",
+      "result": "7 passed in 42.68s",
+      "exit_code": 0,
+      "coverage": "completion acceptance still requires the exact out-of-band approved digest and cannot inherit authority from inspection"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_page_tree_contract && venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_archive_characterization",
+      "result": "page-tree valid=true current=1317 candidate=1318 runtime=false permanent-delete=false; matrix valid=true status=prepared_not_authorized_not_executed scenarios=16 profiles=11 live=false implementation=false",
+      "exit_code": 0
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py code_assist_v1\\tests\\test_verify_notion_np2c_archive_characterization.py -q",
+      "result": "8 passed in 2.05s",
+      "exit_code": 0,
+      "coverage": "machine-contract v19 and characterization matrix v1 remain exact and default-off"
+    }
+  ],
+  "historical_checkpoints": {
+    "archive_design": {
+      "path": "docs/notion_parity/checkpoints/np2c5-official-archive-design-20260814.json",
+      "sha256": "3d607191a2f6ba442b1ffb98eb2e3da5ba67402a00363c83339587f70661949b"
+    },
+    "evidence_acceptance": {
+      "path": "docs/notion_parity/checkpoints/np2c5a-evidence-acceptance-harness-20260814.json",
+      "sha256": "421fae094906768785da4261ce7545ca69819566eaed3a14756eee83d3c45aa7"
+    },
+    "live_authorization_preflight": {
+      "path": "docs/notion_parity/checkpoints/np2c5a-live-authorization-preflight-20260814.json",
+      "sha256": "7c19b5e522ededf0cb794bcc79a6f063df271050975e7f8862a0bb7cbe4d0d9e",
+      "note": "historical snapshot superseded by the explicit inspection-before-approval flow"
+    }
+  },
+  "files": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/notion_workspace_store.py": "eb654ab9ccb3904cfe246060d2b21d8a3a400af7a6294c7fb4f8bfab7d95fe8c",
+    "code_assist_v1/notion_legacy_page_duplicate_trash_restore.py": "64ccb785ce51de28a46d4d83e76e437e48872d0ff7efc30c69d0c7d45c1443cc",
+    "code_assist_v1/notion_workspace_page_lifecycle_subtree_finalize.py": "4c5b4a77b35b0dbb08cf209263a72874dff308ab7f4feecdb0282f3fdca7adce",
+    "code_assist_v1/notion_workspace_page_lifecycle_subtree_orchestration.py": "b7908e2bcac3f83d60d0a1803435f8401e92059015a2df69f92b372cc769914c",
+    "code_assist_v1/docs/notion_parity/EVIDENCE_POLICY.md": "cb2f9a6db2e1acbc4469b12df121e3e233e10f48db1a46c89d425131833ae847",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "86901eacd80880882096a9366109c69ed226402a4bf156dd63268ed317021dd5",
+    "code_assist_v1/tools/verify_notion_np2c_page_tree_contract.py": "0da95a0dd7179e318baa1ec79b8922acaf6c78efeb160757774c2eedd00b589e",
+    "code_assist_v1/tests/test_verify_notion_np2c_page_tree_contract.py": "4935992c3f70ca30771c27dfca488f3bec13954f583ad32bc5213f09c488df16",
+    "code_assist_v1/docs/notion_parity/np2c_archive_live_characterization_matrix.json": "544cc8d9d04310e442ffebad57a41b73dbea256424e50d5f63561df41e45add0",
+    "code_assist_v1/tools/verify_notion_np2c_archive_characterization.py": "a500039fa915f4f12f133916e284f789a7483f4d519a310218b5f95e64e08037",
+    "code_assist_v1/tests/test_verify_notion_np2c_archive_characterization.py": "d901798579fa914a79e289dbfb1a152590a19dd4aa9485d6ca8cd17c38d7ba4f",
+    "code_assist_v1/tools/verify_notion_np2c_archive_authorization.py": "8624665b471484e7b7b1189a7b8792a00c95026748633bf6f622a74172736512",
+    "code_assist_v1/tests/test_verify_notion_np2c_archive_authorization.py": "606975b0445441aaf8ed22594f2145853759b1a60a3cefbefdcd4cb7fddbc64e",
+    "code_assist_v1/tools/verify_notion_np2c_archive_evidence_bundle.py": "c62a1531de14b8c1acd16c50ef5711356008c942577da5a705676952f9644544",
+    "code_assist_v1/tests/test_verify_notion_np2c_archive_evidence_bundle.py": "e076dc4c0c12bf9de81f7d7228bbaf3ff9dfed1848543c08d6c1f70703fa7756",
+    "code_assist_v1/docs/notion_parity/NP2C_ARCHIVE_LIVE_CHARACTERIZATION_RUNBOOK.md": "639e779a795247fdf9ba1e5b446526fd147e37cbe44c81fd70f6ec418ca459c6",
+    "code_assist_v1/docs/notion_parity/NP2C_OFFICIAL_ARCHIVE_DESIGN.md": "b336d8d864b68eb4cdf7318714f9c5e97b669f6133fbf914ae16d4c3eba665cb",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "6961b4fa704073544c66e845b6f3337b4192bfe65a0e1a6fda966cdf453d579b",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "15494433a3420b2c60c4c9d568290d68c277423a8083068b219560f0746a2a87",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "d91047552182638ce76128333b83695e281b483a0ba8a9ef3127a894ad50a4db",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "6d3dde9b23a3060c2a1e33f45bbfe35b6bf00bcbe65eb8c1e90c11185596ad4f",
+    "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "d9fa27b033a03821c20234122b24c18b05e484e0b5292b18804668cb169decbb"
+  },
+  "protected_boundaries": {
+    "agents_md_modified": false,
+    "app_routes_auth_config_modified": false,
+    "knowledge_or_second_brain_boundary_modified": false,
+    "live_runtime_or_user_data_accessed": false,
+    "browser_or_signed_in_notion_session_accessed": false,
+    "runtime_route_ui_worker_resolver_changed": false,
+    "feature_flags_changed": false,
+    "source_or_workspace_schema_changed": false,
+    "destructive_ack_or_purge_changed": false,
+    "other_developer_files_overwritten_or_reverted": false
+  },
+  "vcs": {
+    "git_repository_available": false,
+    "git_init_performed": false,
+    "commit_or_landed_claimed": false,
+    "changed_file_inventory_basis": "explicit file paths, hashes and observed mtimes; not git diff"
+  },
+  "remaining_plan": {
+    "engineering_progress_estimate": "approximately 10 percent of full parity",
+    "formal_differential_parity": "0 percent",
+    "np2a_substrate_estimate": "approximately 80 percent",
+    "immediate_external_gate": [
+      "obtain the external redacted authorization record, approved evidence root and synthetic Business and Enterprise tenant details",
+      "run inspect-only and present the full redacted record plus exact candidate digest to the user",
+      "receive explicit user approval of that exact digest through the approval channel; do not self-approve it",
+      "run current-time preflight with the approved digest and stop on any record or matrix drift",
+      "open the normal public UI only after preflight and execute one exact scenario/profile run at a time",
+      "produce 46 exact reviewed runs and the independent semantic-decision record",
+      "run completion acceptance with the same approved digest and require implementation_authorized=false"
+    ],
+    "later": [
+      "implement H5e source v4 only under separate authorization with destructive acknowledgement disabled",
+      "review exact v4-to-v5 Archive source schema and route-unregistered adapter",
+      "review frozen 1317-to-1318 catalog guards and atomic Archive finalizer",
+      "run exact-sentinel offline response-loss rehearsal and independent security, bounds, redaction and deep-health audit",
+      "keep routes, UI, resolver cutover, public duplicate, destructive acknowledgement and purge behind independent gates",
+      "complete NP-0 evidence infrastructure, NP-2A runtime readiness, remaining NP-2B through NP-2E, and NP-3 through NP-11"
+    ]
+  },
+  "resume": {
+    "first_action": "re-read AGENTS.md, inspect the active goal and recompute this checkpoint's input hashes before editing, inspecting an external record or opening a browser",
+    "next_exact_gate": "NP2C-5a-approved-business-enterprise-live-characterization",
+    "next_preapproval_command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_archive_authorization <external-authorization.json> --evidence-root <absolute-external-redacted-root> --inspect-only",
+    "next_authorized_command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_archive_authorization <external-authorization.json> --evidence-root <absolute-external-redacted-root> --approved-authorization-sha256 <out-of-band-user-approved-sha256>",
+    "stop_if": [
+      "file ownership or checkpoint hash drift",
+      "machine-v19, source-v3/v4/v5, workspace-1317/1318 or matrix-v1 lineage mismatch",
+      "inspection output is treated as approval or the executing agent generates and self-approves the digest",
+      "the inspected record changes after digest approval",
+      "explicit approval, synthetic Business and Enterprise tenants, operator, independent reviewer, external evidence root, retention, deletion or cleanup plan is missing",
+      "authorization preflight is invalid, expired or does not match the approved digest",
+      "real user or organization content, operational data, protected boundaries, private API, network payload, cookies, tokens, scraping or rate-limit bypass would be accessed",
+      "source v4/v5, workspace 1318, Archive adapter/finalizer, route, UI, worker, resolver, watermark acknowledgement, public duplicate or purge implementation would begin",
+      "a required scenario/profile or observation dimension is missing, unknown, ambiguous or generalized from another profile",
+      "redaction, exact file/hash binding, semantic decision validation or independent review fails",
+      "a concurrent developer modifies an owned file after the pre-edit snapshot"
+    ]
+  }
+}

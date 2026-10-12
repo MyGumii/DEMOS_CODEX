@@ -1,0 +1,65 @@
+{
+  "contract": "code_assist.notion.core_free_ui.pilot_control.v1",
+  "recorded_at": "2026-08-23T01:38:01+09:00",
+  "status": "implemented_contract_tested_not_enabled",
+  "scope": {
+    "profile": "free-owner-chrome-desktop-ko-KR",
+    "gated_surface": "canonical_workspace_shell_navigation_and_page_tree_mutations",
+    "established_legacy_surface_unchanged_when_disabled": true,
+    "business_enterprise_archive_native_included": false,
+    "external_release_authorized": false
+  },
+  "controls": {
+    "enable_environment_variable": "CODE_ASSIST_NOTION_CORE_UI_PILOT",
+    "kill_switch_environment_variable": "CODE_ASSIST_NOTION_CORE_UI_PILOT_KILL_SWITCH",
+    "subject_allowlist_environment_variable": "CODE_ASSIST_NOTION_CORE_UI_PILOT_SUBJECTS",
+    "workspace_allowlist_environment_variable": "CODE_ASSIST_NOTION_CORE_UI_PILOT_WORKSPACES",
+    "exact_enable_value": "1",
+    "default_enabled": false,
+    "kill_switch_overrides_enable": true,
+    "unknown_or_malformed_value_fails_closed": true,
+    "nonempty_subject_allowlist_required": true,
+    "nonempty_workspace_allowlist_required": true,
+    "all_visible_workspaces_must_be_allowlisted": true,
+    "workspace_substrate_readiness_required": true,
+    "maximum_allowlist_entries": 128
+  },
+  "readiness": {
+    "method": "GET",
+    "path": "/api/notion/ui-pilot/readiness",
+    "authentication_required": true,
+    "cache_control_no_store": true,
+    "identifier_free": true,
+    "path_free": true,
+    "allowlist_contents_exposed": false,
+    "disabled_preflight_catalog_io_count": 0,
+    "deep_health_on_request": false
+  },
+  "composition": {
+    "legacy_navigation_enable_still_required": true,
+    "legacy_navigation_kill_switch_still_authoritative": true,
+    "core_pilot_kill_switch_independent": true,
+    "request_or_startup_migration_enabled": false,
+    "live_configuration_changed": false
+  },
+  "implementation": {
+    "pure_control_module": "code_assist_v1/notion_core_ui_pilot.py",
+    "route_integration": "code_assist_v1/routes_notion_workspace.py",
+    "isolated_fixture_integration": "code_assist_v1/tools/notion_parity/ui_local_fixture.py",
+    "focused_tests": [
+      "code_assist_v1/tests/test_notion_core_ui_pilot.py",
+      "code_assist_v1/tests/test_notion_workspace_navigation_routes.py",
+      "code_assist_v1/tests/test_notion_workspace_pages.py",
+      "code_assist_v1/tests/test_notion_ui_local_fixture.py"
+    ]
+  },
+  "claims": {
+    "control_foundation_complete": true,
+    "live_feature_enabled": false,
+    "live_canary_run": false,
+    "operational_restore_run": false,
+    "release_ready": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

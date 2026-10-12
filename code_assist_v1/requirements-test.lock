@@ -1,0 +1,24 @@
+# code_assist_v1 single-venv test dependency lock
+#
+# Install this file, not the runtime lock separately, for development and CI:
+#   .\venv\Scripts\python.exe -m pip install -r code_assist_v1\requirements-test.lock
+#
+# The runtime include and every pytest transitive are exact-pinned so the same
+# Windows/Python 3.14 venv can import Flask and execute pytest.  Archive-hash and
+# SQLite-runtime limitations are documented in requirements-runtime.lock.
+
+-r requirements-runtime.lock
+
+# Direct test dependency; pytest.ini requires pytest 9 or newer.
+pytest==9.0.3
+
+# Direct image-fixture dependency for lossless V0R redaction/canonicalization
+# tests.  Pillow publishes a native Windows CPython 3.14 wheel for this pin.
+Pillow==12.3.0
+
+# Fully pinned pytest transitives for the Windows target.  colorama is already
+# fixed by the runtime lock and is shared by click and pytest.
+iniconfig==2.3.0
+packaging==26.2
+pluggy==1.6.0
+Pygments==2.20.0

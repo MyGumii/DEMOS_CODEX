@@ -1,0 +1,233 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-15T05:44:10+09:00",
+  "run_id": "ui-db-002-local-view-state-green-20260815",
+  "model": {
+    "planning": "gpt-5.6-sol-ultra",
+    "implementation": "gpt-5.6-sol-xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-db-001-local-typed-properties-green-reference-pending-20260815.json",
+    "sha256": "sha256:d055aad53755bfd994abc07205865cc99b9c7d2160c0a657561326933f612220",
+    "semantic_status": "historical-parent-preserved"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T05:44:10+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": ["UI-DB-002"],
+    "conditional": ["Business", "Enterprise", "Archive"],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "official-reference-parity-claim",
+      "database-automations",
+      "advanced-paid-database-properties",
+      "trial-or-payment",
+      "invite-or-public-posting",
+      "operational-migration",
+      "live-feature-flag",
+      "continuous-consumer",
+      "resolver-cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI-DB-002-FILTER-SORT-GROUP-RELOAD",
+    "status": "local-real-browser-green-reference-pending",
+    "acceptance_ids": [
+      "FILTER-PERSISTED",
+      "SORT-PERSISTED",
+      "GROUP-PERSISTED",
+      "VISIBLE-ROW-ORDER-DETERMINISTIC",
+      "SOURCE-ROWS-UNCHANGED",
+      "ACTIVE-CONTROLS-RESTORED",
+      "TABLE-FOCUS-RESTORED",
+      "SECOND-BRAIN-ZERO-DELTA",
+      "LOCAL-REPEATABILITY",
+      "SYNTHETIC-ONLY"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "notion_static/notion_editor_core.js",
+        "pre_sha256": null,
+        "post_sha256": "sha256:4e1e7b6c216314b58e4b6aa0f27ed2932ce9834385d99022d7fc8bd78841db18",
+        "change": "parent checkpoint did not bind this pre-image; added the empty persisted grouping default"
+      },
+      {
+        "path": "notion_static/notion.js",
+        "pre_sha256": "sha256:f1125b4d580875cc992095026e7042a13864a13c24f890beb442f4c7fdfb1970",
+        "post_sha256": "sha256:f30946f1aa75ca42782207332ccadba1be91cf502e45848252fe0fbd158c5702",
+        "change": "view-local group state, toolbar/dialog, deterministic grouped table rendering, property-delete cleanup, and event binding"
+      },
+      {
+        "path": "notion_static/notion.css",
+        "pre_sha256": null,
+        "post_sha256": "sha256:6688786efc8b6b8e216ef3acae778bad61e16aefcfba3755b1d5441c5fe72243",
+        "change": "parent checkpoint did not bind this pre-image; added compact table group headings"
+      },
+      {
+        "path": "tests/test_notion_editor_core.js",
+        "pre_sha256": null,
+        "post_sha256": "sha256:91f619a0b4e3d03de5925f11e28015030fac9c7b2546b93487ac3448fbbdb3db",
+        "change": "parent checkpoint did not bind this pre-image; grouping default contract"
+      },
+      {
+        "path": "tests/test_notion_ui_runtime.js",
+        "pre_sha256": "sha256:cf8ebb2ea406e1977fe2b39702c6677c47dccb353e1624f9c6ad320027d2b10f",
+        "post_sha256": "sha256:eea1f7dc403ce18fb3f7e2805f5774bfda6d458f6428f7a93d64370358b68b47",
+        "change": "deterministic filter/sort/group row-preservation and toolbar state probes"
+      },
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "pre_sha256": "sha256:9f7924097e8e3d355c07615fd1d8f125cfa386a3723c101a97d36bc45c55943e",
+        "post_sha256": "sha256:3fe232860f1f6cffad3f156202d18aec49686b46d6b2488ff9f54c24d1a1a85f",
+        "change": "repeated real-Chrome filter/sort/group apply, exact reload, source-row invariance, focus, redaction, and zero-Second-Brain-delta journey"
+      },
+      {
+        "path": "docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:31fa2e0425ec84cbb899d6643095f68aca5c5e273283a4158a010a143407b04d",
+        "post_sha256": "sha256:8507fb76b760e92eab7759452591d5cdf933a3febdbd3fe100869eac179ce38c",
+        "change": "local UI-DB-002 evidence and current checkpoint"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:e7682be7136c2ab0891a5c12b498af90854726332404ed3bd3e7665f114d153d",
+        "post_sha256": "sha256:9060288a28fac2d4a03d87e5f2f49df8b28bc1ded208848bbed51c8889b76146",
+        "change": "current H5 evidence and UI-DB-003 continuation"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:86e2f9d37323897bfa08e68c88e6e0e90e2fff28dc0e4a18ecdb89ba9de4d083",
+        "post_sha256": "sha256:649f5a028190a8aa6cf9b68e98104c297112b73bf52ba98b5b2f01ade2698ee6",
+        "change": "current authoritative source hashes; scenario promotion remains zero"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI_DB_002_LOCAL_VIEW_STATE_RESULT_20260815.md",
+        "post_sha256": "sha256:1f3d7bae304dc5e34aed053b7361f4308d0170de9406050d105eff29d5ddbba0",
+        "change": "new identifier-free local UI-DB-002 result"
+      }
+    ],
+    "read_dependencies": [
+      "docs/notion_parity/checkpoints/ui-db-001-local-typed-properties-green-reference-pending-20260815.json",
+      "notion_static/index.html",
+      "tools/notion_parity/ui_capture.py",
+      "tools/notion_parity/ui_local_fixture.py"
+    ],
+    "protected_unchanged": [
+      {"path": "AGENTS.md", "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"},
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "persistent_browser_profile_reused": false,
+    "local_browser": "installed-stable-chrome-ephemeral-playwright-context"
+  },
+  "evidence": {
+    "source_build_sha256": "sha256:65dec8b7c88b296e1429b12bd285b5403bc63191aba8d9d30d0e9ed1469a5bc4",
+    "plan_sha256": "sha256:b8ff9d24e91cfef763699aee352eefbd94315a6c30f1508ea36c00093fbd2956",
+    "reference": [],
+    "local": [
+      {
+        "scenario_id": "UI-DB-002",
+        "action_id": "UI-DB-002-A01",
+        "capture_sha256": "sha256:3da04aa1af2c2df6b7e8f6030e77fddbabe40a2de82714e2ec8d98c4056448d6",
+        "redaction": "pass",
+        "repeat_runs": 2
+      },
+      {
+        "scenario_id": "UI-DB-002",
+        "action_id": "UI-DB-002-A02",
+        "capture_sha256": "sha256:3da04aa1af2c2df6b7e8f6030e77fddbabe40a2de82714e2ec8d98c4056448d6",
+        "redaction": "pass",
+        "repeat_runs": 2
+      }
+    ],
+    "differential": [],
+    "focus_sequence": ["DATABASE-GRID", "DATABASE-GRID"],
+    "reference_status": {
+      "state": "blocked-before-browser-or-tab-selection",
+      "stage": "browser-runtime-initialization",
+      "error_code": "kernel-assets-path-not-found-os-error-3",
+      "content_accessed": false,
+      "parity_promoted": false,
+      "retry_in_same_environment": false
+    }
+  },
+  "commands": [
+    {"selection": "UI-DB-002 product red", "result": "failed as expected: database group control absent; 1 failed in 45.47s", "exit_code": 1},
+    {"selection": "UI-DB-002 test-contract correction red", "result": "installed Playwright Locator has no all_input_values helper; 1 failed in 15.32s", "exit_code": 1},
+    {"selection": "tests/browser/test_notion_ui1_golden_journey.py::test_ui_db_002_filter_sort_and_group_state_survive_reload final", "result": "1 passed, 13 deselected in 30.89s", "exit_code": 0},
+    {"selection": "combined UI-DB-001 and UI-DB-002 repeated browser journeys", "result": "2 passed, 12 deselected in 50.16s", "exit_code": 0},
+    {"selection": "tests/browser/test_notion_ui1_golden_journey.py full current-source run", "result": "14 passed in 280.64s", "exit_code": 0},
+    {"selection": "identifier-free UI-DB-002 local report extraction", "result": "pass with three view-state saves, exact reload, unchanged source rows, and zero Second Brain delta", "exit_code": 0},
+    {"selection": "six Node UI/editor/navigation/publication/atomic-save/CSRF scripts", "result": "6 passed", "exit_code": 0},
+    {"selection": "Notion route, atomic-save compatibility, and publication adapter", "result": "25 passed in 11.11s", "exit_code": 0},
+    {"selection": "Second Brain publication/job restart and chat characterization", "result": "5 passed in 4.62s", "exit_code": 0},
+    {"selection": "combined regression command before harness startup", "result": "Node/Notion/Second Brain passed, then Windows 0xC0000409 host-process failure", "exit_code": -1073740791},
+    {"selection": "plan, local fixture, evidence harness, packet, differential, and reference guard exact retry", "result": "90 passed in 25.44s", "exit_code": 0},
+    {"selection": "compact Core Free UI plan verifier", "result": "pass with 25 required scenarios and zero promotions", "exit_code": 0},
+    {"selection": "JavaScript and Python syntax plus scenario JSON parse", "result": "pass", "exit_code": 0}
+  ],
+  "tests": {
+    "filter_reload": "pass-title-contains",
+    "sort_reload": "pass-title-descending",
+    "group_reload": "pass-status-two-groups",
+    "source_rows": "pass-three-values-unchanged",
+    "visible_order": "pass-deterministic",
+    "active_controls": "pass-filter-sort-group",
+    "second_brain_delta": "pass-zero-items-zero-revisions",
+    "local_repeatability": "pass-twice",
+    "full_browser_regression": "pass-fourteen",
+    "reference_c0": "blocked-before-browser-selection"
+  },
+  "claims": {
+    "h3_local_implementation_green": true,
+    "h3_complete": false,
+    "h4_local_scenario_set_green": true,
+    "h4_complete": false,
+    "h5_ui_db_001_local_green": true,
+    "h5_ui_db_002_local_green": true,
+    "h5_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_or_production_content_exposed": false,
+    "live_local_data_accessed": false,
+    "protected_file_edit_required": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false,
+    "trial_payment_invite_public_action_required": false
+  },
+  "remaining": [
+    "recover signed-in Chrome control and run identifier-free C0 against synthetic REF-FREE-A/B only",
+    "capture and seal reference differentials for all local-green scenarios",
+    "complete H5 with UI-DB-003 multi-view canonical-row preservation",
+    "continue H6-H9 through evidence-bound cohesive vertical slices"
+  ],
+  "next_exact_command": "if safe signed-in Chrome C0 is unavailable, begin UI-DB-003 table/board/list/gallery/calendar switching with a repeated isolated real-Chrome red/green journey; otherwise prioritize synthetic REF-FREE-A/B reference capture without opening personal workspaces"
+}

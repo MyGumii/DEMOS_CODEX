@@ -1,0 +1,191 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T19:24:00+09:00",
+  "run_id": "ui58-r1-r3-current-source-observed-fields-green-approval-batched",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-approval-batch-v2-active-budget-integrity-green-20260822.json",
+    "sha256": "sha256:7e58aad6b54e92a9f4fe4c6d4a7d178d359c5f557cb5e2fcb44a72796063e914",
+    "semantic_status": "ime_and_local_performance_approvals_resolved"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "batch approval-required work while continuing all safe local development"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "slice": "R1-R3 approved observable parity implementation and current-source recapture",
+    "synthetic_only": true,
+    "isolated_data_root": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "reference_workspace_mutated": false,
+    "live_local_data_accessed": false,
+    "completion_matrix_changed": false
+  },
+  "current_source": {
+    "ui_source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+    "notion_js_sha256": "sha256:f001846798fba1cfb5e3f025a8f15dea90e072a3fa06056d0d79b06c23ecfc05",
+    "notion_css_sha256": "sha256:52127fe8dc6dd0e97fe254dc04bb44d91a77606aa9069720163740022226fa0f",
+    "index_html_sha256": "sha256:1891bf66529a3b24ba119ebf327dfe687eb407cb1da3d922c6e05c4a95a5bd50",
+    "browser_test_sha256": "sha256:c51e1b001cb9e90d5f92cd4aada22f261007d50237ef25d3e68690faf8242da3",
+    "node_runtime_test_sha256": "sha256:85f73680f7c0c03ede069851d72dbfefdd65a35fd4f46d8b04b0010ce41280ba"
+  },
+  "implementation": {
+    "database": [
+      "removed reference-absent table, grid, row, and cell semantics from the visual table container",
+      "removed the artificial table-container focus target while retaining real property inputs and view tabs",
+      "preserved filter, sort, group, typed property, row-page, and five-view round trips"
+    ],
+    "search": [
+      "home search keeps the trigger focused to match the approved root observation",
+      "page-context search focuses the input",
+      "Escape restores the trigger and result opening preserves the page focus context"
+    ],
+    "comments": [
+      "posting returns focus to the comment input",
+      "resolving hides the thread from the default open list and returns focus to BODY",
+      "reopening from all discussions focuses the resolve control"
+    ],
+    "share": [
+      "the share dialog focuses the invite input",
+      "Escape restores the share trigger",
+      "the restored trigger exposes the approved access-tooltip surface without any invite, public-link, or permission mutation"
+    ],
+    "evidence_harness": [
+      "added bounded async geometry retry",
+      "added current R1 and R2/R3 capture harnesses and strict verifiers",
+      "added the approved opened key and semantic status literals to the capture/redaction contract",
+      "mapped UI-SEARCH-002's approved find/backlink observation contract without fabricating unobserved fields"
+    ],
+    "pending_approval_harness": [
+      "bound the pending approval scope to exact scenario, completion, review, R1, and R2/R3 evidence hashes",
+      "added a strict verifier for the exact approval phrase, REF-FREE-A/B-only scope, recoverable Trash cleanup, and forbidden actions",
+      "added an exact ten-action, three-fixture execution manifest with per-action reference guards and failure cleanup",
+      "added an exact-text receipt compiler that binds both the approval batch and execution manifest while retaining reference_mutation_executed=false",
+      "added a non-executing permit compiler that requires an exact owner receipt, passing canonical C0 decision, valid manifest, and ten allowed per-action guards",
+      "kept external_mutation_authorized=false until the owner supplies the exact combined approval phrase"
+    ]
+  },
+  "evidence": {
+    "r1_capture": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/R1_CURRENT_SOURCE_CAPTURE_20260822.json",
+      "sha256": "sha256:c9cbff7f9ca240644c76f563559c453192b94f6dbe3cd3ce2dea079e1ab21ac3",
+      "scenario_count": 7,
+      "compared_observed_field_count": 80,
+      "observed_fields_match": true,
+      "differential_ready": false
+    },
+    "r2_r3_capture": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/R2_R3_CURRENT_SOURCE_CAPTURE_20260822.json",
+      "sha256": "sha256:d7c29773f2e190331d4e5a5fe2fe40b44f30398f735def9b3955c8cd604a7b7b",
+      "scenario_count": 4,
+      "compared_observed_field_count": 38,
+      "observed_fields_match": true,
+      "differential_ready": false
+    },
+    "review_gate": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:a69ee5470269afac145d148d54a2b1b5658c7487be3842356c508e74118f695a",
+      "status": "pass"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:b99fc446a6cca87a6020887e1516e9e962c10633ea7fb3bbac55ae607bc53703",
+      "completion_state": "incomplete",
+      "differential_passed": 5,
+      "required_scenarios": 25,
+      "promoted": 0
+    },
+    "pending_approval_batch": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/pending_approval_batch.r1_r3.20260822.json",
+      "sha256": "sha256:00d149b6ad53fc90124738a5fbdb6789621820b79b5c2214c8172ddc28ace2cd"
+    },
+    "pending_approval_verifier": {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_pending_approval_batch.py",
+      "sha256": "sha256:d25ce543cc6f2fce83bd78a6050b87329fdc1ba1d80493ee180805e6b152f169"
+    },
+    "pending_approval_tests": {
+      "path": "code_assist_v1/tests/test_notion_ui_pending_approval_batch.py",
+      "sha256": "sha256:21c20ca2103745375e9c6ed36364525362064208045e2e042bb75d91f9893842"
+    },
+    "pending_approval_receipt_compiler": {
+      "path": "code_assist_v1/tools/notion_core_free_ui_pending_approval.py",
+      "sha256": "sha256:d7d2b5e091497c95c410eec7aab6e6724992d9cbc75e6dc9673daa06677d59c2"
+    },
+    "pending_approval_receipt_tests": {
+      "path": "code_assist_v1/tests/test_notion_ui_pending_approval_receipt.py",
+      "sha256": "sha256:70aec04ec9883ee15d6c80ed6a8f874caef8a313502f7b95cdd4954e4146109b"
+    },
+    "reference_completion_execution_manifest": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/reference_completion_execution_manifest.r1_r3.20260822.json",
+      "sha256": "sha256:c926f1f7321b3998c2644c98cd38accdfa520246f8eb84887eaa7b76472508e5"
+    },
+    "reference_completion_manifest_verifier": {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_reference_completion_manifest.py",
+      "sha256": "sha256:53504fd74eba42739552110a71c4e7714b533b32adc368add637e7061b448f89"
+    },
+    "reference_completion_manifest_tests": {
+      "path": "code_assist_v1/tests/test_notion_ui_reference_completion_manifest.py",
+      "sha256": "sha256:5b8e657da7c714f8d9f68bca2c3696b9e0d1c3e4b4899f53443ea772aecadb15"
+    },
+    "reference_execution_permit_compiler": {
+      "path": "code_assist_v1/tools/notion_core_free_ui_reference_execution_permit.py",
+      "sha256": "sha256:e70579ae8aba157cc9e6ff29bc6337bb3608dbdc229e6954ff2aa090302c4e75"
+    },
+    "reference_execution_permit_tests": {
+      "path": "code_assist_v1/tests/test_notion_ui_reference_execution_permit.py",
+      "sha256": "sha256:1075e8e0f7597a8ec38036091d3862a48cbeb2a699067d962ff804c644178c9c"
+    }
+  },
+  "validation": [
+    "UI-DB-001: 1 passed in 26.20s",
+    "UI-DB-002: 1 passed in 30.51s",
+    "UI-DB-003: 1 passed in 44.25s",
+    "UI-COLLAB-001: 1 passed in 15.47s",
+    "UI-SHARE-001: 1 passed in 22.79s",
+    "UI-SHELL-001 final: 1 passed in 24.82s",
+    "local shell/search/editor: 1 passed in 17.44s",
+    "local Second Brain cancel/approve/replay: 1 passed in 23.41s",
+    "R1 and R2/R3 verifier unit set: 20 passed in 5.77s",
+    "review gate: 8 passed in 6.06s",
+    "Notion route/atomic-save/publication adapter: 25 passed in 12.03s",
+    "workspace route/navigation/auth isolation: 41 passed in 45.76s",
+    "Second Brain publication/chat regression: 5 passed in 5.14s",
+    "six focused Node UI/atomic/auth contracts: all passed",
+    "completion verifier: status pass, completion_state incomplete",
+    "final R1 compact verifier: status pass, errors 0, 80 observed fields matched",
+    "final R2/R3 compact verifier: status pass, errors 0, 38 observed fields matched",
+    "final review-gate compact verifier: status pass, errors 0",
+    "final completion compact verifier: status pass, completion_state incomplete, 5 of 25 differential-passed",
+    "pending approval verifier: status pass, external_mutation_authorized false, exact bounded phrase",
+    "pending approval verifier unit regressions: 4 passed in 3.74s",
+    "pending approval batch and exact-text receipt regressions: 8 passed in 9.01s",
+    "pending approval, receipt, and reference execution manifest regressions: 12 passed in 21.02s",
+    "pending approval through non-executing C0-bound permit regressions: 15 passed in 21.77s"
+  ],
+  "known_host_and_test_history": [
+    "one broad Windows command ended with 0xC0000409 and was replaced by serial commands",
+    "two UI-DB-003 capture attempts timed out at the known save-response boundary; bounded fresh-root retry later completed and the exact scenario test passed",
+    "intermediate search focus expectations failed during the context-policy correction and were not used as green evidence",
+    "one final verifier invocation used a script path and failed before verification with ModuleNotFoundError; the canonical module invocation immediately replaced it and all four verifiers passed"
+  ],
+  "pending_approval": {
+    "exact_phrase": "UI-R1-R3 합성 reference 보완 캡처와 Trash 정리 승인; zero-difference 검증 후 differential 매트릭스 갱신 승인",
+    "external_mutation": "synthetic reference pages and links only, followed by recoverable Trash cleanup",
+    "conditional_internal_mutation": "completion matrix rows and counts only after all affected differentials are zero",
+    "status": "awaiting_owner_approval"
+  },
+  "vcs": {
+    "status": "unavailable",
+    "reason": "workspace .git is not valid repository metadata; no commit or landed claim"
+  },
+  "claims": {
+    "r1_r3_current_local_observed_fields_green": true,
+    "reference_completion_green": false,
+    "completion_matrix_changed": false,
+    "production_or_live_change": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

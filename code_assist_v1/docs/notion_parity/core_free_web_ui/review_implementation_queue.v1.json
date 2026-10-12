@@ -1,0 +1,139 @@
+{
+  "contract": "code_assist.notion.core_free_ui.review_implementation_queue.v1",
+  "recorded_at": "2026-08-23T01:06:03+09:00",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "review_gate": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+    "sha256": "sha256:d8e918346f0fad5ed863200d4e584bcd83672d892e4af91031e2ff7ddfafe32d"
+  },
+  "owner_approval_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/owner_approval_receipt.20260822.json",
+    "sha256": "sha256:28e8da75e8c06263f221943dfbd19a644783c8ab1dca6716be7c580bb6c2bf5c"
+  },
+  "authorization": {
+    "status": "approved",
+    "behavior_change_allowed_after_revalidation": true,
+    "receipt_sealing_allowed": true,
+    "local_second_brain_evidence_sealing_allowed": true,
+    "completion_matrix_mutation_allowed": false
+  },
+  "principles": [
+    "Do not treat an omitted local capture field as proof of a product behavior defect.",
+    "After approval, recapture the current local behavior before changing HTML, CSS, or JavaScript.",
+    "Implement only differences that remain after complete local capture normalization.",
+    "Rerun the exact scenario differential and adjacent Second Brain regressions before matrix mutation.",
+    "Keep promotion_allowed false under the current precalibration policy."
+  ],
+  "batches": [
+    {
+      "batch_id": "R1-CAPTURE-COMPLETENESS",
+      "status": "reference_completed_differential_passed",
+      "scenario_ids": [
+        "UI-DB-001",
+        "UI-DB-002",
+        "UI-DB-003",
+        "UI-SEARCH-001",
+        "UI-SEARCH-002",
+        "UI-COLLAB-001",
+        "UI-SHARE-001"
+      ],
+      "classification": "local_capture_fields_missing_or_incomplete",
+      "observed_gap": [
+        "One or more local focus, a11y, keyboard, or semantic_visual fields were absent from the review checkpoint.",
+        "The current checkpoint therefore cannot distinguish evidence-shape drift from a product behavior mismatch."
+      ],
+      "implementation_sequence": [
+        "Seal the approved redacted reference receipt without changing product code.",
+        "Rerun each current local journey and emit all comparison fields.",
+        "Recompute the precalibration comparison from complete captures.",
+        "Open a product-code slice only for differences that remain."
+      ],
+      "acceptance": [
+        "Every adopted action has complete reference and local focus, a11y, keyboard, semantic_visual, state, and error_recovery fields.",
+        "No missing field is normalized into a fabricated pass value.",
+        "Scenario-specific browser tests and Second Brain mutation-zero assertions remain green."
+      ]
+    },
+    {
+      "batch_id": "R2-FOCUS-A11Y-PARITY",
+      "status": "reference_completed_differential_passed",
+      "scenario_ids": [
+        "UI-SHELL-001",
+        "UI-EDITOR-001",
+        "UI-EDITOR-002"
+      ],
+      "classification": "confirmed_focus_or_accessibility_difference",
+      "observed_gap": [
+        "UI-SHELL-001 A01 reference focuses WORKSPACE-SIDEBAR-GROUP/GROUP while local focuses WORKSPACE-SWITCHER/BUTTON.",
+        "UI-EDITOR-001 A03 reference reports PAGE-EDITOR-GROUP/GROUP while local reports EDITOR-BLOCK/TEXTBOX.",
+        "UI-EDITOR-001 A04 reference PAGE-CANVAS is not focused while local PAGE-CANVAS is focused.",
+        "UI-EDITOR-002 A02 reference focus is PAGE-EDITOR-GROUP while local focus is EDITOR-BLOCK."
+      ],
+      "implementation_sequence": [
+        "Seal the approved reference receipts.",
+        "Reproduce each current local focus transition with complete capture fields.",
+        "Modify the smallest shared focus/role boundary without weakening workspace isolation or editor input semantics.",
+        "Run the exact three scenario tests, shell/navigation regressions, editor save/reload tests, and Second Brain hard journeys.",
+        "Recompute differentials and create immutable evidence only for zero-difference actions."
+      ],
+      "acceptance": [
+        "Workspace A-to-B and B-to-A fixture leakage remains zero.",
+        "Korean title/body save and reload remain exact.",
+        "Reference/local semantic comparison reports difference_count zero for every adopted action.",
+        "No completion-matrix update occurs before the verifier accepts the new packet."
+      ]
+    },
+    {
+      "batch_id": "R3-ENTRY-CONTEXT-AND-PEEK",
+      "status": "reference_completed_differential_passed",
+      "scenario_ids": [
+        "UI-EDITOR-005"
+      ],
+      "classification": "entry_context_and_semantic_contract_review",
+      "observed_gap": [
+        "The side-peek reference uses SIDE-PEEK-TITLE focus and a REGION role while local uses SIDE-PEEK-CANVAS focus and a DIALOG role.",
+        "The full-page reference leaves PAGE-CANVAS not focused while local focuses it and reports FULL-PAGE/REGION.",
+        "Keyboard applicability differs in both actions and must not be normalized without reviewing the entry context."
+      ],
+      "implementation_sequence": [
+        "Approve and seal the redacted entry-context summary.",
+        "Confirm whether the adopted contract is side peek, center peek, or full page for each action.",
+        "Correct the scenario/local entry context before changing page-shell semantics.",
+        "Only then implement any remaining role or focus difference and rerun the exact journey."
+      ],
+      "acceptance": [
+        "The action context is explicit and identical on both reference and local sides.",
+        "Escape/focus restoration is deterministic.",
+        "Publication, chat attachment, and page revision counts remain unchanged."
+      ]
+    }
+  ],
+  "shared_test_ladder": [
+    "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\browser\\test_notion_ui1_golden_journey.py -q",
+    "node code_assist_v1/tests/test_notion_ui_runtime.js",
+    "node code_assist_v1/tests/test_notion_navigation_ui.js",
+    "node code_assist_v1/tests/test_notion_publication_ui.js",
+    "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_routes.py code_assist_v1\\tests\\test_notion_atomic_save_compat.py code_assist_v1\\tests\\test_notion_publication_adapter.py -q",
+    "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\knowledge_spaces\\regression\\test_notion_publication_and_job_restart.py code_assist_v1\\tests\\knowledge_spaces\\regression\\test_second_brain_chat_characterization.py -q",
+    "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_review_gate --compact",
+    "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_completion --compact"
+  ],
+  "stop_conditions": [
+    "the bound owner-approval receipt is absent, drifts, or does not match the exact scenario set",
+    "owned file hash drifts before edit",
+    "complete recapture shows the apparent mismatch was only an omitted field",
+    "a fix requires a protected route, schema, authentication, Knowledge, or Second Brain source change outside the approved slice",
+    "personal workspace or live local data would be needed",
+    "any Second Brain mutation-zero or exact publication assertion regresses"
+  ],
+  "claims": {
+    "queued_scenario_count": 0,
+    "implemented_current_source_green_count": 11,
+    "behavior_change_authorized_after_revalidation": true,
+    "local_second_brain_evidence_sealing_authorized": true,
+    "completion_matrix_changed": true,
+    "certified_count": 25,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

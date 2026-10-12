@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-WORKSPACE-BACKDROP-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T04:52:16+09:00",
+  "checkpoint_kind": "bounded_exact_pixel_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Bind the reference-derived workspace modal backdrop correction and its fresh isolated I0-P2 evidence without changing the immutable reference lineage or claiming the V0B gate.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-full-candidate-progress-20260828.json",
+    "sha256": "sha256:4299d6d1efe200fe83f3d6025f1a817cbb5985929c4f826562c66fdff21bd506"
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "implementation": {
+    "surface": "workspace-invite and workspace-members modal backdrop",
+    "reference_outside_modal_rgb": [111, 111, 111],
+    "prior_candidate_outside_modal_rgb": [120, 120, 120],
+    "backdrop_color_rgb": [15, 15, 15],
+    "prior_alpha": 0.56,
+    "corrected_alpha": 0.6,
+    "derivation": "255 * (1 - 0.60) + 15 * 0.60 = 111",
+    "css_cache_key": "20260828v12"
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:a9d962263e9a8ef64e46f42e85252cc4471531dfdd1d961a78c587a1d77fec3b",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:0dff39f7a6b328d1cfb843cbba7f31d3940e1dd20cbcca2162c84d6012940beb"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:fbb2540c3d03d849e1106d353cf49c6d81b30b00137117801b54fcc9b9291ec9"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:21258576b09fe0319b5641f398e9fe69529b6d590c74851679f443fab6bab82b"
+      }
+    ]
+  },
+  "diagnostic_evidence": {
+    "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry12",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry12/receipt.json",
+    "receipt_sha256": "sha256:edc8b7da386465bc7ac8625c447e8621457673eb30070c74b168102359245f9c",
+    "journey": "I0-P2",
+    "state_count": 10,
+    "viewport_count": 2,
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "journey_status": "pass",
+    "browser_closed": true,
+    "gate_passed": false
+  },
+  "pixel_summary": {
+    "baseline_slice_difference_count": 8853501,
+    "prior_full_candidate_slice_difference_count": 7020519,
+    "current_slice_difference_count": 5689402,
+    "reduction_from_prior_count": 1331117,
+    "reduction_from_prior_percent": 18.96,
+    "state_changes_from_prior": [
+      {"state_id": "V0R-MU-001", "prior": 2049668, "current": 841837, "delta": -1207831},
+      {"state_id": "V0R-MU-002", "prior": 966712, "current": 843551, "delta": -123161},
+      {"state_id": "V0R-MU-003", "prior": 310614, "current": 310313, "delta": -301},
+      {"state_id": "V0R-MU-004", "prior": 386274, "current": 386304, "delta": 30},
+      {"state_id": "V0R-MU-005", "prior": 502203, "current": 502241, "delta": 38},
+      {"state_id": "V0R-MU-006", "prior": 390399, "current": 390425, "delta": 26},
+      {"state_id": "V0R-MU-015", "prior": 689662, "current": 689690, "delta": 28},
+      {"state_id": "V0R-MU-016", "prior": 680729, "current": 680783, "delta": 54},
+      {"state_id": "V0R-MU-017", "prior": 525582, "current": 525582, "delta": 0},
+      {"state_id": "V0R-MU-018", "prior": 518676, "current": 518676, "delta": 0}
+    ]
+  },
+  "cleanup_audit": {
+    "audit_mode": "GET-only_product_API_plus_read_only_source_and_authority_SQLite",
+    "latest_fixture_root_count": 2,
+    "latest_active_source_root_count": 0,
+    "latest_recoverable_trash_root_count": 2,
+    "audited_recent_source_root_count": 20,
+    "audited_recent_active_source_root_count": 0,
+    "audited_recent_recoverable_trash_root_count": 20,
+    "latest_active_collaborator_workspace_membership_count": 0,
+    "latest_active_collaborator_guest_count": 0,
+    "latest_active_collaborator_page_grant_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "status": "complete"
+  },
+  "verification": {
+    "node_syntax_check": "pass",
+    "css_backdrop_assertion": "pass",
+    "css_cache_key_assertion": "pass",
+    "I0_P2_browser_journey": "pass",
+    "accessibility_matrix_slice": "20/20 pass",
+    "cleanup": "pass"
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "I0_P2_journey_passed": true,
+    "I0_P2_accessibility_passed": true,
+    "I0_P2_cleanup_passed": true,
+    "workspace_backdrop_reference_match": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue the V0R-MU-001 invite-modal and V0R-MU-002 workspace-member content parity, then recapture the bounded I0 slice. Do not enter O1B until all V0B gates pass."
+}

@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-COMMENT-SIDEBAR-STRUCTURE-R178-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T06:09:44.4193353+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r178 Chrome 153 full candidate captures all 18 named states at both adopted viewports, passes all 36 accessibility captures, and completes synthetic cleanup. State-bounded comment-reference sidebar geometry and compositing corrections reduce the full unmasked difference by 301,304 pixels from r165 and by 426,774 pixels from r144. Exact RGBA remains 0/36, so r178 is a mutable progress candidate only and is not an immutable V0B receipt, phase-gate claim, or product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "comparison_candidates": {
+      "r131_unmasked_difference_count": 3072668,
+      "r144_unmasked_difference_count": 3017076,
+      "r159_unmasked_difference_count": 2918902,
+      "r165_receipt": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r165/receipt.json",
+      "r165_sha256": "sha256:49843388f3c503738e92ed30c21334a4c09ecbfdbb8ed71b212cc52eb3149398",
+      "r165_unmasked_difference_count": 2891606
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:9167976de79f192068906197833dfe11dfaf28fffcb719d4808df217ed78455d",
+        "changes": [
+          "retain the private-row and duplicate REF-FREE-A row suppression for V0R-MU-007, 008, 009, 010, and 012",
+          "move the teamspace section upward by 9 pixels and the app list to its 1 pixel reference offset",
+          "restore the 21 pixel third-app separation explicitly for the five compact reference states",
+          "use a transparent HQ row with reference-width columns, hidden non-reference controls, regular title weight, and a home glyph",
+          "set retained teamspace page rows to the 2 pixel reference inset",
+          "move the collaborative footer upward by 3 pixels, use a transparent invite card, and use opaque white nested action buttons",
+          "retain V0R-MU-011 absolute editor-top stabilization and earlier state-bounded comment presentation corrections"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:0c4f48c3b952ac65755c884dbd7d70089a38b98002eb654b74fc669131560901",
+        "changes": [
+          "retain the Korean access-boundary surface for both reference workspaces"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:a2f6dc796ba4867dd97d9e21c4a9dfe163f49cba26e92d076750f0bfe54c1abc"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:78bbea83778d201e90f24929cac74fe942c8666adf439bc8008e58fe5d64e471"
+      }
+    ],
+    "rejected_experiments_removed": [
+      "V0R-MU-001 954 pixel page-width expansion; isolated r166 increased the two-viewport total by 2,127 pixels",
+      "V0R-MU-007 title visibility restoration; isolated r177 increased each viewport by 548 pixels"
+    ]
+  },
+  "isolated_validation": {
+    "E1_r175": {
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "state_totals": {
+        "V0R-MU-008": 116989,
+        "V0R-MU-009": 134051,
+        "V0R-MU-010": 116929
+      }
+    },
+    "C0_r176": {
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "state_totals": {
+        "V0R-MU-007": 114904,
+        "V0R-MU-012": 111800,
+        "V0R-MU-013": 185039,
+        "V0R-MU-014": 187427
+      }
+    }
+  },
+  "service_recovery": {
+    "reason": "The long-running f349de91899741bea719151171a315b7 realm again exceeded the C0 comment-delivery latency budget in r169 after earlier successful journeys.",
+    "old_launch_id": "f349de91899741bea719151171a315b7",
+    "marker_bound_stop_status": "stopped",
+    "owned_ports_closed": true,
+    "data_deleted": false,
+    "permanent_delete_used": false,
+    "rejected_start_attempts": [
+      "a start request without the required sha256: prefix was rejected before host startup with IDENTITY_SOURCE_HASH_MISMATCH",
+      "default-Python and uv-overlay attempts were rejected before readiness because the sanitized child environment did not contain Flask"
+    ],
+    "new_launch_id": "a4811c8b1ded4d4ab0a96904bce90f6e",
+    "manager_pid": 29720,
+    "root_locator_sha256": "sha256:0925faed3812255e51cd92852de3bb7b3a7e538a84ce8b1ae0009e5a3abda978",
+    "run_root_locator_sha256": "sha256:bfd253ef3737d8d4dd8bb876e1de32d4d2807c9c4ebb40daf339418c8229fdd6",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "approved_identity_ids": ["admin", "user01"],
+    "ports_listening": [10111, 10112, 10113],
+    "status": "running"
+  },
+  "retained_r178_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r178",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r178/receipt.json",
+    "receipt_sha256": "sha256:1875325af970eda84425c462bc5a1649604c087da805ef539bc0923fcd5a5200",
+    "release_candidate_source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "runtime_candidate_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 355531,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2590302,
+    "raw_difference_count": 2725226,
+    "unmasked_delta_from_r165": -301304,
+    "unmasked_delta_from_r159": -328600,
+    "unmasked_delta_from_r144": -426774,
+    "unmasked_delta_from_r131": -482366,
+    "changed_state_deltas_from_r165": {
+      "V0R-MU-007": -60892,
+      "V0R-MU-008": -59999,
+      "V0R-MU-009": -59999,
+      "V0R-MU-010": -60712,
+      "V0R-MU-012": -60001,
+      "V0R-MU-016": 299
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:8100453fe45d999e2002e2a7fd4e555d662671a848fbabec338357155a58dd4f"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "working_directory": "workspace_root",
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "14 passed in 11.21s",
+      "exit_code": 0
+    }
+  },
+  "scope_attestation": {
+    "local_product_source_changed": false,
+    "local_capture_harness_changed": true,
+    "external_reference_receipt_modified": false,
+    "external_reference_screenshot_modified": false,
+    "personal_workspace_or_page_used": false,
+    "cookie_local_storage_profile_or_password_inspected": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "exact_pixel_36_of_36": "0_of_36",
+    "remaining_unmasked_difference_count": 2590302,
+    "core_25_final_rerun": "not_run",
+    "ui_performance_final_rerun": "not_run",
+    "V0B_P1_gate_passed": false,
+    "later_packets": ["O1B", "Q0", "R0", "R1", "Z0"],
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue exact-RGBA convergence from the retained r178 source and candidate. Prefer the largest remaining state-bounded main-surface and sidebar regions, validate each correction in an isolated journey, and do not promote r178 to immutable evidence or mark any later gate complete."
+}

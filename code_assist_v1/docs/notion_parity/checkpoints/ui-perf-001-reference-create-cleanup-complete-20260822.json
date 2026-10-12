@@ -1,0 +1,75 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T16:57:17.6572349+09:00",
+  "run_id": "ui45-perf-001-reference-create-cleanup-complete-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-independent-create-pending-cleanup-20260822.json",
+    "sha256": "sha256:4129b507b65c3578cb652d55799726e72d9b6a6300f77a6d1d018e8d9ef96bc1",
+    "semantic_status": "synthetic_reference_create_observed_cleanup_pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "exact queued approval text supplied by the user",
+    "goal_complete": false
+  },
+  "slice": {
+    "id": "UI-PERF-001-REFERENCE-CREATE-TRASH",
+    "status": "confirmed_and_executed",
+    "product_code_changed": false,
+    "permanent_delete_executed": false
+  },
+  "authorization": {
+    "batch_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_receipt.20260822.json",
+      "sha256": "sha256:81afd3cab4e94c3b0cddb6dfc7e212e8bfa4d9a39f9f9f6644948b61b08a83ee"
+    },
+    "supplemental_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/owner_approval_supplemental_receipt.20260822.json",
+      "sha256": "sha256:8427d69e0b2e2c8a7adf991ea42d0da5b6ebc5659ccf3c51a4c1099ac45e46aa"
+    },
+    "exact_target_alias": "UI-PERF-001-REFERENCE-CREATE",
+    "authorized_action": "move_to_trash",
+    "permanent_delete_authorized": false
+  },
+  "browser_observation": {
+    "browser": "Chrome desktop",
+    "locale": "ko-KR",
+    "workspace_alias": "REF-FREE-A",
+    "before": {
+      "exact_target_treeitem_count": 1,
+      "exact_current_title_control_count": 1,
+      "personal_page_treeitem_count": 5
+    },
+    "action": {
+      "visible_control": "휴지통으로 이동",
+      "exact_visible_control_count": 1,
+      "executed_count": 1
+    },
+    "after": {
+      "exact_target_treeitem_count": 0,
+      "exact_current_title_control_count": 0,
+      "personal_page_treeitem_count": 4,
+      "visible_status": "휴지통으로 이동됨"
+    },
+    "tab_finalization": "handoff"
+  },
+  "safety": {
+    "synthetic_target_only": true,
+    "personal_workspace_accessed": false,
+    "trash_opened": false,
+    "permanent_delete_executed": false,
+    "raw_url_or_page_id_persisted": false,
+    "raw_dom_network_cookie_storage_or_screenshot_persisted": false,
+    "live_local_data_accessed": false,
+    "external_publish_or_message_executed": false
+  },
+  "claims": {
+    "synthetic_reference_tree_restored": true,
+    "cleanup_complete": true,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  }
+}

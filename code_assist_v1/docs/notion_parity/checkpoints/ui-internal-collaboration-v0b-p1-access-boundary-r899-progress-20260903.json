@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-ACCESS-BOUNDARY-R899-PROGRESS-20260903",
+  "recorded_at": "2026-09-03T09:40:14.3241285+09:00",
+  "checkpoint_kind": "bounded_access_boundary_residual_reduction_and_f0_capture_stabilization_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "goal_complete": false,
+  "scope_guard": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "protected_hot_contracts_modified": false,
+    "final_product_or_sbe_gate_run": false
+  },
+  "approved_dev_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r879-20260903",
+    "manager_session_id": 77916,
+    "manager_session_live": true,
+    "ports": [10111, 10112, 10113],
+    "launch_id": "4ec3cb7615274822993ddb8ea05c30e9",
+    "root_id": "bb669d69-2ff2-43f9-8167-cf9854cf272d",
+    "run_marker_path": ".dev/notion-collaboration-10111-10113-clean-r879-20260903/runs/4ec3cb7615274822993ddb8ea05c30e9/run-marker.json",
+    "run_marker_sha256": "sha256:c01e3f0a483f7e6de9b4dacd459c2c5e55e938a7b98fa0ac3f0366627a21cb2a",
+    "workspace_count": 45,
+    "reference_workspace_count": 43,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "rotation_threshold": 64
+  },
+  "retained_candidate": {
+    "label": "r899",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r899/receipt.json",
+    "receipt_sha256": "sha256:fdf389bdbddd4cc089b5e3aab5983a9039eb0d5f6fb86ff6f9b275313ba1df07",
+    "release_source_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 1703061,
+    "masked_difference_count": 68418,
+    "total_difference_count": 1771479,
+    "delta_from_r879_unmasked": -44137,
+    "delta_from_r879_masked": 0,
+    "delta_from_r879_total": -44137,
+    "changed_capture_deltas_from_r879_unmasked": {
+      "V0R-MU-017@1280": -21634,
+      "V0R-MU-018@1280": -21558,
+      "V0R-MU-005@1280": -501,
+      "V0R-MU-017@1440": -189,
+      "V0R-MU-004@1440": -138,
+      "V0R-MU-018@1440": -113,
+      "V0R-MU-010@1440": -3,
+      "V0R-MU-008@1280": -1
+    },
+    "regressed_capture_count_from_r879": 0,
+    "component_journeys": {
+      "C0-P2": "pass",
+      "I0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "duration_ms": 313718,
+    "cleanup": {
+      "status": "complete",
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "active_fixture_root_count": 0,
+      "component_cleanup_verified": true,
+      "browser_closed": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:f2fea8ab8ec477321ac91f38cdd2914f2889003b069216286547defff085a25d"
+    }
+  },
+  "implemented_progress": {
+    "access_boundary_compact": {
+      "states": ["V0R-MU-017", "V0R-MU-018"],
+      "baseline_counts": {
+        "V0R-MU-017@1280": 45554,
+        "V0R-MU-018@1280": 45473
+      },
+      "current_counts": {
+        "V0R-MU-017@1280": 23920,
+        "V0R-MU-018@1280": 23915
+      },
+      "changes": [
+        "compact skeleton top and zoom geometry",
+        "state-local row gradients derived from actual compact raster mapping",
+        "state-local row edge shadows and terminal colors",
+        "compact dialog radius and access-boundary typography",
+        "help and pointer micro-alignment"
+      ]
+    },
+    "f0_state011_determinism": {
+      "cause": "The collaborator browser had not completed its own asynchronous reply and reaction reload before the drawer was closed, so the comment preview could be empty at capture time.",
+      "fix": "Wait for reply and reaction convergence in the collaborator State, temporarily render the comment-role preview for readiness verification, then restore the original IAM role before capture.",
+      "targeted_runs": {
+        "r897": {
+          "status": "pass",
+          "V0R-MU-011@1440": 51370,
+          "V0R-MU-011@1280": 46635,
+          "cleanup": true
+        },
+        "r898": {
+          "status": "pass",
+          "V0R-MU-011@1440": 51370,
+          "V0R-MU-011@1280": 46635,
+          "cleanup": true
+        }
+      }
+    }
+  },
+  "regression_validation": {
+    "pytest": {
+      "status": "pass",
+      "passed": 23,
+      "skipped": 1,
+      "failed": 0,
+      "scope": [
+        "test_v0b_p1_workspace_realm_budget.py",
+        "test_v0b_p1_i0_semantic_diagnostic.py",
+        "test_v0b_p1_capture_matte.py",
+        "test_internal_collaborative_v0b_p1_receipt.py",
+        "browser/test_f0_p5_adopted_surface.py"
+      ]
+    },
+    "official_receipt_verifier": {
+      "status": "expected_fail_open_gates_only",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_error_counts": {
+        "EXACT_PIXEL_GATE": 36,
+        "CORE_25_GATE": 1,
+        "PERFORMANCE_GATE": 1,
+        "CLAIMS_GATE": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:fdf389bdbddd4cc089b5e3aab5983a9039eb0d5f6fb86ff6f9b275313ba1df07"
+    }
+  },
+  "modified_sources": {
+    "code_assist_v1/notion_collaboration/v0b_p1_capture.py": "sha256:0fb18ea6059d126df13cfed70baa8e18b25884c3be1c9b07c8e3314d79609d22",
+    "code_assist_v1/notion_collaboration/f0_p5_browser.py": "sha256:2bac7d82d8e91e4f256626a425c6a6195ba9f74df36b44b9686cec408ca457a3"
+  },
+  "protected_hot_contracts": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "code_assist_v1/notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "next_cursor": {
+    "action": "Continue exact-pixel residual reduction from r899 without running final product or SBE gates.",
+    "priority": [
+      "Reduce the remaining access-boundary dialog and skeleton edge residuals.",
+      "Then move to the largest stable remaining V0B states and retain only no-regression full candidates.",
+      "Rotate the approved dev realm before the 64-workspace threshold."
+    ]
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "exact_36_of_36": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

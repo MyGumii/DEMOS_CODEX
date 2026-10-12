@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_gateway_topology_adr.v1",
+  "decision_id": "T0A-P3-GATEWAY-TOPOLOGY-ADR-001",
+  "recorded_at": "2026-08-24T00:18:00Z",
+  "packet_id": "T0A-P3",
+  "status": "accepted_selected_runtime_contract_not_service_implementation",
+  "selected_runtime": {
+    "candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+    "wire_format": "Yjs_v1_update_bytes",
+    "gateway_runtime": "CPython_3.14.3_uvicorn_0.52.4_websockets_17.0.1",
+    "compactor_runtime": "Node_24.14.1_yjs_13.6.32",
+    "gateway_payload_semantics": "opaque_bytes",
+    "hosted_service_required": false
+  },
+  "authority_inputs": {
+    "authority_adr": {
+      "path": "internal_collaborative_authority_adr.v1.json",
+      "sha256": "sha256:0dfa4ad9fd30a8daf50d42e9fe60ea0126928a2f4a73c8a51d7b518d28c439c2"
+    },
+    "protocol_contract": {
+      "path": "internal_collaborative_protocol_contract.v1.json",
+      "sha256": "sha256:c2ce4dcecebd4f7da459824f3f012a142ef8ef6d2fd08195490587ad4f954481"
+    },
+    "gateway_contract": {
+      "path": "internal_collaborative_gateway_contract.v1.json",
+      "sha256": "sha256:8bfa575854f409e648822f8e4b6e27433f14cab699ee6def6fb3f08698fd4e96"
+    },
+    "winner_adr": {
+      "path": "internal_collaborative_crdt_winner_adr.v1.json",
+      "sha256": "sha256:591b08a1cefcf5cf536b52a66e70ab6c1047133c8bcff99f27bdab90bef6a71a"
+    },
+    "artifact_manifest": {
+      "path": "../../../collaboration_runtime/ARTIFACT_MANIFEST.json",
+      "sha256": "sha256:8059bf135ca66a49d67c0798d30b71ed48bf779e3f142cb20d94a1328354e584"
+    },
+    "python_lock": {
+      "path": "../../../collaboration_runtime/python-requirements.lock",
+      "sha256": "sha256:2910510df5c434104778c4a78f40a6b2368204513c8ac29824c5a1cb13db7c65"
+    },
+    "node_lock": {
+      "path": "../../../collaboration_runtime/node/package-lock.json",
+      "sha256": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3"
+    }
+  },
+  "process_topology": {
+    "notion_host": {
+      "runtime": "existing_Flask_Waitress_application",
+      "owns": [
+        "authenticated_session_and_CSRF",
+        "one_time_ticket_issue",
+        "HTTP_API_and_page_shell",
+        "aggregate_and_capability_kill_switch_control"
+      ],
+      "does_not_own": [
+        "WebSocket_connection_lifecycle",
+        "CRDT_update_semantics",
+        "CRDT_compaction"
+      ]
+    },
+    "canonical_notion_authority": {
+      "runtime": "Python_service_layer_over_one_Notion_SQLite_authority",
+      "owns": [
+        "workspace_and_page_IAM",
+        "workspace_and_page_access_epochs",
+        "ticket_digest_and_atomic_consumption",
+        "operation_id_request_hash_and_durable_result",
+        "document_sequence_and_acknowledgement",
+        "durable_update_events_and_snapshot_metadata",
+        "audit_and_outbox"
+      ],
+      "direct_gateway_table_writes_allowed": false,
+      "direct_compactor_table_writes_allowed": false
+    },
+    "python_gateway": {
+      "runtime_lock": "code_assist_v1/collaboration_runtime/python-requirements.lock",
+      "owns": [
+        "WebSocket_listener_and_connection_lifecycle",
+        "ticket_consumption_through_canonical_service",
+        "bounded_session_queues",
+        "payload_length_and_sha256_validation",
+        "epoch_revalidation_before_command_and_send",
+        "strict_document_sequence_delivery",
+        "health_and_runtime_metrics",
+        "Node_compactor_process_supervision"
+      ],
+      "does_not_own": [
+        "authentication_cookie",
+        "authorization_policy",
+        "canonical_content_or_event_commit",
+        "durable_ACK_allocation",
+        "Yjs_update_interpretation",
+        "snapshot_commit_decision",
+        "Second_Brain_publication"
+      ],
+      "opaque_payload_rule": "The gateway may hash, length-check, persist through the canonical service, and relay Yjs bytes but never inspect or rewrite their CRDT semantics."
+    },
+    "node_compactor": {
+      "runtime_lock": "code_assist_v1/collaboration_runtime/node/package-lock.json",
+      "owns": [
+        "Yjs_update_decode",
+        "ordered_update_application",
+        "Yjs_snapshot_encoding",
+        "state_vector_and_snapshot_hash_reporting"
+      ],
+      "does_not_own": [
+        "network_listener",
+        "authentication_or_IAM",
+        "canonical_database_access",
+        "event_or_snapshot_metadata_commit",
+        "filesystem_persistence",
+        "ticket_or_epoch_resolution",
+        "Second_Brain_publication"
+      ],
+      "transport": "one_owned_child_process_with_length_bounded_JSON_lines_over_stdin_stdout",
+      "unexpected_stdout_action": "terminate_child_fail_readiness_and_rebuild_from_canonical_events",
+      "stderr_policy": "structured_redacted_diagnostics_only_no_payload_bytes"
+    }
+  },
+  "network_and_process_ownership": {
+    "gateway_listener_owner": "one_declared_launcher_role",
+    "compactor_child_owner": "the_same_gateway_launcher_role",
+    "compactor_listener_allowed": false,
+    "development_port": "OS_assigned_only",
+    "production_port": "explicit_config_after_R0B_approval_only",
+    "fixed_port_selected_by_this_packet": false,
+    "firewall_task_startup_entry_changed_by_this_packet": false,
+    "PID_and_start_time_attestation_required": true,
+    "cleanup_rule": "Terminate only the launcher-recorded gateway and descendant compactor PIDs after verifying PID, creation time, executable, runtime lock hashes, and run marker."
+  },
+  "ticket_epoch_ack_binding": {
+    "ticket_issuer": "notion_host_after_authenticated_session_and_CSRF",
+    "ticket_consumer": "python_gateway_via_atomic_canonical_service_command",
+    "flask_cookie_is_gateway_authorization": false,
+    "workspace_and_page_epoch_bound": true,
+    "epoch_revalidation_points": [
+      "ticket_admission",
+      "before_every_inbound_command",
+      "canonical_commit",
+      "replay_read",
+      "before_every_protected_send",
+      "snapshot_commit"
+    ],
+    "canonical_commit_before_ACK": true,
+    "gateway_or_compactor_may_allocate_document_sequence": false,
+    "stale_epoch_action": "deny_or_drop_zero_protected_payload_and_close_or_fence_session",
+    "authority_unavailable_action": "fail_closed_without_ticket_consumption_when_possible_and_without_protected_send",
+    "broadcast_failure_after_commit": "retain_durable_commit_close_or_fence_and_require_sequence_replay"
+  },
+  "update_replay_binding": {
+    "payload_encoding": "base64_of_exact_Yjs_v1_update_bytes_inside_versioned_envelope",
+    "payload_sha256_scope": "decoded_exact_update_bytes",
+    "maximum_update_bytes_inherited": 1048576,
+    "canonical_event_fields": [
+      "document_sequence",
+      "operation_id",
+      "request_sha256",
+      "workspace_epoch",
+      "page_epoch",
+      "update_generation",
+      "payload_length",
+      "payload_sha256",
+      "opaque_update_blob_reference"
+    ],
+    "duplicate_rule": "Same subject, page, operation_id, and request hash returns the original durable ACK without another event.",
+    "sequence_rule": "Only canonical authority allocates contiguous document sequence after commit-time IAM and epoch revalidation.",
+    "replay_rule": "Read strictly ascending events after the exclusive acknowledged sequence, bounded to 256, and revalidate current epochs before delivery.",
+    "compacted_cursor_rule": "If the cursor precedes the retained tail, return one canonical snapshot anchored to its high-water followed by strictly newer events."
+  },
+  "compaction_protocol": {
+    "request_contract": "code_assist.notion.yjs_compaction_request.v1",
+    "response_contract": "code_assist.notion.yjs_compaction_response.v1",
+    "request_required_fields": [
+      "contract",
+      "request_id",
+      "document_id",
+      "workspace_epoch",
+      "page_epoch",
+      "base_snapshot_id",
+      "base_high_water_sequence",
+      "target_high_water_sequence",
+      "ordered_update_count",
+      "ordered_update_bytes",
+      "ordered_update_sha256",
+      "ordered_update_aggregate_sha256",
+      "request_sha256",
+      "runtime_binding_sha256"
+    ],
+    "response_required_fields": [
+      "contract",
+      "request_id",
+      "request_sha256",
+      "base_high_water_sequence",
+      "target_high_water_sequence",
+      "applied_update_count",
+      "snapshot_bytes",
+      "snapshot_sha256",
+      "state_vector_bytes",
+      "state_vector_sha256",
+      "runtime_binding_sha256"
+    ],
+    "request_rules": [
+      "Resolve one existing snapshot at base_high_water_sequence or an explicit empty base at zero.",
+      "Read a contiguous canonical event range base_high_water_sequence plus one through target_high_water_sequence.",
+      "Reject gaps, duplicate document sequences, payload length/hash drift, epoch drift, size overflow, and unknown runtime binding before starting Node work.",
+      "Compute request_sha256 over canonical metadata and ordered update hashes; raw payload bytes are length-framed separately."
+    ],
+    "response_rules": [
+      "Require the exact request_id, request_sha256, high-water range, applied update count, and runtime binding.",
+      "Verify returned snapshot/state-vector lengths and SHA-256 before any metadata transaction.",
+      "Revalidate current epochs, source event hashes, current document high-water, and existing snapshot generation immediately before commit.",
+      "Commit snapshot metadata and blob reference atomically with audit/outbox, or discard the result without advancing compaction state.",
+      "Never delete the retained tail in the compactor response transaction; retention is a separately gated canonical operation after backup safety."
+    ],
+    "compactor_crash_action": "Discard partial response, restart the owned child, and deterministically rerun from the same canonical snapshot and event range.",
+    "gateway_crash_action": "No ACK or snapshot commit occurs without the canonical transaction; restart reconstructs from durable event and snapshot state.",
+    "actual_compaction_implementation_owner": "O0A-P3_then_T0B",
+    "schema_allocation_by_this_packet": false
+  },
+  "lifecycle_contract": {
+    "states": [
+      "STOPPED",
+      "STARTING",
+      "NOT_READY",
+      "READY",
+      "DRAINING",
+      "FAILED"
+    ],
+    "start_order": [
+      "verify_default_off_flags_and_exact_config",
+      "verify_schema_compatibility_and_single_migrator_completion",
+      "verify_python_and_node_lock_hashes",
+      "start_owned_Node_compactor_without_listener",
+      "complete_version_and_runtime_binding_handshake",
+      "start_python_gateway_listener_on_declared_or_OS_assigned_port",
+      "verify_canonical_authority_epoch_resolver_and_durable_command_path",
+      "publish_READY_only_after_all_readiness_checks_pass"
+    ],
+    "stop_order": [
+      "disable_new_ticket_issue_and_new_gateway_admission",
+      "enter_DRAINING_and_stop_accepting_new_commands",
+      "finish_or_abort_uncommitted_work_within_frozen_drain_timeout",
+      "close_sessions_with_replay_required_after_durable_high_water",
+      "terminate_owned_Node_compactor",
+      "terminate_owned_python_gateway_and verify_owned_PIDs_and_listener_are_gone"
+    ],
+    "unexpected_gateway_exit": "Notion HTTP remains available, ticket issue fails closed, clients retain only allowed local buffer, and replay resumes from durable ACK after restart.",
+    "unexpected_compactor_exit": "Gateway live transport may remain ready_for_realtime but compaction readiness is false; no new snapshot is committed until exact child restart and handshake.",
+    "drain_timeout_source": "G0_U_frozen_write_drain_timeout_not_hardcoded_here",
+    "start_or_stop_executed_by_this_packet": false
+  },
+  "health_contract": {
+    "contract": "code_assist.notion.selected_runtime_health.v1",
+    "liveness": {
+      "meaning": "The owned gateway process event loop can answer without canonical or compactor dependency calls.",
+      "may_be_true_when_not_ready": true,
+      "contains_content_or_identity": false
+    },
+    "readiness_required_checks": [
+      "aggregate_and_realtime_feature_flags_allow_admission",
+      "runtime_binding_and_lock_hashes_match",
+      "schema_version_is_supported",
+      "canonical_authority_epoch_resolver_is_available",
+      "canonical_durable_command_and_replay_path_is_available",
+      "Node_compactor_handshake_matches_exact_Node_and_Yjs_versions",
+      "outbound_queue_and connection_capacity_are_within_bounds",
+      "launcher_PID_listener_and_child_ownership_attestation_matches"
+    ],
+    "readiness_failure_action": "Return not_ready without protected identifiers, reject new admission, and never substitute cached authorization.",
+    "degraded_realtime_without_compaction_allowed": true,
+    "degraded_mode_rule": "Only already-ready realtime transport may continue while compaction is unavailable; snapshot production is disabled and queue/event retention alerts before bounds.",
+    "health_response_fields": [
+      "contract",
+      "state",
+      "ready_for_admission",
+      "ready_for_realtime",
+      "ready_for_compaction",
+      "runtime_binding_sha256",
+      "schema_compatibility",
+      "authority_available",
+      "queue_pressure_state",
+      "restart_required"
+    ]
+  },
+  "rollback_and_kill_switch_contract": {
+    "aggregate_flag_dominates": true,
+    "default_off_until_K0_and_release_gates": true,
+    "disable_order": [
+      "disable_ticket_issue",
+      "disable_new_gateway_admission",
+      "fence_or_close_existing_sessions_after_current_epoch_check",
+      "drain_or_abort_uncommitted_work",
+      "stop_selected_runtime_processes"
+    ],
+    "code_rollback_requires_schema_downgrade": false,
+    "durable_updates_after_disable": "Remain canonical and replayable; no rollback discards acknowledged operations.",
+    "snapshot_rollback": "Ignore unsupported newer snapshot generation and rebuild from retained compatible snapshot plus durable tail; never rewrite canonical history.",
+    "rejected_runtime_fallback_allowed": false,
+    "fallback_rule": "Do not automatically start pycrdt or Hocuspocus. Roll back to collaboration-disabled HTTP behavior until a new gated runtime decision."
+  },
+  "observability_contract": {
+    "structured_dimensions": [
+      "deployment_generation_id",
+      "gateway_instance_id",
+      "runtime_binding_sha256",
+      "workspace_id_hash",
+      "page_id_hash",
+      "message_type",
+      "result_code"
+    ],
+    "forbidden_log_fields": [
+      "raw_cookie",
+      "plaintext_ticket",
+      "raw_CRDT_update",
+      "snapshot_bytes",
+      "page_title",
+      "member_name",
+      "comment_body",
+      "unpublished_content"
+    ],
+    "required_counters": [
+      "ticket_admission_total_by_result",
+      "active_connections",
+      "inbound_commands_total_by_result",
+      "durable_ACK_total",
+      "replay_events_total",
+      "queue_overflow_disconnect_total",
+      "epoch_fence_drop_total",
+      "authority_unavailable_total",
+      "compaction_request_total_by_result",
+      "gateway_restart_total",
+      "compactor_restart_total"
+    ],
+    "required_gauges": [
+      "outbound_queue_frames",
+      "outbound_queue_bytes",
+      "durable_event_tail_length",
+      "compaction_lag_sequences",
+      "oldest_uncompacted_event_age_seconds",
+      "process_RSS_bytes"
+    ],
+    "required_histograms": [
+      "command_commit_latency_ms",
+      "ACK_latency_ms",
+      "replay_latency_ms",
+      "send_time_epoch_check_latency_ms",
+      "compaction_duration_ms",
+      "snapshot_bytes",
+      "restart_to_ready_ms"
+    ],
+    "target_windows_report_requires": [
+      "p50_p95_p99_latency",
+      "SQLite_busy_count",
+      "queue_lag",
+      "projection_lag",
+      "restore_timing_when_applicable"
+    ],
+    "alert_conditions": [
+      "any_acknowledged_operation_loss",
+      "any_post_revoke_protected_delivery",
+      "any_convergence_mismatch",
+      "queue_pressure_above_frozen_bound",
+      "compaction_lag_near_retention_bound",
+      "repeated_restart_or_not_ready_state",
+      "runtime_or_lock_binding_drift"
+    ]
+  },
+  "runtime_binding": {
+    "algorithm": "sha256_of_canonical_JSON_binding_descriptor",
+    "descriptor_fields": [
+      "candidate_id",
+      "wire_format",
+      "protocol_contract_sha256",
+      "gateway_contract_sha256",
+      "winner_adr_sha256",
+      "artifact_manifest_sha256",
+      "python_lock_sha256",
+      "node_lock_sha256"
+    ],
+    "expected_sha256": "sha256:99b8e01015bbf92c385493bebbc08b6600add4b43afd2ab6e1746a6bb8e74057",
+    "included_in": [
+      "startup_attestation",
+      "health_response",
+      "versioned_gateway_envelope",
+      "compaction_request",
+      "compaction_response",
+      "snapshot_metadata",
+      "backup_manifest",
+      "release_candidate_manifest"
+    ],
+    "mismatch_action": "fail_start_or_fail_readiness_without_network_admission_or_snapshot_commit"
+  },
+  "follow_on_ownership": {
+    "T0B": "Implement durable event kernel, selected Python gateway, Node compactor supervision, exact tickets/epochs/ACK/replay, and restart behavior after G0 decisions.",
+    "O0A_P3": "Execute selected snapshot/high-water/compaction/new-root restore benchmark and freeze the backup binding.",
+    "G0_E": "Combine A0A-P2, E0-P4, T0A-P3, and O0A-P3 into the engineering decision receipt.",
+    "K0": "Own default-off feature-flag dominance and rollback behavior.",
+    "Q0": "Own target Windows load, reconnect storm, slow consumer, security, resource, and soak envelopes."
+  },
+  "prototype_boundary": {
+    "pure_contract_state_machine_only": true,
+    "actual_gateway_listener_started": false,
+    "actual_compactor_process_started": false,
+    "port_bound": false,
+    "dependency_downloaded_or_installed": false,
+    "global_runtime_lock_modified": false,
+    "schema_or_migration_allocated": false,
+    "identity_workspace_browser_or_live_data_accessed": false,
+    "production_feature_flag_changed": false
+  },
+  "claims": {
+    "gateway_topology_ADR_complete": true,
+    "health_start_stop_rollback_and_observability_contract_complete": true,
+    "selected_runtime_protocol_compaction_and_epoch_binding_plan_complete": true,
+    "actual_gateway_transport_implemented": false,
+    "actual_compactor_service_implemented": false,
+    "runtime_enabled": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T21:00:41.7901049+09:00",
+  "run_id": "ui59-r1-r3-reference-completion-differential-16-of-25",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-r1-r3-current-source-observed-fields-green-approval-batched-20260822.json",
+    "sha256": "sha256:a529230af2ac83b2b70d682e10e393efaa5e89e4448d68fb1e5c581de3ec4180",
+    "semantic_status": "current_source_green_waiting_for_exact_owner_approval"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "blocked",
+    "resume_authority": "exact owner approval received in the active conversation",
+    "objective_status": "active_not_complete"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_ids": [
+      "UI-SHELL-001",
+      "UI-EDITOR-001",
+      "UI-EDITOR-002",
+      "UI-EDITOR-005",
+      "UI-DB-001",
+      "UI-DB-002",
+      "UI-DB-003",
+      "UI-SEARCH-001",
+      "UI-SEARCH-002",
+      "UI-COLLAB-001",
+      "UI-SHARE-001"
+    ],
+    "reference_workspaces": ["REF-FREE-A", "REF-FREE-B"],
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_count": 0,
+    "live_local_data_accessed": false,
+    "production_or_operational_change": false
+  },
+  "authorization": {
+    "exact_owner_text": "UI-R1-R3 합성 reference 보완 캡처와 Trash 정리 승인; zero-difference 검증 후 differential 매트릭스 갱신 승인",
+    "approval_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/pending_approval_receipt.r1_r3.20260822.json",
+      "sha256": "sha256:90bbbe185470af6493c272c9d8a2a2520053ef5dd51d013e27c04cbfdaa1190f"
+    },
+    "execution_permit": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/reference_execution_permit.r1_r3.20260822.json",
+      "sha256": "sha256:b7b67f4f74904f2bbedcbf2a52a28c201b29d33a373a462350f2559d071cefed"
+    },
+    "matrix_update_condition": "all affected normalized captures validate and every differential has zero observable differences",
+    "condition_satisfied": true
+  },
+  "reference_execution": {
+    "c0_status": "pass",
+    "exact_workspace_aliases_confirmed": ["REF-FREE-A", "REF-FREE-B"],
+    "fresh_fixture_count": 3,
+    "workspace_switch_round_trip": "pass",
+    "korean_title_and_paragraph_reload": "pass",
+    "slash_menu_and_heading_persistence": "pass",
+    "notion_page_find_and_escape": "pass",
+    "synthetic_page_link_navigation": "pass",
+    "approved_prior_backlink_observation_reused": true,
+    "observation": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/reference_completion_observation.r1_r3.20260822.json",
+      "sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b"
+    }
+  },
+  "cleanup": {
+    "mode": "trash_only_recoverable",
+    "ref_free_a_root_subtree_active_residual_count": 0,
+    "ref_free_a_child_active_residual_count": 0,
+    "ref_free_b_marker_active_residual_count": 0,
+    "permanent_delete_used": false,
+    "final_chrome_workspace": "REF-FREE-A",
+    "status": "complete"
+  },
+  "recovered_setup_incidents": [
+    {
+      "code": "SYNTHETIC_ROOT_CREATE_MISROUTE",
+      "result": "REF-FREE-A synthetic title restored exactly before continuing",
+      "residual_mutation": false
+    },
+    {
+      "code": "SLASH_MENU_AI_TEMPLATE_MISACTIVATION",
+      "result": "synthetic template insertion undone immediately and recording never started",
+      "residual_mutation": false
+    },
+    {
+      "code": "C0_RAW_SWITCHER_SNAPSHOT_DISCARDED",
+      "result": "rejected observation was not persisted; replacement used exact alias counts only",
+      "residual_private_artifact": false
+    }
+  ],
+  "differential_evidence": {
+    "scenario_count": 11,
+    "action_count": 22,
+    "difference_count": 0,
+    "promotion_allowed": false,
+    "packets": [
+      {"scenario_id":"UI-SHELL-001","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_001_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:41e59b166152e446e27e21c8ce3a822a615fb2bf4a22c085cfdfd1072ab4573c"},
+      {"scenario_id":"UI-EDITOR-001","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_001_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:9962390f2e30df921b033cddde05baecb67304c48f965418369ce7f107d219b7"},
+      {"scenario_id":"UI-EDITOR-002","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_002_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:4c2a99b082d755c2f4336d93ebdce3be4abeac31eaeddcb70d47d49e67b5cd37"},
+      {"scenario_id":"UI-EDITOR-005","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_005_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:5bd5d7496d74d937417a66efbd4873b73b24fc2330b5f126c50bb0e219a4b823"},
+      {"scenario_id":"UI-DB-001","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_001_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:0e58f578870f12efd15195f35d4f2fb70bac42d1477cf8384e2ff1cffcf528aa"},
+      {"scenario_id":"UI-DB-002","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_002_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:2cae13766132af81520de564f5b249fa4796eec8adea9a4ff59962392f7a2d24"},
+      {"scenario_id":"UI-DB-003","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_DB_003_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:a5a4704da5bb9b719291eb98c523d08c7128d5a5f763a27ceb0f2fe558070716"},
+      {"scenario_id":"UI-SEARCH-001","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SEARCH_001_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:e1d8e74e829df99566989b8a9af42c4d0b1102ff61f8e08763284e8dc474234f"},
+      {"scenario_id":"UI-SEARCH-002","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SEARCH_002_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:ccdd91e7dbabc7d90e1c0aafe6ea766e02faadf1cedf10428a7fbbf847cf9b73"},
+      {"scenario_id":"UI-COLLAB-001","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_COLLAB_001_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:c562cfa975b053f4725eeaee268023da63e3799d6ca16f3edcffd135eaa8cd5c"},
+      {"scenario_id":"UI-SHARE-001","path":"code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHARE_001_REFERENCE_DIFFERENTIAL_20260822.json","sha256":"sha256:baa56c9aae52441d5b4f6df96a059c3877f56835da47f0500ad47363ee046787"}
+    ]
+  },
+  "state_documents": {
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:c0a78378f39790b6059c9ed47a3eefc8ab7ab8f8e4292d3b9113a733d2345ef0",
+      "reference_characterized": 16,
+      "differential_passed": 16,
+      "required_scenarios": 25,
+      "promoted": 0
+    },
+    "review_gate": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:eefd141fdfaba15573b54f6c2492c2f46e02eba140c95e17c5a4fbdd934b87ee",
+      "certified": 16,
+      "reference_observed_review_pending": 0
+    },
+    "review_queue": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json",
+      "sha256": "sha256:2d84cb30626a7bcc6700ab12da71764ef16c9f2b29526c92973e4f688e2fa9ce",
+      "queued_scenario_count": 0
+    }
+  },
+  "validation": [
+    "reference completion builder: 11 scenarios, 22 actions, zero differences",
+    "completion verifier: pass, 16 of 25 differential-passed, promoted 0",
+    "review gate verifier: pass, certified 16, review-pending 0",
+    "R1 verifier: pass, 84 of 84 observable fields, differential_ready true",
+    "R2/R3 verifier: pass, 48 of 48 observable fields, differential_ready true",
+    "focused evidence and approval regression: 35 passed in 53.70s",
+    "local real-browser bundle: 10 passed and one UI-DB-002 second-repeat failure in 270.28s",
+    "isolated UI-DB-002 retry: 1 passed in 32.26s",
+    "Node editor/runtime/navigation/publication/atomic-save/CSRF contracts: 6 commands passed",
+    "route, workspace auth/isolation, publication, and Second Brain regression: 71 passed in 66.35s",
+    "Python compile: pass",
+    "one evidence regression invocation terminated with Windows 0xC0000409; the single permitted serial retry passed 31 tests"
+  ],
+  "protected_and_shared_status": {
+    "agents_path": "code_assist_v1/AGENTS.md",
+    "agents_sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572",
+    "agents_modified": false,
+    "knowledge_status_delta": "N/A: this slice changes only Notion Core Free UI evidence, verifiers, tests, and checkpoints; shared Knowledge source/contracts are owned by concurrent work and were not changed"
+  },
+  "known_host_or_test_events": [
+    "UI-DB-002 rendered three group labels in the second repetition of one broad browser run; the exact isolated retry passed and product code was not changed",
+    "one Windows 0xC0000409 process termination produced no pytest failure output; the one allowed serial retry passed"
+  ],
+  "remaining": {
+    "differential_pending_count": 9,
+    "scenario_ids": [
+      "UI-EDITOR-003",
+      "UI-EDITOR-004",
+      "UI-EDITOR-006",
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-SB-003",
+      "UI-A11Y-001",
+      "UI-RESP-001",
+      "UI-PERF-001"
+    ],
+    "next_exact_action": "Resume the already approved remaining Core Free UI reference/local evidence lanes without touching personal content, production flags, or Knowledge-owned files."
+  },
+  "vcs": {
+    "status": "unavailable",
+    "reason": "workspace .git is not valid repository metadata; no commit or landed claim"
+  },
+  "claims": {
+    "r1_r3_reference_completion_green": true,
+    "all_affected_differentials_zero": true,
+    "completion_matrix_changed": true,
+    "personal_content_accessed": false,
+    "production_or_live_change": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

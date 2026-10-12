@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-S0A-P2-ACTIVE-CONTRACT-REBIND-PRE-EDIT-20260908",
+  "recorded_at": "2026-09-08T13:16:18+09:00",
+  "checkpoint_kind": "read_only_dynamic_sbe_active_contract_rebind_pre_edit",
+  "packet_id": "S0A-P2",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Preserve the active S0A publication contract before rebinding only its current read-only SBE, source, and test hashes. Historical receipts and checkpoints remain immutable, and no SBE-owned file is modified.",
+  "exact_owned_paths": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json": "sha256:8dab4a6e5ac346e524a274961dcb8c657134309ab1715754a44c3ef9f61326d3"
+  },
+  "observed_failure": {
+    "status": "fail",
+    "error_count": 9,
+    "manifest_hash_drift_count": 8,
+    "sbe_dynamic_preflight_drift_count": 1
+  },
+  "current_read_only_sbe_audit": {
+    "status": "pass",
+    "error_count": 0,
+    "input_sha256": "sha256:9a77b1d16d51ffb180c0d31edac0df4ad0acf1e66522d686806158d4440a2628",
+    "goal_count": 20,
+    "mandatory_scenario_count": 284,
+    "report_path": "capture/o1b-p1-sbe-readiness-contract-audit-20260908-v3.json",
+    "report_sha256": "sha256:404d567793c01a5060ad32f4581c8605df3b7207b73169dd8e400170975d02f3"
+  },
+  "fresh_regression_characterization": {
+    "historical_selection_first_attempt": "33 passed, 3 failed in 131.12s",
+    "isolated_windows_migration_retry": "1 passed in 10.22s",
+    "isolated_browser_fixture_retry": "1 passed in 19.85s",
+    "remaining_failure_class": "active_contract_hash_drift_only"
+  },
+  "guards": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "sbe_files_modified": false,
+    "historical_receipt_or_checkpoint_overwritten": false,
+    "external_mutation_executed": false,
+    "new_gate_credit_claimed": false,
+    "product_complete": false,
+    "goal_complete": false
+  }
+}

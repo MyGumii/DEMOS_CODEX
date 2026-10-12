@@ -1,0 +1,2617 @@
+{
+  "schema_version": 1,
+  "manifest_id": "notion-route-semantics-np1c-v2",
+  "status": "characterization_manifest",
+  "route_contract": {
+    "contract_id": "notion-route-contract-np1b",
+    "path": "docs/notion_route_contract.json"
+  },
+  "characterization": {
+    "claim": "current_handler_characterization_not_notion_parity",
+    "known_boundaries": {
+      "ai_explicit_page_context_failure": "A requested page_id context failure is returned as an error; the handler does not silently use other pages.",
+      "ai_fallback_error_redaction": "AI fallback_errors are limited to an empty list, AI provider unavailable, or AI provider temporarily unavailable; provider exceptions and filesystem paths are not exposed.",
+      "anonymous_public_form_scope": "The route accepts path block_id values, while the application auth exemption currently covers only a single path segment.",
+      "best_effort_degradation_fields": "Primary success payloads are preserved while degraded and sorted degraded_sources report inbox=outlook_notifications; search=page_content; overview=calendar_events,second_brain_sources,second_brain_thoughts,session_page_bindings; AI ask=related_page_content.",
+      "filename_os_error_redaction": "Filename-bearing OS exceptions are classified as sanitized internal_error responses.",
+      "notion_prefix_http_errors": "Once Flask error dispatch is reached, unknown routes, disallowed methods, and oversized requests under Notion API prefixes use scoped JSON errors; application auth or security checks may run first.",
+      "public_page_failure_text": "Public page rendering failures return fixed generic text; they do not reflect exception details.",
+      "route_scoped_render_and_file_errors": "Private/public file sending and public HTML rendering execute inside their route error boundaries."
+    },
+    "prefix_error_profile": "notion_prefix_http",
+    "prefixes": [
+      "/api/code/notion",
+      "/api/notion"
+    ]
+  },
+  "vocabulary": {
+    "auth_classes": [
+      "authenticated",
+      "public_form",
+      "public_read"
+    ],
+    "transports": [
+      "form",
+      "json_object",
+      "multipart",
+      "none",
+      "path",
+      "query"
+    ],
+    "content_types": [
+      "application/json",
+      "dynamic_file",
+      "text/csv",
+      "text/html",
+      "text/markdown"
+    ],
+    "methods": [
+      "DELETE",
+      "GET",
+      "PATCH",
+      "POST",
+      "PUT"
+    ],
+    "error_codes": [
+      "FORBIDDEN",
+      "atomic_save_unavailable",
+      "authentication_required",
+      "internal_error",
+      "invalid_json_body",
+      "invalid_request",
+      "method_not_allowed",
+      "not_found",
+      "operation_id_conflict",
+      "payload_too_large",
+      "password_change_required",
+      "permission_denied",
+      "public_authentication_redirect",
+      "public_internal_error",
+      "public_invalid_request",
+      "public_not_found",
+      "public_permission_denied",
+      "revision_conflict",
+      "route_not_found",
+      "source_snapshot_conflict"
+    ]
+  },
+  "error_profiles": [
+    {
+      "id": "auth_required",
+      "errors": [
+        {
+          "status": 401,
+          "code": "authentication_required",
+          "wire_code_field": false
+        }
+      ]
+    },
+    {
+      "id": "password_change",
+      "errors": [
+        {
+          "status": 403,
+          "code": "password_change_required",
+          "wire_code_field": false
+        }
+      ]
+    },
+    {
+      "id": "request_security",
+      "errors": [
+        {
+          "status": 403,
+          "code": "FORBIDDEN",
+          "wire_code_field": true
+        }
+      ]
+    },
+    {
+      "id": "json_body",
+      "errors": [
+        {
+          "status": 400,
+          "code": "invalid_json_body",
+          "wire_code_field": true
+        }
+      ]
+    },
+    {
+      "id": "notion_standard",
+      "errors": [
+        {
+          "status": 400,
+          "code": "invalid_request",
+          "wire_code_field": true
+        },
+        {
+          "status": 403,
+          "code": "permission_denied",
+          "wire_code_field": true
+        },
+        {
+          "status": 404,
+          "code": "not_found",
+          "wire_code_field": true
+        },
+        {
+          "status": 500,
+          "code": "internal_error",
+          "wire_code_field": true
+        }
+      ]
+    },
+    {
+      "id": "atomic_save",
+      "errors": [
+        {
+          "status": 409,
+          "code": "operation_id_conflict",
+          "wire_code_field": true
+        },
+        {
+          "status": 409,
+          "code": "revision_conflict",
+          "wire_code_field": true
+        },
+        {
+          "status": 503,
+          "code": "atomic_save_unavailable",
+          "wire_code_field": true
+        }
+      ]
+    },
+    {
+      "id": "publication_conflict",
+      "errors": [
+        {
+          "status": 409,
+          "code": "source_snapshot_conflict",
+          "wire_code_field": true
+        }
+      ]
+    },
+    {
+      "id": "payload_limit",
+      "errors": [
+        {
+          "status": 413,
+          "code": "payload_too_large",
+          "wire_code_field": true
+        }
+      ]
+    },
+    {
+      "id": "public_page",
+      "errors": [
+        {
+          "status": 404,
+          "code": "public_not_found",
+          "wire_code_field": false
+        },
+        {
+          "status": 500,
+          "code": "public_internal_error",
+          "wire_code_field": false
+        }
+      ]
+    },
+    {
+      "id": "public_authentication",
+      "errors": [
+        {
+          "status": 302,
+          "code": "public_authentication_redirect",
+          "wire_code_field": false
+        }
+      ]
+    },
+    {
+      "id": "public_duplicate",
+      "errors": [
+        {
+          "status": 400,
+          "code": "public_invalid_request",
+          "wire_code_field": false
+        },
+        {
+          "status": 403,
+          "code": "public_permission_denied",
+          "wire_code_field": false
+        },
+        {
+          "status": 404,
+          "code": "public_not_found",
+          "wire_code_field": false
+        },
+        {
+          "status": 500,
+          "code": "public_internal_error",
+          "wire_code_field": false
+        }
+      ]
+    },
+    {
+      "id": "public_form",
+      "errors": [
+        {
+          "status": 400,
+          "code": "public_invalid_request",
+          "wire_code_field": false
+        },
+        {
+          "status": 404,
+          "code": "public_not_found",
+          "wire_code_field": false
+        },
+        {
+          "status": 500,
+          "code": "public_internal_error",
+          "wire_code_field": false
+        }
+      ]
+    },
+    {
+      "id": "notion_prefix_http",
+      "errors": [
+        {
+          "status": 404,
+          "code": "route_not_found",
+          "wire_code_field": true
+        },
+        {
+          "status": 405,
+          "code": "method_not_allowed",
+          "wire_code_field": true
+        },
+        {
+          "status": 413,
+          "code": "payload_too_large",
+          "wire_code_field": true
+        }
+      ]
+    }
+  ],
+  "required_hard_operations": [
+    {
+      "id": "atomic_save",
+      "operation_id": "notion.api_notion_page_save.post"
+    },
+    {
+      "id": "bridge_chat_to_notion",
+      "operation_id": "notion_bridge.api_code_notion_save_chat_summary.post"
+    },
+    {
+      "id": "bridge_publish_second_brain",
+      "operation_id": "notion_bridge.api_code_notion_publish.post"
+    },
+    {
+      "id": "bridge_session_attach",
+      "operation_id": "notion_bridge.api_code_notion_session_attach.post"
+    },
+    {
+      "id": "bridge_session_detach",
+      "operation_id": "notion_bridge.api_code_notion_session_detach.post"
+    },
+    {
+      "id": "bridge_session_list",
+      "operation_id": "notion_bridge.api_code_notion_session_pages.get"
+    },
+    {
+      "id": "bridge_template_second_brain",
+      "operation_id": "notion_bridge.api_code_notion_second_brain_template.post"
+    },
+    {
+      "id": "bridge_thought_to_notion",
+      "operation_id": "notion_bridge.api_code_notion_import_thought.post"
+    },
+    {
+      "id": "notion_chat_to_notion",
+      "operation_id": "notion.api_notion_import_chat.post"
+    },
+    {
+      "id": "notion_publish_preview",
+      "operation_id": "notion.api_notion_publish_preview.get"
+    },
+    {
+      "id": "notion_publish_second_brain",
+      "operation_id": "notion.api_notion_publish_second_brain.post"
+    },
+    {
+      "id": "notion_session_attach",
+      "operation_id": "notion.api_notion_page_attach.post"
+    },
+    {
+      "id": "notion_session_detach",
+      "operation_id": "notion.api_notion_session_page_detach.delete"
+    },
+    {
+      "id": "notion_session_list",
+      "operation_id": "notion.api_notion_session_pages.get"
+    },
+    {
+      "id": "notion_template_second_brain",
+      "operation_id": "notion.api_notion_second_brain_template.post"
+    }
+  ],
+  "operations": [
+    {
+      "id": "notion.api_notion_page_archive.delete",
+      "registrar": "notion",
+      "method": "DELETE",
+      "path": "/api/notion/pages/<path:page_id>",
+      "endpoint": "api_notion_page_archive",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "archived",
+          "archived_count",
+          "id",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_public_link_disable.delete",
+      "registrar": "notion",
+      "method": "DELETE",
+      "path": "/api/notion/pages/<path:page_id>/public_link",
+      "endpoint": "api_notion_public_link_disable",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "enabled",
+          "page_id",
+          "revoked",
+          "status",
+          "url"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_share_revoke.delete",
+      "registrar": "notion",
+      "method": "DELETE",
+      "path": "/api/notion/pages/<path:page_id>/shares/<path:shared_user_id>",
+      "endpoint": "api_notion_share_revoke",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id",
+          "shared_user_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "page_id",
+          "revoked",
+          "shared_user_id",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_session_page_detach.delete",
+      "registrar": "notion",
+      "method": "DELETE",
+      "path": "/api/notion/session_pages/<path:page_id>",
+      "endpoint": "api_notion_session_page_detach",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [
+          "session_id"
+        ],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "detached",
+          "page_id",
+          "session_id",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_trash_delete.delete",
+      "registrar": "notion",
+      "method": "DELETE",
+      "path": "/api/notion/trash/<path:page_id>",
+      "endpoint": "api_notion_trash_delete",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "deleted",
+          "deleted_count",
+          "deleted_file_count",
+          "id",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_comment_item.delete",
+      "registrar": "notion",
+      "method": "DELETE",
+      "path": "/api/notion/pages/<path:page_id>/comments/<path:comment_id>",
+      "endpoint": "api_notion_comment_item",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "comment_id",
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "deleted",
+          "id",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_comment_item.patch",
+      "registrar": "notion",
+      "method": "PATCH",
+      "path": "/api/notion/pages/<path:page_id>/comments/<path:comment_id>",
+      "endpoint": "api_notion_comment_item",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "comment_id",
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "comment",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_chat_sessions.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/chat/sessions",
+      "endpoint": "api_notion_chat_sessions",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_file_get.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/files/<path:file_id>",
+      "endpoint": "api_notion_file_get",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "file_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "dynamic_file"
+        ],
+        "required_keys": []
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_inbox.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/inbox",
+      "endpoint": "api_notion_inbox",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "degraded",
+          "degraded_sources",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_overview.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/overview",
+      "endpoint": "api_notion_overview",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "none",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "attached_sessions",
+          "calendar_events",
+          "degraded",
+          "degraded_sources",
+          "pages",
+          "sessions",
+          "sources",
+          "thoughts"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_pages_list.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages",
+      "endpoint": "api_notion_pages_list",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items",
+          "user_id"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_get.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages/<path:page_id>",
+      "endpoint": "api_notion_page_get",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_backlinks.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages/<path:page_id>/backlinks",
+      "endpoint": "api_notion_page_backlinks",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_database_export_csv.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages/<path:page_id>/export_csv",
+      "endpoint": "api_notion_database_export_csv",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "text/csv"
+        ],
+        "required_keys": []
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_export_html.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages/<path:page_id>/export_html",
+      "endpoint": "api_notion_page_export_html",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "text/html"
+        ],
+        "required_keys": []
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_export.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages/<path:page_id>/export_markdown",
+      "endpoint": "api_notion_page_export",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json",
+          "text/markdown"
+        ],
+        "required_keys": [
+          "files",
+          "images",
+          "markdown",
+          "page"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_public_link_get.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages/<path:page_id>/public_link",
+      "endpoint": "api_notion_public_link_get",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "allow_duplicate",
+          "enabled",
+          "page_id",
+          "token",
+          "url"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_publish_preview.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages/<path:page_id>/publish_preview",
+      "endpoint": "api_notion_publish_preview",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "file_count",
+          "image_count",
+          "markdown",
+          "page",
+          "source_snapshot"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_shares_list.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages/<path:page_id>/shares",
+      "endpoint": "api_notion_shares_list",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_versions.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages/<path:page_id>/versions",
+      "endpoint": "api_notion_page_versions",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_search.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/search",
+      "endpoint": "api_notion_search",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "degraded",
+          "degraded_sources",
+          "items",
+          "query",
+          "user_id"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_session_pages.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/session_pages",
+      "endpoint": "api_notion_session_pages",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_trash_list.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/trash",
+      "endpoint": "api_notion_trash_list",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_users.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/users",
+      "endpoint": "api_notion_users",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "none",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.public_notion_page.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/public/notion/<token>",
+      "endpoint": "public_notion_page",
+      "auth_class": "public_read",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "token"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "text/html"
+        ],
+        "required_keys": []
+      },
+      "error_profiles": [
+        "public_page"
+      ]
+    },
+    {
+      "id": "notion.public_notion_file.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/public/notion/<token>/files/<path:file_id>",
+      "endpoint": "public_notion_file",
+      "auth_class": "public_read",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "file_id",
+          "token"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "dynamic_file"
+        ],
+        "required_keys": []
+      },
+      "error_profiles": [
+        "notion_standard"
+      ]
+    },
+    {
+      "id": "notion.api_notion_comments.get",
+      "registrar": "notion",
+      "method": "GET",
+      "path": "/api/notion/pages/<path:page_id>/comments",
+      "endpoint": "api_notion_comments",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion.api_notion_comments.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/comments",
+      "endpoint": "api_notion_comments",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "content"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "comment",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_update.patch",
+      "registrar": "notion",
+      "method": "PATCH",
+      "path": "/api/notion/pages/<path:page_id>",
+      "endpoint": "api_notion_page_update",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_public_link_options.patch",
+      "registrar": "notion",
+      "method": "PATCH",
+      "path": "/api/notion/pages/<path:page_id>/public_link",
+      "endpoint": "api_notion_public_link_options",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "allow_duplicate"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "allow_duplicate",
+          "enabled",
+          "page_id",
+          "status",
+          "token",
+          "url"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_ai_ask.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/ai/ask",
+      "endpoint": "api_notion_ai_ask",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "question"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "answer",
+          "degraded",
+          "degraded_sources",
+          "fallback_errors",
+          "model_kind",
+          "model_used",
+          "page_ids",
+          "question",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_import_chat.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/import_chat",
+      "endpoint": "api_notion_import_chat",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "messages"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_import_csv.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/import_csv",
+      "endpoint": "api_notion_import_csv",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "csv"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "payload_limit",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_import_markdown.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/import_markdown",
+      "endpoint": "api_notion_import_markdown",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "markdown"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "payload_limit",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_pages_create.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages",
+      "endpoint": "api_notion_pages_create",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_attach.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/attach",
+      "endpoint": "api_notion_page_attach",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "session_id"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "owner_user_id",
+          "page_id",
+          "session_id",
+          "status",
+          "title"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_comment_reaction.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/comments/<path:comment_id>/reactions",
+      "endpoint": "api_notion_comment_reaction",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "emoji"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "comment_id",
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "comment",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_duplicate.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/duplicate",
+      "endpoint": "api_notion_page_duplicate",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_file_upload.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/files",
+      "endpoint": "api_notion_file_upload",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "multipart",
+        "required_fields": [
+          "file"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "file",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_form_submit.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/forms/<path:block_id>/submit",
+      "endpoint": "api_notion_form_submit",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "block_id",
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "database_page_id",
+          "message",
+          "page_id",
+          "row",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_move.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/move",
+      "endpoint": "api_notion_page_move",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_public_link_enable.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/public_link",
+      "endpoint": "api_notion_public_link_enable",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "allow_duplicate",
+          "enabled",
+          "page_id",
+          "status",
+          "token",
+          "url"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_publish_second_brain.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/publish_second_brain",
+      "endpoint": "api_notion_publish_second_brain",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "analysis_error",
+          "analysis_model_kind",
+          "analysis_model_used",
+          "asset_count",
+          "assets",
+          "auto_triage",
+          "candidate_count",
+          "candidates",
+          "conversion_error",
+          "conversion_fallback_errors",
+          "conversion_model_kind",
+          "conversion_model_used",
+          "converted_to_wiki",
+          "extractor",
+          "graph_edges_added",
+          "image_count",
+          "images",
+          "markdown_chars",
+          "pending_candidate_count",
+          "raw_chunk_count",
+          "raw_path",
+          "source_id",
+          "source_metadata",
+          "source_type",
+          "status",
+          "warnings",
+          "wiki_path"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "publication_conflict",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_save.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/save",
+      "endpoint": "api_notion_page_save",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "base_revision",
+          "blocks",
+          "operation_id"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "files",
+          "page",
+          "revision",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "atomic_save",
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_share_create.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/shares",
+      "endpoint": "api_notion_share_create",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [],
+        "required_any_of": [
+          [
+            "shared_user_id",
+            "user_id"
+          ]
+        ],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "share",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_page_version_restore.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/pages/<path:page_id>/versions/<path:version_id>/restore",
+      "endpoint": "api_notion_page_version_restore",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id",
+          "version_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_second_brain_template.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/templates/second_brain",
+      "endpoint": "api_notion_second_brain_template",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "none",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "home_page_id",
+          "pages",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.api_notion_trash_restore.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/api/notion/trash/<path:page_id>/restore",
+      "endpoint": "api_notion_trash_restore",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.public_notion_duplicate.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/public/notion/<token>/duplicate",
+      "endpoint": "public_notion_duplicate",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "token"
+        ]
+      },
+      "success": {
+        "statuses": [
+          303
+        ],
+        "content_types": [
+          "text/html"
+        ],
+        "required_keys": []
+      },
+      "error_profiles": [
+        "public_authentication",
+        "public_duplicate",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion.public_notion_form_submit.post",
+      "registrar": "notion",
+      "method": "POST",
+      "path": "/public/notion/<token>/forms/<path:block_id>",
+      "endpoint": "public_notion_form_submit",
+      "auth_class": "public_form",
+      "request": {
+        "transport": "form",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "block_id",
+          "token"
+        ]
+      },
+      "success": {
+        "statuses": [
+          303
+        ],
+        "content_types": [
+          "text/html"
+        ],
+        "required_keys": []
+      },
+      "error_profiles": [
+        "public_form"
+      ]
+    },
+    {
+      "id": "notion.api_notion_blocks_replace.put",
+      "registrar": "notion",
+      "method": "PUT",
+      "path": "/api/notion/pages/<path:page_id>/blocks",
+      "endpoint": "api_notion_blocks_replace",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "blocks"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion_bridge.api_code_notion_pages.get",
+      "registrar": "notion_bridge",
+      "method": "GET",
+      "path": "/api/code/notion/pages",
+      "endpoint": "api_code_notion_pages",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion_bridge.api_code_notion_export.get",
+      "registrar": "notion_bridge",
+      "method": "GET",
+      "path": "/api/code/notion/pages/<path:page_id>/export",
+      "endpoint": "api_code_notion_export",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "path",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "files",
+          "images",
+          "markdown",
+          "page"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion_bridge.api_code_notion_session_pages.get",
+      "registrar": "notion_bridge",
+      "method": "GET",
+      "path": "/api/code/notion/session_pages",
+      "endpoint": "api_code_notion_session_pages",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "query",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "count",
+          "items"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change"
+      ]
+    },
+    {
+      "id": "notion_bridge.api_code_notion_import_thought.post",
+      "registrar": "notion_bridge",
+      "method": "POST",
+      "path": "/api/code/notion/import_thought",
+      "endpoint": "api_code_notion_import_thought",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [],
+        "required_any_of": [
+          [
+            "content",
+            "thought_id"
+          ]
+        ],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "files",
+          "page",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion_bridge.api_code_notion_publish.post",
+      "registrar": "notion_bridge",
+      "method": "POST",
+      "path": "/api/code/notion/pages/<path:page_id>/publish_second_brain",
+      "endpoint": "api_code_notion_publish",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": [
+          "page_id"
+        ]
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "analysis_error",
+          "analysis_model_kind",
+          "analysis_model_used",
+          "asset_count",
+          "assets",
+          "auto_triage",
+          "candidate_count",
+          "candidates",
+          "conversion_error",
+          "conversion_fallback_errors",
+          "conversion_model_kind",
+          "conversion_model_used",
+          "converted_to_wiki",
+          "extractor",
+          "graph_edges_added",
+          "image_count",
+          "images",
+          "markdown_chars",
+          "pending_candidate_count",
+          "raw_chunk_count",
+          "raw_path",
+          "source_id",
+          "source_metadata",
+          "source_type",
+          "status",
+          "warnings",
+          "wiki_path"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "publication_conflict",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion_bridge.api_code_notion_save_chat_summary.post",
+      "registrar": "notion_bridge",
+      "method": "POST",
+      "path": "/api/code/notion/save_chat_summary",
+      "endpoint": "api_code_notion_save_chat_summary",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "messages"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "blocks",
+          "capabilities",
+          "fallback_errors",
+          "files",
+          "model_kind",
+          "model_used",
+          "page",
+          "save_mode",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion_bridge.api_code_notion_session_attach.post",
+      "registrar": "notion_bridge",
+      "method": "POST",
+      "path": "/api/code/notion/session_attach",
+      "endpoint": "api_code_notion_session_attach",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "page_id",
+          "session_id"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "owner_user_id",
+          "page_id",
+          "session_id",
+          "status",
+          "title"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion_bridge.api_code_notion_session_detach.post",
+      "registrar": "notion_bridge",
+      "method": "POST",
+      "path": "/api/code/notion/session_detach",
+      "endpoint": "api_code_notion_session_detach",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "json_object",
+        "required_fields": [
+          "session_id"
+        ],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "detached",
+          "page_id",
+          "session_id",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "json_body",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    },
+    {
+      "id": "notion_bridge.api_code_notion_second_brain_template.post",
+      "registrar": "notion_bridge",
+      "method": "POST",
+      "path": "/api/code/notion/templates/second_brain",
+      "endpoint": "api_code_notion_second_brain_template",
+      "auth_class": "authenticated",
+      "request": {
+        "transport": "none",
+        "required_fields": [],
+        "required_any_of": [],
+        "required_query_fields": [],
+        "path_fields": []
+      },
+      "success": {
+        "statuses": [
+          200
+        ],
+        "content_types": [
+          "application/json"
+        ],
+        "required_keys": [
+          "home_page_id",
+          "pages",
+          "status"
+        ]
+      },
+      "error_profiles": [
+        "auth_required",
+        "notion_standard",
+        "password_change",
+        "request_security"
+      ]
+    }
+  ]
+}

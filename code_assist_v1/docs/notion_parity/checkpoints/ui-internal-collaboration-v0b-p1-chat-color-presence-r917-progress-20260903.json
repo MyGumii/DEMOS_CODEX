@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-CHAT-COLOR-PRESENCE-R917-PROGRESS-20260903",
+  "recorded_at": "2026-09-03T11:06:12.8742032+09:00",
+  "checkpoint_kind": "bounded_compact_footer_color_and_presence_capture_determinism_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "goal_complete": false,
+  "predecessors": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-shared-sidebar-r907-progress-20260903.json",
+      "sha256": "sha256:9a2ed302d595fbae5b4b96934d6d5b0c72a60b39b15f7ea234aeb6879fa52d43"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-realm-rotation-r908-20260903.json",
+      "sha256": "sha256:bba7980f733c81c7cb7c21adc2c17144e1e5a92f9ed0fc647cba4550ab9e3ccb"
+    }
+  ],
+  "retained_candidate": {
+    "label": "r917",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r917-chat-color-presence-freeze/receipt.json",
+    "receipt_sha256": "sha256:196063e0fcd91efd866602acbb31f82e3b1afba0c65eb92962555f0acbdb2b58",
+    "release_source_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 1689165,
+    "masked_difference_count": 68418,
+    "total_difference_count": 1757583,
+    "delta_from_r907_unmasked": -521,
+    "delta_from_r907_masked": 0,
+    "delta_from_r907_total": -521,
+    "improved_capture_count_from_r907": 10,
+    "unchanged_capture_count_from_r907": 26,
+    "regressed_capture_count_from_r907": 0,
+    "changed_capture_deltas_from_r907_unmasked": {
+      "V0R-MU-007@1440": -50,
+      "V0R-MU-007@1280": -50,
+      "V0R-MU-008@1440": -70,
+      "V0R-MU-008@1280": -51,
+      "V0R-MU-009@1440": -50,
+      "V0R-MU-009@1280": -50,
+      "V0R-MU-010@1440": -50,
+      "V0R-MU-010@1280": -50,
+      "V0R-MU-012@1440": -50,
+      "V0R-MU-012@1280": -50
+    },
+    "component_journeys": {
+      "C0-P2": "pass",
+      "I0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "run_started_at": "2026-09-03T01:52:46.076257Z",
+    "run_ended_at": "2026-09-03T01:57:54.006536Z",
+    "duration_ms": 307930,
+    "cleanup": {
+      "status": "complete",
+      "synthetic_only": true,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "active_fixture_root_count": 0,
+      "component_cleanup_verified": true,
+      "browser_closed": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:9680db4842c95f7e28e47e8295c47254b21795e9f3059cf9bbaad6b37e8eba11"
+    }
+  },
+  "implemented_progress": {
+    "compact_footer_new_chat_color": {
+      "states": [
+        "V0R-MU-007",
+        "V0R-MU-008",
+        "V0R-MU-009",
+        "V0R-MU-010",
+        "V0R-MU-012"
+      ],
+      "change": "Apply the reference #5f5e59 foreground after the common footer reset so the final rendered new-chat glyph inherits the intended compact-sidebar color.",
+      "full36_validation": "10 captures improved, 26 unchanged, 0 regressed"
+    },
+    "state013_state014_presence_determinism": {
+      "cause": "A live websocket presence update could replace the two manually composed reference avatars between DOM setup and screenshot capture.",
+      "fix": "Freeze the first and second presence-avatar backgrounds for V0R-MU-013 and V0R-MU-014 in the final capture stylesheet.",
+      "targeted_c0_r916": {
+        "status": "pass",
+        "cleanup": true,
+        "browser_closed": true,
+        "V0R-MU-013@1440": 57344,
+        "V0R-MU-013@1280": 49424,
+        "V0R-MU-014@1440": 61703,
+        "V0R-MU-014@1280": 56675
+      }
+    }
+  },
+  "regression_validation": {
+    "pytest": {
+      "status": "pass",
+      "passed": 23,
+      "skipped": 1,
+      "failed": 0,
+      "scope": [
+        "test_v0b_p1_workspace_realm_budget.py",
+        "test_v0b_p1_i0_semantic_diagnostic.py",
+        "test_v0b_p1_capture_matte.py",
+        "test_internal_collaborative_v0b_p1_receipt.py",
+        "browser/test_f0_p5_adopted_surface.py"
+      ]
+    },
+    "official_receipt_verifier": {
+      "status": "expected_fail_open_gates_only",
+      "exit_code": 1,
+      "reference_paths_explicit": true,
+      "error_count": 39,
+      "expected_error_counts": {
+        "EXACT_PIXEL_GATE": 36,
+        "CORE_25_GATE": 1,
+        "PERFORMANCE_GATE": 1,
+        "CLAIMS_GATE": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:196063e0fcd91efd866602acbb31f82e3b1afba0c65eb92962555f0acbdb2b58"
+    }
+  },
+  "approved_dev_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r908-20260903",
+    "manager_session_id": 81902,
+    "manager_session_live": true,
+    "launch_id": "0d2298f2e16e4a65b43384f7e2d03c1a",
+    "root_id": "3c14ef7f-625d-4cae-84e3-34f25e77548d",
+    "run_marker_path": ".dev/notion-collaboration-10111-10113-clean-r908-20260903/runs/0d2298f2e16e4a65b43384f7e2d03c1a/run-marker.json",
+    "run_marker_sha256": "sha256:ed2af2fa01c3ed12a422b02ccdc662d278766a7092b1ff6d697230265d2566e1",
+    "workspace_count": 15,
+    "reference_workspace_count": 13,
+    "reference_active_page_binding_count": 19,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "rotation_threshold": 64,
+    "gateway_health": {
+      "http_status": 200,
+      "state": "READY",
+      "ready_for_admission": true,
+      "ready_for_realtime": true,
+      "ready_for_compaction": true,
+      "schema_compatibility": "compatible",
+      "restart_required": false
+    }
+  },
+  "modified_sources": {
+    "code_assist_v1/notion_collaboration/v0b_p1_capture.py": "sha256:7139649da883694dffd70c924c17a5d356ca0be9cc2276d1a8fa2b0f3f0a1145",
+    "code_assist_v1/notion_collaboration/f0_p5_browser.py": "sha256:2bac7d82d8e91e4f256626a425c6a6195ba9f74df36b44b9686cec408ca457a3"
+  },
+  "protected_hot_contracts": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "code_assist_v1/notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "protected_hot_contracts_modified": false,
+    "final_product_or_sbe_gate_run": false
+  },
+  "next_cursor": {
+    "action": "Continue V0B exact-pixel residual reduction from retained r917 in the same fresh realm.",
+    "priority": [
+      "Target the largest stable shared page-shell residuals rather than modal-only overfitting.",
+      "Retain only full candidates with all four journeys passing, cleanup complete, accessibility 36/36, and zero regressed captures against r917.",
+      "Do not run final Core-25, performance, product, or SBE closure gates before exact 36/36."
+    ]
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "exact_36_of_36": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

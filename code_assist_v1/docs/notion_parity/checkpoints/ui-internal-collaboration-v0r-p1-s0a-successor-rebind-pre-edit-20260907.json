@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-S0A-SUCCESSOR-REBIND-PRE-EDIT-20260907",
+  "recorded_at": "2026-09-07T02:24:23.0226574+09:00",
+  "checkpoint_kind": "read_only_dynamic_sbe_successor_binding_pre_edit",
+  "packet_id": "S0A-P2",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Rebind the Notion S0A publication fence and the current V0R checkpoint to the stable, independently passing 20-goal/284-scenario SBE successor snapshot without modifying any SBE-owned file.",
+  "predecessor_pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-s0a-dynamic-sbe-rebind-pre-edit-20260907.json",
+    "sha256": "sha256:f6803b4c1836468feaaad6b12c7f43ae003e6545bd4ac16a7906922016d5466f"
+  },
+  "exact_owned_paths": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-independent-rebound-20260907.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json": "sha256:e709be52d4d6712d259b9c28a09989e72b566c55d57162605c78dacb5115b774",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:d0e434968773f349bdcf1e33703cfd2c8c8783228a220c6eda1eebd8e1c5d6dc",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json": "sha256:10566ac27b410521e7821be7e3dfd4b65e5ac7ae1a5bf32fd4a65223412bf144",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json": "sha256:e7ebb158171ac1d05490a47d76c4d3038ac80df5dba4949c0b4e2ad8ddf8676e",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-independent-rebound-20260907.json": "sha256:7c95933f1d83c3fade62dd3feb714d37679ba376bd254ef9cc9bc287fbd7a6c1",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:ed49048b8f0a2786393956740f3c8ff1bb24c40c898855c0bf7beb5cf4b5b5f6"
+  },
+  "read_only_sbe_transition": {
+    "code_assist_v1/docs/knowledge_spaces/README.md": {
+      "previous_bound_sha256": "sha256:a0cb4043364df5110e1805c9415c5e5f2b896adbc68d365344ab70341d0cd945",
+      "current_stable_sha256": "sha256:2097a0962392bece5dd74645431ca91278425d97011aaaad0bbc9115a9be911e"
+    },
+    "sbe_contract_audit_input": {
+      "previous_bound_sha256": "sha256:a30f7f6674c00b30f7a3207329c8c7a5e25edef02d3b38738ba7ea969b2155f9",
+      "current_passed_sha256": "sha256:4fbbf741aece1a5ee3ddd6e24479b3662dd76d04ed10566e642e300360ceedc7",
+      "status": "pass",
+      "error_count": 0,
+      "goal_count": 20,
+      "mandatory_scenario_count": 284,
+      "openapi_path_count": 72,
+      "openapi_operation_count": 80
+    }
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-V0R-P1-S0A-SUCCESSOR-REBIND-20260907",
+    "owner_agent": "/root",
+    "lane": "DOC_HARNESS",
+    "status": "active",
+    "acquired_at": "2026-09-07T02:24:23.0226574+09:00",
+    "expires_at": "2026-09-07T06:24:23.0226574+09:00",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "guards": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "sbe_files_modified": false,
+    "product_source_modified": false,
+    "historical_receipt_overwrite": false,
+    "external_mutation_executed": false,
+    "product_complete": false,
+    "goal_complete": false
+  }
+}

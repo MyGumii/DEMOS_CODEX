@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-R1602-QUIET-HOST-WAIT-20260906",
+  "recorded_at": "2026-09-06T13:50:35.4082180+09:00",
+  "status": "staged_fix_evidence_preserved_performance_waiting_for_quiet_host",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1599-staged-fixes-green-performance-contract-corrected-20260906.json",
+    "sha256": "sha256:5f619956902a0fdf46008dd15219a2cc03f84685c5e8fb77856858efae35562a",
+    "preserved_without_overwrite": true
+  },
+  "production_kdf_functional_recheck": {
+    "run_id": "v0b-p1-r1601-staged-fixes-production-kdf",
+    "junit_path": ".runtime/v0b-p1-r1601-staged-fixes-production-kdf-junit.xml",
+    "junit_sha256": "sha256:60c0382d734fb65c54fb56ec15ee517b6b600a22a199eb4aa48ce3893339b9bc",
+    "collected_test_count": 2,
+    "passed_test_count": 1,
+    "failed_test_count": 1,
+    "duration_seconds": 53.225,
+    "UI_COLLAB_001": "pass",
+    "UI_A11Y_001": "inconclusive_pre_fix_assertion",
+    "failure_boundary": "Timed out waiting 20 seconds for the synthetic page-title save response before the staged skip-link assertion was reached.",
+    "product_fix_contradicted": false,
+    "host_load_consistent_with_timeout": true,
+    "accepted_staged_green_predecessor_retained": true
+  },
+  "quiet_host_attempts": [
+    {
+      "run_id_if_started": "v0b-p1-r1600-performance-corrected-green-1",
+      "performance_process_started": false,
+      "samples_percent": [61.1, 68.6, 67.7, 88.2, 45.1, 51.6, 51.3, 45.1, 45.8, 48.3, 32.6, 42.0, 22.0, 34.0, 54.8, 54.1, 43.0, 32.5, 23.7, 28.5],
+      "qualifying_streak_found": false
+    },
+    {
+      "run_id_if_started": "v0b-p1-r1602-performance-corrected-green-1",
+      "performance_process_started": false,
+      "samples_percent": [32.5, 31.0, 34.2, 27.0, 38.5, 27.4, 37.3, 26.7, 34.0, 26.3, 31.4, 18.6, 31.0, 17.7, 32.3, 15.2, 37.0, 13.6, 47.6, 59.6],
+      "qualifying_streak_found": false
+    }
+  ],
+  "observed_background_scope": {
+    "user_process_terminated_or_suspended": false,
+    "other_SBE_worker_observed": true,
+    "other_SBE_worker_command_family": "full_second_brain_preview_workers durable child",
+    "computer_use_runtime_observed": true,
+    "agent_telemetry_runtime_observed": true,
+    "note": "These processes were inspected read-only and left untouched."
+  },
+  "protected_contract_hashes": {
+    "AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "unified_exact_progress": "36/36",
+    "unified_accessibility_progress": "36/36",
+    "accepted_staged_remaining_core25_regressions_green": "2/2",
+    "protected_fixes_applied_to_product": false,
+    "performance_green_streak": "0/2",
+    "V0B_P1_gate_passed": false,
+    "O1B_started": false,
+    "goal_complete": false
+  },
+  "next_action": "Keep the corrected performance contract unchanged and retry only after five consecutive CPU samples are below 30 percent. Obtain the explicit notion.css/notion.js ownership handoff before applying the already staged-green product fixes."
+}

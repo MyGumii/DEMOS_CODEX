@@ -1,0 +1,222 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-14T20:52:13+09:00",
+  "run_id": "ui0-scope-rebase-xhigh-handoff-20260814",
+  "status": "documentation_rebase_complete_implementation_not_started",
+  "model": {
+    "planning": "gpt-5.6-sol/ultra",
+    "implementation_recommended": "gpt-5.6-sol/xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/np2c5a-authorization-inspection-flow-20260814.json",
+    "sha256": "ac6de37bb08f3d6a2b62c4150882f758c97a13bf1e97f92d2225a0252eec3312",
+    "semantic_status": "historical_optional_paid_archive_lane",
+    "bound_file_audit": "23_of_23_hashes_matched_before_scope_rebase"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "resume 현재 우리가 작성한 개발 문서와 계획을 확인하고 goal resume을 해서 목표 확인 후 다시 개발 진행해.",
+    "tool_status_observed": "blocked",
+    "user_resume_observed": true,
+    "goal_replaced": false,
+    "goal_marked_complete": false,
+    "note": "The tool status remains blocked while the user explicitly resumed the work in the current conversation. Recheck on every xhigh start and do not create or complete a replacement goal."
+  },
+  "product_contract": {
+    "goal": "Notion-familiar Core Web UI and interaction behavior integrated with the existing Second Brain contracts",
+    "not_goal": "Notion SaaS billing, plan entitlement, Enterprise administration, private APIs, or internal protocol replication",
+    "primary_profile": "notion-free-owner-chrome-desktop-ko-KR",
+    "reference_workspaces": [
+      "REF-FREE-A",
+      "REF-FREE-B"
+    ],
+    "personal_workspace": "forbidden",
+    "business_trial_required_for_core": false,
+    "archive_business_enterprise": "conditional_optional_paid_lane"
+  },
+  "scope": {
+    "core": [
+      "desktop shell and workspace navigation",
+      "page tree and Trash/restore",
+      "page canvas and editor interaction",
+      "database UX",
+      "search, comments, and Free-visible sharing",
+      "Second Brain publication, session, context, template, and import journeys",
+      "responsive web, accessibility, and measured performance"
+    ],
+    "extension": [
+      "guest and richer collaboration",
+      "mobile web",
+      "advanced database and workflow surfaces",
+      "broader browser and locale profiles"
+    ],
+    "conditional": [
+      "official Archive/unarchive beta",
+      "Business/Enterprise plan behavior",
+      "Enterprise administration and compliance",
+      "native and offline",
+      "paid Sites, automation, and AI plan behavior"
+    ],
+    "excluded": [
+      "personal content",
+      "billing and licensing internals",
+      "private endpoints and raw network capture",
+      "Notion trademark asset copying",
+      "provider-specific AI wording"
+    ]
+  },
+  "current_runtime": {
+    "workspace_schema_version": 2026081317,
+    "workspace_schema_checksum": "sha256:6cb890ccc026435715a1c9171b4d1fd0f74ae6896f63d3cdf66a27b6eec5b61b",
+    "workspace_actual_schema_sha256": "sha256:650a031ff1f7d1794bde06d9f9479794d0c89fa2faba8e07762badfe3c500aad",
+    "workspace_object_count": 179,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "continuous_consumer_enabled": false,
+    "resolver_cutover_enabled": false
+  },
+  "slice": {
+    "completed": "UI0-SCOPE-REBASE-DOCUMENTATION",
+    "next": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY",
+    "next_status": "planned_not_started",
+    "next_acceptance_ids": [
+      "UI-SHELL-002",
+      "UI-EDITOR-001",
+      "UI-SEARCH-001",
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-A11Y-001"
+    ]
+  },
+  "ownership": {
+    "modified_documentation": [
+      "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+      "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_CHARACTERIZATION_RUNBOOK.md",
+      "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md",
+      "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md",
+      "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md",
+      "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md",
+      "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md",
+      "code_assist_v1/docs/notion_parity/NP2C_OFFICIAL_ARCHIVE_DESIGN.md",
+      "code_assist_v1/docs/notion_parity/NP2C_ARCHIVE_LIVE_CHARACTERIZATION_RUNBOOK.md",
+      "code_assist_v1/docs/notion_parity/checkpoints/ui0-scope-rebase-xhigh-handoff-20260814.json"
+    ],
+    "production_files_modified": [],
+    "protected": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/app_code.py",
+      "code_assist_v1/auth.py",
+      "code_assist_v1/config.py",
+      "code_assist_v1/knowledge_core/**",
+      "code_assist_v1/docs/knowledge_spaces/**",
+      "code_assist_v1/tests/knowledge_spaces/**",
+      "live user_data/**",
+      "live knowledge/**",
+      "live .runtime/**"
+    ],
+    "git_repository_available": false,
+    "commit_or_landed_claimed": false
+  },
+  "source_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md": "ce0765493c672b654f0595ce1d283c134cfd6e0d8eeeaa400292686ceeb15f08",
+    "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_CHARACTERIZATION_RUNBOOK.md": "b48e9874cc378d26b0e7b83ad2886d76eb0869c79ee541d276107538bb845eac",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "7de355af525e0ae723752775f389b2ba193602cb009833ef4d599a1795f16f0f",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "e1ddbb7b80f6e7c4ed981111d72ac0d0edd6b431b7edd832f37a7b79447608fa",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "54dbc478c2f51300dd360d254267982255602137a6d666a441bb4c7f3b21b16d",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "26392e0dbebd8399a0d5143fdd7b2df24c0e4206519d1ea390d9ddca587f41c2",
+    "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "8889610b64df005f9c401c068fe72e07c9f63ef990f2cbb3c876379a7cc7e90b",
+    "code_assist_v1/docs/notion_parity/NP2C_OFFICIAL_ARCHIVE_DESIGN.md": "ce1bd84e45c1bdc538813ca4fa1cab6d1951d81b59f80771655768604b648558",
+    "code_assist_v1/docs/notion_parity/NP2C_ARCHIVE_LIVE_CHARACTERIZATION_RUNBOOK.md": "e2e0dcee2d379b682373dc2476724aba9b7fe5d534d5fedd338af7f36cc09dea",
+    "code_assist_v1/notion_static/index.html": "ae324100186dc6e09d85ae01826b502a8abf723e85c928005391ee17f90d735e",
+    "code_assist_v1/notion_static/notion.css": "6dbddb3d093d37f25ae5132a040023c122362a67b034bb2674fe39fc152f5b20",
+    "code_assist_v1/notion_static/notion.js": "a83c5addf5adb893cdcf285a8b31fa7b9df69464ac5ddd89f9f80089fa2620d2",
+    "code_assist_v1/notion_static/notion_editor_core.js": "40f1b7b515864c309762ecf338c8450c5575a10a03c47bab7aaab4163931d1db",
+    "code_assist_v1/notion_static/notion_publication.js": "3cda332b47eb2c64c4e97bf7eebe5d57f9e630d64d583e0122dbd9abc484e3b3",
+    "code_assist_v1/tests/test_notion_ui_runtime.js": "82139023acc3c31aa38da3330dacb4cf9644408ded97607b4dbefb0275d10498",
+    "code_assist_v1/tests/test_notion_navigation_ui.js": "aab0c0a9161dc70743e858bc05ccc49486cde4626ceb9994b71d375e9d3cab23",
+    "code_assist_v1/tests/test_notion_publication_ui.js": "d8602d926108869be2638a94a40c54871f35ba152d2e562bb1aba80ffc5de567"
+  },
+  "runtime_boundary": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "browser_accessed_this_run": false,
+    "official_workspace_accessed_this_run": false,
+    "personal_workspace_accessed": false,
+    "live_local_data_accessed": false,
+    "raw_dom_or_network_captured": false,
+    "external_messages_or_invites_sent": false,
+    "public_links_created": false,
+    "plan_or_trial_changed": false
+  },
+  "validation": {
+    "machine_contract_selection": {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_parity_manifest.py code_assist_v1\\tests\\test_verify_notion_parity_catalog.py code_assist_v1\\tests\\test_verify_notion_np2b_navigation_contract.py code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py code_assist_v1\\tests\\test_verify_notion_np2c_archive_characterization.py -q",
+      "exit_code": 0,
+      "result": "38 passed in 8.69s"
+    },
+    "node_ui_baseline": {
+      "selection": [
+        "test_notion_editor_core.js",
+        "test_notion_ui_runtime.js",
+        "test_notion_navigation_ui.js",
+        "test_notion_publication_ui.js",
+        "test_notion_atomic_save.js",
+        "test_auth_csrf_frontend.js"
+      ],
+      "exit_code": 0,
+      "result": "6 scripts passed"
+    },
+    "python_ui_route_publication_baseline": {
+      "selection": [
+        "test_notion_routes.py",
+        "test_notion_atomic_save_compat.py",
+        "test_notion_publication_adapter.py"
+      ],
+      "exit_code": 0,
+      "result": "25 passed in 13.54s"
+    },
+    "workspace_auth_adjacent_baseline": {
+      "selection": [
+        "test_notion_workspace_routes.py",
+        "test_notion_workspace_navigation_routes.py",
+        "test_notion_workspace_auth_isolation.py",
+        "test_notion_workspace_pages.py"
+      ],
+      "exit_code": 1,
+      "result": "44 passed, 1 failed in 50.32s",
+      "failure": "test_app_code_factory_import_graph_excludes_workspace_overlay_modules: current app_code.create_app passes environ keyword to register_knowledge_core while the existing subprocess test stub lambda does not accept it",
+      "classification": "pre_existing_or_concurrent_shared_knowledge_signature_drift_outside_this_documentation_scope",
+      "action": "recorded_not_fixed_do_not_edit_other_developers_shared_knowledge_boundary"
+    }
+  },
+  "claims": {
+    "ui_first_scope_documented": true,
+    "archive_reclassified_optional": true,
+    "core_browser_harness_implemented": false,
+    "official_free_reference_characterized": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green_for_current_focused_baseline": true,
+    "archive_business_complete": false,
+    "overall_notion_parity_complete": false
+  },
+  "remaining": [
+    "Create the machine-readable Core Free Web UI scenario overlay and strict verifier",
+    "Establish a real browser action/capture/redaction harness",
+    "Connect only to REF-FREE-A and REF-FREE-B and record synthetic reference evidence",
+    "Run UI1-FREE-DESKTOP-GOLDEN-JOURNEY",
+    "Fix only measured shell/navigation/editor differences in cohesive slices",
+    "Resolve or owner-route the unrelated register_knowledge_core test-stub signature drift before claiming the full adjacent gate green"
+  ],
+  "stop_conditions_evaluated": {
+    "personal_content_exposed": false,
+    "live_data_accessed": false,
+    "protected_file_modified": false,
+    "production_migration_or_flag_changed": false,
+    "owned_file_drift_detected_during_edit": false,
+    "business_enterprise_account_missing": true,
+    "business_enterprise_account_missing_blocks_core": false
+  },
+  "next_exact_command": "Read code_assist_v1/AGENTS.md, this UI-first plan, and this checkpoint; recheck get_goal and file hashes; then run the documented L1-L3 serial baseline before implementing UI1-FREE-DESKTOP-GOLDEN-JOURNEY."
+}

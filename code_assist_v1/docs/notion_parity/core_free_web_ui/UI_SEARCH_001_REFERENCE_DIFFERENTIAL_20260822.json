@@ -1,0 +1,431 @@
+{
+  "contract": "code_assist.notion.core_free_ui.reference_differential.v1",
+  "recorded_at": "2026-08-22T20:34:39.3932957+09:00",
+  "scenario_id": "UI-SEARCH-001",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "review": {
+    "approved": true,
+    "approved_by": "workspace_owner",
+    "approval_scope": "redacted_summary_only"
+  },
+  "scope": {
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "external_side_effect_attempted": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "screenshot_count": 0
+  },
+  "reference": {
+    "browser": "chrome-signed-in",
+    "submission_file_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+    "receipt_file_sha256": "sha256:90bbbe185470af6493c272c9d8a2a2520053ef5dd51d013e27c04cbfdaa1190f",
+    "receipt": {
+      "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+      "c0_sha256": "sha256:9c122b6ac60d83575ef822c9c822b96e1f0d84f40dcd53a3ed3dae555550e366",
+      "capture_count": 3,
+      "captures_sha256": "sha256:7c5868421da8af5262ee2f3a57065c23042a037ab8596302b4e6564a0e0143c7",
+      "contract": "notion_core_free_ui_manual_reference_receipt_v1",
+      "external_side_effect_attempted": false,
+      "path_disclosed": false,
+      "personal_page_accessed": false,
+      "personal_workspace_accessed": false,
+      "profile": "free-owner-chrome-desktop-ko-KR",
+      "promotion_allowed": false,
+      "run_id": "ui59-r1-r3-reference-completion-20260822",
+      "scenario_id": "UI-SEARCH-001",
+      "screenshot_count": 0,
+      "status": "accepted_reference_observation",
+      "worksheet_sha256": "sha256:6ca7ae02f16d8e07aad7ff065c44506ff506b7e01255cb05089bbcd444570d29"
+    },
+    "captures": {
+      "UI-SEARCH-001-A01": {
+        "a11y": {
+          "name": "SEARCH-TRIGGER",
+          "role": "button"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "SEARCH-TRIGGER"
+          ]
+        },
+        "geometry": {
+          "SEARCH-INPUT": {
+            "height": 24,
+            "width": 866,
+            "x": 507,
+            "y": 95
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 900,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-SEARCH-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SEARCH-OVERLAY",
+          "state": "visible"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "result": true,
+          "visible": true
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-SEARCH-001-A02": {
+        "a11y": {
+          "name": "SEARCH-TRIGGER",
+          "role": "button"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "SEARCH-TRIGGER",
+          "state": "focused"
+        },
+        "geometry": {},
+        "keyboard": {
+          "key": "ESCAPE",
+          "result": "pass"
+        },
+        "latency_ms": 500,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-SEARCH-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SEARCH-OVERLAY",
+          "state": "hidden"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "hidden": true,
+          "result": true
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-SEARCH-001-A04": {
+        "a11y": {
+          "name": "SEARCH-RESULT",
+          "role": "option"
+        },
+        "action_log_sha256": "sha256:eb1d1dd2704b602027ba3f8b3294701b32a31139a930c64ffa8a4cb5ab917a0b",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "SEARCH-INPUT",
+            "PAGE-ROOT"
+          ]
+        },
+        "geometry": {
+          "SEARCH-RESULT": {
+            "height": 55,
+            "width": 572,
+            "x": 471,
+            "y": 364
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 4700,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-SEARCH-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SEARCH-RESULT",
+          "state": "visible"
+        },
+        "side": "reference",
+        "source_build_sha256": "sha256:3515ac4e2a0f5576b0e630250d7e4e39cc1412f36b936217aa38c5507d7daed5",
+        "state": {
+          "count": 1,
+          "opened": true,
+          "result": true
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "local": {
+    "browser": "chrome-ephemeral-headless",
+    "isolated_data_root": true,
+    "capture_sha256": {
+      "UI-SEARCH-001-A01": "sha256:b8b4a16139d235b3555585d202719b35bd78bfd4222578ea0f6756141eaae0f1",
+      "UI-SEARCH-001-A02": "sha256:001ca9052073f7f481d4c8c146b36724431b4f0e29c148ee9bc3616a33cbf539",
+      "UI-SEARCH-001-A04": "sha256:cd958db0191dcef47373e52675f50add95b846af8a5a56f1d3d5b90e3768aa6f"
+    },
+    "captures": {
+      "UI-SEARCH-001-A01": {
+        "a11y": {
+          "name": "SEARCH-TRIGGER",
+          "role": "button"
+        },
+        "action_log_sha256": "sha256:21416d8e219284cfa6c62b62263efb30e61a5f648f478033222b22146180815e",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "SEARCH-TRIGGER"
+          ]
+        },
+        "geometry": {
+          "SEARCH-INPUT": {
+            "height": 40,
+            "width": 898,
+            "x": 269,
+            "y": 86
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-SEARCH-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SEARCH-OVERLAY",
+          "state": "visible"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "result": true,
+          "visible": true
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-SEARCH-001-A02": {
+        "a11y": {
+          "name": "SEARCH-TRIGGER",
+          "role": "button"
+        },
+        "action_log_sha256": "sha256:21416d8e219284cfa6c62b62263efb30e61a5f648f478033222b22146180815e",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "name": "SEARCH-TRIGGER",
+          "state": "focused"
+        },
+        "geometry": {},
+        "keyboard": {
+          "key": "ESCAPE",
+          "result": "pass"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-SEARCH-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SEARCH-OVERLAY",
+          "state": "hidden"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "hidden": true,
+          "result": true
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      },
+      "UI-SEARCH-001-A04": {
+        "a11y": {
+          "name": "SEARCH-RESULT",
+          "role": "option"
+        },
+        "action_log_sha256": "sha256:21416d8e219284cfa6c62b62263efb30e61a5f648f478033222b22146180815e",
+        "capture_schema_version": 1,
+        "error_recovery": {
+          "result": "pass"
+        },
+        "focus": {
+          "sequence": [
+            "SEARCH-INPUT",
+            "PAGE-ROOT"
+          ]
+        },
+        "geometry": {
+          "SEARCH-RESULT": {
+            "height": 50,
+            "width": 578,
+            "x": 235,
+            "y": 207
+          }
+        },
+        "keyboard": {
+          "result": "not_applicable"
+        },
+        "latency_ms": 0,
+        "profile": "free-owner-chrome-desktop-ko-KR",
+        "redaction": {
+          "rule_set": "core-free-ui-v1",
+          "status": "pass"
+        },
+        "scenario_id": "UI-SEARCH-001",
+        "screenshot_sha256": null,
+        "semantic_visual": {
+          "region": "SEARCH-RESULT",
+          "state": "visible"
+        },
+        "side": "local",
+        "source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+        "state": {
+          "count": 1,
+          "opened": true,
+          "result": true
+        },
+        "viewport": {
+          "height": 900,
+          "scale": 1,
+          "width": 1440
+        }
+      }
+    }
+  },
+  "differential": {
+    "policy_state": "precalibration",
+    "all_actions_passed": true,
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-SEARCH-001-A01": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:94033169b036a6745c5fce8285ee21d8dc1f36566089ac6e1ef419eef9e69fc4",
+        "candidate_sha256": "sha256:b8b4a16139d235b3555585d202719b35bd78bfd4222578ea0f6756141eaae0f1",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "SEARCH-INPUT": {
+              "height": 24,
+              "width": 866,
+              "x": 507,
+              "y": 95
+            }
+          },
+          "candidate_geometry": {
+            "SEARCH-INPUT": {
+              "height": 40,
+              "width": 898,
+              "x": 269,
+              "y": 86
+            }
+          },
+          "reference_latency_ms": 900,
+          "candidate_latency_ms": 0
+        }
+      },
+      "UI-SEARCH-001-A02": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:c5899391f7e8ecba28d7e334ab147c1af71e42b7c82b143c3d8bdcbcb80f52a0",
+        "candidate_sha256": "sha256:001ca9052073f7f481d4c8c146b36724431b4f0e29c148ee9bc3616a33cbf539",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {},
+          "candidate_geometry": {},
+          "reference_latency_ms": 500,
+          "candidate_latency_ms": 0
+        }
+      },
+      "UI-SEARCH-001-A04": {
+        "report_schema_version": 1,
+        "policy_state": "precalibration",
+        "status": "pass",
+        "promotion_allowed": false,
+        "reference_sha256": "sha256:bcfdd6726e5fab98d168265226b407fe1a6b306f618b638ad4c02337d6230bd0",
+        "candidate_sha256": "sha256:cd958db0191dcef47373e52675f50add95b846af8a5a56f1d3d5b90e3768aa6f",
+        "difference_count": 0,
+        "differences": [],
+        "measurements": {
+          "reference_geometry": {
+            "SEARCH-RESULT": {
+              "height": 55,
+              "width": 572,
+              "x": 471,
+              "y": 364
+            }
+          },
+          "candidate_geometry": {
+            "SEARCH-RESULT": {
+              "height": 50,
+              "width": 578,
+              "x": 235,
+              "y": 207
+            }
+          },
+          "reference_latency_ms": 4700,
+          "candidate_latency_ms": 0
+        }
+      }
+    }
+  }
+}

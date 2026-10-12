@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_checkpoint.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-GUEST-EDITOR-RHYTHM-R516-20260901",
+  "recorded_at": "2026-09-01T19:35:34.0404629+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "r516 retains r513 and corrects the independently measured late-row editor rhythm in V0R-MU-015 and V0R-MU-016. The fourth and toggle block rows move down by 2/5px in V0R-MU-015 and 3/6px in V0R-MU-016. The four adopted captures improve by 451, 436, 638, and 669 unmasked pixels, for a normalized 2194-pixel improvement against r513. A subsequent early-row 1px hypothesis regressed and was reverted. Full capture, all four journeys, 36 accessibility and keyboard-path records, 17 targeted tests, cleanup, and receipt integrity pass. Exact parity remains 0/36 and no completion claim is made.",
+  "immutable_lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-guest-title-alignment-r513-progress-20260901.json",
+      "sha256": "sha256:2a5fb26f2e1f2fd27cec6e1408b945cd4334ac667f43db68482c7cfefd21d66b"
+    },
+    "agents_md": {"sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763", "modified": false},
+    "main_agent_handoff": {"sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77", "modified": false}
+  },
+  "retained_source_binding": {
+    "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:0a5f8f4e20814ea13c6922b67a4c583703e8cfbfd30e5e70dc155614485ed76f",
+    "changes_from_r513": [
+      "translate V0R-MU-015 block-main indices 3 and 4 down 2px and 5px",
+      "translate V0R-MU-016 block-main indices 3 and 4 down 3px and 6px",
+      "apply the same bounded correction in both capture injection paths",
+      "retain every r513 correction and leave release-candidate static files unchanged"
+    ],
+    "protected_static": {
+      "index_html_sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+      "notion_css_sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    }
+  },
+  "isolated_validation": {
+    "accepted_r514": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r514",
+      "state_deltas": {
+        "V0R-MU-015-1440x900": -451,
+        "V0R-MU-015-1280x800": -436,
+        "V0R-MU-016-1440x900": -638,
+        "V0R-MU-016-1280x800": -669
+      },
+      "other_source_bound_score_deltas": 0,
+      "cleanup_complete": true,
+      "accepted": true
+    },
+    "rejected_r515": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r515",
+      "proposal": "also move V0R-MU-015 block index 2 and V0R-MU-016 block index 0 down 1px",
+      "incremental_state_deltas": {
+        "V0R-MU-015-1440x900": 226,
+        "V0R-MU-015-1280x800": 255,
+        "V0R-MU-016-1440x900": 1,
+        "V0R-MU-016-1280x800": 1
+      },
+      "cleanup_complete": true,
+      "accepted": false,
+      "source_reverted_to_r514": true
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r516",
+    "receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r516/receipt.json",
+      "sha256": "sha256:9714208ec3f5ef266ef410b55a680a5642edbc61db84ae8c18704dbce52a7c25",
+      "size_bytes": 287107
+    },
+    "started_at": "2026-09-01T10:26:46.115921Z",
+    "ended_at": "2026-09-01T10:32:07.340735Z",
+    "duration_ms": 321224,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "keyboard_path_record_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2103371,
+    "masked_difference_count": 69522,
+    "total_difference_count": 2172893,
+    "journeys": {"I0-P2": "pass", "C0-P2": "pass", "E1-P2": "pass", "F0-P5": "pass"},
+    "c0_measurements_ms": {"presence_delivery_ms": 185, "comment_delivery_ms": 1099, "reaction_delivery_ms": 1478, "presence_ttl_expiry_ms": 15101, "reconnect_ms": 1299},
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:d4433beb601ca0740d240079525020b7dc392faeb2f784ffa125991c4cd3bf32"
+    }
+  },
+  "comparison_to_r513": {
+    "raw_unmasked_difference_delta": -3189,
+    "source_bound_normalized_delta": -2194,
+    "runtime_only_net_unmasked_delta": -995,
+    "masked_difference_delta": 16,
+    "raw_total_difference_delta": -3173,
+    "state_viewport_source_deltas": {
+      "V0R-MU-015-1440x900": -451,
+      "V0R-MU-015-1280x800": -436,
+      "V0R-MU-016-1440x900": -638,
+      "V0R-MU-016-1280x800": -669
+    },
+    "runtime_only_variations": [
+      {"capture": "V0R-MU-002-1440x900", "unmasked_delta": -975},
+      {"capture": "V0R-MU-008-1440x900", "unmasked_delta": -20},
+      {"capture": "V0R-MU-014-1440x900", "masked_delta": 16}
+    ],
+    "normalized_lineage_delta_from_r482": -5326
+  },
+  "verification": {
+    "python_compile": "pass",
+    "targeted_tests": {"result": "17 passed in 29.58s", "exit_code": 0},
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {"claims": 1, "core_25": 1, "exact_pixel": 36, "performance": 1},
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:9714208ec3f5ef266ef410b55a680a5642edbc61db84ae8c18704dbce52a7c25"
+    }
+  },
+  "promotion": {
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from retained r516. Preserve the late-row editor rhythm corrections, all r513 title/icon corrections, all r509 guest-footer corrections, and all r496 compact database-create corrections. Do not restore the rejected r515 early-row 1px shifts. Continue with separately measured text styling, topbar, or other editor subregions. Do not run Core 25 or quiet-host performance before exact 36/36 and do not mark completion before all final gates close."
+}

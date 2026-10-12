@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-RECEIPT-FAIL-CLOSED-REVIEW-COMPLETE-20260906",
+  "recorded_at": "2026-09-06T13:08:16Z",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "status": "validator_correction_verified_integration_not_gated_pending_external_contract_ownership",
+  "ownership_basis": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-status-integration-pre-edit-20260906.json",
+    "sha256": "sha256:74423d037c363ea913d0f2e497859360e12ffc4eb0f1a1092b6b443a70481ed5",
+    "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-ROOT-STATUS-INTEGRATION-20260906",
+    "source_edits_limited_to": [
+      "code_assist_v1/tools/internal_collaborative_validation.py",
+      "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py"
+    ]
+  },
+  "supersedes_progress_assessment_only": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-receipt-discovery-fixed-status-integration-blocked-20260906.json",
+    "sha256": "sha256:f05c5f92a3ce98fcd3495bad1f2eb364392890efd31db527be8703f0238dce81",
+    "reason": "The earlier generic-discriminator-only filter silently ignored unknown or malformed document kinds. This correction replaces that permissive filter, adds selected V0 final-evidence verification and rejects checkpoint-only V0 completion. Earlier checkpoint and immutable product/reference receipts remain preserved.",
+    "existing_file_overwritten": false
+  },
+  "changes": [
+    "Exclude only four registered specialized envelope identities with exact schema version and packet identity; excluded archives award no completion credit.",
+    "Reject unknown/non-object JSON; generic discriminator fields take precedence; generic duplicate IDs still fail.",
+    "Stop semantic receipt validation after schema errors and fail closed when the receipt schema cannot be loaded.",
+    "Require v0b_final_receipt with path, sha256 and receipt_id; bind artifact_hashes and release candidate; invoke the fresh final compiler verifier including reference, core, two performance runs, pixels and accessibility.",
+    "Check selected file hash before and after verification and retain SBE audit failure independently.",
+    "Prevent a V0R/V0B checkpoint without validated generic evidence from granting completion."
+  ],
+  "tests": {
+    "focused": {
+      "passed": 40,
+      "deselected": 15,
+      "failed": 0,
+      "elapsed_seconds": 13.08,
+      "execution_exit_code": 0
+    },
+    "complete_harness": {
+      "junit_path": "code_assist_v1/.runtime/v0b-p1-harness-fail-closed-20260906-2208-junit.xml",
+      "junit_sha256": "sha256:440f2ba346cb24e8f648a4cd0e97237416d1a4ddf319587ecf18120c90daa357",
+      "timestamp_from_junit": "2026-09-06T22:00:38.257824+09:00",
+      "note": "The filename is an artifact identifier, not the execution timestamp.",
+      "tests": 55,
+      "passed": 52,
+      "failed": 3,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_seconds": 132.478,
+      "execution_exit_code": 1,
+      "failed_tests": [
+        "test_checked_in_bundle_audits_clean_while_strict_completion_fails",
+        "test_t0b_p3_successor_verifier_owns_live_gateway_source",
+        "test_cli_audit_is_zero_and_gate_is_nonzero"
+      ],
+      "cause": "These existing tests require clean current checked-in contract integration. Current checkpoint hash drift, twelve specialized Notion verifier failures and the external SBE contract mismatch remain. Assertions were not relaxed."
+    },
+    "independent_review": {
+      "agent": "/root/receipt_discovery_review",
+      "mode": "read_only",
+      "additional_concrete_defects_found": 0,
+      "tests_run_by_reviewer": false
+    }
+  },
+  "inherited_final_evidence_verification": {
+    "receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json",
+    "receipt_sha256": "sha256:d9fd95c7ed462bde80d50c86eaf6714405fbc5738c24cc3f8f05efbc9cda0d96",
+    "verifier": "code_assist_v1.tools.compile_internal_collaborative_v0b_p1_final_receipt verify",
+    "execution_exit_code": 0,
+    "status": "pass",
+    "error_count": 0,
+    "core_test_count": 21,
+    "performance_run_count": 2,
+    "exact_pixel_pass_count": 36,
+    "accessibility_pass_count": 36,
+    "gate_passed": true,
+    "product_complete": false,
+    "method": "Read-only reconstruction and verification of bound artifacts; no browser journeys, performance scenarios or external-account actions rerun."
+  },
+  "central_audit": {
+    "execution_exit_code": 1,
+    "status": "fail",
+    "error_count": 16,
+    "current_checkpoint_dynamic_hash_drift": 3,
+    "specialized_notion_verifier_failures": 12,
+    "external_sbe_failure": 1,
+    "valid_generic_execution_receipts": 19,
+    "generic_receipt_schema_or_discovery_error_count": 0,
+    "required_packets": 50,
+    "gate_passed_required_packets": 42,
+    "phase_gates": 20,
+    "closed_phase_gates": 14,
+    "product_complete": false
+  },
+  "external_repair_proposal": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/V0B_P1_SBE_SOURCE_ARTIFACT_CONTRACT_REPAIR_PROPOSAL_20260906.md",
+    "sha256": "sha256:313852f502ae2d6606e950d9070bd03e3bdad1f3b5eed85a1697aada6952f1a1",
+    "approval_status": "not_requested_or_granted_before_this_checkpoint",
+    "ownership_transferred": false,
+    "current_error": "OPENAPI_HUMAN_OPERATION_MISMATCH",
+    "current_audit_input_sha256": "sha256:32c2ff0b4274cfcbfb09bf9a93de5c4adf2b2f0c7c115e04a96a606f643f963d",
+    "proposed_exact_file_count": 13,
+    "read_only_file_snapshot": [
+      {
+        "path": "code_assist_v1/docs/knowledge_spaces/contracts/openapi.json",
+        "sha256": "sha256:ab40ab954525c406ada5d07eb88a3438c08c36c762b6cd4d36407885885a0b74"
+      },
+      {
+        "path": "code_assist_v1/docs/knowledge_spaces/contracts/contract-manifest.json",
+        "sha256": "sha256:0243609d79f911954354a5ed557224c6deb3b92c410a755249c91e413f627533"
+      },
+      {
+        "path": "code_assist_v1/docs/knowledge_spaces/contracts/schemas/knowledge.schema.json",
+        "sha256": "sha256:abb74c669e228db16dcbdce33b75ad76f44b60523aa5455e3c3df91d212d3586"
+      },
+      {
+        "path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md",
+        "sha256": "sha256:a5d4a31c2b2e6cb8909c0c981b3f6ac97e9454245ec47cc5beeda3a0f606d8ab"
+      },
+      {
+        "path": "code_assist_v1/docs/knowledge_spaces/API_UI_CONTRACT.md",
+        "sha256": "sha256:8aab5795b2d4ae6fbb063aec1fb4f661cf69c15ba0983b6537dd9c9df4669f7a"
+      },
+      {
+        "path": "code_assist_v1/tools/contract_audit.py",
+        "sha256": "sha256:f02dc71eb63ae7722b0693bd88f8a17b5874ce8f6f9f2e72e6f99c20f3cf857a"
+      },
+      {
+        "path": "code_assist_v1/tests/knowledge_spaces/unit/test_contract_audit.py",
+        "sha256": "sha256:a12f56e02796a321874cc5feaca5dc22c5f3c8ffa6a5188708987720ba28b0ed"
+      },
+      {
+        "path": "code_assist_v1/tests/knowledge_spaces/unit/test_source_artifact_routes.py",
+        "sha256": "sha256:db92341d7b9eba5bd7f838ce6760017a91c2b2593946a82902df3c6caa7635d5"
+      },
+      {
+        "path": "code_assist_v1/docs/knowledge_spaces/evidence/SBE-8.12.md",
+        "sha256": "sha256:9a632615b9432342938925303a9d17d13fdd780f4e1eb866825dcc244f10d855"
+      },
+      {
+        "path": "code_assist_v1/docs/knowledge_spaces/README.md",
+        "sha256": "sha256:a16b53e5be8f420b42ff6a04f07499a212c8ba20315fbaf05ff9577c11cae3e0"
+      },
+      {
+        "path": "code_assist_v1/docs/knowledge_spaces/STATUS.md",
+        "sha256": "sha256:839adc78a28582cf7e60e0f3a8ac32afb76ca74ac0d601b6974591176ce2bacd"
+      },
+      {
+        "path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md",
+        "sha256": "sha256:0411dafe49a7db5ffd820a6b9cb06840d6f72c1eae71e193c234b0b9c775f9c6"
+      },
+      {
+        "path": "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/ACCEPTANCE.md",
+        "sha256": "sha256:479eb54b9b68d8cec47804ce716138f41bc40eaddac61f6d98d595ceb475417d"
+      }
+    ],
+    "target_active_counts": {
+      "paths": 72,
+      "operations": 80,
+      "get_operations": 27
+    },
+    "preserved_baseline_counts": {
+      "paths": 52,
+      "operations": 56
+    },
+    "approved_sbe_mutations_performed": false
+  },
+  "post_change_and_preserved_hashes": {
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:d0d3f16af3543ee4ef7a03270c19bbc4baa7b94b975521c5ce5b5d2b86337e77",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:911d58dc99e17f8a7a32acf16ca35d01fe8e613a66a94bd6c8bc822f70c12190",
+    "code_assist_v1/.runtime/v0b-p1-harness-fail-closed-20260906-2208-junit.xml": "sha256:440f2ba346cb24e8f648a4cd0e97237416d1a4ddf319587ecf18120c90daa357",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/V0B_P1_SBE_SOURCE_ARTIFACT_CONTRACT_REPAIR_PROPOSAL_20260906.md": "sha256:313852f502ae2d6606e950d9070bd03e3bdad1f3b5eed85a1697aada6952f1a1",
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/notion_static/notion.css": "sha256:797eadb7689d231dfcd34e23ad5ac1ea06ee2a8b1a92feb098ae3f948c4489c9",
+    "code_assist_v1/notion_static/notion.js": "sha256:c3c4ee95236243f73a02256643d1199dfe155488f835c5b18e9bbb7b4272ae30",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:b0f964b42f6bed61b180e70db3017346f51d9de33f9008945adc4c9f50c0a5fa",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:a503e03221d5082c5d9cac2e2d17bd3022f5c00de2017cbb6bdd574e6d0963a5",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:c2f05b8c4cd7ca00d08bbff211bfee1587f90df941fd0c9486cf5ac4a7f3bec9",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json": "sha256:d9fd95c7ed462bde80d50c86eaf6714405fbc5738c24cc3f8f05efbc9cda0d96"
+  },
+  "preserved_state": {
+    "v0r_packet_status": "planned",
+    "v0b_packet_status": "planned",
+    "current_stable_pointer": "O1A-P1",
+    "generic_v0_wrapper_created": false,
+    "catalog_or_ladder_modified": false,
+    "completion_matrix_modified": false,
+    "agents_md_modified": false,
+    "sbe_hot_contract_modified": false,
+    "product_source_modified": false,
+    "existing_receipt_overwritten": false,
+    "production_or_external_account_changed": false,
+    "product_complete": false,
+    "goal_complete": false
+  },
+  "next_steps": [
+    "Obtain explicit temporary ownership transfer for the thirteen-file SBE contract correction, or let the SBE owner repair it. Recheck exact hashes and concurrent ownership before any edits.",
+    "After SBE audit recovery, reconcile current Notion checkpoint hashes and twelve specialized verifier reports using authoritative regression evidence; do not merely rewrite manifests to force a pass.",
+    "Create a path/hash-bound V0R/V0B generic wrapper using v0b_final_receipt, then integrate status/checkpoint/pointer under a fresh exact Notion ownership declaration.",
+    "Continue O1B, Q0, R0A/R0B, R1, Z0 and product/SBE final gates; do not mark the full goal complete early."
+  ]
+}

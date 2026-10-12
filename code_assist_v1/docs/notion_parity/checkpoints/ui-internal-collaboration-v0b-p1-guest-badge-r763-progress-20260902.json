@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-GUEST-BADGE-R763-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T13:05:00+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-guest-state005-state016-r749-progress-20260902.json",
+    "checkpoint_sha256": "sha256:97d6009c253e7795e618ff2e5a4c8a5f932fe1c283c4ba23da1bf4f5ccdf5ea4",
+    "source_sha256": "sha256:9ce2da01504ad8a0773478564788d00b0015e8ecef1ff20898e46a35e590ca72",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r749/receipt.json",
+    "receipt_sha256": "sha256:489b18d8154cd3b42c7dedd7966eacd0515ec83f93323043b1c1a9e565dc43d7",
+    "unmasked_differing_pixel_count": 1962841,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2031259
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:5327913822ce03ef70529eb9c0b2964db8e08b18756cd7dc5733a6288fe3c45e",
+    "summary": [
+      "Corrected only the V0R-MU-005 guest workspace badge from the English fallback to the immutable-reference Korean badge geometry, colors, and weight.",
+      "Added the missing deterministic 6x6 workspace attention indicator for V0R-MU-005 and removed it before every other state.",
+      "Restored every rejected V0R-MU-003 translation-pill and non-improving badge experiment before the accepted full candidate."
+    ],
+    "source_bound_unmasked_reduction_from_r749": 1340,
+    "source_bound_unmasked_reduction_from_r739": 4902,
+    "source_bound_unmasked_reduction_from_r732": 8457,
+    "source_bound_unmasked_reduction_from_r728": 11851,
+    "source_bound_unmasked_reduction_from_r720": 15195,
+    "source_bound_unmasked_reduction_from_r717": 17543,
+    "source_bound_unmasked_reduction_from_r713": 22542,
+    "source_bound_unmasked_reduction_from_r657": 51469,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 112516,
+    "source_bound_state_deltas_from_r749": {
+      "V0R-MU-005__1440x900": -670,
+      "V0R-MU-005__1280x800": -670
+    }
+  },
+  "accepted_diagnostics": {
+    "r751_guest_badge_geometry": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r751",
+      "state005_reduction_from_r749": 24,
+      "viewport_reductions": {"1440x900": 12, "1280x800": 12},
+      "cleanup": true,
+      "accessibility_pass_count": 20
+    },
+    "r752_guest_badge_colors": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r752",
+      "state005_reduction_from_r751": 1200,
+      "reference_background": "#f3edd5",
+      "reference_foreground": "#d8a32f",
+      "cleanup": true,
+      "accessibility_pass_count": 20
+    },
+    "r753_guest_badge_weight": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r753",
+      "state005_reduction_from_r752": 44,
+      "font_weight": 600,
+      "cleanup": true,
+      "accessibility_pass_count": 20
+    },
+    "r757_attention_dot_core": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r757",
+      "state005_reduction_from_r753": 32,
+      "cleanup": true,
+      "accessibility_pass_count": 20
+    },
+    "r758_attention_dot_exact_edges": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r758",
+      "state005_reduction_from_r757": 40,
+      "attention_dot_exact_pixel_count_per_viewport": 36,
+      "cleanup": true,
+      "accessibility_pass_count": 20
+    }
+  },
+  "rejected_diagnostics": {
+    "r750_unshaped_korean_badge": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r750",
+      "reason": "Changing only Guest to 게스트 regressed the two viewports by 28 pixels because the geometry and colors still differed.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r754_badge_weight_700": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r754",
+      "reason": "Weight 700 produced no V0R-MU-005 improvement over weight 600.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r755_r756_misplaced_attention_dot": {
+      "roots": [
+        "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r755",
+        "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r756"
+      ],
+      "reason": "The dot was initially placed inside a non-V0R-MU-005 branch and had zero screenshot effect; the final pre-capture top-level implementation was verified in r757 and r758.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    },
+    "r760_r761_r762_state003_translation_pill": {
+      "roots": [
+        "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r760",
+        "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r761",
+        "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r762"
+      ],
+      "reason": "Full styling regressed V0R-MU-003 by 3644 pixels, content-only by 480, and content plus measured typography by 236; all translation-pill changes were removed.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r763",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r763/receipt.json",
+    "receipt_sha256": "sha256:1df6811597e9343f153e1c586c128c5f324593895beabe6fcd62432973703a4c",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1960527,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2028945,
+    "raw_unmasked_delta_from_r749": -2314,
+    "raw_masked_delta_from_r749": 0,
+    "raw_total_delta_from_r749": -2314,
+    "raw_unmasked_delta_from_r739": -4920,
+    "raw_masked_delta_from_r739": 0,
+    "raw_total_delta_from_r739": -4920,
+    "raw_unmasked_delta_from_r732": -10495,
+    "raw_masked_delta_from_r732": 0,
+    "raw_total_delta_from_r732": -10495,
+    "raw_unmasked_delta_from_r728": -14865,
+    "raw_masked_delta_from_r728": 0,
+    "raw_total_delta_from_r728": -14865,
+    "raw_unmasked_delta_from_r720": -16880,
+    "raw_masked_delta_from_r720": 0,
+    "raw_total_delta_from_r720": -16880,
+    "raw_unmasked_delta_from_r713": -25488,
+    "raw_masked_delta_from_r713": 0,
+    "raw_total_delta_from_r713": -25488,
+    "raw_unmasked_delta_from_r657": -53501,
+    "raw_masked_delta_from_r657": -1008,
+    "raw_total_delta_from_r657": -54509,
+    "runtime_only_unmasked_variation_from_r749": {
+      "V0R-MU-002__1440x900": -975,
+      "V0R-MU-008__1280x800": -1,
+      "V0R-MU-010__1280x800": 2,
+      "net": -974
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1707,
+      "comment_delivery_ms": 2024,
+      "reaction_delivery_ms": 861,
+      "presence_ttl_expiry_ms": 15605,
+      "reconnect_ms": 1979
+    },
+    "duration_ms": 342632,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:0bd1852262ebf0449807c6e719c3b7369df037f907a942a63d6d607434825972"
+    }
+  },
+  "verification": {
+    "python_compile": {"result": "pass", "exit_code": 0},
+    "targeted_tests": {
+      "result": "17 passed in 24.94s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {"claims": 1, "core_25": 1, "exact_pixel": 36, "performance": 1},
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:1df6811597e9343f153e1c586c128c5f324593895beabe6fcd62432973703a4c"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r763 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-T0A-P2-GATEWAY-CONTRACT-20260823",
+  "recorded_at": "2026-08-23T09:30:36Z",
+  "checkpoint_kind": "packet_evidence_and_status_integration",
+  "packet_id": "T0A-P2",
+  "packet_status": "gate_passed",
+  "purpose": "Bind the executable transport-only gateway state machine and its exact-origin, expiry, reuse, epoch, stale-client, bounded durable queue, reconnect-storm, capacity, and authority/gateway-unavailable fail-closed evidence. No listener, port, external dependency, product route/store, durable schema, or selected runtime is claimed.",
+  "owner_agent": "/root",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py"
+  ],
+  "new_product_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.schema.json",
+    "code_assist_v1/notion_collaboration/transport_gateway_prototype.py",
+    "code_assist_v1/tools/verify_internal_collaborative_gateway_contract.py"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_backpressure.py"
+  ],
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_protocol_contract.v1.json": "sha256:c2ce4dcecebd4f7da459824f3f012a142ef8ef6d2fd08195490587ad4f954481",
+    "code_assist_v1/notion_collaboration/protocol_contract.py": "sha256:232f090471775e49dc4097911a409c3a45e0c47f0ece279f7452ad1d595e1fe8",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "paths": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/docs/knowledge_spaces",
+      "code_assist_v1/requirements-runtime.lock",
+      "code_assist_v1/notion_store.py",
+      "code_assist_v1/notion_workspace_store.py",
+      "code_assist_v1/routes_notion.py",
+      "code_assist_v1/routes_notion_workspace.py",
+      "code_assist_v1/knowledge_core",
+      "code_assist_v1/user_data",
+      "code_assist_v1/knowledge",
+      "code_assist_v1/.runtime"
+    ]
+  },
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0a-p2-gateway-pre-edit-20260823.json",
+    "sha256": "sha256:1b5ab1c1751f4d558a1115941a1c497e2e7e91b6c9ee536f742a9d435c5a4590"
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.json": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.schema.json": null,
+    "code_assist_v1/notion_collaboration/transport_gateway_prototype.py": null,
+    "code_assist_v1/tools/verify_internal_collaborative_gateway_contract.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_backpressure.py": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:3d0110a79e0ffe0451cb38cb5ee069c595db6b2b75ea5b92256d28813ef76fb9",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:d3127801221b31b039b965005668f5316011dfa4733d38c5563120af90b8ce85",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:cf3ae09446d43e2d18265bbc91105bb00958ef9f0eef4211020ec770f8fd5e63"
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.json": "sha256:8bfa575854f409e648822f8e4b6e27433f14cab699ee6def6fb3f08698fd4e96",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.schema.json": "sha256:23b40173ab47a8a51f3cb527ca49705e5dd0b87f8563f3a24d16f711bf9aa012",
+    "code_assist_v1/notion_collaboration/transport_gateway_prototype.py": "sha256:d760e9941fc340f5e7a99097ce352e3b4cae3baca3fc5ec1d8a28aad3c03427c",
+    "code_assist_v1/tools/verify_internal_collaborative_gateway_contract.py": "sha256:b0142d55a97f22ca72e18f857b729a976afa2ce3ac0043adfa23f6d1a1b0e631",
+    "code_assist_v1/tests/notion_collaboration/test_backpressure.py": "sha256:5d895d34f1c9f3fe64f4af7ef6ade9c01dde9979bba32ce2a88c7cc328542d65",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:95f8daac24509e07ec88544ffd13e1861a07d1c9440f24a7dbfcc93564051440",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:57aa86ff462d7a55608a2e07ae21946bd3c6a95fa80b7f3f4785c158a7ec4882",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:06c95f1e2f7c41764f2307f72b4c55503af721aa60d2ca5e8a07912e4567bc35"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0a-p1-protocol-contract-20260823.json",
+    "sha256": "sha256:fcdd72cd6e4512d3402fdf77ea62b768e876a8606ebcbe72b05ea0d8d8600eea",
+    "packet_id": "T0A-P1",
+    "receipt_id": "T0A-P1-L3-CRDT-PROTOCOL-CORPUS-20260823"
+  },
+  "ownership_lease": {
+    "lease_id": "T0A-P2-SPIKE-20260823-091852Z",
+    "lane": "SPIKE",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-23T09:18:52Z",
+    "expires_at": "2026-08-23T17:18:52Z",
+    "released_at": "2026-08-23T09:30:36Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false,
+    "release_condition": "The gateway contract, schema, disposable transport state machine, verifier, exact test, catalog integration, checkpoint chain, and current pointer are hash-bound."
+  },
+  "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "Resume the interrupted implementation goal.",
+    "status": "active",
+    "persisted_tool_status": "active",
+    "resumed_by_user": true,
+    "observed_at": "2026-08-23T09:30:36Z",
+    "goal_completion_claimed": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-23T09:30:36Z",
+    "predecessor_checkpoint_sha256": "sha256:fcdd72cd6e4512d3402fdf77ea62b768e876a8606ebcbe72b05ea0d8d8600eea",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:284d70c452fa1b742212d12286d5d3c7da9b7e9a2014d9b29163df2a805c9cf0",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_hot_contracts_modified_by_this_packet": false,
+    "exact_path_collision_observed": false,
+    "schema_migration_version_allocated": false,
+    "dependency_download_or_install_authorized": false,
+    "actual_network_service_or_port_started": false,
+    "real_service_identity_or_data_root_authority_requested": false
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:3d0110a79e0ffe0451cb38cb5ee069c595db6b2b75ea5b92256d28813ef76fb9",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:d3127801221b31b039b965005668f5316011dfa4733d38c5563120af90b8ce85"
+    },
+    "accepted_packet_receipt_ids": [
+      "T0A-P1-L3-CRDT-PROTOCOL-CORPUS-20260823"
+    ],
+    "lease": "T0A-P2-SPIKE-20260823-091852Z",
+    "post_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:95f8daac24509e07ec88544ffd13e1861a07d1c9440f24a7dbfcc93564051440",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:57aa86ff462d7a55608a2e07ae21946bd3c6a95fa80b7f3f4785c158a7ec4882"
+    }
+  },
+  "validation_receipt": {
+    "receipt_id": "T0A-P2-L3-CRDT-PROTOCOL-CORPUS-20260823",
+    "validation_id": "L3-CRDT-PROTOCOL-CORPUS",
+    "status": "pass",
+    "error_count": 0,
+    "executed_at": "2026-08-23T09:30:36Z",
+    "exact_packet_tests": {
+      "argv": [
+        ".\\venv\\Scripts\\python.exe",
+        "-E",
+        "-m",
+        "pytest",
+        "-c",
+        "code_assist_v1/pytest.ini",
+        "-q",
+        "-p",
+        "no:debugging",
+        "-p",
+        "no:cacheprovider",
+        "code_assist_v1/tests/notion_collaboration/test_backpressure.py"
+      ],
+      "passed": 16,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 3.55
+    },
+    "authority_crdt_protocol_gateway_regression": {
+      "passed": 69,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 18.68,
+      "test_file_count": 8
+    },
+    "gateway_contract_verifier": {
+      "status": "pass",
+      "error_count": 0,
+      "gateway_sha256": "sha256:8bfa575854f409e648822f8e4b6e27433f14cab699ee6def6fb3f08698fd4e96",
+      "negative_scenario_count": 11,
+      "maximum_durable_frames_default": 64,
+      "maximum_attempts_per_window_default": 5,
+      "actual_network_gateway_implemented": false
+    },
+    "existing_editor_regression": {
+      "node_process_count": 6,
+      "passed": 6,
+      "failed": 0,
+      "scripts": [
+        "code_assist_v1/tests/test_notion_editor_core.js",
+        "code_assist_v1/tests/test_notion_ui_runtime.js",
+        "code_assist_v1/tests/test_notion_navigation_ui.js",
+        "code_assist_v1/tests/test_notion_publication_ui.js",
+        "code_assist_v1/tests/test_notion_atomic_save.js",
+        "code_assist_v1/tests/test_auth_csrf_frontend.js"
+      ]
+    },
+    "sbe_contract_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "input_sha256": "sha256:284d70c452fa1b742212d12286d5d3c7da9b7e9a2014d9b29163df2a805c9cf0",
+      "goal_count": 20,
+      "scenario_count": 284
+    },
+    "post_integration_validation": {
+      "finalized_at": "2026-08-23T09:34:01Z",
+      "harness_tests": {
+        "passed": 11,
+        "failed": 0,
+        "errors": 0,
+        "duration_seconds": 6.88
+      },
+      "combined_authority_crdt_protocol_gateway_harness_tests": {
+        "passed": 80,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "xfailed": 0,
+        "duration_seconds": 25.84
+      },
+      "completion_audit": {
+        "status": "pass",
+        "error_count": 0,
+        "completion_state": "incomplete",
+        "gate_passed_required_packets": 12,
+        "required_packets": 50,
+        "planned_required_lanes": 9,
+        "product_complete": false
+      },
+      "strict_completion_gate": {
+        "status": "expected_fail",
+        "exit_code": 1,
+        "error_codes": [
+          "STRICT_COMPLETION_INCOMPLETE"
+        ],
+        "false_green_or_integrity_error_observed": false
+      }
+    },
+    "claims": {
+      "transport_only_gateway_state_machine_executed": true,
+      "origin_expiry_reuse_epoch_stale_client_negatives_executed": true,
+      "backpressure_reconnect_storm_capacity_unavailable_contract_executed": true,
+      "full_L3_lane_closed": false,
+      "actual_network_gateway_implemented": false,
+      "durable_product_event_store_implemented": false,
+      "dependency_downloaded_or_installed": false,
+      "production_dependency_schema_route_or_runtime_changed": false,
+      "live_or_production_mutation": false
+    }
+  },
+  "rollback_or_cleanup": "Delete only the five T0A-P2 product/test paths and the two T0A-P2 checkpoint files, then restore the exact pre-edit catalog, ladder, harness, and current pointer hashes. No package, lockfile, schema migration, route, store, runtime, service, port, identity, browser profile, or data root is in scope.",
+  "completion_truth": {
+    "t0a_p2_started": true,
+    "t0a_p2_gate_passed": true,
+    "l3_crdt_protocol_lane_gate_passed": false,
+    "actual_network_gateway_implemented": false,
+    "actual_durable_event_store_implemented": false,
+    "candidate_winner_selected": false,
+    "dependency_installed_or_pinned": false,
+    "real_runtime_implemented": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "T0A-P2",
+    "current_state": "gate_passed",
+    "next_packet": "E0-P2",
+    "next_state": "awaiting_conditional_approval",
+    "approval_required_for_next_packet": true,
+    "required_approval_id": "AP-RUNTIME-SPIKE",
+    "required_approval_scope": "Download and install exact candidate dependencies only into isolated disposable spike roots; no product lockfile, production runtime, service, port, schema, identity, or data-root change.",
+    "t0a_p3_waiting_on": "E0-P4 selected-runtime winner ADR",
+    "real_service_or_identity_mutation_allowed": false
+  }
+}

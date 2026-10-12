@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.local_validation_performance_hardening_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-LOCAL-VALIDATION-PERFORMANCE-HARDENING-20260908",
+  "recorded_at": "2026-09-07T19:17:44.0041817Z",
+  "status": "local_validation_dependency_and_repeat_cost_hardened_external_gates_deferred",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-detached-authority-assembly-ready-20260908.json",
+    "sha256": "sha256:c1fc8c68023ea52ed5e1e5428e81aed84e25ac931ff13369e6916dbae9bff629"
+  },
+  "implementation_bindings": {
+    "test_dependency_lock": {
+      "path": "code_assist_v1/requirements-test.lock",
+      "sha256": "sha256:220fad421c0d0a0b6adcfc83b4402eeb444fbfb4c5fbcadedd862d556f66e8ad"
+    },
+    "reference_receipt_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py",
+      "sha256": "sha256:f3ebcb8c667e0e27b9d5af33405c6a5bd9e00c480aa40568e133b041dcdfac7d"
+    },
+    "reference_receipt_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_receipt.py",
+      "sha256": "sha256:bfea0894c6f2e894f7fbc73bd9b0d255bc5359d32cf62e062f2fbd31d08dd8c9"
+    },
+    "candidate_receipt_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py",
+      "sha256": "sha256:68694e139f722c3b2f9ff88ce7ea80ccec153c5bddef2291ece4b88537b0c58c"
+    },
+    "candidate_receipt_tests": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+      "sha256": "sha256:c3e17f82e393e0400b6d6c9640a88e9401e7673ae0eb49005a0d2f4953c111d6"
+    }
+  },
+  "hardening": {
+    "pillow_direct_test_dependency_pinned": "12.3.0",
+    "mask_union_area_semantics": "exact_integer_pixel_union_via_row_interval_merge",
+    "mask_pixel_coordinate_set_materialization_removed": true,
+    "reference_png_geometry_cache_key": [
+      "png_content_sha256",
+      "decoder_identity"
+    ],
+    "candidate_comparison_cache_key": [
+      "comparison_kind",
+      "comparator_identity",
+      "reference_png_sha256",
+      "candidate_png_sha256",
+      "canonical_all_keyword_inputs_sha256"
+    ],
+    "cache_invalidates_on_bound_input_change": true,
+    "failed_decode_or_comparison_cached": false,
+    "evidence_acceptance_rules_changed": false
+  },
+  "verification": {
+    "python_compile": "pass",
+    "pip_check": "pass",
+    "test_collection": {
+      "status": "pass",
+      "collected": 761,
+      "collection_errors": 0
+    },
+    "focused_validation_regression": {
+      "status": "pass",
+      "passed": 67,
+      "failed": 0,
+      "duration_seconds": 34.8
+    },
+    "reference_verifier_repeat_benchmark": {
+      "first_seconds": 47.213,
+      "repeat_seconds": 0.152,
+      "first_status": "pass",
+      "repeat_status": "pass"
+    },
+    "full_nonbrowser_collaboration_characterization": {
+      "passed": 733,
+      "failed": 23,
+      "deselected": 5,
+      "duration_seconds": 1774.67,
+      "new_failure_attributed_to_this_hardening": false,
+      "fully_green": false,
+      "known_failure_classes": [
+        "historical_contract_hash_drift_already_covered_by_validated_successor_or_dynamic_sbe_change",
+        "historical_preseal_and_direct_verifier_expectations_after_later_packet_progress",
+        "valid_execution_receipt_count_expectation_20_vs_current_21",
+        "cold_central_audit_timeout_120_seconds"
+      ]
+    },
+    "full_central_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "valid_execution_receipts": 21,
+      "completion_state": "incomplete"
+    }
+  },
+  "authority_bindings": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "packet_catalog_sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98",
+    "validation_ladder_sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915",
+    "completion_matrix_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "current_checkpoint_pointer_sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2",
+    "sbe_contract_audit_input_sha256": "sha256:4fbbf741aece1a5ee3ddd6e24479b3662dd76d04ed10566e642e300360ceedc7"
+  },
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1"
+  },
+  "claims": {
+    "historical_evidence_overwritten": false,
+    "external_system_mutated": false,
+    "target_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "full_regression_green_claimed": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:ac557a12997b14e42e5a6cde309444a4dc7fe79d7c65bc93f2390a6320199835"
+}

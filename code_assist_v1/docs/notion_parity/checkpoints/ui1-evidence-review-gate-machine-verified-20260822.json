@@ -1,0 +1,95 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T02:13:04.1727025+09:00",
+  "run_id": "ui24-evidence-review-gate-machine-verified-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-all-25-evidence-coverage-review-gate-20260822.json",
+    "sha256": "sha256:6b12e264c559ad6d6cd62e2116bc5f720e66ce04bbdfe697f7c2bcffe2cc5b04",
+    "semantic_status": "historical_human_readable_coverage_gate"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "Continue the Core Free desktop UI evidence, review, and implementation plan after UI-TREE-003 approval."
+  },
+  "slice": {
+    "id": "UI1-EVIDENCE-REVIEW-GATE-V1",
+    "status": "machine_verified_pending_owner_approval",
+    "promotion_allowed": false,
+    "completion_matrix_changed": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": 25,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "browser_mutation_executed": false,
+    "production_flag_changed": false,
+    "completion_matrix_mutated": false
+  },
+  "outputs": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:8ede08bad9abc5933ef3ad8667e0f2a78be9cc02085433f23989c9a8da2a5d36",
+      "size": 8148
+    },
+    {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_review_gate.py",
+      "sha256": "sha256:c3b4bd6021f8bbf2cb42246757f070831fe76c25250c8e2a18166d4ed2c29e52",
+      "size": 14257
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_review_gate.py",
+      "sha256": "sha256:931218bfdad5291cea8d118eb6fe5fd9c3a03c79e3ccbba17d9fdde749eeff43",
+      "size": 4018
+    }
+  ],
+  "verification": [
+    {
+      "selection": "review-gate verifier and completion-matrix unit suites",
+      "result": "11 passed in 5.75s",
+      "exit_code": 0
+    },
+    {
+      "selection": "python compilation for verifier and focused tests",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "selection": "verify_notion_core_free_ui_review_gate --compact",
+      "result": "pass; pending_owner_approval; counts 5/10/3/7",
+      "exit_code": 0
+    },
+    {
+      "selection": "verify_notion_core_free_ui_completion --compact",
+      "result": "pass; incomplete; differential_passed=5",
+      "exit_code": 0
+    }
+  ],
+  "verified_invariants": [
+    "all 25 required scenarios are categorized exactly once",
+    "the five certified scenarios equal the completion matrix differential-passed set",
+    "all 20 pending checkpoint files are repository-relative and SHA-256 bound",
+    "checkpoint scope scenario IDs match their review-gate entries",
+    "pending owner decisions cannot be forged into approval",
+    "the completion matrix remains unchanged and truthful"
+  ],
+  "counts": {
+    "certified": 5,
+    "reference_observed_review_pending": 10,
+    "local_integration_review_pending": 3,
+    "reference_partially_observed": 7
+  },
+  "claims": {
+    "review_gate_machine_verified": true,
+    "owner_approval_recorded": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "goal_should_remain_active": true
+  },
+  "next_exact_action": "Record only explicit owner approval for the ten reference-observed summaries and the three local-only Second Brain contracts, then create new immutable reviewed evidence packets and update the matrix through its existing fail-closed verifier."
+}

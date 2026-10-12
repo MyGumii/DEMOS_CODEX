@@ -1,0 +1,185 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T01:33:16+09:00",
+  "run_id": "ui-tree-002-reference-observed-review-pending-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-001-reference-differential-green-20260821.json",
+    "sha256": "sha256:0edecbe95ff9bc9d2cec96cf602614a658d996c2f69e5e330ab77cd8fa031ee5",
+    "semantic_status": "current_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "implement the adopted 25-scenario Core Free Web UI and Second Brain plan through reviewed reference and differential gates",
+    "observed_at": "2026-08-21T01:00:00+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-TREE-002",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "live_local_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "screenshot_count": 0,
+    "raw_dom_captured": false,
+    "network_payload_captured": false
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-TREE-002",
+    "status": "reference_probe_invalidated_by_redaction_boundary_local_alignment_green_clean_rerun_required",
+    "implemented_corrections": [
+      "open a page-type menu before creating a new top-level page",
+      "replace the local confirm-button move modal with a searchable immediate target picker",
+      "restore focus to the active page-menu trigger after a completed move",
+      "retain sibling reorder focus and fail-closed descendant-cycle refusal",
+      "bind four action-specific normalized local captures to the reference action IDs"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 3,
+    "differential_passed": 3,
+    "reference_observed_review_pending": 0,
+    "reference_clean_rerun_required": 1,
+    "promotion_allowed": 0,
+    "remaining_reference": 22,
+    "remaining_differential": 22,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    }
+  ],
+  "owned_outputs": [
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:791a3a1663aad171a4661365b8b0ca9f56ef61ac1526bca5b782fee3026997ba"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "sha256": "sha256:e63c557b1949df598ce8cd816e4c4f1a569a253473e67084c8b9d8a7d5da3217"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:5c5793940cefc93ab3b836ecb6726007dbb5aec5a40c3dbc2f70b3e277138c64"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_navigation_ui.js",
+      "sha256": "sha256:84c3260fb1cb2f775356af6bbbf8e12c8f4e09b1fd0af0410c555830d8cb3945"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:5324fe2a9a79d16377a72e1c5d81ca20ccce6366203db7be990d65e77921bbf9"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:51aa08705652ff8eeabc47fb3b50be6836625f07a9b45e5fff253cc5b9967b60"
+    }
+  ],
+  "reference_observation": {
+    "reviewed_redaction_summary": false,
+    "capture_count": 0,
+    "probe_capture_count": 4,
+    "action_ids": [
+      "UI-TREE-002-A03",
+      "UI-TREE-002-A07",
+      "UI-TREE-002-A08",
+      "UI-TREE-002-A09"
+    ],
+    "observed_contract": [
+      "new-page trigger opens a type menu and page-type activation creates the page",
+      "move-target activation commits immediately without a separate confirmation button",
+      "move completion restores page-menu focus",
+      "sibling reorder focuses the moved row",
+      "descendant-cycle drag is refused without changing tree order or active path"
+    ],
+    "manual_intake_state": "discarded_and_deleted_after_redaction_boundary_violation",
+    "reference_run_valid": false,
+    "non_synthetic_workspace_label_returned": true,
+    "personal_workspace_opened": false,
+    "personal_page_opened": false,
+    "official_reference_claim": false
+  },
+  "differential_preview": {
+    "policy_state": "precalibration",
+    "action_count": 4,
+    "difference_count": 0,
+    "all_actions_passed": true,
+    "official_differential_claim": false,
+    "reason": "the exploratory reference probe returned one non-synthetic workspace label and cannot be promoted"
+  },
+  "commands": [
+    {
+      "selection": "Core Free UI plan verifier",
+      "result": "13 passed in 3.76s",
+      "exit_code": 0
+    },
+    {
+      "selection": "isolated Chrome UI-TREE-002 reference-aligned journey",
+      "result": "1 passed in 24.51s",
+      "exit_code": 0
+    },
+    {
+      "selection": "four-action 1920x863 local-to-observed-reference preview",
+      "result": "4 actions passed; 0 differences",
+      "exit_code": 0
+    },
+    {
+      "selection": "six serial Node editor/UI/navigation/publication/atomic-save/CSRF contracts",
+      "result": "6 commands passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion routes, atomic-save compatibility, and publication adapter",
+      "result": "25 passed in 11.91s",
+      "exit_code": 0
+    },
+    {
+      "selection": "workspace routes, navigation routes, and workspace auth isolation",
+      "result": "41 passed in 43.55s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication restart and chat characterization regressions",
+      "result": "5 passed in 5.13s",
+      "exit_code": 0
+    },
+    {
+      "selection": "completion matrix verifier before reference promotion",
+      "result": "6 passed in 2.58s; truthful state remains 3 of 25",
+      "exit_code": 0
+    }
+  ],
+  "known_failures_resolved": [
+    "the initial semantic click opened the type menu but did not activate the page menu item; the action plan now records both visible actions",
+    "an accidental synthetic root-title edit was immediately restored with its child preserved before the official observation continued",
+    "the first drag landed inside the sibling; the page was moved back through the visible picker and the reviewed upper-edge sibling drop was repeated",
+    "the first Second Brain regression command used an incomplete path and ran zero tests; the corrected serial command passed five tests",
+    "a transient move-target inspection returned one non-synthetic workspace label without opening that workspace or any page; the reference run was invalidated and all temporary intake files were deleted"
+  ],
+  "claims": {
+    "fourth_reference_characterized": false,
+    "fourth_precalibration_differential_passed": false,
+    "local_reference_aligned": true,
+    "clean_reference_rerun_required": true,
+    "core_ui_complete": false,
+    "second_brain_complete": false,
+    "overall_goal_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_content_exposed": false,
+    "live_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "non_synthetic_label_returned": true,
+    "redaction_failure_invalidated_reference_run": true,
+    "protected_file_modified": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false
+  },
+  "next_exact_action": "Run UI-TREE-002 again from the retained synthetic fixture while returning only allowlisted synthetic and generic control facts, then obtain human approval, verify the manual intake, and update the matrix to 4 of 25."
+}

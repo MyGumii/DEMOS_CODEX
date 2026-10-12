@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0r_p1.lossless_exact_v3_manifest_compiler_ready.v1",
+  "checkpoint_id": "V0R-P1-LOSSLESS-EXACT-V3-MANIFEST-COMPILER-READY-20260830",
+  "recorded_at": "2026-08-30T18:14:01.5053459+09:00",
+  "status": "v3_manifest_compiler_ready_capture_surface_pending",
+  "summary": "A deterministic compiler now converts the minimal capture journal and the actual source-lossless PNG files into the immutable v3 ingest manifest. It derives scenario names, expected states, dimensions, source and screenshot hashes, direct-byte-copy assertions, transport facts, journal binding, and the canonical capture-set hash. The compiler runs both semantic-postcondition and lossless-ingest audits before exclusive creation, removing the need to hand-author 36 receipt rows.",
+  "implementation": {
+    "manifest_compiler": {
+      "path": "code_assist_v1/tools/compile_v0r_p1_lossless_exact_v3_manifest.py",
+      "sha256": "sha256:873d9203ac33837222a8ddfa22ff4266aca536664a687f9c07c79be30e3dfbb8",
+      "journal_contract": "code_assist.notion.v0r_p1.lossless_capture_journal.v1",
+      "output_contract": "code_assist.notion.v0r_p1.lossless_capture_ingest_manifest.v1",
+      "behavior": [
+        "requires exact V0R-P1 journal identity and timezone-aware journal time",
+        "requires a non-empty approved capture-surface label",
+        "requires exactly 18 states by two viewports",
+        "requires PNG return codec and direct source-byte write for every capture",
+        "requires verified-after-transition semantic status and capture-after-postcondition",
+        "requires timezone-aware captured_at and a semantic observation",
+        "derives expected_state from the frozen V0R execution contract",
+        "derives PNG filename, sha256, and decoded geometry from the evidence files",
+        "runs semantic and lossless-ingest audits before output",
+        "writes the final manifest with exclusive-create semantics"
+      ]
+    },
+    "test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_v0r_p1_lossless_exact_v3_manifest_compiler.py",
+      "sha256": "sha256:c4e8db302afc532d6e14f627bb2ffb0b6841682327a7fe08513b385bfc0bb5ce"
+    }
+  },
+  "verification": {
+    "focused_manifest_compiler_tests": {
+      "result": "5 passed in 1.28s",
+      "exit_code": 0
+    },
+    "integrated_compiler_v3_reference_and_v0b_regression": {
+      "result": "52 passed in 70.43s",
+      "exit_code": 0
+    },
+    "python_compile": {
+      "status": "pass",
+      "exit_code": 0
+    },
+    "negative_contract_proof": {
+      "jpeg_transport_declaration_rejected": true,
+      "missing_capture_denominator_rejected": true,
+      "PNG_geometry_drift_rejected": true,
+      "manifest_overwrite_rejected": true
+    },
+    "positive_contract_proof": {
+      "PNG_hashes_derived_from_actual_bytes": true,
+      "expected_states_derived_from_frozen_contract": true,
+      "source_and_screenshot_hash_identity_recorded": true,
+      "immutable_manifest_written": true
+    }
+  },
+  "lineage": {
+    "capture_time_binding_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-exact-v3-capture-time-binding-20260830.json",
+      "sha256": "sha256:38d6f66851dd24a7c6be9d49c37b8df841322456d5d323f7810f9e5db37bc152"
+    },
+    "v3_exact_sealer": {
+      "path": "code_assist_v1/tools/seal_v0r_p1_lossless_exact_v3_20260830.py",
+      "sha256": "sha256:93e5d099cd5134cd78d12ccd7e499a951ab9ad4102b7fbfe39f974559d19b99f"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "scope_attestation": {
+    "manifest_compiler_executed_on_real_capture": false,
+    "v3_sealer_executed": false,
+    "external_notion_mutation": false,
+    "external_notion_permission_change": false,
+    "reference_receipt_modified": false,
+    "reference_screenshot_modified": false,
+    "v3_ingest_manifest_created": false,
+    "v3_receipt_created": false,
+    "local_product_source_changed": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "approved_source_lossless_capture_surface": "pending",
+    "fresh_36_capture_journal_and_pngs": "pending",
+    "v3_manifest_compiler_execution": "not_run",
+    "v3_sealer_execution": "not_run",
+    "exact_pixel_36_of_36": "not_run",
+    "core_25": "not_run",
+    "performance": "not_run",
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "After explicit approval to switch from Chrome, record the minimal journal while capturing 36 source-lossless PNGs, compile the manifest, execute the v3 sealer, verify the new receipt, and only then run exact Full36."
+}

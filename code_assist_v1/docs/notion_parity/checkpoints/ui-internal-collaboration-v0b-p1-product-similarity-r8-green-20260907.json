@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-SIMILARITY-R8-GREEN-20260907",
+  "recorded_at": "2026-09-06T20:42:25.7444093Z",
+  "status": "v0b_p1_strict_similarity_core_performance_accessibility_gate_passed",
+  "packet_id": "V0B-P1",
+  "preflight": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-similarity-r8-preflight-20260907.json",
+    "immutable_source_binding_matched": true
+  },
+  "artifacts": {
+    "base_capture_receipt": {
+      "path": ".runtime/v0b-p1-product-similarity-r8-20260907/receipt.json",
+      "sha256": "sha256:af445dfd33cc0bf0cc3a24790c775a1ac55db053bae675a956d9d1153ee47b7a"
+    },
+    "final_receipt": {
+      "path": ".runtime/v0b-p1-product-similarity-r8-20260907/final-receipt.json",
+      "sha256": "sha256:460a7c09ae0d6b4686a6b14f0456ea0ce5ae84bc213dbc9364f3b752ce0d52a3",
+      "receipt_id": "V0B-P1-L6-FINAL-CANDIDATE-FRESH-55BCE6707ACF5D02"
+    },
+    "core_and_performance_checkpoint": {
+      "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-core25-perf-r7-observed-20260907.json",
+      "sha256": "sha256:fde4f0c90fc180b1ff62b645698ac662d8947041aed8b02b17a78c9842afae4a"
+    },
+    "visual_similarity_policy": {
+      "path": "docs/notion_parity/core_free_web_ui/internal_collaborative_v0b_p1_visual_similarity_policy.v1.json",
+      "file_sha256": "sha256:6adb6cca24c9e040d7429b37bb3f073d865b4618f328a81de0ace5f502288762",
+      "policy_sha256": "sha256:d5d1dbb890b8ca10f6dfc014a7eedeba67e1f7521783efde44273cac92356598",
+      "row_count": 36,
+      "required_regions_per_row": 3
+    }
+  },
+  "independent_final_verification": {
+    "contract": "code_assist.notion.internal_collaborative_v0b_p1.fresh_gate_audit.v1",
+    "status": "pass",
+    "error_count": 0,
+    "gate_passed": true,
+    "core_test_count": 21,
+    "performance_run_count": 2,
+    "visual_similarity_pass_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "product_complete": false
+  },
+  "visual_acceptance": {
+    "reference_transport_lossless_exact": true,
+    "candidate_exact_pixel_identity_required": false,
+    "candidate_exact_pixel_identity_observed": false,
+    "strict_visual_similarity_required": true,
+    "strict_visual_similarity_passed": true,
+    "mean_exact_diagnostic_differing_pixel_percent": 10.82566072021819,
+    "minimum_exact_diagnostic": {
+      "capture": "V0R-MU-018@1440x900",
+      "differing_pixel_percent": 4.78125
+    },
+    "maximum_exact_diagnostic": {
+      "capture": "V0R-MU-006@1280x800",
+      "differing_pixel_percent": 18.54384765625
+    },
+    "interpretation": "The immutable V0R reference remains losslessly exact. Product acceptance follows the user-approved strict similarity policy and requires every whole-frame and required-region metric to pass; exact identity remains a diagnostic only."
+  },
+  "functional_and_nonvisual_gates": {
+    "core_scenarios": {"passed": 25, "failed": 0},
+    "core_tests": {"passed": 21, "failed": 0},
+    "performance": {
+      "quiet_host_verified": true,
+      "consecutive_pass_count": 2,
+      "all_active_metrics_within_budget": true,
+      "limiting_metric": "search_open_ms",
+      "observed_p95_ms": 124.075,
+      "approved_budget_ms": 170.0
+    },
+    "accessibility_captures": {"passed": 36, "failed": 0}
+  },
+  "cleanup": {
+    "status": "complete",
+    "synthetic_only": true,
+    "active_test_grant_count": 0,
+    "active_test_member_count": 0,
+    "active_fixture_root_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "ports_10111_10112_10113_closed": true,
+    "runtime_root_preserved": true
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "PIX_001_closed_under_strict_similarity_policy": true,
+    "A11Y_001_closed": true,
+    "UI_CORE_25_closed": true,
+    "V0B_P1_gate_passed": true,
+    "zero_unmasked_RGBA_difference": false,
+    "production_changed": false,
+    "second_brain_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_exact_action": "Rebind the authoritative V0B packet, validation ladder, and completion matrix under their coordination rules, then proceed to O1B without rerunning this completed evidence unless a bound source changes.",
+  "goal_complete": false
+}

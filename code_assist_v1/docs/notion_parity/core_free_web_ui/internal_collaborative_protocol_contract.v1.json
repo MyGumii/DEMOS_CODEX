@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_protocol_contract.v1",
+  "contract_id": "T0A-P1-COLLABORATION-PROTOCOL-001",
+  "recorded_at": "2026-08-23T08:56:45Z",
+  "packet_id": "T0A-P1",
+  "status": "frozen_disposable_protocol_contract",
+  "authority_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+      "sha256": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+      "sha256": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_authority_adr.v1.json",
+      "sha256": "sha256:0dfa4ad9fd30a8daf50d42e9fe60ea0126928a2f4a73c8a51d7b518d28c439c2"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_corpus.v1.json",
+      "sha256": "sha256:9be012b8150b3db48c66f743369a2b9905e234582056e28e427d77f311fca8b2"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p1-candidate-corpus-20260823.json",
+      "sha256": "sha256:739f9d99736f39860796b638a7ca8c774e15775d721ad2551f9adc87aeec4b06"
+    }
+  ],
+  "trust_boundaries": {
+    "notion_host": "Authenticates the Second Brain subject, validates CSRF, resolves the canonical Notion workspace/page authority, and issues one ticket.",
+    "collaboration_gateway": "Consumes one ticket and transports only versioned envelopes; a Flask cookie is never gateway authorization.",
+    "canonical_authority": "Owns current membership, page role, workspace/page epochs, accepted operations, per-document event sequence, audit, and outbox.",
+    "client": "Owns an untrusted client identifier and operation identifiers; it cannot assert roles, capabilities, epochs, or durable sequence.",
+    "second_brain": "Shares authenticated subject identity only. Notion revisions, events, and authorization remain independent from immutable SBE publication revisions."
+  },
+  "threat_model": {
+    "protected_assets": [
+      "page_content",
+      "page_and_workspace_identifiers",
+      "membership_and_role_state",
+      "durable_collaboration_events",
+      "comments_notifications_and_unpublished_previews",
+      "live_notion_attachment_access"
+    ],
+    "threats": [
+      {
+        "id": "TICKET-CSRF",
+        "attack": "Cross-site ticket issuance through an authenticated browser.",
+        "control": "Issue only after the Notion host validates the authenticated session and CSRF token."
+      },
+      {
+        "id": "TICKET-THEFT",
+        "attack": "A ticket is copied to another origin, subject, workspace, page, client, or session.",
+        "control": "Bind every claim and require exact comparison during atomic one-time consumption."
+      },
+      {
+        "id": "TICKET-REPLAY",
+        "attack": "A consumed or expired ticket is reused.",
+        "control": "Persist only its SHA-256 digest, burn a recognized ticket on its first consume attempt, and use one non-oracle rejection."
+      },
+      {
+        "id": "PAYLOAD-TAMPER",
+        "attack": "Envelope metadata or payload is modified in transit or during queueing.",
+        "control": "Validate the protocol version, exact binding, capability, byte length, and SHA-256 payload digest before admission."
+      },
+      {
+        "id": "OPERATION-DUPLICATE",
+        "attack": "Lost responses and retries apply one logical operation more than once.",
+        "control": "Deduplicate by subject, page, and caller operation ID; same request hash returns the original ACK and a different hash conflicts."
+      },
+      {
+        "id": "ORDER-GAP",
+        "attack": "Out-of-order or skipped client sequence changes durable order.",
+        "control": "Accept only the next client sequence and allocate the document event sequence on durable commit."
+      },
+      {
+        "id": "STALE-AUTHORIZATION",
+        "attack": "Queued writes or replay deliver after membership or page permission changes.",
+        "control": "Bind workspace/page epochs and revalidate current authority at admission, replay, and immediately before protected send."
+      }
+    ],
+    "non_oracle_rejection": "Unknown, malformed, expired, reused, wrong-origin, wrong-binding, and stale-epoch tickets all return collaboration ticket rejected without protected identifiers or claims."
+  },
+  "ticket_contract": {
+    "protocol_version": 1,
+    "issuer": "authenticated_notion_host_after_csrf",
+    "consumer": "dedicated_collaboration_gateway",
+    "entropy_bits_minimum": 256,
+    "maximum_ttl_ms": 30000,
+    "clock_rule": "issued_at_ms <= now_ms < expires_at_ms",
+    "stored_secret_material": "sha256_digest_only",
+    "recognized_failure_consumes_ticket": true,
+    "required_bindings": [
+      "jti",
+      "subject_id",
+      "workspace_id",
+      "page_id",
+      "client_id",
+      "session_binding_sha256",
+      "origin",
+      "capabilities",
+      "workspace_epoch",
+      "page_epoch",
+      "issued_at_ms",
+      "expires_at_ms"
+    ],
+    "allowed_capabilities": [
+      "comment",
+      "presence",
+      "read",
+      "write"
+    ],
+    "flask_cookie_is_gateway_authorization": false,
+    "plaintext_ticket_persisted": false,
+    "consume_is_atomic": true
+  },
+  "envelope_contract": {
+    "protocol_version": 1,
+    "payload_hash": "sha256_of_exact_payload_bytes",
+    "maximum_payload_bytes": 1048576,
+    "required_fields": [
+      "protocol_version",
+      "message_type",
+      "subject_id",
+      "workspace_id",
+      "page_id",
+      "client_id",
+      "session_binding_sha256",
+      "capabilities",
+      "workspace_epoch",
+      "page_epoch",
+      "operation_id",
+      "client_sequence",
+      "acknowledgement_sequence",
+      "payload_encoding",
+      "payload_length",
+      "payload_sha256",
+      "payload"
+    ],
+    "message_capabilities": {
+      "ack": "read",
+      "comment.create": "comment",
+      "crdt.update": "write",
+      "presence.update": "presence",
+      "replay.request": "read",
+      "typed.command": "write"
+    },
+    "validation_rule": "Reject unknown versions/types, non-granted capabilities, binding drift, stale epochs, oversized payloads, byte-length drift, and payload hash drift before admission.",
+    "raw_cookie_field_allowed": false
+  },
+  "sequence_ack_replay_contract": {
+    "identity_dimensions": [
+      "client_operation_id",
+      "per_document_event_sequence",
+      "crdt_update_generation",
+      "checkpoint_snapshot_id",
+      "document_revision",
+      "second_brain_publication_revision"
+    ],
+    "client_sequence_starts_at": 1,
+    "client_sequence_rule": "Exactly next per subject/page/client/session binding; gaps, unknown repeats, and sequence reuse fail closed.",
+    "document_sequence_starts_at": 1,
+    "document_sequence_rule": "Canonical authority allocates one monotonically increasing value only when the event becomes durable.",
+    "deduplication_key": [
+      "subject_id",
+      "page_id",
+      "operation_id"
+    ],
+    "same_operation_same_request": "Return the original acknowledgement without another event or sequence allocation after current authorization revalidation.",
+    "same_operation_different_request": "operation_conflict",
+    "commit_before_ack": true,
+    "client_acknowledgement_rule": "A client may acknowledge only a document sequence at or below the current durable high-water mark.",
+    "replay_cursor": "exclusive_after_document_sequence",
+    "replay_order": "strictly_ascending_document_sequence",
+    "replay_batch_is_bounded": true,
+    "compacted_cursor_result": "bounded_canonical_snapshot_required_after_T0A_P3_binding",
+    "send_time_epoch_revalidation": true
+  },
+  "prototype_boundary": {
+    "implementation": "standard_library_in_memory_disposable_contract_model",
+    "network_listener_started": false,
+    "dependency_downloaded_or_installed": false,
+    "production_lockfile_modified": false,
+    "production_runtime_imported": false,
+    "schema_migration_allocated": false,
+    "live_data_identity_or_browser_profile_accessed": false,
+    "production_service_port_or_data_root_changed": false,
+    "gateway_transport_implemented": false,
+    "durable_database_implemented": false,
+    "selected_crdt_runtime_bound": false
+  },
+  "claims": {
+    "ticket_threat_model_frozen": true,
+    "ticket_binding_contract_executable": true,
+    "versioned_envelope_contract_executable": true,
+    "sequence_ack_replay_contract_executable": true,
+    "actual_gateway_transport_implemented": false,
+    "actual_durable_event_store_implemented": false,
+    "candidate_winner_selected": false,
+    "production_runtime_implemented": false,
+    "product_complete": false
+  }
+}

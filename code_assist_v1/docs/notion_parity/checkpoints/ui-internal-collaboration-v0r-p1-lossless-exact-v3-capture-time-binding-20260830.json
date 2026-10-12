@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0r_p1.lossless_exact_v3_capture_time_binding.v1",
+  "checkpoint_id": "V0R-P1-LOSSLESS-EXACT-V3-CAPTURE-TIME-BINDING-20260830",
+  "recorded_at": "2026-08-30T18:09:07.4774706+09:00",
+  "status": "v3_capture_provenance_ready_surface_pending",
+  "summary": "The prepared v3 sealer now binds each receipt capture to the actual captured_at timestamp and semantic observation from the hash-bound lossless manifest instead of inheriting mask-review seal time. It requires an explicit capture surface, timezone-aware capture timestamps, non-empty state observations, verified-after-transition status, and capture-after-postcondition for all 36 rows. Its output-path test now verifies non-aliasing rather than temporary file absence, so the suite remains valid after legitimate v3 artifacts are created.",
+  "implementation": {
+    "v3_exact_sealer": {
+      "path": "code_assist_v1/tools/seal_v0r_p1_lossless_exact_v3_20260830.py",
+      "sha256": "sha256:93e5d099cd5134cd78d12ccd7e499a951ab9ad4102b7fbfe39f974559d19b99f",
+      "capture_manifest_requirements": [
+        "non-empty capture_surface",
+        "timezone-aware captured_at for every state and viewport",
+        "non-empty semantic_observation for every state and viewport",
+        "semantic_postcondition_status equals verified_after_transition",
+        "capture_after_postcondition is true",
+        "expected_state matches the frozen V0R execution manifest"
+      ],
+      "receipt_bindings": [
+        "run.started_at equals the earliest manifest capture time",
+        "run.capture_ended_at equals the latest manifest capture time",
+        "capture.captured_at comes from its exact manifest row",
+        "capture.capture_timestamp_basis equals source_lossless_capture_manifest",
+        "capture semantic postcondition fields come from the manifest",
+        "interaction outcome expected state and observation come from the manifest"
+      ]
+    },
+    "test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_v0r_p1_lossless_exact_v3_sealer.py",
+      "sha256": "sha256:a2810b853dffaf5458d68824fc8530ae57d197462de2b52be775dc6c6e151686",
+      "post_output_stability": "tests assert path non-aliasing and remain valid after legitimate output creation"
+    }
+  },
+  "verification": {
+    "integrated_v3_reference_and_v0b_regression": {
+      "result": "47 passed in 69.37s",
+      "exit_code": 0
+    },
+    "python_compile": {
+      "status": "pass",
+      "exit_code": 0
+    },
+    "negative_contract_proof": {
+      "missing_or_invalid_capture_time_rejected": true,
+      "missing_semantic_observation_rejected": true,
+      "pretransition_V0R_MU_004_rejected": true,
+      "pretransition_V0R_MU_006_rejected": true
+    },
+    "positive_contract_proof": {
+      "capture_time_bound_into_receipt": true,
+      "semantic_observation_bound_into_receipt": true,
+      "run_capture_interval_derived_from_manifest": true
+    },
+    "planned_v3_outputs_currently_absent": true
+  },
+  "lineage": {
+    "v3_sealer_ready_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-exact-v3-sealer-ready-20260830.json",
+      "sha256": "sha256:4ebd6b3710eb96b628e05b3f9160a527fa278fede6b97d8944007f2f9e2d1142"
+    },
+    "v2_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+      "sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "scope_attestation": {
+    "v3_sealer_executed": false,
+    "external_notion_mutation": false,
+    "external_notion_permission_change": false,
+    "reference_receipt_modified": false,
+    "reference_screenshot_modified": false,
+    "v3_receipt_created": false,
+    "v3_ingest_manifest_created": false,
+    "v3_ingest_audit_created": false,
+    "local_product_source_changed": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "approved_source_lossless_capture_surface": "pending",
+    "fresh_36_capture_ingest_manifest_and_pngs": "pending",
+    "v3_sealer_execution": "not_run",
+    "exact_pixel_36_of_36": "not_run",
+    "core_25": "not_run",
+    "performance": "not_run",
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "After explicit approval to switch from Chrome, capture the 36 source-lossless PNGs and timestamped semantic manifest, execute the prepared v3 sealer, verify the new immutable receipt, and only then run exact Full36."
+}

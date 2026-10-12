@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.protected_root_before_after_hash_proof.v1",
+  "receipt_id": "D0B-P1-PROTECTED-ROOT-BEFORE-AFTER-20260824",
+  "status": "pass",
+  "before_observed_at": "2026-08-24T13:06:58Z",
+  "after_observed_at": "2026-08-24T13:16:10Z",
+  "roots": [
+    {
+      "root_locator_sha256": "sha256:0a623969966593a0bf07bec4c818f0c88ec229f4ef2e5edb1c36c8a1626e30b4",
+      "file_count_before": 10,
+      "file_count_after": 10,
+      "total_bytes_before": 2425894,
+      "total_bytes_after": 2425894,
+      "tree_sha256_before": "sha256:8f7ac262c702ebfc5bbd43f61ffa558beeba9aac71167ca427fd95441e35cfdc",
+      "tree_sha256_after": "sha256:8f7ac262c702ebfc5bbd43f61ffa558beeba9aac71167ca427fd95441e35cfdc"
+    },
+    {
+      "root_locator_sha256": "sha256:4619eb42f29930479d702cee3ba74ef8ce486304736709f6b3c46900429b9de1",
+      "file_count_before": 105,
+      "file_count_after": 105,
+      "total_bytes_before": 6351197,
+      "total_bytes_after": 6351197,
+      "tree_sha256_before": "sha256:726a9378734fd3641fe0c53c76376317b6b528637fc8cf27f5ace9adb01e852f",
+      "tree_sha256_after": "sha256:726a9378734fd3641fe0c53c76376317b6b528637fc8cf27f5ace9adb01e852f"
+    },
+    {
+      "root_locator_sha256": "sha256:b93aecf5d3a317dfc3e679dad54b3483232e9e42e0a80674f7275f9e9fa9e6c5",
+      "file_count_before": 845,
+      "file_count_after": 845,
+      "total_bytes_before": 40376171,
+      "total_bytes_after": 40376171,
+      "tree_sha256_before": "sha256:4df79d589773683983d48166f95c9bb1451500f070123755f09132d996974de1",
+      "tree_sha256_after": "sha256:4df79d589773683983d48166f95c9bb1451500f070123755f09132d996974de1"
+    },
+    {
+      "root_locator_sha256": "sha256:0cbd663aa9c5421d591418bb1cc8c8bb3691f3c71ee963c6ef30b64a21badb1e",
+      "file_count_before": 955,
+      "file_count_after": 955,
+      "total_bytes_before": 49106077,
+      "total_bytes_after": 49106077,
+      "tree_sha256_before": "sha256:85d25e09088a04b75ce5a834c96b41ac08f1d5baa32c591e8947360c34909b31",
+      "tree_sha256_after": "sha256:85d25e09088a04b75ce5a834c96b41ac08f1d5baa32c591e8947360c34909b31"
+    }
+  ],
+  "production_ports": {
+    "10011_before": "not_listening",
+    "10011_after": "not_listening",
+    "10012_before": "not_listening",
+    "10012_after": "not_listening"
+  },
+  "development_ports_after": {
+    "10111": "listening_owned",
+    "10112": "listening_owned",
+    "10113": "listening_owned"
+  },
+  "all_protected_tree_hashes_equal": true,
+  "file_names_or_contents_recorded": false,
+  "protected_root_mutation_detected": false
+}

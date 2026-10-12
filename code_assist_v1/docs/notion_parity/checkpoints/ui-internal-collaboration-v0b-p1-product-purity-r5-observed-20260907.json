@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-PURITY-R5-OBSERVED-20260907",
+  "recorded_at": "2026-09-07T03:57:00+09:00",
+  "status": "fresh_unmodified_product_baseline_verified_diagnostic",
+  "packet_id": "V0B-P1",
+  "preflight": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-purity-r5-preflight-20260907.json",
+    "preserved_without_overwrite": true
+  },
+  "supersedes_diagnostic_claims": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-baseline-r1-observed-20260907.json",
+    "reason": "R1 did not bind transitive journey code and contained capture-only visual mutations",
+    "historical_artifacts_preserved": true
+  },
+  "runtime": {
+    "root": "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113-product-purity-r5-20260907",
+    "launch_id": "616427a84ba8465f890319ea8c8ea993",
+    "root_id": "0a7598c0-ad20-4964-9240-cfced776d71b",
+    "root_marker_sha256": "sha256:17df2eef43970528252a71f776a37b31dfc8b031e55c45f2ebcd2c35e12d6de4",
+    "run_marker_sha256": "sha256:97ae30716a0ae12039d5ed6ca4ff5a861dd3ae53451bcc2bc9e289ec929becb9",
+    "approved_identity_ids": ["admin", "user01"],
+    "new_signing_secret": true,
+    "existing_signing_secret_copied": false,
+    "personal_content_imported": false,
+    "production_port_or_root_mutated": false,
+    "cleanup": {"owned_gateway_processes_stopped": true, "owned_host_processes_stopped": true, "owned_ports_closed": true, "ports": [10111, 10112, 10113], "runtime_root_preserved": true}
+  },
+  "artifacts": {
+    "receipt_path": ".runtime/v0b-p1-product-purity-r5-20260907/receipt.json",
+    "receipt_sha256": "sha256:5634db45d4371894503e255186fd11866dad843da9c739e1eb0525c992e6a25b",
+    "candidate_root": ".runtime/v0b-p1-product-purity-r5-20260907/candidates",
+    "candidate_count": 36,
+    "candidate_bytes": 943556,
+    "diff_root": ".runtime/v0b-p1-product-purity-r5-20260907/diffs",
+    "diff_count": 36,
+    "diff_bytes": 914374,
+    "create_only_receipt": true,
+    "immutable_release_receipt": false
+  },
+  "capture_integrity": {
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "capture_pipeline_contract": "code_assist.notion.internal_collaborative_v0b_p1.product_capture.v2",
+    "transitive_capture_source_files_bound": 6,
+    "runtime_purity_guard_pass_count": 36,
+    "capture_only_visual_mutation": false,
+    "reference_pixels_available_to_page": false,
+    "post_capture_reference_matte": false,
+    "actual_keyboard_focus_navigation_pass_count": 36,
+    "accessibility_pass_count": 36,
+    "component_journey_pass_count": 4,
+    "component_cleanup_verified": true,
+    "inbox_and_reconnect_candidate_images_distinct_at_both_viewports": true
+  },
+  "visual_baseline": {
+    "exact_pixel_pass_count": 0,
+    "total_differing_pixel_count": 4307447,
+    "mean_differing_pixel_percent": 10.425,
+    "median_differing_pixel_percent": 10.669,
+    "minimum_differing_pixel_percent": {"state_id": "V0R-MU-018", "viewport": "1440x900", "percent": 3.582},
+    "maximum_differing_pixel_percent": {"state_id": "V0R-MU-006", "viewport": "1280x800", "percent": 17.801},
+    "interpretation": "This is the first trustworthy unmodified-product visual baseline. Exact 1:1 remains intentionally unmet; reusable structural and visual gaps remain to be corrected before a similarity contract can close PIX-001."
+  },
+  "independent_verifier": {
+    "status": "fail_expected_for_incomplete_V0B",
+    "error_count": 39,
+    "error_groups": {"EXACT_PIXEL_GATE": 36, "CORE_25_GATE": 1, "PERFORMANCE_GATE": 1, "CLAIMS_GATE": 1},
+    "unexpected_error_count": 0,
+    "run_boundary_error_count": 0,
+    "capture_provenance_error_count": 0,
+    "accessibility_error_count": 0,
+    "interaction_or_redaction_error_count": 0,
+    "cleanup_error_count": 0,
+    "gate_passed": false
+  },
+  "scope_guard": {
+    "V0B_P1_gate_passed": false,
+    "O1B_started": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Use R5 as the immutable clean baseline; implement the high-coverage real product UI clusters (share/member, inbox, comments, guest locale/capability, presence/responsive), then rerun fresh Core-25, product screenshots, and quiet-host performance without weakening functional gates."
+}

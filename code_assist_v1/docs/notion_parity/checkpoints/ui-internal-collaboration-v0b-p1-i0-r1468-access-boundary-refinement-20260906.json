@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1468-ACCESS-BOUNDARY-REFINEMENT-20260906",
+  "recorded_at": "2026-09-06T04:44:16.3573275+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1458-fresh-reproduction-20260906.json",
+    "sha256": "sha256:8cf980754a1e74cc82126c702ea6cb8285005ff9e4cd43176e8aedbbff794d72",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 769980
+  },
+  "refinement": {
+    "scope": [
+      "V0R-MU-017",
+      "V0R-MU-018"
+    ],
+    "changes": [
+      {
+        "target": "access boundary Notion brand text",
+        "setting": "translateY(-1px) scale(.97)",
+        "stable_difference_reduction": 352,
+        "regional_exact_matches": 4
+      },
+      {
+        "target": "access boundary Notion cube",
+        "setting": "scale(.985, .99)",
+        "stable_difference_reduction": 24
+      },
+      {
+        "target": "access boundary workspace icon",
+        "setting": "border-radius: 3.75px",
+        "stable_difference_reduction": 32
+      },
+      {
+        "target": "access boundary help control",
+        "setting": "first shadow 0 1.5px 1.5px rgba(15,15,15,.03)",
+        "stable_difference_reduction": 248
+      },
+      {
+        "target": "access boundary description",
+        "setting": "remove synthetic text stroke",
+        "stable_difference_reduction": 148
+      }
+    ],
+    "stable_difference_reduction": 804,
+    "overall_exact_progress": "0/36"
+  },
+  "reproduction": {
+    "run_id": "v0b-p1-i0-r1468-access-boundary-fine-receipt",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1468-access-boundary-fine-receipt/diagnostic.json",
+    "diagnostic_sha256": "sha256:dc29f573e2dbf792c948a7db7b78e2dee25ba70d06fdc167b99d4c289253b417",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 769167,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 769176,
+    "normalization": {
+      "V0R-MU-004__1440x900": {
+        "observed_low": 44160,
+        "observed_high": 44169,
+        "stable_value": 44169
+      }
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "capture_source": {
+    "path": "notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:bdea5d87079a01f7e84b8e60e575f959fa52068c15b457b02395876024e2131a",
+    "python_compile_pass": true
+  },
+  "fresh_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1457-20260906",
+    "launch_id": "57bee8e772c74c2ca23eb2d8be49341b",
+    "root_id": "6c06432c-2f10-4de9-b923-093a23985fec",
+    "manager_session_id": 86671,
+    "current_audit": {
+      "workspace_count": 24,
+      "reference_workspace_count": 22,
+      "active_membership_count": 24,
+      "active_page_binding_count": 22,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue exact residual reduction from the stable normalized total of 769176. Do not run final gates before exact parity reaches 36/36."
+}

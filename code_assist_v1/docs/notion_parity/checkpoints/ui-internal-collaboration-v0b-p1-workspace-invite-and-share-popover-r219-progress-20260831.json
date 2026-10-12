@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-WORKSPACE-INVITE-AND-SHARE-POPOVER-R219-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T09:10:39.8339829+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r219 Chrome 153 full candidate captures all 18 named states at both adopted viewports, passes all 36 accessibility captures, and completes synthetic cleanup. State-bounded workspace-invite and page-share presentation corrections reduce the full unmasked and raw difference by 75,585 pixels from r201. Exact RGBA remains 0/36, so r219 is a mutable progress candidate only and is not an immutable V0B receipt, phase-gate claim, or product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "comparison_candidates": {
+      "r189_receipt": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r189/receipt.json",
+      "r189_sha256": "sha256:01040305e242e12b7ed1ce02eae549b8975d537dae69055791962d04aab5ddee",
+      "r189_unmasked_difference_count": 2476763,
+      "r189_raw_difference_count": 2611687,
+      "r201_receipt": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r201/receipt.json",
+      "r201_sha256": "sha256:354cf1da8c462c574de971ae86a8fa05eb01db4ff186efd7dbbb185734f58670",
+      "r201_unmasked_difference_count": 2473374,
+      "r201_raw_difference_count": 2546138
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:f883699adda5aebfe9e911ee255d5ee5d5339ea901bf59ed0599c86765d047cd",
+        "changes": [
+          "align the V0R-MU-001 workspace-invite footer, active Home control, and inactive teamspace header",
+          "keep the V0R-MU-004 page popover 69 pixels from the right edge at both viewports and use the reference owner and guest presentation at both widths",
+          "align the V0R-MU-004 reference page icon, title, editor group, teamspace header, and shared-page row independently at 1440 by 900 and 1280 by 800",
+          "align the V0R-MU-006 privacy bars, inactive invite field, access roles, and workspace source icon",
+          "retain the r201 V0R-MU-017 and V0R-MU-018 access-boundary corrections"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:b9fd7185d0b81d5c5b3faff110125bc1595f3d4147e98c3ccd5e9c592b3bc4c3",
+        "changes": [
+          "restore the persisted REF-FREE-B starter presentation before the V0R-MU-004 capture while preserving the direct edit-access journey and the later role transitions"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:78bbea83778d201e90f24929cac74fe942c8666adf439bc8008e58fe5d64e471"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:0c4f48c3b952ac65755c884dbd7d70089a38b98002eb654b74fc669131560901"
+      }
+    ],
+    "rejected_experiments_removed": [
+      "V0R-MU-001 page-view width and margin override from isolated r202",
+      "V0R-MU-001 bulk sidebar unhide from isolated r203",
+      "V0R-MU-001 uncorrected default footer from isolated r204",
+      "V0R-MU-001 default active-color Home control from isolated r208",
+      "V0R-MU-004 compact aliases without the compact popover-position correction from isolated r210",
+      "V0R-MU-004 restored starter page without geometry correction from isolated r212",
+      "V0R-MU-004 18 pixel lower-shadow offset from isolated r215",
+      "V0R-MU-006 two-layer dialog shadow from isolated r216",
+      "V0R-MU-006 synthetic seven-row inbox presentation from isolated r218"
+    ]
+  },
+  "retained_r219_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r219",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r219/receipt.json",
+    "receipt_sha256": "sha256:630c692134ad2a80b23d8f83ef38d8758739667b53eba3f02433476d78f5b691",
+    "release_candidate_source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "runtime_candidate_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 359359,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2397789,
+    "raw_difference_count": 2470553,
+    "masked_difference_count": 72764,
+    "unmasked_delta_from_r189": -78974,
+    "raw_delta_from_r189": -141134,
+    "unmasked_delta_from_r201": -75585,
+    "raw_delta_from_r201": -75585,
+    "changed_state_deltas_from_r201": {
+      "V0R-MU-001": -18466,
+      "V0R-MU-004": -52574,
+      "V0R-MU-006": -4534
+    },
+    "retained_state_totals": {
+      "V0R-MU-001": {"1440": 121025, "1280": 98932, "total": 219957},
+      "V0R-MU-004": {"1440": 68709, "1280": 58116, "total": 126825},
+      "V0R-MU-006": {"1440": 101010, "1280": 90438, "total": 191448},
+      "V0R-MU-017": {"1440": 35043, "1280": 58996, "total": 94039},
+      "V0R-MU-018": {"1440": 34974, "1280": 58927, "total": 93901}
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:42ea5b1e37f4b4ac96dee76735cae91a7fc6a8802b3209368bc81a04c719ed70"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "working_directory": "workspace_root",
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "14 passed in 10.94s",
+      "exit_code": 0
+    }
+  },
+  "scope_attestation": {
+    "local_product_source_changed": false,
+    "local_capture_harness_changed": true,
+    "external_reference_receipt_modified": false,
+    "external_reference_screenshot_modified": false,
+    "personal_workspace_or_page_used": false,
+    "cookie_local_storage_profile_or_password_inspected": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "exact_pixel_36_of_36": "0_of_36",
+    "remaining_unmasked_difference_count": 2397789,
+    "core_25_final_rerun": "not_run",
+    "ui_performance_final_rerun": "not_run",
+    "V0B_P1_gate_passed": false,
+    "later_packets": ["O1B", "Q0", "R0", "R1", "Z0"],
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue exact-RGBA convergence from the retained r219 source and candidate. Prefer the largest remaining state-bounded regions, validate each correction in an isolated journey, and do not promote r219 to immutable evidence or mark any later gate complete."
+}

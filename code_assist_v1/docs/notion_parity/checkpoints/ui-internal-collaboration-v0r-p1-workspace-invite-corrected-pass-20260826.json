@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-WORKSPACE-INVITE-CORRECTED-PASS-20260826",
+  "recorded_at": "2026-08-26T14:57:04+09:00",
+  "checkpoint_kind": "corrective_revoke_clean_rebind_and_workspace_invite_pass",
+  "packet_id": "V0R-P1",
+  "packet_status": "execution_in_progress_awaiting_page_share_confirmation",
+  "purpose": "Record the completed recovery from the fail-closed identity mismatch and the successful V0R-WORKSPACE-INVITE result. The unintended non-target workspace-owner grant was removed, REF-FREE-A returned to one owner, the account identifier shown by the authenticated collaborator Chrome context was rebound directly, and only that exact account was then added as a temporary REF-FREE-A workspace owner. Owner membership and collaborator workspace visibility now agree. The next permission-changing action remains unstarted pending fresh action-time confirmation.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-workspace-invite-corrected-pass-20260826.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-002__1440x900.png",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-002__1280x800.png",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-003__1440x900.png",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-003__1280x800.png"
+  ],
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-invite-identity-mismatch-stop-20260826.json",
+    "sha256": "sha256:afc9b97cb9610b871db7bc60e65646d465c0fbf2ad1c738324d94a8d118b3ae1"
+  },
+  "corrective_confirmation": {
+    "exact_user_text": "오초대 권한 회수 및 정확한 재초대 승인",
+    "unintended_grant_revoke_confirmed": true,
+    "authenticated_collaborator_temporary_owner_reinvite_confirmed": true,
+    "reference_cleanup_contract_still_requires_final_external_Notion_revoke": true,
+    "product_requirement_persistent_inherited_permission_preserved": true
+  },
+  "corrective_execution": {
+    "unintended_non_target_workspace_owner_removed": true,
+    "post_revoke_owner_member_count": 1,
+    "unintended_non_target_identity_remaining_count": 0,
+    "authenticated_collaborator_identifier_rebound_from_live_account_switcher": true,
+    "raw_identifier_persisted": false,
+    "correct_collaborator_invited_as_temporary_workspace_owner": true,
+    "post_reinvite_owner_member_count": 2,
+    "collaborator_context_exact_REF_FREE_A_workspace_count": 1,
+    "wrong_identity_remaining_in_REF_FREE_A": false
+  },
+  "fixture_correction": {
+    "V0R_A_ROOT_title": "V0R-A-ROOT",
+    "V0R_A_DB_title": "V0R-A-DB",
+    "V0R_A_DB_row": "V0R-A-ROW-BASE",
+    "V0R_A_TEXT_marker": "V0R-A-TEXT-BASE",
+    "V0R_A_BLOCK_marker": "V0R-A-BLOCK-BASE",
+    "status": "verified_after_corrective_reinvite"
+  },
+  "operator_action_result": {
+    "order": 4,
+    "action_id": "V0R-WORKSPACE-INVITE",
+    "workspace": "REF-FREE-A",
+    "actor": "REF-OWNER",
+    "required_result": "REF-COLLABORATOR_active_workspace_member",
+    "effective_test_role": "temporary_workspace_owner_user_approved",
+    "status": "passed_after_corrective_revoke_and_rebind",
+    "required_result_satisfied": true
+  },
+  "capture_states": [
+    {
+      "state_id": "V0R-MU-001",
+      "status": "captured",
+      "privacy_mode": "raw_identifier_never_entered_before_capture"
+    },
+    {
+      "state_id": "V0R-MU-002",
+      "status": "captured",
+      "privacy_mode": "deterministic_rectangular_redaction_of_identity_column_and_non_synthetic_sidebar",
+      "raw_source_location": "temporary_root_only",
+      "raw_source_deleted": true,
+      "redacted_derivative_only_in_repository": true
+    },
+    {
+      "state_id": "V0R-MU-003",
+      "status": "captured",
+      "privacy_mode": "synthetic_alias_and_generic_workspace_shell_only"
+    }
+  ],
+  "screenshots": [
+    {
+      "state_id": "V0R-MU-001",
+      "viewport": "1440x900",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-001__1440x900.png",
+      "sha256": "sha256:8a75442c39b192dd198b599797780b1fac0d7913521dd7b8ea23164f7d5bb1b0"
+    },
+    {
+      "state_id": "V0R-MU-001",
+      "viewport": "1280x800",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-001__1280x800.png",
+      "sha256": "sha256:653c8b3505aa3797212a54b69ca32cd4946b2a98ec7ba43e39378eab0cb370e1"
+    },
+    {
+      "state_id": "V0R-MU-002",
+      "viewport": "1440x900",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-002__1440x900.png",
+      "sha256": "sha256:9a831f12c10532942343d256a9fc114f45fe337825dc259cafc365ba40146b56"
+    },
+    {
+      "state_id": "V0R-MU-002",
+      "viewport": "1280x800",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-002__1280x800.png",
+      "sha256": "sha256:7ff241dc4cf32dec0ceb7dd9e5153d15b16f7d853a168075b1b0377c17641571"
+    },
+    {
+      "state_id": "V0R-MU-003",
+      "viewport": "1440x900",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-003__1440x900.png",
+      "sha256": "sha256:1eb7a79815bee9822243791a0a674ae963378bb78fc4b5b107383245453cafcc"
+    },
+    {
+      "state_id": "V0R-MU-003",
+      "viewport": "1280x800",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-003__1280x800.png",
+      "sha256": "sha256:efdb9eeefb072178170506ae5cabf2a74486459d64552f370ea12e8bcca9aa46"
+    }
+  ],
+  "evidence_denominator": {
+    "screenshot_file_count": 6,
+    "expected_screenshot_count": 36,
+    "completed_capture_state_count": 3,
+    "completed_action_count": 4,
+    "cleanup_required_now": true
+  },
+  "scope_attestation": {
+    "workspace_invitation_sent_to_correct_test_identity": true,
+    "temporary_workspace_owner_granted_to_correct_test_identity": true,
+    "unintended_owner_grant_fully_revoked": true,
+    "paid_upgrade_or_purchase_executed": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_or_non_synthetic_workspace_label_persisted": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "confirmation_boundary": {
+    "next_action_id": "V0R-PAGE-SHARE",
+    "next_workspace": "REF-FREE-B",
+    "next_result": "REF-COLLABORATOR_page_edit_access",
+    "fresh_action_time_confirmation_required": true,
+    "next_action_started": false
+  },
+  "claims": {
+    "V0R_WORKSPACE_INVITE_passed": true,
+    "V0R_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Obtain action-time confirmation for the REF-FREE-B V0R-B-ROOT page edit share."
+}

@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-R1595-UNIFIED-EXACT-CORE25-PERFORMANCE-BLOCKED-20260906",
+  "recorded_at": "2026-09-06T13:27:05.0261393+09:00",
+  "status": "unified_exact_complete_core25_and_performance_blocked",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1589-split-exact-36-of-36-20260906.json",
+    "sha256": "sha256:156bfa2bc3ac866298fc60ac87f10b1039dc2bb1c4b951a20cc0313a5ff53e24",
+    "preserved_without_overwrite": true
+  },
+  "unified_release_candidate": {
+    "run_id": "v0b-p1-r1591-unified-release-candidate",
+    "receipt_path": ".runtime/v0b-p1-r1591-unified-release-candidate/receipt.json",
+    "receipt_sha256": "sha256:2df1995706101395cd69deedb8d24ec2c6228438e7cf9a41c75a588364224dc1",
+    "release_candidate_source_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_candidate_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "capture_count": 36,
+    "exact_pixel_pass_count": 36,
+    "accessibility_pass_count": 36,
+    "unmasked_difference_count": 0,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "cleanup_status": "complete",
+    "browser_closed": true,
+    "gate_passed": false,
+    "gate_note": "The unified receipt inherited stale Core-25 and busy-host performance preflight evidence; the fresh evidence below supersedes those preflight fields without overwriting the receipt."
+  },
+  "fresh_core25": {
+    "full_run": {
+      "run_id": "v0b-p1-r1592-core25",
+      "junit_path": ".runtime/v0b-p1-r1592-core25-junit.xml",
+      "junit_sha256": "sha256:ab116811b0cdfa35494c99f4b1d0e074b4b1ea8d32244fe216e40c7c39483b8d",
+      "collected_test_count": 21,
+      "passed_test_count": 16,
+      "failed_test_count": 5,
+      "contract_scenario_count": 25,
+      "failed_scenario_ids": [
+        "UI-SHELL-003",
+        "UI-TREE-002",
+        "UI-TREE-003",
+        "UI-COLLAB-001",
+        "UI-A11Y-001"
+      ],
+      "duration_seconds": 719.395
+    },
+    "isolated_failure_recheck": {
+      "run_id": "v0b-p1-r1593-core25-failures-isolated",
+      "junit_path": ".runtime/v0b-p1-r1593-core25-failures-isolated-junit.xml",
+      "junit_sha256": "sha256:d2494e071417a47272b71589f9027f7fbb4134e2416a1ca4d462db2199575a6c",
+      "collected_test_count": 5,
+      "failed_test_count": 5,
+      "duration_seconds": 152.845,
+      "stability": "all_five_reproduced"
+    },
+    "current_ui_contract_correction": {
+      "scope": [
+        "UI-SHELL-003",
+        "UI-TREE-002",
+        "UI-TREE-003"
+      ],
+      "reason": "The tests targeted stale UI contracts: the full breadcrumb instead of its terminal segment, and a hidden topbar Second Brain control instead of the visible page-menu action.",
+      "test_source_path": "tests/browser/test_notion_ui1_golden_journey.py",
+      "test_source_sha256": "sha256:a3cd7893f315b232e9f3882e9b54e5d8c7179cf5f041b325c7b5d7dc0ee07eda",
+      "junit_path": ".runtime/v0b-p1-r1595-core25-current-ui-contract-junit.xml",
+      "junit_sha256": "sha256:744b283a65f49d84010cddfb66eef3db5ac10ac9ac40fb0491119a55daae43eb",
+      "collected_test_count": 3,
+      "passed_test_count": 3,
+      "failed_test_count": 0,
+      "duration_seconds": 100.138,
+      "protected_product_source_changed": false
+    },
+    "remaining_product_regressions": [
+      {
+        "scenario_id": "UI-COLLAB-001",
+        "status": "stable_fail",
+        "diagnosis": "The comments inspector CSS hides the panel title and its comment filter, so a resolved comment cannot be reopened through the visible control.",
+        "required_product_area": "notion_static/notion.css",
+        "ownership_handoff_required": true
+      },
+      {
+        "scenario_id": "UI-A11Y-001",
+        "status": "stable_fail",
+        "diagnosis": "Activating #skipToContent does not transfer focus to #workspaceMain because the current UI has no explicit focus transfer behavior.",
+        "required_product_area": "notion_static/notion.js",
+        "ownership_handoff_required": true
+      }
+    ],
+    "gate_passed": false
+  },
+  "fresh_performance": {
+    "run_id": "v0b-p1-r1594-performance",
+    "junit_path": ".runtime/v0b-p1-r1594-performance-junit.xml",
+    "junit_sha256": "sha256:a874318bac2e96cca16711be87dd023f56a7eb0eb59b4e090ae21846ded1e21c",
+    "collected_test_count": 1,
+    "failed_test_count": 1,
+    "approved_budget_ms": 1370.0,
+    "observed_shell_ready_p95_ms": 1832.904,
+    "duration_seconds": 75.534,
+    "required_green_streak": 2,
+    "observed_green_streak": 0,
+    "retry_preflight_cpu_samples_percent": [48.1, 40.2, 42.0, 40.5, 44.1],
+    "retry_preflight_average_cpu_percent": 43.0,
+    "retry_skipped_because_host_not_quiet": true,
+    "gate_passed": false,
+    "note": "The host briefly satisfied the five-sample CPU precondition, but the measured run exceeded the unchanged approved budget. No product budget was relaxed and no user process was terminated."
+  },
+  "capture_source": {
+    "path": "notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:137aed460f602a39a2daedd492c4b25c7fe474561c21ace8140ea36d332dad4b",
+    "python_compile_pass": true
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1581-20260906",
+    "launch_id": "2c5331f63ce64c24a5fa80309443aa8e",
+    "root_id": "73ab07d1-7a01-4792-9b4a-b3b5d82d8e05",
+    "final_audit": {
+      "workspace_count": 17,
+      "reference_workspace_count": 15,
+      "active_membership_count": 17,
+      "active_page_binding_count": 22,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "status": "stopped",
+    "ports_closed": true,
+    "personal_content_or_secret_copied": false
+  },
+  "ownership_coordination": {
+    "checked_at": "2026-09-06T13:27:05.0261393+09:00",
+    "relevant_task_title": "Second_Brain",
+    "task_id": "019fec6f-60b0-7f53-876d-ba9b7acb0c51",
+    "task_status": "notLoaded",
+    "active_conflicting_owner_observed": false,
+    "mutation_or_message_sent": false,
+    "note": "No active SBE owner task was observed, but the handoff's protected-source prohibition remains in force until an explicit ownership handoff."
+  },
+  "protected_contract_hashes": {
+    "AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "unified_exact_progress": "36/36",
+    "unified_accessibility_progress": "36/36",
+    "core25_gate_passed": false,
+    "performance_gate_passed": false,
+    "V0B_P1_gate_passed": false,
+    "O1B_started": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Obtain an explicit ownership handoff for notion_static/notion.css and notion_static/notion.js or have the current SBE owner merge the two diagnosed fixes. Then rerun the two isolated Core-25 scenarios, run a fresh full Core-25 suite, and obtain two consecutive quiet-host performance greens before generating a new unified V0B receipt bound to the final source. Do not start O1B before V0B passes."
+}

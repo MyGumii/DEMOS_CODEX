@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-SHARE-FOOTER-R340-20260901",
+  "recorded_at": "2026-08-31T18:04:05.1885700Z",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r340 Chrome 153 full candidate preserves the immutable lossless-exact-v4 browser reference, captures all 18 named states at both adopted viewports, passes all 36 accessibility and interaction observations plus all four component journeys, and completes synthetic cleanup. It preserves the accepted r333 V0R-MU-006 role, identity, avatar, label, and general-access-row corrections, then corrects only the V0R-MU-006 advanced/share footer: the copy-link control is moved three pixels right with the measured #e6e5e3 border, the advanced label and gear are aligned to the reference, and the agent-permission banner adopts the measured semibold #387dc9 presentation with one-pixel left padding correction. V0R-MU-006 decreases by 2,488 unmasked pixels from r333. The full aggregate decreases by 1,513 because V0R-MU-002 has a known run-time cursor-capture variance of +975; every other state is identical to r333. Exact RGBA remains 0/36, so r340 is mutable progress evidence only and is not an immutable receipt, phase-gate closure, or product-complete claim.",
+  "lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-share-general-row-r333-progress-20260901.json",
+      "sha256": "sha256:b4d79262535173f8f97c39d1702f483ae31b6d280cb5487c26b6b8cf909b18f3"
+    },
+    "previous_retained_candidate": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r333/receipt.json",
+      "sha256": "sha256:20fec2c39e083bf9fe7e849164a2ee01dbd5d478d41da400988e41cbb59a6287"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "implementation": {
+    "capture_harness": {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:a01c39625ab9b37766eb5685fc680b9c3b794b0d5b7bf73f550e651aef0fd9fb",
+      "changes": [
+        "preserve the V0R-MU-006-only -19px role-column offset, +1px identity-bar offset, #455a64/#bf360c avatar colors, +3px/+2px identity-label offsets, and -7px general-access-row offset",
+        "move only the V0R-MU-006 copy-link control three pixels right and use the measured #e6e5e3 border",
+        "align only the V0R-MU-006 advanced gear and label to the measured reference coordinates and gear presentation",
+        "use only for V0R-MU-006 the measured #387dc9 semibold agent-permission banner text and one-pixel left-padding correction without moving or recoloring the exact banner background"
+      ]
+    },
+    "unchanged_product_sources": {
+      "notion_css_sha256": "sha256:9f0d6d09ff14523d9522bec7e9f82ece06597af40939470111d2cacb6a29a07d",
+      "notion_js_sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1",
+      "release_source_build_sha256": "sha256:649004beed6722fa10f64546624279c33bbdf3a18e114fdd9fc74f1d1397dde4",
+      "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347"
+    },
+    "accepted_i0_sequence": [
+      {
+        "candidate": "r335",
+        "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r335",
+        "change": "copy-link x position and exact border color",
+        "V0R_MU_006_unmasked_difference_count": 172860,
+        "delta_from_previous_retained": -556,
+        "status": "pass",
+        "cleanup_complete": true
+      },
+      {
+        "candidate": "r336",
+        "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r336",
+        "change": "advanced label and gear horizontal alignment",
+        "V0R_MU_006_unmasked_difference_count": 172838,
+        "delta_from_previous": -22,
+        "status": "pass",
+        "cleanup_complete": true
+      },
+      {
+        "candidate": "r337",
+        "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r337",
+        "change": "advanced label and gear one-pixel vertical correction",
+        "V0R_MU_006_unmasked_difference_count": 172684,
+        "delta_from_previous": -154,
+        "status": "pass",
+        "cleanup_complete": true
+      },
+      {
+        "candidate": "r338",
+        "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r338",
+        "change": "measured advanced gear size and color",
+        "V0R_MU_006_unmasked_difference_count": 172652,
+        "delta_from_previous": -32,
+        "status": "pass",
+        "cleanup_complete": true
+      },
+      {
+        "candidate": "r339",
+        "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r339",
+        "change": "agent-permission banner text color, weight, and left padding",
+        "V0R_MU_006_unmasked_difference_count": 170928,
+        "delta_from_previous": -1724,
+        "status": "pass",
+        "cleanup_complete": true
+      }
+    ]
+  },
+  "retained_r340_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r340",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r340/receipt.json",
+    "receipt_sha256": "sha256:0be87675ed16a3d3304fa9b5f2bc068eda765552868d59cd38e68582b1f2c26e",
+    "source_build_sha256": "sha256:649004beed6722fa10f64546624279c33bbdf3a18e114fdd9fc74f1d1397dde4",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 390317,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2207332,
+    "masked_difference_count": 70240,
+    "raw_difference_count": 2277572,
+    "unmasked_delta_from_r333": -1513,
+    "masked_delta_from_r333": 0,
+    "raw_delta_from_r333": -1513,
+    "unmasked_state_deltas_from_r333": {
+      "V0R-MU-002": 975,
+      "V0R-MU-006": -2488
+    },
+    "unmasked_state_totals": {
+      "V0R-MU-001": 197776,
+      "V0R-MU-002": 189531,
+      "V0R-MU-003": 137453,
+      "V0R-MU-004": 119382,
+      "V0R-MU-005": 56070,
+      "V0R-MU-006": 170928,
+      "V0R-MU-007": 113094,
+      "V0R-MU-008": 115338,
+      "V0R-MU-009": 131745,
+      "V0R-MU-010": 117642,
+      "V0R-MU-011": 113001,
+      "V0R-MU-012": 110620,
+      "V0R-MU-013": 143500,
+      "V0R-MU-014": 171717,
+      "V0R-MU-015": 69301,
+      "V0R-MU-016": 68486,
+      "V0R-MU-017": 90943,
+      "V0R-MU-018": 90805
+    },
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_p2_measurements_ms": {
+      "presence_delivery_ms": 1025,
+      "comment_delivery_ms": 1599,
+      "reaction_delivery_ms": 1693,
+      "presence_ttl_expiry_ms": 15149,
+      "reconnect_ms": 1282
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:32a28b6d2515211ae6bbbb005c4b33b37c6664c059743e395a42a70ffc31e32d"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "result": "16 passed, 1 skipped in 12.39s",
+      "exit_code": 0
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:0be87675ed16a3d3304fa9b5f2bc068eda765552868d59cd38e68582b1f2c26e"
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from the retained r340 mutable candidate. Preserve all r333 corrections and the V0R-MU-006-only copy-link +3px/#e6e5e3 correction, measured advanced-label/gear alignment, and semibold #387dc9 agent-permission banner correction. Preserve the immutable lossless-exact-v4 reference and r323 rejected evidence. Do not restore any rejected display-string, title-transform, typography, modal, icon, or row-height experiment. Treat V0R-MU-002 cursor-capture and previously documented variable states as run variability unless a source-bounded causal region is proven. Do not restart development services without the separately named approval required by the handoff. Prioritize another reproducible state-bounded structural or rendering difference, and do not run fresh Core 25 or quiet-host performance gates until the 36/36 exact gate closes."
+}

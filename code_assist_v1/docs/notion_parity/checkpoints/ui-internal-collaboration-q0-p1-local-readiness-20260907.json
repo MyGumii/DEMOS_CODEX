@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.q0_p1.local_readiness_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-Q0-P1-LOCAL-READINESS-20260907",
+  "recorded_at": "2026-09-07T02:28:10.3638243Z",
+  "packet_id": "Q0-P1",
+  "status": "local_implementation_ready_target_gate_blocked",
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "product_decision": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_product_decision.v1.json",
+      "sha256": "sha256:19b550449db5af3510f62be6b56f65372faeacdd9f10136aa382b73da84362a8"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "o1b_target_infrastructure_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-p1-target-infrastructure-blocked-20260907.json",
+      "sha256": "sha256:c393e455414f524262ad83be7dd26248b65ce30fff4ecfa4b84d7cd5b3e61edf"
+    }
+  },
+  "frozen_scale_floor": {
+    "registered_users": 100,
+    "simultaneous_connections": 30,
+    "simultaneous_editors_per_page": 10,
+    "pages_per_workspace": 10000,
+    "blocks_per_page": 5000,
+    "rows_per_database": 100000,
+    "sustained_operations_per_second": 30,
+    "burst_operations_per_second": 100,
+    "attachment_concurrency": 10,
+    "minimum_free_bytes": 21474836480,
+    "minimum_free_percent": 20,
+    "semantics": "minimum_acceptance_load_floors_not_runtime_admission_caps"
+  },
+  "implementation": {
+    "support_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/q0_validation.py",
+        "sha256": "sha256:8d3cdebe1ccf28ccf6c25e3cdf07dbdc7db10f60350100bf0072b9353362bdbe"
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/q0_support.py",
+        "sha256": "sha256:aec022722416848c50d15c412526349fbe7d2194f17433d1898dfdab4bf2bc22"
+      }
+    ],
+    "required_lane_deliverables": [
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/load/test_target_concurrency.py",
+        "sha256": "sha256:37c3f65c5ee501630efb17eddba0d22b5131443d143c7f5c60067a47710f11d6"
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/load/test_reconnect_storm.py",
+        "sha256": "sha256:389381699b913591956fbdc887d93ec4324f41c96a35832b50bb34b20de06e95"
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/load/test_slow_consumer_backpressure.py",
+        "sha256": "sha256:8751ec472fb4604d50125dbc275ff9298826a2c3b95e83c6eecafce8afc97f89"
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/load/test_long_soak.py",
+        "sha256": "sha256:a1dda3991c4285cf63ee93bb737f9e7c087c3194b0fc4d4d4143e10304bede7c"
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/security/test_collaboration_abuse.py",
+        "sha256": "sha256:3410f3f7953b50307f9d11b3d6624d30bd2d3c84677a20c3d0cc930656372d8b"
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/fault/test_gateway_and_store_faults.py",
+        "sha256": "sha256:1a5fcbf428ae8027a89e695b05621456a97d7146e56b2c3d27f62778e089c587"
+      }
+    ],
+    "production_files_changed": [
+      {
+        "path": "code_assist_v1/notion_collaboration/runtime_gateway.py",
+        "sha256": "sha256:dffa67d625663730f08928751c1451bf9870fedd7c0afb6919bebf4b0b8047ff"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/durable_transport.py",
+        "sha256": "sha256:110760c7e4dff126d77dd125d4bd9aa913884cef01429132b95395f36d26edd4"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/gateway_service.py",
+        "sha256": "sha256:cb42805aa0bb7fade9a018ef02ca97e537caa0ab0f0ce582fca723c1f16e3eac"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/file_authority.py",
+        "sha256": "sha256:699f0c58ac7c989c550380e1624ae98cfe89eb3d3a5f13070049a0bc40529f3a"
+      }
+    ],
+    "corrected_defects": [
+      "Concurrent durable commits can no longer broadcast a later document sequence before an earlier one and falsely fence healthy sessions.",
+      "Concurrent attachment sessions may commit after other attachment-only advances while any intervening non-attachment document mutation still fails the source fence.",
+      "Attachment assembly uses a bounded Windows-safe temporary leaf instead of a path-length-sensitive identifier expansion.",
+      "Gateway metric exports now include nearest-rank p50/p95/p99, current process RSS, durable tail length, compaction lag, and oldest uncompacted age.",
+      "Gateway restart, compactor restart, compaction result, and reconnect-throttle observations have explicit metric paths.",
+      "Q0 target reports are create-only, exact-product-decision bound, and ineligible unless the sealed target_windows_load realm and all frozen denominators are attested."
+    ]
+  },
+  "validation": {
+    "exact_l8_collab_load_fault_lane_local_run": {
+      "command_shape": "pytest six exact L8-COLLAB-LOAD-FAULT deliverables",
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 134.10,
+      "realm_id": "synthetic_local_q0",
+      "target_gate_evidence": false
+    },
+    "focused_legacy_regression": {
+      "scope": [
+        "backpressure",
+        "ticket_protocol",
+        "restart_replay",
+        "compaction_boundary",
+        "runtime_gateway_cross_process",
+        "runtime_gateway",
+        "runtime_gateway_redaction",
+        "runtime_gateway_lifecycle",
+        "file_authority"
+      ],
+      "passed": 54,
+      "failed": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 115.31
+    },
+    "local_denominators_exercised": {
+      "registered_users": 100,
+      "simultaneous_connections": 30,
+      "same_page_editors": 10,
+      "concurrent_attachment_streams": 10,
+      "burst_acknowledged_operations": 100,
+      "soak_acknowledged_operations": 120,
+      "acknowledged_operation_loss_count": 0,
+      "convergence_mismatch_count": 0
+    }
+  },
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1",
+    "q0_packet_status": "planned",
+    "q0_gate_passed": false,
+    "matrix_rows_closed": [],
+    "catalog_ladder_matrix_or_pointer_modified": false
+  },
+  "remaining_gate_requirements": [
+    "O1B-P1 must pass on the approved target recovery topology.",
+    "XG-SBE-TARGET-OPERATIONS-HANDOFF must be current before target execution.",
+    "The exact lane must run in sealed target_windows_load against a runner-owned synthetic target root.",
+    "A create-only Q0 report must record target p50/p95/p99, SQLite busy count, queue and projection lag, memory peak, compaction age, and the frozen sustained and burst rates.",
+    "Target backup-generation, canary-abort, and kill-switch observability signals must be bound without using local synthetic output as a substitute."
+  ],
+  "claims": {
+    "external_system_mutated": false,
+    "target_or_production_service_started": false,
+    "real_user_content_read_or_written": false,
+    "target_windows_load_executed": false,
+    "local_implementation_ready": true,
+    "target_gate_eligible": false,
+    "q0_gate_passed": false,
+    "o1b_gate_passed": false,
+    "sbe_hot_contract_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  }
+}

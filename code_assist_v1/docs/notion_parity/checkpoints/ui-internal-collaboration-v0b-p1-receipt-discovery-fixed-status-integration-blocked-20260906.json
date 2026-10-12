@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-RECEIPT-DISCOVERY-FIXED-STATUS-INTEGRATION-BLOCKED-20260906",
+  "recorded_at": "2026-09-06T21:46:00+09:00",
+  "status": "receipt_discovery_fixed_status_integration_blocked_by_unowned_dynamic_contract_drift",
+  "packet_id": "V0B-P1",
+  "predecessor_progress_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1620-final-evidence-gate-pass-20260906.json",
+    "sha256": "sha256:1cd7b23239d87da2fd304083c04da1353ab679ca33641a8daceced37366d5c7b"
+  },
+  "completed_change": {
+    "description": "Generic execution-receipt discovery now ignores packet-specific immutable receipts and audit manifests while retaining malformed generic receipts for fail-closed schema validation.",
+    "validator_path": "code_assist_v1/tools/internal_collaborative_validation.py",
+    "validator_sha256": "sha256:e3509f4216b2480e85a5bb82e95ecea59fd4cc79ee94bd09ddcd782bd1dc2c2e",
+    "test_path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "test_sha256": "sha256:7ba2e985bc4abe6b9281db1aad8cea3216bb58fb8ffe95fe9f231137ca2a7e2c",
+    "focused_test_result": "2 passed in 4.12s"
+  },
+  "audit_delta": {
+    "before_error_count": 654,
+    "after_error_count": 16,
+    "generic_execution_receipt_schema_errors_after": 0,
+    "valid_generic_execution_receipts": 19,
+    "remaining_error_classes": {
+      "current_checkpoint_dynamic_hash_drift": 3,
+      "specialized_notion_verifier_rebaseline_required": 12,
+      "unowned_sbe_contract_audit_failure": 1
+    }
+  },
+  "blocking_external_contract": {
+    "status": "fail",
+    "error_count": 1,
+    "error_code": "OPENAPI_HUMAN_OPERATION_MISMATCH",
+    "operation_ids": [
+      "GET /api/knowledge/v1/spaces/{space_id}/items/{item_id}/source-artifacts",
+      "GET /api/knowledge/v1/spaces/{space_id}/items/{item_id}/source-artifacts/{artifact_id}/download"
+    ],
+    "sbe_audit_input_sha256": "sha256:32c2ff0b4274cfcbfb09bf9a93de5c4adf2b2f0c7c115e04a96a606f643f963d",
+    "audit_artifact_path": "code_assist_v1/.runtime/v0b-status-integration-sbe-contract-audit-abs-20260906.json",
+    "audit_artifact_sha256": "sha256:6bac0dfd8d12a47cca76d8d024e6b4d9abc7ae0249e4bc5c90923f7ecce82d58",
+    "owned_by_this_packet": false
+  },
+  "preserved_state": {
+    "v0r_packet_status": "planned",
+    "v0b_packet_status": "planned",
+    "current_stable_pointer": "O1A-P1",
+    "catalog_or_ladder_modified": false,
+    "completion_matrix_modified": false,
+    "agents_md_modified": false,
+    "sbe_hot_contract_modified": false,
+    "product_source_modified": false,
+    "existing_receipt_overwritten": false,
+    "production_or_external_account_changed": false,
+    "product_complete": false,
+    "goal_complete": false
+  },
+  "resume_condition": "The SBE owner must restore a zero-error contract audit for the two source-artifact operations, or explicitly transfer the exact SBE contract repair ownership. Then rebaseline the twelve read-only Notion verifier manifests with full declared regressions, create the generic V0R/V0B wrapper receipt, and atomically integrate catalog, ladder, formal checkpoint, and pointer."
+}

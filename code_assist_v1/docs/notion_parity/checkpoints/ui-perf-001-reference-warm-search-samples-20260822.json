@@ -1,0 +1,52 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T13:39:11.7641624+09:00",
+  "run_id": "ui33-perf-001-warm-search-samples-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-partial-repeat-samples-harness-green-20260822.json",
+    "sha256": "sha256:b5f16e1ce0a2f709a4489ee7e79020ac54f4af1a7576636f4395cce6f7ec0d35",
+    "semantic_status": "supplemented_by_warm_search_dialog_samples"
+  },
+  "goal": {"thread_id":"019ff607-9116-78a1-9f40-c580c87c0038","tool_status_observed":"active","user_resume_received":true},
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-PERF-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_or_live_data_accessed": false,
+    "mutation_executed": false,
+    "raw_dom_network_screenshot_stored": false
+  },
+  "slice": {
+    "status": "reference_partially_observed_current_source_green",
+    "review_required": true,
+    "promotion_allowed": false,
+    "measurement_policy": "precalibration_only_no_budget_claim"
+  },
+  "reference_measurement": {
+    "action": "click Search until the workspace search combobox is visible",
+    "session": "five repeats in one signed-in synthetic Chrome tab; first sample is cold relative to the following four",
+    "samples_ms": [901, 317, 329, 322, 328],
+    "min_ms": 317,
+    "median_ms": 328,
+    "max_ms": 901,
+    "dialog_count_after_cleanup": 0,
+    "interpretation": "Observation only. Connected-browser overhead, cache warmth, and missing reference release identity prevent a product budget or percentile claim."
+  },
+  "protected_inputs": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/tests/browser/test_notion_ui_performance.py","sha256":"sha256:324357219752b5ea7f9142072c434bbf890fac9e0f9179eeb7065bac6d68464d"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json","sha256":"sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"}
+  ],
+  "verification": [{"selection":"UI-PERF-001 isolated local measurement harness","result":"1 passed in 52.43s"}],
+  "claims": {
+    "reference_warm_search_samples_recorded": true,
+    "performance_budget_approved": false,
+    "ui_perf_001_reference_characterized": false,
+    "ui_perf_001_differential_passed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Bind future samples to a safely observable reference release marker, measure an unambiguous independent synthetic page create, and obtain a reviewed budget before percentile or parity claims."
+}

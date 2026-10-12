@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.l9.full_python_quiescent_workspace_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-L9-FULL-PYTHON-GREEN-QUIESCENT-WORKSPACE-20260909",
+  "recorded_at": "2026-09-09T19:56:42+09:00",
+  "status": "full_l9_python_green_local_development_verified_external_gates_deferred",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-l8-browser-pilot-recovery-regression-20260909.json",
+    "sha256": "sha256:1a3d3d6b63f516651980de97a6e719e9de3c959e732a9c38d2bc1b2e47a833c7",
+    "record_sha256": "sha256:8dfb0decad18b80548b15dee55449f9006ccd99997b8980c1c4c27ca55397de4"
+  },
+  "scope": {
+    "mode": "local_development_and_verification_only",
+    "product_source_changed": false,
+    "test_or_test_infrastructure_files_changed": 7,
+    "external_target_or_production_action_executed": false,
+    "workspace_quiescence_required": true,
+    "workspace_quiescence_reason": "repository-wide import side-effect scans and Windows atomic cursor replacement were measurably sensitive to concurrent writes anywhere under G:/AI_Agent/DEMOS_CODEX"
+  },
+  "changed_bindings": [
+    {
+      "path": "code_assist_v1/tests/knowledge_spaces/regression/test_auth_sessions_legacy_knowledge.py",
+      "before_sha256_observed_prefix": "3e857",
+      "sha256": "sha256:668f5195862ecde1572fad7669c37c24d7f38b1480682cbbfe07eb3a333c9e80",
+      "change": "bind the authenticated legacy regression to one explicit allowed origin, request base URL, session cookie domain, and same-origin mutation headers"
+    },
+    {
+      "path": "code_assist_v1/tests/knowledge_spaces/regression/test_notion_publication_and_job_restart.py",
+      "before_sha256_observed_prefix": "8efa",
+      "sha256": "sha256:95683d2fda9974d80fde34da67923d7f651e8ffc977ff7aca52bd17c19d6afaa",
+      "change": "bind publication restart characterization to one explicit allowed origin and same-origin authenticated request"
+    },
+    {
+      "path": "code_assist_v1/tests/knowledge_spaces/regression/test_second_brain_chat_characterization.py",
+      "before_sha256_observed_prefix": "e134",
+      "sha256": "sha256:2b469a83a7d57839ec3d0783945c87e4e6d84285113964ea8d04e09bafbefdd8",
+      "change": "bind authenticated chat characterization to one explicit allowed origin and same-origin request"
+    },
+    {
+      "path": "code_assist_v1/tests/knowledge_spaces/integration/test_full_second_brain_preview.py",
+      "before_sha256_observed_prefix": "066114",
+      "sha256": "sha256:2937f7c98475a45d31bd6cace5222e09d927c82a19797bdd6f66279a2b62c84d",
+      "change": "make direct os.environ and sys.argv mutation by preview configuration visible to monkeypatch teardown so later tests inherit no preview policy"
+    },
+    {
+      "path": "code_assist_v1/tests/conftest.py",
+      "before_sha256_observed_prefix": "b209",
+      "sha256": "sha256:19de62d6c2b98fd678ad98efd6afb8849f14898e36c31ec77ab756c08b9f8e4f",
+      "change": "supply false trace and usepdb options when pytest 9.0.3 runs with the frozen -p no:debugging contract"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_second_brain_boundary.py",
+      "before_sha256": "sha256:2dfdaef9cb6decbfbf60ba9dda4381a59d1f7849e85beb3543cb6b6e8b8eabaf",
+      "sha256": "sha256:a23a144aa556d35aebbe6bbf82c4c457d9545d66a0b91efb2b836c9a7b120f62",
+      "change": "retain the historical frozen S0A-P1 verifier's intentional fail-closed behavior while expecting the current exact 21-error drift denominator"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_release_readiness.py",
+      "before_sha256_observed_prefix": "8c4745",
+      "sha256": "sha256:27d2b3a58e84fce39db690e29cb6e83dba50c20c377fc141836f74655a0acbb6",
+      "change": "assert the superseded historical release-readiness snapshot fails closed on its two exact current SHA-256 mismatches instead of asserting obsolete green state"
+    }
+  ],
+  "verification": {
+    "focused_regressions": [
+      {"selection": "explicit-origin auth integration and regressions", "passed": 23, "failed": 0},
+      {"selection": "knowledge regressions", "passed": 8, "failed": 0},
+      {"selection": "preview and production-health regressions", "passed": 16, "failed": 0},
+      {"selection": "pytest no-debugging conftest and safety", "passed": 16, "subtests_passed": 5, "failed": 0},
+      {"selection": "knowledge tail from test_test_safety onward", "passed": 529, "subtests_passed": 5, "failed": 0, "duration_seconds": 885},
+      {"selection": "corrected expectation files", "passed": 10, "failed": 0},
+      {"selection": "root tail from test_notion_ui_release_readiness.py onward", "passed": 492, "failed": 0, "duration_seconds": 799},
+      {"selection": "four previously intermittent tests under full workspace quiescence", "passed": 4, "failed": 0, "repeat_iterations": 3, "passed_per_iteration": 4}
+    ],
+    "prior_full_l9_characterization": {
+      "status": "fail",
+      "passed": 4914,
+      "failed": 4,
+      "skipped": 7,
+      "subtests_passed": 5,
+      "duration_seconds": 7687.11,
+      "failure_classification": "four tests passed alone and for three repeated complete iterations after all concurrent workspace writers were stopped"
+    },
+    "final_exact_full_l9": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m pytest -c code_assist_v1\\pytest.ini -q -p no:debugging -p no:cacheprovider code_assist_v1\\tests",
+      "exit_code": 0,
+      "passed": 4918,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 7,
+      "subtests_passed": 5,
+      "duration_seconds": 7383.27,
+      "duration_display": "2:03:03"
+    },
+    "frozen_tree_before_and_after_final_l9": {
+      "algorithm": "ordinal rg --files list excluding __pycache__, .pytest_cache, node_modules, and .runtime; each row is normalized path plus literal backtick-t plus lowercase file SHA-256; UTF-8 LF-joined rows with terminal LF are SHA-256 hashed",
+      "before_file_count": 3636,
+      "after_file_count": 3636,
+      "before_sha256": "sha256:cf3d97ab3e6bed4c6b4b5da265453c38fd0c2613200ca9f0034bb1bcff4fe866",
+      "after_sha256": "sha256:cf3d97ab3e6bed4c6b4b5da265453c38fd0c2613200ca9f0034bb1bcff4fe866",
+      "match": true,
+      "checkpoint_created_after_after_hash": true
+    },
+    "central_read_only_audit": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m code_assist_v1.tools.verify_internal_collaborative_validation_ladder --mode audit --compact",
+      "exit_code": 0,
+      "status": "pass",
+      "error_count": 0,
+      "completion_state": "incomplete",
+      "required_packets": 50,
+      "gate_passed_required_packets": 44,
+      "matrix_rows": 28,
+      "closed_matrix_rows": 21,
+      "phase_gates": 20,
+      "closed_phase_gates": 15,
+      "valid_execution_receipts": 21
+    },
+    "s0a_publication_read_only_audit": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m code_assist_v1.tools.verify_internal_collaborative_second_brain_publication --compact",
+      "exit_code": 0,
+      "status": "pass",
+      "error_count": 0,
+      "gate_passed": true,
+      "sbe_scenario_count": 9,
+      "source_count": 14,
+      "test_count": 6,
+      "contract_sha256": "sha256:4e16e79fef55d58a96d99df53ba549b90819bae056cd171b3e8465216b66b249",
+      "product_complete": false
+    },
+    "l9_node_composite_adopted_without_reexecution": {
+      "evidence_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-r0-r1-z0-local-readiness-regression-v2-20260909.json",
+      "evidence_sha256": "sha256:6ced43b386a0c1625c21bd588b9d05176425748b39abac755d0ef865dbc3921b",
+      "evidence_record_sha256": "sha256:1f97e0c9538ee6a0cebf253622fc9f422f578a75e8e0e163d9946fc97fb96861",
+      "recorded_status": "pass",
+      "file_count": 6,
+      "failed_file_count": 0,
+      "all_six_current_test_hashes_match_recorded_bindings": true,
+      "node_source_or_test_changed_by_this_checkpoint": false
+    }
+  },
+  "authority_bindings": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "packet_catalog_sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98",
+    "validation_ladder_sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915",
+    "completion_matrix_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "current_checkpoint_pointer_sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2",
+    "sbe_contract_audit_input_sha256": "sha256:5a4d63e8501680129928649687aa3713a28e02550942569b5898056a9aee38aa"
+  },
+  "preserved_fail_closed_boundaries": {
+    "historical_release_readiness_snapshot_rebound": false,
+    "historical_release_readiness_expected_status": "fail",
+    "historical_release_readiness_expected_error_count": 2,
+    "historical_release_readiness_expected_error_fields": [
+      "inputs.completion_matrix.sha256",
+      "inputs.evidence_review_gate.sha256"
+    ],
+    "historical_s0a_p1_boundary_expected_status": "fail",
+    "historical_s0a_p1_boundary_expected_error_count": 21,
+    "current_s0a_p2_publication_expected_status": "pass"
+  },
+  "remaining_boundaries": [
+    "O1B-P1 still lacks an approved external target identity, encrypted off-host destination, trust anchors, signed approval, handoff, and actual target-host restore receipt",
+    "Q0-P1, R0A-P1, R0B-P1, R1-P1, and Z0-P1 remain externally or operationally gated after O1B-P1",
+    "this local checkpoint grants no packet, matrix-row, phase-gate, release, production, or product-completion credit"
+  ],
+  "claims": {
+    "full_l9_python_regression_green": true,
+    "l9_node_composite_current_binding_adopted": true,
+    "workspace_tree_unchanged_during_final_l9": true,
+    "historical_evidence_overwritten": false,
+    "external_system_mutated": false,
+    "external_target_created": false,
+    "cost_incurred": false,
+    "production_copy_accessed": false,
+    "production_service_installed_or_restarted": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "agents_md_modified": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:fb214c9b5b9b7c596bac8aa36475210876ef27b84455cb6192986b1770ffc781"
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-P3-BENCHMARK-APPROVAL-PREPARED-20260824",
+  "recorded_at": "2026-08-23T17:39:51Z",
+  "checkpoint_kind": "approval_prepared",
+  "packet_id": "E0-P3",
+  "packet_status": "in_progress_awaiting_supplemental_execution_approval",
+  "purpose": "Seal the approval-free E0-P3 benchmark implementation and the exact supplemental reinstall boundary after the prior single-use runtime-spike root was cleaned.",
+  "owner_agent": "/root",
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p3-benchmark-pre-edit-20260824.json",
+    "sha256": "sha256:2c81c325b38f7eb215591311fb707801989adba7eeeb68be35b98050306d112c"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-e0-p2-runtime-spike-20260824.json",
+    "sha256": "sha256:cc097d5d7265c72ffe228a854254649d8d0f2ffcca26b7248e62c288f947aba6",
+    "packet_id": "E0-P2"
+  },
+  "implemented_files": {
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark.py": "sha256:e72e352cd602ada2249b3daaf6c2a3443f524c00700109e13be69b3c9041b8ef",
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark_executor.py": "sha256:bbf4f9e92d91d444541b3e329df20c1e4a07812dcf46aa788545d4cebd623c84",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_benchmark_adapter.py": "sha256:f651b9d2175b43750fa5d93f97d44c2711d8e4160c1bc46bbc98dd1eab3d2a5d",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_benchmark_relay_adapter.py": "sha256:6be93eedcdc0d672c0c415a0fecdffd1db7743171b7f4ba25b1a2e24398a1d14",
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_benchmark_adapter.cjs": "sha256:c106bcc593ad200f3371521106707d93c8c0a5e730adff021391286510db47dc",
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_benchmark_adapter.cjs": "sha256:833180039d60c2d1d783806816827f4dddfd9eec6aa017717b18c18051ccba52",
+    "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark.py": "sha256:c51537817b77558128acc4a69569c6f9f783751c4b2026099e38f031a3959c6b",
+    "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark_executor.py": "sha256:0f6b464dac4c20106f4d10c525ded04f263a542d28b65b80e6835967c140b403"
+  },
+  "approval_request": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-ap-runtime-spike-e0-p3-reinstall-request-20260824.json",
+    "sha256": "sha256:38e46be2f14a9a0e2e49535fa6b68dcf71c8706ef7c8a54bcc959e1ccfcb0306",
+    "approval_id": "AP-RUNTIME-SPIKE-E0-P3-REINSTALL",
+    "status": "pending",
+    "scope_sha256": "sha256:f9245d712751e874ac24e35f37ef66be9dea3b706a8aa4af5712c1019d0283d0",
+    "single_use": true,
+    "user_approval_phrase": "AP-RUNTIME-SPIKE-E0-P3-REINSTALL 승인"
+  },
+  "validation_receipt": {
+    "status": "pass",
+    "executed_at": "2026-08-23T17:39:00Z",
+    "packet_tests_passed": 55,
+    "packet_tests_failed": 0,
+    "e0_p3_preparation_tests_passed": 18,
+    "internal_collaborative_harness_passed": 11,
+    "internal_collaborative_audit_status": "pass",
+    "internal_collaborative_audit_error_count": 0,
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:59c9eac679584ec7a7a879989245964e9bf5f12c608870860de57ac7b94ca22b",
+    "sbe_goal_count": 20,
+    "sbe_scenario_count": 284
+  },
+  "side_effect_audit": {
+    "candidate_root_created": false,
+    "package_download_attempted": false,
+    "candidate_package_installed_or_imported": false,
+    "candidate_adapter_executed": false,
+    "process_service_or_port_started": false,
+    "product_lockfile_runtime_or_schema_modified": false,
+    "identity_workspace_browser_or_protected_data_accessed": false,
+    "hot_catalog_ladder_pointer_or_sbe_contract_modified": false
+  },
+  "completion_truth": {
+    "e0_p2_gate_passed": true,
+    "e0_p3_harness_prepared": true,
+    "e0_p3_candidate_execution_complete": false,
+    "e0_p3_gate_passed": false,
+    "candidate_winner_selected": false,
+    "product_runtime_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "current_state": "awaiting_AP_RUNTIME_SPIKE_E0_P3_REINSTALL",
+    "next_action_after_approval": "Materialize an exact new single-use approval receipt, create one marker-bound OS-temp root, download and install only the bound artifacts, execute 159 candidate cases plus the opaque relay, preserve redacted receipts, then integrate E0-P3.",
+    "next_action_without_approval": "Stop before candidate root creation, package download/install/import, or candidate process execution.",
+    "catalog_next_packet_remains": "E0-P3",
+    "current_checkpoint_pointer_remains": "E0-P2",
+    "real_service_identity_workspace_or_data_mutation_allowed": false
+  },
+  "rollback_or_cleanup": "Remove only the eight E0-P3 preparation source/test paths and the three E0-P3 preparation/request checkpoints. The E0-P2 chain, current pointer, caches, product locks, services, ports, schemas, identities, workspaces, browser profiles, protected roots, and SBE contracts remain untouched."
+}

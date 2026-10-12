@@ -1,0 +1,163 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T08:51:10+09:00",
+  "run_id": "ui-tree-002-reference-differential-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-001-reference-differential-green-20260821.json",
+    "sha256": "sha256:0edecbe95ff9bc9d2cec96cf602614a658d996c2f69e5e330ab77cd8fa031ee5",
+    "semantic_status": "superseded_by_fourth_reference_differential"
+  },
+  "supersedes_review_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-002-clean-reference-review-pending-20260821.json",
+    "sha256": "sha256:6e87dccb47d13c3b79ad59223128aa287ccbd95ce1f3d7f2a66562ae10601195",
+    "semantic_status": "historical_c0_block_resolved"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "blocked",
+    "execution_status": "resumed_by_user",
+    "objective": "implement the adopted 25-scenario Core Free Web UI and Second Brain plan through reviewed reference and differential gates",
+    "observed_at": "2026-08-21T08:51:10+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "viewport": {"width": 1920, "height": 863},
+    "scenario_id": "UI-TREE-002",
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_alias": "REF-FREE-B",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "live_local_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "screenshot_count": 0,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "cookie_or_storage_captured": false
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-TREE-002",
+    "status": "fourth_reference_and_precalibration_differential_green",
+    "accepted_contract": [
+      "open the page-type menu before creating a top-level page",
+      "commit the synthetic child title with PAGE-TITLE focus preserved",
+      "nest the child through the immediate searchable move-target result",
+      "restore PAGE-MENU focus after move completion",
+      "reorder TREE-CHILD-B before TREE-CHILD-A with moved-row focus",
+      "refuse a descendant-cycle drag with tree order and active path unchanged"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 4,
+    "differential_passed": 4,
+    "promotion_allowed": 0,
+    "remaining_reference": 21,
+    "remaining_differential": 21,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:5324fe2a9a79d16377a72e1c5d81ca20ccce6366203db7be990d65e77921bbf9"
+    }
+  ],
+  "owned_outputs": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_002_REFERENCE_DIFFERENTIAL_20260821.json",
+      "sha256": "sha256:619268976c94831635e88d9c56d1d210886a4798f8ad6d759c735a8c2e227a80"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_completion_matrix.py",
+      "sha256": "sha256:2fd0c049c6c2a6150c6223769141f775c66e2e8a1574476b0ca3572bbcfb2d07"
+    }
+  ],
+  "matrix_state_before_checkpoint_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+    "sha256": "sha256:b70fbf786dda2b575a53d4a49b74174f2e66afbdcb8b8aab0a2806f2c938e1ab",
+    "reference_characterized": 4,
+    "differential_passed": 4
+  },
+  "c0_preflight": {
+    "run_id": "ui2-tree-002-clean-reference-20260821",
+    "status": "pass",
+    "connection_verified": true,
+    "workspace_boundary_verified": true,
+    "read_only_verified": true,
+    "capture_allowed": true,
+    "ref_free_a_confirmed": true,
+    "ref_free_b_confirmed": true,
+    "other_workspace_labels_visible": true,
+    "raw_label_disclosed": false,
+    "personal_workspace_opened": false,
+    "personal_page_opened": false,
+    "final_tab_state": "handoff"
+  },
+  "reference_evidence": {
+    "submission_file_sha256": "sha256:86ab2189ecbcefc3c37fb1117a83304d9b1022d765c4ea449353f787c509de44",
+    "receipt_file_sha256": "sha256:a5910f215c6797a32e7d40d0b1cbf3a047f6a082952639b989a953c36151745c",
+    "c0_sha256": "sha256:d5f89fb7fb6c46268337a73ef9e57faaee2fc0cf61698df2758decc7e25ecffb",
+    "worksheet_sha256": "sha256:4ce3a6a989ac92b6e5890a8a61726e9b7e293ec0931f8f8335451be0548d335a",
+    "action_log_sha256": "sha256:f49cb68025838b42bd4b235ab7396ddfed4100ef11097ab20ae2ef3bdb1bc716",
+    "captures_sha256": "sha256:be34b08eecbf79d27da5e00dbf934bc04d1ac26b8d5c24c552ecdbcab2407bbf",
+    "reference_source_build_sha256": "sha256:a38b080d126ae53d5b3342d62ac27c7d0c2723422e0a03a656017037947c39e2",
+    "reviewed_redaction_summary": true,
+    "human_review_approved": true,
+    "capture_count": 4,
+    "screenshot_count": 0,
+    "synthetic_cleanup": {"probe_pages_moved_to_trash": 2, "permanent_delete_used": false, "recoverable": true}
+  },
+  "differential_evidence": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_TREE_002_REFERENCE_DIFFERENTIAL_20260821.json",
+    "sha256": "sha256:619268976c94831635e88d9c56d1d210886a4798f8ad6d759c735a8c2e227a80",
+    "policy_state": "precalibration",
+    "action_count": 4,
+    "difference_count": 0,
+    "all_actions_passed": true,
+    "geometry_and_latency": "measurement_only",
+    "promotion_allowed": false
+  },
+  "commands": [
+    {"selection":"manual intake exact public-function validation","result":"errors=[]; generated receipt exactly equals checked temp receipt","exit_code":0},
+    {"selection":"manual-intake CLI invocations","result":"Windows host exit 0xC0000409 before output; direct public-function validation used and recorded","exit_code":-1073740791,"classification":"host_failure_not_code_failure"},
+    {"selection":"current-source 1920x863 isolated local capture reproduction","result":"4 capture hashes exactly matched the prior local evidence; 0 normalized differences","exit_code":0},
+    {"selection":"Core Free UI plan and completion-matrix verifiers","result":"19 passed in 7.50s at 4 of 25","exit_code":0},
+    {"selection":"manual intake, reference guard, evidence packet, and evidence harness serial suites","result":"17 + 26 + 6 + 15 = 64 passed","exit_code":0},
+    {"selection":"isolated Chrome UI-TREE-002 journey","result":"1 passed in 27.97s","exit_code":0},
+    {"selection":"six serial Node editor/UI/navigation/publication/atomic-save/CSRF contracts","result":"6 commands passed","exit_code":0},
+    {"selection":"Notion routes, atomic-save compatibility, and publication adapter","result":"25 passed in 12.43s","exit_code":0},
+    {"selection":"workspace routes, navigation routes, and workspace auth isolation","result":"41 passed in 46.15s","exit_code":0},
+    {"selection":"Second Brain publication restart and chat characterization regressions","result":"5 passed in 5.21s","exit_code":0}
+  ],
+  "claims": {
+    "fourth_reference_characterized": true,
+    "fourth_precalibration_differential_passed": true,
+    "core_ui_complete": false,
+    "second_brain_complete": false,
+    "business_archive_complete": false,
+    "overall_goal_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_content_exposed": false,
+    "live_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "redaction_failure": false,
+    "protected_file_modified": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false
+  },
+  "remaining": [
+    "21 scenario reference characterizations",
+    "21 scenario differential passes",
+    "reviewed performance budget",
+    "formal accessibility review",
+    "H9 opt-in pilot and recovery gate"
+  ],
+  "next_exact_action": "Characterize UI-TREE-003 in REF-FREE-A using synthetic duplicate, trash, and restore actions, then compare the current isolated local journey without entering any personal workspace."
+}

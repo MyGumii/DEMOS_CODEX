@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-REFERENCE-CURSOR-ALIGNMENT-R243-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T12:50:35.1523090+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r243 Chrome 153 full candidate captures all 18 named states at both adopted viewports, passes all 36 accessibility captures and all four component journeys, and completes synthetic cleanup. State-bounded presentation and reference-pointer alignment reduce the unmasked difference by 48,213 pixels and the raw difference by 48,229 pixels from r231 without worsening any state. Exact RGBA remains 0/36, so r243 is a mutable progress candidate only and is not an immutable V0B receipt, a phase-gate claim, or a product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "previous_checkpoint_sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "current_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "last_write_time": "2026-08-31T12:28:40.0200008+09:00",
+      "modified_by_this_packet": false,
+      "concurrent_hot_contract_update_detected": true,
+      "current_contract_reread_complete": true,
+      "conflicting_change_detected": false
+    },
+    "baseline_candidate": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r231/receipt.json",
+      "receipt_sha256": "sha256:6def10297f8011749f51c81a1f439059bd20313beebc1d1f92e0878964c0cca4",
+      "unmasked_difference_count": 2349944,
+      "masked_difference_count": 72612,
+      "raw_difference_count": 2422556
+    },
+    "discarded_failed_run": {
+      "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r242",
+      "failure": "C0_P2_COMMENT_LATENCY_EXCEEDED",
+      "receipt_written": false,
+      "overwritten": false,
+      "promotion_eligible": false
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:df47935179b21808305a48e098f4414d1d343c8a53b80f57eb89e5dff504c025",
+        "changes": [
+          "retain the V0R-MU-001 workspace invite, teamspace, footer, and page-width corrections",
+          "align the V0R-MU-002 close affordance and recorded pointer at both adopted viewports",
+          "align the repeated center reference pointer for V0R-MU-003, V0R-MU-005, V0R-MU-016, V0R-MU-017, and V0R-MU-018",
+          "align the right-edge reference pointer for V0R-MU-004, V0R-MU-006, V0R-MU-007, and the compact V0R-MU-009 capture",
+          "align the fixed reference pointer for wide V0R-MU-009 and both V0R-MU-011, V0R-MU-013, and V0R-MU-014 captures"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:b9fd7185d0b81d5c5b3faff110125bc1595f3d4147e98c3ccd5e9c592b3bc4c3"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:78bbea83778d201e90f24929cac74fe942c8666adf439bc8008e58fe5d64e471"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:0c4f48c3b952ac65755c884dbd7d70089a38b98002eb654b74fc669131560901"
+      }
+    ],
+    "rejected_experiments_removed": [
+      "V0R-MU-001 synthetic comment-thread substitution",
+      "V0R-MU-006 synthetic seven-row historical inbox substitution"
+    ]
+  },
+  "retained_r243_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r243",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r243/receipt.json",
+    "receipt_sha256": "sha256:385e1c362884db460f50b953c18886804c91794c3d998a5efb7052aaec08666e",
+    "release_candidate_source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "runtime_candidate_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 391264,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2301731,
+    "masked_difference_count": 72596,
+    "raw_difference_count": 2374327,
+    "unmasked_delta_from_r231": -48213,
+    "masked_delta_from_r231": -16,
+    "raw_delta_from_r231": -48229,
+    "changed_state_unmasked_deltas_from_r231": {
+      "V0R-MU-001": -9437,
+      "V0R-MU-002": -4726,
+      "V0R-MU-003": -3730,
+      "V0R-MU-004": -1739,
+      "V0R-MU-005": -3128,
+      "V0R-MU-006": -1484,
+      "V0R-MU-007": -1810,
+      "V0R-MU-009": -2306,
+      "V0R-MU-010": -713,
+      "V0R-MU-011": -3122,
+      "V0R-MU-013": -3264,
+      "V0R-MU-014": -3084,
+      "V0R-MU-016": -3478,
+      "V0R-MU-017": -3096,
+      "V0R-MU-018": -3096
+    },
+    "unmasked_state_totals": {
+      "V0R-MU-001": 203944,
+      "V0R-MU-002": 199317,
+      "V0R-MU-003": 137453,
+      "V0R-MU-004": 125086,
+      "V0R-MU-005": 80835,
+      "V0R-MU-006": 189974,
+      "V0R-MU-007": 113094,
+      "V0R-MU-008": 116989,
+      "V0R-MU-009": 131745,
+      "V0R-MU-010": 116929,
+      "V0R-MU-011": 113001,
+      "V0R-MU-012": 111800,
+      "V0R-MU-013": 143500,
+      "V0R-MU-014": 171717,
+      "V0R-MU-015": 84979,
+      "V0R-MU-016": 79620,
+      "V0R-MU-017": 90943,
+      "V0R-MU-018": 90805
+    },
+    "c0_p2_measurements_ms": {
+      "presence_delivery_ms": 1390,
+      "comment_delivery_ms": 2047,
+      "reaction_delivery_ms": 1530,
+      "presence_ttl_expiry_ms": 15077,
+      "reconnect_ms": 1391
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:a2b53bace040ba3eeb33f5981644bd1bb260fb078855d5f9a0bae86b7d4c40a9"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "working_directory": "workspace_root",
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "14 passed in 11.11s",
+      "exit_code": 0
+    },
+    "full_candidate": {
+      "component_journey_statuses": {
+        "I0-P2": "pass",
+        "C0-P2": "pass",
+        "E1-P2": "pass",
+        "F0-P5": "pass"
+      },
+      "all_adopted_multiuser_states_captured": true,
+      "accessibility_evidence_complete": true,
+      "zero_unmasked_RGBA_difference": false
+    },
+    "active_service_health": {
+      "agent_10111_status": 200,
+      "notion_10112_status": 200
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from the retained r243 mutable candidate. Do not promote it to immutable evidence. Prioritize remaining non-pointer structural differences in the highest-difference states, then rerun the full 36-state candidate before any fresh Core 25 or quiet-host performance gate."
+}

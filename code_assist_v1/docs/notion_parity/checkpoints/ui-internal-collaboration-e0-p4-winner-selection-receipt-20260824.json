@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.crdt_winner_selection_execution_receipt.v1",
+  "receipt_id": "E0-P4-L3-CRDT-WINNER-SELECTION-20260824",
+  "packet_id": "E0-P4",
+  "status": "pass",
+  "executed_at": "2026-08-23T23:55:00Z",
+  "authority_bindings": {
+    "matrix_sha256": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57",
+    "corpus_sha256": "sha256:9be012b8150b3db48c66f743369a2b9905e234582056e28e427d77f311fca8b2",
+    "e0_p3_checkpoint_sha256": "sha256:f1f0c1dd63d4a927733e02782f72cfc75bc3a31da6a0b02619755b29289e96a0",
+    "e0_p3_benchmark_receipt_sha256": "sha256:15f7d5fa52844adc5b576d34d6ebe8cd5415446c61f465431c67c9b0f75d67cc",
+    "raw_benchmark_sha256": "sha256:4e4838c777e97f44e097c4855da6c673a3e40455a6f9e663c24f52459c128350",
+    "gateway_contract_sha256": "sha256:8bfa575854f409e648822f8e4b6e27433f14cab699ee6def6fb3f08698fd4e96",
+    "protocol_contract_sha256": "sha256:c2ce4dcecebd4f7da459824f3f012a142ef8ef6d2fd08195490587ad4f954481",
+    "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "global_runtime_lock_sha256": "sha256:fc5522dcbf576d8dcfbbf51d6349dbc007bc5438dcc396cba913f54aa22f0bd0"
+  },
+  "selected_candidate": {
+    "candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+    "gateway_execution_owner": "python",
+    "gateway_payload_semantics": "opaque_bytes",
+    "crdt_execution_owner": "node_yjs_compactor",
+    "canonical_IAM_and_ACK_owner": "canonical_python_authority",
+    "hosted_service_required": false,
+    "peak_process_rss_bytes": 65806336,
+    "operations_per_second": {
+      "p50": 23492.560689114307,
+      "p95": 43630.81617086347,
+      "p99": 51141.76756478634
+    }
+  },
+  "mandatory_gate_results": {
+    "zero_acknowledged_loss": true,
+    "deterministic_convergence": true,
+    "korean_ime_fidelity": true,
+    "windows_reproducibility": true,
+    "wire_and_replay_stability": true,
+    "iam_fence_contract_bound": true,
+    "checkpoint_compaction_backup_contract_bound": true,
+    "backpressure_and_fault_contract_bound": true,
+    "license_and_operations": true,
+    "selected_case_count": 53,
+    "opaque_relay_case_count": 53,
+    "midstream_persist_reload_passed": 53,
+    "final_restart_recovery_passed": 53,
+    "acknowledged_character_loss_count": 0,
+    "convergence_mismatch_count": 0
+  },
+  "pinned_artifacts": {
+    "manifest_sha256": "sha256:8059bf135ca66a49d67c0798d30b71ed48bf779e3f142cb20d94a1328354e584",
+    "python_lock_sha256": "sha256:2910510df5c434104778c4a78f40a6b2368204513c8ac29824c5a1cb13db7c65",
+    "package_json_sha256": "sha256:19296e28baa32d70748e7dd5d006246366bc181934321eaf9fee6dd21aae1f51",
+    "package_lock_sha256": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3",
+    "selected_package_count": 8,
+    "python_package_count": 5,
+    "node_package_count": 3,
+    "archive_integrity_bound": true,
+    "global_application_lock_unchanged": true
+  },
+  "license_audit": {
+    "allowed_spdx": [
+      "BSD-3-Clause",
+      "MIT"
+    ],
+    "selected_package_count": 8,
+    "disallowed_selected_package_count": 0,
+    "installed_metadata_matches_manifest": true,
+    "rejected_candidates": [
+      {
+        "candidate_id": "PY_NATIVE_PYCRDT",
+        "package": "typing-extensions==4.16.0",
+        "license_spdx": "PSF-2.0",
+        "reason_code": "FROZEN_LICENSE_ALLOWLIST_MISMATCH"
+      },
+      {
+        "candidate_id": "NODE_YJS_HOCUSPOCUS",
+        "package": "tslib==2.8.1",
+        "license_spdx": "0BSD",
+        "reason_code": "FROZEN_LICENSE_ALLOWLIST_MISMATCH"
+      }
+    ]
+  },
+  "offline_reproducibility": {
+    "python_require_hashes": true,
+    "python_pip_check_passed": true,
+    "python_package_count": 5,
+    "node_offline_ci_passed": true,
+    "node_npm_ls_passed": true,
+    "node_lockfile_version": 3,
+    "node_package_count": 3,
+    "network_fallback_allowed": false,
+    "temporary_repro_roots_removed": true
+  },
+  "isolation": {
+    "candidate_root_basename": "code-assist-e0-p3-20260824-bfec48e4f9444d06b1b5c2780225dcb6",
+    "candidate_owned_processes_remaining": 0,
+    "listener_started": false,
+    "port_bound": false,
+    "global_runtime_lock_modified": false,
+    "schema_or_migration_modified": false,
+    "live_identity_workspace_browser_or_data_accessed": false
+  },
+  "claims": {
+    "winner_selected": true,
+    "pinned_dependency_and_reproducible_artifact": true,
+    "rejected_candidate_evidence_present": true,
+    "runtime_service_implemented": false,
+    "runtime_enabled": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

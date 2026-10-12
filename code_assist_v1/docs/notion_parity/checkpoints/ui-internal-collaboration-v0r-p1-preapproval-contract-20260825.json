@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-PREAPPROVAL-CONTRACT-20260825",
+  "recorded_at": "2026-08-25T11:05:25Z",
+  "checkpoint_kind": "approval_free_execution_contract_preparation",
+  "packet_id": "V0R-P1",
+  "packet_status": "planned_awaiting_owner_approval",
+  "purpose": "Preserve the fail-closed V0R-P1 execution denominator before any external Notion mutation: exact reference workspaces and test identities, 11 ordered operator actions, 18 adopted multi-user states at two viewports, evidence fields, stop conditions, revoke-before-Trash cleanup, and explicit false completion claims.",
+  "owner_agent": "/root",
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-f0-p5-adopted-surface-20260825.json",
+    "sha256": "sha256:767b8d7fa3bd18285239ec1f1e4c54297ea3598d91aef53a4e63e751fbcca7a8",
+    "packet_id": "F0-P5",
+    "status": "gate_passed"
+  },
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "prepared_files": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_reference_multiuser_execution.v1.json",
+      "sha256": "sha256:924b3812e81bffc024bd386a5735c69a676f08e5b8c3f8ce52dffc6e0b9d7cf5"
+    },
+    {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_execution.py",
+      "sha256": "sha256:50e1a00a4a281c573db35074e3c506d9d7adab4d3232923c94d9a236f1a9b266"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_execution.py",
+      "sha256": "sha256:52f8720dd589edb8af5993bb8aea9326fe1e50df55a3ee26eb17a3dca8482dfc"
+    },
+    {
+      "path": "code_assist_v1/tools/internal_collaborative_reference_multiuser_approval.py",
+      "sha256": "sha256:08c15220ac08fab201423db1249b562fc5dba7c284598f768fb8c03ba55e67f4"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_approval.py",
+      "sha256": "sha256:6bd415689860744b85d67f50825f89d269b703b10f0bfdaf90639acdd05190b6"
+    },
+    {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py",
+      "sha256": "sha256:6d3d14a1d6e402e3c5343e1f457a37c6cba393556494562dd29ab2c41be56e45"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_receipt.py",
+      "sha256": "sha256:bf7abc86fc87f79ef307432b3ecb29bd9ccd1ed452ce7b980460b9a8bb119b06"
+    }
+  ],
+  "post_o1a_rebind": {
+    "recorded_at": "2026-08-25T22:13:59+09:00",
+    "reason": "O1A-P1 integration legitimately rebound the adopted-surface contract to its current harness and catalog hashes; V0R-P1 must bind that current verified source before owner approval.",
+    "adopted_surface_pre_sha256": "sha256:54c664f13c5790856b3a92dbfe4c5ed19e935675ca1c6651f8d528061db699b5",
+    "adopted_surface_post_sha256": "sha256:660f3a738d4835ecfe57be7fa9473da76129399de7095f508577ba297587dc77",
+    "execution_manifest_pre_sha256": "sha256:7a33d607d2139187f3618aa796e5900239c7415b04eaec35adf7640902e9a83b",
+    "execution_manifest_post_sha256": "sha256:924b3812e81bffc024bd386a5735c69a676f08e5b8c3f8ce52dffc6e0b9d7cf5",
+    "external_reference_mutation_executed": false,
+    "revalidation": {
+      "manifest_verifier_status": "pass",
+      "manifest_verifier_error_count": 0,
+      "preapproval_harness_passed": 27,
+      "preapproval_harness_failed": 0,
+      "preapproval_harness_duration_seconds": 67.68
+    }
+  },
+  "catalog_snapshot": {
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:022ddb78e90c566b1850b6bc6f2cc8de300ed96c21ab3e76bf6a9a1427fdc1cf",
+      "V0R_P1_status": "planned",
+      "AP_REFERENCE_MULTIUSER_status": "pending",
+      "next_packet": "V0R-P1"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:7ecbdb18c0a1f8512575e44b7bcb670ebdf2f0f7ed899ed2dceb776e4fe1121e",
+      "next_packet": "V0R-P1"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "product_decision": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_product_decision.v1.json",
+      "sha256": "sha256:19b550449db5af3510f62be6b56f65372faeacdd9f10136aa382b73da84362a8"
+    }
+  },
+  "approval_boundary": {
+    "approval_id": "AP-REFERENCE-MULTIUSER",
+    "status": "pending",
+    "exact_requested_text": "AP-REFERENCE-MULTIUSER 승인. REF-FREE-A/B에서 테스트 계정과 합성 페이지만 사용해 초대·공동 편집·권한 회수·화면 캡처를 수행하고, 생성 항목은 Trash로 정리해도 됨. 개인 콘텐츠·공개 게시·영구 삭제는 금지.",
+    "existing_R1_R3_approval_reusable": false,
+    "reason": "The earlier R1/R3 receipt explicitly forbade invite-or-share membership changes and captured no multi-user side effect.",
+    "execution_authorized": false,
+    "approval_is_test_evidence": false
+  },
+  "prepared_denominator": {
+    "workspace_aliases": ["REF-FREE-A", "REF-FREE-B"],
+    "identity_aliases": ["REF-OWNER", "REF-COLLABORATOR"],
+    "independent_authenticated_browser_sessions": 2,
+    "operator_action_count": 11,
+    "multiuser_capture_state_count": 18,
+    "viewport_count": 2,
+    "expected_screenshot_count": 36,
+    "cleanup_mode": "trash_only_recoverable",
+    "cleanup_runs_after_success_or_failure": true,
+    "personal_public_permanent_delete_production_and_second_brain_scope_forbidden": true
+  },
+  "validation": {
+    "verifier": {
+      "argv": [
+        ".\\venv\\Scripts\\python.exe",
+        "-E",
+        "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_execution.py",
+        "--compact"
+      ],
+      "status": "pass",
+      "error_count": 0,
+      "action_count": 11,
+      "capture_state_count": 18,
+      "expected_screenshot_count": 36,
+      "ready_for_owner_approval": true,
+      "execution_authorized": false
+    },
+    "unit_tests": {
+      "argv": [
+        ".\\venv\\Scripts\\python.exe",
+        "-E",
+        "-m",
+        "pytest",
+        "-c",
+        "code_assist_v1/pytest.ini",
+        "-q",
+        "-p",
+        "no:debugging",
+        "-p",
+        "no:cacheprovider",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_execution.py"
+      ],
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "duration_seconds": 2.32
+    },
+    "approval_compiler_tests": {
+      "argv": [
+        ".\\venv\\Scripts\\python.exe",
+        "-E",
+        "-m",
+        "pytest",
+        "-c",
+        "code_assist_v1/pytest.ini",
+        "-q",
+        "-p",
+        "no:debugging",
+        "-p",
+        "no:cacheprovider",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_approval.py"
+      ],
+      "passed": 8,
+      "failed": 0,
+      "errors": 0,
+      "duration_seconds": 2.08
+    },
+    "execution_receipt_verifier_tests": {
+      "argv": [
+        ".\\venv\\Scripts\\python.exe",
+        "-E",
+        "-m",
+        "pytest",
+        "-c",
+        "code_assist_v1/pytest.ini",
+        "-q",
+        "-p",
+        "no:debugging",
+        "-p",
+        "no:cacheprovider",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_receipt.py"
+      ],
+      "passed": 9,
+      "failed": 0,
+      "errors": 0,
+      "duration_seconds": 57.25,
+      "strict_png_capture_count": 36,
+      "strict_png_decoding_exercised": true
+    },
+    "central_harness_regression": {
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "duration_seconds": 92.70
+    },
+    "exact_pixel_contract_regression": {
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "duration_seconds": 3.34
+    },
+    "central_structural_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "completion_state": "incomplete",
+      "required_packets": 50,
+      "gate_passed_required_packets": 41,
+      "matrix_rows": 28,
+      "closed_matrix_rows": 18,
+      "phase_gates": 20,
+      "closed_phase_gates": 14,
+      "planned_required_lanes": 8,
+      "product_complete": false
+    }
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "이어서 개발 진행해.",
+    "status": "active",
+    "goal_completion_claimed": false
+  },
+  "protected_boundaries": {
+    "AGENTS_md_modified": false,
+    "personal_content_accessed_or_modified": false,
+    "external_Notion_mutation_executed": false,
+    "production_10011_or_10012_changed": false,
+    "development_10111_10112_10113_changed": false,
+    "Second_Brain_contract_or_runtime_changed": false
+  },
+  "claims": {
+    "V0R_P1_preapproval_contract_prepared": true,
+    "AP_REFERENCE_MULTIUSER_received": false,
+    "external_reference_capture_complete": false,
+    "reference_cleanup_complete": false,
+    "V0R_P1_gate_passed": false,
+    "V0_GATE_001_closed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Obtain the exact AP-REFERENCE-MULTIUSER owner approval, bind a receipt to this manifest hash, then use Chrome only in REF-FREE-A/B with the two dedicated test identities."
+}

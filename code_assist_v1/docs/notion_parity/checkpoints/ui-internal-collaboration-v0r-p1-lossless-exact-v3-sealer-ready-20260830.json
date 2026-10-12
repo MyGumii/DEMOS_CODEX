@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0r_p1.lossless_exact_v3_sealer_ready.v1",
+  "checkpoint_id": "V0R-P1-LOSSLESS-EXACT-V3-SEALER-READY-20260830",
+  "recorded_at": "2026-08-30T18:04:42.2927211+09:00",
+  "status": "v3_sealer_ready_capture_surface_pending",
+  "summary": "A dedicated V0R-P1 lossless exact v3 sealer is ready but has not been executed. It preserves the immutable V2 lineage, requires the approved 36-capture manifest, enforces verified-after-transition semantic postconditions for every state including corrected V0R-MU-004 and V0R-MU-006 timing, verifies or resumes an immutable lossless-ingest audit, creates masks only in a new root, and enables a common preseal guard that forbids writing a receipt unless exact_reference_gate_passed is true.",
+  "implementation": {
+    "common_corrective_sealer": {
+      "path": "code_assist_v1/tools/seal_v0r_corrective_reference_receipt.py",
+      "sha256": "sha256:a05f7b9aae87cfc0c33603abb7e5c1079af9e693a82abf33b2a58cc26c557be3",
+      "changes": [
+        "default historical semantic sealer behavior remains unchanged",
+        "REQUIRE_EXACT_REFERENCE_GATE enables fail-before-write exact preseal enforcement",
+        "postseal exact enforcement mirrors preseal enforcement",
+        "seal result reports exact_reference_gate_passed"
+      ]
+    },
+    "v3_exact_sealer": {
+      "path": "code_assist_v1/tools/seal_v0r_p1_lossless_exact_v3_20260830.py",
+      "sha256": "sha256:f828e61cbed826af03799bfaa63e59b04d878933109e689b81068a23c2fb24bd",
+      "planned_receipt": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v3-20260830.json",
+      "planned_ingest_manifest": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-lossless-exact-v3-20260830-ingest-manifest.json",
+      "planned_ingest_audit": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-lossless-exact-v3-20260830-ingest-audit.json",
+      "planned_checkpoint": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-exact-v3-cleanup-gate-pass-20260830.json",
+      "planned_screenshot_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/screenshots",
+      "planned_mask_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/masks",
+      "output_status": "not_created"
+    },
+    "test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_v0r_p1_lossless_exact_v3_sealer.py",
+      "sha256": "sha256:de7ef755a39e25db1b319adb48dc0c8150d538690c066d0518541c934dfb2c9b"
+    }
+  },
+  "v3_contract_guards": {
+    "v2_receipt_sha256_required": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa",
+    "new_receipt_and_checkpoint_must_not_exist": true,
+    "capture_denominator": "18 states x 2 viewports = 36",
+    "semantic_postcondition_status": "verified_after_transition",
+    "capture_after_postcondition": true,
+    "V0R_MU_004_required_state": "edit_access_active",
+    "V0R_MU_006_required_state": "inherited_workspace_access_explained",
+    "lossless_ingest_audit_required": true,
+    "lossless_ingest_audit_exclusive_or_exact_resume": true,
+    "mask_root_new_and_exclusive": true,
+    "exact_reference_preseal_gate_required": true,
+    "permanent_delete_allowed": false
+  },
+  "verification": {
+    "focused_v3_ingest_and_reference_tests": {
+      "result": "31 passed in 59.15s",
+      "exit_code": 0
+    },
+    "integrated_v3_reference_and_v0b_regression": {
+      "result": "45 passed in 68.68s",
+      "exit_code": 0
+    },
+    "python_compile": {
+      "status": "pass",
+      "exit_code": 0
+    },
+    "negative_contract_proof": {
+      "V0R_MU_004_pretransition_capture_rejected": true,
+      "V0R_MU_006_pretransition_capture_rejected": true,
+      "tampered_existing_ingest_audit_rejected": true,
+      "semantic_only_preseal_audit_rejected_in_exact_mode": true
+    },
+    "positive_contract_proof": {
+      "valid_semantic_denominator_accepted": true,
+      "identical_existing_ingest_audit_resumable": true,
+      "exact_preseal_audit_accepted": true
+    }
+  },
+  "lineage": {
+    "lossless_ingest_receipt_binding_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-ingest-receipt-binding-20260830.json",
+      "sha256": "sha256:818d13ae74cbad135ab843debf047e2b7cdb478a734df8fe73e3574e334f20f5"
+    },
+    "lossless_ingest_verifier": {
+      "path": "code_assist_v1/tools/verify_v0r_p1_lossless_capture_ingest.py",
+      "sha256": "sha256:46fc0b9cacb59547240225700cde38bb4e9f6188fe232a54be88580d6cc27c2b"
+    },
+    "reference_receipt_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py",
+      "sha256": "sha256:27fe2dceb667304937ee29d1e65d32ed1e55af024f96385cc5bb826645f99a6d"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "scope_attestation": {
+    "v3_sealer_executed": false,
+    "external_notion_mutation": false,
+    "external_notion_permission_change": false,
+    "reference_receipt_modified": false,
+    "reference_screenshot_modified": false,
+    "v3_receipt_created": false,
+    "v3_ingest_audit_created": false,
+    "v3_checkpoint_created": false,
+    "local_product_source_changed": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "approved_source_lossless_capture_surface": "pending",
+    "fresh_36_capture_ingest_manifest_and_pngs": "pending",
+    "v3_sealer_execution": "not_run",
+    "exact_pixel_36_of_36": "not_run",
+    "core_25": "not_run",
+    "performance": "not_run",
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "After explicit approval to switch from Chrome, capture the 36 source-lossless PNGs and manifest, execute the prepared v3 sealer, verify the new immutable receipt, and only then run exact Full36."
+}

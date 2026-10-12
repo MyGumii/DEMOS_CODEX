@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-WORKSPACE-INVITE-SIDEBAR-RETRY40-20260829",
+  "recorded_at": "2026-08-29T16:41:21.1374882+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry40 keeps the accepted direct-guest share and owner Shared pages presentation, and aligns the workspace-invite sidebar teamspace and apps sections without changing the already aligned invite modal. All four journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. Unmasked differences decreased by 3,406 from retry39 to 3,958,312. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-owner-shared-sidebar-retry39-progress-20260829.json",
+      "sha256": "sha256:4cfcc94624485f66559c67eba81ad8f3f65537517135bb4c0dc0b7a90b0d39"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:0962c515ac3d6afae3d67abecf815a8a63b1d2c9f2580187ee898cab4f5e5041",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {"path": "code_assist_v1/notion_static/index.html", "sha256": "sha256:7ffdae48dc0b4c3619d8e1933d62f965053b42c5fad989f25c15b3c9c2320a8d"},
+      {"path": "code_assist_v1/notion_static/notion.css", "sha256": "sha256:6032d4db3bb66e9d64ae55698c3d86da66ebd11972b0643474e5c1b2f8fe6ec4"},
+      {"path": "code_assist_v1/notion_static/notion.js", "sha256": "sha256:af8062453ee987c70b6a4075f7cef4696294a4c8a6145b0eace919ee42b5e45c"}
+    ]
+  },
+  "accepted_changes": {
+    "workspace_invite_sidebar_alignment": "Only while the workspace-invite surface is visible, the teamspace section moves ten pixels upward and preserves the reference-like spacing before apps.",
+    "workspace_invite_modal_boundary": "Measured at x=740 and x=1180: reference y=265..757 and candidate y=265..758, so no modal geometry change was made."
+  },
+  "bounded_diagnostics": {
+    "iam_retry85": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry85-lossless-workspace-invite-sidebar",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "unmasked_difference_count": 2368588,
+      "delta_from_retry84": -2361,
+      "cleanup_verified": true,
+      "browser_closed": true,
+      "accepted": true
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry40-lossless-workspace-invite-sidebar",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry40-lossless-workspace-invite-sidebar/receipt.json",
+    "receipt_sha256": "sha256:a0df965d4a9b16f68e7061b5f3084c0cd33aee915b60d652b4a507ab3ac015bd",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {"I0-P2": 131096, "C0-P2": 92674, "E1-P2": 57833, "F0-P5": 45849},
+    "unmasked_difference_count": 3958312,
+    "masked_difference_count": 211224,
+    "raw_difference_count": 4169536,
+    "delta_from_retry39_unmasked": -3406,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:9953de08180b19bb8c57be629ca9cea83f5fd1a79e99816a96c4706a7d9016d8"
+    }
+  },
+  "state_deltas_from_retry39": [
+    {"state_id": "V0R-MU-001", "delta": -3388},
+    {"state_id": "V0R-MU-012", "delta": -18}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {"EXACT_PIXEL_GATE": 36, "CORE_25_GATE": 1, "PERFORMANCE_GATE": 1, "CLAIMS_GATE": 1},
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "next_focus": {
+    "largest_states": [
+      {"state_id": "V0R-MU-001", "unmasked_difference_count": 369112},
+      {"state_id": "V0R-MU-002", "unmasked_difference_count": 359181},
+      {"state_id": "V0R-MU-006", "unmasked_difference_count": 297144},
+      {"state_id": "V0R-MU-004", "unmasked_difference_count": 271512},
+      {"state_id": "V0R-MU-008", "unmasked_difference_count": 262121}
+    ],
+    "primary": "Continue bounded diagnostics on workspace members, inherited page sharing, and common workspace shell geometry.",
+    "full_candidate_policy": "Do not rerun Core25 or performance until exact pixel is 36/36."
+  },
+  "open_gates": {
+    "exact_pixel": {"passed": 0, "required": 36, "status": "open"},
+    "core_25": {"status": "not_run_until_exact_36_of_36"},
+    "performance": {"status": "not_run_until_exact_36_of_36"},
+    "claims": {"status": "open"},
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "scope_attestation": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "user_chrome_touched": false,
+    "persistent_browser_profile_used": false,
+    "public_publish_or_link_used": false,
+    "personal_workspace_or_page_used": false,
+    "permanent_delete_used": false,
+    "reference_receipts_modified": false,
+    "agents_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  }
+}

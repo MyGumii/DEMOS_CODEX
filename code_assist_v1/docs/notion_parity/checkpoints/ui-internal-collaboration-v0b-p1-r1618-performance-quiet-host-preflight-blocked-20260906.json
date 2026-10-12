@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-R1618-PERFORMANCE-QUIET-HOST-PREFLIGHT-BLOCKED-20260906",
+  "recorded_at": "2026-09-06T20:02:36.4814652+09:00",
+  "status": "blocked_by_sustained_host_load_no_performance_run_started",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1617-final-source-exact-36-of-36-20260906.json",
+    "sha256": "sha256:f2dcaf592ce42d1ddb8f690cbaa8bf6f9da1094436ae2d4685b1e0fe886c7b74",
+    "preserved_without_overwrite": true
+  },
+  "attempted_gate": {
+    "scenario_id": "UI-PERF-001",
+    "required_condition": "five consecutive one-second total CPU samples below 30 percent",
+    "attempts": [
+      {
+        "max_samples": 120,
+        "result": "QUIET_HOST_NOT_REACHED",
+        "performance_test_started": false,
+        "eligible_receipt_created": false
+      },
+      {
+        "max_samples": 600,
+        "result": "QUIET_HOST_NOT_REACHED",
+        "performance_test_started": false,
+        "eligible_receipt_created": false
+      }
+    ],
+    "independent_total_cpu_percent_samples": [
+      70.6,
+      71.5,
+      67.7,
+      79.9,
+      76.1
+    ],
+    "independent_sample_interval_seconds": 1,
+    "diagnosis": "sustained desktop application, Chrome renderer/GPU, computer-use, and separate SBE preview workload; no user or system process was stopped"
+  },
+  "source_binding": {
+    "index_html_sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_css_sha256": "sha256:797eadb7689d231dfcd34e23ad5ac1ea06ee2a8b1a92feb098ae3f948c4489c9",
+    "notion_js_sha256": "sha256:c3c4ee95236243f73a02256643d1199dfe155488f835c5b18e9bbb7b4272ae30",
+    "final_receipt_compiler_sha256": "sha256:7e86881e62c3d3e198c2fc903fd2a0877c09c053329eac3b67d3dfbbc692ca31",
+    "performance_report_plugin_sha256": "sha256:fb6414481e7edda276cdc8e883b8baef2fc330ff7056c5029e5c9514b8bbbe44"
+  },
+  "retained_green_evidence": {
+    "core_junit_path": ".runtime/v0b-p1-r1615-core-final-source-junit.xml",
+    "core_junit_sha256": "sha256:0b45a2c57f3b8e49e3baf184a31e07b51898f5096ad60bd4bde2a3b82e3c4e7c",
+    "core_result": "21/21 pass",
+    "capture_receipt_path": ".runtime/v0b-p1-r1617-final-source-capture/receipt.json",
+    "capture_receipt_sha256": "sha256:8408d786295638f47f49caeed3a33e118dbe6be0ea79a81437b8d1adae40e8fc",
+    "exact_pixel_result": "36/36 pass",
+    "accessibility_result": "36/36 pass",
+    "interaction_result": "36/36 pass"
+  },
+  "safety": {
+    "product_code_changed_by_preflight": false,
+    "performance_test_started": false,
+    "performance_artifact_promoted": false,
+    "threshold_changed": false,
+    "existing_receipt_overwritten": false,
+    "user_or_system_process_stopped": false
+  },
+  "scope_guard": {
+    "final_source_performance_green_streak": "0/2",
+    "V0B_P1_gate_passed": false,
+    "O1B_started": false,
+    "goal_complete": false
+  },
+  "next_action": "Pause or close high-CPU Chrome media workloads and allow the Codex desktop and separate SBE preview workload to settle, then rerun the r1618 create-only quiet-host preflight. Start UI-PERF-001 only after the preflight receipt is created."
+}

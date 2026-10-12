@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-LOSSLESS-CAPTURE-TRANSPORT-RESTORED-20260829",
+  "recorded_at": "2026-08-29T00:50:26.7444619+09:00",
+  "checkpoint_kind": "lossless_reference_capture_transport_restored_before_permission_mutation",
+  "packet_id": "V0R-P1",
+  "packet_status": "lossless_fixtures_ready_capture_transport_restored_awaiting_action_time_permission_confirmation",
+  "purpose": "Supersede only the prior fail-closed transport condition after proving an authenticated, lossless Windows capture path for both required viewports. The Chrome extension screenshot API remains JPEG-only and direct native Computer Use browser state capture remains policy-blocked; the restored path combines the authenticated Chrome runtime for exact REF page and viewport control with a native Windows 32-bit bitmap screen copy of only the owner page surface. Full-screen browser presentation exposes the complete page below a 56 px debugging banner, and direct page-only capture from screen origin (0,56) excludes that banner, browser chrome, operating-system chrome, the collaborator display, and every unrelated app. No invite, share, permission, comment, reaction, mention, revoke, or cleanup mutation was performed while proving the transport.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-capture-transport-restored-20260829.json"
+  ],
+  "transport_probe_artifacts": [
+    "capture/ui-internal-collaboration-v0r-p1-lossless-transport-probe-1440x900-20260829.png",
+    "capture/ui-internal-collaboration-v0r-p1-lossless-transport-probe-1280x800-20260829.png"
+  ],
+  "hot_shared_contracts_modified": false,
+  "contract_bindings": {
+    "agents_path": "code_assist_v1/AGENTS.md",
+    "agents_sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "handoff_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "handoff_sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-capture-transport-blocked-20260828.json",
+    "sha256": "sha256:268a3cbd89d6f044fab33e66e9f95f173e3df90a76a2244ec72b585d3a1da98f"
+  },
+  "restored_capture_transport": {
+    "authenticated_surface": "dedicated REF owner Chrome extension runtime",
+    "browser_state_control": "Chrome runtime tab plus viewport capability",
+    "lossless_readback": "Windows System.Drawing 32-bit ARGB CopyFromScreen",
+    "browser_presentation": "full_screen",
+    "page_surface_origin": {
+      "x": 0,
+      "y": 56
+    },
+    "excluded_surface": "56 px Chrome debugging banner above the page surface",
+    "raw_full_desktop_capture_persisted": false,
+    "collaborator_display_captured": false,
+    "operating_system_or_browser_chrome_captured": false,
+    "direct_native_computer_use_browser_state_capture_available": false,
+    "chrome_extension_tab_screenshot_encoding": "JFIF_JPEG",
+    "lossless_contract_satisfied": true
+  },
+  "viewport_probes": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "path": "capture/ui-internal-collaboration-v0r-p1-lossless-transport-probe-1440x900-20260829.png",
+      "byte_length": 49761,
+      "pixel_format": "Format32bppArgb",
+      "magic_hex_prefix": "89504e470d0a1a0a",
+      "sha256": "sha256:9bfa587d5fd4d5e87af805187c5e983bf965740e2ee8f43fe62f79f194cc7c20",
+      "visual_scope_verified": true,
+      "raw_identifier_pattern_count": 0
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "path": "capture/ui-internal-collaboration-v0r-p1-lossless-transport-probe-1280x800-20260829.png",
+      "byte_length": 46300,
+      "pixel_format": "Format32bppArgb",
+      "magic_hex_prefix": "89504e470d0a1a0a",
+      "sha256": "sha256:88a9fb72074100169641bddeec4d6f60988bb1e71b381ba2abed66fb558febfd",
+      "visual_scope_verified": true,
+      "raw_identifier_pattern_count": 0
+    }
+  ],
+  "probe_state": {
+    "workspace_alias": "REF-FREE-A",
+    "page_alias": "V0R-A-ROOT",
+    "page_marker_count": 2,
+    "database_alias_count": 1,
+    "database_row_alias_count": 1,
+    "personal_page_list_collapsed": true,
+    "transport_probe_only": true,
+    "manifest_reference_state_claimed": false
+  },
+  "fixture_state": {
+    "V0R-A-ROOT": "ready_in_REF-FREE-A_HQ",
+    "V0R-B-ROOT": "ready_in_REF-FREE-B_private_page_space",
+    "cleanup_required_if_run_is_abandoned": true,
+    "cleanup_not_started": true
+  },
+  "evidence_denominator": {
+    "completed_action_count": 3,
+    "expected_action_count": 11,
+    "persisted_manifest_reference_screenshot_count": 0,
+    "expected_manifest_reference_screenshot_count": 36,
+    "persisted_transport_probe_count": 2
+  },
+  "scope_attestation": {
+    "workspace_or_page_invitation_sent": false,
+    "permission_or_role_changed": false,
+    "comment_reaction_or_mention_sent": false,
+    "manifest_reference_screenshot_persisted": false,
+    "transport_probe_persisted": true,
+    "raw_email_or_account_identifier_persisted": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used_for_notion_content": false,
+    "production_or_second_brain_changed": false,
+    "failed_local_capture_artifacts_deleted": true
+  },
+  "confirmation_boundary": {
+    "confirmation_required_before_next_actions": true,
+    "next_action_ids": [
+      "V0R-WORKSPACE-INVITE",
+      "V0R-PAGE-SHARE"
+    ],
+    "confirmation_received_for_next_actions": false,
+    "next_actions_started": false
+  },
+  "claims": {
+    "V0R_P1_lossless_fixtures_ready": true,
+    "V0R_P1_lossless_capture_transport_restored": true,
+    "V0R_P1_lossless_manifest_capture_started": false,
+    "V0R_P1_lossless_gate_passed": false,
+    "V0_GATE_001_closed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Request action-time confirmation, then execute V0R-WORKSPACE-INVITE and V0R-PAGE-SHARE in the manifest order."
+}

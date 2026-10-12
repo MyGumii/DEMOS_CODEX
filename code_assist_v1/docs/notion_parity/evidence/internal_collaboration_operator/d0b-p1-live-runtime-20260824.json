@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.approved_dev_pair_runtime_receipt.v1",
+  "receipt_id": "D0B-P1-APPROVED-DEV-PAIR-LIVE-RUNTIME-20260824",
+  "recorded_at": "2026-08-24T13:09:42Z",
+  "status": "pass",
+  "approval_id": "AP-DEV-PAIR",
+  "launch_id": "60fe9d964437491686a3f929c1381c40",
+  "root_id": "3e22893b-ddca-4a9b-b331-77e231b21bd4",
+  "root_locator_sha256": "sha256:0925faed3812255e51cd92852de3bb7b3a7e538a84ce8b1ae0009e5a3abda978",
+  "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+  "approved_identity_ids": [
+    "admin",
+    "user01"
+  ],
+  "approved_identity_count": 2,
+  "cookie_name": "ca_dev_pair_41b66d919bc2f0fd243f",
+  "new_signing_secret": true,
+  "existing_signing_secret_copied": false,
+  "hosts": [
+    {
+      "role": "agent",
+      "pid": 42404,
+      "port": 10111,
+      "origin": "http://127.0.0.1:10111"
+    },
+    {
+      "role": "notion",
+      "pid": 40648,
+      "port": 10112,
+      "origin": "http://127.0.0.1:10112"
+    }
+  ],
+  "gateway": {
+    "pid": 41112,
+    "compactor_pid": 42636,
+    "port": 10113,
+    "origin": "http://127.0.0.1:10113",
+    "selected_cross_process_runtime": true
+  },
+  "manager": {
+    "pid": 39368,
+    "marker_bound_stop_protocol": true,
+    "status_command_reported_running": true
+  },
+  "account_mutation_authority_origin": "http://127.0.0.1:10111",
+  "notion_password_authority_copy": false,
+  "personal_content_imported": false,
+  "production_port_or_root_mutated": false,
+  "plaintext_password_hash_secret_cookie_value_or_session_recorded": false
+}

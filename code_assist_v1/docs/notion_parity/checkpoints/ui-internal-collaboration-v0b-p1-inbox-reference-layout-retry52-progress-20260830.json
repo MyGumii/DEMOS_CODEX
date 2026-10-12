@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-INBOX-REFERENCE-LAYOUT-RETRY52-20260830",
+  "recorded_at": "2026-08-30T02:26:51.027454+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry52 retains retry51 and gives the collaborator inbox a reference-shaped workspace focus ring, inbox navigation pill, compact action header, comment-preview notification flow, membership-row placement, and inbox-specific capture top edge. All four journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. Full-candidate unmasked differences decreased by 10,432 to 2,789,943. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-workspace-members-top-button-exact-retry51-progress-20260830.json",
+      "sha256": "sha256:97b89107bad54ec5da8cbe0e6fca2ec40861c7de83046e7571aca9b3915e04d6"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:a0c925ac8586557387713e2ec2360a726cd3df66930e4bdc28e36af45d240782",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {"path":"code_assist_v1/notion_static/index.html","sha256":"sha256:7ffdae48dc0b4c3619d8e1933d62f965053b42c5fad989f25c15b3c9c2320a8d"},
+      {"path":"code_assist_v1/notion_static/notion.css","sha256":"sha256:0e319696d0df1c02ee74efbf3d5790d89b43e144ebc9e433a2caee799b21b039"},
+      {"path":"code_assist_v1/notion_static/notion.js","sha256":"sha256:3c28ab0e1cc464fbe56cb6ade7b5cd7d6fa5d7f22c9d58e9041e0e52543f749f"},
+      {"path":"code_assist_v1/notion_static/assets/emoji/1f3e0.svg","sha256":"sha256:fd04bb778ab22836385a4c19971ffc3282024e0cbb7eabe4d6edd6287527882d"},
+      {"path":"code_assist_v1/notion_static/assets/emoji/1f44b.svg","sha256":"sha256:eaced9544876442d06a117570c6f9da91f08d758e1f4b0161b0b018c81235bc7"},
+      {"path":"code_assist_v1/notion_static/assets/emoji/TWEMOJI_ATTRIBUTION.md","sha256":"sha256:4cf8d4fe49c77a9b7a3caa2b24452d56ddae0675d73d067f98b6820326bb665d"}
+    ]
+  },
+  "evidence_harness_binding": {
+    "path": "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py",
+    "sha256": "sha256:3a16237c0edc4cf9a92b2eb0bed6dbe796c3fa5d3fc24cc1a068aea49bc7ffcf",
+    "modified_in_retry52": false
+  },
+  "accepted_changes": {
+    "inbox_visual_structure": "Only while the inbox overlay is visible, the workspace control, compact navigation pill, action header, notification rows, and deterministic top edge reproduce the adopted reference structure.",
+    "comment_preview_semantics": "Collaborative inbox items now derive their preview from the current comment content when available and display the mention event as a page comment notification while preserving the existing fallback labels.",
+    "accessibility_preserved": "The inbox filter remains the focused native combobox and all existing dialog/list controls remain in the accessibility tree; only their visible reference presentation changes."
+  },
+  "bounded_diagnostics": {
+    "inbox_reference_layout": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260830-inbox-reference-layout",
+      "state_013_unmasked": 26770,
+      "state_013_delta_from_retry51": -8328,
+      "journey_status": "pass",
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "inbox_header_row_width": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260830-inbox-header-row-width",
+      "state_013_unmasked": 26590,
+      "state_013_delta_from_previous": -180,
+      "journey_status": "pass",
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "inbox_masked_row_origin": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260830-inbox-masked-row-origin",
+      "state_013_unmasked": 26114,
+      "state_013_delta_from_previous": -476,
+      "journey_status": "pass",
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "rejected_scope_experiments": [
+      "First-line text indentation increased V0R-MU-013 by 562 pixels and was reverted.",
+      "Forcing a 270px grid track while the reconnect sidebar was collapsed increased V0R-MU-014 by 6,693 pixels and was reverted."
+    ]
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260830-retry52-lossless-inbox-reference-layout",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260830-retry52-lossless-inbox-reference-layout/receipt.json",
+    "receipt_sha256": "sha256:cd92880b9b0b37bedeb49877887c58af96f308df098c8ebfe84ddfba209382f4",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {"I0-P2":127291,"C0-P2":90590,"E1-P2":60273,"F0-P5":48013},
+    "run_duration_ms": 358546,
+    "unmasked_difference_count": 2789943,
+    "masked_difference_count": 211278,
+    "raw_difference_count": 3001221,
+    "delta_from_retry51_unmasked": -10432,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:185555d09a61d09eb02f34e00a4f050a2ce6a40529ad1239630fcbb494bf7311"
+    }
+  },
+  "state_deltas_from_retry51": [
+    {"state_id":"V0R-MU-001","previous":280395,"current":280395,"delta":0},
+    {"state_id":"V0R-MU-002","previous":325150,"current":325150,"delta":0},
+    {"state_id":"V0R-MU-003","previous":214341,"current":214341,"delta":0},
+    {"state_id":"V0R-MU-004","previous":194168,"current":194168,"delta":0},
+    {"state_id":"V0R-MU-005","previous":108830,"current":108830,"delta":0},
+    {"state_id":"V0R-MU-006","previous":241902,"current":241902,"delta":0},
+    {"state_id":"V0R-MU-007","previous":104534,"current":104534,"delta":0},
+    {"state_id":"V0R-MU-008","previous":105308,"current":105308,"delta":0},
+    {"state_id":"V0R-MU-009","previous":100833,"current":100833,"delta":0},
+    {"state_id":"V0R-MU-010","previous":105157,"current":105300,"delta":143},
+    {"state_id":"V0R-MU-011","previous":131729,"current":131729,"delta":0},
+    {"state_id":"V0R-MU-012","previous":138837,"current":138841,"delta":4},
+    {"state_id":"V0R-MU-013","previous":35098,"current":26114,"delta":-8984},
+    {"state_id":"V0R-MU-014","previous":88845,"current":88845,"delta":0},
+    {"state_id":"V0R-MU-015","previous":103643,"current":102553,"delta":-1090},
+    {"state_id":"V0R-MU-016","previous":102188,"current":101696,"delta":-492},
+    {"state_id":"V0R-MU-017","previous":210147,"current":210134,"delta":-13},
+    {"state_id":"V0R-MU-018","previous":209270,"current":209270,"delta":0}
+  ],
+  "variance_note": "The accepted inbox selectors can directly affect only V0R-MU-013. Small changes in V0R-MU-010, V0R-MU-012, V0R-MU-015, V0R-MU-016, and V0R-MU-017 are unrelated live-capture variance; bounded C0 diagnostics kept V0R-MU-007 and V0R-MU-014 exact to retry51.",
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "receipt_sha256": "sha256:cd92880b9b0b37bedeb49877887c58af96f308df098c8ebfe84ddfba209382f4",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {"EXACT_PIXEL_GATE":36,"CORE_25_GATE":1,"PERFORMANCE_GATE":1,"CLAIMS_GATE":1},
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "focused_regression": {
+    "selection": [
+      "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+      "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py"
+    ],
+    "result": "11 passed in 8.66s",
+    "exit_code": 0
+  },
+  "next_focus": {
+    "largest_states": [
+      {"state_id":"V0R-MU-002","unmasked_difference_count":325150},
+      {"state_id":"V0R-MU-001","unmasked_difference_count":280395},
+      {"state_id":"V0R-MU-006","unmasked_difference_count":241902},
+      {"state_id":"V0R-MU-003","unmasked_difference_count":214341},
+      {"state_id":"V0R-MU-017","unmasked_difference_count":210134},
+      {"state_id":"V0R-MU-018","unmasked_difference_count":209270}
+    ],
+    "smallest_state": {"state_id":"V0R-MU-013","unmasked_difference_count":26114},
+    "primary": "Continue the inbox's remaining icon, first-row flow, and workspace-ring decomposition without hardcoding dynamic values; separately decompose reconnect canvas offsets and the workspace member/invite panels.",
+    "full_candidate_policy": "Do not rerun Core25 or performance until exact pixel is 36/36."
+  },
+  "open_gates": {
+    "exact_pixel":{"passed":0,"required":36,"status":"open"},
+    "core_25":{"status":"not_run_until_exact_36_of_36"},
+    "performance":{"status":"not_run_until_exact_36_of_36"},
+    "claims":{"status":"open"},
+    "V0B_P1_gate_passed":false,
+    "product_complete":false,
+    "active_shared_goal_complete":false
+  },
+  "scope_attestation": {
+    "production_changed":false,
+    "second_brain_changed":false,
+    "user_chrome_touched":false,
+    "persistent_browser_profile_used":false,
+    "public_publish_or_link_used":false,
+    "personal_workspace_or_page_used":false,
+    "permanent_delete_used":false,
+    "reference_receipts_modified":false,
+    "agents_md_modified":false,
+    "other_sbe_hot_contract_modified":false
+  }
+}

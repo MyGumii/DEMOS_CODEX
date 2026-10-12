@@ -1,0 +1,31 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T17:51:40.7434908+09:00",
+  "run_id": "ui55-perf-001-current-review-wrapper-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-local-budget-proposal-green-review-pending-20260822.json",
+    "sha256": "sha256:9b8366c636ae4d1630512e9f6263230239a2bf4f30c92c46920a0ac89a238ce4"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-PERF-001",
+    "synthetic_only": true
+  },
+  "slice": {
+    "status": "local_budget_active_reference_timing_unaccepted",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+      "sha256": "sha256:17cad4942917ad41e13501c05ec1dd085de82343852eeb4772ad9e62b93b6761"
+    }
+  ],
+  "claims": {
+    "local_budget_active": true,
+    "reference_timing_accepted": false,
+    "differential_passed": false,
+    "completion_matrix_changed": false
+  }
+}

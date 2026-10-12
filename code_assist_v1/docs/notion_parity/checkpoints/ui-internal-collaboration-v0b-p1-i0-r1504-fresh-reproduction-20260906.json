@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1504-FRESH-REPRODUCTION-20260906",
+  "recorded_at": "2026-09-06T06:57:58.8216589+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1502-top-action-refinement-20260906.json",
+    "sha256": "sha256:53a7e72012b7f05b77dd7443cffdc6e9b3a5505bdfa35a888eea9a2b24de1e19",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 759969
+  },
+  "reproduction": {
+    "run_id": "v0b-p1-i0-r1504-fresh-reproduction-receipt",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1504-fresh-reproduction-receipt/diagnostic.json",
+    "diagnostic_sha256": "sha256:e861815a9b930617cb27237ddce95958551a5b9c3c0cf1f450ea47f0d636e0b2",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 759969,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 759969,
+    "fresh_realm_exact_reproduction": true,
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "capture_source": {
+    "path": "notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:b58c069cce7078fa05a9b18e3ff92a545625b7daaf326beff55ddabec2d274a7",
+    "python_compile_pass": true
+  },
+  "fresh_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1503-20260906",
+    "launch_id": "f01f7045a4be434c97127a4d6ece23a0",
+    "root_id": "ae126545-61d4-48be-9b1e-7f14d6963e02",
+    "manager_session_id": 33882,
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "initial_audit": {
+      "workspace_count": 0,
+      "reference_workspace_count": 0,
+      "active_membership_count": 0,
+      "active_page_binding_count": 0,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "current_audit": {
+      "workspace_count": 4,
+      "reference_workspace_count": 2,
+      "active_membership_count": 4,
+      "active_page_binding_count": 2,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue exact residual reduction from fresh-reproduced stable total 759969. Do not run final gates before exact parity reaches 36/36."
+}

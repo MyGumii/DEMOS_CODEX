@@ -1,0 +1,108 @@
+{
+  "contract": "code_assist.notion.core_free_ui.pending_approval_batch.v1",
+  "recorded_at": "2026-08-22T19:22:00+09:00",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active"
+  },
+  "inputs": {
+    "scenario_plan": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:455de38d4ac91deb9de7df0a92fd94dcbcd234dd50569f8148ce3b4f80672a43"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:bfb1a91ef4f7e07991dbf34f6f5cd6f371efe746d8498653b88617c77d5b586e"
+    },
+    "review_gate": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:d8e918346f0fad5ed863200d4e584bcd83672d892e4af91031e2ff7ddfafe32d"
+    },
+    "r1_capture": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/R1_CURRENT_SOURCE_CAPTURE_20260822.json",
+      "sha256": "sha256:c9cbff7f9ca240644c76f563559c453192b94f6dbe3cd3ce2dea079e1ab21ac3"
+    },
+    "r2_r3_capture": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/R2_R3_CURRENT_SOURCE_CAPTURE_20260822.json",
+      "sha256": "sha256:d7c29773f2e190331d4e5a5fe2fe40b44f30398f735def9b3955c8cd604a7b7b"
+    }
+  },
+  "resolved_approvals": [
+    {
+      "phrase": "UI-EDITOR-004 네이티브 IME 요약 승인",
+      "status": "resolved_and_sealed"
+    },
+    {
+      "phrase": "UI-PERF-001 로컬 성능 예산 제안 승인",
+      "status": "resolved_and_active"
+    }
+  ],
+  "pending_items": [
+    {
+      "id": "UI-R1-R3-REFERENCE-COMPLETION",
+      "authorization_kind": "recoverable_synthetic_external_mutation",
+      "scenario_ids": [
+        "UI-SHELL-001",
+        "UI-EDITOR-001",
+        "UI-EDITOR-002",
+        "UI-SEARCH-002"
+      ],
+      "workspaces": [
+        "REF-FREE-A",
+        "REF-FREE-B"
+      ],
+      "actions": [
+        "repeat only the approved missing reference observations",
+        "create synthetic pages or links only where the scenario requires them",
+        "capture normalized state, keyboard, focus, accessibility, semantic visual, and error recovery fields",
+        "move every created synthetic page to Trash after verification"
+      ],
+      "forbidden": [
+        "personal workspace or personal page access",
+        "invitation or external message",
+        "public publishing or link creation",
+        "permanent delete",
+        "raw DOM, network payload, cookie, token, or storage persistence"
+      ],
+      "cleanup": "trash_only_recoverable",
+      "status": "awaiting_owner_approval"
+    },
+    {
+      "id": "UI-R1-R3-DIFFERENTIAL-MATRIX",
+      "authorization_kind": "conditional_internal_evidence_mutation",
+      "condition": "all affected reference and current-local normalized captures validate and every differential reports zero observable differences",
+      "actions": [
+        "seal immutable differential packets",
+        "update only the corresponding completion-matrix scenario rows and aggregate counts",
+        "rerun completion, review, Second Brain, and adjacent route gates"
+      ],
+      "forbidden": [
+        "promotion_allowed=true",
+        "production flag enablement",
+        "live canary or operational migration",
+        "claiming full Core UI or overall goal completion"
+      ],
+      "status": "awaiting_owner_approval_and_zero_difference_condition"
+    }
+  ],
+  "exact_combined_approval_phrase": "UI-R1-R3 합성 reference 보완 캡처와 Trash 정리 승인; zero-difference 검증 후 differential 매트릭스 갱신 승인",
+  "current_evidence": {
+    "ui_source_build_sha256": "sha256:823563f460ae4f4c878c508654144e6bc6dae0cf77da217a69ae33501abc7ee5",
+    "r1_observed_fields": 80,
+    "r1_observed_fields_match": true,
+    "r2_r3_observed_fields": 38,
+    "r2_r3_observed_fields_match": true,
+    "differential_ready": false,
+    "certified_count": 5,
+    "required_scenario_count": 25,
+    "promoted_count": 0
+  },
+  "claims": {
+    "personal_content_accessed": false,
+    "reference_mutation_executed_by_this_batch": false,
+    "completion_matrix_changed_by_this_batch": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

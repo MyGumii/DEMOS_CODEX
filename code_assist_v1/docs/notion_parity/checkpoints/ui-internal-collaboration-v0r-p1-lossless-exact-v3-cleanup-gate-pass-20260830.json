@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-LOSSLESS-EXACT-V3-CLEANUP-GATE-PASS-20260830",
+  "recorded_at": "2026-08-30T22:48:21+09:00",
+  "checkpoint_kind": "source_lossless_exact_reference_cleanup_and_receipt_gate_pass",
+  "packet_id": "V0R-P1",
+  "packet_status": "gate_passed_next_V0B_P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Seal the source-lossless 18-state by two-viewport reference with an immutable ingest audit, corrected transition timing for V0R-MU-004 and V0R-MU-006, reviewed masks, and preserved semantic lineage.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-ingest-receipt-binding-20260830.json",
+    "sha256": "sha256:818d13ae74cbad135ab843debf047e2b7cdb478a734df8fe73e3574e334f20f5"
+  },
+  "supersession": {
+    "authority_text": "V0R-P1 lossless corrective reference 재수집 및 새 immutable receipt로 supersede 승인",
+    "scope": "pixel_reference_only",
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+    "original_semantic_receipt_sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa",
+    "original_receipt_modified": false,
+    "new_corrective_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v3-20260830.json",
+    "new_corrective_receipt_sha256": "sha256:b6a8a550455ccfbd9a41dd4a35643f57930ce6c1ad1cad7a0f1faace48ca6984"
+  },
+  "action_time_confirmation": {
+    "exact_user_text": "V0R 합성 A/B 루트 Trash 이동 및 최종 cleanup 승인",
+    "bound_action_id": "V0R-CLEANUP",
+    "bound_targets": [
+      "REF-FREE-A/V0R-A-ROOT",
+      "REF-FREE-B/V0R-B-ROOT"
+    ],
+    "bound_mode": "trash_only_recoverable"
+  },
+  "operator_action_result": {
+    "revoke_before_trash_order_preserved": true,
+    "REF_FREE_A_active_fixture_root_count": 0,
+    "REF_FREE_B_active_fixture_root_count": 0,
+    "REF_FREE_A_workspace_membership_remaining_count": 0,
+    "REF_FREE_B_page_grant_remaining_count": 0,
+    "REF_FREE_A_restore_control_visible": true,
+    "REF_FREE_B_restore_control_visible": true,
+    "REF_COLLABORATOR_A_access_request_boundary_visible": true,
+    "REF_COLLABORATOR_B_access_blocked": true,
+    "permanent_delete_used": false,
+    "status": "passed"
+  },
+  "evidence_denominator": {
+    "screenshot_file_count": 36,
+    "expected_screenshot_count": 36,
+    "mask_manifest_count": 36,
+    "expected_mask_manifest_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "raw_file_count": 0,
+    "status": "complete"
+  },
+  "final_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v3-20260830.json",
+    "sha256": "sha256:b6a8a550455ccfbd9a41dd4a35643f57930ce6c1ad1cad7a0f1faace48ca6984",
+    "audit_contract": "code_assist.notion.internal_collaborative_reference_multiuser_receipt.audit.v1",
+    "audit_status": "pass",
+    "audit_error_count": 0,
+    "cleanup_complete": true,
+    "gate_passed": true,
+    "product_complete": false,
+    "exact_reference_gate_passed": true
+  },
+  "verifier_binding": {
+    "path": "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py",
+    "sha256": "sha256:27fe2dceb667304937ee29d1e65d32ed1e55af024f96385cc5bb826645f99a6d"
+  },
+  "scope_attestation": {
+    "raw_email_or_account_identifier_persisted": false,
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_dom_or_network_payload_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "non_test_notification_sent": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false
+  },
+  "claims": {
+    "V0R_P1_semantic_receipt_preserved": true,
+    "V0R_P1_corrective_pixel_reference_complete": true,
+    "V0R_P1_gate_passed": true,
+    "zero_RGBA_difference_claimed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false,
+    "V0R_P1_exact_reference_transport_passed": true
+  },
+  "next_action": "Run the exact Full36 comparison against this v3 receipt, then Core25 and quiet-host performance only after all exact and accessibility rows pass.",
+  "lossless_ingest_binding": {
+    "manifest_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-lossless-exact-v3-20260830-ingest-manifest.json",
+    "manifest_file_sha256": "sha256:d92ef951e11970e7a41678104b85acb1e15b594c09d6f6c40fbea95c9a6790db",
+    "capture_manifest_sha256": "sha256:de0ea3b490acfc98a4c843c522100e7c9f0304872542da2dc8fb7af762caba3f",
+    "audit_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-lossless-exact-v3-20260830-ingest-audit.json",
+    "audit_sha256": "sha256:f15b5ab606b821bb4ffe89b145a06094cb59bb838a4251bef6df2327e3ff8fb0",
+    "exact_reference_transport_eligible": true
+  }
+}

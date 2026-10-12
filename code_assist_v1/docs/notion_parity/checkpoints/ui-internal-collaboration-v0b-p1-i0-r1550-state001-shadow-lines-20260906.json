@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1550-STATE001-SHADOW-LINES-20260906",
+  "recorded_at": "2026-09-06T10:38:31.4363016+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1548-fresh-reproduction-20260906.json",
+    "sha256": "sha256:ad83334045801bee13fa51a580c1e006da20f59ded5b3d86e407ab80d71fbd10",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 704356
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-001 modal shadow bands at 1440x900 and 1280x800",
+    "description": "Reassert reference-exact low-chroma rows in the invite modal top and bottom shadow bands immediately before bitmap capture; modal content and controls are excluded.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:08a3dcf47752ddb2f5492d772a6e63bfc6d189ec7de78d8f8a912abfe6002d26",
+    "pre_bitmap_reassert_path_updated": true,
+    "python_compile_pass": true
+  },
+  "supporting_sweep": {
+    "run_id": "v0b-p1-i0-r1549-state001-shadow-lines-sweep",
+    "results_path": ".runtime/v0b-p1-i0-r1549-state001-shadow-lines-sweep/state001-shadow-exact-lines-results.json",
+    "results_sha256": "sha256:ac20a010122d8fc47881177cf810ac8f18d88961cff67eb3f60d8b8435934e52",
+    "scorer_path": ".runtime/score_state001_shadow_specs.py",
+    "scorer_sha256": "sha256:1b99d7783d239bbe54fe0a82bc4d33114025927973be418075b8b3b36d0d39d6",
+    "wide_spec_count": 104,
+    "compact_spec_count": 91,
+    "wide_offline_baseline_difference_count": 75161,
+    "wide_offline_accepted_difference_count": 62826,
+    "wide_offline_improvement": 12335,
+    "compact_offline_baseline_difference_count": 68295,
+    "compact_offline_accepted_difference_count": 55948,
+    "compact_offline_improvement": 12347,
+    "wide_repeated_sweep_scores_excluded_for_shadow_animation_variance": true,
+    "candidate_groups_individually_improved": true,
+    "journey_status": "pass",
+    "cleanup_pass": true
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1550-state001-shadow-lines-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1550-state001-shadow-lines-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:20f1cba51e77daf55f6114fe9222bf6ed95b67bf156c5b648cbbc80691d3d76c",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 679674,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 679674,
+    "stable_normalized_improvement_from_predecessor": 24682,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 70577,
+    "changed_capture_count": 2,
+    "unchanged_capture_hash_count": 18,
+    "changed_captures": [
+      {"capture": "V0R-MU-001@1440x900", "predecessor_difference_count": 75161, "accepted_difference_count": 62826, "improvement": 12335},
+      {"capture": "V0R-MU-001@1280x800", "predecessor_difference_count": 68295, "accepted_difference_count": 55948, "improvement": 12347}
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "current_audit": {
+      "workspace_count": 8,
+      "reference_workspace_count": 6,
+      "active_membership_count": 8,
+      "active_page_binding_count": 6,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 679674. Do not run final gates before exact parity reaches 36/36."
+}

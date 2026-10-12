@@ -1,0 +1,63 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T17:32:36.1197734+09:00",
+  "run_id": "ui50-approval-batch-v2-ready-20260822",
+  "parent_checkpoints": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-004-native-ime-reference-observed-review-pending-20260822.json",
+      "sha256": "sha256:40875c34a6abea885b09d76654918db7dfb09ed244e388a55b57cbc2e07f7fe5",
+      "semantic_status": "native_ime_reference_observed_summary_review_pending"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-local-budget-proposal-green-review-pending-20260822.json",
+      "sha256": "sha256:9b8366c636ae4d1630512e9f6263230239a2bf4f30c92c46920a0ac89a238ce4",
+      "semantic_status": "local_precalibration_budget_proposal_verified_review_pending"
+    }
+  ],
+  "slice": {
+    "id": "UI-APPROVAL-BATCH-V2",
+    "status": "verified_waiting_for_exact_user_text",
+    "external_action_pending": false,
+    "completion_matrix_mutation_allowed_by_receipt_alone": false
+  },
+  "queue": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v2.json",
+    "sha256": "sha256:a1153a7f60fd0f84dab9c40f29f746292c696ced86255176c5cb3eb519fab489",
+    "pending_entry_count": 2,
+    "exact_user_text": "UI-EDITOR-004 네이티브 IME 요약 승인; UI-PERF-001 로컬 성능 예산 제안 승인"
+  },
+  "implementation": {
+    "verifier": {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_approval_batch_v2.py",
+      "sha256": "sha256:4ad44418c289248d5f7ad47193cc07beed7873511d0d475caafe6e9a95b32c8f"
+    },
+    "tests": {
+      "path": "code_assist_v1/tests/test_notion_ui_approval_batch_queue_v2.py",
+      "sha256": "sha256:997d2fe56cde797f521cf844ca191b2a6aab9b650f4ace2360299f7bdda51ff6"
+    }
+  },
+  "verification": [
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_approval_batch_v2 --compact",
+      "exit_code": 0,
+      "result": "pass; pending_entry_count=2; external_action_pending_count=0"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_approval_batch_queue_v2.py code_assist_v1\\tests\\test_notion_ui_manual_ime_receipt.py code_assist_v1\\tests\\test_notion_ui_performance_budget_proposal.py -q",
+      "exit_code": 0,
+      "result": "13 passed in 3.42s"
+    }
+  ],
+  "claims": {
+    "approval_inferred_count": 0,
+    "external_action_pending_count": 0,
+    "manual_input_pending_count": 0,
+    "budget_approved": false,
+    "ui_editor_004_summary_approved": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next_exact_action": "On exact user approval, create and verify a create-only v2 receipt, seal both decisions, recompute only authorized observable/local claims, and rerun the review/completion gates."
+}

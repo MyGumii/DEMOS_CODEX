@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-RUNTIME-REPLAY-FIX-DIAGNOSTIC-20260827",
+  "recorded_at": "2026-08-27T02:39:56+09:00",
+  "checkpoint_kind": "runtime_replay_fix_cleanup_hardening_and_current_source_diagnostic",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_not_gate_passed",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS_AND_NOTION_COLLABORATION_RUNTIME",
+  "purpose": "Seal the direct-page guest replay fix and the strengthened four-journey cleanup contract without claiming exact-pixel, Core 25, performance, V0B, product, or shared-goal completion.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-corrected-lineage-blocked-20260827.json",
+    "sha256": "sha256:78ca70a1c071aa5d9313f1fc2b74de8b2f64d3258a9808d828f5b1d80880fdb8",
+    "disposition": "resolved_product_semantic_blocker_but_not_V0B_gate"
+  },
+  "V0R_reference_binding": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "verifier_status": "pass",
+    "action_count": 11,
+    "capture_count": 36,
+    "cleanup_complete": true,
+    "reexecuted": false
+  },
+  "product_fix": {
+    "root_cause": "Replay frames reused the historical event workspace and document epochs. A later page grant incremented those epochs, so a newly authorized direct-page guest received a current ticket but was fenced as SESSION_CLOSED when the gateway enqueued an older committed owner update.",
+    "resolution": "After current authorization validation, replay and live-replay frames bind historical payload, hash, sequence, and operation data to the current session epochs; persisted historical events remain unchanged.",
+    "source": {
+      "path": "code_assist_v1/notion_collaboration/runtime_gateway.py",
+      "sha256": "sha256:05f7bbcda355ce88cb1c6e41fab5d99f8f280255bad8796a9efc71d8c91daba3"
+    },
+    "regression_tests": [
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/test_collaborative_editing_authority.py",
+        "sha256": "sha256:566613f47bd4e317f33a07dbd8281038dad338fd176a475f7532317bc995c714",
+        "added_case": "test_e1_p1_replay_rebinds_committed_update_after_page_grant_epoch_change"
+      },
+      {
+        "path": "code_assist_v1/tests/notion_collaboration/test_live_collaboration_authority.py",
+        "sha256": "sha256:6759b897642c26bb6e274b471aedb526046f6e9de6f751ff70649e088702c5a7",
+        "added_case": "test_c0_p1_live_replay_rebinds_event_after_page_grant_epoch_change"
+      }
+    ],
+    "test_results": {
+      "focused_new_replay_case": "1_passed",
+      "preexisting_runtime_and_live_suites": "10_passed",
+      "full_editing_and_live_suites_after_fix": "15_passed_in_166.12_seconds",
+      "py_compile": "pass"
+    }
+  },
+  "approved_dev_pair_binding": {
+    "approval_id": "AP-DEV-PAIR",
+    "active_run_path": ".dev/notion-collaboration-10111-10113/active-run.json",
+    "active_run_sha256": "sha256:b671808543ce3909822c75bcb5b919e5d047d792a7fc6258ee65aa461df68761",
+    "launch_id": "15c950c33dec4378b09c1d62356fc239",
+    "manager_pid": 7480,
+    "manager_running": true,
+    "listening_ports": [10111, 10112, 10113]
+  },
+  "runtime_source_binding": {
+    "build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "runtime_gateway_sha256": "sha256:05f7bbcda355ce88cb1c6e41fab5d99f8f280255bad8796a9efc71d8c91daba3",
+    "verified_by_current_receipt": true
+  },
+  "corrected_IAM_slice": {
+    "runtime_root": "code_assist_v1/.runtime/v0b-iam-slice-retry12",
+    "status": "pass",
+    "direct_page_edit_verified": true,
+    "role_change_to_comment_verified": true,
+    "role_change_to_view_verified": true,
+    "page_revoke_http_404_verified": true,
+    "workspace_revoke_visibility_fence_verified": true,
+    "cleanup_complete": true,
+    "browser_closed": true,
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "candidate_screenshot_manifest": {
+      "canonicalization": "UTF-8 canonical JSON of path and sha256 pairs sorted by path",
+      "sha256": "sha256:8f7ea4d227082c54f9d7947490182adabf1cc8a06d01d16895c79e2dd40a6d69"
+    },
+    "diff_screenshot_manifest": {
+      "canonicalization": "UTF-8 canonical JSON of path and sha256 pairs sorted by path",
+      "sha256": "sha256:14c626ec43e1b44883e79cb3dfb6efc6d088e3802ed1a3ea7306dacfe0fd4e99"
+    }
+  },
+  "superseded_post_fix_cleanup_audit_failure": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-l6-runtime-fix-cleanup-audit-fail-20260827.json",
+    "sha256": "sha256:706071aca82cfd701681f18ec15855822170d18cb00ecefa47f0d31e8102f8fb",
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "semantic_component_status": "four_of_four_pass",
+    "independent_cleanup_audit_before_remediation": {
+      "active_page_tree_nodes": 0,
+      "active_user01_workspace_memberships": 2,
+      "active_user01_workspace_guests": 0,
+      "active_user01_page_grants": 0
+    },
+    "disposition": "The two exact synthetic E1/F0 memberships were revoked, and this receipt is excluded from gate evidence because its cleanup assertion was incomplete."
+  },
+  "cleanup_contract_hardening": {
+    "result": "pass",
+    "changes": "C0, E1, F0, and IAM now report verified synthetic member absence; E1 and F0 revoke their V0B-created members on success and use a fresh ephemeral admin session for failure cleanup; the composite and verifier require all four cleanup proofs.",
+    "source_files": [
+      {"path": "code_assist_v1/notion_collaboration/c0_p2_browser.py", "sha256": "sha256:ed9a7a5855891cfbfd7ab3afee2b004ebddc5cb4b753def38a16dc16709ea727"},
+      {"path": "code_assist_v1/notion_collaboration/e1_p2_browser.py", "sha256": "sha256:076e7db6f69dbe06c3eaf68aae905598d048e3a9138a8a4864f67b5028029b0c"},
+      {"path": "code_assist_v1/notion_collaboration/f0_p5_browser.py", "sha256": "sha256:bf444b123dfe2bc0598bbf4ce9de4873e2c436da2a9c9c9f2a251efe338695b1"},
+      {"path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py", "sha256": "sha256:0dbc5fb978148e50e7e3b58d6f9ed3d9661375c6007625ea060912fc2db60806"},
+      {"path": "code_assist_v1/notion_collaboration/v0b_p1_browser.py", "sha256": "sha256:8dda065637917c268dfdf133c89864b5c01eb22112b8c3d55517977a49f06ce6"},
+      {"path": "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py", "sha256": "sha256:61e9a74825915937e11bd9f9f26ae92a59361a228667e63b2148f7fc1d0ca63c"},
+      {"path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py", "sha256": "sha256:eb8cb1c837fe8b1925b16a5b4d219a394c0cf1228750c0c0bf54801d33e5be59"}
+    ],
+    "verification": {
+      "py_compile": "pass",
+      "verifier_unit_tests": "9_passed_in_9.13_seconds"
+    }
+  },
+  "current_full_diagnostic": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-l6-final-candidate-20260826.json",
+    "sha256": "sha256:265b1afeaec15b5cb7f4f896584d6125c99d973c64dc0e18e8b25072a73b9ecd",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "component_journeys_passed": 4,
+    "component_cleanup_proofs_passed": 4,
+    "independent_cleanup_audit_after_execution": {
+      "database_path_class": "approved_development_gateway_catalog",
+      "query_mode": "sqlite_read_only",
+      "workspace_alias_scope": ["REF-FREE-A", "REF-FREE-B"],
+      "active_page_tree_nodes": 0,
+      "active_user01_workspace_memberships": 0,
+      "active_user01_workspace_guests": 0,
+      "active_user01_page_grants": 0
+    },
+    "current_verifier": {
+      "status": "fail",
+      "error_count": 39,
+      "error_breakdown": {
+        "EXACT_PIXEL_GATE": 36,
+        "CORE_25_GATE": 1,
+        "PERFORMANCE_GATE": 1,
+        "CLAIMS_GATE": 1
+      },
+      "runtime_candidate_binding_errors": 0,
+      "component_journey_errors": 0,
+      "cleanup_errors": 0,
+      "accessibility_errors": 0,
+      "semantic_interaction_errors": 0
+    }
+  },
+  "remaining_gates": {
+    "zero_unmasked_RGBA_difference": "fail_0_of_36",
+    "Core_25_fresh_current_build": "not_passed_inherited_20_of_21",
+    "UI_PERF_001_fresh_quiet_host": "not_passed_host_not_verified_quiet",
+    "V0B_P1": "not_passed",
+    "O1B_and_later": "not_started_by_gate_order"
+  },
+  "scope_attestation": {
+    "external_reference_reexecuted": false,
+    "production_or_second_brain_changed": false,
+    "personal_content_accessed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "synthetic_cleanup_only": true
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "V0B_P1_gate_passed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Cluster and inspect the 36 exact-pixel failures by adopted surface, correct the candidate UI against the immutable V0R reference without masks, then rerun the affected captures. Run fresh Core 25 and quiet-host UI-PERF only against the eventual final static candidate; do not begin O1B while V0B remains false."
+}

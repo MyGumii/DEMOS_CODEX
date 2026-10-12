@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-ADOPTED-SURFACE-LINEAGE-TRANSITION-VERIFIED-20260907",
+  "recorded_at": "2026-09-07T00:25:56+09:00",
+  "checkpoint_kind": "immutable_historical_source_transition",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Authorize only fail-closed historical validation of the immutable V0R/V0B evidence across declared adopted-surface contract rebinds. It does not change or replace either receipt and does not treat a planning contract as execution evidence.",
+  "transition_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+  "historical_receipt_bound_sha256": "sha256:660f3a738d4835ecfe57be7fa9473da76129399de7095f508577ba297587dc77",
+  "current_sha256": "sha256:0089f873f9628e7d379ca343aaa605d93c081154634c95d6729dd65fb01ef010",
+  "transition_chain": [
+    {
+      "pre_edit_checkpoint": {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-specialized-verifier-rebind-active-pre-edit-20260906.json",
+        "sha256": "sha256:0de8ac4d33d559c765b7b018ba22eabd965f8d117f6464fb9a83da2b01dc553d"
+      },
+      "verified_checkpoint": {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-specialized-verifier-rebind-verified-20260907.json",
+        "sha256": "sha256:7cfe30faa56f34df96cb83094cd9358cfc1c5796f42404fede42b45f9700a386"
+      },
+      "pre_sha256": "sha256:660f3a738d4835ecfe57be7fa9473da76129399de7095f508577ba297587dc77",
+      "post_sha256": "sha256:c1f719a72ef2735c22196d360d779c4e944a9977842b00140f30dcbfafb8e295",
+      "reason": "current specialized source/test manifest rebind"
+    },
+    {
+      "pre_edit_checkpoint": {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-central-harness-rebaseline-pre-edit-20260907.json",
+        "sha256": "sha256:b70ace8dee3489863933694e3173c9ae73a45a3054e889106d3931ea0dce9137"
+      },
+      "verified_checkpoint": {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-v0-evidence-lineage-rebind-active-pre-edit-20260907.json",
+        "sha256": "sha256:feff66183f683d167529610e893343b4238fb48408ebfc8f47f2c7c366b3188c"
+      },
+      "pre_sha256": "sha256:c1f719a72ef2735c22196d360d779c4e944a9977842b00140f30dcbfafb8e295",
+      "post_sha256": "sha256:a292494f67a299808b60ca41d7707275ad76516e0fc44c04e0d2502233597d3d",
+      "reason": "central harness summary rebaseline recorded before the final evidence-lineage edit"
+    },
+    {
+      "pre_edit_checkpoint": {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-v0-evidence-lineage-rebind-active-pre-edit-20260907.json",
+        "sha256": "sha256:feff66183f683d167529610e893343b4238fb48408ebfc8f47f2c7c366b3188c"
+      },
+      "pre_sha256": "sha256:a292494f67a299808b60ca41d7707275ad76516e0fc44c04e0d2502233597d3d",
+      "post_sha256": "sha256:0089f873f9628e7d379ca343aaa605d93c081154634c95d6729dd65fb01ef010",
+      "reason": "final catalog, ladder, verifier and O1B handoff binding"
+    }
+  ],
+  "immutable_evidence": {
+    "v0r_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+    "v0r_receipt_sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "v0b_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json",
+    "v0b_receipt_sha256": "sha256:d9fd95c7ed462bde80d50c86eaf6714405fbc5738c24cc3f8f05efbc9cda0d96",
+    "modified": false
+  },
+  "current_contracts": {
+    "packet_catalog_sha256": "sha256:db9e6b0183631f690e6961a431a697d047722a68aa433c6a98a6785b2710ab08",
+    "validation_ladder_sha256": "sha256:81209f312b9ae51c7e20c686c6ca2d7d156af3dcf148fb7e94bc8b0b7957bc0f",
+    "local_backup_restore_sha256": "sha256:89580ac193b4b977d16f6b6cba5bad557dc020c6341623d679c60040f5f49de6",
+    "generic_wrapper_sha256_pre_validation": "sha256:c6538ebd028a0e139fca55cd0bd4328a694e1ebe0930ae6cadbe86ecd2116039"
+  },
+  "guards": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "product_source_modified": false,
+    "sbe_modified": false,
+    "external_mutation_executed": false,
+    "product_complete": false,
+    "goal_complete": false
+  }
+}

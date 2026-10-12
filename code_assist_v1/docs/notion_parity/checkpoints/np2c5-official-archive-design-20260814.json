@@ -1,0 +1,192 @@
+{
+  "contract": "np2c5_official_archive_reference_design_checkpoint_v1",
+  "recorded_at": "2026-08-14T16:03:06.6777265+09:00",
+  "run_id": "np2c5-official-archive-design-20260814",
+  "model_handoff_profile": "ultra_plan_xhigh_execution_ready",
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "resume current development documents and plan, verify the goal, and continue development",
+    "completion_claimed": false
+  },
+  "slice": {
+    "id": "NP2C-5-official-archive-source-contract-design",
+    "status": "official_reference_design_frozen_complete",
+    "next_slice": "NP2C-5a-approved-business-enterprise-live-characterization",
+    "source_or_catalog_implementation_authorized": false,
+    "runtime_or_live_followup_authorized": false,
+    "live_or_differential_pass_claimed": false,
+    "overall_np2c_complete_claimed": false,
+    "overall_parity_complete_claimed": false
+  },
+  "current_and_candidate_lineage": {
+    "current_legacy_source_version": 2026081303,
+    "h5e_reserved_source_version": 2026081304,
+    "h5e_source_version_implemented": false,
+    "candidate_archive_source_version": 2026081305,
+    "candidate_archive_source_version_implemented": false,
+    "candidate_archive_source_requires_exact_frozen_v4": true,
+    "current_workspace_version": 2026081317,
+    "current_workspace_name": "notion_workspace_v2_np2c_lifecycle_subtree_finalize_authority",
+    "current_workspace_checksum": "sha256:6cb890ccc026435715a1c9171b4d1fd0f74ae6896f63d3cdf66a27b6eec5b61b",
+    "current_workspace_actual_schema_sha256": "sha256:650a031ff1f7d1794bde06d9f9479794d0c89fa2faba8e07762badfe3c500aad",
+    "current_workspace_object_count": 179,
+    "candidate_archive_workspace_version": 2026081318,
+    "candidate_archive_workspace_implemented": false,
+    "candidate_archive_workspace_ddl_or_hash_frozen": false,
+    "request_or_startup_migration_enabled": false,
+    "operational_source_or_catalog_migrated": false
+  },
+  "official_reference_snapshot": {
+    "as_of": "2026-08-14 Asia/Seoul",
+    "sources": [
+      "https://www.notion.com/help/archive-pages",
+      "https://www.notion.com/en-gb/help/duplicate-delete-and-restore-content",
+      "https://www.notion.com/releases/2026-03-27",
+      "https://developers.notion.com/reference/page",
+      "https://developers.notion.com/reference/patch-page"
+    ],
+    "confirmed": [
+      "Archive and Trash are distinct product states",
+      "Archive is documented as a Business and Enterprise beta",
+      "edit permission is required to archive or unarchive",
+      "archived content remains accessible and existing workspace links continue to work",
+      "archiving a parent affects its subpages",
+      "archived content is hidden from default Search, sidebar, and database views but can appear in explicit Archive-aware views",
+      "Page API response fields distinguish is_archived from in_trash; no Archive mutation API is inferred"
+    ],
+    "not_live_or_differential_evidence": true,
+    "public_api_used_as_implementation_or_data_collection_oracle": false
+  },
+  "designed_contract": {
+    "legacy_archive_page_and_pages_archived_remain_trash_compatibility": true,
+    "historical_catalog_archive_action_is_not_relabelled": true,
+    "official_archived_binding_state": "active",
+    "official_archived_locator_projection_retained": true,
+    "official_archived_physical_tree_lifecycle": "active",
+    "official_archived_canonical_lifecycle": "archived",
+    "direct_locator_requires_current_iam": true,
+    "default_navigation_search_database_visibility": "hidden",
+    "public_locator_cohort_first_offline_adapter_policy": "refuse_before_source_mutation_until_characterized",
+    "cross_database_convergence_model": "at_least_once_state_idempotent_with_immutable_source_and_catalog_ledgers",
+    "cross_database_exactly_once_claimed": false
+  },
+  "live_characterization_pending": [
+    "parent and nested archive/unarchive behavior including pre-archived descendants",
+    "create, move, duplicate, Trash, restore, and edit behavior at an archived boundary",
+    "Search, Library, sidebar, database, backlink, relation, rollup, mention, comment, synced-block, and notification behavior",
+    "owner, editor, commenter, reader, guest, teamspace member, and workspace-admin outcomes",
+    "public Site and published-link behavior",
+    "web, desktop, and mobile behavior",
+    "response loss, concurrent permission or plan loss, and subtree drift"
+  ],
+  "machine_contract": {
+    "version": 19,
+    "status": "official_archive_source_contract_designed_source_v5_and_workspace_1318_blocked_default_off",
+    "verified_valid": true,
+    "current_workspace_schema_version": 2026081317,
+    "candidate_workspace_schema_version": 2026081318,
+    "official_archive_unarchive_contract_designed": true,
+    "official_archive_source_implemented": false,
+    "candidate_1318_schema_implemented": false,
+    "official_archive_catalog_finalizer_implemented": false,
+    "official_archive_offline_rehearsal_implemented": false,
+    "runtime_commands_enabled": false,
+    "permanent_delete_enabled": false
+  },
+  "tests": [
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_page_tree_contract",
+      "result": "valid=true, contract=19, current=1317, candidate=1318, runtime_commands=false, permanent_delete=false",
+      "exit_code": 0
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q",
+      "result": "3 passed in 0.88s",
+      "exit_code": 0,
+      "snapshot_note": "machine-v19 exact and adversarial design-gate verifier"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_legacy_page_duplicate_trash_restore.py code_assist_v1\\tests\\test_notion_legacy_page_lifecycle_subtree_bounds.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_subtree_finalize.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_subtree_orchestration.py code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q",
+      "result": "35 passed in 71.38s",
+      "exit_code": 0,
+      "snapshot_note": "current 4e source replay, exact bounds, finalizer/orchestration and machine-v19 design contract"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m py_compile code_assist_v1\\tools\\verify_notion_np2c_page_tree_contract.py code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py",
+      "result": "passed",
+      "exit_code": 0
+    }
+  ],
+  "files": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/notion_workspace_store.py": "eb654ab9ccb3904cfe246060d2b21d8a3a400af7a6294c7fb4f8bfab7d95fe8c",
+    "code_assist_v1/notion_workspace_page_lifecycle_subtree_finalize.py": "4c5b4a77b35b0dbb08cf209263a72874dff308ab7f4feecdb0282f3fdca7adce",
+    "code_assist_v1/notion_legacy_page_duplicate_trash_restore.py": "64ccb785ce51de28a46d4d83e76e437e48872d0ff7efc30c69d0c7d45c1443cc",
+    "code_assist_v1/notion_workspace_page_lifecycle_subtree_orchestration.py": "b7908e2bcac3f83d60d0a1803435f8401e92059015a2df69f92b372cc769914c",
+    "code_assist_v1/tests/test_notion_legacy_page_lifecycle_subtree_bounds.py": "0553a7a6dafecb1cf4b13440c06c9408fa3cd434e38e686e728db7ed8973354c",
+    "code_assist_v1/tests/test_notion_workspace_page_lifecycle_subtree_finalize.py": "291c9eb0ecb3ced889d5ba3df6f6623cbb407c0b56f80eace9db4b55dc098a44",
+    "code_assist_v1/tests/test_notion_workspace_page_lifecycle_subtree_orchestration.py": "6827079e8ed3332e8728c881ab69704491742daaba81c5f1357f18ee46f0c9b4",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "86901eacd80880882096a9366109c69ed226402a4bf156dd63268ed317021dd5",
+    "code_assist_v1/tools/verify_notion_np2c_page_tree_contract.py": "0da95a0dd7179e318baa1ec79b8922acaf6c78efeb160757774c2eedd00b589e",
+    "code_assist_v1/tests/test_verify_notion_np2c_page_tree_contract.py": "4935992c3f70ca30771c27dfca488f3bec13954f583ad32bc5213f09c488df16",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "7b013e173a89b3c56501867ae8ef937e0e741fccc5c75682587566fc745db67a",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "8d0ba6181f8776d5561baad022d10377c3c9fb5a4879435ad96acd3c7e31dd23",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "1f5fdb05acdd73a24859106c5c7f625f2284cfbd497e16a9e7871a7929b23837",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "1a410feea2fe694a48a3f8c6f84925d8eca912c831fe709bb4b176249ecc6c2e",
+    "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "6a2817fdac4af1e3d840a7b5ec9ac4de1fb76425dfaf018007cfba3abc9cd0df",
+    "code_assist_v1/docs/notion_parity/NP2C_DUPLICATE_TRASH_RESTORE_DESIGN.md": "9f5078d318c35068f57d2e042b51c8912d7434fe3eb20c5e823e4fc145c1ee12",
+    "code_assist_v1/docs/notion_parity/NP2C_OFFICIAL_ARCHIVE_DESIGN.md": "3c7658f26cfb0ad1d5f41b43be387b30afd3fb85bb57a0a368ade5eac774f7bf"
+  },
+  "protected_boundaries": {
+    "agents_md_modified": false,
+    "app_code_owned_or_modified_by_this_slice": false,
+    "knowledge_or_second_brain_boundary_modified": false,
+    "live_runtime_or_user_data_accessed": false,
+    "runtime_route_ui_worker_resolver_changed": false,
+    "feature_flags_changed": false,
+    "source_or_workspace_schema_changed": false,
+    "destructive_ack_or_purge_changed": false,
+    "protected_regression_note": "a concurrent developer owns app_code and Shared Knowledge work; this slice did not inspect, overwrite, stage, or claim that developer's changes"
+  },
+  "vcs": {
+    "git_repository_available": false,
+    "git_init_performed": false,
+    "commit_or_landed_claimed": false,
+    "changed_file_inventory_basis": "explicit file hashes and observed mtimes, not git diff"
+  },
+  "remaining_plan": {
+    "engineering_progress_estimate": "approximately 10 percent of full parity",
+    "formal_differential_parity": "0 percent",
+    "np2a_substrate_estimate": "approximately 80 percent",
+    "immediate": [
+      "re-read AGENTS.md and the active goal; rehash machine-v19, 4e, source-v3 and H5e inputs",
+      "do not reimplement NP2C-4a through NP2C-5",
+      "obtain explicit authority, a Business or Enterprise test workspace, synthetic fixtures, reviewer roles, and redacted evidence storage before NP2C-5a",
+      "run the exact live-characterization matrix without source/catalog mutation or runtime wiring",
+      "convert every observed unknown into a reviewed semantic decision and update design plus machine contract before proposing DDL"
+    ],
+    "later": [
+      "implement H5e source v4 only under its separate authorization and keep destructive acknowledgement disabled",
+      "review exact v4-to-v5 Archive source schema and route-unregistered adapter",
+      "review frozen 1317-to-1318 catalog guards and atomic Archive finalizer",
+      "run exact-sentinel offline response-loss and rollback rehearsal, then an independent security/bounds/redaction/deep-health audit",
+      "keep protected routes/default-off UI, resolver cutover, public duplicate, destructive acknowledgement and purge behind their separate gates",
+      "complete NP-0 evidence infrastructure, NP-2A runtime readiness, remaining NP-2B through NP-2E, and NP-3 through NP-11 by their documented gates"
+    ]
+  },
+  "resume": {
+    "first_action": "re-read AGENTS.md, inspect the active goal, and recompute all current hashes before editing",
+    "next_exact_gate": "NP2C-5a-approved-business-enterprise-live-characterization",
+    "next_exact_command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_page_tree_contract",
+    "stop_if": [
+      "file ownership or checkpoint hash drift",
+      "frozen source-v3, reserved source-v4, workspace-1317, or machine-v19 contract mismatch",
+      "approved Business or Enterprise fixture, role matrix, reviewer, or redacted evidence boundary is unavailable",
+      "a protected boundary or operational/live data access is required",
+      "source v4 or v5, workspace 1318, Archive adapter/finalizer, route, UI, worker, resolver, watermark acknowledgement, public duplicate, or purge implementation would be started by this characterization slice",
+      "an unresolved live behavior would be guessed instead of recorded as unknown",
+      "a concurrent developer modifies an owned file after the pre-edit snapshot"
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-INDEPENDENT-REBIND-PRE-EDIT-20260907",
+  "recorded_at": "2026-09-07T02:07:05.9465001+09:00",
+  "status": "in_progress_independent_reference_rebind",
+  "packet_id": "V0R-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Validate and bind the independently clean V0R reference receipt as a V0R-only generic closing receipt, without restoring any V0B visual credit.",
+  "owned_existing_files": [
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json"
+  ],
+  "new_product_files": [],
+  "new_test_files": [],
+  "new_evidence_files": [
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-independent-generic-wrapper-20260907.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-independent-rebound-20260907.json"
+  ],
+  "read_only_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:6452f040cccba8750b980d48bcf3d8d67a6e68e5626a52ec332b0347bd33089e",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:049a7a772982de77fed5ddcfc24a3ccf835f37db2afec56b5259b03056e10293",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:96d7f4493b687816f24563e54c1aab3401713e2d65056b62726b664d2f5b9275",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:28ef02fd42dec55597b92b41a97b63319d8540efd86d1dc5f8d433feb053bcd4",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json": "sha256:d77b4379170ab397c07af9e40c7ea6baaa11210815072d85d4d9ded265883ad2",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json": "sha256:8c692bbfa94dad76f23b02b59e68ac5ede156321a7af5571760d0cd182ecf4f4",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:3103ee646cbb0dbb72be91c358567a228211f9aadf00642c26a7724b23c8ec10"
+  },
+  "reference_evidence": {
+    "receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+    "receipt_sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "verifier_sha256": "sha256:27fe2dceb667304937ee29d1e65d32ed1e55af024f96385cc5bb826645f99a6d",
+    "fresh_recheck": "pass_error_count_0_capture_count_36_state_count_18_viewport_count_2_cleanup_complete_true_exact_reference_gate_passed_true"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-evidence-revoked-current-20260907.json",
+    "sha256": "sha256:0763a8c2ce44c54b4a89429a8a1536b47619a2bab6edc71831900017a075a763"
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-V0R-P1-INDEPENDENT-REBIND-20260907",
+    "owner_agent": "/root",
+    "lane": "DOC_HARNESS",
+    "status": "active",
+    "exact_paths_only": true
+  },
+  "scope_guard": {
+    "V0B_credit_awarded": false,
+    "historical_receipt_overwritten": false,
+    "product_source_changed": false,
+    "SBE_hot_contract_changed": false,
+    "runtime_or_external_mutation": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

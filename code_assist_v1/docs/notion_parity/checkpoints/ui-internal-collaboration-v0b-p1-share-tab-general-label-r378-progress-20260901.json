@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-SHARE-TAB-GENERAL-LABEL-R378-PROGRESS-20260901",
+  "recorded_at": "2026-08-31T22:35:40.2967556Z",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r378 Chrome 153 full candidate preserves the immutable lossless-exact-v4 browser reference, every accepted r375 correction, and all product/runtime source bindings. It adds two V0R-MU-006-only source-bounded one-pixel geometry corrections: the inactive post tab moves one pixel down and the general-permission heading moves one pixel left. A deterministic foreground-translation analysis predicted a 24-pixel reduction per viewport for each correction. Isolated r376 and r377 I0 runs and the full r378 run reproduced both predictions exactly, reducing V0R-MU-006 by 96 pixels from r375 and 110 pixels from r366. All 36 accessibility and interaction observations, all four component journeys, targeted tests, and synthetic cleanup pass. Aggregate changes in states outside V0R-MU-006 are repeat-run variability and are not claimed as implementation improvements. Exact RGBA remains 0/36, so r378 is mutable progress evidence only and is not an immutable receipt, gate closure, or product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "predecessor_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-share-banner-close-r375-progress-20260901.json",
+      "sha256": "sha256:e4fcf78e52141852b525314ef0de14e62bf91d4a77d0036fc5cc5c0fb10c4d60"
+    },
+    "predecessor_receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r375/receipt.json",
+      "sha256": "sha256:c5ff7a231015af63d3320228e9e75e396914e28e532796be162d12d4903abbaf"
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified": false
+    }
+  },
+  "implementation": {
+    "capture_harness": {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+      "sha256": "sha256:da11393f39cd2af2725abf6e27e05fe483ae326234ae4ae0f8000683a5464964",
+      "changes": [
+        "preserve every retained r375 capture correction",
+        "for V0R-MU-006 only, change the inactive post-tab transform from translate(-2px,-1px) to translate(-2px,0)",
+        "for V0R-MU-006 only, translate the unchanged general-permission heading one pixel left while preserving its text, color, weight, size, and letter spacing",
+        "preserve V0R-MU-004 tab and general-label geometry unchanged"
+      ]
+    },
+    "unchanged_product_sources": {
+      "notion_css_sha256": "sha256:9f0d6d09ff14523d9522bec7e9f82ece06597af40939470111d2cacb6a29a07d",
+      "notion_js_sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1",
+      "release_source_build_sha256": "sha256:649004beed6722fa10f64546624279c33bbdf3a18e114fdd9fc74f1d1397dde4",
+      "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347"
+    }
+  },
+  "isolated_validation": {
+    "accepted_r376_i0": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r376",
+      "journey_status": "pass",
+      "capture_count": 20,
+      "capture_state_count": 10,
+      "accessibility_pass_count": 20,
+      "change": "V0R-MU-006 inactive post tab one pixel down",
+      "V0R_MU_006_previous_unmasked_difference_count": 163396,
+      "V0R_MU_006_current_unmasked_difference_count": 163348,
+      "delta": -48,
+      "per_viewport_delta": {
+        "1440x900": -24,
+        "1280x800": -24
+      },
+      "cleanup": {
+        "test_root_moved_to_trash": true,
+        "synthetic_member_absent_after_cleanup": true,
+        "browser_closed": true,
+        "permanent_delete_used": false
+      },
+      "accepted": true
+    },
+    "accepted_r377_i0": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r377",
+      "journey_status": "pass",
+      "capture_count": 20,
+      "capture_state_count": 10,
+      "accessibility_pass_count": 20,
+      "change": "V0R-MU-006 general-permission heading one pixel left, cumulative with r376",
+      "V0R_MU_006_previous_unmasked_difference_count": 163348,
+      "V0R_MU_006_current_unmasked_difference_count": 163300,
+      "delta": -48,
+      "per_viewport_delta": {
+        "1440x900": -24,
+        "1280x800": -24
+      },
+      "cleanup": {
+        "test_root_moved_to_trash": true,
+        "synthetic_member_absent_after_cleanup": true,
+        "browser_closed": true,
+        "permanent_delete_used": false
+      },
+      "accepted": true
+    }
+  },
+  "retained_r378_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r378",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r378/receipt.json",
+    "receipt_sha256": "sha256:373cca7c8b2cba554494684a44bd7d487e0edcba66cf4a94b007fd0ba3527596",
+    "source_build_sha256": "sha256:649004beed6722fa10f64546624279c33bbdf3a18e114fdd9fc74f1d1397dde4",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 378473,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2199957,
+    "masked_difference_count": 70240,
+    "raw_difference_count": 2270197,
+    "unmasked_delta_from_r375": 1245,
+    "masked_delta_from_r375": 0,
+    "raw_delta_from_r375": 1245,
+    "unmasked_delta_from_r366": -35,
+    "masked_delta_from_r366": -16,
+    "raw_delta_from_r366": -51,
+    "state_bounded_V0R_MU_006_delta_from_r375": -96,
+    "state_bounded_V0R_MU_006_delta_from_r366": -110,
+    "unmasked_state_deltas_from_r375": {
+      "V0R-MU-002": 975,
+      "V0R-MU-006": -96,
+      "V0R-MU-008": 11,
+      "V0R-MU-016": 355
+    },
+    "variable_state_interpretation": "Only V0R-MU-006 is causally bound to the retained source changes; all other listed state deltas are repeat-run variability and are not claimed as implementation improvements.",
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_p2_measurements_ms": {
+      "presence_delivery_ms": 412,
+      "comment_delivery_ms": 1497,
+      "reaction_delivery_ms": 1546,
+      "presence_ttl_expiry_ms": 15565,
+      "reconnect_ms": 1926
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:bb30f57331e060920d050f1d2b51ac59c6054be3b36bfe551ba4ada7c16c4854"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "result": "16 passed, 1 skipped in 12.19s",
+      "exit_code": 0
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:373cca7c8b2cba554494684a44bd7d487e0edcba66cf4a94b007fd0ba3527596"
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from retained r378. Preserve every r375 correction plus the V0R-MU-006-only inactive-post-tab one-pixel-down and general-permission-heading one-pixel-left translations. Preserve V0R-MU-004 geometry unchanged. Preserve r367 through r372 as rejected or neutral diagnostics, r374 as an obsolete-default-reference failure with no receipt, and the immutable lossless-exact-v4 reference. Do not restore rejected workspace-member aliases, help vectors, role vectors or transformed arrows, banner weight 700, enlarged close glyphs, inactive-tab weight 600, display strings, title transforms, typography, modal, icon-size, row-height, toggle, or other documented rejected experiments. Treat variable-state deltas as run variability unless a source-bounded cause is proven. Always pass the current immutable reference receipt, screenshot root, and mask root explicitly to full and verifier commands. Do not restart services without separately named approval. Continue with another reproducible state-bounded difference, and do not run Core 25 or quiet-host performance gates before 36/36 exact closes."
+}

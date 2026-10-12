@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/schemas/internal-collaborative-gateway-contract-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract",
+    "contract_id",
+    "recorded_at",
+    "packet_id",
+    "status",
+    "authority_inputs",
+    "transport_only_boundary",
+    "admission_contract",
+    "queue_and_backpressure_contract",
+    "reconnect_contract",
+    "gateway_unavailable_contract",
+    "negative_scenarios",
+    "prototype_boundary",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "contract": {"const": "code_assist.notion.internal_collaborative_gateway_contract.v1"},
+    "contract_id": {"const": "T0A-P2-TRANSPORT-GATEWAY-001"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "packet_id": {"const": "T0A-P2"},
+    "status": {"const": "frozen_disposable_transport_model"},
+    "authority_inputs": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"$ref": "#/$defs/hashRef"}},
+    "transport_only_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["accepts", "calls", "owns", "does_not_own", "flask_cookie_is_transport_authorization", "mutation_ack_source"],
+      "properties": {
+        "accepts": {"type": "string", "minLength": 1},
+        "calls": {"type": "string", "minLength": 1},
+        "owns": {"$ref": "#/$defs/stringList"},
+        "does_not_own": {"$ref": "#/$defs/stringList"},
+        "flask_cookie_is_transport_authorization": {"const": false},
+        "mutation_ack_source": {"const": "canonical_sequence_ledger_after_durable_commit"}
+      }
+    },
+    "admission_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["steps", "ticket_reuse_allowed", "expired_ticket_allowed", "wrong_origin_allowed", "stale_epoch_allowed", "maximum_active_connections_default", "client_visible_rejection_contains_protected_binding"],
+      "properties": {
+        "steps": {"type": "array", "minItems": 6, "items": {"type": "string", "minLength": 1}},
+        "ticket_reuse_allowed": {"const": false},
+        "expired_ticket_allowed": {"const": false},
+        "wrong_origin_allowed": {"const": false},
+        "stale_epoch_allowed": {"const": false},
+        "maximum_active_connections_default": {"type": "integer", "minimum": 1},
+        "client_visible_rejection_contains_protected_binding": {"const": false}
+      }
+    },
+    "queue_and_backpressure_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maximum_durable_frames_default", "maximum_durable_payload_bytes_default", "durable_overflow_action", "silent_durable_drop_allowed", "acknowledged_operation_rollback_on_broadcast_failure", "queue_payload_counting", "drain_order", "send_time_epoch_revalidation", "stale_or_unavailable_drain_action", "replay_batch_limit_inherited_from_T0A_P1"],
+      "properties": {
+        "maximum_durable_frames_default": {"type": "integer", "minimum": 1},
+        "maximum_durable_payload_bytes_default": {"type": "integer", "minimum": 1},
+        "durable_overflow_action": {"const": "close_slow_session_purge_queue_require_replay"},
+        "silent_durable_drop_allowed": {"const": false},
+        "acknowledged_operation_rollback_on_broadcast_failure": {"const": false},
+        "queue_payload_counting": {"const": "exact_payload_bytes"},
+        "drain_order": {"const": "strictly_ascending_document_sequence"},
+        "send_time_epoch_revalidation": {"const": true},
+        "stale_or_unavailable_drain_action": {"const": "purge_queue_close_session_return_zero_payload"},
+        "replay_batch_limit_inherited_from_T0A_P1": {"const": 256}
+      }
+    },
+    "reconnect_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attempt_key", "fixed_window_ms_default", "maximum_attempts_per_window_default", "excess_attempt_action", "same_binding_reconnect_action", "resume_source", "operation_and_client_sequence_state_is_transport_owned", "storm_never_increases_connection_capacity"],
+      "properties": {
+        "attempt_key": {"$ref": "#/$defs/stringList"},
+        "fixed_window_ms_default": {"type": "integer", "minimum": 1},
+        "maximum_attempts_per_window_default": {"type": "integer", "minimum": 1},
+        "excess_attempt_action": {"const": "reject_before_ticket_consumption_without_content"},
+        "same_binding_reconnect_action": {"const": "new_connection_supersedes_old_and_purges_old_queue"},
+        "resume_source": {"type": "string", "minLength": 1},
+        "operation_and_client_sequence_state_is_transport_owned": {"const": false},
+        "storm_never_increases_connection_capacity": {"const": true}
+      }
+    },
+    "gateway_unavailable_contract": {"type": "object"},
+    "negative_scenarios": {"type": "array", "minItems": 11, "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z]+(?:-[A-Z]+)+$"}},
+    "prototype_boundary": {"type": "object"},
+    "claims": {"type": "object"}
+  },
+  "$defs": {
+    "hashRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^code_assist_v1/"},
+        "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "stringList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

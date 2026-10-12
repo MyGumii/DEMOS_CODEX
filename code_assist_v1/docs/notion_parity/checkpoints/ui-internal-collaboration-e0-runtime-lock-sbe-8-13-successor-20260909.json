@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.e0.runtime_lock_successor_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-E0-RUNTIME-LOCK-SBE-8-13-SUCCESSOR-20260909",
+  "recorded_at": "2026-09-09T04:05:40.789726+09:00",
+  "status": "validated_unrelated_global_runtime_lock_successor",
+  "immutable_after_recording": true,
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "candidate_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_candidate_matrix.v1.json",
+      "sha256": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57"
+    },
+    "winner_adr": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_winner_adr.v1.json",
+      "sha256": "sha256:591b08a1cefcf5cf536b52a66e70ab6c1047133c8bcff99f27bdab90bef6a71a"
+    },
+    "selected_runtime_artifact_manifest": {
+      "path": "code_assist_v1/collaboration_runtime/ARTIFACT_MANIFEST.json",
+      "sha256": "sha256:8059bf135ca66a49d67c0798d30b71ed48bf779e3f142cb20d94a1328354e584"
+    },
+    "selected_python_lock": {
+      "path": "code_assist_v1/collaboration_runtime/python-requirements.lock",
+      "sha256": "sha256:2910510df5c434104778c4a78f40a6b2368204513c8ac29824c5a1cb13db7c65"
+    },
+    "selected_node_lock": {
+      "path": "code_assist_v1/collaboration_runtime/node/package-lock.json",
+      "sha256": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3"
+    }
+  },
+  "runtime_lock_transition": {
+    "path": "code_assist_v1/requirements-runtime.lock",
+    "frozen_e0_sha256": "sha256:fc5522dcbf576d8dcfbbf51d6349dbc007bc5438dcc396cba913f54aa22f0bd0",
+    "current_sha256": "sha256:eb2c677bd3865d81b16dc5018babdd52d01bab39ba0f1e1aa6ad0f5645e19788",
+    "changed_since_e0": true,
+    "change_owner": "SBE-8.13",
+    "change_reason": "exact-pinned CommonMark parsing dependencies for server-resolved citations",
+    "exact_version_row_count": 22,
+    "normalized_package_names": [
+      "blinker",
+      "certifi",
+      "cffi",
+      "charset-normalizer",
+      "click",
+      "colorama",
+      "cryptography",
+      "flask",
+      "idna",
+      "itsdangerous",
+      "jinja2",
+      "markdown-it-py",
+      "markupsafe",
+      "mdurl",
+      "msal",
+      "pycparser",
+      "pyjwt",
+      "pypdf",
+      "requests",
+      "urllib3",
+      "waitress",
+      "werkzeug"
+    ]
+  },
+  "candidate_isolation": {
+    "forbidden_global_package_ids": [
+      "@hocuspocus/server",
+      "pycrdt",
+      "pycrdt-websocket",
+      "uvicorn",
+      "websockets",
+      "yjs"
+    ],
+    "forbidden_global_package_count": 0,
+    "selected_candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+    "selected_runtime_remains_separately_locked": true,
+    "global_runtime_is_not_candidate_runtime": true
+  },
+  "ownership_handoff": {
+    "source_thread_id": "019fec6f-60b0-7f53-876d-ba9b7acb0c51",
+    "source_packet": "SBE-8.13",
+    "scope": "code_assist_v1/requirements-runtime.lock",
+    "final_sha256": "sha256:eb2c677bd3865d81b16dc5018babdd52d01bab39ba0f1e1aa6ad0f5645e19788",
+    "source_will_not_modify_in_current_packet": true,
+    "future_change_requires_recoordination": true,
+    "host_runtime_activation_proven": false,
+    "notion_parity_files_modified_by_source": false
+  },
+  "claims": {
+    "historical_e0_contract_overwritten": false,
+    "runtime_lock_reverted": false,
+    "candidate_dependency_installed": false,
+    "runtime_enabled": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:5abba22c5a5b558cce06f555e0e41b7c0f9c39c196fa6acc7e99d43eb7ea54e6"
+}

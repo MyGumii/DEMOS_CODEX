@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1149-PROGRESS-20260905",
+  "recorded_at": "2026-09-05T08:36:08.0900384+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1137-progress-20260905.json",
+    "sha256": "sha256:f39830337b6d915779609b6ae1f148a59f04dab468e6213db51f2542be924312"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1149-state004-redactions-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1149-state004-redactions-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:c7a3e50e5f105f531c30dfc00067fc85cba88410ec2807dca1b5bd8e1d515e4b",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:3a38c9ac9c361d126c23dc95c44d463f2448f5780a72d9374b3b52cae7320c29",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 820181,
+    "masked_difference_count": 0,
+    "total_difference_count": 820181,
+    "overall_exact_progress": "0/36"
+  },
+  "comparison": {
+    "baseline_run_id": "v0b-p1-i0-r1099-state004-final-icon-standard",
+    "baseline_unmasked_difference_count": 841212,
+    "predecessor_unmasked_difference_count": 829540,
+    "retained_unmasked_difference_count": 820181,
+    "net_unmasked_improvement_from_baseline": 21031,
+    "net_unmasked_improvement_from_predecessor": 9359,
+    "predecessor_masked_difference_count": 13956,
+    "retained_masked_difference_count": 0,
+    "net_masked_improvement_from_predecessor": 13956,
+    "net_total_improvement_from_predecessor": 23315,
+    "source_attributable_regression_count": 0,
+    "stable_improvements_since_predecessor": [
+      "V0R-MU-003 and V0R-MU-006 active inbox pills use the measured reference background: 5759 fewer unmasked pixels.",
+      "V0R-MU-003 and V0R-MU-006 wide database grids use the measured one-pixel vertical correction: 128 fewer unmasked pixels.",
+      "V0R-MU-004 synthetic identity avatars use the measured reference palette: 2362 fewer unmasked pixels.",
+      "V0R-MU-004 agent-permission banner text uses the measured reference blue: 1110 fewer unmasked pixels.",
+      "V0R-MU-004 final-capture privacy redactions reproduce both receipt-approved rectangles: 13956 fewer masked pixels with no unmasked change."
+    ]
+  },
+  "rejected_experiments": [
+    "V0R-MU-006 panel-shadow source change regressed the standard run by 4000 unmasked pixels and was fully reverted.",
+    "V0R-MU-001 and V0R-MU-002 backdrop opacity sweep found the current 0.600/0.601 rendering tied for best; 0.602 and above caused broad regressions.",
+    "Korean inbox missing-copy reconstruction regressed the standard run by 21989 unmasked pixels; the source was restored byte-for-byte before subsequent retained changes.",
+    "Offline same-row bitmap alignment showed that cloning the current membership-row glyph render does not improve the repeated missing rows consistently."
+  ],
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1144-20260905",
+    "launch_id": "3bd46909382749e18e335fbca851a3f1",
+    "root_id": "6432f4f1-82a7-4b44-a8be-f5fadcb63f09",
+    "health": {
+      "state": "READY",
+      "ready_for_admission": true,
+      "ready_for_realtime": true,
+      "ready_for_compaction": true,
+      "schema_compatibility": "compatible",
+      "restart_required": false
+    },
+    "current_audit": {
+      "workspace_count": 14,
+      "reference_workspace_count": 12,
+      "active_membership_count": 14,
+      "active_page_binding_count": 12,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64,
+    "preserved_predecessor_realm": ".dev/notion-collaboration-10111-10113-clean-r1112-20260905"
+  },
+  "verification": {
+    "pytest": {
+      "status": "pass",
+      "passed": 21,
+      "duration_seconds": 11.92
+    },
+    "python_compile": "pass",
+    "cleanup": {
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dca822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless I0 exact residual reduction from stable r1149. The fresh realm is at 14 of 64 workspaces. Do not run final product or SBE gates before exact 36/36."
+}

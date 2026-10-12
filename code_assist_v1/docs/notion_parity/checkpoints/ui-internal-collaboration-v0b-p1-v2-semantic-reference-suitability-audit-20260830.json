@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.semantic_reference_suitability_audit.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-V2-SEMANTIC-REFERENCE-SUITABILITY-AUDIT-20260830",
+  "recorded_at": "2026-08-30T17:10:45.7965962+09:00",
+  "status": "partial_semantic_reference_only",
+  "purpose": "Prevent lossy or capture-timing-invalid V2 screenshots from driving product regressions while retaining the states that remain useful for semantic layout comparison.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+      "sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa",
+      "modified": false
+    },
+    "accepted_retry66_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-v2-semantic-i0-retry66-progress-20260830.json",
+      "sha256": "sha256:9fc1f506e2b4237022ab6774499813b5f96dd652b7cd0458735a26f816270564",
+      "modified": false
+    },
+    "accepted_retry66_diagnostic": {
+      "path": "code_assist_v1/.runtime/v0b-p1-i0-v2-semantic-diagnostic-20260830-retry66/diagnostic.json",
+      "sha256": "sha256:a6c196a7a2783c0667c9cd43454cbd9703caa35b007dd8fdc166f218732f32de"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "audit_denominator": {
+    "state_count": 10,
+    "viewport_count": 2,
+    "screenshot_count": 20,
+    "visually_reviewed_screenshot_count": 20,
+    "semantic_layout_usable_state_count": 8,
+    "semantic_layout_usable_screenshot_count": 16,
+    "capture_timing_invalid_state_count": 2,
+    "capture_timing_invalid_screenshot_count": 4
+  },
+  "semantic_layout_usable_states": [
+    {
+      "state_id": "V0R-MU-001",
+      "scope": "modal geometry and role hierarchy only",
+      "restrictions": ["synthetic principal label differs from captured email chip", "lossy transport", "no exact pixel use"]
+    },
+    {
+      "state_id": "V0R-MU-002",
+      "scope": "workspace people settings geometry and hierarchy",
+      "restrictions": ["redacted identity regions", "lossy transport", "no exact pixel use"]
+    },
+    {
+      "state_id": "V0R-MU-003",
+      "scope": "workspace shell, teamspace hierarchy, page width, and two-participant presence",
+      "restrictions": ["lossy transport", "no exact pixel use"]
+    },
+    {
+      "state_id": "V0R-MU-005",
+      "scope": "direct guest edit page shell and guest banner",
+      "restrictions": ["dynamic identity and locale differences", "lossy transport", "no exact pixel use"]
+    },
+    {
+      "state_id": "V0R-MU-015",
+      "scope": "comment-only page shell and comment affordance",
+      "restrictions": ["dynamic identity and locale differences", "lossy transport", "no exact pixel use"]
+    },
+    {
+      "state_id": "V0R-MU-016",
+      "scope": "view-only page shell",
+      "restrictions": ["dynamic identity and locale differences", "lossy transport", "no exact pixel use"]
+    },
+    {
+      "state_id": "V0R-MU-017",
+      "scope": "page-share revoke access boundary",
+      "restrictions": ["redacted footer region", "lossy transport", "no exact pixel use"]
+    },
+    {
+      "state_id": "V0R-MU-018",
+      "scope": "workspace-membership revoke access boundary",
+      "restrictions": ["redacted footer region and locale difference", "lossy transport", "no exact pixel use"]
+    }
+  ],
+  "capture_timing_invalid_states": [
+    {
+      "state_id": "V0R-MU-004",
+      "contract_surface": "page_share_dialog",
+      "contract_expected_state": "edit_access_active",
+      "observed_reference_state": "pre-submit direct invite composer with invite action still available and no active direct-share row",
+      "candidate_state": "post-submit direct page grant represented in the active page-share list",
+      "semantic_ruling": "reference screenshot excluded; candidate journey and focused browser assertions remain authoritative",
+      "captures": [
+        {"viewport":"1280x800","reference_sha256":"sha256:c7fee1d30468a54f5ec7245903f0953321d8d22d9b27811663a9885416f69b96"},
+        {"viewport":"1440x900","reference_sha256":"sha256:2c0f176793cab08674f082d731c5cef19137af4bbb622360a9f48eda3e08fa28"}
+      ]
+    },
+    {
+      "state_id": "V0R-MU-006",
+      "contract_surface": "page_share_dialog",
+      "contract_expected_state": "inherited_workspace_access_explained",
+      "observed_reference_state": "page canvas with no page-share dialog or inherited-access explanation visible",
+      "candidate_state": "page-share dialog open with inherited workspace sources and explanation visible",
+      "semantic_ruling": "reference screenshot excluded; candidate journey and focused browser assertions remain authoritative",
+      "captures": [
+        {"viewport":"1280x800","reference_sha256":"sha256:1fc82fb49a8bf3dbb2f7288b293c4c248130b983efb30305c39421d6cd09a5d8"},
+        {"viewport":"1440x900","reference_sha256":"sha256:fcbe794c1755472fd381b9f85eb844de3ec74aa715a2611eb46193c008f2c303"}
+      ]
+    }
+  ],
+  "authoritative_behavior_evidence": {
+    "retry66_journey_status": "pass",
+    "workspace_invite_verified": true,
+    "temporary_owner_role_verified": true,
+    "inherited_access_explanation_verified": true,
+    "direct_page_edit_verified": true,
+    "role_change_to_comment_verified": true,
+    "role_change_to_view_verified": true,
+    "page_revoke_http_404_verified": true,
+    "workspace_revoke_visibility_fence_verified": true,
+    "focused_workspace_membership_browser_test": "4 passed in 21.03s"
+  },
+  "policy": {
+    "use_V0R_MU_004_for_visual_optimization": false,
+    "use_V0R_MU_006_for_visual_optimization": false,
+    "use_any_V2_capture_for_exact_RGBA": false,
+    "run_full_36_against_V2": false,
+    "run_core_25_before_exact_reference_repair": false,
+    "run_performance_before_exact_reference_repair": false,
+    "modify_candidate_to_match_capture_timing_error": false
+  },
+  "scope_attestation": {
+    "reference_receipt_modified": false,
+    "reference_screenshot_modified": false,
+    "candidate_source_modified_by_this_audit": false,
+    "external_notion_mutation": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "claims": {
+    "V2_semantic_reference_fully_usable": false,
+    "V2_exact_reference_eligible": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue only contract-aligned semantic refinement for the eight usable I0 states. A future corrective exact reference must use genuinely lossless capture transport and recapture V0R-MU-004 after direct edit access is active and V0R-MU-006 while the inherited-access share dialog is visibly open."
+}

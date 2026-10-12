@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "receipt_id": "S0A-P2-L5-COLLAB-PUBLICATION-FENCE-20260825",
+  "run_id": "s0a-p2-l5-publication-fence-20260825",
+  "rung_id": "L5-SECOND-BRAIN-BOUNDARY",
+  "lane_id": "L5-COLLAB-PUBLICATION-FENCE",
+  "packet_ids": [
+    "S0A-P2"
+  ],
+  "matrix_row_ids": [
+    "SB-001",
+    "IAM-003",
+    "SEARCH-001"
+  ],
+  "scenario_ids": [
+    "PUB-001",
+    "PUB-002",
+    "PUB-003",
+    "PUB-004",
+    "AUTH-001",
+    "AUTH-002",
+    "AUTH-004",
+    "REG-002",
+    "REG-003"
+  ],
+  "evidence_type": "integration",
+  "mode": "gate",
+  "release_candidate_id": "sha256:acb449fd88e67759bf0fd5b57405bf301afc296a0691f852fdac5f17294f5781",
+  "realm_id": "approved_development_pair_2406_plus_ephemeral_second_brain_test_databases",
+  "realm_config_fingerprint": "sha256:8d8a487f974169246e4c50475efa173fbd5404291c59a3cc2d42c561b0c36da5",
+  "source_manifest_sha256": "sha256:994282dfc900a689aceb44a16a254a8b3cfd4305a3ac1773df8853aceeca0ac8",
+  "validation_manifest_sha256": "sha256:f7273090a4e5c1af1a0eeda9a7f2eeb5e53f40bd009add4135fde0237c304e6b",
+  "schema_catalog_sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+  "current_schema_lineage_sha256": "sha256:a4d67b11b17c61d95609cdd600093555c6cd8af209688eab51cab976d0491b98",
+  "agents_md_sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+  "goal_observation_sha256": "sha256:fad127bee73b0f70d3208160817ccca8944c23d00dd82ea1aaa1457eb509fe79",
+  "goal_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+  "goal_status_observed": "blocked_state_resumed_by_user_continued_S0A_P2_implementation",
+  "cross_catalog_ownership_snapshot_sha256": "sha256:083e4c9560250f4fcf088516a8f382db56fe6a959cd0d32dc1ce016d60977e0e",
+  "working_directory": ".",
+  "argv": [
+    ".\\venv\\Scripts\\python.exe",
+    "-E",
+    "-m",
+    "pytest",
+    "-c",
+    "code_assist_v1/pytest.ini",
+    "-q",
+    "-p",
+    "no:debugging",
+    "-p",
+    "no:cacheprovider",
+    "code_assist_v1/tests/test_notion_publication_adapter.py",
+    "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+    "code_assist_v1/tests/knowledge_spaces/regression/test_notion_publication_and_job_restart.py",
+    "code_assist_v1/tests/knowledge_spaces/regression/test_second_brain_chat_characterization.py",
+    "code_assist_v1/tests/knowledge_spaces/integration/test_full_second_brain_preview.py",
+    "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py::test_ui1_second_brain_cancel_approve_and_replay_contract",
+    "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py::test_ui_tree_003_duplicate_trash_restore_preserves_second_brain",
+    "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py::test_ui_sb_003_session_attach_detach_revalidates_current_access",
+    "code_assist_v1/tests/notion_collaboration/test_publication_high_water.py",
+    "code_assist_v1/tests/notion_collaboration/test_second_brain_revocation.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_second_brain_publication.py"
+  ],
+  "environment_class": "approved_development_pair_persistent_2406_and_ephemeral_second_brain_test_databases",
+  "tool_versions": {
+    "python": "3.14.3",
+    "pytest": "9.0.3",
+    "node": "24.14.1",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "toolchain_fingerprint": "sha256:bd2a17ec1d5982155a0b13d4cbeba3c45235571b868e86e97ad8a148291c9740",
+  "temp_root_id": null,
+  "recorded_at": "2026-08-25T12:45:00+09:00",
+  "started_at": "2026-08-25T12:28:00.000+09:00",
+  "ended_at": "2026-08-25T12:30:45.040+09:00",
+  "duration_ms": 165040,
+  "exit_code": 0,
+  "exit_code_signed": 0,
+  "exit_code_hex": "0x00000000",
+  "passed": 36,
+  "failed": 0,
+  "errors": [],
+  "skipped": 0,
+  "xfailed": 0,
+  "result": "passed",
+  "attempt": 1,
+  "retry_class": "none",
+  "source_pre_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:994282dfc900a689aceb44a16a254a8b3cfd4305a3ac1773df8853aceeca0ac8",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:f7273090a4e5c1af1a0eeda9a7f2eeb5e53f40bd009add4135fde0237c304e6b",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "source_post_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:994282dfc900a689aceb44a16a254a8b3cfd4305a3ac1773df8853aceeca0ac8",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:f7273090a4e5c1af1a0eeda9a7f2eeb5e53f40bd009add4135fde0237c304e6b",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "isolation_attestation": {
+    "approval_id": "AP-DEV-PAIR",
+    "protected_sbe_runtime_files_modified": false,
+    "sbe_hot_contracts_modified": false,
+    "persistent_development_schema_changed": true,
+    "persistent_development_schema_before": 2026082405,
+    "persistent_development_schema_after": 2026082406,
+    "production_10011_10012_changed": false,
+    "protected_personal_roots_accessed": false,
+    "personal_content_accessed": false,
+    "persistent_or_signed_in_browser_profile_used": false,
+    "credential_or_session_value_recorded": false,
+    "temporary_test_databases_only": false
+  },
+  "artifact_hashes": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json": "sha256:acb449fd88e67759bf0fd5b57405bf301afc296a0691f852fdac5f17294f5781",
+    "code_assist_v1/notion_workspace_second_brain_publication_migration.py": "sha256:92156a516e5e58a7696eed952131d19679d172286a4e4ab299abfdb105bcf14e",
+    "code_assist_v1/notion_collaboration/second_brain_publication.py": "sha256:f2c7c9056fe9c33cb60ebd9cdf1396e5529e2a7fec9c084aeb6ffde8ac087c2f",
+    "code_assist_v1/notion_collaboration/second_brain_boundary.py": "sha256:3a8ef18d581d92ab0d438e395929d6090541fa1bf03efcb7a739e61008d24475",
+    "code_assist_v1/notion_collaboration/editing_authority.py": "sha256:58e3f8a61e631161261281f20cf6911526fb8733b81113232376fd11050449c8",
+    "code_assist_v1/notion_collaboration/iam_runtime.py": "sha256:70a887c1274d32afab0e78fe56e4e45904a7d68a3049a6c97502eb3e7838355e",
+    "code_assist_v1/notion_collaboration/approved_dev_pair.py": "sha256:06ddcc13a8b89df7bbd218a02dca517012090f00aa29d10615706d3af2b6765b",
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:b7356d85a13b962d178a8eb8d16a80a070949b1d534c3a6af343eb5366b5da21",
+    "code_assist_v1/tools/verify_internal_collaborative_editing_authority.py": "sha256:f99f5821f5e18fe73fde4b688cd63083f778f054079479e9f5f5c8df662414f5",
+    "code_assist_v1/tools/verify_internal_collaborative_editor_ui.py": "sha256:253f96bd81d0c45a598036edaa9bf45fbfaef4bc37e83c44f067f24244d6839b",
+    "code_assist_v1/tools/verify_internal_collaborative_sharing_runtime.py": "sha256:83b2dd9fa67c8945fbe7a4a42450da5b734cda52bea3dbee69055e7cd3c5bae1",
+    "code_assist_v1/tools/verify_internal_live_collaboration_runtime.py": "sha256:89bc4817d19da32994225ee411ce96d0e05ea855799998b8c0340507d62447d8",
+    "code_assist_v1/tools/verify_internal_collaborative_convergence_corpus.py": "sha256:7160a10211693715209dbeb5699fdda2c26d15ba030c740853472c39cec93557",
+    "code_assist_v1/tools/verify_internal_collaborative_second_brain_boundary.py": "sha256:b5f6aa4014d9acc5d75ce9c6aaf4db57ba698d6379668081cbb08168a4ab120a",
+    "code_assist_v1/tools/verify_internal_collaborative_second_brain_publication.py": "sha256:20559954fa9f89e7a6ddcc08d818c2d2e16a7ab33a73f6ed02cbb8c88003794f",
+    "code_assist_v1/tests/notion_collaboration/second_brain_publication_fixture.py": "sha256:63f3d8c08117113d4a8a544bc764e466a02a4409cce361cc0c4b902903fec2bf",
+    "code_assist_v1/tests/notion_collaboration/s0a_p2_publication_worker.py": "sha256:facfc4f21a5c294b8b7a4780f09ee1a60e7e0062b33439048341ce17200fe530",
+    "code_assist_v1/tests/notion_collaboration/test_publication_high_water.py": "sha256:960840b713039e04b8407c81f7861ecca61f5f4f5716c93d4630790b712dbe44",
+    "code_assist_v1/tests/notion_collaboration/test_second_brain_revocation.py": "sha256:78676a9cdf04a321f47f805910ab382562a2ae03dd376cadd80a6dadbe962877",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_second_brain_publication.py": "sha256:eb78a972932beb225c17b21fff8718e4271533eebda47617ab1bb2a4e7a6ca3b",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:b88afcb224149dee9427f9df1d7f24e440d152e4c231cb82c374d7ebdb8fdb4f"
+  },
+  "phase_local_regression": {
+    "existing_sbe_regression": {
+      "passed": 31,
+      "failed": 0,
+      "duration_seconds": 130.13
+    },
+    "collaborative_publication_fence": {
+      "passed": 3,
+      "failed": 0,
+      "duration_seconds": 28.26,
+      "multiprocess_expected_exit_code": 23
+    },
+    "publication_contract_verifier_tests": {
+      "passed": 2,
+      "failed": 0,
+      "duration_seconds": 6.65
+    },
+    "sbe_contract_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "goal_count": 20,
+      "mandatory_scenario_count": 284,
+      "input_sha256": "sha256:0beefd78448cdd19767be0e0276fdbf6951ff417c39c135105e7754d755df494"
+    },
+    "persistent_development_runtime": {
+      "status": "running",
+      "launch_id": "a06a0a080d9041429d993dd9ca9ce964",
+      "schema_before": 2026082405,
+      "schema_after": 2026082406,
+      "integrity": "ok",
+      "ports": [
+        10111,
+        10112,
+        10113
+      ],
+      "backup_sha256": "sha256:49bb4fd670087b504306322e69d11c40008ec731f3c0607116fb74a60d19909f"
+    }
+  },
+  "owned_process_cleanup": {
+    "approved_persistent_development_services_intentionally_running": true,
+    "ephemeral_test_processes_closed": true,
+    "crash_injection_worker_reaped": true,
+    "unrelated_processes_targeted": false
+  },
+  "cleanup_attestation": {
+    "ephemeral_test_roots_disposed_by_pytest": true,
+    "protected_sbe_files_left_unchanged": true,
+    "persistent_development_pair_left_ready": true,
+    "production_services_unchanged": true
+  },
+  "redaction_summary": {
+    "raw_stdout_recorded": false,
+    "raw_stderr_recorded": false,
+    "identity_credentials_recorded": false,
+    "session_cookie_or_signing_secret_recorded": false,
+    "persistent_browser_profile_data_recorded": false,
+    "personal_content_or_file_names_recorded": false
+  },
+  "claims": {
+    "S0A_P2_gate_passed": true,
+    "S0_gate_closed": true,
+    "SB_001_closed": true,
+    "IAM_003_closed": false,
+    "SEARCH_001_closed": false,
+    "exact_revision_publication_verified": true,
+    "cross_process_response_loss_recovery_verified": true,
+    "revocation_fence_verified": true,
+    "existing_sbe_regression_green": true,
+    "protected_sbe_change_required": false,
+    "S0B_P1_activated": false,
+    "production_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

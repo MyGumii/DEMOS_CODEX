@@ -1,0 +1,92 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T13:59:54.3419978+09:00",
+  "run_id": "ui37-perf-001-local-independent-create-harness-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-warm-search-samples-20260822.json",
+    "sha256": "sha256:cd7dddc9f234567790c024944fce73eea505ff1e364575b6c6383b995a934a7e",
+    "semantic_status": "supplemented_by_local_independent_create_measurement_contract"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective": "개발된거 확인하고 계획들 이어서 계속 진행해줘.",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-PERF-001",
+    "local_data_policy": "two isolated pytest temporary roots with synthetic fixtures only",
+    "personal_or_live_data_accessed": false,
+    "external_request_count": 0,
+    "external_publish_or_message_performed": false
+  },
+  "slice": {
+    "status": "local_measurement_harness_green_reference_partial",
+    "review_required": true,
+    "promotion_allowed": false,
+    "measurement_policy": "precalibration_only_no_budget_claim"
+  },
+  "local_measurement_contract": {
+    "metric_added": "create_page_ready_ms",
+    "start": "normal user click on the sidebar New page control",
+    "ready": "new page title focused, creation status visible, and page tree count increased by exactly one",
+    "identity_guards": [
+      "all pre-create page identities are nonempty and unique",
+      "the post-create identity set contains exactly one new identity",
+      "the new identity differs from the source page identity",
+      "the new identity is the single active page-tree row",
+      "the deterministic synthetic title is committed before later sample actions"
+    ],
+    "boot_guard": "body[data-notion-ready='true'] is required before preparation or timed actions",
+    "samples": 6,
+    "root_count": 2,
+    "samples_per_root": 3,
+    "distribution_policy": "nearest-rank descriptive distribution only; no SLO, percentile budget, or reference parity claim"
+  },
+  "source_bindings": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/notion_static/index.html","sha256":"sha256:2771c9fd9975fdf6306b11f6cd4cab85d6fc1cfe88eb12d16c9cdda7035584c8"},
+    {"path":"code_assist_v1/notion_static/notion.css","sha256":"sha256:4288697c676f9913a614a2b8e0c6095de58638e5b12df8f01528d46af9f6986f"},
+    {"path":"code_assist_v1/notion_static/notion.js","sha256":"sha256:0d8d52313f7e1bb8920348af4be3407d2ca80daca6c3b71afeca3fd03e7b7102"},
+    {"path":"code_assist_v1/tests/browser/test_notion_ui_performance.py","sha256":"sha256:07fb4dda23e450b9fef9b98ca1091c1d34abd8817fbf72a83a5f4c5b426bef46"}
+  ],
+  "protected_inputs": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/notion_static/index.html","sha256":"sha256:2771c9fd9975fdf6306b11f6cd4cab85d6fc1cfe88eb12d16c9cdda7035584c8"},
+    {"path":"code_assist_v1/notion_static/notion.css","sha256":"sha256:4288697c676f9913a614a2b8e0c6095de58638e5b12df8f01528d46af9f6986f"},
+    {"path":"code_assist_v1/notion_static/notion.js","sha256":"sha256:0d8d52313f7e1bb8920348af4be3407d2ca80daca6c3b71afeca3fd03e7b7102"},
+    {"path":"code_assist_v1/tests/browser/test_notion_ui_performance.py","sha256":"sha256:07fb4dda23e450b9fef9b98ca1091c1d34abd8817fbf72a83a5f4c5b426bef46"}
+  ],
+  "evidence_bindings": [
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/owner_approval_receipt.20260822.json","sha256":"sha256:28e8da75e8c06263f221943dfbd19a644783c8ab1dca6716be7c580bb6c2bf5c"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json","sha256":"sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"}
+  ],
+  "verification": [
+    {
+      "selection": "UI-PERF-001 isolated local measurement harness before boot guard",
+      "result": "failed in preparation because the click preceded application event initialization; no product or live-data mutation"
+    },
+    {
+      "selection": "UI-PERF-001 isolated local measurement harness after normal actionable click but before explicit boot guard",
+      "result": "failed in the second isolated root for the same initialization race; first root completed"
+    },
+    {
+      "selection": "UI-PERF-001 isolated local measurement harness with explicit data-notion-ready guard",
+      "result": "1 passed in 68.63s"
+    }
+  ],
+  "claims": {
+    "local_independent_page_create_measurement_proven": true,
+    "reference_independent_page_create_measurement_proven": false,
+    "reference_release_identity_bound": false,
+    "performance_budget_approved": false,
+    "ui_perf_001_reference_characterized": false,
+    "ui_perf_001_differential_passed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next_exact_action": "Capture an unambiguous independent page creation in the synthetic reference workspace, bind the observation to a safely observable reference release identity, and obtain a reviewed budget before any percentile or parity claim."
+}

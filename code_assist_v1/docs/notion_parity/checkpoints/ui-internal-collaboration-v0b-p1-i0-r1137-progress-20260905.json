@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1137-PROGRESS-20260905",
+  "recorded_at": "2026-09-05T07:37:54.1558963+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1125-progress-20260905.json",
+    "sha256": "sha256:8e2944651800c52605a19a7a2962115f99eabbc30a19f7f539212a1e25584593"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1136-all-visible-workspace-icons-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1136-all-visible-workspace-icons-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:17b1b719847abd7f3713a8b2476322c85d7db62b0e19b6873eb8d08ea2adc21d",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:0e9d75f1630a9dc2f34fcfa894bbb623c1763723dc1e0e73f6dec421db67179c",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 829540,
+    "masked_difference_count": 13956,
+    "total_difference_count": 843496,
+    "overall_exact_progress": "0/36"
+  },
+  "comparison": {
+    "baseline_run_id": "v0b-p1-i0-r1099-state004-final-icon-standard",
+    "baseline_unmasked_difference_count": 841212,
+    "predecessor_unmasked_difference_count": 837920,
+    "retained_unmasked_difference_count": 829540,
+    "net_unmasked_improvement_from_baseline": 11672,
+    "net_unmasked_improvement_from_predecessor": 8380,
+    "predecessor_masked_difference_count": 46800,
+    "retained_masked_difference_count": 13956,
+    "net_masked_improvement_from_predecessor": 32844,
+    "net_total_improvement_from_predecessor": 41224,
+    "source_attributable_regression_count": 0,
+    "stable_improvements_since_predecessor": [
+      "V0R-MU-015 and V0R-MU-016 indented guest body row uses measured responsive letter spacing: 237 fewer unmasked pixels.",
+      "V0R-MU-015 and V0R-MU-016 guest badge reuses the measured V0R-MU-005 badge geometry and color: 2208 fewer unmasked pixels.",
+      "V0R-MU-005, V0R-MU-015, and V0R-MU-016 workspace icons use the measured reference background and one-pixel guest alignment: 1728 fewer unmasked pixels.",
+      "V0R-MU-003 and V0R-MU-006 workspace icons use the measured reference background: 2271 fewer unmasked pixels.",
+      "V0R-MU-001, V0R-MU-002, and V0R-MU-004 workspace icons use the same measured reference background, including correct dim-overlay blending: 1936 fewer unmasked pixels.",
+      "V0R-MU-002 final-capture privacy redactions reproduce four measured immutable-reference rectangles: 32844 fewer masked pixels with no unmasked change."
+    ]
+  },
+  "rejected_experiments": [
+    "V0R-MU-017 and V0R-MU-018 compact skeleton top/zoom/transform sweep: current geometry remained best in both states.",
+    "V0R-MU-015 and V0R-MU-016 indented guest row text-stroke sweep: zero stroke remained best.",
+    "V0R-MU-015 and V0R-MU-016 guest toggle-row spacing sweep: existing per-state values remained best."
+  ],
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1112-20260905",
+    "current_audit": {
+      "workspace_count": 48,
+      "reference_workspace_count": 46,
+      "active_membership_count": 48,
+      "active_page_binding_count": 46,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64
+  },
+  "verification": {
+    "pytest": {
+      "status": "pass",
+      "passed": 21,
+      "duration_seconds": 11.48
+    },
+    "python_compile": "pass",
+    "cleanup": {
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dca822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless I0 exact residual reduction from stable r1136. The current realm is at 48 of 64 workspaces; rotate before a mutating browser run would reach 64. Do not run final product or SBE gates before exact 36/36."
+}

@@ -1,0 +1,183 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T20:53:11.2110289+09:00",
+  "run_id": "ui3-tree-003-reference-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-002-reference-differential-green-20260821.json",
+    "sha256": "sha256:03c69e0e13ce1f48fcc0b6ff5c9259af9c866658fb846bfd5e33bff875ec50c0",
+    "semantic_status": "current_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_reported_status": "blocked",
+    "session_resume_observed": true,
+    "objective": "진행내용확인하고 계획 완료해.",
+    "observed_at": "2026-08-21T20:53:11.2110289+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-TREE-003",
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_count": 0,
+    "synthetic_mutation_executed": true,
+    "external_side_effect_attempted": false,
+    "public_posting_attempted": false,
+    "permanent_delete_attempted": false,
+    "cleanup_disposition": "trash_only"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-TREE-003",
+    "status": "reference_observed_review_pending_differential_failed",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 4,
+    "differential_passed": 4,
+    "reference_pending": 21,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:5324fe2a9a79d16377a72e1c5d81ca20ccce6366203db7be990d65e77921bbf9"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:7854732055e52999910f3a09a78a234458aaad50b70c64cf190dd42e9a8f88d6"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:db80c35423d8c4c27028a3b8033f4084ab6c80c8f690c7688f36331816501ef1"
+    }
+  ],
+  "reference_intake": {
+    "worksheet_sha256": "sha256:2716153f36563d77f1335a7ba5afc3fcd4032565f5cd615cc65bacc33fe01037",
+    "c0_status": "pass",
+    "c0_sha256": "sha256:58af7275cacc1533d613164db0f727ee01495a76e1f7dd735049e043fd458dbd",
+    "c0_failure_codes": [],
+    "action_log_sha256": "sha256:fbbd7abf11e76f2cc675207b24a69ad290b11e821c16fe176b14f02c25d84005",
+    "action_authorizations": {
+      "UI-TREE-003-A01": "allowed_synthetic_mutation",
+      "UI-TREE-003-A02": "allowed_synthetic_mutation",
+      "UI-TREE-003-A03": "allowed_synthetic_mutation"
+    },
+    "capture_after_action_ids": [
+      "UI-TREE-003-A01",
+      "UI-TREE-003-A02",
+      "UI-TREE-003-A03"
+    ],
+    "operator_review": {
+      "status": "pending",
+      "scope": "redacted_summary_only"
+    }
+  },
+  "reference_action_captures": {
+    "UI-TREE-003-A01": {
+      "sha256": "sha256:7d931cc6985f7fa2545d58083a0a78ab884a8f70e710ca93529a66d9ae9836fa",
+      "state": {"count": 2, "state": "committed"},
+      "focus": {"name": "PAGE-MENU", "state": "focused"},
+      "a11y": {"name": "PAGE-MENU", "role": "BUTTON"},
+      "semantic_visual": {"region": "PAGE-TREE", "state": "visible"},
+      "geometry": {"PAGE-TITLE": {"height": 48, "width": 720, "x": 735, "y": 156}},
+      "latency_ms": 3450
+    },
+    "UI-TREE-003-A02": {
+      "sha256": "sha256:5568312e06e9581dee61f1aeacfe66e91c1c48f5cc4e5d4266473492e9881281",
+      "state": {"count": 2, "state": "committed"},
+      "focus": {"name": "PAGE-MENU", "state": "focused"},
+      "a11y": {"name": "PAGE-MENU", "role": "BUTTON"},
+      "semantic_visual": {"region": "PAGE-TREE", "state": "visible"},
+      "geometry": {"PAGE-TREE": {"height": 30, "width": 254, "x": 8, "y": 571}},
+      "latency_ms": 2480
+    },
+    "UI-TREE-003-A03": {
+      "sha256": "sha256:c321a22bdeb767176be98ae36f530ebd3c1e32ef6352c8705cc2e788a2f34abf",
+      "state": {"count": 2, "state": "committed"},
+      "focus": {"name": "RESTORE-POST-ACTION-BUTTON", "state": "focused"},
+      "a11y": {"name": "RESTORE-POST-ACTION-BUTTON", "role": "BUTTON"},
+      "semantic_visual": {"region": "PAGE-TREE", "state": "visible"},
+      "geometry": {"PAGE-TITLE": {"height": 48, "width": 720, "x": 735, "y": 148}},
+      "latency_ms": 1600,
+      "verified_restored_subtree_count": 2
+    }
+  },
+  "reference_exact_results": {
+    "duplicate_subtree_count": 2,
+    "move_to_trash_completed": true,
+    "restore_completed": true,
+    "restored_subtree_count": 2,
+    "trash_search_result_remaining_after_restore": 0,
+    "personal_content_opened": false,
+    "permanent_delete_invoked": false,
+    "cleanup_used_trash_only": true
+  },
+  "local_action_captures": {
+    "UI-TREE-003-A01": {
+      "sha256": "sha256:4075bc2cc184b2747a547f73a788f1b9d9b95f750fd04914eacad095d8efd570",
+      "focus": {"name": "DUPLICATE-PAGE-ROW", "state": "focused"},
+      "a11y": {"name": "DUPLICATE-PAGE-ROW", "role": "TREEITEM"}
+    },
+    "UI-TREE-003-A02": {
+      "sha256": "sha256:fcd39915389c795f4a2f98eec467a760b2db573066af1fcec33c59781dddb3d6",
+      "focus": {"name": "TRASH", "state": "focused"},
+      "a11y": {"name": "TRASH", "role": "BUTTON"}
+    },
+    "UI-TREE-003-A03": {
+      "sha256": "sha256:89991fc1517ccc1b61fd54a4a969e1d05f012d18f31716817163781e42486e2a",
+      "focus": {"name": "RESTORED-PAGE-ROW", "state": "focused"},
+      "a11y": {"name": "RESTORED-PAGE-ROW", "role": "TREEITEM"}
+    }
+  },
+  "precalibration_differential": {
+    "status": "fail",
+    "promotion_allowed": false,
+    "state_keyboard_visual_and_recovery_match": true,
+    "comparisons": {
+      "UI-TREE-003-A01": {
+        "difference_count": 2,
+        "differences": ["a11y", "focus"]
+      },
+      "UI-TREE-003-A02": {
+        "difference_count": 2,
+        "differences": ["a11y", "focus"]
+      },
+      "UI-TREE-003-A03": {
+        "difference_count": 2,
+        "differences": ["a11y", "focus"]
+      }
+    },
+    "interpretation": "The reference and local implementation agree on subtree count, duplicate/trash/restore completion, keyboard applicability, semantic PAGE-TREE visibility, and unchanged recovery. They differ on the post-action focus and corresponding accessible target for all three actions."
+  },
+  "redacted_review_summary": {
+    "reference_profile": "Chrome desktop Free owner ko-KR",
+    "reference_workspace": "REF-FREE-A",
+    "viewport": {"width": 1920, "height": 863, "scale": 1},
+    "observed_sequence": ["DUPLICATE-PAGE", "MOVE-TO-TRASH", "RESTORE-PAGE"],
+    "result": "The two-node synthetic subtree duplicated, moved to Trash, and restored successfully. The reference kept or returned focus to button controls, while the local UI focuses the duplicate row, Trash button, and restored row respectively.",
+    "privacy": "No personal workspace/page, raw DOM, network payload, cookies, screenshot, public posting, or permanent delete was used. All probes were moved to Trash after observation."
+  },
+  "claims": {
+    "ui_tree_003_reference_observed": true,
+    "ui_tree_003_reference_characterized": false,
+    "ui_tree_003_differential_passed": false,
+    "fifth_reference_characterized": false,
+    "fifth_differential_passed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain workspace-owner approval of the redacted UI-TREE-003 summary. Then seal the reference receipt as characterized, preserve the differential failure, and implement the smallest local post-action focus parity correction before attempting 5/25 promotion."
+}

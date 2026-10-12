@@ -1,0 +1,159 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T23:58:57+09:00",
+  "run_id": "ui64-editor006-local-recovery-approved-24-of-25-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-006-local-recovery-policy-approval-pending-20260822.json",
+    "sha256": "sha256:87987c4e6f83c2345004de7cfc5bed3407c04f7615e72eda815defd29e248cde",
+    "semantic_status": "ui_editor_006_local_recovery_policy_approval_pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "the user supplied the exact approval text and then explicitly said to continue",
+    "goal_complete": false
+  },
+  "slice": {
+    "scenario_id": "UI-EDITOR-006",
+    "profile": "free-owner-chrome-desktop-ko-KR",
+    "status": "owner_approved_local_failure_recovery_contract_green",
+    "evidence_mode": "local_failure_recovery_contract",
+    "reference_state": "safely_inapplicable_for_failure_injection",
+    "differential_state": "local_recovery_contract_passed",
+    "promotion_allowed": false,
+    "product_code_changed": false
+  },
+  "approval": {
+    "exact_user_text": "UI-EDITOR-006 공식 실패 유도 제외 및 로컬 회복 계약 승인",
+    "authorization_effect": "allow_ui_editor_006_local_failure_recovery_evidence_satisfaction",
+    "external_state_change": false,
+    "approval_inferred": false,
+    "scope_changed_during_correction": false,
+    "authorization_effect_changed_during_correction": false
+  },
+  "correction": {
+    "reason_code": "mutable_predecision_matrix_binding",
+    "disposition": "v1_proposal_v3_queue_and_v3_receipt_preserved_as_superseded_history",
+    "replacement_contracts": [
+      "code_assist.notion.core_free_ui.editor006_evidence_policy_proposal.v2",
+      "code_assist.notion.core_free_ui.approval_batch_queue.v4",
+      "code_assist.notion.core_free_ui.approval_batch_receipt.v4"
+    ],
+    "new_user_approval_requested": false,
+    "historical_artifacts_mutated": false
+  },
+  "stable_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/editor006_local_recovery_evidence_policy_proposal.v2.json",
+      "sha256": "sha256:7be24bbb8cff5a5dfa349368cb79b13741d2e9c6a4e43d84a55b4ddb3052bef5"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v4.json",
+      "sha256": "sha256:d24b3e35b60bbafb5713731520fe1c12821d1e3c2da724c99921d96dd1692f20"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_receipt.v4.20260822.json",
+      "sha256": "sha256:48e780d97ce768a161d3546044828a2d712d4c4404ea37a6926d9a8f0f1d03ee"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/remaining_evidence_modes.20260822.json",
+      "sha256": "sha256:39b64dec04d848f5c6e5ebee99d47d1f86e1f9a8296fca671fb414413b35c674"
+    },
+    {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_editor006_policy_proposal_v2.py",
+      "sha256": "sha256:7877c6e13c3ac5c03f33977599ba0d1ec285db84e3811b51d4df05e8eba2f4f3"
+    },
+    {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_approval_batch_v4.py",
+      "sha256": "sha256:566fc547cd1d23080f20149ace62297342850d7edca61ffafaa8b54a91f70c97"
+    },
+    {
+      "path": "code_assist_v1/tools/notion_core_free_ui_approval_batch_v4.py",
+      "sha256": "sha256:fa66a405efd38486fb1fedf50244261a148280de087948e8759c079dbc62d573"
+    }
+  ],
+  "post_checkpoint_outputs": {
+    "completion_matrix": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+    "review_gate": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+    "review_implementation_queue": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json",
+    "expected_summary": {
+      "required_scenarios": 25,
+      "evidence_satisfied": 24,
+      "unresolved": 1,
+      "local_recovery_contract_passed": 1,
+      "promoted": 0
+    }
+  },
+  "verification": [
+    {
+      "selection": "UI-EDITOR-006 v2 proposal plus v4 queue and checked-in receipt verifiers",
+      "result": "all passed with zero errors"
+    },
+    {
+      "selection": "approval v1 through v4, completion matrix, and review gate regression suite",
+      "result": "46 passed in 31.81s"
+    },
+    {
+      "selection": "exact isolated real-browser UI-EDITOR-006 recovery journey",
+      "result": "1 passed in 28.62s"
+    },
+    {
+      "selection": "six Node editor, UI runtime, navigation, publication, atomic-save, and CSRF regressions",
+      "result": "all six commands passed"
+    },
+    {
+      "selection": "Notion route, atomic-save compatibility, and publication adapter regressions",
+      "result": "25 passed in 14.77s"
+    },
+    {
+      "selection": "workspace route, navigation route, and auth-isolation regressions",
+      "result": "41 passed in 59.18s"
+    },
+    {
+      "selection": "Second Brain publication/job restart and chat characterization regressions",
+      "result": "initial combined run had one transient login 401; exact failed test passed alone, then serial files passed 3 plus 2"
+    },
+    {
+      "selection": "Python syntax checks for all modified and new verifier/test modules",
+      "result": "passed"
+    }
+  ],
+  "claim_boundary": {
+    "official_notion_failure_ui_parity_claimed": false,
+    "official_notion_error_wording_or_timing_claimed": false,
+    "collaborative_realtime_merge_parity_claimed": false,
+    "ui_perf_001_completed": false,
+    "h8_or_h9_completed": false,
+    "release_promotion_allowed": false
+  },
+  "safety": {
+    "external_action_executed": false,
+    "browser_control_used": false,
+    "personal_notion_content_accessed": false,
+    "live_notion_database_accessed": false,
+    "live_local_data_accessed": false,
+    "product_code_mutated": false,
+    "second_brain_source_mutated": false,
+    "historical_v3_evidence_mutated": false
+  },
+  "claims": {
+    "required_scenario_count": 25,
+    "evidence_satisfied_count": 24,
+    "unresolved_count": 1,
+    "pending_approval_count": 0,
+    "ui_editor_006_complete": true,
+    "ui_perf_001_complete": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Continue only with UI-PERF-001 isolated local performance investigation. Do not weaken the approved 1370ms shell_ready_ms p95 budget, claim Notion timing parity, or enable release promotion.",
+  "vcs": {
+    "available": false,
+    "commit_claimed": false,
+    "observation": "the workspace is not a valid Git repository"
+  }
+}

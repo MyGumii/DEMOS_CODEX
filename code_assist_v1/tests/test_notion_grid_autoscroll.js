@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict');
+const {edgeScrollDelta}=require('../notion_static/notion_grid_selection');
+assert.equal(edgeScrollDelta(350,48,720,true,true),0);
+assert.ok(edgeScrollDelta(710,48,720,true,true)>0);
+assert.ok(edgeScrollDelta(50,48,720,true,true)<0);
+assert.equal(edgeScrollDelta(710,48,720,true,false),0);
+assert.equal(edgeScrollDelta(0,48,720,false,true),0);
+assert.equal(edgeScrollDelta(1000,48,720,true,true),18);
+assert.equal(edgeScrollDelta(-100,48,720,true,true),-18);
+assert.equal(edgeScrollDelta(10,10,10,true,true),0);
+console.log('UI-D01: bounded edge scrolling stops at the table and viewport boundaries');

@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-PAGE-COMMENT-ROLE-PASS-20260826",
+  "recorded_at": "2026-08-26T21:59:20+09:00",
+  "checkpoint_kind": "page_guest_comment_only_access_pass",
+  "packet_id": "V0R-P1",
+  "packet_status": "execution_in_progress_awaiting_B_view_role_confirmation",
+  "purpose": "Record the confirmed REF-FREE-B / V0R-B-ROOT permission transition from page guest full access to comment-only and the collaborator-side non-editable canvas with an enabled comment composer.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-multiuser-capture-pass-20260826.json",
+    "sha256": "sha256:00e0b48de8037cf783d4e557a2d68114fbdbcb72cab74f48991ff61339b43c08"
+  },
+  "action_time_confirmation": {
+    "exact_user_text": "B 페이지 댓글 전용 권한 전환 승인",
+    "bound_action_id": "V0R-PAGE-ROLE-COMMENT",
+    "bound_target": "REF-FREE-B/V0R-B-ROOT",
+    "bound_principal": "REF-COLLABORATOR"
+  },
+  "operator_action_result": {
+    "order": 7,
+    "action_id": "V0R-PAGE-ROLE-COMMENT",
+    "workspace": "REF-FREE-B",
+    "page": "V0R-B-ROOT",
+    "actor": "REF-OWNER",
+    "required_result": "REF-COLLABORATOR_comment_access_captured",
+    "owner_share_dialog_guest_comment_role_active": true,
+    "collaborator_page_title_disabled": true,
+    "collaborator_page_body_edit_textbox_count_before_comment_composer": 0,
+    "collaborator_comment_composer_visible": true,
+    "comment_submitted_during_role_validation": false,
+    "no_access_surface_absent": true,
+    "status": "passed"
+  },
+  "capture_state": {
+    "state_id": "V0R-MU-015",
+    "workspace": "REF-FREE-B",
+    "actor": "REF-COLLABORATOR",
+    "surface": "page_canvas",
+    "state": "comment_only_access_visible",
+    "status": "captured"
+  },
+  "privacy_processing": {
+    "method": "deterministic_rectangular_redaction",
+    "redacted_elements": [
+      "comment composer profile initial"
+    ],
+    "raw_source_location": "temporary_root_only",
+    "raw_source_deleted": true,
+    "redacted_derivative_only_in_repository": true
+  },
+  "screenshots": [
+    {
+      "state_id": "V0R-MU-015",
+      "viewport": "1440x900",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-015__1440x900.png",
+      "sha256": "sha256:281290fb83c2b808ffc4eb3d00f6bd5ceed6e3df7951bead4df10f1b3d24588c"
+    },
+    {
+      "state_id": "V0R-MU-015",
+      "viewport": "1280x800",
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots/V0R-MU-015__1280x800.png",
+      "sha256": "sha256:b00eacb3ae58f9c3a7802ef9d17e5d914866809b1a7a9b327e56a7a182016e75"
+    }
+  ],
+  "evidence_denominator": {
+    "screenshot_file_count": 30,
+    "expected_screenshot_count": 36,
+    "completed_capture_state_count": 15,
+    "expected_capture_state_count": 18,
+    "completed_action_count": 7,
+    "expected_action_count": 11,
+    "cleanup_required_now": true
+  },
+  "scope_attestation": {
+    "page_permission_reduced_to_comment_only": true,
+    "workspace_role_changed": false,
+    "message_or_notification_sent_during_validation": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "paid_upgrade_or_purchase_executed": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "confirmation_boundary": {
+    "next_action_id": "V0R-PAGE-ROLE-VIEW",
+    "next_workspace": "REF-FREE-B",
+    "next_page": "V0R-B-ROOT",
+    "next_mutation": "change REF-COLLABORATOR page permission from comment-only to view-only and capture V0R-MU-016",
+    "fresh_action_time_confirmation_required": true,
+    "next_action_started": false
+  },
+  "claims": {
+    "V0R_PAGE_ROLE_COMMENT_passed": true,
+    "V0R_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Obtain action-time confirmation for the REF-FREE-B V0R-B-ROOT view-only permission transition."
+}

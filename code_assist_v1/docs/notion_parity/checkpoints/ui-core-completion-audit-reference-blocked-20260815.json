@@ -1,0 +1,197 @@
+{
+  "contract": "code_assist.notion.core_free_ui_checkpoint.v2",
+  "recorded_at": "2026-08-15T09:34:00+09:00",
+  "run_id": "ui-core-completion-audit-reference-blocked-20260815",
+  "model": {
+    "implementation_profile": "gpt-5.6-sol-xhigh",
+    "planning_and_review_profile": "gpt-5.6-sol-ultra"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-h9-isolated-pilot-recovery-green-live-pending-20260815.json",
+    "sha256": "sha256:6dbce80ad2ed476dc55471aca9832d0e660dde9a02447e107cd6bdb461bdc7ff",
+    "semantic_status": "historical parent; isolated H9 pilot/recovery foundation green, live release gates pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T09:32:03+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": 25,
+    "synthetic_only": true,
+    "audit_only": true,
+    "business_enterprise_archive_conditional": true,
+    "excluded": [
+      "personal Notion workspaces and content",
+      "live user_data, knowledge, .runtime, and sessions",
+      "trial, payment, invite, and public posting",
+      "production migration, feature flag, consumer, and resolver cutover",
+      "live canary and operational restore"
+    ]
+  },
+  "slice": {
+    "id": "CORE-REQUIREMENT-COMPLETION-AUDIT",
+    "status": "truthful-local-complete-reference-and-differential-pending",
+    "acceptance_ids": [
+      "EXACT-25-SCENARIO-DENOMINATOR",
+      "LOCAL-24-FUNCTIONAL-PLUS-1-MEASUREMENT",
+      "ZERO-REFERENCE-CHARACTERIZED",
+      "ZERO-DIFFERENTIAL-PASSED",
+      "ZERO-PROMOTIONS",
+      "HASH-BOUND-LOCAL-EVIDENCE",
+      "FAIL-CLOSED-COMPLETION-CLAIMS",
+      "IMPORT-SIDE-EFFECT-FREE-VERIFIER"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:ec51e6d503beb2cbecdd28c852e73ad2e21f476d60b6ca77c9af8638e76fefd0",
+        "post_sha256": "sha256:2c19ce8083c15256c690872bbefc178766bdbf7dc109ab2bd9d322b0b4674c5a"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:bc35d604185ee711aa7e7bfe877e94c1ed8bc87b2bdc2dc52ca056d5355cd800",
+        "post_sha256": "sha256:db4c1c66f2c371c7a40d2c8b25934b0489a3d0a479d42f0bd0996f614601f5cc"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:8e27b207f95c9d435f0752efa92670a9bccdf942f77503d952ca2dbc05b4b5c1",
+        "post_sha256": "sha256:0a342b1b9f356edaf1af3e4632ec0353ae4aaf06862ac2633091779e074e19f5",
+        "change": "synchronize authoritative source-reference hashes only; no scenario status promotion"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+        "pre_sha256": "sha256:305776ce3ab4312e24fb411bb9b2d0837a78cef748bd1b2c76d796a79ab3fd69",
+        "post_sha256": "sha256:9d864fdebebc297faaf6ba1812818681d0ef61b4ed2611dd327c61174736ccd3"
+      },
+      {
+        "path": "code_assist_v1/tools/verify_notion_core_free_ui_completion.py",
+        "pre_sha256": null,
+        "post_sha256": "sha256:7632367efb1d08dd08b5859d710ad8b1bd7bb7d0c6a8792c3807b0736db7c96d"
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_ui_completion_matrix.py",
+        "pre_sha256": null,
+        "post_sha256": "sha256:4485b94b93a689a696bbe8d8a320ebe59d4c92e5dffa36bcb71111ed5e7c914e"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_CORE_COMPLETION_AUDIT_20260815.md",
+        "pre_sha256": null,
+        "post_sha256": "sha256:3712e2d9818647ba6bf9e80ccfff3b5e851c9f4855feb3caa01b522e399c9bba"
+      }
+    ],
+    "read_dependencies": [
+      {
+        "path": "code_assist_v1/AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-h9-isolated-pilot-recovery-green-live-pending-20260815.json",
+        "sha256": "sha256:6dbce80ad2ed476dc55471aca9832d0e660dde9a02447e107cd6bdb461bdc7ff"
+      }
+    ],
+    "protected_unchanged": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/app_code.py",
+      "code_assist_v1/auth.py",
+      "code_assist_v1/config.py",
+      "code_assist_v1/tests/conftest.py",
+      "code_assist_v1/docs/knowledge_spaces/**",
+      "code_assist_v1/knowledge_core/**",
+      "code_assist_v1/tests/knowledge_spaces/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_accessed": false,
+    "reference_workspace_accessed": false,
+    "live_mutation": false,
+    "flags_unchanged": true,
+    "runtime_registration_added": false,
+    "git_provenance_available": false
+  },
+  "evidence": {
+    "scenario_plan_file_sha256": "sha256:0a342b1b9f356edaf1af3e4632ec0353ae4aaf06862ac2633091779e074e19f5",
+    "scenario_plan_canonical_sha256": "sha256:45fd47a7b46a4924f499f1846ab15a3a83beee35c6a0347d96d2a71ad72c6bc8",
+    "completion_matrix_sha256": "sha256:9d864fdebebc297faaf6ba1812818681d0ef61b4ed2611dd327c61174736ccd3",
+    "required_scenarios": 25,
+    "local_real_browser_green": 24,
+    "local_measurement_green": 1,
+    "reference_characterized": 0,
+    "differential_passed": 0,
+    "promoted": 0,
+    "result_document": "docs/notion_parity/core_free_web_ui/UI_CORE_COMPLETION_AUDIT_20260815.md"
+  },
+  "commands": [
+    {
+      "selection": "completion verifier syntax",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "selection": "focused completion-matrix unit suite",
+      "result": "5 passed in 2.23s",
+      "exit_code": 0
+    },
+    {
+      "selection": "completion matrix plus authoritative scenario-plan verifier suites",
+      "result": "18 passed in 6.01s",
+      "exit_code": 0
+    },
+    {
+      "selection": "compact completion verifier",
+      "result": "pass; completion_state=incomplete; 25 required, 24 local browser, 1 local measurement, 0 reference, 0 differential, 0 promotion",
+      "exit_code": 0
+    },
+    {
+      "selection": "git provenance probe",
+      "result": "fatal: not a git repository",
+      "exit_code": 1
+    }
+  ],
+  "tests": {
+    "completion_matrix": "5 passed",
+    "completion_and_plan_verifiers": "18 passed",
+    "prior_combined_local_chrome": "22 passed",
+    "prior_h9_pilot_recovery": "8 passed"
+  },
+  "claims": {
+    "all_required_local_contracts_green": true,
+    "all_required_reference_characterized": false,
+    "all_required_differential_passed": false,
+    "h8_complete": false,
+    "h9_complete": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "overall_goal_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "owned_file_drift": false,
+    "personal_content_exposure": false,
+    "live_data_access": false,
+    "protected_file_edit": false,
+    "auth_or_csrf_regression": false,
+    "second_brain_regression": false,
+    "reference_browser_initialized": false,
+    "reference_or_personal_workspace_opened": false,
+    "production_flag_or_live_canary_enabled": false,
+    "purchase_invite_or_public_post_required": false,
+    "repeated_host_path_initialization_failure": true,
+    "prior_evidence_bundle_host_failure_0xc0000409": true
+  },
+  "remaining": [
+    "recover a safe signed-in Chrome transport and run identifier-free C0 against synthetic REF-FREE-A/B only",
+    "capture and seal reference evidence for all 25 Core scenarios",
+    "produce and review all 25 differentials before any promotion",
+    "calibrate and approve the performance budget",
+    "complete formal accessibility, legal, and brand review",
+    "obtain explicit authorization before production flag, operational recovery, or live canary",
+    "run the final requirement-level completion audit"
+  ],
+  "next_exact_command": "after browser-host repair or capability change, initialize the in-app signed-in browser once and run only the read-only C0 identity-free guard before selecting REF-FREE-A/B"
+}

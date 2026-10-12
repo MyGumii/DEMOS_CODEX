@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/schemas/internal-collaborative-protocol-contract-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract",
+    "contract_id",
+    "recorded_at",
+    "packet_id",
+    "status",
+    "authority_inputs",
+    "trust_boundaries",
+    "threat_model",
+    "ticket_contract",
+    "envelope_contract",
+    "sequence_ack_replay_contract",
+    "prototype_boundary",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "contract": {"const": "code_assist.notion.internal_collaborative_protocol_contract.v1"},
+    "contract_id": {"const": "T0A-P1-COLLABORATION-PROTOCOL-001"},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "packet_id": {"const": "T0A-P1"},
+    "status": {"const": "frozen_disposable_protocol_contract"},
+    "authority_inputs": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/hashRef"}
+    },
+    "trust_boundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["notion_host", "collaboration_gateway", "canonical_authority", "client", "second_brain"],
+      "properties": {
+        "notion_host": {"type": "string", "minLength": 1},
+        "collaboration_gateway": {"type": "string", "minLength": 1},
+        "canonical_authority": {"type": "string", "minLength": 1},
+        "client": {"type": "string", "minLength": 1},
+        "second_brain": {"type": "string", "minLength": 1}
+      }
+    },
+    "threat_model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protected_assets", "threats", "non_oracle_rejection"],
+      "properties": {
+        "protected_assets": {"$ref": "#/$defs/stringList"},
+        "threats": {"type": "array", "minItems": 7, "items": {"$ref": "#/$defs/threat"}},
+        "non_oracle_rejection": {"type": "string", "minLength": 1}
+      }
+    },
+    "ticket_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protocol_version",
+        "issuer",
+        "consumer",
+        "entropy_bits_minimum",
+        "maximum_ttl_ms",
+        "clock_rule",
+        "stored_secret_material",
+        "recognized_failure_consumes_ticket",
+        "required_bindings",
+        "allowed_capabilities",
+        "flask_cookie_is_gateway_authorization",
+        "plaintext_ticket_persisted",
+        "consume_is_atomic"
+      ],
+      "properties": {
+        "protocol_version": {"const": 1},
+        "issuer": {"const": "authenticated_notion_host_after_csrf"},
+        "consumer": {"const": "dedicated_collaboration_gateway"},
+        "entropy_bits_minimum": {"type": "integer", "minimum": 256},
+        "maximum_ttl_ms": {"type": "integer", "minimum": 1, "maximum": 30000},
+        "clock_rule": {"type": "string", "minLength": 1},
+        "stored_secret_material": {"const": "sha256_digest_only"},
+        "recognized_failure_consumes_ticket": {"const": true},
+        "required_bindings": {"$ref": "#/$defs/stringList"},
+        "allowed_capabilities": {"$ref": "#/$defs/stringList"},
+        "flask_cookie_is_gateway_authorization": {"const": false},
+        "plaintext_ticket_persisted": {"const": false},
+        "consume_is_atomic": {"const": true}
+      }
+    },
+    "envelope_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protocol_version", "payload_hash", "maximum_payload_bytes", "required_fields", "message_capabilities", "validation_rule", "raw_cookie_field_allowed"],
+      "properties": {
+        "protocol_version": {"const": 1},
+        "payload_hash": {"const": "sha256_of_exact_payload_bytes"},
+        "maximum_payload_bytes": {"type": "integer", "minimum": 1, "maximum": 1048576},
+        "required_fields": {"$ref": "#/$defs/stringList"},
+        "message_capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ack", "comment.create", "crdt.update", "presence.update", "replay.request", "typed.command"],
+          "properties": {
+            "ack": {"const": "read"},
+            "comment.create": {"const": "comment"},
+            "crdt.update": {"const": "write"},
+            "presence.update": {"const": "presence"},
+            "replay.request": {"const": "read"},
+            "typed.command": {"const": "write"}
+          }
+        },
+        "validation_rule": {"type": "string", "minLength": 1},
+        "raw_cookie_field_allowed": {"const": false}
+      }
+    },
+    "sequence_ack_replay_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identity_dimensions",
+        "client_sequence_starts_at",
+        "client_sequence_rule",
+        "document_sequence_starts_at",
+        "document_sequence_rule",
+        "deduplication_key",
+        "same_operation_same_request",
+        "same_operation_different_request",
+        "commit_before_ack",
+        "client_acknowledgement_rule",
+        "replay_cursor",
+        "replay_order",
+        "replay_batch_is_bounded",
+        "compacted_cursor_result",
+        "send_time_epoch_revalidation"
+      ],
+      "properties": {
+        "identity_dimensions": {"$ref": "#/$defs/stringList"},
+        "client_sequence_starts_at": {"const": 1},
+        "client_sequence_rule": {"type": "string", "minLength": 1},
+        "document_sequence_starts_at": {"const": 1},
+        "document_sequence_rule": {"type": "string", "minLength": 1},
+        "deduplication_key": {"$ref": "#/$defs/stringList"},
+        "same_operation_same_request": {"type": "string", "minLength": 1},
+        "same_operation_different_request": {"const": "operation_conflict"},
+        "commit_before_ack": {"const": true},
+        "client_acknowledgement_rule": {"type": "string", "minLength": 1},
+        "replay_cursor": {"const": "exclusive_after_document_sequence"},
+        "replay_order": {"const": "strictly_ascending_document_sequence"},
+        "replay_batch_is_bounded": {"const": true},
+        "compacted_cursor_result": {"type": "string", "minLength": 1},
+        "send_time_epoch_revalidation": {"const": true}
+      }
+    },
+    "prototype_boundary": {"type": "object"},
+    "claims": {"type": "object"}
+  },
+  "$defs": {
+    "hashRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^code_assist_v1/"},
+        "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    },
+    "stringList": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "threat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "attack", "control"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[A-Z]+(?:-[A-Z]+)+$"},
+        "attack": {"type": "string", "minLength": 1},
+        "control": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

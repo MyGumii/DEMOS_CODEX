@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O0A-P1-BACKUP-ADR-PRE-EDIT-20260823",
+  "recorded_at": "2026-08-23T09:40:12Z",
+  "checkpoint_kind": "packet_pre_edit_ownership",
+  "packet_id": "O0A-P1",
+  "packet_status": "superseded",
+  "purpose": "Freeze exact DOC_HARNESS ownership before defining the coordinated write barrier, separate Notion and Second Brain authority manifests, mandatory/rebuildable/never-restored inventories, event-snapshot compaction fence, and forced-reauthentication restore contract. This packet does not create a backup, restore data, change either authority, or freeze production recovery targets.",
+  "owner_agent": "/root",
+  "ownership_lease": {
+    "lease_id": "O0A-P1-DOC-HARNESS-20260823-094012Z",
+    "lane": "DOC_HARNESS",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-23T09:40:12Z",
+    "expires_at": "2026-08-23T17:40:12Z",
+    "released_at": "2026-08-23T09:57:57Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json"
+  ],
+  "planned_new_product_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_backup_adr.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_backup_adr.v1.schema.json",
+    "code_assist_v1/tools/verify_internal_collaborative_backup_adr.py"
+  ],
+  "planned_new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_backup_inventory_contract.py"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_backup_adr.v1.json": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_backup_adr.v1.schema.json": null,
+    "code_assist_v1/tools/verify_internal_collaborative_backup_adr.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_backup_inventory_contract.py": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:95f8daac24509e07ec88544ffd13e1861a07d1c9440f24a7dbfcc93564051440",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:57aa86ff462d7a55608a2e07ae21946bd3c6a95fa80b7f3f4785c158a7ec4882",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:06c95f1e2f7c41764f2307f72b4c55503af721aa60d2ca5e8a07912e4567bc35",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:3dd7ec24ad906f912a1f898eba746f4418a7885d9cc72839df368b6f6eb6fe44"
+  },
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/knowledge_core/backup_manifest.py": "read_only_existing_P7.4_contract",
+    "code_assist_v1/knowledge_core/services/backup.py": "read_only_existing_P7.4_implementation",
+    "code_assist_v1/knowledge_core/services/restore.py": "read_only_existing_P7.4_restore_drill",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+  },
+  "ordered_sbe_authority_documents": [
+    {"order": 1, "path": "docs/knowledge_spaces/README.md", "sha256": "090d886640ea2dc38e8d015a55530c17f4eaf9dd99c1ddf2ae57e5da358320ea"},
+    {"order": 2, "path": "docs/knowledge_spaces/second_brain_evolution/README.md", "sha256": "56fd256f6aed116eed9e7c3d1b4d03f8cd83146ea376874be32c25740c7ed34b"},
+    {"order": 3, "path": "docs/knowledge_spaces/second_brain_evolution/PRODUCT_CONTRACT.md", "sha256": "55fdc53dbf591d9974cf92d4042b6b4849d2e5a0c155bad4960f0a5acb33218c"},
+    {"order": 4, "path": "docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md", "sha256": "861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604"},
+    {"order": 5, "path": "docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md", "sha256": "5883c6955430e04b4149cd69c0b96839fc4a5c7281748b001c4214197e46d15e"},
+    {"order": 6, "path": "docs/knowledge_spaces/second_brain_evolution/ACCEPTANCE.md", "sha256": "bfd769be8757740f80e534fda6a9d50e7ae0652830e82b7b4e8472f809cb36bb"},
+    {"order": 7, "path": "docs/knowledge_spaces/DECISIONS.md", "sha256": "f764bec2b35730fc0b012415400059e61787d38f43b78914d46af9bca94ca7db"},
+    {"order": 8, "path": "docs/knowledge_spaces/ARCHITECTURE.md", "sha256": "bb8552653b0f02128302d7bf1cb7d75f65000215f01e138398be8b81c62520aa"},
+    {"order": 9, "path": "docs/knowledge_spaces/SCHEMA_V1.md", "sha256": "15de58b4ba6f7dd4c9f77087bed795ba3ab07cb9fbdada36a92e6d7164c91e21"},
+    {"order": 10, "path": "docs/knowledge_spaces/API_UI_CONTRACT.md", "sha256": "731d920ccf1e72926ca3d5cfbb34e0ff2720bb57a73353ef89c50c32528d9411"},
+    {"order": 11, "path": "docs/knowledge_spaces/CURRENT_SYSTEM_INVENTORY.md", "sha256": "bdf39d05337d918917e34b9d68187bfeb4799920d871b1688ece9d488735c55d"},
+    {"order": 12, "path": "docs/knowledge_spaces/MIGRATION_ROLLOUT.md", "sha256": "0008ded180852070f2d9d3a555052695b704651dd72a98c54979c10311354f0f"},
+    {"order": 13, "path": "docs/knowledge_spaces/TEST_OPERATIONS.md", "sha256": "fa429c36bc5034818fbcd18a79fa66e36a8af863837afb263b4d1258a20fbc5b"},
+    {"order": 14, "path": "docs/knowledge_spaces/DEVELOPMENT_BASELINE.md", "sha256": "608792faa9998740b5009aa721260b56ad15a6affab7420abbe0b0ecab8a9edc"},
+    {"order": 15, "path": "docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md", "sha256": "6c11b28e21f7f38b12e99243cc675e8716b3d32e68fe83d3db0529164b04fd5e"},
+    {"order": 16, "path": "docs/knowledge_spaces/TRACEABILITY.md", "sha256": "995fb1ecbe83a1e320e6ae2858a69b51c66fa53bbc6c0a9f72414d704ab73735"},
+    {"order": 17, "path": "docs/knowledge_spaces/GOAL_CONTRACT.json", "sha256": "46ce12ad70e424dc1c381d496dfb71cc9f7955606fe9945a72bff1ccf2d2d71b"},
+    {"order": 18, "path": "docs/knowledge_spaces/STATUS.md", "sha256": "8159896bafae8bba05c0bfca6f4d7eb530570dabaa7fa2c984cf402c95346f49"}
+  ],
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0a-p2-gateway-contract-20260823.json",
+    "sha256": "sha256:4bc43e89efd3ad11bf9791272339ebccbf74a141f14867ea19b526507d1c6d24",
+    "packet_id": "T0A-P2",
+    "receipt_id": "T0A-P2-L3-CRDT-PROTOCOL-CORPUS-20260823"
+  },
+  "sbe_contract_audit": {
+    "status": "pass",
+    "error_count": 0,
+    "input_sha256": "sha256:284d70c452fa1b742212d12286d5d3c7da9b7e9a2014d9b29163df2a805c9cf0",
+    "goal_count": 20,
+    "mandatory_scenario_count": 284,
+    "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604"
+  },
+  "external_prerequisite_observation": {
+    "id": "XG-SBE-DYNAMIC-BASELINE",
+    "status": "satisfied_for_read_only_design_packet",
+    "p7_4_baseline": "verified_existing_backup_and_isolated_restore_baseline",
+    "sbe_7_1_successor_owner": "not_started_and_not_modified",
+    "sbe_7_2_target_restore_owner": "not_started_and_not_modified",
+    "cross_database_atomic_transaction_claimed": false
+  },
+  "approval_state": {
+    "packet_approval_required": false,
+    "ap_runtime_spike_approved": false,
+    "dependency_download_or_install_allowed": false,
+    "actual_service_or_port_start_allowed": false,
+    "production_recovery_targets_frozen": false,
+    "production_schema_identity_or_data_root_mutation_allowed": false
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "paths": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/docs/knowledge_spaces",
+      "code_assist_v1/requirements-runtime.lock",
+      "code_assist_v1/notion_store.py",
+      "code_assist_v1/notion_workspace_store.py",
+      "code_assist_v1/routes_notion.py",
+      "code_assist_v1/routes_notion_workspace.py",
+      "code_assist_v1/knowledge_core",
+      "code_assist_v1/user_data",
+      "code_assist_v1/knowledge",
+      "code_assist_v1/.runtime"
+    ]
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "Resume the interrupted implementation goal.",
+    "status": "active",
+    "observed_at": "2026-08-23T09:40:12Z",
+    "goal_completion_claimed": false
+  },
+  "execution_cursor": {
+    "current_packet": "O0A-P1",
+    "current_state": "transferred_to_gate_checkpoint",
+    "parallel_reason": "O0A-P1 has no approval dependency, its A0A-P1 and E0-P1 prerequisites are gate_passed, and its SBE dependency is read-only and freshly audited. E0-P2 remains awaiting AP-RUNTIME-SPIKE.",
+    "next_primary_packet": "E0-P2",
+    "next_primary_state": "awaiting_conditional_approval",
+    "required_approval_id": "AP-RUNTIME-SPIKE"
+  },
+  "rollback_or_cleanup": "Delete only this O0A-P1 pre-edit checkpoint if implementation does not start. No package, lockfile, schema migration, route, store, runtime, service, port, identity, browser profile, backup destination, or data root is in scope."
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.crdt_candidate_benchmark_execution_receipt.v1",
+  "receipt_id": "E0-P3-L3-CANDIDATE-BENCHMARK-20260824",
+  "packet_id": "E0-P3",
+  "status": "pass",
+  "executed_at": "2026-08-23T23:22:28Z",
+  "approval": {
+    "approval_id": "AP-RUNTIME-SPIKE-E0-P3-REINSTALL",
+    "status": "consumed",
+    "scope_sha256": "sha256:f9245d712751e874ac24e35f37ef66be9dea3b706a8aa4af5712c1019d0283d0",
+    "receipt_sha256": "sha256:8476747aad44e5608cc88033de6da42a67880d534f9e0727968a6f54039f90cd",
+    "single_use": true
+  },
+  "authority_bindings": {
+    "matrix_sha256": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57",
+    "corpus_sha256": "sha256:9be012b8150b3db48c66f743369a2b9905e234582056e28e427d77f311fca8b2",
+    "e0_p2_checkpoint_sha256": "sha256:cc097d5d7265c72ffe228a854254649d8d0f2ffcca26b7248e62c288f947aba6",
+    "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+  },
+  "implementation_sha256": {
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark.py": "sha256:e72e352cd602ada2249b3daaf6c2a3443f524c00700109e13be69b3c9041b8ef",
+    "code_assist_v1/tools/notion_parity/crdt_candidate_benchmark_executor.py": "sha256:de320448b5fa7f9144afe89572ea8ded609103fa15a0c2dc4fbdc33c77f7cd91",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_native_benchmark_adapter.py": "sha256:9c60f2c52241b20238c73dd5512e10c80a9622c9a780e2215906c495ce16760b",
+    "code_assist_v1/tools/notion_parity/spike_adapters/py_opaque_benchmark_relay_adapter.py": "sha256:6be93eedcdc0d672c0c415a0fecdffd1db7743171b7f4ba25b1a2e24398a1d14",
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_benchmark_adapter.cjs": "sha256:90cd6f8bdabb766ee7d473271d50ccd533a22e1d1e6c87ad89be6d779fa81f89",
+    "code_assist_v1/tools/notion_parity/spike_adapters/node_hocuspocus_benchmark_adapter.cjs": "sha256:833180039d60c2d1d783806816827f4dddfd9eec6aa017717b18c18051ccba52"
+  },
+  "materialization": {
+    "raw_receipt_sha256": "sha256:3cb1ff22628029a2c5bce372abe09b27ee30b5fd61308465c03296f7e5a159cf",
+    "raw_receipt_bytes": 1203,
+    "python_wheel_count": 12,
+    "python_wheel_lock_sha256": "sha256:031483a353068e4127119020c8326ad9a50f31ef23111f79d7b47b2bfba2e44b",
+    "python_isolated_environment_count": 2,
+    "pip_check_passed": 2,
+    "npm_isolated_root_count": 2,
+    "npm_lockfile_v3_passed": 2,
+    "npm_ls_passed": 2,
+    "npm_registry_integrity_missing": 0,
+    "opaque_node_lock_sha256": "sha256:18647deffd556010182fd6d95ee080f232ae7fbf1c5c9dbd96b52fe067b8c034",
+    "hocuspocus_lock_sha256": "sha256:2cdac1454762abaa784fb94272e383172f73f787c289d9373e2313a81e9f7c0e",
+    "network_listener_started": false,
+    "port_bound": false
+  },
+  "benchmark_denominators": {
+    "scenario_count": 15,
+    "case_count_per_candidate": 53,
+    "candidate_count": 3,
+    "total_candidate_case_count": 159,
+    "raw_report_sha256": "sha256:4e4838c777e97f44e097c4855da6c673a3e40455a6f9e663c24f52459c128350",
+    "raw_report_bytes": 306967,
+    "duration_seconds": 2.995591
+  },
+  "mandatory_results": {
+    "zero_loss_candidate_count": 3,
+    "acknowledged_character_loss_count": 0,
+    "convergence_mismatch_count": 0,
+    "invalid_unicode_count": 0,
+    "duplicate_effect_count": 0,
+    "ime_intermediate_published_count": 0,
+    "restart_replay_failure_count": 0,
+    "compaction_equivalence_failure_count": 0,
+    "cross_candidate_convergence_mismatch_count": 0
+  },
+  "fault_results": {
+    "duplicate_delivery_cases": 45,
+    "deterministic_out_of_order_cases": 18,
+    "restart_after_half_cases": 12,
+    "compact_then_tail_replay_cases": 3,
+    "network_disconnect_model": "withhold_then_replay_without_socket",
+    "real_network_listener_exercised": false,
+    "zero_acknowledged_loss": true
+  },
+  "opaque_relay_results": {
+    "case_count": 53,
+    "delivered_update_count": 198,
+    "unique_update_count": 166,
+    "duplicate_update_count": 32,
+    "midstream_persist_reload_passed": 53,
+    "final_restart_recovery_passed": 53,
+    "opaque_content_inspection": false,
+    "runtime_versions": {
+      "uvicorn": "0.52.4",
+      "websockets": "17.0.1"
+    }
+  },
+  "candidate_results": [
+    {
+      "candidate_id": "PY_NATIVE_PYCRDT",
+      "adapter_id": "PY_NATIVE_PYCRDT_BENCHMARK",
+      "runtime_versions": {
+        "pycrdt": "0.14.3",
+        "pycrdt_websocket": "0.16.4",
+        "uvicorn": "0.52.4"
+      },
+      "case_count": 53,
+      "acknowledged_grapheme_count": 291,
+      "encoded_update_bytes": 26451,
+      "checkpoint_state_bytes": 15660,
+      "operations_per_second_mean": 108482.27104857148,
+      "snapshot_duration_ms_total": 0.3693,
+      "replay_duration_ms_total": 1.2428,
+      "peak_process_rss_bytes": 41295872,
+      "process_duration_ms": 749.9315,
+      "resource_percentiles": {
+        "operations_per_second": {"p50": 126582.27848101265, "p95": 147058.82352941178, "p99": 156884.0133119684, "max": 163934.4262295082},
+        "snapshot_duration_ms": {"p50": 0.0058, "p95": 0.009739999999999995, "p99": 0.03276399999999991, "max": 0.048},
+        "replay_duration_ms": {"p50": 0.0225, "p95": 0.034819999999999976, "p99": 0.046079999999999996, "max": 0.0466},
+        "checkpoint_state_bytes": {"p50": 290.0, "p95": 410.59999999999997, "p99": 416.0, "max": 416.0},
+        "encoded_update_bytes": {"p50": 398.0, "p95": 910.3999999999999, "p99": 1476.7199999999984, "max": 1718.0},
+        "peak_process_rss_bytes": {"p50": 41054208.0, "p95": 41274572.8, "p99": 41291612.16, "max": 41295872.0}
+      }
+    },
+    {
+      "candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+      "adapter_id": "PY_OPAQUE_NODE_COMPACTOR_YJS_BENCHMARK",
+      "runtime_versions": {"yjs": "13.6.32"},
+      "case_count": 53,
+      "acknowledged_grapheme_count": 291,
+      "encoded_update_bytes": 25253,
+      "checkpoint_state_bytes": 15027,
+      "operations_per_second_mean": 25872.398548235462,
+      "snapshot_duration_ms_total": 2.1752999999999645,
+      "replay_duration_ms_total": 8.849600000000038,
+      "peak_process_rss_bytes": 65806336,
+      "process_duration_ms": 245.3516,
+      "resource_percentiles": {
+        "operations_per_second": {"p50": 23492.560689114307, "p95": 43630.81617086347, "p99": 51141.76756478634, "max": 51413.88174809319},
+        "snapshot_duration_ms": {"p50": 0.03509999999999991, "p95": 0.06974000000000158, "p99": 0.12748000000000478, "max": 0.1670000000000016},
+        "replay_duration_ms": {"p50": 0.1354999999999933, "p95": 0.22450000000000614, "p99": 0.7240599999999937, "max": 1.1280999999999892},
+        "checkpoint_state_bytes": {"p50": 275.0, "p95": 392.0, "p99": 395.0, "max": 395.0},
+        "encoded_update_bytes": {"p50": 382.0, "p95": 864.5999999999999, "p99": 1402.9199999999987, "max": 1639.0},
+        "peak_process_rss_bytes": {"p50": 63873024.0, "p95": 65570406.4, "p99": 65795686.4, "max": 65806336.0}
+      }
+    },
+    {
+      "candidate_id": "NODE_YJS_HOCUSPOCUS",
+      "adapter_id": "NODE_YJS_HOCUSPOCUS_BENCHMARK",
+      "runtime_versions": {"hocuspocus": "4.6.0", "yjs": "13.6.32"},
+      "case_count": 53,
+      "acknowledged_grapheme_count": 291,
+      "encoded_update_bytes": 25281,
+      "checkpoint_state_bytes": 15042,
+      "operations_per_second_mean": 25665.748596918726,
+      "snapshot_duration_ms_total": 2.1963000000001216,
+      "replay_duration_ms_total": 7.739199999999926,
+      "peak_process_rss_bytes": 73228288,
+      "process_duration_ms": 295.0465,
+      "resource_percentiles": {
+        "operations_per_second": {"p50": 25348.542458807202, "p95": 45500.44175186123, "p99": 52630.48378706927, "max": 54794.5205479609},
+        "snapshot_duration_ms": {"p50": 0.03630000000001132, "p95": 0.0773399999999924, "p99": 0.119508000000004, "max": 0.14269999999999072},
+        "replay_duration_ms": {"p50": 0.13650000000001228, "p95": 0.20501999999998471, "p99": 0.34570799999999613, "max": 0.35849999999999227},
+        "checkpoint_state_bytes": {"p50": 276.0, "p95": 392.0, "p99": 395.0, "max": 395.0},
+        "encoded_update_bytes": {"p50": 382.0, "p95": 865.3999999999999, "p99": 1402.9199999999987, "max": 1639.0},
+        "peak_process_rss_bytes": {"p50": 71929856.0, "p95": 72715468.8, "p99": 73028075.52, "max": 73228288.0}
+      }
+    }
+  ],
+  "canonical_scenario_hashes": {
+    "BLOCK-001": "sha256:1e87404718657349988ebd627659381d4f9999f57d97585d2a7b55fb5294f2ac",
+    "BLOCK-002": "sha256:8bf8a19e922e0105d4f14a7f2aacd82e296a3d992694a36ecd1b2685b413ccbe",
+    "BLOCK-003": "sha256:e85f4c8227dafacea21cc9f6934075e82364427a509e950543029ff87b876862",
+    "COMPACT-001": "sha256:86a33472118744bf52a3285f30c87c3bea889018a1b30f8966143faf30ca007d",
+    "DB-001": "sha256:8cbd39ed040ce9d3a655c506bfce52bde43d9af97fce8aedc322b9fd28f98007",
+    "DB-002": "sha256:1de3a3da948d78595cc8adb9412323185340ae57869c15c5c8482b81886fda31",
+    "FORMAT-001": "sha256:0d2f10c3974a7219d3fd1744b86add5bbff5dce325933a51f371afd099b9e999",
+    "IME-001": "sha256:2a5b526155e7be970215ed0e6f717ec9f0d13a09a2204ba1da0c1d6ea27775c8",
+    "IME-002": "sha256:9dbe0e66475e4c0246333492ff6bff486c613859ae944cdd042f6bd93ccfb4a9",
+    "IME-003": "sha256:f6ec18cf2c8fd06e408837a941272e9476c97e94070cb76d32ad4afe3a72f310",
+    "NET-001": "sha256:12ab9111c37401a1478fd93cb8129e145d87d4bd201bc401a609ae25edbd4236",
+    "RECOVERY-001": "sha256:977301067a08c81b9e6a42a036cbe5f5df202d2a78f56d7c0c7b6727e58f9158",
+    "TEXT-001": "sha256:07995438f9a1f5ec722e051c2418601c3a7e9899ca49c38198a448e5134b496a",
+    "TEXT-002": "sha256:c9a0969021bf2ed01029753565782663d8fa1663f854fabf6da121d47acf0a27",
+    "UNDO-001": "sha256:c752fdc092adef4289b3fc431478067ec98ebab757e10bd250eb8b61136fc19b"
+  },
+  "runtime_observations": [
+    {
+      "classification": "pre_candidate_npm_cache_binding_bug",
+      "candidate_assertion_reached": false,
+      "symptom": "npm offline install selected a reduced-environment default cache without the approved artifacts",
+      "fix": "bind the existing LOCALAPPDATA npm cache explicitly, reconstruct only the exact direct tarball URLs with npm pack --offline, verify SHA-512, then install local tarballs",
+      "network_fallback_occurred": false,
+      "scope_expanded": false
+    },
+    {
+      "classification": "pycrdt_adapter_index_contract_bug",
+      "candidate_assertion_reached": false,
+      "symptom": "a Korean end insertion appeared locally but was absent after update round-trip",
+      "cause": "pycrdt.Text indices use UTF-8 byte offsets while the adapter used Python code-point length",
+      "fix": "use len(pycrdt.Text) for append and UTF-8 prefix byte lengths for delete and undo ranges",
+      "post_fix_korean_round_trip": "기준 임시 -> 기준 after local undo",
+      "candidate_rejected_by_observation": false
+    },
+    {
+      "classification": "windows_rss_collector_pointer_contract_bug",
+      "candidate_assertion_reached": true,
+      "functional_candidate_assertions_passed": true,
+      "rejected_receipt_sha256": "sha256:2b35e6a500dcc8fea260139952f468d9b5cdb254c7fb08d5b71d2ff3888a2fc8",
+      "symptom": "Python RSS was reported as a one-byte sentinel",
+      "fix": "bind HANDLE, DWORD, BOOL, structure pointer, and function return types explicitly before GetProcessMemoryInfo",
+      "post_fix_peak_rss_bytes": 41295872,
+      "rejected_measurement_used_for_decision": false
+    }
+  ],
+  "isolation_and_claims": {
+    "candidate_root_marker_validated": true,
+    "candidate_root_retained_for_immediate_e0_p4": true,
+    "candidate_root_retention_deadline": "2026-08-24T23:12:44Z",
+    "candidate_owned_processes_remaining": 0,
+    "network_listener_started": false,
+    "port_bound": false,
+    "product_dependency_or_lockfile_modified": false,
+    "schema_or_migration_modified": false,
+    "identity_workspace_browser_or_live_data_accessed": false,
+    "candidate_winner_selected": false,
+    "product_runtime_changed": false,
+    "product_complete": false
+  }
+}

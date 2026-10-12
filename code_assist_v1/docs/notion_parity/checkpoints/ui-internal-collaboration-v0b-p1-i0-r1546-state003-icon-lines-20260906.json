@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1546-STATE003-ICON-LINES-20260906",
+  "recorded_at": "2026-09-06T10:17:06.0028994+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1544-state004-remaining-lines-20260906.json",
+    "sha256": "sha256:9daed05785ee67faa2951a9579af593a81e0fe25b7d665bc5f3fb06d0daf8e76",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 704848
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-003 at 1440x900 and 1280x800",
+    "description": "Add six reference-exact one-pixel rows for the shared page icon raster.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:9e4480ce03c193f63fb52dbad6095da474dac6920d4c69f6697b071500dd4bc6",
+    "duplicated_capture_paths_updated": 2,
+    "python_compile_pass": true
+  },
+  "supporting_sweep": {
+    "run_id": "v0b-p1-i0-r1545-state003-icon-lines-sweep",
+    "results_path": ".runtime/v0b-p1-i0-r1545-state003-icon-lines-sweep/state003-icon-exact-lines-results.json",
+    "results_sha256": "sha256:357bcf459685a913d4e57f29cd035b5c7bb0d12a61fdd81feb7d6d94ff8d04f3",
+    "wide_baseline_difference_count": 36190,
+    "wide_accepted_difference_count": 35944,
+    "wide_improvement": 246,
+    "compact_baseline_difference_count": 35858,
+    "compact_accepted_difference_count": 35612,
+    "compact_improvement": 246,
+    "candidate_groups_individually_improved": true,
+    "journey_status": "pass",
+    "cleanup_pass": true
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1546-state003-icon-lines-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1546-state003-icon-lines-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:20da4cd5b5f937ad8406848a0ad145dea57b9bbf0d35fd91278011557e2e7554",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 704356,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 704356,
+    "stable_normalized_improvement_from_predecessor": 492,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 45895,
+    "changed_capture_count": 2,
+    "unchanged_capture_hash_count": 18,
+    "changed_captures": [
+      {"capture": "V0R-MU-003@1440x900", "predecessor_difference_count": 36190, "accepted_difference_count": 35944, "improvement": 246},
+      {"capture": "V0R-MU-003@1280x800", "predecessor_difference_count": 35858, "accepted_difference_count": 35612, "improvement": 246}
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1525-20260906",
+    "launch_id": "cd39c9dc305a4f6e89b7ac620f1bdbfa",
+    "root_id": "7417e295-3edb-4ffd-923d-8fffb0adeb60",
+    "manager_session_id": 79532,
+    "current_audit": {
+      "workspace_count": 44,
+      "reference_workspace_count": 42,
+      "active_membership_count": 44,
+      "active_page_binding_count": 42,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Rotate the realm at audit 44, reproduce stable 704356 in a new clean realm, and continue lossless exact residual reduction. Do not run final gates before exact parity reaches 36/36."
+}

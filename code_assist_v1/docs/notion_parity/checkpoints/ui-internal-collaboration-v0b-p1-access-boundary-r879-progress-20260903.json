@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-ACCESS-BOUNDARY-R879-PROGRESS-20260903",
+  "recorded_at": "2026-09-03T08:24:12.9262339+09:00",
+  "checkpoint_kind": "bounded_access_boundary_residual_reduction_full_candidate_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Preserve the first full current-reference candidate after state-local access-boundary skeleton and dialog-content corrections, including repeatable two-viewport improvement, full live-journey cleanup, regression tests, and independent receipt verification.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-mu001-mu002-r874-progress-20260903.json",
+    "sha256": "sha256:9cabd25c859b68451865fc9a65ccddcb69b1982aac8b07c3a43ff99d8c021188"
+  },
+  "reference_lineage": {
+    "receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+    "receipt_sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "screenshot_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/screenshots",
+    "mask_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1-lossless-exact-v3-20260830/masks",
+    "capture_count": 36,
+    "immutable_reference_modified": false
+  },
+  "approved_development_realm": {
+    "root": ".dev/notion-collaboration-10111-10113-clean-20260903",
+    "manager_launch_id": "52b07d366b464e70906cdc5f030efb55",
+    "ports": [10111, 10112, 10113],
+    "workspace_count_after_r879": 59,
+    "workspace_realm_rotation_threshold": 64,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "manager_retained_running": true,
+    "rotation_required_before_next_browser_iteration": true
+  },
+  "adopted_capture_changes": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:66c5e3eb077204a05b9ee614ded19b89f8181a1854db03eeb0d69c9a6aab0202",
+    "scope": ["V0R-MU-017", "V0R-MU-018"],
+    "changes": [
+      "At 1280px only, access-boundary skeleton top and zoom changed from 80.591742px/0.9058 to the controlled best 81.6px/0.9038.",
+      "The Korean access-boundary title moved right and down by one pixel while retaining scaleX(1.045).",
+      "The description received a 0.1px currentColor text stroke.",
+      "The request button changed to font-weight 500 and border-radius 6px."
+    ],
+    "r874_to_r879_state_deltas": {
+      "V0R-MU-017__1440x900": -276,
+      "V0R-MU-017__1280x800": -572,
+      "V0R-MU-018__1440x900": -288,
+      "V0R-MU-018__1280x800": -584
+    },
+    "standard_i0_repeat": {
+      "label": "r878",
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "accessibility_pass_count": 20
+    }
+  },
+  "rejected_experiments": [
+    {
+      "target": "V0R-MU-017 access-boundary dialog shadow",
+      "reason": "A controlled same-page sweep of opacity, vertical offsets, blur, spread, and layer combinations at both viewports found the existing viewport-specific shadows uniquely optimal; no shadow change was retained."
+    },
+    {
+      "target": "V0R-MU-017 alternate title weights, scale, letter spacing, and stroke",
+      "reason": "All alternatives except the one-pixel title translation increased the clipped title difference at one or both viewports."
+    },
+    {
+      "target": "V0R-MU-017 description transforms, scale, weight, and spacing",
+      "reason": "All alternatives except the 0.1px text stroke increased the clipped description difference at one or both viewports."
+    }
+  ],
+  "retained_candidate": {
+    "label": "r879",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r879/receipt.json",
+    "receipt_sha256": "sha256:bc38ab2b5f6c5af3ae82831562faa771b34483e0eaa9df4ed55af4eb02f7db68",
+    "candidate_screenshot_root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r879/screenshots",
+    "diff_root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r879/diffs",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_differing_pixel_count": 1747198,
+    "masked_differing_pixel_count": 68418,
+    "raw_differing_pixel_count": 1815616,
+    "r874_to_r879_unmasked_delta": -1075,
+    "r862_to_r879_unmasked_delta": -8313,
+    "duration_ms": 318922,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "cleanup_status": "complete",
+    "browser_closed": true,
+    "gate_passed": false
+  },
+  "regression_validation": {
+    "pytest": {
+      "status": "pass",
+      "passed": 23,
+      "skipped": 1,
+      "failed": 0,
+      "scope": [
+        "test_v0b_p1_workspace_realm_budget.py",
+        "test_v0b_p1_i0_semantic_diagnostic.py",
+        "test_v0b_p1_capture_matte.py",
+        "test_internal_collaborative_v0b_p1_receipt.py",
+        "browser/test_f0_p5_adopted_surface.py"
+      ]
+    },
+    "official_receipt_verifier": {
+      "status": "expected_fail_open_gates_only",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_error_counts": {
+        "EXACT_PIXEL_GATE": 36,
+        "CORE_25_GATE": 1,
+        "PERFORMANCE_GATE": 1,
+        "CLAIMS_GATE": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:bc38ab2b5f6c5af3ae82831562faa771b34483e0eaa9df4ed55af4eb02f7db68"
+    }
+  },
+  "protected_hot_contracts": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "code_assist_v1/notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "claims": {
+    "V0R_P1_reference_gate_passed": true,
+    "V0B_P1_functional_and_accessibility_evidence_complete": true,
+    "V0B_P1_exact_pixel_gate_passed": false,
+    "V0B_P1_gate_passed": false,
+    "final_product_gate_run": false,
+    "final_sbe_gate_run": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": {
+    "task": "Rotate to a new clean marker-bound development realm before any additional browser diagnostic or full candidate, then continue bounded exact-pixel residual reduction from r879 without modifying the current immutable reference lineage.",
+    "forbidden": [
+      "start another browser iteration in the 59-workspace realm",
+      "modify AGENTS.md or the protected Notion static hot contracts",
+      "run Core-25, performance, product, or SBE closure gates before exact 36/36",
+      "claim V0B-P1 or product completion before exact 36/36"
+    ]
+  }
+}

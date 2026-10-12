@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1357-PROGRESS-ROTATION-20260905",
+  "recorded_at": "2026-09-05T21:40:16.5700865+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1335-corrective-normalization-20260905.json",
+    "sha256": "sha256:b40c8d2e168e6abb9a8f44444efa77f4c395e5d17c62940fb5973628658ea29c",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 782030
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1356-state001-combined-raster-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1356-state001-combined-raster-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:00c66d19e353298d6844cdbe43e2cafd1b504b6335cd59e2baa6711a0dce14d7",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 781127,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 781136,
+    "runtime_variance": {
+      "V0R-MU-002_1440x900": {
+        "lower_stable_count": 87138,
+        "higher_stable_count": 88113,
+        "normalization_delta_from_lower_mode": 975,
+        "observed_mode": "higher"
+      },
+      "V0R-MU-004_1440x900": {
+        "lower_stable_count": 45099,
+        "higher_stable_count": 45108,
+        "normalization_delta_from_lower_mode": 9,
+        "observed_mode": "lower"
+      },
+      "normalization_basis": "both known alternating states at their higher stable counts"
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    },
+    "overall_exact_progress": "0/36"
+  },
+  "improvement_since_r1335": {
+    "stable_normalized_total_difference_delta": -894,
+    "source_bound_reduction_breakdown": {
+      "state001_role_description_and_cancel_typography": -66,
+      "state001_intro_user_and_role_label_alignment": -152,
+      "state001_intro_user_and_role_typography": -112,
+      "state001_message_and_send_typography": -98,
+      "state001_icons_and_chevron": -14,
+      "state001_role_control_width": -176,
+      "state001_role_card_left_edge": -192,
+      "state001_combined_raster_typography": -84
+    }
+  },
+  "capture_source": {
+    "path": "notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:63fc851e1d7112340690543f57f9702c0105383291b56c90706214cc126301a6",
+    "python_compile_pass": true
+  },
+  "realm_before_rotation": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1333-20260905",
+    "launch_id": "9ef2851deb3b4b00ac9ccb82f572043d",
+    "root_id": "046d3e85-cb41-4c81-b17b-18f07de76996",
+    "manager_session_id": 79450,
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "final_audit": {
+      "workspace_count": 46,
+      "reference_workspace_count": 44,
+      "active_membership_count": 46,
+      "active_page_binding_count": 44,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    }
+  },
+  "protected_contract_hashes": {
+    "AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1",
+    "unchanged": true
+  },
+  "scope_guard": {
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Stop the r1333 realm, start a fresh empty r1358 realm from the pinned read-only identity registry, reproduce r1356 independently, then continue exact residual reduction. Do not run final gates before exact parity reaches 36/36."
+}

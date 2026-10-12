@@ -1,0 +1,106 @@
+{
+  "run_id": "np2b2-workspace-navigation-routes-audit-20260814",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "recorded_at": "2026-08-14T01:25:32.8839989+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "goal_completed": false
+  },
+  "slice": "NP2B-2-workspace-navigation-protected-routes-audit",
+  "status": "p0_p1_review_passed_ui_disabled",
+  "source_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/np2b2-workspace-navigation-routes-20260814.json",
+    "sha256": "160e303962c0eee123fcfdf442a195f2a3ef4d44155dd83743eabda362d0a21c",
+    "pre_review_hash_mismatch_count": 0
+  },
+  "findings": [
+    {
+      "severity": "P1",
+      "id": "navigation_json_duplicate_and_nonfinite",
+      "status": "fixed",
+      "evidence": "The prior Flask parser accepted duplicate object keys using the last value. Navigation mutation parsing now rejects duplicate keys and all non-finite constants before field validation."
+    },
+    {
+      "severity": "P1",
+      "id": "navigation_json_unbounded_materialization",
+      "status": "fixed",
+      "evidence": "The first hardening read the complete request before checking its length. The final parser requires application/json and reads at most 65537 bytes from the request stream before returning a stable 413 above 65536 bytes."
+    }
+  ],
+  "review_outcome": {
+    "p0_remaining": 0,
+    "p1_remaining": 0,
+    "schema_changed": false,
+    "live_data_accessed": false,
+    "ui_enabled": false,
+    "recents_write_enabled": false,
+    "resolver_cutover_enabled": false,
+    "live_migration_applied": false,
+    "git_provenance": "unavailable: workspace .git is not valid repository metadata"
+  },
+  "output_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/notion_workspace_store.py": "a91cff7bfbc949275effe299ad1fe8b7685ac3b48dc98a77c928867ba79e852b",
+    "code_assist_v1/notion_workspace_navigation_migration.py": "9c0ccd3b232aff6b149c25daaddef21f86c97f30d7050a275879d4c80b5f3344",
+    "code_assist_v1/routes_notion_workspace.py": "fd285ada78f9a8b70040caadd7e4cfc2832a7d9b19894c64ff7a8e4d07383999",
+    "code_assist_v1/notion_http.py": "dd622532cd0354272165b20c931fc6a9437ac6bea6b04bbab765e49c8fb2396a",
+    "code_assist_v1/app_notion.py": "e4bdcc9c9b5174f9d463f19c3091ff4a877c203b016b0bd7dc172b63f05403e2",
+    "code_assist_v1/app_code.py": "f92c4d189b1a3815f7628c0c08504b39b3f6f8a64f13139574950ad6c3e362d3",
+    "code_assist_v1/routes_notion_bridge.py": "87ca385cfa903d46d7997f1f4f631b1b6221ab87268f50d66c2b9c8bf29c7c7b",
+    "code_assist_v1/tests/test_notion_workspace_navigation_routes.py": "4385f72f3ced3c909d9a7804250c1f37368d9c2d94e778d3566b135e71bdf613",
+    "code_assist_v1/tests/test_notion_workspace_routes.py": "02c4de24d4983f2183e98e5e19aca37688db7a82f9796b9964e44660072f68bb",
+    "code_assist_v1/tests/test_notion_auth_contract.py": "c8091f0c7c1c84f26ab34e3f1057ec9a28a3d56b64e4af9a064a5bf390f385a9",
+    "code_assist_v1/tools/verify_notion_workspace_route_contract.py": "53947933776eec915ba2632276a08a12fd278ab20cc78c9a16627037ab6bca13",
+    "code_assist_v1/tests/test_verify_notion_workspace_route_contract.py": "c911284eec087f378a2509948c770cec4461022267acc8bfacb41f7edb3ec6c3",
+    "code_assist_v1/docs/notion_workspace_route_contract.json": "08371eeec33177469ce37ff11b6005315c53d6f759a90ed6627aaafd5edde6b6",
+    "code_assist_v1/docs/notion_workspace_route_semantics.json": "aaaa03b09eecfd5a0645145f6a88276efc6c93375c56c1f873a17b69748e3444",
+    "code_assist_v1/docs/notion_parity/np2b_navigation_contract.json": "b504426d501d1c4d0ca4e46636ea7d0ed35c42f1e4fcb18d3cc3a5ad5c94d4b0",
+    "code_assist_v1/tools/verify_notion_np2b_navigation_contract.py": "bf117901ebeef877f77df56a8d1e5c370c4b8f63cd9bddfefc09a5b79b569fd4",
+    "code_assist_v1/tests/test_verify_notion_np2b_navigation_contract.py": "6336164dce8fc44409f752eafe4b6baf59ec55e9fd325621df2d4897db9c1a93",
+    "code_assist_v1/docs/notion_parity/NP2B_NAVIGATION_STATE_DESIGN.md": "d19a7fbaa89032155edf95dd36b902d41e1b8f40c8ccea524281d974d1e28330",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "96104a965ef37c378a8822898663179cebc7cb568e9b319bc40caac418c50333",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "1b29384c1bad0c4c8922330a47d1e3eeb5b8dc223a5eea3efd826aed55d4f0d3",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "3f6783ff52bb220263cb4af8c18b17944db6c046d12683f7e8ab8e0654af44e5"
+  },
+  "tests": [
+    {
+      "selection": "navigation store/migration/routes, workspace routes, auth and machine contracts after P1 fixes",
+      "result": "78 passed",
+      "exit_code": 0,
+      "duration_seconds": 72.67
+    },
+    {
+      "selection": "workspace pages/routes/navigation, auth and all route machine contracts",
+      "result": "74 passed",
+      "exit_code": 0,
+      "duration_seconds": 61.36
+    },
+    {
+      "selection": "legacy Notion routes and publication adapter",
+      "result": "12 passed",
+      "exit_code": 0,
+      "duration_seconds": 6.31
+    },
+    {
+      "selection": "Knowledge/Notion publication and Second Brain hard regression",
+      "result": "8 passed",
+      "exit_code": 0,
+      "duration_seconds": 7.95
+    },
+    {
+      "selection": "NP2B and workspace route machine-contract verifiers",
+      "result": "17 passed; verifier valid/pass",
+      "exit_code": 0,
+      "duration_seconds": 6.87
+    }
+  ],
+  "known_host_failure": {
+    "code": "0xC0000409",
+    "description": "Two merged regression commands exited before pytest output. They were not repeated as a loop; the same selections were split into smaller serial lanes and all 94 collected tests passed.",
+    "product_failure": false
+  },
+  "next_exact_work": "Re-read AGENTS.md and this audit checkpoint, verify every output hash and acquire fresh ownership of the Notion static UI files and UI tests. Then freeze the NP2B-3 default-off bootstrap/optimistic/stale-response/keyboard/focus/a11y/kill-switch contract before editing. Do not implement Recents, page lifecycle commands, resolver cutover, live migration or destructive acknowledgement in the UI slice.",
+  "stop_reason": "The independent NP2B-2 P0/P1 audit is complete and all confirmed route findings are fixed. NP2B-3 requires a new UI ownership and contract gate."
+}

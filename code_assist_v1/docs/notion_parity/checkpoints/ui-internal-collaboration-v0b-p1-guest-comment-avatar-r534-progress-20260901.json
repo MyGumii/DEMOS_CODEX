@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_checkpoint.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-GUEST-COMMENT-AVATAR-R534-20260901",
+  "recorded_at": "2026-09-01T21:05:11.0782644+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "r534 retains r526 and replaces the V0R-MU-015 comment composer placeholder square with the reference lowercase-k avatar. The final correction uses a 24px circle at the measured reference position, #455a64 background, preserved button layout, and the same bounded implementation in both capture injection paths. The source-bound normalized improvement against r526 is 1140 pixels. Full capture, four journeys, 36 accessibility and keyboard-path records, 17 targeted tests, synthetic cleanup, and receipt integrity pass. Exact parity remains 0/36 and no completion claim is made.",
+  "immutable_lineage": {
+    "reference_receipt": {
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-guest-breadcrumb-r526-progress-20260901.json",
+      "sha256": "sha256:194f3e16267b92c5227bcfb1a2e352a5bb3b74a0d2dcaf9abe6130a724e997e4"
+    },
+    "agents_md": {
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified": false
+    },
+    "main_agent_handoff": {
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "retained_source_binding": {
+    "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:96ae68479cd219b9990a2fff9e2ec167aa0ab00d22f944208cf1ba786c0707c0",
+    "changes_from_r526": [
+      "render the V0R-MU-015 page comment composer avatar as lowercase k",
+      "use a measured 24px circular #455a64 avatar at the reference x/y position",
+      "preserve the reference comment button glyph position after shrinking the avatar flex basis",
+      "apply the same bounded correction in both capture injection paths",
+      "retain every r526 correction and leave release-candidate static files unchanged"
+    ],
+    "protected_static": {
+      "index_html_sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+      "notion_css_sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    }
+  },
+  "isolated_validation": {
+    "discarded_r527": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r527",
+      "proposal": "localize the comment-role guest sidebar, show the footer edit icon, and change the inbox badge to 6",
+      "target_state_deltas": {
+        "V0R-MU-015-1440x900": 137,
+        "V0R-MU-015-1280x800": 137,
+        "V0R-MU-016-1440x900": 0,
+        "V0R-MU-016-1280x800": 18
+      },
+      "cleanup_complete": true,
+      "accepted": false
+    },
+    "discarded_r528": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r528",
+      "proposal": "change only the guest inbox badge from 4 to 6",
+      "source_bound_target_deltas": {
+        "V0R-MU-015-1440x900": 0,
+        "V0R-MU-015-1280x800": 0,
+        "V0R-MU-016-1440x900": 0,
+        "V0R-MU-016-1280x800": 0
+      },
+      "cleanup_complete": true,
+      "accepted": false
+    },
+    "discarded_r529": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r529",
+      "proposal": "move the guest sidebar search button left by 32px",
+      "source_bound_target_deltas": {
+        "V0R-MU-015-1440x900": 32,
+        "V0R-MU-015-1280x800": 32,
+        "V0R-MU-016-1440x900": 32,
+        "V0R-MU-016-1280x800": 32
+      },
+      "cleanup_complete": true,
+      "accepted": false
+    },
+    "discarded_r530": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r530",
+      "proposal": "replace the retained breadcrumb SVG with a native emoji glyph",
+      "source_bound_target_deltas": {
+        "V0R-MU-015-1440x900": 23,
+        "V0R-MU-015-1280x800": 23,
+        "V0R-MU-016-1440x900": 23,
+        "V0R-MU-016-1280x800": 23
+      },
+      "cleanup_complete": true,
+      "accepted": false
+    },
+    "accepted_r531": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r531",
+      "proposal": "replace the V0R-MU-015 placeholder square with an initial circular k avatar",
+      "state_deltas": {
+        "V0R-MU-015-1440x900": -72,
+        "V0R-MU-015-1280x800": -70
+      },
+      "cleanup_complete": true,
+      "accepted": true
+    },
+    "accepted_r532": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260901-r532",
+      "proposal": "match the measured avatar size, color, position, flex basis, and preserved comment-button offset",
+      "incremental_state_deltas": {
+        "V0R-MU-015-1440x900": -499,
+        "V0R-MU-015-1280x800": -499
+      },
+      "cumulative_state_deltas_from_r526": {
+        "V0R-MU-015-1440x900": -571,
+        "V0R-MU-015-1280x800": -569
+      },
+      "cleanup_complete": true,
+      "accepted": true
+    }
+  },
+  "discarded_full_attempt": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r533",
+    "status": "transient_component_latency_failure",
+    "error": "C0_P2_COMMENT_LATENCY_EXCEEDED",
+    "receipt_written": false,
+    "retained_as_gate_evidence": false,
+    "fresh_cleanup_audit": {
+      "matching_workspace_name": "REF-FREE-A",
+      "all_active_page_counts_zero": true,
+      "all_user01_member_flags_false": true,
+      "all_user01_guest_flags_false": true,
+      "browser_closed": true
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r534",
+    "receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260901-r534/receipt.json",
+      "sha256": "sha256:281ed4ba1b2c7366b7897a1110b7c212463b943375297b1de3447154758dfe56",
+      "size_bytes": 287107
+    },
+    "started_at": "2026-09-01T11:56:21.984154Z",
+    "ended_at": "2026-09-01T12:01:43.251122Z",
+    "duration_ms": 321266,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "keyboard_path_record_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2097088,
+    "masked_difference_count": 69506,
+    "total_difference_count": 2166594,
+    "journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1750,
+      "comment_delivery_ms": 908,
+      "reaction_delivery_ms": 1141,
+      "presence_ttl_expiry_ms": 15440,
+      "reconnect_ms": 1299
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:dc5a682473fa4acadf0d6124abd3f5b94065437fb348b8640bf2eb684424cb01"
+    }
+  },
+  "comparison_to_r526": {
+    "raw_unmasked_difference_delta": -3116,
+    "source_bound_normalized_delta": -1140,
+    "runtime_only_net_unmasked_delta": -1976,
+    "masked_difference_delta": 0,
+    "raw_total_difference_delta": -3116,
+    "state_viewport_source_deltas": {
+      "V0R-MU-015-1440x900": -571,
+      "V0R-MU-015-1280x800": -569
+    },
+    "runtime_only_variations": [
+      {
+        "capture": "V0R-MU-004-1440x900",
+        "unmasked_delta": -2040
+      },
+      {
+        "capture": "V0R-MU-008-1440x900",
+        "unmasked_delta": 20
+      },
+      {
+        "capture": "V0R-MU-015-1280x800",
+        "unmasked_delta_beyond_source_normalization": 26
+      },
+      {
+        "capture": "V0R-MU-016-1280x800",
+        "unmasked_delta": 18
+      }
+    ],
+    "normalized_lineage_delta_from_r482": -10582
+  },
+  "verification": {
+    "python_compile": "pass",
+    "targeted_tests": {
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_i0_semantic_diagnostic.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+        "code_assist_v1/tests/notion_collaboration/browser/test_f0_p5_adopted_surface.py"
+      ],
+      "result": "17 passed in 30.72s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:281ed4ba1b2c7366b7897a1110b7c212463b943375297b1de3447154758dfe56"
+    }
+  },
+  "promotion": {
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from retained r534. Preserve the r534 guest comment avatar, r526 guest breadcrumb, r523 edit-time alignment, r519 checkbox styling, r516 editor rhythm, r513 title/icon alignment, r509 guest-footer corrections, and r496 compact database-create corrections. Continue with a separately measured source-bound guest page comment affordance, sidebar, banner, editor typography, inline-code, toggle, or topbar subregion. Do not run Core 25 or quiet-host performance before exact 36/36 and do not mark completion before all final gates close."
+}

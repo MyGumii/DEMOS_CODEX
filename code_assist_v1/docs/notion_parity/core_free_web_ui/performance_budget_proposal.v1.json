@@ -1,0 +1,61 @@
+{
+  "contract": "code_assist.notion.core_free_ui.performance_budget_proposal.v1",
+  "recorded_at": "2026-08-22T17:27:59.8698247+09:00",
+  "scenario_id": "UI-PERF-001",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "status": "pending_owner_approval",
+  "inputs": {
+    "local_measurement": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_PERF_001_LOCAL_MEASUREMENT_RESULT_20260815.md",
+      "sha256": "sha256:a5d55fdfbf24922697fafa6c69ac28619636becb4a17a60b43766ed918f1cd19"
+    },
+    "reference_cleanup": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-create-cleanup-complete-20260822.json",
+      "sha256": "sha256:fb8be523019ee6bb25d4f84c7ab699424733082d108d80e5c399f0dd8c1c049a"
+    }
+  },
+  "method": {
+    "sample_count_per_metric": 6,
+    "observed_percentile": "p95_nearest_rank",
+    "headroom_multiplier": 1.75,
+    "rounding": "ceil_to_next_10_ms",
+    "formula": "ceil(observed_p95_ms * 1.75 / 10) * 10",
+    "scope": "isolated_local_regression_only"
+  },
+  "metrics": [
+    {"metric_id": "login_shell_ready", "observed_p95_ms": 779.891, "proposed_budget_ms": 1370},
+    {"metric_id": "existing_page_ready", "observed_p95_ms": 179.463, "proposed_budget_ms": 320},
+    {"metric_id": "editor_input_ack", "observed_p95_ms": 70.257, "proposed_budget_ms": 130},
+    {"metric_id": "save_ready", "observed_p95_ms": 1401.620, "proposed_budget_ms": 2460},
+    {"metric_id": "reload_restored_ready", "observed_p95_ms": 489.261, "proposed_budget_ms": 860},
+    {"metric_id": "search_overlay_ready", "observed_p95_ms": 94.642, "proposed_budget_ms": 170},
+    {"metric_id": "search_result_ready", "observed_p95_ms": 66.431, "proposed_budget_ms": 120},
+    {"metric_id": "second_brain_preview_ready", "observed_p95_ms": 932.077, "proposed_budget_ms": 1640}
+  ],
+  "owner_decision": {
+    "required_text": "UI-PERF-001 로컬 성능 예산 제안 승인",
+    "approved": false,
+    "effect_if_approved": "allow_local_precalibration_regression_budget",
+    "does_not_allow": [
+      "notion_reference_timing_claim",
+      "production_slo_claim",
+      "h8_completion_claim",
+      "release_promotion"
+    ]
+  },
+  "safety": {
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_content_accessed": false,
+    "external_action_executed": false,
+    "completion_matrix_mutated": false
+  },
+  "claims": {
+    "local_measurement_green": true,
+    "reference_create_timing_accepted": false,
+    "budget_approved": false,
+    "notion_performance_parity_claimed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

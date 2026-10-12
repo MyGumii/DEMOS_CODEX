@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-CLEANUP-GATE-PASS-20260826",
+  "recorded_at": "2026-08-26T23:17:28+09:00",
+  "checkpoint_kind": "reference_multiuser_cleanup_and_receipt_gate_pass",
+  "packet_id": "V0R-P1",
+  "packet_status": "gate_passed_next_V0B_P1",
+  "purpose": "Seal the exact synthetic revoke-before-Trash cleanup, the 18-state by 2-viewport reference evidence denominator, and the verifier-passed V0R-P1 receipt without claiming product completion.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-workspace-revoke-pass-20260826.json",
+    "sha256": "sha256:56eee3b6fdb3f19e798db374242b9de7fe5d7250d3d88af81642f615e33e1675"
+  },
+  "action_time_confirmation": {
+    "exact_user_text": "V0R 합성 A/B 루트 Trash 이동 및 최종 cleanup 승인",
+    "bound_action_id": "V0R-CLEANUP",
+    "bound_targets": [
+      "REF-FREE-A/V0R-A-ROOT",
+      "REF-FREE-B/V0R-B-ROOT"
+    ],
+    "bound_mode": "trash_only_recoverable"
+  },
+  "operator_action_result": {
+    "order": 11,
+    "action_id": "V0R-CLEANUP",
+    "workspace": "REF-FREE-A+REF-FREE-B",
+    "actor": "REF-OWNER",
+    "required_result": "both_exact_synthetic_root_subtrees_in_trash_and_no_test_grants_active",
+    "revoke_before_trash_order_preserved": true,
+    "REF_FREE_A_active_fixture_root_count": 0,
+    "REF_FREE_A_trash_root_match_count": 2,
+    "REF_FREE_A_trash_match_interpretation": "root title plus descendant path reference",
+    "REF_FREE_B_active_fixture_root_count": 0,
+    "REF_FREE_B_trash_root_match_count": 1,
+    "REF_FREE_A_workspace_membership_remaining_count": 0,
+    "REF_FREE_B_page_grant_remaining_count": 0,
+    "restore_controls_visible": true,
+    "permanent_delete_control_clicked": false,
+    "permanent_delete_used": false,
+    "status": "passed"
+  },
+  "cleanup_receipt": {
+    "status": "complete",
+    "trigger": "after_success",
+    "mode": "trash_only_recoverable",
+    "revoked_page_grant_count": 1,
+    "revoked_workspace_membership_count": 1,
+    "active_test_grant_count": 0,
+    "active_fixture_root_count": 0,
+    "trashed_fixture_aliases": [
+      "V0R-A-ROOT",
+      "V0R-B-ROOT"
+    ],
+    "permanent_delete_used": false,
+    "completed_at": "2026-08-26T23:11:27+09:00"
+  },
+  "evidence_denominator": {
+    "screenshot_file_count": 36,
+    "expected_screenshot_count": 36,
+    "capture_state_count": 18,
+    "expected_capture_state_count": 18,
+    "viewport_count": 2,
+    "action_count": 11,
+    "expected_action_count": 11,
+    "non_png_signature_count": 0,
+    "dimension_mismatch_count": 0,
+    "status": "complete"
+  },
+  "binary_normalization": {
+    "reason": "six evidence files had valid captured pixels and declared dimensions but JFIF bytes under frozen .png names",
+    "affected_state_ids": [
+      "V0R-MU-001",
+      "V0R-MU-003",
+      "V0R-MU-016"
+    ],
+    "affected_file_count": 6,
+    "method": "decode existing evidence and re-encode the same raster as PNG without replaying reference actions",
+    "reference_state_reexecuted": false,
+    "external_state_mutated": false,
+    "post_normalization_png_signature_count": 36,
+    "post_normalization_verifier_status": "pass"
+  },
+  "approval_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_approvals/v0r-p1-ap-reference-multiuser-20260825.json",
+    "sha256": "sha256:4d39668562788aadceaaeb58d19d8c04d10714d967a3a3051b0dddea5f6f21a6"
+  },
+  "final_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "audit_contract": "code_assist.notion.internal_collaborative_reference_multiuser_receipt.audit.v1",
+    "audit_status": "pass",
+    "audit_error_count": 0,
+    "cleanup_complete": true,
+    "gate_passed": true,
+    "product_complete": false
+  },
+  "scope_attestation": {
+    "raw_email_or_account_identifier_persisted": false,
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_dom_or_network_payload_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "non_test_notification_sent": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "claims": {
+    "V0R_P1_reference_capture_complete": true,
+    "V0R_P1_gate_passed": true,
+    "zero_RGBA_difference_claimed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Start V0B-P1 against the final local release candidate and bind the V0R reference receipt without replaying completed external reference actions."
+}

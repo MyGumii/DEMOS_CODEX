@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0r_p1.windows_renderer_lossless_preflight.v1",
+  "checkpoint_id": "V0R-P1-WINDOWS-RENDERER-LOSSLESS-PREFLIGHT-20260830",
+  "recorded_at": "2026-08-30T20:35:26.7023397+09:00",
+  "status": "approved_capture_surface_preflight_pass_capture_pending",
+  "summary": "The user-approved Chrome-control plus Windows renderer-capture fallback produced native PNG files for both required viewports. The capture tool targets the largest Chrome_RenderWidgetHostHWND, excludes browser chrome and the optional Chrome debugging banner, refuses overwrite and geometry drift, writes PNG bytes directly, and restores the prior Chrome window placement after every capture.",
+  "capture_tool": {
+    "path": "code_assist_v1/tools/capture_v0r_window_renderer_png.ps1",
+    "sha256": "sha256:a5ad33f7f3fbc7cf996ee258e68c317f8caa73e5a5e20b0d633b5d0e358b48a3",
+    "capture_api": "PrintWindow(PW_RENDERFULLCONTENT=2)",
+    "renderer_class": "Chrome_RenderWidgetHostHWND",
+    "source_codec": "png",
+    "source_bytes_written_directly": true,
+    "immutable_output_guard": true,
+    "renderer_geometry_guard": true,
+    "window_placement_restore_guard": true
+  },
+  "preflight": {
+    "required_viewports": [
+      {
+        "width": 1280,
+        "height": 800,
+        "png_signature": "89504e470d0a1a0a",
+        "sha256": "sha256:099ffa0334bcd40ef440f9781369e2ff5ad37d9c9a591b0931cc06a27630a59f",
+        "repository_decoder": "pass"
+      },
+      {
+        "width": 1440,
+        "height": 900,
+        "png_signature": "89504e470d0a1a0a",
+        "sha256": "sha256:8c6d6882668f23d9997b74d19ccd462f2f76496be7ec6c5e568599cfb765083f",
+        "repository_decoder": "pass"
+      }
+    ],
+    "browser_chrome_excluded": true,
+    "debugger_banner_excluded": true,
+    "black_or_occluded_capture_detected": false,
+    "preflight_artifacts_are_final_receipt_inputs": false,
+    "final_masks_and_privacy_review_required": true
+  },
+  "baseline": {
+    "owner_A_root": "recoverable_trash",
+    "owner_B_root": "recoverable_trash",
+    "collaborator_A_access": "revoked_non_oracle",
+    "collaborator_B_access": "revoked_non_oracle",
+    "permanent_delete_used": false,
+    "raw_identifier_persisted_in_checkpoint": false
+  },
+  "lineage": {
+    "preserved_v2_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+      "sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa"
+    },
+    "manifest_compiler": {
+      "path": "code_assist_v1/tools/compile_v0r_p1_lossless_exact_v3_manifest.py",
+      "sha256": "sha256:873d9203ac33837222a8ddfa22ff4266aca536664a687f9c07c79be30e3dfbb8"
+    },
+    "v3_sealer": {
+      "path": "code_assist_v1/tools/seal_v0r_p1_lossless_exact_v3_20260830.py",
+      "sha256": "sha256:93e5d099cd5134cd78d12ccd7e499a951ab9ad4102b7fbfe39f974559d19b99f"
+    },
+    "lossless_ingest_verifier": {
+      "path": "code_assist_v1/tools/verify_v0r_p1_lossless_capture_ingest.py",
+      "sha256": "sha256:46fc0b9cacb59547240225700cde38bb4e9f6188fe232a54be88580d6cc27c2b"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "scope_attestation": {
+    "external_notion_mutation": false,
+    "external_notion_permission_change": false,
+    "reference_receipt_modified": false,
+    "reference_screenshot_modified": false,
+    "planned_v3_outputs_created": false,
+    "local_product_source_changed": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "next_action": "After action-time confirmation, restore the two recoverable fixture roots, capture V0R-MU-001 before submitting the workspace invitation, then execute the approved membership and B-page edit grant transitions while recording all 36 source-lossless PNGs."
+}

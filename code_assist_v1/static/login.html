@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Brain Agent 로그인</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #fbfaf6;
+  --panel: #fffdf8;
+  --card: #f7f2e9;
+  --border: #ded4c5;
+  --border-strong: #c9b9a5;
+  --text: #2f2a24;
+  --text-2: #51493f;
+  --muted: #7a7065;
+  --accent: #9b6a38;
+  --accent-2: #64785d;
+  --error: #b24b3f;
+  --shadow: 0 14px 36px rgba(63, 48, 33, .08);
+  --radius: 6px;
+  --radius-lg: 8px;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "맑은 고딕", sans-serif;
+  --mono: "Cascadia Code", "JetBrains Mono", "Consolas", "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14px;
+  text-rendering: optimizeLegibility;
+}
+.shell {
+  width: min(900px, calc(100vw - 32px));
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) minmax(280px, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.login {
+  padding: 30px;
+  border-right: 1px solid var(--border);
+}
+.guide {
+  padding: 30px;
+  background: #f3efe7;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: .2px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 8px var(--accent-2);
+}
+.sub {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 22px;
+}
+label {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin: 12px 0 5px;
+}
+input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--text);
+  padding: 10px 11px;
+  font: inherit;
+  outline: none;
+}
+input::placeholder {
+  color: color-mix(in srgb, var(--muted) 78%, transparent);
+}
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+button {
+  width: 100%;
+  margin-top: 18px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fffaf2;
+  padding: 10px 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+button:hover {
+  background: color-mix(in srgb, var(--accent) 88%, #000 12%);
+}
+button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+.msg {
+  min-height: 18px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.msg.error { color: var(--error); }
+.msg.ok { color: var(--accent-2); }
+.guide h2 {
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+.guide h3 {
+  font-size: 13px;
+  margin: 20px 0 8px;
+  color: var(--text);
+}
+.guide p,
+.guide li {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.guide ul,
+.guide ol {
+  padding-left: 20px;
+  margin: 8px 0;
+}
+.hint {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 11px 12px;
+  margin: 14px 0;
+}
+.hint p {
+  margin: 0 0 6px;
+}
+.hint p:last-child {
+  margin-bottom: 0;
+}
+code {
+  background: var(--card);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .9em;
+}
+@media (max-width: 760px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+  .login {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}
+</style>
+</head>
+<body>
+  <main class="shell">
+    <section class="login">
+      <div class="brand"><span class="dot"></span>Second Brain Agent</div>
+      <p class="sub" id="loginSub">사번과 비밀번호로 로그인하세요.</p>
+
+      <label for="userId">사번</label>
+      <input id="userId" autocomplete="username" spellcheck="false" placeholder="예: 123456">
+
+      <label for="password">비밀번호</label>
+      <input id="password" type="password" autocomplete="current-password" placeholder="초기 비밀번호: user1234">
+
+      <button id="submitBtn">로그인</button>
+      <div class="msg" id="message"></div>
+    </section>
+
+    <section class="guide" aria-label="로그인 안내">
+      <h2>로그인 안내</h2>
+      <div class="hint">
+        <p><strong>계정 ID:</strong> 본인 사번</p>
+        <p><strong>초기 비밀번호:</strong> <code>user1234</code></p>
+      </div>
+      <h3>처음 접속할 때</h3>
+      <ol>
+        <li>사번을 입력합니다.</li>
+        <li>초기 비밀번호 <code>user1234</code>를 입력합니다.</li>
+        <li>로그인 후 표시되는 비밀번호 변경 창에서 개인 비밀번호로 바꿉니다.</li>
+        <li>변경이 완료되면 다시 접속되어 작업을 시작할 수 있습니다.</li>
+      </ol>
+      <h3>계정이 없을 때</h3>
+      <p>일반 사용자는 직접 계정을 만들 수 없습니다. 신규 계정이 필요하면 관리자에게 사번과 이름을 전달해 계정 생성을 요청하세요.</p>
+      <h3>로그인이 되지 않을 때</h3>
+      <ul>
+        <li>사번을 정확히 입력했는지 확인하세요.</li>
+        <li>비밀번호가 변경된 적이 있으면 변경된 비밀번호를 사용하세요.</li>
+        <li>초기 비밀번호로 접속한 뒤에는 반드시 개인 비밀번호로 변경해야 합니다.</li>
+        <li>계정이 아직 생성되지 않았다면 관리자에게 요청하세요.</li>
+      </ul>
+    </section>
+  </main>
+
+<script>
+const $ = sel => document.querySelector(sel);
+
+function loginDestination(user) {
+  if (user?.must_change_password) return "/";
+  const requested = new URLSearchParams(location.search).get("next") || "/";
+  return requested.startsWith("/") && !requested.startsWith("//") && !requested.includes("\\") ? requested : "/";
+}
+
+function setMessage(text, kind = "") {
+  const el = $("#message");
+  el.textContent = text || "";
+  el.className = "msg " + kind;
+}
+
+async function api(path, body) {
+  const r = await fetch(path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
+  return data;
+}
+
+async function init() {
+  try {
+    const me = await fetch("/api/code/auth/me").then(r => r.json());
+    if (me.authenticated) {
+      sessionStorage.setItem("demos_user", JSON.stringify(me.user));
+      location.href = loginDestination(me.user);
+      return;
+    }
+    if (me.setup_required) {
+      setMessage("아직 계정 설정이 완료되지 않았습니다. 관리자에게 계정 생성을 요청하세요.", "error");
+    }
+  } catch {
+    setMessage("로그인 상태를 확인할 수 없습니다. 잠시 후 다시 시도하세요.", "error");
+  }
+}
+
+async function submit() {
+  const user_id = $("#userId").value.trim();
+  const password = $("#password").value;
+  if (!user_id || !password) {
+    setMessage("사번과 비밀번호를 입력하세요.", "error");
+    return;
+  }
+  const btn = $("#submitBtn");
+  btn.disabled = true;
+  setMessage("로그인 중...");
+  try {
+    const data = await api("/api/code/auth/login", { user_id, password });
+    sessionStorage.setItem("demos_user", JSON.stringify(data.user));
+    setMessage(data.user?.must_change_password ? "접속 성공. 비밀번호 변경 화면으로 이동합니다." : "접속 성공. 이동합니다.", "ok");
+    location.href = loginDestination(data.user);
+  } catch (e) {
+    setMessage(e.message, "error");
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+$("#submitBtn").addEventListener("click", submit);
+$("#password").addEventListener("keydown", e => {
+  if (e.key === "Enter") submit();
+});
+$("#userId").addEventListener("keydown", e => {
+  if (e.key === "Enter") $("#password").focus();
+});
+init();
+</script>
+</body>
+</html>

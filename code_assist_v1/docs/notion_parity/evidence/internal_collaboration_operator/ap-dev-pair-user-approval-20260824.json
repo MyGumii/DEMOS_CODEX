@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaboration.operator_approval_receipt.v1",
+  "receipt_id": "AP-DEV-PAIR-USER-APPROVAL-20260824",
+  "approval_id": "AP-DEV-PAIR",
+  "packet_id": "D0B-P1",
+  "recorded_at": "2026-08-24T12:58:08Z",
+  "status": "approved",
+  "source": "current_user_conversation",
+  "approved_text": "AP-DEV-PAIR 승인. 10111 관련 경로·런처·서비스를 D0B-P1에 독점 핸드오프하고, 승인된 개발 계정만 가져와 10111을 교체·재시작하며 10112/10113을 시작해도 됨.",
+  "authorized_actions": [
+    "import_only_the_approved_active_human_development_identity_subset",
+    "create_new_marker_bound_development_roots_and_new_secret_cookie_namespace",
+    "replace_and_restart_development_10111",
+    "start_development_10112_and_10113",
+    "perform_two_browser_identity_isolation_validation"
+  ],
+  "approved_identity_allowlist": [
+    "admin",
+    "user01"
+  ],
+  "source_identity_registry": {
+    "path": "G:/AI_Agent/DEMOS_CODEX/.tmp/second-brain-full-preview-10111/.runtime/users.json",
+    "sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "selected_principal_count": 2,
+    "selection_rule": "active_human_accounts_only_excluding_disabled_service_and_system_accounts"
+  },
+  "not_authorized": [
+    "copy_or_read_personal_content",
+    "copy_sessions_tokens_cookies_or_the_existing_signing_secret",
+    "mutate_10011_10012_or_production_data",
+    "import_disabled_service_system_or_unlisted_accounts"
+  ],
+  "approval_is_test_evidence": false,
+  "plaintext_password_hash_secret_cookie_or_session_recorded": false
+}

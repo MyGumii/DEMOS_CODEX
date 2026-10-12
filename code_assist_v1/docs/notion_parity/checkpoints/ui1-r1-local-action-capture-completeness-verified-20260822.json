@@ -1,0 +1,185 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T03:04:55.9286725+09:00",
+  "run_id": "ui26-r1-local-action-capture-completeness-verified-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui1-review-implementation-queue-verified-20260822.json",
+    "sha256": "sha256:21109c4a5ad35f6b8c04a1e275761238e99f36211877c5f4487b819a04b107dc",
+    "semantic_status": "superseded_for_queue_shape_and_local_capture_completeness_only"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_ids": [
+      "UI-DB-001",
+      "UI-DB-002",
+      "UI-DB-003",
+      "UI-SEARCH-001",
+      "UI-SEARCH-002",
+      "UI-COLLAB-001",
+      "UI-SHARE-001"
+    ],
+    "synthetic_only": true,
+    "isolated_data_root": true,
+    "live_local_data_accessed": false,
+    "product_ui_changed": false,
+    "route_schema_or_migration_changed": false,
+    "second_brain_source_changed": false
+  },
+  "slice": {
+    "id": "R1-CAPTURE-COMPLETENESS",
+    "status": "local_capture_shape_verified_owner_review_pending",
+    "review_required": true,
+    "promotion_allowed": false,
+    "behavior_change_authorized": false,
+    "completion_matrix_changed": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:297d5f164d63d8dfe4b153717e9f1f6b4661831b478856627d53607ad5f38e76"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json",
+      "sha256": "sha256:f45662268617f8a3d65cbfb9a4f7dfa8688cfea95f2d65bf44268e37567f0853"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json",
+      "sha256": "sha256:a358c7726c5e0522d35b290c68b8ade0c431d0e7c1ee2dae901a84bbb9ed1483"
+    },
+    {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_review_gate.py",
+      "sha256": "sha256:dfbcd12c94e7022c07e91b1a5d284e5ca1f76fb4d03d8f03f2d24ba7d4410775"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_review_gate.py",
+      "sha256": "sha256:be2d09ca496ed19336c324f690f4ff6c489815f181e1c9f43053395b0ec43238"
+    }
+  ],
+  "local_action_capture_contract": {
+    "required_sections": [
+      "state",
+      "keyboard",
+      "focus",
+      "a11y",
+      "semantic_visual",
+      "error_recovery",
+      "geometry"
+    ],
+    "database_action_capture_ids": [
+      "UI-DB-001-A01",
+      "UI-DB-001-A02",
+      "UI-DB-002-A01",
+      "UI-DB-002-A02",
+      "UI-DB-003-A01"
+    ],
+    "search_action_capture_ids": [
+      "UI-SEARCH-001-A01",
+      "UI-SEARCH-001-A02",
+      "UI-SEARCH-001-A04",
+      "UI-SEARCH-002-A01",
+      "UI-SEARCH-002-A02"
+    ],
+    "collaboration_action_capture_ids": [
+      "UI-COLLAB-001-A01",
+      "UI-COLLAB-001-A02"
+    ],
+    "share_action_capture_ids": [
+      "UI-SHARE-001-A01",
+      "UI-SHARE-001-A02"
+    ],
+    "missing_fields_normalized_to_pass": false,
+    "raw_identifier_or_secret_added": false
+  },
+  "current_verification": [
+    {
+      "selection": "test_ui1_local_chrome_shell_search_and_editor_are_repeatable_and_isolated",
+      "result": "1 passed in 20.86s",
+      "command_exit_code": 0
+    },
+    {
+      "selection": "test_ui_db_001_typed_row_properties_round_trip_through_a_page",
+      "result": "1 passed in 24.30s",
+      "command_exit_code": 0
+    },
+    {
+      "selection": "test_ui_db_002_filter_sort_and_group_state_survive_reload",
+      "result": "1 passed in 32.09s",
+      "command_exit_code": 0
+    },
+    {
+      "selection": "test_ui_db_003_database_views_preserve_canonical_rows_and_focus",
+      "result": "1 passed in 48.61s",
+      "command_exit_code": 0
+    },
+    {
+      "selection": "test_ui_search_002_in_page_find_link_and_backlink_stay_workspace_scoped",
+      "result": "1 passed in 23.14s",
+      "command_exit_code": 0
+    },
+    {
+      "selection": "test_ui_collab_001_comment_thread_create_resolve_reopen_round_trip",
+      "result": "1 passed in 19.10s",
+      "command_exit_code": 0
+    },
+    {
+      "selection": "test_ui_share_001_dialog_open_escape_and_focus_are_read_only",
+      "result": "1 passed in 17.69s",
+      "command_exit_code": 0
+    },
+    {
+      "selection": "test_notion_ui_review_gate.py",
+      "result": "7 passed in 4.13s",
+      "command_exit_code": 0
+    },
+    {
+      "selection": "verify_notion_core_free_ui_review_gate --compact",
+      "result": "pass; counts 5/11/3/6; errors 0",
+      "command_exit_code": 0
+    },
+    {
+      "selection": "verify_notion_core_free_ui_completion --compact",
+      "result": "pass; incomplete; differential_passed 5 of 25",
+      "command_exit_code": 0
+    }
+  ],
+  "known_transients_and_repairs": [
+    "One earlier multi-selection process exited with Windows 0xC0000409 before useful output and was not used as evidence.",
+    "Two action-capture dictionaries were initially inserted into unrelated report returns; exact failing tests exposed them, they were moved to their owning journeys, and adjacent editor regressions were rerun.",
+    "UI-SB-003 produced one 20-second response timeout; one permitted serial retry passed in 16.84s and both outcomes are retained in its revalidation checkpoint."
+  ],
+  "review_state": {
+    "reference_observed_review_pending": 11,
+    "local_integration_review_pending": 3,
+    "reference_partially_observed": 6,
+    "certified": 5,
+    "owner_approval_received": false,
+    "product_behavior_change_started": false
+  },
+  "claims": {
+    "local_capture_shape_complete_for_r1": true,
+    "reference_receipts_sealed": false,
+    "differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Request owner approval for the expanded eleven-scenario reference summary. After exact approval, compare the complete local captures against the approved reference packets before opening any product-code change."
+}

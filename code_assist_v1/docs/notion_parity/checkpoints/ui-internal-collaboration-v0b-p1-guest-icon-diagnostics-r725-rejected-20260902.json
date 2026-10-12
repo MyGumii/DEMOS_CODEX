@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-GUEST-ICON-DIAGNOSTICS-R725-REJECTED-20260902",
+  "recorded_at": "2026-09-02T10:06:53+09:00",
+  "status": "diagnostics_rejected",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence diagnostics only; no candidate promotion",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state014-compact-thread-r720-progress-20260902.json",
+    "checkpoint_sha256": "sha256:02f579f97bebe8f658cc12b9f776b43097a6051a50b435951df24d9304263c2b",
+    "source_sha256": "sha256:6e8389aa69a1e90d1db8243ce48bd18ea31b56e9da3aaee7a0907b35dc417cb8",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r720/receipt.json",
+    "receipt_sha256": "sha256:0ae66cc0edfe9252d4edc3ea0b534e59a3f9a10fbe17741d522b910df7d9bcc5",
+    "state015_unmasked": {
+      "1440x900": 26146,
+      "1280x800": 24347
+    },
+    "state016_unmasked": {
+      "1440x900": 25038,
+      "1280x800": 23340
+    }
+  },
+  "rejected_diagnostics": {
+    "r721_state016_page_view_translation": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r721",
+      "change": "Translated the complete V0R-MU-016 page view 31 pixels upward.",
+      "state016_delta": {
+        "1440x900": 22338,
+        "1280x800": 22032
+      },
+      "journey_status": "pass",
+      "cleanup": true,
+      "reason": "The title and editor were already aligned; moving the whole view caused a large regression."
+    },
+    "r722_state016_icon_translation": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r722",
+      "change": "Translated only the V0R-MU-016 page icon 31 additional pixels upward.",
+      "state016_delta": {
+        "1440x900": 4214,
+        "1280x800": 4214
+      },
+      "journey_status": "pass",
+      "cleanup": true,
+      "reason": "Measured color bounds later confirmed that the baseline icon was only one pixel right and down, not 31 pixels."
+    },
+    "r723_guest_icon_one_pixel_translation": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r723",
+      "change": "Translated both V0R-MU-015 and V0R-MU-016 page icons one pixel left and one pixel up.",
+      "state015_delta": {
+        "1440x900": -8,
+        "1280x800": -4
+      },
+      "state016_delta": {
+        "1440x900": 41,
+        "1280x800": 41
+      },
+      "scoped_net_delta": 70,
+      "journey_status": "pass",
+      "cleanup": true,
+      "reason": "The shared change was not monotonic across its scoped states and was not adopted."
+    },
+    "r724_guest_help_overlay": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r724",
+      "change": "Reused the access-boundary help button styling as a fixed guest-page help overlay.",
+      "raw_delta_from_r720": {
+        "V0R-MU-015__1440x900": 208,
+        "V0R-MU-015__1280x800": 212,
+        "V0R-MU-016__1440x900": 216,
+        "V0R-MU-016__1280x800": 216
+      },
+      "journey_status": "pass",
+      "cleanup": true,
+      "reason": "The reused rasterized style did not match the reference. Offline translation search still left 987 differing pixels versus 923 when absent."
+    },
+    "r725_guest_icon_resize": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r725",
+      "change": "Combined one-pixel icon translation with a 77-to-78 pixel image resize.",
+      "raw_delta_from_r720": {
+        "V0R-MU-015__1440x900": 63,
+        "V0R-MU-015__1280x800": 68,
+        "V0R-MU-016__1440x900": 115,
+        "V0R-MU-016__1280x800": 115
+      },
+      "journey_status": "pass",
+      "cleanup": true,
+      "reason": "Matching the outer color bounds did not match the reference raster and regressed all four captures."
+    }
+  },
+  "read_only_analysis": {
+    "guest_editor_group_translation_search": "The current zero-pixel translation was the exact minimum for both guest states and both viewports over the measured editor region.",
+    "guest_help_translation_search": {
+      "reference_only_differing_pixel_count": 923,
+      "r724_current_differing_pixel_count": 1139,
+      "best_translated_r724_differing_pixel_count": 987,
+      "best_still_regressed_by": 64
+    },
+    "state016_1280_icon_color_bounds": {
+      "r720_candidate": [744, 185, 820, 261],
+      "reference": [743, 184, 820, 261]
+    }
+  },
+  "restoration": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "restored_to_r720_source_sha256": "sha256:6e8389aa69a1e90d1db8243ce48bd18ea31b56e9da3aaee7a0907b35dc417cb8",
+    "python_compile": "pass",
+    "unadopted_overlay_absent": true
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Every scoped mutation was rejected and the verified r720 source was restored. Exact pixel parity remains 0/36."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Resume from the immutable r720 source and receipt. Do not repeat r721-r725 guest page translations, help overlay, or icon resizing. Continue source-bound exact-pixel convergence; final gates remain forbidden before exact 36/36."
+  }
+}

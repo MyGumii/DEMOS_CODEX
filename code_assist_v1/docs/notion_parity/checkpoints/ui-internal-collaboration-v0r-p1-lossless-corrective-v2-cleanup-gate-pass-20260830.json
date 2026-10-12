@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-LOSSLESS-CORRECTIVE-V2-CLEANUP-GATE-PASS-20260830",
+  "recorded_at": "2026-08-30T16:01:06+09:00",
+  "checkpoint_kind": "lossless_storage_corrective_v2_reference_cleanup_and_receipt_gate_pass",
+  "packet_id": "V0R-P1",
+  "packet_status": "gate_passed_next_V0B_P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Bind the first 2026-08-30 immutable receipt and remove only stale inherited capture-matte metadata before V0B consumption, while preserving all prior receipts and the 36 fresh reference PNGs and masks.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-corrective-cleanup-gate-pass-20260830.json",
+    "sha256": "sha256:ce6480cd9f505d40203084fef4e0ad094782eebdaf09730d054fe4bbdcba003a"
+  },
+  "supersession": {
+    "authority_text": "V0R-P1 lossless corrective reference 재수집 및 새 immutable receipt로 supersede 승인",
+    "scope": "pixel_reference_only",
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-20260830.json",
+    "original_semantic_receipt_sha256": "sha256:34c40d00d8ed0c2b36bbc23b884919fc86299dafcaf486b9bee689538ec48f36",
+    "original_receipt_modified": false,
+    "new_corrective_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+    "new_corrective_receipt_sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa"
+  },
+  "action_time_confirmation": {
+    "exact_user_text": "V0R 합성 A/B 루트 Trash 이동 및 최종 cleanup 승인",
+    "bound_action_id": "V0R-CLEANUP",
+    "bound_targets": [
+      "REF-FREE-A/V0R-A-ROOT",
+      "REF-FREE-B/V0R-B-ROOT"
+    ],
+    "bound_mode": "trash_only_recoverable"
+  },
+  "operator_action_result": {
+    "revoke_before_trash_order_preserved": true,
+    "REF_FREE_A_active_fixture_root_count": 0,
+    "REF_FREE_B_active_fixture_root_count": 0,
+    "REF_FREE_A_workspace_membership_remaining_count": 0,
+    "REF_FREE_B_page_grant_remaining_count": 0,
+    "REF_FREE_A_restore_control_visible": true,
+    "REF_FREE_B_restore_control_visible": true,
+    "REF_COLLABORATOR_A_access_request_boundary_visible": true,
+    "REF_COLLABORATOR_B_access_blocked": true,
+    "permanent_delete_used": false,
+    "status": "passed"
+  },
+  "evidence_denominator": {
+    "screenshot_file_count": 36,
+    "expected_screenshot_count": 36,
+    "mask_manifest_count": 36,
+    "expected_mask_manifest_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "raw_file_count": 0,
+    "status": "complete"
+  },
+  "final_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+    "sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa",
+    "audit_contract": "code_assist.notion.internal_collaborative_reference_multiuser_receipt.audit.v1",
+    "audit_status": "pass",
+    "audit_error_count": 0,
+    "cleanup_complete": true,
+    "gate_passed": true,
+    "product_complete": false
+  },
+  "verifier_binding": {
+    "path": "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py",
+    "sha256": "sha256:224b4a5bf4c21be9bb38a39dca9bb47f019985cfda769554ef80f445a4b7919d"
+  },
+  "scope_attestation": {
+    "raw_email_or_account_identifier_persisted": false,
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_dom_or_network_payload_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "non_test_notification_sent": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false
+  },
+  "claims": {
+    "V0R_P1_semantic_receipt_preserved": true,
+    "V0R_P1_corrective_pixel_reference_complete": true,
+    "V0R_P1_gate_passed": true,
+    "zero_RGBA_difference_claimed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Use this v2 receipt for focused V0B I0 exact-parity diagnosis; defer Full36, Core25, and performance until I0 is materially ready."
+}

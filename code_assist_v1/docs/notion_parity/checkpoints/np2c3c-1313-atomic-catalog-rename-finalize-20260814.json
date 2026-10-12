@@ -1,0 +1,118 @@
+{
+  "checkpoint_version": 1,
+  "run_id": "np2c3c-1313-atomic-catalog-rename-finalize-20260814",
+  "recorded_at": "2026-08-14T07:21:20+09:00",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "ultra",
+  "recommended_resume_profile": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh"
+  },
+  "observed_goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "resume 현재 우리가 작성한 개발 문서와 계획을 확인하고 goal resume을 해서 목표 확인 후 다시 개발 진행해.",
+    "completion_changed": false
+  },
+  "slice": "NP2C-3c-1313-atomic-catalog-rename-finalize",
+  "status": "contract_tested_default_off",
+  "scope": {
+    "workspace_schema_version": 2026081313,
+    "workspace_schema_name": "notion_workspace_v2_np2c_rename_catalog_finalize",
+    "workspace_schema_checksum": "sha256:6be5b47275cf0dbe0b6b244c3f71672662f8ce648d1efa446208a94488da1637",
+    "workspace_actual_schema_sha256": "sha256:e971256344e262c59990901b3a6816ecac7be760a31c286f68c5e03d4d491595",
+    "workspace_schema_object_count": 144,
+    "frozen_source_version": 2026081312,
+    "runtime_commands_enabled": false,
+    "resolver_cutover_enabled": false,
+    "permanent_delete_enabled": false,
+    "continuous_worker_enabled": false,
+    "destructive_watermark_ack_enabled": false,
+    "live_migration_applied": false
+  },
+  "protected_inputs": {
+    "AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+  },
+  "input_output_hashes": {
+    "notion_workspace_store.py": "24dd658ea3d7c4c9e5a27e1ae2fbb32309402ab79a524a08463e889bf9f7dcb3",
+    "notion_workspace_lifecycle_kernel_migration.py": "1b4eb6380223dc831dfaa27579324f854e2e2e4f6e330077dd08e2d0c080acf3",
+    "notion_workspace_lifecycle_finalize_migration.py": "fdef507581bd44da484fb0a78d7dee82c792cd3d3280f601033ef967c6daf375",
+    "notion_legacy_page_lifecycle_contract.py": "658da713fe5df1a57087c185deb8a7a4d363ee872e801f276f54216e18958fb8",
+    "notion_legacy_page_lifecycle.py": "a0c81946dc9f1e953d33a12141a430cbb381a4bfcce4249fcf45003d5da99bf0",
+    "docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "bddb8ac64b87c70a816d41d05d0f2f26b6a9c0689b578eae56b31213d8127054",
+    "tools/verify_notion_np2c_page_tree_contract.py": "8ee5f0b62132040b7d4d77d41ba5ebc6a1ce81af6f5bfa1b87c17101a8e34934",
+    "tests/test_notion_workspace_page_lifecycle_finalize.py": "97e1f7e3689dac55a02ef7ffa4918621d1df8ba2cf5e614b267043ea2576896e",
+    "tests/test_migrate_notion_workspace_lifecycle_finalize.py": "c4574fc9da2b1d72c10dae97ec522e2d486180fb38f8718a3573e9f86679f778",
+    "tests/test_verify_notion_np2c_page_tree_contract.py": "cc970d0a5d6cb50cd2e8fea9acffcedae264b0d031254e61f8b704cbba4f7c61",
+    "tests/test_notion_workspace_migration_chain_rehearsal.py": "48835b370630f49b68b0430021757372072bb0b96c9b0690ca1ed41bbe9e9c48",
+    "docs/NOTION_PARITY_MASTER_PLAN.md": "dcadb9a8df4cbfb845adecc805fe82c1da1664bed4618822f802adab4c3bd8d9",
+    "docs/NOTION_PARITY_ROADMAP.md": "fa420d645002dca29fd2fc55bdcb44dbe9e3ab8c43b6494977326fe0a1727d98",
+    "docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "2c699ce94cf037d599bdbd063a9668bd51d1c5065a4cdf15a46d1e2e3fb7a120",
+    "docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "bd238dd67ec3d70a92b8d7433670fa6dc6daf08d10104fe8b23db34f71d47e89",
+    "docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "c765015593b4f255acb3e53d408bbd7aca61ee5e80d06cab0b275d711d97f26a"
+  },
+  "evidence": [
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py code_assist_v1\\tests\\test_notion_workspace_migration_chain_rehearsal.py -q",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 5.79
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_kernel.py code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_finalize.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_kernel.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_finalize.py code_assist_v1\\tests\\test_notion_workspace_page_tree.py code_assist_v1\\tests\\test_notion_legacy_page_lifecycle.py -q",
+      "exit_code": 0,
+      "passed": 44,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 73.99
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_workspace_locator_projection.py code_assist_v1\\tests\\test_notion_workspace_projection.py code_assist_v1\\tests\\test_notion_workspace_healing_apply.py code_assist_v1\\tests\\test_notion_workspace_outbox_delivery.py -q",
+      "exit_code": 0,
+      "passed": 90,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 144.88
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -c <targeted py_compile and UTF-8/JSON read>",
+      "exit_code": 0,
+      "result": "utf8/json/py_compile ok"
+    }
+  ],
+  "host_observations": [
+    {
+      "kind": "powershell_process_abort",
+      "exit_code": -1073740791,
+      "hex": "0xC0000409",
+      "context": "A chained PowerShell py_compile/read command aborted before useful output. One canonical direct Python invocation was used and passed. The abort is not counted as a test pass or code failure."
+    }
+  ],
+  "claims": {
+    "live_source_accessed": false,
+    "live_catalog_accessed": false,
+    "live_data_mutated": false,
+    "feature_flags_changed": false,
+    "routes_changed": false,
+    "app_or_second_brain_boundary_changed": false,
+    "cross_database_exactly_once_claimed": false,
+    "git_commit_claimed": false,
+    "formal_differential_parity": false
+  },
+  "next_slice": {
+    "name": "NP2C-3d-sentinel-bound-rename-end-to-end-rehearsal",
+    "objective": "Combine the frozen legacy-v3 rename source adapter and workspace-1313 catalog finalizer only in an exact-sentinel, explicitly quiesced, route-unregistered offline rehearsal; prove changed/no-op and both response-loss boundaries without runtime enablement.",
+    "schema_change_allowed": false,
+    "route_or_runtime_registration_allowed": false,
+    "live_data_allowed": false,
+    "destructive_ack_allowed": false,
+    "next_exact_command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_kernel.py code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_finalize.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_kernel.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_finalize.py code_assist_v1\\tests\\test_notion_workspace_page_tree.py code_assist_v1\\tests\\test_notion_legacy_page_lifecycle.py code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q"
+  },
+  "stop_reason": null
+}

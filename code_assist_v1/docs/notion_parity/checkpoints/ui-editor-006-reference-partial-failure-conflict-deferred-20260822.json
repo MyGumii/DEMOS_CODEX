@@ -1,0 +1,150 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T01:22:50.7469750+09:00",
+  "run_id": "ui19-editor-006-reference-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-EDITOR-006",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_page_alias": "UI-PARITY-RUN-EDITOR-006",
+    "synthetic_draft_alias": "UI-PARITY-DIRTY-DRAFT-EDITOR-006",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "network_failure_injected_into_official_reference": false,
+    "stale_revision_injected_into_official_reference": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "synthetic_page_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-EDITOR-006",
+    "status": "reference_partial_failure_and_conflict_deferred",
+    "review_required": true,
+    "promotion_allowed": false,
+    "incomplete_requirements": [
+      "reference_failed_save_preserves_recoverable_draft",
+      "reference_stale_revision_conflict_does_not_overwrite_acknowledged_revision",
+      "reference_explicit_conflict_recovery_focus_and_state"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 10,
+    "local_integration_review_pending": 3,
+    "reference_partially_observed": 5,
+    "reference_unobserved": 2,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_EDITOR_006_LOCAL_DRAFT_RECOVERY_RESULT_20260815.md",
+      "sha256": "sha256:b5379d61fea6102eb460f1f96c507d528a498a4f84bcccf529c6c80a6b80a7c1"
+    }
+  ],
+  "reference_partial_observation": {
+    "synthetic_page_created": true,
+    "synthetic_title_entered": true,
+    "synthetic_body_entered": true,
+    "normal_save_wait_ms": 1600,
+    "browser_reload_executed": true,
+    "title_visible_after_reload": true,
+    "body_visible_after_reload": true,
+    "open_dialog_count_after_reload": 0,
+    "network_failure_observed": false,
+    "stale_revision_conflict_observed": false,
+    "false_success_path_observed": false,
+    "synthetic_page_moved_to_trash": true,
+    "synthetic_title_residual_count": 0,
+    "synthetic_body_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_evidence": {
+    "current_exact_test": "1 passed in 23.09s",
+    "test_node": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py::test_ui_editor_006_network_and_conflict_drafts_recover_without_false_save",
+    "repeat_runs": 2,
+    "exact_identifier_free_report_equality": true,
+    "conflict_autosave_attempt_delta": 0,
+    "conflict_draft_restored": true,
+    "discard_loaded_server_revision": true,
+    "focus_sequence": ["PAGE-CANVAS", "PAGE-CANVAS"],
+    "network_draft_restored": true,
+    "retry_operation_reused": true,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "historical_capture_sha256": {
+      "UI-EDITOR-006-A01": "sha256:32c7886579b1947ce42dab063bcb3b4beded23b21a350b54026bd42f47a77f7c",
+      "UI-EDITOR-006-A02": "sha256:98920b5aa2f471e7784b240b75781b69d6780ec994fd12f97f7e864ba5b028c9"
+    },
+    "synthetic_only": true
+  },
+  "partial_differential": {
+    "status": "incomplete",
+    "promotion_allowed": false,
+    "matched_reference_behaviors": [
+      "normal_synthetic_title_and_body_save",
+      "reload_restores_exact_synthetic_title_and_body"
+    ],
+    "missing_evidence": [
+      "official_failed_save_draft_recovery",
+      "official_stale_revision_conflict_recovery",
+      "official_no_partial_publication_audit_or_outbox_effect_after_failed_save"
+    ],
+    "interpretation": "The official Free workspace proves only the safe normal-save and reload-restoration boundary. Failure and stale-revision branches were not induced because manipulating the signed-in service transport or concurrent revision state would exceed the safe synthetic UI observation scope."
+  },
+  "host_observation": {
+    "code": "WINDOWS_RG_EXIT_0XC0000409",
+    "effect": "One read-only rg discovery command returned the known host exit after useful output. A direct file read and the exact pytest node then completed successfully; this is not counted as a product pass or failure."
+  },
+  "stop_reason": {
+    "code": "REFERENCE_FAILURE_AND_STALE_REVISION_NOT_SAFELY_PROVEN",
+    "description": "The reference service normal save/reload path is observed, but safe UI-only reproduction of failed-save and stale-revision recovery is unavailable."
+  },
+  "claims": {
+    "ui_editor_006_reference_partially_observed": true,
+    "ui_editor_006_reference_observed": false,
+    "ui_editor_006_reference_characterized": false,
+    "ui_editor_006_differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Keep UI-EDITOR-006 unpromoted. Complete the official differential only through a separately approved, synthetic, non-disruptive failure/conflict observation method; otherwise preserve the stronger isolated local recovery contract."
+}

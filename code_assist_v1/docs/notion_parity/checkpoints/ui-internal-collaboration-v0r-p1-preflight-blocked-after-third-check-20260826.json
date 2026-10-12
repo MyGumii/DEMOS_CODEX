@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-PREFLIGHT-BLOCKED-AFTER-THIRD-CHECK-20260826",
+  "recorded_at": "2026-08-26T10:21:42+09:00",
+  "checkpoint_kind": "preflight_blocked_after_three_consecutive_goal_turns",
+  "packet_id": "V0R-P1",
+  "packet_status": "planned_approved_preflight_blocked",
+  "purpose": "Record the third consecutive read-only V0R-P1 preflight attempt with the same unresolved clean-state blocker. The two Chrome contexts still expose one distinct primary account identifier each, but the exact REF-OWNER and REF-COLLABORATOR role mapping is not proven, REF-COLLABORATOR still has pre-existing REF-FREE-A workspace access, and two REF-FREE-B workspace menu items remain visible in each context, including one guest-labeled item in the collaborator context. No safe in-scope execution action can begin until the user changes this external state, so the active goal meets the three-turn blocked threshold without claiming any reference execution.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-preflight-blocked-after-third-check-20260826.json"
+  ],
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-preflight-state-drift-recheck-20260826.json",
+    "sha256": "sha256:cb9f8a44fa43709285a82228c980ef73e4733dcecc65b10f917abd9fd1e30d79"
+  },
+  "execution_manifest": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_reference_multiuser_execution.v1.json",
+    "sha256": "sha256:924b3812e81bffc024bd386a5735c69a676f08e5b8c3f8ce52dffc6e0b9d7cf5",
+    "expected_action_count": 11,
+    "expected_capture_state_count": 18,
+    "expected_screenshot_count": 36
+  },
+  "owner_approval_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_operator/ap-reference-multiuser-user-approval-20260825.json",
+    "sha256": "sha256:4d39668562788aadceaaeb58d19d8c04d10714d967a3a3051b0dddea5f6f21a6",
+    "approval_received": true,
+    "execution_authorized": true,
+    "approval_is_test_evidence": false
+  },
+  "goal_observation": {
+    "thread_id": "01a0399e-4edc-7792-9c0c-9c050b30e177",
+    "status_before_transition": "active",
+    "required_transition": "blocked",
+    "goal_status_mutated_by_packet": false,
+    "same_preflight_cleanup_blocker_occurrence": 3,
+    "blocked_threshold_satisfied": true
+  },
+  "current_computer_use_observation": {
+    "javascript_session_reused_per_browser_binding_contract": true,
+    "list_apps_succeeded": true,
+    "returned_app_count": 41,
+    "returned_running_app_count": 10,
+    "returned_window_count": 10,
+    "returned_chrome_window_count": 2,
+    "computer_use_transport_available": true,
+    "connected_chrome_extension_instance_count": 2,
+    "current_returned_tab_objects_reclaimed": true,
+    "guessed_handle_coordinate_or_app_id_used": false
+  },
+  "read_only_identity_and_workspace_observation": {
+    "independent_chrome_instances_observed": 2,
+    "single_primary_account_identifier_visible_per_context": true,
+    "primary_account_identifiers_differ_between_contexts": true,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_or_non_synthetic_workspace_label_persisted": false,
+    "exact_REF_OWNER_and_REF_COLLABORATOR_role_mapping_proven": false,
+    "exact_REF_FREE_A_page_visible_in_collaborator_context": true,
+    "pre_existing_REF_FREE_A_workspace_access_visible_in_collaborator_context": true,
+    "REF_FREE_B_workspace_menu_item_count_in_owner_context": 2,
+    "REF_FREE_B_workspace_menu_item_count_in_collaborator_context": 2,
+    "guest_labeled_REF_FREE_B_item_count_in_collaborator_context": 1,
+    "unique_REF_FREE_B_binding_proven": false,
+    "clean_pre_invite_state_proven": false,
+    "browser_tabs_left_as_handoff": true
+  },
+  "consecutive_blocker_audit": [
+    {
+      "occurrence": 1,
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-preflight-identity-alias-state-drift-20260826.json",
+      "sha256": "sha256:20b61d9fab3eb7d2bc8f4ff905657b880a6f66fcf0ae29ba9aa7ba0e983baefb"
+    },
+    {
+      "occurrence": 2,
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-preflight-state-drift-recheck-20260826.json",
+      "sha256": "sha256:cb9f8a44fa43709285a82228c980ef73e4733dcecc65b10f917abd9fd1e30d79"
+    },
+    {
+      "occurrence": 3,
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-preflight-blocked-after-third-check-20260826.json",
+      "sha256": null
+    }
+  ],
+  "triggered_stop_conditions": [
+    "exact_REF_OWNER_and_REF_COLLABORATOR_role_mapping_not_proven",
+    "clean_pre_invite_state_not_proven",
+    "workspace_alias_not_unique_for_REF-FREE-B",
+    "same_external_state_blocker_repeated_for_three_consecutive_goal_turns"
+  ],
+  "operator_action_result": {
+    "action_id": "V0R-PREFLIGHT-THIRD-CHECK",
+    "mutation_class": "read_only",
+    "status": "blocked",
+    "required_result": "two_exact_workspace_aliases_and_two_independent_test_identities_confirmed_in_clean_pre_invite_state",
+    "required_result_satisfied": false,
+    "later_action_started": false
+  },
+  "evidence_denominator": {
+    "completed_action_count": 0,
+    "screenshot_file_count": 0,
+    "final_receipt_exists": false,
+    "action_log_complete": false,
+    "cleanup_required_yet": false
+  },
+  "scope_attestation": {
+    "external_notion_mutation_executed": false,
+    "workspace_or_page_invitation_sent": false,
+    "permission_or_role_changed": false,
+    "synthetic_fixture_created": false,
+    "comment_reaction_or_mention_sent": false,
+    "reference_screenshot_persisted": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "claims": {
+    "current_computer_use_list_apps_succeeded": true,
+    "V0R_P1_preflight_passed": false,
+    "V0R_P1_execution_started": false,
+    "V0R_P1_gate_passed": false,
+    "V0_GATE_001_closed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "resume_condition": "After the user resumes the blocked goal, make the two Chrome contexts unambiguously map to REF-OWNER and REF-COLLABORATOR, remove REF-COLLABORATOR from the existing REF-FREE-A workspace so V0R-WORKSPACE-INVITE starts from a clean pre-invite state, remove any pre-existing collaborator access to the owner target REF-FREE-B, and rename the non-target duplicate REF-FREE-B so the target alias is unique. Authentication and account cleanup must be performed by the user. Any agent-performed access revocation, workspace rename, or other cleanup mutation requires a separate action-time confirmation and a predeclared reset contract rather than being inserted into the immutable 11-action run."
+}

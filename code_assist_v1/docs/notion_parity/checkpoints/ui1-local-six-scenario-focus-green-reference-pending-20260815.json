@@ -1,0 +1,299 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-15T00:15:02+09:00",
+  "run_id": "ui1-local-six-scenario-focus-green-20260815",
+  "model": {
+    "planning": "ultra",
+    "implementation": "gpt-5.6-sol-xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui1-c0-sealed-evidence-local-green-transport-blocked-20260814.json",
+    "sha256": "sha256:a466cc40bebb167461c8d6c8dada013a2811bc878891005b7c8f9868b57986bb",
+    "semantic_status": "historical-parent-preserved"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-14T23:57:19+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": [
+      "UI-SHELL-002",
+      "UI-SEARCH-001",
+      "UI-EDITOR-001",
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-A11Y-001"
+    ],
+    "extension": [],
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "trial-or-payment",
+      "invite-or-public-posting",
+      "operational-migration",
+      "live-feature-flag",
+      "continuous-consumer",
+      "resolver-cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY",
+    "status": "local-six-scenario-green-reference-pending",
+    "acceptance_ids": [
+      "UI1-LOCAL-ISOLATION",
+      "UI1-LOCAL-REPEATABILITY",
+      "UI1-STRICT-CAPTURE-6-OF-6",
+      "UI1-REDACTION",
+      "UI1-ACTION-LOG-BINDING",
+      "UI1-SECOND-BRAIN-CANCEL-ZERO",
+      "UI1-SECOND-BRAIN-APPROVE-ONE",
+      "UI1-SECOND-BRAIN-REPLAY-ZERO",
+      "UI1-SECOND-BRAIN-SNAPSHOT-MATCH",
+      "UI1-KEYBOARD-LOGICAL-ORDER",
+      "UI1-DIALOG-FOCUS-ENTRY-RETURN"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "notion_static/index.html",
+        "pre_sha256": "sha256:ae324100186dc6e09d85ae01826b502a8abf723e85c928005391ee17f90d735e",
+        "post_sha256": "sha256:fadd37a7357b45721e403b5e29d44ece6671344b722df856ddb208d10e170a03",
+        "change": "accessible dialog semantics"
+      },
+      {
+        "path": "notion_static/notion.js",
+        "pre_sha256": "sha256:eea72622814b44480e28fa4740f39e6dd17d8d02e8b9fa51d3e92793cde3c01b",
+        "post_sha256": "sha256:44419d9645ec1dddc320bfe10c9fd88f172248aae5593687a04d165d375d69d7",
+        "change": "modal focus entry and origin restoration"
+      },
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "pre_sha256": "sha256:9c631c8b4ee0011d7535fb73e36b0bb8c82a7260adfab9fee19f23800666be16",
+        "post_sha256": "sha256:f08eaad0b60d75e56f511c2cdb916408e0d8601d7b1811728a46dca12fe58f47",
+        "change": "six strict captures, exact keyboard/focus assertions, repeated Second Brain journey"
+      },
+      {
+        "path": "docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:326d698ef36cd50f4dc6c3a3d96f7e860b2dbc680f8033c29b24e48b3b011d0d",
+        "post_sha256": "sha256:9446fe078021a42b562b956dd481751f1e104445481901749e68bf30579c61f5",
+        "change": "current tested snapshot and local-only hard-gate exception"
+      },
+      {
+        "path": "docs/notion_parity/adr/UI_BROWSER_RUNNER_ADR_20260814.md",
+        "post_sha256": "sha256:5f03ff95f20a561ac6217795d135b12a96c46c1d944702b488c76f248b42d8a5",
+        "change": "current local runner outcome and resolved historical blocker"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:af091a1110221b87f1b9294803ef72c088e064b3a4ea0c98c05be8a887a1a851",
+        "post_sha256": "sha256:c853f6fcc80d0f0a9512a9b305be8bc4d5524d4b2eb35c1287dd4b07f6cc19e4",
+        "change": "authoritative harness source-hash rebind only"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI1_LOCAL_SIX_SCENARIO_FOCUS_RESULT_20260815.md",
+        "post_sha256": "sha256:c95ad221acb7e61a163324a68db76539bdbd259a23f6bef9103ab8e2c4fb8fc0",
+        "change": "new immutable local result"
+      }
+    ],
+    "read_dependencies": [
+      "docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+      "docs/notion_parity/CORE_FREE_WEB_UI_CHARACTERIZATION_RUNBOOK.md",
+      "tools/notion_parity/ui_actions.py",
+      "tools/notion_parity/ui_capture.py",
+      "tools/notion_parity/ui_evidence_packet.py",
+      "tools/notion_parity/ui_reference_guard.py",
+      "tools/notion_parity/ui_local_fixture.py"
+    ],
+    "protected_unchanged": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      },
+      "app_code.py",
+      "auth.py",
+      "config.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ],
+    "unchanged_ui": [
+      {
+        "path": "notion_static/notion.css",
+        "sha256": "sha256:6dbddb3d093d37f25ae5132a040023c122362a67b034bb2674fe39fc152f5b20"
+      }
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "reference_notion_tab_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "persistent_browser_profile_reused": false,
+    "local_browser": "installed-stable-chrome-ephemeral-playwright-context"
+  },
+  "evidence": {
+    "source_build_sha256": "sha256:5d348341a46e3e86161b1ff17d93d27f86dda0b1242fdf99eeddc0e20b67f6bf",
+    "reference": [],
+    "local": [
+      {
+        "scenario_id": "UI-SHELL-002",
+        "capture_sha256": "sha256:0bf0125baccede94f018ab2aee696a4faab67f86f2e66734d00be2211d58a349",
+        "redaction": "pass"
+      },
+      {
+        "scenario_id": "UI-SEARCH-001",
+        "capture_sha256": "sha256:73efece016d0326d73bf6f1bbed8b1c2f76caf48e998f7b53102d5bcfb00c0cc",
+        "redaction": "pass"
+      },
+      {
+        "scenario_id": "UI-EDITOR-001",
+        "capture_sha256": "sha256:53b2389dc1852262ad19ed7365f7046743d0574faf195049b632b68aee29c938",
+        "redaction": "pass"
+      },
+      {
+        "scenario_id": "UI-SB-001",
+        "capture_sha256": "sha256:fe207785ed036bdad8018ed69838cac8e46e1aa09edf8681f4bf3389ca081c8e",
+        "redaction": "pass"
+      },
+      {
+        "scenario_id": "UI-SB-002",
+        "capture_sha256": "sha256:f6c8b744785db2f8476cfaeabc33a2f8591f40abe57798cca06e9b796a0f5b7e",
+        "redaction": "pass"
+      },
+      {
+        "scenario_id": "UI-A11Y-001",
+        "capture_sha256": "sha256:e4fb7067391ec5ed1f0dac09964f54357709ce1cc1a92f92801e921baa98532d",
+        "redaction": "pass"
+      }
+    ],
+    "differential": [],
+    "second_brain": [
+      {
+        "status": "pass",
+        "approve_item_delta": 1,
+        "approve_revision_delta": 1,
+        "cancel_item_delta": 0,
+        "cancel_revision_delta": 0,
+        "replay_item_delta": 0,
+        "replay_revision_delta": 0,
+        "source_snapshot_matches": true
+      }
+    ],
+    "focus_sequence": [
+      "HOME",
+      "SEARCH-TRIGGER",
+      "NEW-PAGE",
+      "SECOND-BRAIN-PREVIEW",
+      "PAGE-TITLE",
+      "SECOND-BRAIN-PREVIEW"
+    ],
+    "reference_blocker": {
+      "stage": "browser-runtime-initialization-before-selection",
+      "error_code": "kernel-assets-path-not-found-os-error-3",
+      "content_accessed": false,
+      "retry_in_same_environment": false
+    }
+  },
+  "commands": [
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py",
+      "result": "2 passed in 39.95s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Core Free plan/action/capture/redaction/C0/packet/local fixture",
+      "result": "67 passed in 19.41s",
+      "exit_code": 0
+    },
+    {
+      "selection": "historical evidence policy and differential",
+      "result": "22 passed in 4.99s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six exact Node UI contract scripts",
+      "result": "6 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion routes, atomic-save compatibility, publication adapter",
+      "result": "25 passed in 11.38s",
+      "exit_code": 0
+    },
+    {
+      "selection": "workspace routes, navigation routes, auth isolation",
+      "result": "41 passed in 42.93s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication restart and chat characterization",
+      "result": "5 passed in 4.78s",
+      "exit_code": 0
+    },
+    {
+      "selection": "node --check notion.js and Python compile browser journey",
+      "result": "pass",
+      "exit_code": 0
+    },
+    {
+      "selection": "combined PowerShell source-isolation inspection",
+      "result": "host-dependent Windows process error 0xC0000409; split one-shot inspection succeeded",
+      "exit_code": -1073740791
+    }
+  ],
+  "tests": {
+    "action_log_binding": "pass",
+    "capture_schema": "pass",
+    "capture_redaction": "pass",
+    "local_repeatability": "pass-twice-per-flow",
+    "keyboard_logical_order": "pass",
+    "modal_focus_entry": "pass",
+    "modal_focus_return": "pass",
+    "second_brain_cancel_zero": "pass",
+    "second_brain_approve_one": "pass",
+    "second_brain_replay_zero": "pass",
+    "second_brain_snapshot_match": "pass",
+    "reference_c0": "blocked-before-browser-selection"
+  },
+  "claims": {
+    "h1_local_six_scenario_green": true,
+    "h1_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "archive_business_complete": false,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_or_production_content_exposed": false,
+    "live_local_data_accessed": false,
+    "protected_file_edit_required": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false,
+    "trial_payment_invite_public_action_required": false,
+    "repeated_product_process_failure": false
+  },
+  "remaining": [
+    "recover signed-in Chrome Browser control and run C0 without opening personal workspaces",
+    "capture matching REF-FREE-A/B synthetic reference scenarios with the same action IDs",
+    "produce and seal the first reference/local differential",
+    "continue H2-H9 through one evidence-bound cohesive vertical slice at a time"
+  ],
+  "next_exact_command": "after the signed-in Chrome Browser transport is recovered, run the identifier-free C0 guard before any Notion content access; continue only if exactly REF-FREE-A and REF-FREE-B are confirmed and personal workspace/content remains unopened"
+}

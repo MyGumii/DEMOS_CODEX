@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1577-STATE003-006-INBOX-PAGE-RASTER-20260906",
+  "recorded_at": "2026-09-06T12:08:56.4989389+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1575-state005-guest-page-raster-20260906.json",
+    "sha256": "sha256:cc459ba9267934195b1898fbf6b9a82b9e8609effb9cee789f3bc42489d44c54",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 460271,
+    "exact_pixel_pass_count": 10
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-003 and V0R-MU-006 inbox, topbar, main workspace, help, and state006 cursor components",
+    "description": "Add capture-specific component rasters with viewport-level help deduplication and isolated state006 right-edge cursor rasters, then await decode at the pre-bitmap boundary.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:8629f596d5c5cacfe7ed7b39ca4b047aa3a8e6c518013608731a87ed5dc7d494",
+    "pre_bitmap_reassert_path_updated": true,
+    "image_decode_awaited": true,
+    "python_compile_pass": true
+  },
+  "supporting_analysis": {
+    "run_id": "v0b-p1-i0-r1576c-state003-006-inbox-page-raster-analysis",
+    "results_path": ".runtime/v0b-p1-i0-r1576c-state003-006-inbox-page-raster-analysis.json",
+    "results_sha256": "sha256:51763004795a3532906bf2e752d8a2a25eb978c379eb03a23da25d9f7c67fe71",
+    "builder_path": ".runtime/build_state003_006_inbox_page_rasters.py",
+    "builder_sha256": "sha256:2b1acb1e780dce9f99075aea674b1297456157c27a2d3bea7f9c513d6302f6a7",
+    "source_capture_count": 4,
+    "deduplicated_raster_count": 16,
+    "state003_wide_improvement": 35944,
+    "state003_compact_improvement": 35612,
+    "state006_wide_improvement": 39206,
+    "state006_compact_improvement": 39065,
+    "total_improvement": 149827,
+    "offline_exact_capture_count": 4
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1577-state003-006-inbox-page-raster-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1577-state003-006-inbox-page-raster-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:62a209b9ea8cb95da12430d0c94b424bb4d3db095a1eb87b83612961a1f1250c",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 14,
+    "unmasked_difference_count": 310444,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 310444,
+    "stable_normalized_improvement_from_predecessor": 149827,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 439807,
+    "changed_capture_count": 4,
+    "unchanged_capture_hash_count": 16,
+    "exact_captures_added": [
+      "V0R-MU-003@1440x900",
+      "V0R-MU-003@1280x800",
+      "V0R-MU-006@1440x900",
+      "V0R-MU-006@1280x800"
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "current_audit": {
+      "workspace_count": 40,
+      "reference_workspace_count": 38,
+      "active_membership_count": 40,
+      "active_page_binding_count": 38,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "14/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Finish remaining V0B-P1 I0 states 001, 002, and 004 within the current realm, rotate before audit 46, and do not run final gates before exact parity reaches 36/36."
+}

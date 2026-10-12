@@ -1,0 +1,165 @@
+{
+  "contract": "code_assist.notion.core_free_ui.reference_completion_execution.v1",
+  "recorded_at": "2026-08-22T20:20:00+09:00",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "inputs": {
+    "scenario_plan": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:455de38d4ac91deb9de7df0a92fd94dcbcd234dd50569f8148ce3b4f80672a43"
+    },
+    "pending_approval_batch": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/pending_approval_batch.r1_r3.20260822.json",
+      "sha256": "sha256:f8a7ae509ace00f117aa50ea60014de7c1e598f596888c9e4f2c71b9bcb51d0f"
+    }
+  },
+  "preflight": {
+    "approval_receipt_required": true,
+    "approval_receipt_must_bind_this_manifest": true,
+    "c0_reference_guard_required": true,
+    "chrome_control_required": true,
+    "exact_workspace_aliases": ["REF-FREE-A", "REF-FREE-B"],
+    "synthetic_only": true,
+    "personal_workspace_access_allowed": false,
+    "existing_page_reuse_allowed": false,
+    "public_publish_or_invite_allowed": false,
+    "permanent_delete_allowed": false
+  },
+  "fixtures": [
+    {
+      "alias": "UI-PARITY-R1R3-A-ROOT",
+      "workspace": "REF-FREE-A",
+      "kind": "new_synthetic_root_page",
+      "contains": ["synthetic Korean title", "synthetic Korean paragraph", "UI-PARITY-R1R3-A-CHILD"],
+      "cleanup": "move_exact_created_root_subtree_to_trash"
+    },
+    {
+      "alias": "UI-PARITY-R1R3-A-CHILD",
+      "workspace": "REF-FREE-A",
+      "kind": "new_synthetic_child_page",
+      "contains": ["synthetic backlink target"],
+      "cleanup": "covered_by_parent_subtree_trash"
+    },
+    {
+      "alias": "UI-PARITY-R1R3-B-MARKER",
+      "workspace": "REF-FREE-B",
+      "kind": "new_synthetic_marker_page",
+      "contains": ["synthetic workspace marker"],
+      "cleanup": "move_exact_created_page_to_trash"
+    }
+  ],
+  "actions": [
+    {
+      "order": 1,
+      "scenario_id": "UI-SHELL-001",
+      "action_id": "UI-SHELL-001-A01",
+      "workspace": "REF-FREE-B",
+      "mutation_class": "read_only",
+      "setup_only": false,
+      "capture_fields": ["state", "keyboard", "focus", "a11y", "semantic_visual", "error_recovery"]
+    },
+    {
+      "order": 2,
+      "scenario_id": "UI-SHELL-001",
+      "action_id": "UI-SHELL-001-A02",
+      "workspace": "REF-FREE-A",
+      "mutation_class": "read_only",
+      "setup_only": false,
+      "capture_fields": ["state", "keyboard", "focus", "a11y", "semantic_visual", "error_recovery"]
+    },
+    {
+      "order": 3,
+      "scenario_id": "UI-EDITOR-001",
+      "action_id": "UI-EDITOR-001-A01",
+      "workspace": "REF-FREE-A",
+      "mutation_class": "synthetic_mutation",
+      "setup_only": true,
+      "capture_fields": []
+    },
+    {
+      "order": 4,
+      "scenario_id": "UI-EDITOR-001",
+      "action_id": "UI-EDITOR-001-A02",
+      "workspace": "REF-FREE-A",
+      "mutation_class": "synthetic_mutation",
+      "setup_only": true,
+      "capture_fields": []
+    },
+    {
+      "order": 5,
+      "scenario_id": "UI-EDITOR-001",
+      "action_id": "UI-EDITOR-001-A03",
+      "workspace": "REF-FREE-A",
+      "mutation_class": "synthetic_mutation",
+      "setup_only": false,
+      "capture_fields": ["state", "keyboard", "focus", "a11y", "semantic_visual", "error_recovery"]
+    },
+    {
+      "order": 6,
+      "scenario_id": "UI-EDITOR-001",
+      "action_id": "UI-EDITOR-001-A04",
+      "workspace": "REF-FREE-A",
+      "mutation_class": "read_only",
+      "setup_only": false,
+      "capture_fields": ["state", "keyboard", "focus", "a11y", "semantic_visual", "error_recovery"]
+    },
+    {
+      "order": 7,
+      "scenario_id": "UI-EDITOR-002",
+      "action_id": "UI-EDITOR-002-A01",
+      "workspace": "REF-FREE-A",
+      "mutation_class": "read_only",
+      "setup_only": false,
+      "capture_fields": ["state", "keyboard", "focus", "a11y", "semantic_visual", "error_recovery"]
+    },
+    {
+      "order": 8,
+      "scenario_id": "UI-EDITOR-002",
+      "action_id": "UI-EDITOR-002-A02",
+      "workspace": "REF-FREE-A",
+      "mutation_class": "synthetic_mutation",
+      "setup_only": false,
+      "capture_fields": ["state", "keyboard", "focus", "a11y", "semantic_visual", "error_recovery"]
+    },
+    {
+      "order": 9,
+      "scenario_id": "UI-SEARCH-002",
+      "action_id": "UI-SEARCH-002-A01",
+      "workspace": "REF-FREE-A",
+      "mutation_class": "read_only",
+      "setup_only": false,
+      "capture_fields": ["state", "keyboard", "focus", "a11y", "semantic_visual", "error_recovery"]
+    },
+    {
+      "order": 10,
+      "scenario_id": "UI-SEARCH-002",
+      "action_id": "UI-SEARCH-002-A02",
+      "workspace": "REF-FREE-A",
+      "mutation_class": "read_only",
+      "setup_only": false,
+      "capture_fields": ["state", "keyboard", "focus", "a11y", "semantic_visual", "error_recovery"]
+    }
+  ],
+  "execution_policy": {
+    "authorize_each_action_with_reference_guard": true,
+    "persist_only_normalized_redacted_observations": true,
+    "persist_page_ids_or_raw_labels": false,
+    "compute_differential_before_matrix_update": true,
+    "matrix_update_requires_zero_differences": true,
+    "cleanup_runs_after_success_or_capture_failure": true,
+    "cleanup_mode": "trash_only_recoverable",
+    "cleanup_targets": ["UI-PARITY-R1R3-A-ROOT", "UI-PARITY-R1R3-B-MARKER"],
+    "stop_on_personal_workspace_visibility": true,
+    "stop_on_workspace_identity_uncertainty": true,
+    "stop_on_browser_control_loss": true,
+    "stop_before_public_invite_or_permanent_delete": true
+  },
+  "claims": {
+    "approval_received": false,
+    "reference_mutation_executed": false,
+    "cleanup_executed": false,
+    "differential_packets_sealed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

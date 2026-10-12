@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-ACCESS-GUEST-SHARE-RETRY34-20260829",
+  "recorded_at": "2026-08-29T07:01:56.4426940+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "Retry34 matched the access-boundary skeleton and action colors, localized the REF-FREE-A boundary, removed the automatic guest workspace popover, matched the reference database-header and inherited-share banner colors, and shifted the teamspace home to the measured reference x-coordinate. All four live browser journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup passed. Unmasked differences decreased by 973,048 from retry33 to 4,088,994. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-invite-guest-retry33-progress-20260829.json",
+      "sha256": "sha256:40d649e0a50f7240710ee23df1ad9c09595f8699eac68ddb2322a2f4a75f3e23"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:9d7d09c04bd3119530d35a4336c47bae07c75f7770ba842f4a51b1d6d2a94079",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:7ffdae48dc0b4c3619d8e1933d62f965053b42c5fad989f25c15b3c9c2320a8d"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:ca75e17501ed89a3d437be0d0dc6bbbffce0cc154c06eacbc5cb94a6c66a7abd"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:2bada130c4a9c70121cfca03357a83d87abe4d026b0e5b2f2a4b922c2af5dc7f"
+      }
+    ],
+    "journey_and_capture_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:7bf7d3c16d630acba160aacd97971ec9ff77edba79d41fc39394a19511af2259"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:41ee3978a04fc5588d250da26d73303dd8fb418e931bb7aec488274d8a43dc2a"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/c0_p2_browser.py",
+        "sha256": "sha256:d7192f6d72c3c22e554b3c151901323c4c56154ad37a860095b4abfb45d3532e"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/e1_p2_browser.py",
+        "sha256": "sha256:57e52c3d157efbce99eea43d6dd0d8d8100e393a217af9540da357438181649c"
+      }
+    ]
+  },
+  "accepted_changes": {
+    "access_boundary": "The skeleton uses viewport-specific lossless reference colors, the request action uses #2783de, and REF-FREE-A renders the observed English boundary with the shorter dialog.",
+    "guest_editor": "Direct edit guest pages no longer auto-open the workspace switcher; the shared page canvas remains visible.",
+    "database_header": "The adopted table header uses the observed white background instead of #fbfbfa.",
+    "inherited_share_banner": "The advanced access-control banner uses the observed #e5f2fc background.",
+    "teamspace_home": "The 704px teamspace home container is shifted left by the measured 7px offset."
+  },
+  "bounded_diagnostics": {
+    "iam_retry77": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry77-lossless-access-boundary",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "unmasked_difference_count": 2714797,
+      "delta_from_retry76": -299418,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "iam_retry78": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry78-lossless-guest-editor",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "unmasked_difference_count": 2502288,
+      "delta_from_retry77": -212509,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "iam_retry79": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry79-lossless-share-colors",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "unmasked_difference_count": 2412340,
+      "delta_from_retry78": -89948,
+      "cleanup_verified": true,
+      "accepted": true
+    },
+    "iam_retry80": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry80-lossless-direct-share",
+      "capture_count": 20,
+      "unmasked_difference_count": 2449390,
+      "delta_from_retry79": 37050,
+      "cleanup_verified": true,
+      "accepted": false,
+      "reverted_change": "Automatic guest-upgrade prompt suppression"
+    },
+    "iam_retry81": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry81-lossless-teamspace-offset",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "unmasked_difference_count": 2403403,
+      "delta_from_retry79": -8937,
+      "cleanup_verified": true,
+      "accepted": true
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry34-lossless-access-guest-share",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry34-lossless-access-guest-share/receipt.json",
+    "receipt_sha256": "sha256:067b172a88a4f2e461ae52a9732d0eb04efac1ad1761c2e86a58ad9b8184b93d",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {
+      "I0-P2": 130188,
+      "C0-P2": 90982,
+      "E1-P2": 59088,
+      "F0-P5": 44631
+    },
+    "unmasked_difference_count": 4088994,
+    "masked_difference_count": 211220,
+    "raw_difference_count": 4300214,
+    "delta_from_retry33_unmasked": -973048,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:a21f0d8e55ba16e6f2e10927ed1783106798365f8e2d9d2bfc4312c25a262b29"
+    }
+  },
+  "state_deltas_from_retry33": [
+    {"state_id": "V0R-MU-001", "delta": -24146},
+    {"state_id": "V0R-MU-003", "delta": -8924},
+    {"state_id": "V0R-MU-005", "delta": -212496},
+    {"state_id": "V0R-MU-006", "delta": -65815},
+    {"state_id": "V0R-MU-007", "delta": -59747},
+    {"state_id": "V0R-MU-008", "delta": -59747},
+    {"state_id": "V0R-MU-009", "delta": -63198},
+    {"state_id": "V0R-MU-010", "delta": -63198},
+    {"state_id": "V0R-MU-011", "delta": -105},
+    {"state_id": "V0R-MU-012", "delta": -58475},
+    {"state_id": "V0R-MU-014", "delta": -58426},
+    {"state_id": "V0R-MU-017", "delta": -143064},
+    {"state_id": "V0R-MU-018", "delta": -155707}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "next_focus": {
+    "largest_states": [
+      {"state_id": "V0R-MU-001", "unmasked_difference_count": 372500},
+      {"state_id": "V0R-MU-002", "unmasked_difference_count": 359181},
+      {"state_id": "V0R-MU-011", "unmasked_difference_count": 308128},
+      {"state_id": "V0R-MU-004", "unmasked_difference_count": 302939},
+      {"state_id": "V0R-MU-006", "unmasked_difference_count": 297144}
+    ],
+    "primary": "Continue bounded diagnostics on the workspace members and page-share surfaces, accepting only measured reductions before another full run.",
+    "full_candidate_policy": "Do not rerun Core25 or performance until exact pixel is 36/36."
+  },
+  "open_gates": {
+    "exact_pixel": {"passed": 0, "required": 36, "status": "open"},
+    "core_25": {"status": "not_run_until_exact_36_of_36"},
+    "performance": {"status": "not_run_until_exact_36_of_36"},
+    "claims": {"status": "open"},
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "scope_attestation": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "user_chrome_touched": false,
+    "persistent_browser_profile_used": false,
+    "public_publish_or_link_used": false,
+    "personal_workspace_or_page_used": false,
+    "permanent_delete_used": false,
+    "reference_receipts_modified": false,
+    "agents_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "contract_version": 1,
+  "name": "np2a_h5e_legacy_watermark_conditional_ack",
+  "status": "proposed_not_authorized",
+  "as_of": "2026-08-13",
+  "implementation": {
+    "source_schema_version": 2026081304,
+    "implemented": false,
+    "migration_applied_to_live_data": false,
+    "destructive_ack_enabled": false,
+    "continuous_worker_enabled": false,
+    "resolver_cutover_enabled": false,
+    "ui_enabled": false
+  },
+  "prerequisites": {
+    "source_schema_version": 2026081303,
+    "source_schema_name": "notion_legacy_change_consumer_v3",
+    "workspace_schema_version": 2026081309,
+    "h5a_complete": true,
+    "h5b_complete": true,
+    "h5c_complete": true,
+    "h5d_complete": true,
+    "explicit_destructive_authorization_required": true,
+    "exact_owner_path_required": true,
+    "source_quiescence_required": true,
+    "verified_backup_required": true,
+    "restore_rehearsal_required": true,
+    "single_logical_ack_consumer_required": true
+  },
+  "bounds": {
+    "minimum_batch_size": 1,
+    "maximum_batch_size": 32,
+    "catalog_io_inside_source_write_transaction": false,
+    "network_io_inside_source_write_transaction": false,
+    "full_integrity_checks_per_page": 0
+  },
+  "ack_eligibility_all": [
+    "registered_consumer_exact",
+    "source_file_identity_exact",
+    "source_epoch_exact",
+    "full_sweep_generation_exact",
+    "pass_materialized",
+    "pending_work_zero",
+    "ignored_work_zero",
+    "superseded_work_zero",
+    "work_status_applied",
+    "watermark_change_generation_exact",
+    "watermark_change_mask_exact",
+    "watermark_source_state_exact",
+    "incarnation_id_exact",
+    "incarnation_generation_exact",
+    "incarnation_retired_exact",
+    "receipt_sha256_exact",
+    "catalog_effect_commitment_exact",
+    "required_full_sweep_completion_exact",
+    "workspace_completion_set_exact"
+  ],
+  "never_ack_dispositions": [
+    "superseded",
+    "no_binding",
+    "pending",
+    "uncommitted_permanent_counter"
+  ],
+  "operation_identity_inputs": [
+    "contract_domain",
+    "consumer",
+    "source_owner_id",
+    "source_epoch",
+    "full_sweep_generation",
+    "source_device",
+    "source_inode",
+    "source_link_count",
+    "pass_id",
+    "page_id",
+    "change_generation",
+    "change_mask",
+    "source_exists",
+    "source_active",
+    "incarnation_id",
+    "incarnation_generation",
+    "incarnation_retired",
+    "receipt_sha256",
+    "effect_workspace_id",
+    "effect_binding_generation",
+    "effect_operation_id",
+    "effect_disposition",
+    "completion_operation_id"
+  ],
+  "transaction_order": [
+    "exact_replay_before_source_io",
+    "authorization_quiescence_and_path_gates",
+    "read_only_capture_and_catalog_correlation",
+    "begin_immediate_source_transaction",
+    "revalidate_contract_fence_work_watermark_and_completion",
+    "insert_immutable_ack_operation_and_batch",
+    "insert_immutable_page_ack_receipts",
+    "conditional_delete_exact_watermarks",
+    "semantic_postcheck",
+    "commit",
+    "identifier_free_response"
+  ],
+  "source_generation_policy": {
+    "ack_increments_source_epoch": false,
+    "ack_increments_full_sweep_generation": false,
+    "new_mutation_recreates_watermark": true,
+    "operation_id_must_survive_generation_reset_to_one": true
+  },
+  "required_crash_tests": [
+    "catalog_effect_committed_before_source_terminal",
+    "source_terminal_committed_before_completion",
+    "ack_operation_insert_fault",
+    "ack_receipt_insert_fault",
+    "first_middle_last_delete_fault",
+    "before_commit_fault",
+    "ambiguous_commit_outcome",
+    "response_loss_after_commit",
+    "concurrent_source_mutation_before_ack",
+    "concurrent_source_mutation_after_ack",
+    "process_restart_replay",
+    "backup_restore_source_identity_or_generation_regression"
+  ],
+  "public_result_allowed_fields": [
+    "acknowledged_count",
+    "replayed",
+    "pending_count",
+    "full_sweep_required",
+    "full_sweep_completed",
+    "lagging",
+    "status",
+    "failure_code"
+  ],
+  "public_result_forbidden_data": [
+    "source_owner_id",
+    "workspace_id",
+    "page_id",
+    "source_path",
+    "title",
+    "content",
+    "file_name",
+    "public_token",
+    "lease_token",
+    "incarnation_id",
+    "receipt_sha256"
+  ],
+  "implementation_slices": [
+    {
+      "id": "H5e-0",
+      "name": "v3 invariant freeze and design review",
+      "destructive": false,
+      "authorization_required": false
+    },
+    {
+      "id": "H5e-1",
+      "name": "v4 schema and migrator with ack disabled",
+      "destructive": false,
+      "authorization_required": true
+    },
+    {
+      "id": "H5e-2",
+      "name": "explicit offline conditional ack API",
+      "destructive": true,
+      "authorization_required": true
+    },
+    {
+      "id": "H5e-3",
+      "name": "sanitized snapshot crash and restore rehearsal",
+      "destructive": true,
+      "authorization_required": true
+    },
+    {
+      "id": "H5e-4",
+      "name": "approved single-owner operational execution",
+      "destructive": true,
+      "authorization_required": true
+    },
+    {
+      "id": "H5f",
+      "name": "continuous scheduler and worker",
+      "destructive": true,
+      "authorization_required": true
+    }
+  ],
+  "stop_conditions": [
+    "authorization_missing",
+    "file_ownership_or_hash_drift",
+    "live_or_untrusted_path",
+    "schema_or_checksum_drift",
+    "backup_or_restore_evidence_missing",
+    "source_not_quiesced",
+    "source_identity_or_fence_mismatch",
+    "pending_ignored_or_superseded_work_present",
+    "partial_workspace_completion",
+    "catalog_source_receipt_mismatch",
+    "public_redaction_failure",
+    "runtime_registration_required",
+    "goal_or_protected_boundary_conflict"
+  ]
+}

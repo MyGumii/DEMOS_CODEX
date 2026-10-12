@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-P1-TARGET-INFRASTRUCTURE-BLOCKED-20260907",
+  "recorded_at": "2026-09-07T09:04:53+09:00",
+  "checkpoint_kind": "sanitized_external_prerequisite_blocker",
+  "packet_id": "O1B-P1",
+  "packet_status": "blocked_before_target_specific_policy_binding",
+  "immutable_after_recording": true,
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-p1-policy-binding-readiness-r2-20260907.json",
+    "sha256": "sha256:0d85b30022e1240751b212b75b70a18e2d085cef65dffbc8d0b6edbe124ce0d8"
+  },
+  "read_only_environment_observation": {
+    "windows_edition": "Windows 10 Education",
+    "windows_build": "19045",
+    "logical_fixed_drive_count": 4,
+    "distinct_physical_disk_count": 4,
+    "usb_disk_present": true,
+    "all_observed_disks_attached_to_same_windows_host": true,
+    "smb_mapping_count": 0,
+    "bitlocker_query_status": "unavailable_without_required_authority",
+    "windows_sandbox_executable_present": false,
+    "hyper_v_management_tools_present": false,
+    "wsl2_distribution_present": true,
+    "wsl2_eligible_as_required_windows_target_host": false
+  },
+  "contract_comparison": {
+    "approved_encrypted_off_host_backup_destination_available": false,
+    "approved_distinct_windows_target_host_available": false,
+    "four_distinct_public_trust_anchors_supplied": false,
+    "reviewed_release_identity_supplied": false,
+    "AP_OPS_TARGET_granted_for_one_execution": false,
+    "XG_SBE_TARGET_OPERATIONS_HANDOFF_accepted_for_one_execution": false
+  },
+  "safety_result": {
+    "local_disk_presented_as_off_host": false,
+    "wsl_presented_as_windows_target": false,
+    "same_host_or_same_volume_exception_used": false,
+    "virtualization_feature_enabled": false,
+    "software_installed": false,
+    "network_connection_attempted": false,
+    "backup_written": false,
+    "restore_written": false,
+    "production_data_read_or_changed": false,
+    "target_action_executed": false
+  },
+  "required_external_resolution": [
+    "Provide an approved encrypted off-host backup destination and its non-secret identity/binding, or explicitly authorize provisioning one.",
+    "Provide an approved distinct Windows target host and connection method, or explicitly authorize provisioning a Windows VM target.",
+    "Provide the reviewed release identity and four distinct Ed25519 public trust anchors.",
+    "Issue fresh execution-specific AP-OPS-TARGET approval and XG-SBE-TARGET-OPERATIONS-HANDOFF only after the target-specific policy is reviewed."
+  ],
+  "secrets_forbidden_in_chat": [
+    "password",
+    "access token",
+    "private key",
+    "raw credential",
+    "authorization header",
+    "session cookie"
+  ],
+  "central_state_preserved": {
+    "gate_passed_required_packets": 44,
+    "required_packet_count": 50,
+    "closed_matrix_rows": 21,
+    "matrix_row_count": 28,
+    "closed_phase_gates": 15,
+    "phase_gate_count": 20,
+    "O1B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false,
+    "central_catalogs_modified": false,
+    "SBE_hot_contracts_modified": false,
+    "AGENTS_md_modified": false
+  },
+  "resume_condition": "User supplies an approved real target topology and public trust metadata, or explicitly authorizes provisioning a compliant isolated Windows target and encrypted off-host backup destination.",
+  "goal_complete": false
+}

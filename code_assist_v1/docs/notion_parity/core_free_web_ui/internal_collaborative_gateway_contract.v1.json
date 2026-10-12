@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_gateway_contract.v1",
+  "contract_id": "T0A-P2-TRANSPORT-GATEWAY-001",
+  "recorded_at": "2026-08-23T09:18:52Z",
+  "packet_id": "T0A-P2",
+  "status": "frozen_disposable_transport_model",
+  "authority_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+      "sha256": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+      "sha256": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_protocol_contract.v1.json",
+      "sha256": "sha256:c2ce4dcecebd4f7da459824f3f012a142ef8ef6d2fd08195490587ad4f954481"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/protocol_contract.py",
+      "sha256": "sha256:232f090471775e49dc4097911a409c3a45e0c47f0ece279f7452ad1d595e1fe8"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0a-p1-protocol-contract-20260823.json",
+      "sha256": "sha256:fcdd72cd6e4512d3402fdf77ea62b768e876a8606ebcbe72b05ea0d8d8600eea"
+    }
+  ],
+  "transport_only_boundary": {
+    "accepts": "consumed_T0A_P1_ticket_grant_and_versioned_envelopes",
+    "calls": "current_epoch_resolver_and_disposable_sequence_ledger",
+    "owns": [
+      "connection_lifecycle",
+      "bounded_outbound_queues",
+      "reconnect_attempt_window",
+      "send_time_fencing",
+      "transport_health_state"
+    ],
+    "does_not_own": [
+      "authentication_cookie",
+      "workspace_or_page_IAM",
+      "canonical_page_or_block_mutation",
+      "durable_event_or_outbox_storage",
+      "CRDT_semantics_or_compaction",
+      "Second_Brain_publication"
+    ],
+    "flask_cookie_is_transport_authorization": false,
+    "mutation_ack_source": "canonical_sequence_ledger_after_durable_commit"
+  },
+  "admission_contract": {
+    "steps": [
+      "apply_reconnect_attempt_bound_before_expensive_authority_work",
+      "enforce_global_connection_capacity_without_consuming_ticket_while_allowing_same_binding_replacement",
+      "resolve_current_workspace_and_page_epochs_fail_closed",
+      "atomically_consume_one_time_ticket_with_exact_origin_and_binding",
+      "supersede_prior_same_subject_page_client_session_connection",
+      "register_empty_bounded_session_queue"
+    ],
+    "ticket_reuse_allowed": false,
+    "expired_ticket_allowed": false,
+    "wrong_origin_allowed": false,
+    "stale_epoch_allowed": false,
+    "maximum_active_connections_default": 1024,
+    "client_visible_rejection_contains_protected_binding": false
+  },
+  "queue_and_backpressure_contract": {
+    "maximum_durable_frames_default": 64,
+    "maximum_durable_payload_bytes_default": 4194304,
+    "durable_overflow_action": "close_slow_session_purge_queue_require_replay",
+    "silent_durable_drop_allowed": false,
+    "acknowledged_operation_rollback_on_broadcast_failure": false,
+    "queue_payload_counting": "exact_payload_bytes",
+    "drain_order": "strictly_ascending_document_sequence",
+    "send_time_epoch_revalidation": true,
+    "stale_or_unavailable_drain_action": "purge_queue_close_session_return_zero_payload",
+    "replay_batch_limit_inherited_from_T0A_P1": 256
+  },
+  "reconnect_contract": {
+    "attempt_key": [
+      "subject_id",
+      "client_id"
+    ],
+    "fixed_window_ms_default": 10000,
+    "maximum_attempts_per_window_default": 5,
+    "excess_attempt_action": "reject_before_ticket_consumption_without_content",
+    "same_binding_reconnect_action": "new_connection_supersedes_old_and_purges_old_queue",
+    "resume_source": "last_durable_document_sequence_ack_then_bounded_replay",
+    "operation_and_client_sequence_state_is_transport_owned": false,
+    "storm_never_increases_connection_capacity": true
+  },
+  "gateway_unavailable_contract": {
+    "authority_resolver_unavailable_on_admission": "reject_without_ticket_consumption_or_content",
+    "authority_resolver_unavailable_before_mutation": "reject_without_canonical_commit_or_content",
+    "authority_resolver_unavailable_after_commit_before_broadcast": "keep_durable_commit_close_or_fence_sessions_and_require_replay",
+    "authority_resolver_unavailable_before_drain": "purge_queue_close_session_return_zero_payload",
+    "gateway_process_unavailable_during_revoke": "canonical_revoke_may_commit_with_durable_fence_outbox_but_no_protected_send_is_permitted",
+    "availability_never_substitutes_for_authorization": true
+  },
+  "negative_scenarios": [
+    "ORIGIN-MISMATCH",
+    "TICKET-EXPIRED",
+    "TICKET-REUSED",
+    "EPOCH-STALE-ON-CONNECT",
+    "EPOCH-STALE-BEFORE-SUBMIT",
+    "EPOCH-STALE-BEFORE-DRAIN",
+    "SLOW-CONSUMER-BACKPRESSURE",
+    "RECONNECT-SUPERSEDES-STALE",
+    "RECONNECT-STORM-THROTTLED",
+    "AUTHORITY-UNAVAILABLE-FAIL-CLOSED",
+    "CONNECTION-CAPACITY-BOUNDED"
+  ],
+  "prototype_boundary": {
+    "implementation": "standard_library_in_memory_transport_state_machine",
+    "real_websocket_or_sse_listener_started": false,
+    "os_port_bound": false,
+    "dependency_downloaded_or_installed": false,
+    "production_lockfile_modified": false,
+    "production_runtime_imported": false,
+    "schema_migration_allocated": false,
+    "live_data_identity_or_browser_profile_accessed": false,
+    "product_route_or_store_modified": false,
+    "selected_gateway_language_or_crdt_runtime_bound": false
+  },
+  "claims": {
+    "transport_only_gateway_state_machine_executable": true,
+    "origin_expiry_reuse_epoch_and_stale_client_negatives_executable": true,
+    "backpressure_reconnect_storm_and_unavailable_contract_executable": true,
+    "actual_network_gateway_implemented": false,
+    "actual_durable_event_store_implemented": false,
+    "selected_runtime_bound": false,
+    "production_runtime_implemented": false,
+    "product_complete": false
+  }
+}

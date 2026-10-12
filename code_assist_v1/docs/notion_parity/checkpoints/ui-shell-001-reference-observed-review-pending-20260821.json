@@ -1,0 +1,144 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T22:20:29.3598284+09:00",
+  "run_id": "ui4-shell-001-reference-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-SHELL-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_alias": "REF-FREE-B",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_count": 0,
+    "external_side_effect_attempted": false,
+    "mutation_class": "read_only",
+    "final_tab_state": "handoff_ref_free_a"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-SHELL-001",
+    "status": "reference_observed_review_pending_one_focus_difference",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_pending": 20,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa",
+      "canonical_sha256": "sha256:a2c1a94be54f255cac128a4810a66ed1e0dd85f9762f2ecc850df0cc21ba0cf7"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    }
+  ],
+  "reference_intake": {
+    "worksheet_sha256": "sha256:921f27f41cb4329f94d59d6687cf1fd3c02190d555c52fa236d506df661426f1",
+    "c0_status": "pass",
+    "c0_sha256": "sha256:58af7275cacc1533d613164db0f727ee01495a76e1f7dd735049e043fd458dbd",
+    "action_log_sha256": "sha256:646b832bddcf43ab97ca195da8e8e6810050b77ea3c51888514fc3b28727a5c4",
+    "action_authorizations": {
+      "UI-SHELL-001-A01": "allowed_read_only",
+      "UI-SHELL-001-A02": "allowed_read_only"
+    },
+    "operator_review": {
+      "status": "pending",
+      "scope": "redacted_summary_only"
+    }
+  },
+  "reference_action_captures": {
+    "UI-SHELL-001-A01": {
+      "sha256": "sha256:e90c66e5f4faf5a5a58902282059ff1976b274fe8a507e09019d1b431a4b07d5",
+      "state": {"count": 1, "state": "committed", "workspace_alias": "REF-FREE-B"},
+      "other_fixture_visible_count": 0,
+      "focus": {"name": "WORKSPACE-SIDEBAR-GROUP", "state": "focused"},
+      "a11y": {"name": "WORKSPACE-SIDEBAR-GROUP", "role": "GROUP"},
+      "semantic_visual": {"region": "SIDEBAR", "state": "visible"},
+      "geometry": {"WORKSPACE-SWITCHER": {"height": 32, "width": 254, "x": 8, "y": 6}},
+      "latency_ms": 5180
+    },
+    "UI-SHELL-001-A02": {
+      "sha256": "sha256:0a6c7e7d030d49fdd6f94a0a87eee0d37f708cb099ce8a07c50f7a1ac5920922",
+      "state": {"count": 1, "state": "committed", "workspace_alias": "REF-FREE-A"},
+      "other_fixture_visible_count": 0,
+      "focus": {"name": "WORKSPACE-SWITCHER", "state": "focused"},
+      "a11y": {"name": "WORKSPACE-SWITCHER", "role": "BUTTON"},
+      "semantic_visual": {"region": "SIDEBAR", "state": "visible"},
+      "geometry": {"WORKSPACE-SWITCHER": {"height": 32, "width": 254, "x": 8, "y": 6}},
+      "latency_ms": 3356
+    }
+  },
+  "local_action_captures": {
+    "UI-SHELL-001-A01": {
+      "sha256": "sha256:afd175c278b1811f2d3921c36cc7bbfb52aee06b4e4b5e43627d62e31f4aab40",
+      "state": {"count": 1, "state": "committed", "workspace_alias": "REF-FREE-B"},
+      "focus": {"name": "WORKSPACE-SWITCHER", "state": "focused"},
+      "a11y": {"name": "WORKSPACE-SWITCHER", "role": "BUTTON"},
+      "geometry": {"WORKSPACE-SWITCHER": {"height": 44, "width": 239, "x": 0, "y": 0}}
+    },
+    "UI-SHELL-001-A02": {
+      "sha256": "sha256:d41ad53eb3facdad06d05adb7fd34855f2dd5e5a9c9d127a2899249400cccce5",
+      "state": {"count": 1, "state": "committed", "workspace_alias": "REF-FREE-A"},
+      "focus": {"name": "WORKSPACE-SWITCHER", "state": "focused"},
+      "a11y": {"name": "WORKSPACE-SWITCHER", "role": "BUTTON"},
+      "geometry": {"WORKSPACE-SWITCHER": {"height": 44, "width": 239, "x": 0, "y": 0}}
+    }
+  },
+  "precalibration_differential": {
+    "status": "fail",
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-SHELL-001-A01": {
+        "difference_count": 2,
+        "differences": ["a11y", "focus"]
+      },
+      "UI-SHELL-001-A02": {
+        "difference_count": 0,
+        "differences": []
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "interpretation": "Both directions showed exactly one active synthetic fixture and zero cross-workspace fixture leakage. The return to REF-FREE-A matches local focus. The first transition to REF-FREE-B leaves reference focus on the sidebar group while local focus is forced to the switcher button."
+  },
+  "redacted_review_summary": {
+    "reference_profile": "Chrome desktop Free owner ko-KR",
+    "reference_workspaces": ["REF-FREE-A", "REF-FREE-B"],
+    "observed_sequence": ["REF-FREE-A_TO_REF-FREE-B", "REF-FREE-B_TO_REF-FREE-A"],
+    "result": "Each transition showed exactly one active synthetic workspace fixture and zero fixture leakage from the other workspace. The first transition focused the sidebar workspace group; the return transition focused the switcher button.",
+    "privacy": "No personal workspace/page, raw DOM, network payload, cookies, screenshot, public posting, invitation, or mutation was used."
+  },
+  "claims": {
+    "ui_shell_001_reference_observed": true,
+    "ui_shell_001_reference_characterized": false,
+    "ui_shell_001_differential_passed": false,
+    "sixth_reference_characterized": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain workspace-owner approval of the redacted UI-SHELL-001 summary. Then seal the reference receipt, model the approved A-to-B focus behavior without weakening workspace isolation, and attempt the sixth differential pass."
+}

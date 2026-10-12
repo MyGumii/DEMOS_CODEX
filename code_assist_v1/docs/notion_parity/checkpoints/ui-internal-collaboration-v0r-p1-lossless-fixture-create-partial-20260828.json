@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-LOSSLESS-FIXTURE-CREATE-PARTIAL-20260828",
+  "recorded_at": "2026-08-28T21:05:32.2658481+09:00",
+  "checkpoint_kind": "synthetic_fixture_creation_paused_at_destructive_confirmation_boundary",
+  "packet_id": "V0R-P1",
+  "packet_status": "lossless_execution_in_progress_awaiting_starter_block_clear_confirmation",
+  "purpose": "Record the lossless superseding run after the clean preflight and before any permission mutation. V0R-B-ROOT is complete. Notion created V0R-A-ROOT from a built-in weekly-task starter rather than as a blank page; its title has been corrected to the exact synthetic alias, but its 31 built-in body editables remain untouched pending action-time confirmation to clear that newly created cloud content.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-fixture-create-partial-20260828.json"
+  ],
+  "hot_shared_contracts_modified": false,
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-lossless-preflight-clean-pass-20260828.json",
+    "sha256": "sha256:5cca8759ae0627afb993451de69fe84a7588d958b4cd6ccc8afe69daff87e192"
+  },
+  "completed_actions": [
+    {
+      "order": 1,
+      "action_id": "V0R-PREFLIGHT",
+      "status": "passed"
+    }
+  ],
+  "fixture_state": {
+    "REF-FREE-B": {
+      "page_alias": "V0R-B-ROOT",
+      "opaque_page_id": "3ca0f3fc29e8801c8774eb9c45fd16b3",
+      "placement": "private_page_space",
+      "exact_title_count": 1,
+      "exact_text_marker": "V0R-B-ROLE-BASE",
+      "exact_text_marker_block_count": 1,
+      "status": "complete"
+    },
+    "REF-FREE-A": {
+      "page_alias": "V0R-A-ROOT",
+      "opaque_page_id": "8259e69c1dfb83d8b25401f1c44c198c",
+      "placement": "REF-FREE-A_teamspace",
+      "exact_title_count": 1,
+      "notion_built_in_starter_body_editable_count": 31,
+      "starter_blocks_cleared": false,
+      "required_markers_or_database_created": false,
+      "status": "partial_awaiting_confirmation"
+    }
+  },
+  "privacy_and_scope_attestation": {
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_content_accessed": false,
+    "built_in_starter_is_user_personal_content": false,
+    "workspace_or_page_invitation_sent": false,
+    "permission_or_role_changed": false,
+    "comment_reaction_or_mention_sent": false,
+    "reference_screenshot_persisted": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "confirmation_boundary": {
+    "confirmation_required_before_next_action": true,
+    "next_action": "clear_31_Notion_built_in_starter_body_editables_from_new_V0R_A_ROOT",
+    "confirmation_received": false,
+    "permission_mutation_confirmation_required_later": true,
+    "cleanup_trash_confirmation_required_later": true
+  },
+  "claims": {
+    "V0R_P1_lossless_execution_started": true,
+    "V0R_P1_lossless_fixture_creation_complete": false,
+    "V0R_P1_lossless_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

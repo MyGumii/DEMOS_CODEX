@@ -1,0 +1,144 @@
+{
+  "run_id": "h5c-offline-effect-terminal-full-sweep-20260813",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "recorded_at": "2026-08-13T22:55:45.8132310+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "document_status": "Shared Knowledge has a separate active goal; no Shared Knowledge file was modified."
+  },
+  "slice": "H5c-disabled-offline-catalog-effect-source-terminal-and-full-sweep-completion",
+  "status": "tested_offline_convergence_foundation",
+  "scope": {
+    "workspace_schema_changed": false,
+    "legacy_source_schema_changed": false,
+    "live_mutation": false,
+    "feature_flags_changed": false,
+    "catalog_effect_then_source_terminal": true,
+    "catalog_and_source_response_loss_replay": true,
+    "full_sweep_completion_evidence": true,
+    "required_sweep_next_pass_gate": true,
+    "destructive_watermark_ack": false,
+    "continuous_consumer_registered": false,
+    "resolver_or_ui_cutover": false,
+    "git_provenance": "unavailable: workspace .git is not valid repository metadata"
+  },
+  "owned_files": [
+    "code_assist_v1/notion_legacy_change_consumer_contract.py",
+    "code_assist_v1/notion_legacy_change_consumer.py",
+    "code_assist_v1/notion_legacy_change_consumer_orchestration.py",
+    "code_assist_v1/notion_workspace_healing.py",
+    "code_assist_v1/notion_workspace_store.py",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer.py",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer_orchestration.py",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md",
+    "code_assist_v1/docs/notion_parity/checkpoints/h5c-offline-effect-terminal-full-sweep-20260813.json"
+  ],
+  "protected_files": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/**",
+    "code_assist_v1/knowledge_core/**",
+    "code_assist_v1/tests/knowledge_spaces/**",
+    "code_assist_v1/app_code.py",
+    "code_assist_v1/app_notion.py",
+    "code_assist_v1/routes_notion_bridge.py",
+    "code_assist_v1/routes_chat_stream.py",
+    "code_assist_v1/auth.py",
+    "code_assist_v1/config.py",
+    "code_assist_v1/data_paths.py",
+    "code_assist_v1/tests/conftest.py",
+    "code_assist_v1/test_safety.py",
+    "live knowledge/user_data/.runtime/sessions/workspace paths"
+  ],
+  "input_hashes": {
+    "code_assist_v1/notion_legacy_change_consumer_contract.py": "91fd34b947beed84d32ad4770bb3423860fc6f60f9a710d67bcae50c288b1fb9",
+    "code_assist_v1/notion_legacy_change_consumer.py": "a79e54bb7ea89ae15f7210dfb0a9426d063e3416133baf1cba320400483e877a",
+    "code_assist_v1/notion_workspace_healing.py": "04eebf111fd49c4e758a83fd92acd3843cc1256629cbf1ef36b9fbc0b4cc777f",
+    "code_assist_v1/notion_workspace_store.py": "11277f3aeaad931ee07b8919493d1d427c1bf7b8ca52c359fe29bcfd7af22bde",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer.py": "14e9666d116fb84289c2156e032438d6d16559d968da51c579f422b6599e672e",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "d29ae5fe165004d7b94c7b6316491a3628d4cd1cce029aaa323f13edeeac4b6c",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "ce4f620fadb34500c4bb0fdf7a9252610bc36d2f6607bbb755b94ce33fb56ed5",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "ea8b1abb1f74f9767c47748a6630d0d900baf94c3127a5d5a433c5db7768174b",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "2e2748ff22137d82fdff0a33ec72b3d98ae9e14c2d36a8635bf6aff01ba8d19e",
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+  },
+  "input_hash_notes": [
+    "notion_legacy_change_consumer_orchestration.py and its focused test were first created in H5c and therefore have no input hash.",
+    "Workspace store/healing input hashes are the last durable H5a outputs; H5b did not edit those files."
+  ],
+  "output_hashes": {
+    "code_assist_v1/notion_legacy_change_consumer_contract.py": "3a8dce944fa07c90a9aff252e9ff645a2275e671a3e36465d064d98d96d98d12",
+    "code_assist_v1/notion_legacy_change_consumer.py": "71bd52efe2f93e9a03520d740dfe3c21c6ef28301705d4b24ef403aada4ebfd0",
+    "code_assist_v1/notion_legacy_change_consumer_orchestration.py": "8b4785ad20eed7ff11cbd1b03584c63c0e7fd4853a13594f02a3136cca5399fe",
+    "code_assist_v1/notion_workspace_healing.py": "63f0490f77521a9445d8682dcc7aea64e040681acc87ed7be1e5aba31d8e65af",
+    "code_assist_v1/notion_workspace_store.py": "114e7c7bcf54fc8bbfa9f8b6d4cb320714f1e55b1b1db6d5296f2427250053d0",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer.py": "222dbbfb26506edea9b56b95c1a241731e23edbd7dc177621a7c4ce5097262ae",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer_orchestration.py": "dda12802c2ab56b52fafce8369b3c61215d738c1c9d5b2f0940f82cba46f2b05",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "5a7d1f1517776ac3a0e1bb5b0c74ce1fa45c6b02557f9660b560c6f9688fc17f",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "452cb0a25fa6f847f99e0754d9a42442392ebb32f9d1359c0f85c81099dbb7f0",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "93d60e9fd37434bf19660aefd563c67b5d91edf6c1d223271298902b0beacf16",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "4eff1d233db56e676e2d79a7baa713d7fe17b2fcd75943c75b5f92255cf3f732"
+  },
+  "schema_contract": {
+    "workspace_version": 2026081309,
+    "workspace_checksum": "sha256:ecc2a8b40e8d114015e05b1772701dd97bb99ac513db9fd041626408f5f127ec",
+    "workspace_actual_schema_sha256": "sha256:d79ecc5b79faacf3ca4db288e7978b8192df91b8c3f9e1d5a99f0d859e2e06b1",
+    "legacy_source_version": 2026081303,
+    "legacy_source_name": "notion_legacy_change_consumer_v3",
+    "legacy_source_checksum": "sha256:9fc07c846c9e3e1aae98b3a8a8f0507a37fcf06a9ed203e4a5d650c4f3f71495",
+    "legacy_source_object_hash": "sha256:69a96d7b7c2affd2c0ea83ce80064853d8e12ee8d3f0fbcf27fae3a14f429e6b"
+  },
+  "tests": [
+    {
+      "selection": "H5c consumer and catalog/source orchestration focused lane",
+      "result": "11 passed",
+      "exit_code": 0,
+      "duration_seconds": 18.62
+    },
+    {
+      "selection": "legacy v1/v2/v3 migration, reader, consumer and H5c orchestration lane",
+      "result": "64 passed",
+      "exit_code": 0,
+      "duration_seconds": 56.90
+    },
+    {
+      "selection": "workspace healing, store and projection adjacent lane",
+      "result": "78 passed",
+      "exit_code": 0,
+      "duration_seconds": 114.46
+    },
+    {
+      "selection": "incarnation attestation/rebind/orchestration/rehearsal and 1309 migration lane",
+      "result": "47 passed",
+      "exit_code": 0,
+      "duration_seconds": 67.54
+    },
+    {
+      "selection": "Notion manifest/catalog/route/evidence/differential machine-contract lane",
+      "result": "79 passed",
+      "exit_code": 0,
+      "duration_seconds": 36.72
+    }
+  ],
+  "known_host_failures": [
+    "The first multi-file py_compile command exited -1073740791 with no compiler output; a later isolated py_compile of all changed production modules passed.",
+    "One large workspace adjacent pytest command exited -1073740791 before pytest output; split healing/projection and incarnation lanes both passed.",
+    "One development-only negative test initially expected PermissionError while the non-member privacy contract correctly returned FileNotFoundError; the assertion was corrected and the focused suite passed. Its failing cleanup reported a transient open SQLite handle, which disappeared when the test process exited."
+  ],
+  "invariants": [
+    "Catalog page effect commits before source terminal receipt; no source write transaction spans catalog I/O.",
+    "Catalog effect replay is probed before source resolver/I/O after effect-response loss.",
+    "Source terminal operation is immutable and exact-request replay prevents duplicate terminal transitions.",
+    "Source work outside the explicitly administered workspace remains pending and is never inferred as globally unbound.",
+    "Full-sweep completion requires a materialized required pass, zero pending work, exact current source fence, a completed locator-apply run, and a matching immutable catalog owner fence.",
+    "Full-sweep completion replay precedes quiescence and catalog I/O, and a missing required completion blocks the next pass.",
+    "Source watermark rows are not deleted, cleared, acknowledged or otherwise mutated by H5c.",
+    "No request/startup import, continuous worker registration, resolver/UI cutover, feature flag change or live migration occurred."
+  ],
+  "next_exact_work": "Run a disabled no-ack shadow rehearsal across repeated passes and explicit multi-workspace pending cases, add identifier-free lag/restore evidence, and prove no source work loss under catalog/run restart. Keep destructive generation-conditional watermark acknowledgement absent until a separately approved design and fault suite exist.",
+  "stop_reason": null
+}

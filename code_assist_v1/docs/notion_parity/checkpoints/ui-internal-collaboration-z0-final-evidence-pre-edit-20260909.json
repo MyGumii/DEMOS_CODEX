@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.z0.final_evidence_pre_edit_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-Z0-FINAL-EVIDENCE-PRE-EDIT-20260909",
+  "recorded_at": "2026-09-09T01:05:41.5609436+09:00",
+  "status": "z0_generic_receipt_false_green_confirmed_before_dedicated_final_evidence_verifier",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-z0-receipt-only-completion-aligned-current-sbe-20260909.json",
+    "sha256": "sha256:3963ee6337f196a98fcd3a189c41be8c1d407b17f9802f9e2ee404171f29da57",
+    "record_sha256": "sha256:409627d1ec7d3cb5657441379afd02b505999c53e6e04e6f02947cefb76a215e"
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    }
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:d32d9cd7d7b5028b05140768b194c352b86136c0f709ee2e92ec81bcc2dacd91",
+    "code_assist_v1/tools/run_internal_collaborative_validation.py": "sha256:ef9635786663a32610805a9ccefdc0ef870290b937710d227d7673012e3cf9f4",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:5522625fdc5758e946e1c3dc68d5f31ddfcc4672c96e3b8c17f00b3ef07837f5",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json": "sha256:41fac4e801595600b24b83f8e7269c95368d1c67cf6a1239bdcb4b916de230f1"
+  },
+  "source_compatibility_binding": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-q0-source-compatibility-inheritance-v18-20260909.json",
+    "sha256": "sha256:8b01259f417f13f253260aefdc4a41a0532b7cd7e9d2fbd50262a47584b6c43a",
+    "record_sha256": "sha256:af965e57148023f922f9d737aada96a16c0cb4bc600382d51e2e66522f8b55d0"
+  },
+  "confirmed_gap": {
+    "checkpoint_only_z0_credit_allowed": false,
+    "generic_gate_receipt_without_z0_evidence_rejected": false,
+    "dedicated_z0_final_evidence_verifier_present": false,
+    "legitimate_full_python_six_node_and_promotion_binding_path_present": false
+  },
+  "planned_change": {
+    "central_validator": "Require a Z0-only receipt to bind immutable final-suite and realm-promotion evidence and reconstruct it before credit.",
+    "runner": "Produce create-only supporting suite evidence and a Z0 seal without executing operator actions.",
+    "tests": "Reject generic, mixed-packet, tampered, skipped, xfailed, retrying, release-drifted, and promotion-unbound Z0 receipts.",
+    "central_catalogs_modified": false,
+    "current_checkpoint_pointer_modified": false,
+    "sbe_hot_contracts_modified": false
+  },
+  "claims": {
+    "external_system_mutated": false,
+    "operator_action_executed": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:f93cec586a1fbb81865aebe76d72573b777aea28e571edaa04d35731fb94e868"
+}

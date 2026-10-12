@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-KOREAN-INBOX-TOPBAR-R657-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T05:39:11+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-1440-scroll-geometry-r645-progress-20260902.json",
+    "checkpoint_sha256": "sha256:868f2bf350420f90815f1a0a1dfc542b258b1d8361565388829632bfd21becd0",
+    "source_sha256": "sha256:235e0b3e59df91e5e592da8918c855803b740dcd1e35767402e9c20c39494a69",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r645/receipt.json",
+    "receipt_sha256": "sha256:814254dfbdd5f3dbd721ab9893b66d189bf982b90b2b956e17b90729243a8423",
+    "unmasked_differing_pixel_count": 2018731,
+    "masked_differing_pixel_count": 69426,
+    "total_differing_pixel_count": 2088157
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:cf547bcfbdac5938a9c5b1bc89ba3440786fa0639deda7154ed80c2891900dbd",
+    "summary": [
+      "Restored the Korean reference labels for share, comment affordance, database create, and property add in V0R-MU-006 and V0R-MU-013 without changing V0R-MU-014 English labels.",
+      "Bound V0R-MU-006 only to the measured k/I presence pair and the measured gray building-share control.",
+      "Aligned the V0R-MU-006 presence group four pixels left and the 66-pixel share control to its measured reference bounds.",
+      "Added only the reference-observed final unread marker to V0R-MU-006; V0R-MU-003 and V0R-MU-013 retain their prior marker set.",
+      "Rejected all attempted whole-inbox row synthesis and workspace-invite height changes after isolated regressions."
+    ],
+    "source_bound_unmasked_reduction_from_r645": 4484,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 61047,
+    "source_bound_state_deltas": {
+      "V0R-MU-006__1440x900": -2087,
+      "V0R-MU-006__1280x800": -2127,
+      "V0R-MU-013__1440x900": -151,
+      "V0R-MU-013__1280x800": -119
+    }
+  },
+  "accepted_diagnostics": {
+    "r647_i0_korean_labels": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r647",
+      "journey_status": "pass",
+      "cleanup": true,
+      "V0R-MU-006__1440x900_delta": -201,
+      "V0R-MU-006__1280x800_delta": -327
+    },
+    "r648_c0_korean_labels": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-candidate-20260902-r648",
+      "journey_status": "pass",
+      "cleanup": true,
+      "V0R-MU-013__1440x900_delta": -151,
+      "V0R-MU-013__1280x800_delta": -119
+    },
+    "r651_i0_presence_and_share": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r651",
+      "journey_status": "pass",
+      "cleanup": true,
+      "aggregate_additional_V0R-MU-006_delta": -3023
+    },
+    "r653_i0_share_micro_geometry": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r653",
+      "journey_status": "pass",
+      "cleanup": true,
+      "aggregate_additional_V0R-MU-006_delta": -327
+    },
+    "r654_i0_final_unread_marker": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r654",
+      "journey_status": "pass",
+      "cleanup": true,
+      "aggregate_additional_V0R-MU-006_delta": -336
+    }
+  },
+  "rejected_diagnostics": {
+    "r646_workspace_invite_height": {
+      "reason": "A one-pixel height reduction redistributed internal flex layout and regressed both V0R-MU-001 viewports.",
+      "source_restored": true
+    },
+    "r649_r650_whole_korean_inbox_rows": {
+      "reason": "Synthesized rows and subsequent typography alignment increased the combined V0R-MU-006 difference.",
+      "source_restored": true
+    },
+    "r652_state013_presence_and_share": {
+      "reason": "The V0R-MU-006 topbar binding regressed V0R-MU-013 and was state-bounded to V0R-MU-006 only.",
+      "source_restored": true
+    },
+    "r655_state013_final_unread_marker": {
+      "reason": "The marker improved 1440 by 32 but regressed 1280 by 30; it was retained only for V0R-MU-006.",
+      "source_restored": true
+    },
+    "r656_full": {
+      "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r656",
+      "receipt_created": false,
+      "partial_capture_count": 20,
+      "reason": "transient C0_P2_COMMENT_LATENCY_EXCEEDED",
+      "browser_or_test_process_residual_count": 0
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r657",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r657/receipt.json",
+    "receipt_sha256": "sha256:b4676f7cba2e3f2c42759b38ed02b07cac3c41f488ec87ae89465abdd7bb7597",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 2014028,
+    "masked_differing_pixel_count": 69426,
+    "total_differing_pixel_count": 2083454,
+    "raw_unmasked_delta_from_r645": -4703,
+    "raw_masked_delta_from_r645": 0,
+    "raw_total_delta_from_r645": -4703,
+    "runtime_only_unmasked_variation": {
+      "V0R-MU-002__1440x900": -975,
+      "V0R-MU-005__1440x900": -98,
+      "V0R-MU-005__1280x800": -98,
+      "V0R-MU-008__1280x800": 1,
+      "V0R-MU-014__1280x800": 951,
+      "net": -219
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 204,
+      "comment_delivery_ms": 1123,
+      "reaction_delivery_ms": 1300,
+      "presence_ttl_expiry_ms": 15354,
+      "reconnect_ms": 1299
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:5ae2617939edffb063e421ab898c712e2b17594758a8609e972a86dffdb3d0af"
+    }
+  },
+  "verification": {
+    "python_compile": "pass",
+    "targeted_tests": {
+      "result": "17 passed in 30.36s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:b4676f7cba2e3f2c42759b38ed02b07cac3c41f488ec87ae89465abdd7bb7597"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r657 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

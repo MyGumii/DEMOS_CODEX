@@ -1,0 +1,101 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T23:18:36.5318688+09:00",
+  "run_id": "ui9-editor-005-reference-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "previous_partial_observation": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-004-reference-partial-ime-events-deferred-20260821.json",
+    "sha256": "sha256:2cdb101f8930254714c934a804c267935bde6efb8d4b700465e446d18e42efe2",
+    "semantic_status": "unpromoted_ime_intermediate_events_pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-EDITOR-005",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "handoff_ref_free_a"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-EDITOR-005",
+    "status": "reference_context_correction_required",
+    "review_required": false,
+    "promotion_allowed": false,
+    "incomplete_requirement": "valid_reference_side_peek_entry_context"
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 3,
+    "reference_partially_observed": 2,
+    "reference_context_correction_required": 1,
+    "reference_unobserved": 14,
+    "overall_goal_complete": false
+  },
+  "reference_intake": {
+    "worksheet_sha256": "sha256:e77ab7b84e0eb5e4a1326d715a817b2fc9e9569df564825ea817043a3a99fe03",
+    "c0_status": "pass",
+    "c0_sha256": "sha256:288ef86378337f79d475ddcb8093a6b1df17c0434539d63d41087efef5091584",
+    "action_log_sha256": "sha256:13b8320805d650de91a43d32968d74b7e357cc6cf4f1558df4fcf5aae12b30f8",
+    "reference_capture_count": 0,
+    "operator_review": {
+      "status": "not_requested_invalid_reference_entry_context",
+      "scope": "redacted_summary_only"
+    }
+  },
+  "reference_observation": {
+    "ordinary_synthetic_page_created": true,
+    "ordinary_page_action_menu_opened": true,
+    "side_peek_action_visible": false,
+    "full_page_transition_action_visible": false,
+    "destructive_action_executed_before_cleanup": false,
+    "synthetic_page_moved_to_trash": true,
+    "synthetic_tree_residual_count": 0,
+    "interpretation": "The official Free web ordinary-page action menu does not provide the planned side-peek transition. Side peek must be characterized from a supported context such as a synthetic database row page before this scenario can be compared fairly."
+  },
+  "local_evidence": {
+    "isolated_browser_test": "1 passed in 24.71s",
+    "UI-EDITOR-005-A01_sha256": "sha256:741f616c4cab94ad2873e7a74c0818a0f0ee46323204478a5e9eb6c7fc89b45b",
+    "UI-EDITOR-005-A02_sha256": "sha256:13ac113acff650e0b7c15c95c58161fc08d093cd1f1862f7db4466bd96e85389",
+    "side_peek_from_ordinary_page_menu_supported": true,
+    "side_peek_closed_on_full_page": true,
+    "save_count": 2,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0
+  },
+  "contract_gap": {
+    "code": "REFERENCE_ENTRY_CONTEXT_MISMATCH",
+    "current_plan_context": "ordinary synthetic page",
+    "required_reference_context": "supported synthetic row-page or equivalent side-peek entry",
+    "local_behavior_at_risk": "Local exposes side peek directly from the ordinary page action menu, which is not present in the observed official ordinary-page menu.",
+    "automatic_plan_or_local_behavior_change_allowed": false
+  },
+  "claims": {
+    "ui_editor_005_reference_observed": false,
+    "ui_editor_005_reference_characterized": false,
+    "ui_editor_005_differential_passed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Create a synthetic database row page in REF-FREE-A, verify that its supported row-open interaction provides side peek, and only then capture side-peek and full-page transitions. If the reference still lacks the transition, revise the scenario contract before changing local behavior."
+}

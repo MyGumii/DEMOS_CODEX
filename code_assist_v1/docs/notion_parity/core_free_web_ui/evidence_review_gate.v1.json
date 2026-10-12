@@ -1,0 +1,97 @@
+{
+  "contract": "code_assist.notion.core_free_ui.evidence_review_gate.v1",
+  "recorded_at": "2026-08-23T01:06:03+09:00",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "inputs": {
+    "scenario_plan": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:455de38d4ac91deb9de7df0a92fd94dcbcd234dd50569f8148ce3b4f80672a43"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:bfb1a91ef4f7e07991dbf34f6f5cd6f371efe746d8498653b88617c77d5b586e"
+    },
+    "owner_approval_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/owner_approval_receipt.20260822.json",
+      "sha256": "sha256:28e8da75e8c06263f221943dfbd19a644783c8ab1dca6716be7c580bb6c2bf5c"
+    },
+    "editor006_policy_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_receipt.v4.20260822.json",
+      "sha256": "sha256:508aee169dec8cd81c35cb618b0b8f62e812533c53eeff95447f9b70a6f7a2a3"
+    }
+  },
+  "categories": {
+    "certified": [
+      "UI-SHELL-001",
+      "UI-SHELL-002",
+      "UI-SHELL-003",
+      "UI-TREE-001",
+      "UI-TREE-002",
+      "UI-TREE-003",
+      "UI-EDITOR-001",
+      "UI-EDITOR-002",
+      "UI-EDITOR-003",
+      "UI-EDITOR-004",
+      "UI-EDITOR-005",
+      "UI-EDITOR-006",
+      "UI-DB-001",
+      "UI-DB-002",
+      "UI-DB-003",
+      "UI-SEARCH-001",
+      "UI-SEARCH-002",
+      "UI-COLLAB-001",
+      "UI-SHARE-001",
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-SB-003",
+      "UI-A11Y-001",
+      "UI-RESP-001",
+      "UI-PERF-001"
+    ],
+    "reference_observed_review_pending": [],
+    "local_integration_review_pending": [],
+    "reference_partially_observed": []
+  },
+  "review_decisions": {
+    "reference_observed_summary": {
+      "status": "approved",
+      "scenario_ids": [
+        "UI-SHELL-001",
+        "UI-EDITOR-001",
+        "UI-EDITOR-002",
+        "UI-EDITOR-005",
+        "UI-DB-001",
+        "UI-DB-002",
+        "UI-DB-003",
+        "UI-SEARCH-001",
+        "UI-SEARCH-002",
+        "UI-COLLAB-001",
+        "UI-SHARE-001"
+      ],
+      "approval_phrase": "UI-SHELL-001, UI-EDITOR-001, UI-EDITOR-002, UI-EDITOR-005, UI-DB-001, UI-DB-002, UI-DB-003, UI-SEARCH-001, UI-SEARCH-002, UI-COLLAB-001, UI-SHARE-001 요약 승인"
+    },
+    "local_second_brain_policy": {
+      "status": "approved",
+      "scenario_ids": [
+        "UI-SB-001",
+        "UI-SB-002",
+        "UI-SB-003"
+      ],
+      "approval_phrase": "UI-SB-001, UI-SB-002, UI-SB-003 로컬 전용 통합 증거 정책 승인"
+    },
+    "editor006_local_recovery_policy": {
+      "status": "approved",
+      "scenario_ids": [
+        "UI-EDITOR-006"
+      ],
+      "approval_phrase": "UI-EDITOR-006 공식 실패 유도 제외 및 로컬 회복 계약 승인"
+    }
+  },
+  "claims": {
+    "all_scenarios_categorized_once": true,
+    "certified_count": 25,
+    "completion_matrix_changed": true,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  }
+}

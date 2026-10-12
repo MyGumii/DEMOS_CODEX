@@ -1,0 +1,1080 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_packets.v1",
+  "recorded_at": "2026-08-23T03:12:00+09:00",
+  "catalog_state": "superseded",
+  "superseded_by": "internal_collaborative_packets.v2.json",
+  "authority_inputs": {
+    "ultra_plan": {
+      "path": "INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+      "status": "present",
+      "required": true
+    },
+    "implementation_handoff": {
+      "path": "INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V1.md",
+      "status": "present",
+      "required": true
+    },
+    "product_matrix": {
+      "path": "internal_collaborative_completion_matrix.v1.json",
+      "status": "present",
+      "required": true
+    },
+    "validation_ladder": {
+      "path": "internal_collaborative_validation_ladder.v1.json",
+      "status": "present_planning_contract",
+      "required": true
+    }
+  },
+  "integrity_binding": {
+    "strategy": "external_checkpoint_hash_bundle",
+    "checkpoint": "../checkpoints/ui-internal-collaboration-xhigh-handoff-20260823.json",
+    "reason": "Avoid a circular hash dependency among the packet catalog, matrix, validation ladder, and handoff."
+  },
+  "status_values": [
+    "planned",
+    "in_progress",
+    "implemented_unverified",
+    "gate_passed",
+    "blocked",
+    "superseded"
+  ],
+  "status_semantics": {
+    "blocked": "Packet-level blocked is local to the packet and does not imply the thread goal is blocked.",
+    "prerequisite_rule": "A packet prerequisite must be gate_passed unless the prerequisite is an explicitly completed decision gate.",
+    "completion_claim_rule": "Only Z0-P1 may set claims.product_complete to true."
+  },
+  "phase_order": [
+    "U0a",
+    "D0a",
+    "H0a",
+    "A0a",
+    "E0",
+    "T0a",
+    "O0a",
+    "G0",
+    "UI0",
+    "K0",
+    "D0b",
+    "A0b",
+    "T0b",
+    "I0",
+    "C0",
+    "E1",
+    "S0",
+    "F0",
+    "V0",
+    "O1",
+    "Q0",
+    "R0",
+    "R1",
+    "Z0"
+  ],
+  "approval_registry": [
+    {
+      "id": "AP-DEV-PAIR",
+      "status": "pending",
+      "scope": "Approved development identity allowlist, new roots, replacement of the development 10111 process, and start of 10112/10113.",
+      "required_when": [
+        "D0B-P1"
+      ]
+    },
+    {
+      "id": "AP-RUNTIME-SPIKE",
+      "status": "conditional_pending",
+      "scope": "Download or install a CRDT, ASGI, Node, or gateway candidate into the isolated spike environment.",
+      "required_when": [
+        "candidate_dependency_not_already_available"
+      ]
+    },
+    {
+      "id": "AP-REFERENCE-MULTIUSER",
+      "status": "pending",
+      "scope": "Create, mutate, capture, and clean synthetic multi-user states in the dedicated external Notion reference workspaces.",
+      "required_when": [
+        "V0R-P1"
+      ]
+    },
+    {
+      "id": "AP-OPS-TARGET",
+      "status": "pending",
+      "scope": "Configure an external encrypted backup destination, key, retention, and target-host drill.",
+      "required_when": [
+        "O1B-P1"
+      ]
+    },
+    {
+      "id": "AP-PROD-REHEARSAL",
+      "status": "pending",
+      "scope": "Create and use an approved offline production-data copy for migration and restore rehearsal without changing production.",
+      "required_when": [
+        "R0A-P1"
+      ]
+    },
+    {
+      "id": "AP-PROD-DEPLOY",
+      "status": "pending",
+      "scope": "Install the frozen release on 10012 default-off, install or restart the gateway service, and run health checks without enabling users.",
+      "required_when": [
+        "R0B-P1"
+      ]
+    },
+    {
+      "id": "AP-PROD-CANARY",
+      "status": "pending",
+      "scope": "Enable the frozen release only for the named production canary principals and workspace, with abort thresholds.",
+      "required_when": [
+        "R1-P1"
+      ]
+    },
+    {
+      "id": "AP-PROD-RESTORE",
+      "status": "incident_only_not_preapproved",
+      "scope": "Execute an actual production restore after an incident; rehearsal approval never authorizes this action.",
+      "required_when": [
+        "actual_production_restore"
+      ]
+    }
+  ],
+  "ownership_lanes": {
+    "DOC_HARNESS": {
+      "shared_file_exclusive": true,
+      "notes": "Different new files may be parallelized, but the same catalog, verifier, receipt, or test file has one owner at a time."
+    },
+    "RUNTIME": {
+      "shared_file_exclusive": true,
+      "notes": "app_code.py is protected and requires explicit ownership transfer."
+    },
+    "CANONICAL": {
+      "shared_file_exclusive": true,
+      "notes": "Only one agent may own notion_workspace_store.py or the current forward migration lineage."
+    },
+    "UI": {
+      "shared_file_exclusive": true,
+      "notes": "Only one agent may own notion.js, notion.css, index.html, or editor core."
+    },
+    "SECOND_BRAIN_PRODUCTION": {
+      "shared_file_exclusive": true,
+      "notes": "Protected dependency lane; explicit ownership transfer and SBE regression required."
+    },
+    "SPIKE": {
+      "shared_file_exclusive": true,
+      "notes": "Different isolated candidate files may be parallelized, but the same file has one owner; no production dependency or frozen schema before E0 winner."
+    }
+  },
+  "phase_gates": [
+    {
+      "id": "U0A-GATE-001",
+      "phase": "U0a",
+      "kind": "draft_denominator_and_harness",
+      "required": true,
+      "exit": "Every visible capability has a draft required, deferred, conditional, or hidden classification; every required behavior has a provisional row and evidence route; the verifier rejects unresolved and false-complete states. Final product decisions remain open until G0-U."
+    },
+    {
+      "id": "D0-GATE-001",
+      "phase": "D0",
+      "kind": "paired_environment",
+      "required": true,
+      "exit": "Two paired hosts share one dev identity authority while dev and production roots, cookies, secrets, CSRF, logout, links, and network requests remain isolated."
+    },
+    {
+      "id": "H0-GATE-001",
+      "phase": "H0",
+      "kind": "multi_principal_harness",
+      "required": true,
+      "exit": "Owner, member, internal page guest, and outsider run in independent ephemeral browser contexts with leak oracles and deterministic reset."
+    },
+    {
+      "id": "A0-GATE-001",
+      "phase": "A0",
+      "kind": "canonical_authority",
+      "required": true,
+      "exit": "One content/IAM/event authority, no request-time directory scan, no dual write, and restart/replay/revoke convergence."
+    },
+    {
+      "id": "E0-GATE-001",
+      "phase": "E0",
+      "kind": "technology_spike",
+      "required": true,
+      "exit": "Selected gateway and CRDT runtime is reproducible on target Windows and passes the zero-loss convergence, IME, restart, compaction, and cost corpus."
+    },
+    {
+      "id": "T0-GATE-001",
+      "phase": "T0",
+      "kind": "durable_protocol",
+      "required": true,
+      "exit": "Ticket, epoch, sequence, ACK, replay, snapshot, compaction, backpressure, and restart behavior is durable and fail-closed."
+    },
+    {
+      "id": "O0-GATE-001",
+      "phase": "O0",
+      "kind": "recovery_design",
+      "required": true,
+      "exit": "Event compaction and backup consistency share an exact high-water boundary and a synthetic new-root restore is reproducible."
+    },
+    {
+      "id": "UI0-GATE-001",
+      "phase": "UI0",
+      "kind": "behavior_preserving_host_adapter",
+      "required": true,
+      "exit": "The editor host adapter exposes the only supported collaboration hooks while all six Node contracts and the historical browser journey remain green without behavior changes."
+    },
+    {
+      "id": "K0-GATE-001",
+      "phase": "K0",
+      "kind": "default_off_control_plane",
+      "required": true,
+      "exit": "The aggregate switch dominates every capability switch, all new capabilities are default-off in every realm, and rollback does not require a schema downgrade."
+    },
+    {
+      "id": "I0-GATE-001",
+      "phase": "I0",
+      "kind": "workspace_and_page_sharing",
+      "required": true,
+      "exit": "Workspace roles and page grants, inheritance, invitation, role change, revocation, audit, and outsider non-oracles pass across independent principals."
+    },
+    {
+      "id": "C0-GATE-001",
+      "phase": "C0",
+      "kind": "live_collaboration_domain",
+      "required": true,
+      "exit": "Presence, comments, reactions, mentions, and inbox delivery are durable or explicitly ephemeral, permission-filtered, revocation-fenced, and proven in two browsers."
+    },
+    {
+      "id": "E1-GATE-001",
+      "phase": "E1",
+      "kind": "convergent_editor",
+      "required": true,
+      "exit": "Rich text, structure, and adopted database mutations converge with zero acknowledged character loss while IME, selection, focus, undo, reconnect, and the frozen offline policy pass."
+    },
+    {
+      "id": "S0-GATE-001",
+      "phase": "S0",
+      "kind": "second_brain_revision_fence",
+      "required": true,
+      "exit": "Only an explicit canonical revision publication commit enters Second Brain, and stale approval, revoke, retry, restart, search, backlink, and session paths remain authorized."
+    },
+    {
+      "id": "F0-GATE-001",
+      "phase": "F0",
+      "kind": "adopted_feature_denominator",
+      "required": true,
+      "exit": "Every adopted database, file, history, search, import/export, reminder, and adjacent capability round-trips canonically; every non-adopted visible control is absent."
+    },
+    {
+      "id": "V0-GATE-001",
+      "phase": "V0",
+      "kind": "final_interaction_pixel_accessibility",
+      "required": true,
+      "exit": "The final release candidate reruns the historical 25 scenarios and every adopted multi-user state at both required viewports with zero unmasked RGBA difference and complete accessibility evidence."
+    },
+    {
+      "id": "O1-GATE-001",
+      "phase": "O1",
+      "kind": "coordinated_recovery",
+      "required": true,
+      "exit": "A single coordinated generation is published to the approved encrypted destination and restored to a new root with permissions, realtime, files, history, search, and Second Brain checks inside the frozen RPO/RTO."
+    },
+    {
+      "id": "Q0-GATE-001",
+      "phase": "Q0",
+      "kind": "target_quality",
+      "required": true,
+      "exit": "The frozen load, fault, security, accessibility, observability, and kill-switch envelopes pass with no acknowledged-operation loss or authorization leak."
+    },
+    {
+      "id": "R0-GATE-001",
+      "phase": "R0",
+      "kind": "production_copy_rehearsal",
+      "required": true,
+      "exit": "Approved production-data copy migration, restored-copy full suite, gateway packaging, and compatible rollback all pass."
+    },
+    {
+      "id": "R1-GATE-001",
+      "phase": "R1",
+      "kind": "production_canary",
+      "required": true,
+      "exit": "Two allowed collaborators and one outsider negative control pass the canary, soak, abort, prebuilt kill-switch exercise, and rollback on the frozen deployment generation."
+    },
+    {
+      "id": "Z0-GATE-001",
+      "phase": "Z0",
+      "kind": "strict_product_completion",
+      "required": true,
+      "exit": "Every required completion row, phase gate, approval, receipt, artifact, realm derivation, source hash, and deployment-generation binding passes strict gate mode with no skip, xfail, unresolved host retry, or open decision."
+    }
+  ],
+  "decision_freeze": {
+    "id": "G0",
+    "status": "open",
+    "aggregate_requires": [
+      "G0-U",
+      "G0-E"
+    ],
+    "subgates": [
+      {
+        "id": "G0-U",
+        "decision_owner": "user_product_owner",
+        "status": "open",
+        "prerequisites": [
+          "U0A-GATE-001"
+        ],
+        "required_decisions": [
+          "development_identity_import_scope",
+          "target_scale_and_deployment_topology",
+          "adopted_feature_denominator",
+          "recovery_backup_retention_and_history_policy",
+          "offline_editing_policy"
+        ],
+        "scale_denominator_fields": [
+          "registered_users",
+          "simultaneous_connections",
+          "simultaneous_editors_per_page",
+          "pages_per_workspace",
+          "blocks_per_page",
+          "rows_per_database",
+          "sustained_operations_per_second",
+          "burst_operations_per_second",
+          "attachment_concurrency",
+          "disk_reserve"
+        ],
+        "recovery_decision_fields": [
+          "rpo",
+          "rto",
+          "write_drain_timeout",
+          "backup_retention",
+          "page_history_retention",
+          "external_destination",
+          "restore_secret_policy"
+        ],
+        "recommended_restore_secret_policy": "rotate_session_signing_secret_and_force_reauthentication"
+      },
+      {
+        "id": "G0-E",
+        "decision_owner": "engineering",
+        "status": "open",
+        "prerequisites": [
+          "A0A-P2",
+          "E0-P4",
+          "T0A-P3",
+          "O0A-P3"
+        ],
+        "required_decisions": [
+          "canonical_authority_architecture",
+          "gateway_and_crdt_winner",
+          "protocol_and_compaction_binding",
+          "next_available_forward_schema_version"
+        ],
+        "schema_version_rule": "Derive from the current migration lineage under an exclusive CANONICAL ownership lease; never ask the user to choose a schema number."
+      }
+    ],
+    "receipt_required": true,
+    "invalidation_inputs": [
+      "decision_values",
+      "candidate_benchmark_hashes",
+      "authority_ADR_hash",
+      "protocol_ADR_hash",
+      "recovery_ADR_hash",
+      "current_schema_lineage_hash"
+    ]
+  },
+  "packets": [
+    {
+      "id": "U0A-P1",
+      "phase": "U0a",
+      "status": "planned",
+      "prerequisites": [],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "current_route_storage_authority_inventory",
+        "capability_and_visible_state_draft",
+        "open_decision_register"
+      ],
+      "gate_ids": [],
+      "matrix_rows": []
+    },
+    {
+      "id": "U0A-P2",
+      "phase": "U0a",
+      "status": "planned",
+      "prerequisites": [
+        "U0A-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "packet_catalog_verifier",
+        "validation_ladder_runner_and_verifier",
+        "product_completion_audit_and_gate_modes",
+        "tamper_tests"
+      ],
+      "gate_ids": [
+        "U0-GATE-001"
+      ],
+      "matrix_rows": []
+    },
+    {
+      "id": "D0A-P1",
+      "phase": "D0a",
+      "status": "planned",
+      "prerequisites": [
+        "U0A-P2"
+      ],
+      "approval": null,
+      "ownership_lane": "RUNTIME",
+      "deliverables": [
+        "pure_pair_config_contract",
+        "strict_cookie_and_origin_validation",
+        "fail_closed_peer_link_config",
+        "unit_and_auth_regression_tests"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "ENV-002"
+      ]
+    },
+    {
+      "id": "D0A-P2",
+      "phase": "D0a",
+      "status": "planned",
+      "prerequisites": [
+        "D0A-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "RUNTIME",
+      "deliverables": [
+        "empty_marker_bound_pair_root_builder",
+        "four_generated_identity_fixture",
+        "no_content_session_secret_or_audit_copy",
+        "provenance_manifest"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "ENV-001",
+        "ENV-002"
+      ]
+    },
+    {
+      "id": "D0A-P3",
+      "phase": "D0a",
+      "status": "planned",
+      "prerequisites": [
+        "D0A-P2"
+      ],
+      "approval": null,
+      "ownership_lane": "RUNTIME",
+      "deliverables": [
+        "isolated_pair_launcher",
+        "readiness_and_port_ownership",
+        "same_subject_and_independent_subject_integration",
+        "production_before_after_hash_proof"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "ENV-001",
+        "ENV-002"
+      ]
+    },
+    {
+      "id": "D0B-P1",
+      "phase": "D0b",
+      "status": "planned",
+      "prerequisites": [
+        "G0",
+        "D0A-P3"
+      ],
+      "approval": "AP-DEV-PAIR",
+      "ownership_lane": "RUNTIME",
+      "deliverables": [
+        "approved_identity_subset_import",
+        "new_dev_secret_and_cookie_namespace",
+        "10111_replacement_and_10112_start",
+        "two_browser_isolation_evidence"
+      ],
+      "gate_ids": [
+        "D0-GATE-001"
+      ],
+      "matrix_rows": [
+        "ENV-001",
+        "ENV-002"
+      ]
+    },
+    {
+      "id": "H0A-P1",
+      "phase": "H0a",
+      "status": "planned",
+      "prerequisites": [
+        "D0A-P2"
+      ],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "owner_member_internal_guest_outsider_fixture",
+        "two_or_more_ephemeral_browser_contexts",
+        "storage_cache_service_worker_network_leak_oracle",
+        "deterministic_reset_and_redaction"
+      ],
+      "gate_ids": [
+        "H0-GATE-001"
+      ],
+      "matrix_rows": [
+        "IAM-001",
+        "IAM-002",
+        "IAM-003",
+        "RT-002",
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003"
+      ]
+    },
+    {
+      "id": "A0A-P1",
+      "phase": "A0a",
+      "status": "planned",
+      "prerequisites": [
+        "U0A-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "authority_and_route_map",
+        "transaction_and_epoch_ADR",
+        "legacy_import_and_no_dual_write_contract",
+        "second_brain_revision_boundary"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "DATA-001",
+        "DATA-002"
+      ]
+    },
+    {
+      "id": "A0A-P2",
+      "phase": "A0a",
+      "status": "planned",
+      "prerequisites": [
+        "A0A-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "unversioned_disposable_sqlite_authority_prototype",
+        "atomic_content_iam_epoch_event_audit_outbox_tests",
+        "restart_replay_and_revoke_prototype"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "DATA-001",
+        "DATA-002"
+      ]
+    },
+    {
+      "id": "E0-P1",
+      "phase": "E0",
+      "status": "planned",
+      "prerequisites": [
+        "A0A-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "candidate_runtime_and_dependency_matrix",
+        "common_convergence_corpus"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003",
+        "PERF-001"
+      ]
+    },
+    {
+      "id": "E0-P2",
+      "phase": "E0",
+      "status": "planned",
+      "prerequisites": [
+        "E0-P1"
+      ],
+      "approval": "AP-RUNTIME-SPIKE_IF_DOWNLOAD_REQUIRED",
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "candidate_adapters",
+        "windows_runtime_reproducibility",
+        "ime_restart_reorder_duplicate_compaction_benchmark"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003",
+        "PERF-001"
+      ]
+    },
+    {
+      "id": "E0-P3",
+      "phase": "E0",
+      "status": "planned",
+      "prerequisites": [
+        "E0-P2"
+      ],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "winner_ADR",
+        "exact_dependency_artifact",
+        "rejected_candidate_evidence"
+      ],
+      "gate_ids": [
+        "E0-GATE-001"
+      ],
+      "matrix_rows": [
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003",
+        "PERF-001"
+      ]
+    },
+    {
+      "id": "T0A-P1",
+      "phase": "T0a",
+      "status": "planned",
+      "prerequisites": [
+        "A0A-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "one_time_ticket_threat_model",
+        "versioned_envelope_and_payload_hash",
+        "operation_sequence_ack_replay_contract"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "RT-001",
+        "IAM-003"
+      ]
+    },
+    {
+      "id": "T0A-P2",
+      "phase": "T0a",
+      "status": "planned",
+      "prerequisites": [
+        "T0A-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "transport_only_gateway_prototype",
+        "origin_expiry_reuse_epoch_negative_tests",
+        "backpressure_and_reconnect_storm_contract"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "RT-001",
+        "IAM-003"
+      ]
+    },
+    {
+      "id": "T0A-P3",
+      "phase": "T0a",
+      "status": "planned",
+      "prerequisites": [
+        "T0A-P2",
+        "E0-P3"
+      ],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "gateway_topology_ADR",
+        "health_start_stop_rollback_contract",
+        "selected_runtime_protocol_binding_plan"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "RT-001"
+      ]
+    },
+    {
+      "id": "O0A-P1",
+      "phase": "O0a",
+      "status": "planned",
+      "prerequisites": [
+        "A0A-P1",
+        "E0-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "write_barrier_and_backup_generation_ADR",
+        "event_snapshot_compaction_high_water_contract",
+        "mandatory_and_rebuildable_component_inventory"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "OPS-001",
+        "OPS-002",
+        "HIST-001"
+      ]
+    },
+    {
+      "id": "O0A-P2",
+      "phase": "O0a",
+      "status": "planned",
+      "prerequisites": [
+        "O0A-P1",
+        "A0A-P2"
+      ],
+      "approval": null,
+      "ownership_lane": "SPIKE",
+      "deliverables": [
+        "synthetic_consistent_backup",
+        "new_root_restore_and_projection_regeneration",
+        "integrity_fk_hash_event_blob_checks",
+        "benchmark_report"
+      ],
+      "gate_ids": [
+        "O0-GATE-001"
+      ],
+      "matrix_rows": [
+        "OPS-001",
+        "OPS-002"
+      ]
+    },
+    {
+      "id": "A0B-P1",
+      "phase": "A0b",
+      "status": "planned",
+      "prerequisites": [
+        "G0",
+        "E0-P3",
+        "A0A-P2"
+      ],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "next_forward_schema_and_migration",
+        "deterministic_legacy_snapshot_importer",
+        "dev_only_cutover_and_compatibility_read_projection",
+        "cross_process_restart_replay_rollback_rehearsal"
+      ],
+      "gate_ids": [
+        "A0-GATE-001"
+      ],
+      "matrix_rows": [
+        "DATA-001",
+        "DATA-002"
+      ]
+    },
+    {
+      "id": "T0B-P1",
+      "phase": "T0b",
+      "status": "planned",
+      "prerequisites": [
+        "G0",
+        "A0B-P1",
+        "T0A-P3"
+      ],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "durable_ticket_event_ack_replay_snapshot_store",
+        "selected_crdt_payload_and_compaction_binding",
+        "gateway_and_browser_transport",
+        "multiprocess_restart_backpressure_security_tests"
+      ],
+      "gate_ids": [
+        "T0-GATE-001"
+      ],
+      "matrix_rows": [
+        "RT-001",
+        "IAM-003",
+        "ROLL-001"
+      ]
+    },
+    {
+      "id": "I0-P1",
+      "phase": "I0",
+      "status": "planned",
+      "prerequisites": [
+        "D0B-P1",
+        "A0B-P1",
+        "H0A-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "workspace_and_page_role_resolver",
+        "direct_inherited_group_teamspace_grants",
+        "idempotent_audited_share_role_revoke_service",
+        "outsider_non_oracle"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "IAM-001",
+        "IAM-002",
+        "IAM-003"
+      ]
+    },
+    {
+      "id": "I0-P2",
+      "phase": "I0",
+      "status": "planned",
+      "prerequisites": [
+        "I0-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "UI",
+      "deliverables": [
+        "normal_share_invite_role_revoke_ui",
+        "inherited_access_explanation",
+        "multi_principal_browser_and_pixel_evidence"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "IAM-001",
+        "IAM-002",
+        "PIX-001"
+      ]
+    },
+    {
+      "id": "C0-P1",
+      "phase": "C0",
+      "status": "planned",
+      "prerequisites": [
+        "I0-P1",
+        "T0B-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "ephemeral_presence_ttl",
+        "canonical_comments_reactions_mentions_inbox",
+        "durable_before_live_delivery",
+        "revoke_and_cache_redaction"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "RT-002",
+        "IAM-003"
+      ]
+    },
+    {
+      "id": "C0-P2",
+      "phase": "C0",
+      "status": "planned",
+      "prerequisites": [
+        "C0-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "UI",
+      "deliverables": [
+        "presence_comment_mention_inbox_ui",
+        "two_browser_latency_and_ttl_evidence",
+        "collaboration_pixel_states"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "RT-002",
+        "PIX-001"
+      ]
+    },
+    {
+      "id": "E1-P1",
+      "phase": "E1",
+      "status": "planned",
+      "prerequisites": [
+        "I0-P1",
+        "T0B-P1",
+        "E0-P3"
+      ],
+      "approval": null,
+      "ownership_lane": "UI",
+      "deliverables": [
+        "rich_text_crdt",
+        "server_sequenced_block_and_database_commands",
+        "ime_selection_undo_remote_cursor_offline_buffer",
+        "history_and_revision_checkpoint_boundary"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "EDIT-001",
+        "EDIT-002",
+        "EDIT-003",
+        "HIST-001",
+        "PIX-001"
+      ]
+    },
+    {
+      "id": "S0-P1",
+      "phase": "S0",
+      "status": "planned",
+      "prerequisites": [
+        "E1-P1",
+        "I0-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "SECOND_BRAIN_PRODUCTION",
+      "deliverables": [
+        "canonical_document_revision_snapshot_adapter",
+        "preview_approve_stale_cancel_race_contract",
+        "attachment_session_search_backlink_authorization",
+        "second_brain_evolution_regression"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "SB-001"
+      ]
+    },
+    {
+      "id": "F0-P1",
+      "phase": "F0",
+      "status": "planned",
+      "prerequisites": [
+        "G0",
+        "E1-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "CANONICAL",
+      "deliverables": [
+        "adopted_database_canonical_round_trip",
+        "streaming_files_and_capacity_reservation",
+        "history_diff_restore_retention",
+        "adopted_import_export_reminder_surface"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "DB-001",
+        "FILE-001",
+        "HIST-001"
+      ]
+    },
+    {
+      "id": "V0A-P1",
+      "phase": "V0",
+      "status": "planned",
+      "prerequisites": [
+        "U0A-P2"
+      ],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "exact_rgba_comparator",
+        "named_mask_manifest_and_verifier",
+        "tamper_tests",
+        "geometry_focus_scroll_accessibility_receipt"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "PIX-001",
+        "UI-CORE-25"
+      ]
+    },
+    {
+      "id": "O1-P1",
+      "phase": "O1",
+      "status": "planned",
+      "prerequisites": [
+        "O0A-P2",
+        "A0B-P1",
+        "E1-P1",
+        "S0-P1",
+        "F0-P1"
+      ],
+      "approval": "AP-OPS-TARGET_FOR_EXTERNAL_DESTINATION",
+      "ownership_lane": "SECOND_BRAIN_PRODUCTION",
+      "deliverables": [
+        "coordinated_generation_manifest",
+        "encrypted_external_publish",
+        "new_root_restore_and_projection_regeneration",
+        "full_permission_realtime_file_history_second_brain_smoke"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "OPS-001",
+        "OPS-002"
+      ]
+    },
+    {
+      "id": "Q0-P1",
+      "phase": "Q0",
+      "status": "planned",
+      "prerequisites": [
+        "I0-P2",
+        "C0-P2",
+        "E1-P1",
+        "S0-P1",
+        "F0-P1",
+        "O1-P1",
+        "V0A-P1"
+      ],
+      "approval": null,
+      "ownership_lane": "DOC_HARNESS",
+      "deliverables": [
+        "target_scale_load_and_soak",
+        "reconnect_sqlite_busy_backpressure_and_disk_fault",
+        "security_accessibility_and_kill_switch_gate",
+        "p50_p95_p99_and_resource_report"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "PERF-001",
+        "ROLL-001",
+        "PIX-001"
+      ]
+    },
+    {
+      "id": "R0-P1",
+      "phase": "R0",
+      "status": "planned",
+      "prerequisites": [
+        "Q0-P1"
+      ],
+      "approval": "AP-PROD-DEPLOY",
+      "ownership_lane": "SECOND_BRAIN_PRODUCTION",
+      "deliverables": [
+        "release_candidate_freeze",
+        "production_backup",
+        "production_data_copy_migration_and_restore",
+        "gateway_service_package",
+        "compatible_code_rollback_rehearsal"
+      ],
+      "gate_ids": [
+        "R0-GATE-001"
+      ],
+      "matrix_rows": [
+        "OPS-002",
+        "ROLL-001",
+        "PILOT-001"
+      ]
+    },
+    {
+      "id": "R1-P1",
+      "phase": "R1",
+      "status": "planned",
+      "prerequisites": [
+        "R0-P1"
+      ],
+      "approval": "AP-PROD-CANARY",
+      "ownership_lane": "SECOND_BRAIN_PRODUCTION",
+      "deliverables": [
+        "aggregate_and_capability_kill_switch",
+        "two_collaborator_and_outsider_canary",
+        "telemetry_soak_abort_threshold",
+        "kill_switch_compatible_rollback_and_dr_evidence"
+      ],
+      "gate_ids": [],
+      "matrix_rows": [
+        "PILOT-001",
+        "ROLL-001"
+      ]
+    }
+  ],
+  "next_packet": "U0A-P1",
+  "claims": {
+    "catalog_is_implementation_evidence": false,
+    "any_packet_gate_passed": false,
+    "product_complete": false
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "contract": "code_assist.notion.core_free_ui_checkpoint.v2",
+  "recorded_at": "2026-08-15T09:18:13+09:00",
+  "run_id": "ui-h9-isolated-pilot-recovery-green-live-pending-20260815",
+  "model": {
+    "implementation_profile": "gpt-5.6-sol-xhigh",
+    "planning_and_review_profile": "gpt-5.6-sol-ultra"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-perf-001-local-measurement-green-reference-pending-20260815.json",
+    "sha256": "sha256:9b64a28dfa52346be740a99ad03b252ab671755be592f483b88600114b4e0b82",
+    "semantic_status": "historical parent; H8 local responsive/accessibility/performance evidence green, reference and budgets pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T09:18:13+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": 25,
+    "synthetic_only": true,
+    "offline_pilot_only": true,
+    "business_enterprise_archive_conditional": true,
+    "excluded": [
+      "personal Notion workspaces and content",
+      "live user_data, knowledge, .runtime, and sessions",
+      "production feature flag, readiness endpoint, and kill switch",
+      "trial, payment, invite, public posting, and live canary",
+      "operational backup, restore, and migration",
+      "continuous consumer and resolver cutover"
+    ]
+  },
+  "slice": {
+    "id": "H9-ISOLATED-PILOT-RECOVERY-FOUNDATION",
+    "status": "local-real-browser-green-live-release-pending",
+    "acceptance_ids": [
+      "DEFAULT-OFF",
+      "EXPLICIT-OPT-IN",
+      "KILL-SWITCH-PRE-PATH-DENIAL",
+      "EXACT-READINESS",
+      "SYNTHETIC-SENTINEL",
+      "QUIESCED-COPY-ON-WRITE-BACKUP",
+      "NONDESTRUCTIVE-NEW-ROOT-RESTORE",
+      "CANARY-ROOT-PRESERVED",
+      "BASELINE-CONTENT-RESTORED",
+      "SECOND-BRAIN-ZERO-ONE-ZERO",
+      "IMPORT-SIDE-EFFECT-FREE",
+      "IDENTIFIER-FREE-REPORT"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "code_assist_v1/tools/notion_parity/ui_pilot.py",
+        "pre_sha256": null,
+        "post_sha256": "sha256:3d7be7fff7685e4e931e1e4c506ad1dfef733caa8e0bd6afc160ebfaf660e154",
+        "change": "unregistered fail-closed opt-in, kill-switch, snapshot, restore, and redacted-report foundation"
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_ui_pilot.py",
+        "pre_sha256": null,
+        "post_sha256": "sha256:a15b99350885f4791841c456c843b9a319808e0c4d6fd099a827df4686b20686"
+      },
+      {
+        "path": "code_assist_v1/tests/browser/test_notion_ui_pilot_recovery.py",
+        "pre_sha256": null,
+        "post_sha256": "sha256:4ef60521a69a5dd02d6f5d00907fb98675f88e2b8c63a4defda10ac8d6e2204d"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/CORE_FREE_WEB_UI_PILOT_RUNBOOK.md",
+        "pre_sha256": null,
+        "post_sha256": "sha256:a25aa210ce038b982bdab9d1182a28ed7e2eb7144f017bdae6dfa3d86c752ea9"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_H9_ISOLATED_PILOT_RECOVERY_RESULT_20260815.md",
+        "pre_sha256": null,
+        "post_sha256": "sha256:a76e967dad2c74e41d20696c8ee239412480f7719892fa909d54112a04ea029c"
+      },
+      {
+        "path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:412f17d50e3108baf50bcea46e4ebd061b9d42baa004b164a4d81e706a3c3245",
+        "post_sha256": "sha256:ec51e6d503beb2cbecdd28c852e73ad2e21f476d60b6ca77c9af8638e76fefd0"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:e3c5aa0bce4f93d0a99ab1e3841b9ad6dc024b64c5aef24baf625b3b050d4a19",
+        "post_sha256": "sha256:bc35d604185ee711aa7e7bfe877e94c1ed8bc87b2bdc2dc52ca056d5355cd800"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:1ed057f5904b7b8a73fffcc874326bac5d7562224b5421b78cb1748ad62f2e31",
+        "post_sha256": "sha256:8e27b207f95c9d435f0752efa92670a9bccdf942f77503d952ca2dbc05b4b5c1",
+        "change": "synchronize authoritative source-reference hashes only; no scenario status promotion"
+      }
+    ],
+    "read_dependencies": [
+      {
+        "path": "code_assist_v1/AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      },
+      {
+        "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+        "sha256": "sha256:fcd9d8bbc70d41de141adc2ebf4559340e31fc09b1dfdac750a1f762952db492"
+      }
+    ],
+    "protected_unchanged": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/app_code.py",
+      "code_assist_v1/auth.py",
+      "code_assist_v1/config.py",
+      "code_assist_v1/tests/conftest.py",
+      "code_assist_v1/docs/knowledge_spaces/**",
+      "code_assist_v1/knowledge_core/**",
+      "code_assist_v1/tests/knowledge_spaces/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_accessed": false,
+    "reference_workspace_accessed": false,
+    "live_mutation": false,
+    "flags_unchanged": true,
+    "runtime_registration_added": false,
+    "git_provenance_available": false
+  },
+  "evidence": {
+    "scenario_plan_sha256": "sha256:ee887ab5bce3ec9e7490157bfd3813480ca3a8fa7461cf5dec44786654b8808f",
+    "pilot_report_sha256": "sha256:eda0f45d754124385c461732d093c19bcf86517736c2d0cd583a5d0878cee997",
+    "backup_file_count": 15,
+    "publication_counts": {
+      "baseline_items": 0,
+      "baseline_revisions": 0,
+      "canary_items": 1,
+      "canary_revisions": 1,
+      "restored_items": 0,
+      "restored_revisions": 0
+    },
+    "copy_on_write_verified": true,
+    "changed_root_preserved": true,
+    "kill_switch_denial_verified": true,
+    "second_brain_gate_green": true,
+    "redaction": "pass",
+    "result_document": "docs/notion_parity/core_free_web_ui/UI_H9_ISOLATED_PILOT_RECOVERY_RESULT_20260815.md",
+    "runbook": "docs/notion_parity/core_free_web_ui/CORE_FREE_WEB_UI_PILOT_RUNBOOK.md"
+  },
+  "commands": [
+    {
+      "selection": "initial H9 pilot unit contracts",
+      "result": "6 passed in 1.51s",
+      "exit_code": 0
+    },
+    {
+      "selection": "initial real-Chrome copy-on-write recovery rehearsal",
+      "result": "1 passed in 21.65s",
+      "exit_code": 0
+    },
+    {
+      "selection": "identifier-free H9 report extraction",
+      "result": "pass in 21.4s; backup 15 files, publication 0/1/0",
+      "exit_code": 0
+    },
+    {
+      "selection": "final strengthened pilot unit/import plus real-Chrome recovery bundle",
+      "result": "8 passed in 22.43s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Python syntax and compact Core Free UI plan verifier",
+      "result": "pass with 25 required scenarios and zero promotions",
+      "exit_code": 0
+    }
+  ],
+  "tests": {
+    "h9_unit_import_and_recovery_contracts": "7 passed",
+    "h9_real_chrome_pilot_recovery": "1 passed",
+    "h9_bundle": "8 passed",
+    "prior_combined_local_chrome": "22 passed",
+    "prior_node_contracts": "6 passed",
+    "prior_notion_routes_and_storage": "25 passed",
+    "prior_second_brain": "5 passed",
+    "scenario_verifier": "pass"
+  },
+  "claims": {
+    "h8_local_foundation_green": true,
+    "h8_complete": false,
+    "h9_isolated_pilot_foundation_green": true,
+    "h9_live_pilot_ready": false,
+    "h9_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "performance_budget_approved": false,
+    "formal_accessibility_approved": false,
+    "legal_brand_approved": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "owned_file_drift": false,
+    "personal_content_exposure": false,
+    "live_data_access": false,
+    "protected_file_edit": false,
+    "auth_or_csrf_regression": false,
+    "second_brain_regression": false,
+    "production_flag_or_live_canary_enabled": false,
+    "destructive_restore_performed": false,
+    "purchase_invite_or_public_post_required": false,
+    "repeated_host_failure_on_prior_evidence_bundle": true,
+    "host_failure_blocking_h9_rehearsal": false
+  },
+  "remaining": [
+    "recover safe signed-in Chrome control and run identifier-free C0 against synthetic REF-FREE-A/B only",
+    "capture and seal reference differentials for all 25 Core scenarios",
+    "calibrate and approve latency budgets",
+    "complete formal accessibility, legal, and brand review",
+    "obtain explicit approval before any production flag, operational recovery, or live canary",
+    "run a requirement-level completion audit after every gate has authoritative evidence"
+  ],
+  "next_exact_command": "re-audit safe signed-in browser-control availability; if unavailable, produce a read-only completion matrix without promoting any scenario or enabling live behavior"
+}

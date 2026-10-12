@@ -1,0 +1,99 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T19:43:54+09:00",
+  "run_id": "ui-shell-001-local-action-evidence-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-action-evidence-reference-pending-20260821.json",
+    "sha256": "sha256:ffa91a6c0c84658108d999f4e72d80bea4ba6adaf10131e76f435ff473afefec",
+    "semantic_status": "superseded_by_workspace_switch_local_readiness"
+  },
+  "certified_parent": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-002-reference-differential-green-20260821.json",
+    "sha256": "sha256:03c69e0e13ce1f48fcc0b6ff5c9259af9c866658fb846bfd5e33bff875ec50c0",
+    "semantic_status": "current_4_of_25_certified_state"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "complete the adopted 25-scenario Core Free Web UI and Second Brain plan"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-SHELL-001",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "live_local_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "screenshot_count": 0
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-SHELL-001",
+    "status": "local_action_evidence_green_reference_c0_pending",
+    "implemented_corrections": [
+      "require the isolated starting workspace to be the declared synthetic A fixture",
+      "capture A-to-B and B-to-A transitions independently",
+      "restore and assert WORKSPACE-SWITCHER focus after each scoped search probe",
+      "include the exact synthetic workspace alias in normalized state",
+      "retain direct cross-workspace page-open rejection and zero global search leakage"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 4,
+    "differential_passed": 4,
+    "overall_goal_complete": false
+  },
+  "owned_outputs": [
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:db80c35423d8c4c27028a3b8033f4084ab6c80c8f690c7688f36331816501ef1"
+    }
+  ],
+  "local_source_build_sha256": "sha256:15b646fbd45fcd34ed9c8dde33e2920a9751e47024cda4c671885eb4626e419c",
+  "local_action_log_sha256": "sha256:722d14aef1fb309e32eb515f0579f1ae95cf7ec6d624fffdfaa8dc74c43abc55",
+  "reference_worksheet_sha256": "sha256:02cd95f9d5fe9dceb768746fce28eef9faae31ee4b394514f6dca0517c58d3e7",
+  "local_action_captures": {
+    "UI-SHELL-001-A01": {
+      "sha256": "sha256:64fc329b117ff61597937f4c2ff00e8b32bb40dca285ea5e724753d1016bec40",
+      "state": {"count":1,"state":"committed","workspace_alias":"REF-FREE-B"},
+      "focus": {"name":"WORKSPACE-SWITCHER","state":"focused"},
+      "a11y": {"name":"WORKSPACE-SWITCHER","role":"BUTTON"},
+      "geometry": {"WORKSPACE-SWITCHER":{"height":44,"width":239,"x":0,"y":0}}
+    },
+    "UI-SHELL-001-A02": {
+      "sha256": "sha256:a386d3ef918d40414d570d97142171f70dc9f2e2de04d5b5a9783f48cf19d312",
+      "state": {"count":1,"state":"committed","workspace_alias":"REF-FREE-A"},
+      "focus": {"name":"WORKSPACE-SWITCHER","state":"focused"},
+      "a11y": {"name":"WORKSPACE-SWITCHER","role":"BUTTON"},
+      "geometry": {"WORKSPACE-SWITCHER":{"height":44,"width":239,"x":0,"y":0}}
+    }
+  },
+  "local_exact_results": {
+    "active_workspace_restored": true,
+    "cross_workspace_direct_open_rejected": true,
+    "global_search_requests": 0,
+    "legacy_page_list_requests": 0,
+    "workspace_page_counts": [1,1,1]
+  },
+  "commands": [
+    {"selection":"current-source isolated UI-SHELL-001 workspace-switch journey","result":"1 passed in 31.11s","exit_code":0},
+    {"selection":"1920x863 UI-SHELL-001 local action evidence","result":"2 exact action captures; A-to-B and B-to-A; zero leakage","exit_code":0}
+  ],
+  "claims": {
+    "ui_shell_001_action_level_local_evidence_green": true,
+    "fifth_reference_characterized": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_content_exposed": false,
+    "live_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "protected_file_modified": false,
+    "owned_file_concurrent_drift": false,
+    "workspace_leakage_detected": false
+  },
+  "next_exact_action": "Open both exact REF-FREE-A | Notion and REF-FREE-B | Notion Chrome tabs. Resume UI-TREE-003 first, then UI-SHELL-001 can use the same safe C0 boundary without inspecting any other workspace label."
+}

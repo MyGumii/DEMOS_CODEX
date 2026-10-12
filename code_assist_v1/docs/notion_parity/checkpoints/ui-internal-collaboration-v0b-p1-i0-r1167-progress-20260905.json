@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1167-PROGRESS-20260905",
+  "recorded_at": "2026-09-05T10:11:07.2042277+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1159-progress-20260905.json",
+    "sha256": "sha256:556ac885c93b3efa6bd74401d862d4fc5bed5c3d2e43e7b8350bcf3ca8a465d8"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1167-state004-panel-shadow-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1167-state004-panel-shadow-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:dbd2818f58d9631e4f34aeae974b445c3e2e814678036927d12d6ac72439ce08",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:2221162e049e9e000c57d8a9dd89cb662896ea3d1eb6231b3911b16905284bf2",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 793607,
+    "masked_difference_count": 0,
+    "total_difference_count": 793607,
+    "overall_exact_progress": "0/36"
+  },
+  "comparison": {
+    "predecessor_run_id": "v0b-p1-i0-r1159-line-details-standard",
+    "predecessor_unmasked_difference_count": 795033,
+    "retained_unmasked_difference_count": 793607,
+    "net_unmasked_improvement_from_predecessor": 1426,
+    "predecessor_masked_difference_count": 0,
+    "retained_masked_difference_count": 0,
+    "net_masked_improvement_from_predecessor": 0,
+    "net_total_improvement_from_predecessor": 1426,
+    "source_attributable_regression_count": 0,
+    "stable_improvements_since_predecessor": [
+      "V0R-MU-003 and V0R-MU-006 use the measured 31-pixel inbox navigation height at both viewports: 294 fewer unmasked pixels.",
+      "V0R-MU-004 restores the measured one-pixel share-panel top boundary at both viewports: 865 fewer unmasked pixels.",
+      "V0R-MU-004 uses the measured shadow spread and alpha at both viewports: 267 fewer unmasked pixels."
+    ],
+    "known_runtime_variance": {
+      "state_id": "V0R-MU-002",
+      "viewport": "1440x900",
+      "difference_count": 975,
+      "treatment": "Excluded from source-attributable improvement; r1167 reproduced the established stable value."
+    }
+  },
+  "rejected_experiments": [
+    "V0R-MU-004 home navigation pill height and vertical-position variants regressed at both viewports and were not retained.",
+    "A breadcrumb gray-tile override produced no measurable change and was removed.",
+    "V0R-MU-015 and compact V0R-MU-016 final-row one-pixel left shifts increased the total by 694 pixels and were reverted.",
+    "Applying the share-panel shadow reset to every state erased the established V0R-MU-001 and V0R-MU-002 modal shadows; the reset was narrowed to V0R-MU-006 before retention."
+  ],
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1144-20260905",
+    "launch_id": "3bd46909382749e18e335fbca851a3f1",
+    "root_id": "6432f4f1-82a7-4b44-a8be-f5fadcb63f09",
+    "health": {
+      "state": "READY",
+      "ready_for_admission": true,
+      "ready_for_realtime": true,
+      "ready_for_compaction": true,
+      "schema_compatibility": "compatible",
+      "restart_required": false
+    },
+    "current_audit": {
+      "workspace_count": 50,
+      "reference_workspace_count": 48,
+      "active_membership_count": 50,
+      "active_page_binding_count": 48,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64,
+    "preserved_predecessor_realm": ".dev/notion-collaboration-10111-10113-clean-r1112-20260905"
+  },
+  "verification": {
+    "pytest": {
+      "status": "pass",
+      "passed": 21,
+      "duration_seconds": 11.43
+    },
+    "python_compile": "pass",
+    "cleanup": {
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Rotate to a fresh writable realm from stable r1167, then continue lossless I0 exact residual reduction. Do not run final Core 25, performance, product, or SBE gates before exact 36/36."
+}

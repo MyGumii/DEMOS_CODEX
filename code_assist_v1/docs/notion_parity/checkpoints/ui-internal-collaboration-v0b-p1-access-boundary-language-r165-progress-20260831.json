@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-ACCESS-BOUNDARY-LANGUAGE-R165-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T05:31:03.6436377+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r165 Chrome 153 full candidate captures all 18 named states at both adopted viewports, passes all 36 accessibility captures, and completes synthetic cleanup. The product access-boundary renderer now uses the Korean denial surface for both reference workspaces, reducing V0R-MU-018 by 28,476 pixels and the full unmasked difference by 27,296 pixels from r159. Exact RGBA remains 0/36, so this is a mutable progress checkpoint only and is not an immutable V0B receipt, phase-gate claim, or product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "comparison_candidates": {
+      "r131_unmasked_difference_count": 3072668,
+      "r144_unmasked_difference_count": 3017076,
+      "r159_receipt": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r159/receipt.json",
+      "r159_sha256": "sha256:e0870d04febc29afa111fb5c0d8184ccec04e76613db193b7120010db8f990d2",
+      "r159_unmasked_difference_count": 2918902
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:0c4f48c3b952ac65755c884dbd7d70089a38b98002eb654b74fc669131560901",
+        "changes": [
+          "render the access-denied title, explanation, and request button in Korean for both REF-FREE-A and REF-FREE-B",
+          "remove the product-only English special case for REF-FREE-A while preserving workspace alias binding and focus behavior"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:1c11e7a560bb95ff43414bd04c22de60c1c667f6e0b5cbc640fbd7b448801e86",
+        "changes": [
+          "retain the r159 comment-reference sidebar compaction and V0R-MU-011 absolute editor-top stabilization"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:a2f6dc796ba4867dd97d9e21c4a9dfe163f49cba26e92d076750f0bfe54c1abc"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:78bbea83778d201e90f24929cac74fe942c8666adf439bc8008e58fe5d64e471"
+      }
+    ],
+    "rejected_experiments_removed": [
+      "access-boundary whole-skeleton CSS mask fade; isolated r162 increased both V0R-MU-017 viewport differences and the CSS file was restored byte-for-byte"
+    ]
+  },
+  "execution_stability": {
+    "active_launch_id": "f349de91899741bea719151171a315b7",
+    "ports_listening": [10111, 10112, 10113],
+    "first_full_attempt": {
+      "candidate": "r163",
+      "result": "not_retained",
+      "reason": "transient C0_P2_COMMENT_LATENCY_EXCEEDED before an integrated receipt was produced"
+    },
+    "c0_retry_diagnostic": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-candidate-20260831-r164",
+      "journey_status": "pass",
+      "capture_count": 8,
+      "accessibility_pass_count": 8,
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "realm_restart_required": false
+    }
+  },
+  "retained_r165_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r165",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r165/receipt.json",
+    "receipt_sha256": "sha256:49843388f3c503738e92ed30c21334a4c09ecbfdbb8ed71b212cc52eb3149398",
+    "release_candidate_source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "runtime_candidate_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 354766,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2891606,
+    "raw_difference_count": 3026530,
+    "unmasked_delta_from_r159": -27296,
+    "unmasked_delta_from_r144": -125470,
+    "unmasked_delta_from_r131": -181062,
+    "changed_state_deltas_from_r159": {
+      "V0R-MU-005": 253,
+      "V0R-MU-007": 893,
+      "V0R-MU-008": 1,
+      "V0R-MU-015": 332,
+      "V0R-MU-016": -299,
+      "V0R-MU-018": -28476
+    },
+    "access_boundary_states": {
+      "V0R-MU-017": {
+        "1440x900": 36414,
+        "1280x800": 59309,
+        "total": 95723
+      },
+      "V0R-MU-018": {
+        "1440x900": 36345,
+        "1280x800": 59240,
+        "total": 95585
+      }
+    },
+    "state_011_stability": {
+      "1440x900": 77764,
+      "1280x800": 76710,
+      "total": 154474
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:2a705bfd02ccde3216be9a8a9a68d7141feeb28c3f65c4817f80aa5ddbffcad3"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "working_directory": "workspace_root",
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "14 passed in 11.48s",
+      "exit_code": 0
+    }
+  },
+  "scope_attestation": {
+    "local_product_source_changed": true,
+    "local_capture_harness_changed": false,
+    "external_reference_receipt_modified": false,
+    "external_reference_screenshot_modified": false,
+    "personal_workspace_or_page_used": false,
+    "cookie_local_storage_profile_or_password_inspected": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "exact_pixel_36_of_36": "0_of_36",
+    "remaining_unmasked_difference_count": 2891606,
+    "core_25_final_rerun": "not_run",
+    "ui_performance_final_rerun": "not_run",
+    "V0B_P1_gate_passed": false,
+    "later_packets": ["O1B", "Q0", "R0", "R1", "Z0"],
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue exact-RGBA convergence from the retained r165 source and candidate. Analyze the largest remaining state-bounded structural differences before another full 36-capture run. Do not promote r165 to immutable evidence and do not mark V0B, later packets, product, or the shared goal complete."
+}

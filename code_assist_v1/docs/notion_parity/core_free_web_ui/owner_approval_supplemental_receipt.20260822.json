@@ -1,0 +1,74 @@
+{
+  "contract": "code_assist.notion.core_free_ui.owner_approval_supplemental_receipt.v1",
+  "recorded_at": "2026-08-22T16:55:31.2082606+09:00",
+  "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+  "profile": "free-owner-chrome-desktop-ko-KR",
+  "batch_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_receipt.20260822.json",
+    "sha256": "sha256:81afd3cab4e94c3b0cddb6dfc7e212e8bfa4d9a39f9f9f6644948b61b08a83ee"
+  },
+  "source": {
+    "kind": "exact_user_message",
+    "normalization_policy": "Remove Markdown blockquote markers and collapse display whitespace only; preserve scenario identifiers and punctuation.",
+    "normalized_approval_text": "UI-A11Y-001, UI-EDITOR-003 요약 승인; UI-RESP-001 다중 뷰포트 요약 승인; UI-PERF-001-REFERENCE-CREATE 휴지통 이동 승인"
+  },
+  "decisions": {
+    "a11y_and_editor_summary": {
+      "status": "approved",
+      "scenario_ids": [
+        "UI-A11Y-001",
+        "UI-EDITOR-003"
+      ],
+      "evidence": [
+        {
+          "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-a11y-001-reference-native-tab-skip-link-green-20260822.json",
+          "sha256": "sha256:8505b2f12317fa24390193127da71503f85c9286064074f8a0f3326153c22b4f"
+        },
+        {
+          "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-003-reference-session-clipboard-green-20260822.json",
+          "sha256": "sha256:5a63f8d1321b3b3a3116a5f76629bd36b4703584328d8415a1bf8b32e51ed49b"
+        }
+      ]
+    },
+    "responsive_summary": {
+      "status": "approved",
+      "scenario_ids": [
+        "UI-RESP-001"
+      ],
+      "evidence": [
+        {
+          "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-resp-001-reference-multiviewport-green-review-pending-20260822.json",
+          "sha256": "sha256:872fdc7f77d7cf5684154283e03a34cc8c078da89834db8db52a7c269fe085aa"
+        }
+      ]
+    },
+    "synthetic_reference_cleanup": {
+      "status": "action_time_confirmed",
+      "scenario_ids": [
+        "UI-PERF-001"
+      ],
+      "target_alias": "UI-PERF-001-REFERENCE-CREATE",
+      "allowed_action": "move_to_trash",
+      "permanent_delete_allowed": false,
+      "external_action_executed_at_receipt_time": false
+    }
+  },
+  "authorization": {
+    "approved_summary_receipt_sealing_allowed": true,
+    "exact_synthetic_target_move_to_trash_allowed": true,
+    "permanent_delete_allowed": false,
+    "completion_matrix_mutation_allowed": false
+  },
+  "excluded": {
+    "manual_input_entry_ids": [
+      "UI-EDITOR-004-NATIVE-IME-INPUT"
+    ],
+    "manual_input_resolved": false
+  },
+  "safety": {
+    "synthetic_reference_workspace_only": true,
+    "personal_notion_content_access_allowed": false,
+    "live_local_data_access_allowed": false,
+    "external_publish_or_message_allowed": false
+  }
+}

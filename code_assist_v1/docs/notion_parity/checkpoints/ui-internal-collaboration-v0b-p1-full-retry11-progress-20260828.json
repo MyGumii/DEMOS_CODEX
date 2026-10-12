@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-FULL-RETRY11-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T09:59:43.7273582+09:00",
+  "checkpoint_kind": "fresh_36_capture_current_build_visual_convergence_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Bind the fresh retry11 36-capture candidate after direct edit guests gained the reference-aligned automatic workspace switcher presentation, while preserving honest open-gate and cleanup truth.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-full-retry10-progress-20260828.json",
+    "sha256": "sha256:a5fe8b4937386880759b56fc53248ee4fe7dc2f65be7ad3d6e19360b264a4c95"
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:567059e05f8fdf20bbfaa63730074ad868f64549ae7b91437ea6dcd0f417c472",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:aa8710480f2889c8dcdee8485ece674a8c35b4b29deaa8007d2a6abaf411040a"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:3ca52f152424ad43bf090dd46ed15f5aaecf42c208c45ee7e21fb63493fbed8f"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:2d2c856fea786d48525ab47014ec8dec44a9e3459cec52eccc840a2cca28b92f"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:585cfb706bd9d16f20646ac0c9565aa6ca4a074f9ce01f3048b4391868d40794"
+      }
+    ]
+  },
+  "implementation": {
+    "direct_guest_workspace_switcher": {
+      "visibility_contract": "current workspace role is guest, page IAM role is edit_content, and the page owner is another subject",
+      "automatic_open": true,
+      "automatic_close_on_role_or_page_transition": true,
+      "reference_aligned_sections": [
+        "selected guest workspace header",
+        "settings and account actions",
+        "account label",
+        "bounded workspace list",
+        "new workspace action",
+        "logout action"
+      ],
+      "synthetic_C0_workspace_rows_filtered": true,
+      "functional_workspace_switch_controls_preserved_in_dom": true,
+      "reference_state_improved": "V0R-MU-005"
+    },
+    "inherited_retry10_surfaces_preserved": [
+      "V0R-MU-004 direct guest upgrade prompt",
+      "V0R-MU-006 inherited share summary",
+      "page popover geometry and shadow"
+    ]
+  },
+  "bounded_regression_evidence": {
+    "I0_P2": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry33/receipt.json",
+      "receipt_sha256": "sha256:2535c52d78afd16ddb07a079d3c9b9c13993fd3110622fc3e5d31142c15861a6",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "journey_status": "pass",
+      "cleanup_status": "pass",
+      "difference_count": 4093785
+    },
+    "preserved_intermediate_receipts": [
+      {
+        "attempt": "retry31",
+        "receipt_path": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry31/receipt.json",
+        "receipt_sha256": "sha256:2f78c4c0e6f26173c154615e1e52f8d581f2bced267ddafd1d0b5941cf48913d"
+      },
+      {
+        "attempt": "retry32",
+        "receipt_path": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260828-retry32/receipt.json",
+        "receipt_sha256": "sha256:b51b879c1689ab197e44a77629e2953def4cbb2a6f3ec0a3f3bef3199f667bf0"
+      }
+    ]
+  },
+  "full_candidate_evidence": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry11",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry11/receipt.json",
+    "receipt_sha256": "sha256:af4293e2906bb285cb73592cda3f8713c4b95ca31f830cf5efcfa1095dc5356a",
+    "journey_count": 4,
+    "journey_statuses": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "state_count": 18,
+    "viewport_count": 2,
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "component_cleanup_verified": true,
+    "browser_closed": true,
+    "gate_passed": false
+  },
+  "pixel_summary": {
+    "metric": "sum_of_unmasked_differing_pixel_count_across_36_full_candidate_captures",
+    "baseline_difference_count": 16116120,
+    "prior_full_retry7_difference_count": 7541740,
+    "prior_full_retry9_difference_count": 7310770,
+    "prior_full_retry10_difference_count": 7217060,
+    "current_full_retry11_difference_count": 7081605,
+    "reduction_from_retry10_count": 135455,
+    "reduction_from_retry10_percent": 1.88,
+    "reduction_from_retry9_count": 229165,
+    "reduction_from_retry9_percent": 3.13,
+    "reduction_from_retry7_count": 460135,
+    "reduction_from_retry7_percent": 6.1,
+    "reduction_from_baseline_count": 9034515,
+    "reduction_from_baseline_percent": 56.06,
+    "largest_state_improvement_from_retry10": {
+      "state_id": "V0R-MU-005",
+      "prior": 462490,
+      "current": 327692,
+      "delta": -134798
+    },
+    "largest_non_target_absolute_delta_from_retry10": 568
+  },
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "receipt_sha256": "sha256:af4293e2906bb285cb73592cda3f8713c4b95ca31f830cf5efcfa1095dc5356a",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "inherited_open_gates": {
+    "core25": {
+      "source": "inherited_preflight_not_fresh_gate_evidence",
+      "passed": 20,
+      "failed": 1,
+      "failed_scenario": "UI-COLLAB-001",
+      "fresh_current_build_gate_evidence": false
+    },
+    "performance": {
+      "source": "busy_host_preflight_not_fresh_gate_evidence",
+      "observed_p95_ms": 4514.289,
+      "approved_budget_ms": 1370,
+      "quiet_host_verified": false,
+      "status": "fail"
+    }
+  },
+  "cleanup_audit": {
+    "audit_mode": "component_product_API_cleanup_plus_read_only_source_and_authority_SQLite",
+    "current_retry11_workspace_count": 5,
+    "current_retry11_authority_document_count": 6,
+    "current_retry11_root_document_count": 5,
+    "current_retry11_child_document_count": 1,
+    "current_retry11_source_active_page_count": 0,
+    "current_retry11_source_recoverable_trash_page_count": 6,
+    "current_retry11_source_missing_page_count": 0,
+    "active_user01_workspace_membership_count": 0,
+    "active_user01_workspace_guest_count": 0,
+    "active_user01_canonical_grant_count": 0,
+    "active_user01_page_grant_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "status": "complete"
+  },
+  "verification": {
+    "json_parse": "pass",
+    "node_syntax_check": "pass",
+    "share_and_workspace_membership_tests": "4 passed in 21.41s",
+    "I0_P2_bounded_regression": "20/20 pass",
+    "full_36_capture_current_build": "pass",
+    "accessibility_matrix": "36/36 pass",
+    "component_journeys": "4/4 pass",
+    "cleanup": "pass",
+    "independent_verifier_truthfulness": "pass_expected_gate_fail"
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "all_adopted_multiuser_states_captured": true,
+    "accessibility_evidence_complete": true,
+    "component_cleanup_complete": true,
+    "zero_unmasked_RGBA_difference": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue exact-pixel convergence from the fresh retry11 full baseline. Prioritize remaining high-difference semantic surfaces that can be isolated without changing hot shared contracts. After exact convergence, run fresh current-build Core25 and quiet-host performance gates. Do not enter O1B until every V0B gate passes."
+}

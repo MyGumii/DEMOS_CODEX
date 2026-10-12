@@ -1,0 +1,38 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T17:17:42.9266173+09:00",
+  "run_id": "ui47-editor-004-native-ime-report-verification-mismatch-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-approval-batch-resolved-and-perf-cleanup-green-20260822.json",
+    "sha256": "sha256:8347d4c9442bfb3245ff178ed4bd762fc1995f0513ea20e8e821f10a73972cce",
+    "semantic_status": "three_batch_entries_resolved_native_ime_input_pending"
+  },
+  "source_evidence": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-004-reference-partial-ime-events-deferred-20260821.json",
+    "sha256": "sha256:2cdb101f8930254714c934a804c267935bde6efb8d4b700465e446d18e42efe2"
+  },
+  "manual_input_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/manual_ime_input_receipt.20260822.json",
+    "status": "user_report_received_final_state_not_verified"
+  },
+  "browser_verification": {
+    "workspace_alias": "REF-FREE-A",
+    "exact_expected_text": "한글 조합 테스트",
+    "initial_exact_count": 0,
+    "delayed_exact_count": 0,
+    "final_text_verified": false,
+    "focused_empty_block_for_retry": true,
+    "tab_finalization": "handoff"
+  },
+  "claims": {
+    "user_manual_input_report_received": true,
+    "ui_editor_004_manual_input_resolved": false,
+    "ui_editor_004_reference_characterized": false,
+    "ui_editor_004_differential_passed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next_exact_action": "With the already-focused empty block in REF-FREE-A, use the Windows Korean IME to type 한글 조합 테스트 once, wait for the text to remain visible, then send the exact completion phrase again."
+}

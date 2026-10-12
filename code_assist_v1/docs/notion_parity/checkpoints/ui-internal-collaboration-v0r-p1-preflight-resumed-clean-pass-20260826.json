@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-PREFLIGHT-RESUMED-CLEAN-PASS-20260826",
+  "recorded_at": "2026-08-26T10:45:16+09:00",
+  "checkpoint_kind": "preflight_resumed_clean_pass_before_external_mutation",
+  "packet_id": "V0R-P1",
+  "packet_status": "planned_approved_preflight_passed",
+  "purpose": "Record the fresh read-only preflight after the user explicitly resumed the previously blocked goal and completed external cleanup. Two independent Chrome contexts now expose one distinct primary account identifier each. The owner context exposes exactly one REF-FREE-A and one exact REF-FREE-B workspace menu item, while the collaborator context exposes neither exact target alias and retains only the explicitly renamed non-target REF-FREE-B-NONTARGET-20260826 workspace. The immutable 11-action V0R-P1 sequence may therefore begin from its declared clean pre-invite state.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-preflight-resumed-clean-pass-20260826.json"
+  ],
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-preflight-blocked-after-third-check-20260826.json",
+    "sha256": "sha256:5958a3769d0f35218f4fa57b2844e8ff75ffdbe4ca395f90510ad1763073aad1"
+  },
+  "execution_manifest": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_reference_multiuser_execution.v1.json",
+    "sha256": "sha256:924b3812e81bffc024bd386a5735c69a676f08e5b8c3f8ce52dffc6e0b9d7cf5",
+    "audit_status": "pass",
+    "audit_error_count": 0,
+    "expected_action_count": 11,
+    "expected_capture_state_count": 18,
+    "expected_screenshot_count": 36
+  },
+  "owner_approval_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_operator/ap-reference-multiuser-user-approval-20260825.json",
+    "sha256": "sha256:4d39668562788aadceaaeb58d19d8c04d10714d967a3a3051b0dddea5f6f21a6",
+    "audit_status": "pass",
+    "approval_received": true,
+    "execution_authorized": true,
+    "approval_is_test_evidence": false
+  },
+  "goal_observation": {
+    "thread_id": "01a0399e-4edc-7792-9c0c-9c050b30e177",
+    "tool_status_at_resume_observation": "blocked",
+    "explicit_user_resume_received": true,
+    "resumed_blocked_audit_reset": true,
+    "logical_execution_state": "resumed",
+    "goal_status_mutated_by_packet": false
+  },
+  "fresh_computer_use_preflight": {
+    "fresh_javascript_session": true,
+    "list_apps_succeeded": true,
+    "returned_app_count": 41,
+    "returned_running_app_count": 9,
+    "returned_window_count": 9,
+    "returned_chrome_window_count": 2,
+    "computer_use_transport_available": true,
+    "connected_chrome_extension_instance_count": 2,
+    "current_returned_tab_objects_claimed": true,
+    "guessed_handle_coordinate_or_app_id_used": false
+  },
+  "read_only_identity_and_workspace_observation": {
+    "independent_chrome_instances_observed": 2,
+    "single_primary_account_identifier_visible_per_context": true,
+    "primary_account_identifiers_differ_between_contexts": true,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_or_non_synthetic_workspace_label_persisted": false,
+    "owner_context_exact_REF_FREE_A_menu_item_count": 1,
+    "owner_context_exact_REF_FREE_B_menu_item_count": 1,
+    "collaborator_context_exact_REF_FREE_A_menu_item_count": 0,
+    "collaborator_context_exact_REF_FREE_B_menu_item_count": 0,
+    "collaborator_context_guest_labeled_exact_REF_FREE_B_item_count": 0,
+    "collaborator_context_non_target_renamed_workspace_item_count": 1,
+    "unique_REF_FREE_A_binding_proven": true,
+    "unique_REF_FREE_B_binding_proven": true,
+    "clean_pre_invite_state_proven": true,
+    "exact_role_mapping_basis": "owner_has_unique_exact_A_and_B_targets_while_collaborator_has_neither_target_alias",
+    "browser_tabs_left_as_handoff": false
+  },
+  "runtime_health": {
+    "port_10111_healthz_status": 200,
+    "port_10112_healthz_status": 200,
+    "port_10113_health_status": 200,
+    "port_10113_state": "READY"
+  },
+  "evidence_denominator": {
+    "screenshot_directory_exists": true,
+    "screenshot_file_count": 0,
+    "final_receipt_exists": false,
+    "completed_action_count": 1,
+    "action_log_complete": false,
+    "cleanup_required_yet": false
+  },
+  "operator_action_result": {
+    "order": 1,
+    "action_id": "V0R-PREFLIGHT",
+    "mutation_class": "read_only",
+    "status": "passed",
+    "required_result": "two_exact_workspace_aliases_and_two_independent_test_identities_confirmed",
+    "required_result_satisfied": true,
+    "later_action_started": false
+  },
+  "scope_attestation": {
+    "external_notion_mutation_executed": false,
+    "workspace_or_page_invitation_sent": false,
+    "permission_or_role_changed": false,
+    "synthetic_fixture_created": false,
+    "comment_reaction_or_mention_sent": false,
+    "reference_screenshot_persisted": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false
+  },
+  "claims": {
+    "V0R_P1_preflight_passed": true,
+    "V0R_P1_execution_started": false,
+    "V0R_P1_gate_passed": false,
+    "V0_GATE_001_closed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "V0R-CREATE-A"
+}

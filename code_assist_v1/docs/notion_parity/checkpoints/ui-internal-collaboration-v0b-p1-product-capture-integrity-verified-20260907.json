@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-CAPTURE-INTEGRITY-VERIFIED-20260907",
+  "recorded_at": "2026-09-07T01:37:53.6128670+09:00",
+  "status": "verified_fail_closed_remediation",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-capture-integrity-pre-edit-20260907.json",
+    "sha256": "sha256:888bff5a0d4f34fabb4dcff447283146715c4503da8239cc2ed0225762c483a9"
+  },
+  "result": {
+    "product_only_capture_pipeline_implemented": true,
+    "browser_screenshot_precedes_reference_pixel_read": true,
+    "reference_pixels_injected": false,
+    "capture_only_visual_mutation": false,
+    "post_capture_reference_matte": false,
+    "collector_and_driver_hash_bound_into_future_receipts": true,
+    "historical_receipts_overwritten": false,
+    "historical_r1620_accepted_as_current_visual_evidence": false,
+    "fresh_36_capture_run_completed": false,
+    "V0B_P1_gate_passed": false
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/notion_collaboration/v0b_p1_product_capture.py": "sha256:bbdf61a5654f65dbb5bdba6a5834e2f4155f3ad4ec89f2ba4fca1296c990c3cf",
+    "code_assist_v1/notion_collaboration/v0b_p1_browser.py": "sha256:9db9f69121b6132403bee765d171f72ca28536aa2511dd8817386bcc176414c3",
+    "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py": "sha256:b0a84f3fdfa4f3cef51e578ecda4d643db63af64aa9227796bd8386e8b2096fc",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py": "sha256:2b4c6ecefdb0e478bb2a249e97dce5a52c05879a3d4e78151eed951e462b0a9b",
+    "code_assist_v1/tests/notion_collaboration/test_v0b_p1_product_capture_integrity.py": "sha256:05ac2541066a66de0c49689586d99620e34f9240fcedfb8ab2fa1406423eb20e"
+  },
+  "verification": {
+    "syntax": {
+      "command": ".\\venv\\Scripts\\python.exe -m py_compile notion_collaboration/v0b_p1_product_capture.py notion_collaboration/v0b_p1_browser.py tools/verify_internal_collaborative_v0b_p1_receipt.py tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py tests/notion_collaboration/test_v0b_p1_product_capture_integrity.py",
+      "result": "pass"
+    },
+    "targeted_tests": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m pytest -c pytest.ini -q -p no:debugging -p no:cacheprovider tests/notion_collaboration/test_v0b_p1_product_capture_integrity.py tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+      "result": "17 passed in 11.09s"
+    },
+    "historical_final_receipt_recheck": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m code_assist_v1.tools.compile_internal_collaborative_v0b_p1_final_receipt verify --receipt code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json --compact",
+      "exit_code": 1,
+      "result": "expected fail closed",
+      "top_level_error": "BASE_V0B_GATE",
+      "base_errors": {
+        "CAPTURE_PROVENANCE": 36,
+        "RUN_BOUNDARY": 1
+      }
+    }
+  },
+  "historical_evidence_policy": {
+    "legacy_capture_source_preserved": true,
+    "legacy_receipts_preserved": true,
+    "semantic_interaction_cleanup_core_and_performance_fields_remain_reviewable": true,
+    "legacy_exact_pixel_or_v0b_gate_claims_are_not_currently_accepted": true,
+    "supersede_requires_new_immutable_product_only_receipt": true
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-CAPTURE-INTEGRITY-20260907",
+    "owner_agent": "/root",
+    "lane": "DOC_HARNESS",
+    "status": "released",
+    "released_at": "2026-09-07T01:37:53.6128670+09:00",
+    "exact_paths_only": true
+  },
+  "scope_guard": {
+    "catalog_or_ladder_status_changed_in_this_packet": false,
+    "runtime_service_started": false,
+    "external_or_production_mutation": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Use a separately leased status-integration packet to demote the stale V0B and V0 phase-gate claims, then run a fresh product-only 36-capture baseline before making product-source corrections."
+}

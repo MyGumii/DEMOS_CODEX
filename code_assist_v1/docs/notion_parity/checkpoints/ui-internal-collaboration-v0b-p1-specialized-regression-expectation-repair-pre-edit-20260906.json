@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-SPECIALIZED-REGRESSION-EXPECTATION-REPAIR-PRE-EDIT-20260906",
+  "recorded_at": "2026-09-06T14:44:27Z",
+  "checkpoint_kind": "test_expectation_and_contract_rebind_pre_edit",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-SPECIALIZED-REGRESSION-EXPECTATION-REPAIR-20260906",
+  "purpose": "Supplement the active specialized verifier rebind lease after the current isolated regression exposed two stale test expectations: the I0 successor-aware route count is now 30, and the Notion-host-only exact route shape must include the already-validated F0-P1 through F0-P4 adopted feature routes. No product or verifier source is changed.",
+  "predecessor_declaration": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-specialized-verifier-rebind-active-pre-edit-20260906.json",
+    "sha256": "sha256:0de8ac4d33d559c765b7b018ba22eabd965f8d117f6464fb9a83da2b01dc553d"
+  },
+  "exact_owned_paths": [
+    "code_assist_v1/tests/notion_collaboration/test_collaborative_sharing_runtime_contract.py",
+    "code_assist_v1/tests/test_notion_workspace_auth_isolation.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editing_authority.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_live_collaboration_runtime.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_sharing_runtime.v1.json"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/tests/notion_collaboration/test_collaborative_sharing_runtime_contract.py": "sha256:9de4bfbbda752f0c9a75198c86b47b677004e4be8617d4641296ff4445a5a398",
+    "code_assist_v1/tests/test_notion_workspace_auth_isolation.py": "sha256:98b08e865440ca0662fd9e078cdf81d93bfb4f9b1c8cc5b60e6353cfa6b8a941",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editing_authority.v1.json": "sha256:5d86c46d6b1ea0005dde9a281751126494382c800032fe0e4db1824006691856",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_live_collaboration_runtime.v1.json": "sha256:8d099bf221cf63082779b22366f08f2c76046de3dae29c56d3b2aba6cd2da934",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_sharing_runtime.v1.json": "sha256:e47b28bbd490715700930a50a96000e38ea3a1d3148f56ec5d3b1b8308517cd9"
+  },
+  "observed_regression": {
+    "artifact": "code_assist_v1/.runtime/notion-specialized-functional-regression-20260906.xml",
+    "passed": 196,
+    "failed": 3,
+    "product_failure_count": 0,
+    "stale_expectation_count": 2,
+    "historical_immutable_receipt_reexecution_count": 1,
+    "historical_test_excluded_from_current_build_gate": "code_assist_v1/tests/notion_collaboration/test_prepare_internal_collaborative_e1_p3_seal.py::test_e1_p3_seal_preflight_is_idempotent_after_seal"
+  },
+  "guards": {
+    "modify_product_source": false,
+    "modify_verifier_source": false,
+    "modify_agents_md": false,
+    "modify_sbe_contracts_or_runtime": false,
+    "modify_catalog_ladder_matrix_or_pointer": false,
+    "run_external_or_live_browser_mutations": false,
+    "overwrite_historical_receipts": false,
+    "product_complete": false,
+    "goal_complete": false
+  }
+}

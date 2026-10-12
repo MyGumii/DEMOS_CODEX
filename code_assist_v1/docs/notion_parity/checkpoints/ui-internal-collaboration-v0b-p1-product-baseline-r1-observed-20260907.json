@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-BASELINE-R1-OBSERVED-20260907",
+  "recorded_at": "2026-09-07T03:08:38.0965975+09:00",
+  "status": "fresh_product_only_baseline_observed_not_gate_evidence",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "PRODUCT_UI_CAPTURE",
+  "preflight_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-baseline-r1-preflight-20260907.json",
+    "sha256": "sha256:d45fad7bf595c6b700e188e8a63fd01bd2f410e890baebb66964189eb28b5d2d"
+  },
+  "runtime": {
+    "root": "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113-product-r1-20260907",
+    "launch_id": "a9920ecb706d4d3e9f785fe5ef049e18",
+    "root_id": "1d19eb9c-c00e-482f-840e-68e314416dd8",
+    "root_marker_sha256": "sha256:e2c771988e371a551fda87be2963089e9c2e863eb221370b5a97a334201f12aa",
+    "run_marker_sha256": "sha256:1918ae8b0a1f063cc1e1749c10becec64c5b56737c3fbf8ef4150f52d8cb6824",
+    "approved_identity_ids": ["admin", "user01"],
+    "new_signing_secret": true,
+    "existing_signing_secret_copied": false,
+    "personal_content_imported": false,
+    "production_port_or_root_mutated": false,
+    "cleanup": {
+      "owned_gateway_processes_stopped": true,
+      "owned_host_processes_stopped": true,
+      "owned_ports_closed": true,
+      "ports": [10111, 10112, 10113],
+      "runtime_root_preserved": true
+    }
+  },
+  "diagnostic_artifacts": {
+    "receipt_path": ".runtime/v0b-p1-product-baseline-r1-20260907/receipt.json",
+    "receipt_sha256": "sha256:0032e8b5ef7b32b146279cbd1bf047f2600bc620d85f780879b08b01ca018803",
+    "candidate_root": ".runtime/v0b-p1-product-baseline-r1-20260907/candidates",
+    "candidate_count": 36,
+    "candidate_bytes": 927722,
+    "candidate_manifest_sha256": "sha256:84ddf39b091c14b4d438083c892283b18a258d9c70a7bf58a306755a837a5af9",
+    "diff_root": ".runtime/v0b-p1-product-baseline-r1-20260907/diffs",
+    "diff_count": 36,
+    "diff_bytes": 909215,
+    "diff_manifest_sha256": "sha256:e5c44bacdb4dc62f1c5f2788eade55af9848cb710c4eac8b6a714b8f7053ca0d",
+    "create_only_receipt": true,
+    "immutable_release_receipt": false
+  },
+  "capture_integrity": {
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "component_cleanup_verified": true,
+    "browser_closed": true,
+    "reference_pixels_available_to_page": false,
+    "capture_only_visual_mutation": false,
+    "post_capture_reference_matte": false,
+    "browser_screenshot_before_reference_pixel_read_count": 36,
+    "raw_identifier_persisted_count": 0,
+    "personal_content_visible_count": 0
+  },
+  "visual_baseline": {
+    "exact_pixel_pass_count": 0,
+    "total_differing_pixel_count": 4224541,
+    "mean_differing_pixel_percent": 10.227,
+    "median_differing_pixel_percent": 10.422,
+    "minimum_differing_pixel_percent": {
+      "state_id": "V0R-MU-018",
+      "viewport": "1440x900",
+      "percent": 3.582
+    },
+    "maximum_differing_pixel_percent": {
+      "state_id": "V0R-MU-006",
+      "viewport": "1280x800",
+      "percent": 17.801
+    },
+    "interpretation": "The current product behaves correctly across all 36 sampled states but remains visually distinguishable from the reference. This baseline must drive product UI fixes or an explicitly revised similarity acceptance contract; it cannot close PIX-001."
+  },
+  "independent_verifier": {
+    "status": "fail_expected_for_baseline",
+    "error_count": 39,
+    "error_groups": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "provenance_error_count": 0,
+    "accessibility_error_count": 0,
+    "interaction_error_count": 0,
+    "cleanup_error_count": 0,
+    "gate_passed": false
+  },
+  "evidence_disposition": {
+    "eligible_as_product_render_baseline": true,
+    "eligible_as_accessibility_and_interaction_supporting_evidence": true,
+    "eligible_as_exact_pixel_gate_evidence": false,
+    "eligible_as_V0B_closing_receipt": false,
+    "V0B_P1_gate_passed": false,
+    "historical_V0B_receipt_remains_revoked": true,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Cluster the 36 clean visual differences into reusable product UI changes, implement the highest-coverage clusters in owned product files, and rerun a fresh unique baseline without reusing this receipt path."
+}

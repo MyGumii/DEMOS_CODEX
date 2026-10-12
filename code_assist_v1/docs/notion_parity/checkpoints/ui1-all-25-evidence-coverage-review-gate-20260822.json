@@ -1,0 +1,204 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T01:50:11.4032987+09:00",
+  "run_id": "ui22-all-25-evidence-coverage-review-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "authoritative_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+      "sha256": "sha256:e3b0407fbe21dcb78a9d803c54a4ca4e74ec305e61fb9b66738e0f1f51fc5a22"
+    }
+  ],
+  "coverage_summary": {
+    "required_scenarios": 25,
+    "certified_differential_passed": 5,
+    "reference_observed_review_pending": 10,
+    "local_integration_review_pending": 3,
+    "reference_partially_observed": 7,
+    "reference_unobserved": 0,
+    "all_scenarios_have_at_least_one_evidence_category": true,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "certified": [
+    "UI-SHELL-002",
+    "UI-SHELL-003",
+    "UI-TREE-001",
+    "UI-TREE-002",
+    "UI-TREE-003"
+  ],
+  "reference_observed_review_pending": [
+    {
+      "scenario_id": "UI-SHELL-001",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-shell-001-reference-observed-review-pending-20260821.json",
+      "sha256": "sha256:293b71d6184f60308cbd21b17196692941087066d802c1188af662328bebae5e"
+    },
+    {
+      "scenario_id": "UI-EDITOR-001",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-001-reference-observed-review-pending-20260821.json",
+      "sha256": "sha256:549cac2ec21b31e425da7819ee1b5c9b9be812f0c8e3d5784c0fd53783d255e7"
+    },
+    {
+      "scenario_id": "UI-EDITOR-002",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-002-reference-observed-review-pending-20260821.json",
+      "sha256": "sha256:daafd5b251c1e3a3e410d9fceb1bf674c22c750df5e9862b5a2cf03347803084"
+    },
+    {
+      "scenario_id": "UI-EDITOR-005",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-005-reference-observed-review-pending-20260821.json",
+      "sha256": "sha256:3005a7edb4e98ebcb734ec2a6a26723b43b4ae7f608033a77d34a636f962b159"
+    },
+    {
+      "scenario_id": "UI-DB-001",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-db-001-reference-observed-review-pending-20260821.json",
+      "sha256": "sha256:502121835f2be66d5a3247707d42f2d4f4d53ce1825bc7a8115477b80847ada0"
+    },
+    {
+      "scenario_id": "UI-DB-002",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-db-002-reference-observed-review-pending-20260822.json",
+      "sha256": "sha256:72aaa1ed9aa1e5d279feb6bd7b05e68e09483a4e3c01259da2248979f2bdda49"
+    },
+    {
+      "scenario_id": "UI-DB-003",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-db-003-reference-observed-review-pending-20260822.json",
+      "sha256": "sha256:80466f4b9f15fad6dc8df9927d961f25a5c6fb3458eea792460a59452d663cf5"
+    },
+    {
+      "scenario_id": "UI-SEARCH-001",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-search-001-reference-observed-review-pending-20260822.json",
+      "sha256": "sha256:14408cfdc871b494b62cf8bf0adaee765cd82f278e8bed2728fcd7fb0a2e180e"
+    },
+    {
+      "scenario_id": "UI-COLLAB-001",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-collab-001-reference-observed-review-pending-20260822.json",
+      "sha256": "sha256:fec10ea0dbe00f8ce1e94abf0572f7a0d5bd7eb6a3c41feac41ecec9787cd495"
+    },
+    {
+      "scenario_id": "UI-SHARE-001",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-share-001-reference-observed-review-pending-20260822.json",
+      "sha256": "sha256:a14fbb625782c3749dd778ed7612a54ef858636b8f27b17fcad7252f44d4e143"
+    }
+  ],
+  "local_integration_review_pending": {
+    "scenario_ids": ["UI-SB-001", "UI-SB-002", "UI-SB-003"],
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-sb-001-003-local-integration-review-pending-20260822.json",
+    "sha256": "sha256:05a496a1af294637af960a9e677f179a2c64ab714afaa6357f94333c745297e3",
+    "policy": "Official Notion comparison is not applicable; require isolated local Second Brain hard-gate evidence instead."
+  },
+  "reference_partially_observed": [
+    {
+      "scenario_id": "UI-EDITOR-003",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-003-reference-partial-clipboard-deferred-20260821.json",
+      "sha256": "sha256:bf623c81ce1bc1cae908aac6e237c5f855f1501907a6f20d19bc3edc8c9c482a",
+      "remaining_gate": "trusted official clipboard paste without OS clipboard inspection"
+    },
+    {
+      "scenario_id": "UI-EDITOR-004",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-004-reference-partial-ime-events-deferred-20260821.json",
+      "sha256": "sha256:2cdb101f8930254714c934a804c267935bde6efb8d4b700465e446d18e42efe2",
+      "remaining_gate": "trusted native Korean composition event and save-count evidence"
+    },
+    {
+      "scenario_id": "UI-EDITOR-006",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-006-reference-partial-failure-conflict-deferred-20260822.json",
+      "sha256": "sha256:953172c1bffe61b50cae663103b04c34e178a6bc950c68ab1af6b47858363d8f",
+      "remaining_gate": "safe official failed-save and stale-revision recovery evidence"
+    },
+    {
+      "scenario_id": "UI-SEARCH-002",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-search-002-reference-partial-native-find-backlink-deferred-20260822.json",
+      "sha256": "sha256:03b7d85bd372f66bf09ebc7dd1ba715c30d1288b4b0c7338391e475d6da6386b",
+      "remaining_gate": "trusted Chrome native find and exact backlink evidence"
+    },
+    {
+      "scenario_id": "UI-A11Y-001",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-a11y-001-reference-partial-second-brain-and-tab-transport-deferred-20260822.json",
+      "sha256": "sha256:122232d07066bd837caab360de961834555b836099e424854850eac7de4b855d",
+      "remaining_gate": "trusted full native Tab traversal; Second Brain remains local-only"
+    },
+    {
+      "scenario_id": "UI-RESP-001",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-resp-001-reference-partial-current-viewport-only-20260822.json",
+      "sha256": "sha256:c2e1f5b29804e7a12cc62530ff73562114d6eb8e9f18d45ae4b9183619107a4d",
+      "remaining_gate": "official 1440x900, 1280x800, 980x800, and 720x800 measurements"
+    },
+    {
+      "scenario_id": "UI-PERF-001",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-partial-precalibration-measurement-20260822.json",
+      "sha256": "sha256:3269be062d1d9b02f81cc1124dee2f3cb59278085a0bed8c0e671b93b80b11a9",
+      "remaining_gate": "repeat build/version-bound reference samples and reviewed budget policy"
+    }
+  ],
+  "current_verification": [
+    {
+      "selection": "UI-A11Y-001 exact local browser test",
+      "result": "1 passed in 22.20s"
+    },
+    {
+      "selection": "UI-SB-001/002 and UI-SB-003 exact browser tests",
+      "result": "2 passed in 43.93s"
+    },
+    {
+      "selection": "Second Brain publication/job-restart and chat regressions",
+      "result": "5 passed in 5.08s"
+    },
+    {
+      "selection": "UI-EDITOR-006 exact local browser test",
+      "result": "1 passed in 23.09s"
+    },
+    {
+      "selection": "UI-RESP-001 exact local browser test",
+      "result": "1 passed in 21.72s"
+    },
+    {
+      "selection": "UI-PERF-001 corrected exact performance test",
+      "result": "1 passed in 49.32s"
+    },
+    {
+      "selection": "modified performance test Python compilation",
+      "result": "pass"
+    }
+  ],
+  "review_actions": {
+    "reference_observed_approval_phrase": "UI-SHELL-001, UI-EDITOR-001, UI-EDITOR-002, UI-EDITOR-005, UI-DB-001, UI-DB-002, UI-DB-003, UI-SEARCH-001, UI-COLLAB-001, UI-SHARE-001 요약 승인",
+    "local_second_brain_policy_approval_phrase": "UI-SB-001, UI-SB-002, UI-SB-003 로컬 전용 통합 증거 정책 승인",
+    "partial_scenarios_promotable_now": false,
+    "effect_of_approval": "Approval authorizes creation of reviewed differential/status artifacts and verifier-backed completion-matrix updates for the approved categories; it does not promote any of the seven partial scenarios."
+  },
+  "claims": {
+    "all_25_scenarios_have_at_least_one_evidence_category": true,
+    "all_25_scenarios_certified": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "goal_should_remain_active": true
+  },
+  "next_exact_action": "Obtain the two explicit review decisions above. Then promote only approved categories through new immutable evidence artifacts, matrix updates, compact verifiers, and focused regressions while leaving the seven partial scenarios unchanged."
+}

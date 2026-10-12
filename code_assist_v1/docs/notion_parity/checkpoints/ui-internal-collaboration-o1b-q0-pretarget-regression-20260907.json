@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.o1b_q0.pretarget_regression_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O1B-Q0-PRETARGET-REGRESSION-20260907",
+  "recorded_at": "2026-09-07T03:49:25.7883472Z",
+  "packet_ids": [
+    "O1B-P1",
+    "Q0-P1"
+  ],
+  "status": "local_pretarget_regression_pass_external_target_inputs_still_required",
+  "immutable_after_recording": true,
+  "predecessors": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1b-p1-target-infrastructure-blocked-20260907.json",
+      "sha256": "sha256:c393e455414f524262ad83be7dd26248b65ce30fff4ecfa4b84d7cd5b3e61edf"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-r0-r1-z0-release-freeze-readiness-v3-20260907.json",
+      "sha256": "sha256:45b1b617d7428bf9d245b0b33728042cbfb103446f620845bbf94a12d1d81f20"
+    }
+  ],
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "product_decision": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_product_decision.v1.json",
+      "sha256": "sha256:19b550449db5af3510f62be6b56f65372faeacdd9f10136aa382b73da84362a8"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint_pointer": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    }
+  },
+  "implementation_bindings": [
+    {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_target_restore.py",
+      "sha256": "sha256:a3a692ad03465cb35e0949d4f2c3b3cdac999ad64c5bbfb555e155a1f952b85a"
+    },
+    {
+      "path": "code_assist_v1/tools/bind_internal_collaborative_target_policy.py",
+      "sha256": "sha256:4cb07129bd95a1972f030a20a32f9e0742a51c0884446107283283c9737a2032"
+    },
+    {
+      "path": "code_assist_v1/notion_collaboration/q0_validation.py",
+      "sha256": "sha256:8d3cdebe1ccf28ccf6c25e3cdf07dbdc7db10f60350100bf0072b9353362bdbe"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_policy_binding.py",
+      "sha256": "sha256:28c7e2f0503ecba1b3ee9c0187d2f3e8cbf624d6ba54dbf0b884cb0fc8ede702"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_restore.py",
+      "sha256": "sha256:735579c27f0c4ff5ab60cdd268c559f552fbccc2158b106becbd88517481cca0"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/load/test_target_concurrency.py",
+      "sha256": "sha256:37c3f65c5ee501630efb17eddba0d22b5131443d143c7f5c60067a47710f11d6"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/load/test_reconnect_storm.py",
+      "sha256": "sha256:389381699b913591956fbdc887d93ec4324f41c96a35832b50bb34b20de06e95"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/load/test_slow_consumer_backpressure.py",
+      "sha256": "sha256:8751ec472fb4604d50125dbc275ff9298826a2c3b95e83c6eecafce8afc97f89"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/fault/test_gateway_and_store_faults.py",
+      "sha256": "sha256:1a5fcbf428ae8027a89e695b05621456a97d7146e56b2c3d27f62778e089c587"
+    }
+  ],
+  "verification": {
+    "focused_o1b_q0_regression": {
+      "command": ".\\venv\\Scripts\\python.exe -E -m pytest -c code_assist_v1/pytest.ini -q -p no:debugging -p no:cacheprovider code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_policy_binding.py code_assist_v1/tests/notion_collaboration/test_internal_collaborative_target_restore.py code_assist_v1/tests/notion_collaboration/load/test_target_concurrency.py code_assist_v1/tests/notion_collaboration/load/test_reconnect_storm.py code_assist_v1/tests/notion_collaboration/load/test_slow_consumer_backpressure.py code_assist_v1/tests/notion_collaboration/fault/test_gateway_and_store_faults.py",
+      "passed": 65,
+      "failed": 0,
+      "exit_code": 0,
+      "duration_seconds": 137.87
+    },
+    "o1b_readiness_mode": {
+      "status": "pass",
+      "readiness_contract_passed": true,
+      "gate_passed": false,
+      "error_count": 0,
+      "policy_sha256": "sha256:345572f54a67af8ac853a64a78b2556bcb4d1298f3de21e871efa78036b90c15"
+    },
+    "o1b_execution_required_mode": {
+      "status": "fail_closed_as_expected",
+      "gate_passed": false,
+      "error_count": 1,
+      "error_code": "TARGET_EXECUTION_EVIDENCE_REQUIRED",
+      "policy_sha256": "sha256:345572f54a67af8ac853a64a78b2556bcb4d1298f3de21e871efa78036b90c15"
+    }
+  },
+  "external_resolution_required": [
+    "approved encrypted off-host backup destination or explicit authority to provision one",
+    "approved distinct Windows target host and connection method or explicit authority to provision a compliant Windows VM",
+    "reviewed release identity and four distinct Ed25519 public trust anchors with private keys kept outside the repository and chat",
+    "fresh execution-specific AP-OPS-TARGET and XG-SBE-TARGET-OPERATIONS-HANDOFF after target policy review"
+  ],
+  "central_state_preserved": {
+    "packet_progress": "44/50",
+    "completion_matrix_progress": "21/28",
+    "phase_gate_progress": "15/20",
+    "next_packet": "O1B-P1",
+    "O1B_P1_gate_passed": false,
+    "Q0_P1_gate_passed": false,
+    "catalog_ladder_matrix_or_pointer_modified": false
+  },
+  "claims": {
+    "external_system_mutated": false,
+    "target_or_production_service_started": false,
+    "backup_or_restore_written": false,
+    "approval_or_handoff_consumed": false,
+    "local_pretarget_regression_passed": true,
+    "product_complete": false,
+    "shared_goal_complete": false
+  }
+}

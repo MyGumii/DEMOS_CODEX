@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-ACCESS-BOUNDARY-CAPTURE-PARITY-R201-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T07:51:07.0542876+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r201 Chrome 153 full candidate captures all 18 named states at both adopted viewports, passes all 36 accessibility captures, and completes synthetic cleanup. State-bounded access-boundary corrections for V0R-MU-017 and V0R-MU-018 reduce the full unmasked difference by 3,389 pixels from r189 and the full raw difference by 65,549 pixels. The larger raw reduction includes exact reproduction of the receipt-bound 370 by 42 privacy matte in all four access-boundary captures; it is not counted as unmasked UI improvement. Exact RGBA remains 0/36, so r201 is a mutable progress candidate only and is not an immutable V0B receipt, phase-gate claim, or product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "comparison_candidate": {
+      "r189_receipt": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r189/receipt.json",
+      "r189_sha256": "sha256:01040305e242e12b7ed1ce02eae549b8975d537dae69055791962d04aab5ddee",
+      "r189_unmasked_difference_count": 2476763,
+      "r189_raw_difference_count": 2611687
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:26d8069914c853dc0a37b535bbe9dac8c94eaefff68329b2e5beadc0e28b02fd",
+        "changes": [
+          "reproduce the receipt-bound black privacy matte at the exact 370 by 42 access-boundary account region for V0R-MU-017 and V0R-MU-018",
+          "correct the compact access-boundary skeleton horizontal scale from 0.9048 to 0.9039548023 while preserving the validated vertical scale",
+          "move the first 1440 access-boundary dialog shadow four pixels downward while retaining the original compact shadow",
+          "align the access-boundary help control one pixel right and six pixels down"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:a2f6dc796ba4867dd97d9e21c4a9dfe163f49cba26e92d076750f0bfe54c1abc"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:78bbea83778d201e90f24929cac74fe942c8666adf439bc8008e58fe5d64e471"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:0c4f48c3b952ac65755c884dbd7d70089a38b98002eb654b74fc669131560901"
+      }
+    ],
+    "rejected_experiments_removed": [
+      "compact title and mid skeleton one-pixel source-width reductions; isolated r192 increased each compact access-boundary capture by 462 pixels",
+      "complete removal of the first dialog shadow; isolated r193 increased each 1440 capture by 2,499 pixels and each compact capture by 3,225 pixels",
+      "21 pixel dialog border radius; isolated r195 increased each 1440 capture by 456 pixels and each compact capture by 328 pixels",
+      "38 pixel help control, darker label, and wider shadow; isolated r197 increased each access-boundary capture by 115 pixels",
+      "extended 1440 lower dialog shadow; isolated r198 increased each 1440 access-boundary capture by 2,353 pixels",
+      "title font weight 600 and 0.2 pixel text stroke; isolated r199 and r200 both increased all four access-boundary captures"
+    ]
+  },
+  "isolated_validation": {
+    "I0_r190_privacy_matte_alignment": {
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "unmasked_difference_unchanged": true,
+      "privacy_region_pixels_per_capture": 15540
+    },
+    "I0_r191_compact_skeleton_scale": {
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "compact_delta_per_state": -185
+    },
+    "I0_r194_1440_shadow_offset": {
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "wide_delta_per_state": -1243,
+      "compact_variant_rejected": true
+    },
+    "I0_r196_help_alignment": {
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "delta_per_capture": -128
+    }
+  },
+  "retained_r201_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r201",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r201/receipt.json",
+    "receipt_sha256": "sha256:354cf1da8c462c574de971ae86a8fa05eb01db4ff186efd7dbbb185734f58670",
+    "release_candidate_source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "runtime_candidate_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 355655,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2473374,
+    "raw_difference_count": 2546138,
+    "unmasked_delta_from_r189": -3389,
+    "raw_delta_from_r189": -65549,
+    "masked_difference_count": 72764,
+    "changed_state_deltas_from_r189": {
+      "V0R-MU-008": -21,
+      "V0R-MU-017": -1684,
+      "V0R-MU-018": -1684
+    },
+    "access_boundary_state_totals": {
+      "V0R-MU-017": {
+        "1440": 35043,
+        "1280": 58996,
+        "total": 94039
+      },
+      "V0R-MU-018": {
+        "1440": 34974,
+        "1280": 58927,
+        "total": 93901
+      }
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:181f168348b3f83357cd2110846afa8844b1045f85dfc18faf2104e61e103a9a"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "working_directory": "workspace_root",
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "14 passed in 11.02s",
+      "exit_code": 0
+    }
+  },
+  "scope_attestation": {
+    "local_product_source_changed": false,
+    "local_capture_harness_changed": true,
+    "external_reference_receipt_modified": false,
+    "external_reference_screenshot_modified": false,
+    "personal_workspace_or_page_used": false,
+    "cookie_local_storage_profile_or_password_inspected": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "exact_pixel_36_of_36": "0_of_36",
+    "remaining_unmasked_difference_count": 2473374,
+    "core_25_final_rerun": "not_run",
+    "ui_performance_final_rerun": "not_run",
+    "V0B_P1_gate_passed": false,
+    "later_packets": ["O1B", "Q0", "R0", "R1", "Z0"],
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Continue exact-RGBA convergence from the retained r201 source and candidate. Prefer the largest remaining state-bounded main-surface regions, validate each correction in an isolated journey, and do not promote r201 to immutable evidence or mark any later gate complete."
+}

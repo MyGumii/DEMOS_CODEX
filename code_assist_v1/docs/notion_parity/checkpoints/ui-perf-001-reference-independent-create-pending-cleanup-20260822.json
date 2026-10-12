@@ -1,0 +1,81 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T16:06:06.6547857+09:00",
+  "run_id": "ui41-perf-001-reference-independent-create-pending-cleanup-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-browser-transport-clarification-20260822.json",
+    "sha256": "sha256:6399b8bb88d2deaf734121694bba5b596d547f509de8c7e30aa28d705378ed3f",
+    "semantic_status": "browser_transport_recovered_and_reference_create_identity_proven"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective": "그러면 현재 진행된 내용에 이어서 계획을 목표로 다시 goal함수 수행해",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-PERF-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_page_alias": "UI-PERF-001-REFERENCE-CREATE",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "raw_url_or_page_id_persisted": false,
+    "raw_dom_network_or_cookie_persisted": false,
+    "external_publish_or_message_performed": false
+  },
+  "slice": {
+    "status": "reference_independent_create_identity_green_timing_rejected_cleanup_pending",
+    "review_required": true,
+    "promotion_allowed": false,
+    "completion_matrix_mutation_allowed": false
+  },
+  "browser_transport": {
+    "user_open_tab_discovery_count": 4,
+    "ref_free_a_exact_title_match_count": 1,
+    "claim_succeeded": true,
+    "other_tabs_inspected": false
+  },
+  "reference_create_observation": {
+    "baseline_treeitem_count": 4,
+    "new_identity_different": true,
+    "treeitem_count_delta": 1,
+    "default_title_empty": true,
+    "title_focused_at_first_durable_reobservation": false,
+    "synthetic_title_committed": true,
+    "synthetic_title_tree_match_count": 1,
+    "document_title_matched_synthetic_title": true,
+    "raw_identity_persisted": false
+  },
+  "timing_disposition": {
+    "accepted_sample": false,
+    "reason": "The page-type selection caused the expected SPA replacement, but the control call reported a pointer-dispatch timeout after the target disappeared. Durable reobservation proves creation, not an exact click-to-ready duration.",
+    "slo_or_percentile_claim_allowed": false
+  },
+  "cleanup": {
+    "status": "pending_action_time_confirmation",
+    "requested_action": "Move only UI-PERF-001-REFERENCE-CREATE to the Notion Trash.",
+    "permanent_delete_requested": false,
+    "confirmation_phrase": "UI-PERF-001-REFERENCE-CREATE 휴지통 이동 승인",
+    "tab_disposition": "handoff_on_created_synthetic_page"
+  },
+  "protected_inputs": [
+    {"path":"code_assist_v1/AGENTS.md","sha256":"sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path":"code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md","sha256":"sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json","sha256":"sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"},
+    {"path":"code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json","sha256":"sha256:5106bf14da624728c6ba2bde86e283c1f66b66fc6d18fafc12f0fd1971d6839b"}
+  ],
+  "claims": {
+    "reference_independent_create_identity_proven": true,
+    "reference_independent_create_timing_proven": false,
+    "reference_tree_restored": false,
+    "performance_budget_approved": false,
+    "ui_perf_001_reference_characterized": false,
+    "ui_perf_001_differential_passed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next_exact_action": "After exact action-time confirmation, reclaim the handoff REF-FREE-A tab, verify the synthetic title uniquely identifies the created page, move only it to Trash, and prove the original tree count and zero title residual."
+}

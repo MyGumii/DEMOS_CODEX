@@ -1,0 +1,341 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/contracts/organization.schema.json",
+  "title": "Organization administration and purge queue contracts",
+  "$defs": {
+    "OrgKind": {"enum": ["responsibility", "team", "part"]},
+    "OrgStatus": {"enum": ["active", "inactive"]},
+    "OrgLeader": {
+      "type": "object",
+      "required": ["assignment_id", "user_id", "display_name", "valid_from"],
+      "properties": {
+        "assignment_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "user_id": {"$ref": "common.schema.json#/$defs/UserId"},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 120, "pattern": "\\S"},
+        "valid_from": {"$ref": "common.schema.json#/$defs/UtcTimestamp"}
+      },
+      "additionalProperties": false
+    },
+    "OrgUnit": {
+      "type": "object",
+      "required": ["id", "parent_id", "kind", "name", "status", "member_count", "leader", "space_status", "row_version", "children", "warnings"],
+      "properties": {
+        "id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "parent_id": {"$ref": "common.schema.json#/$defs/NullableUuid"},
+        "kind": {"$ref": "#/$defs/OrgKind"},
+        "name": {"type": "string", "minLength": 1, "maxLength": 120, "pattern": "\\S"},
+        "status": {"$ref": "#/$defs/OrgStatus"},
+        "member_count": {"type": "integer", "minimum": 0, "maximum": 9223372036854775807},
+        "leader": {
+          "oneOf": [
+            {"$ref": "#/$defs/OrgLeader"},
+            {"type": "null"}
+          ]
+        },
+        "space_status": {"enum": ["not_created", "active", "write_disabled", "frozen", "future_only"]},
+        "row_version": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807},
+        "children": {"type": "array", "items": {"$ref": "#/$defs/OrgUnit"}},
+        "warnings": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "CanonicalOrgUser": {
+      "type": "object",
+      "required": ["id", "display_name", "system_role", "account_status", "current_part_id", "current_membership_id", "scope_epoch", "row_version"],
+      "properties": {
+        "id": {"$ref": "common.schema.json#/$defs/UserId"},
+        "display_name": {"type": "string", "minLength": 1, "maxLength": 120, "pattern": "\\S"},
+        "system_role": {"enum": ["admin", "user"]},
+        "account_status": {"enum": ["active", "disabled"]},
+        "current_part_id": {"$ref": "common.schema.json#/$defs/NullableUuid"},
+        "current_membership_id": {"$ref": "common.schema.json#/$defs/NullableUuid"},
+        "scope_epoch": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807},
+        "row_version": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807}
+      },
+      "additionalProperties": false
+    },
+    "OrgTreeResponse": {
+      "type": "object",
+      "required": ["request_id", "root", "users"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "root": {"$ref": "#/$defs/OrgUnit"},
+        "users": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/CanonicalOrgUser"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateOrgUnitRequest": {
+      "type": "object",
+      "required": ["operation_id", "parent_id", "kind", "name"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "parent_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "kind": {"enum": ["team", "part"]},
+        "name": {"type": "string", "minLength": 1, "maxLength": 120, "pattern": "\\S"}
+      },
+      "additionalProperties": false
+    },
+    "OrgChangeBlocker": {
+      "type": "object",
+      "required": ["code", "message", "resource_id"],
+      "properties": {
+        "code": {"type": "string", "minLength": 1, "maxLength": 80},
+        "message": {"type": "string", "minLength": 1, "maxLength": 1000, "pattern": "\\S"},
+        "resource_id": {"type": ["string", "null"], "maxLength": 120}
+      },
+      "additionalProperties": false
+    },
+    "OrgMemberImpact": {
+      "type": "object",
+      "required": ["current_member_count", "descendant_member_count", "member_ids", "members"],
+      "properties": {
+        "current_member_count": {"type": "integer", "minimum": 0, "maximum": 9223372036854775807},
+        "descendant_member_count": {"type": "integer", "minimum": 0, "maximum": 9223372036854775807},
+        "member_ids": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {"$ref": "common.schema.json#/$defs/UserId"},
+          "uniqueItems": true
+        },
+        "members": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {"$ref": "#/$defs/OrgImpactedMember"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "OrgImpactedMember": {
+      "type": "object",
+      "required": ["user_id", "expected_user_row_version"],
+      "properties": {
+        "user_id": {"$ref": "common.schema.json#/$defs/UserId"},
+        "expected_user_row_version": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807}
+      },
+      "additionalProperties": false
+    },
+    "OrgLeaderImpact": {
+      "type": "object",
+      "required": ["leader_assignment_id", "leader_user_id", "will_close"],
+      "properties": {
+        "leader_assignment_id": {"$ref": "common.schema.json#/$defs/NullableUuid"},
+        "leader_user_id": {
+          "oneOf": [
+            {"$ref": "common.schema.json#/$defs/UserId"},
+            {"type": "null"}
+          ]
+        },
+        "will_close": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "OrgSpaceImpact": {
+      "type": "object",
+      "required": ["space_id", "space_status", "write_enabled", "knowledge_item_count", "row_version"],
+      "properties": {
+        "space_id": {"$ref": "common.schema.json#/$defs/NullableUuid"},
+        "row_version": {"$ref": "common.schema.json#/$defs/NullablePositiveVersion"},
+        "space_status": {"enum": ["not_created", "active", "write_disabled", "frozen", "future_only"]},
+        "write_enabled": {"type": "boolean"},
+        "knowledge_item_count": {"type": "integer", "minimum": 0, "maximum": 9223372036854775807}
+      },
+      "additionalProperties": false
+    },
+    "OrgChangePreviewRequest": {
+      "type": "object",
+      "required": ["expected_row_version", "change"],
+      "properties": {
+        "expected_row_version": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807},
+        "change": {"enum": ["move", "inactivate"]},
+        "new_parent_id": {"$ref": "common.schema.json#/$defs/NullableUuid"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"change": {"const": "move"}}},
+          "then": {
+            "required": ["new_parent_id"],
+            "properties": {
+              "new_parent_id": {"$ref": "common.schema.json#/$defs/Uuid"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"change": {"const": "inactivate"}}},
+          "then": {"properties": {"new_parent_id": {"type": "null"}}}
+        }
+      ],
+      "additionalProperties": false
+    },
+    "OrgChangePreviewResponse": {
+      "type": "object",
+      "required": ["request_id", "unit_id", "allowed", "blockers", "member_impact", "leader_impact", "space_impact", "preview_token", "expires_at"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "unit_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "allowed": {"type": "boolean"},
+        "blockers": {"type": "array", "items": {"$ref": "#/$defs/OrgChangeBlocker"}},
+        "member_impact": {"$ref": "#/$defs/OrgMemberImpact"},
+        "leader_impact": {"$ref": "#/$defs/OrgLeaderImpact"},
+        "space_impact": {"$ref": "#/$defs/OrgSpaceImpact"},
+        "preview_token": {"type": "string", "minLength": 32, "maxLength": 4096},
+        "expires_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"}
+      },
+      "additionalProperties": false
+    },
+    "UpdateOrgUnitRequest": {
+      "type": "object",
+      "required": ["operation_id", "expected_row_version"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "expected_row_version": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807},
+        "name": {"type": "string", "minLength": 1, "maxLength": 120, "pattern": "\\S"},
+        "status": {"const": "inactive"},
+        "reason": {"type": "string", "minLength": 1, "maxLength": 1000, "pattern": "\\S"},
+        "preview_token": {"type": "string", "minLength": 32, "maxLength": 4096},
+        "resolution": {"$ref": "#/$defs/OrgInactivationResolution"}
+      },
+      "oneOf": [
+        {
+          "required": ["name"],
+          "not": {
+            "anyOf": [
+              {"required": ["status"]},
+              {"required": ["reason"]},
+              {"required": ["preview_token"]},
+              {"required": ["resolution"]}
+            ]
+          }
+        },
+        {
+          "required": ["status", "reason", "preview_token", "resolution"],
+          "not": {"required": ["name"]}
+        }
+      ],
+      "additionalProperties": false
+    },
+    "OrgMoveResolution": {
+      "type": "object",
+      "required": ["retain_memberships", "retain_leader", "retain_space"],
+      "properties": {
+        "retain_memberships": {"const": true},
+        "retain_leader": {"const": true},
+        "retain_space": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "OrgMemberResolution": {
+      "type": "object",
+      "required": ["user_id", "expected_user_row_version", "target_part_id"],
+      "properties": {
+        "user_id": {"$ref": "common.schema.json#/$defs/UserId"},
+        "expected_user_row_version": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807},
+        "target_part_id": {"$ref": "common.schema.json#/$defs/NullableUuid"}
+      },
+      "additionalProperties": false
+    },
+    "OrgInactivationResolution": {
+      "type": "object",
+      "required": ["member_resolutions", "expected_current_leader_assignment_id", "leader_action", "expected_space_row_version", "space_action"],
+      "properties": {
+        "member_resolutions": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {"$ref": "#/$defs/OrgMemberResolution"}
+        },
+        "expected_current_leader_assignment_id": {"$ref": "common.schema.json#/$defs/NullableUuid"},
+        "leader_action": {"const": "close"},
+        "expected_space_row_version": {"$ref": "common.schema.json#/$defs/NullablePositiveVersion"},
+        "space_action": {"const": "freeze_if_present"}
+      },
+      "additionalProperties": false
+    },
+    "MoveOrgUnitRequest": {
+      "type": "object",
+      "required": ["operation_id", "expected_row_version", "preview_token", "new_parent_id", "resolution"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "expected_row_version": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807},
+        "preview_token": {"type": "string", "minLength": 32, "maxLength": 4096},
+        "new_parent_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "resolution": {"$ref": "#/$defs/OrgMoveResolution"}
+      },
+      "additionalProperties": false
+    },
+    "SetMembershipRequest": {
+      "type": "object",
+      "required": ["operation_id", "expected_user_row_version", "part_id", "expected_current_leader_assignment_id", "expected_part_row_version", "reason"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "expected_user_row_version": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807},
+        "part_id": {"$ref": "common.schema.json#/$defs/NullableUuid"},
+        "expected_current_leader_assignment_id": {"$ref": "common.schema.json#/$defs/NullableUuid"},
+        "expected_part_row_version": {"$ref": "common.schema.json#/$defs/NullablePositiveVersion"},
+        "replacement_leader_user_id": {
+          "oneOf": [
+            {"$ref": "common.schema.json#/$defs/UserId"},
+            {"type": "null"}
+          ]
+        },
+        "reason": {"type": "string", "minLength": 1, "maxLength": 1000, "pattern": "\\S"}
+      },
+      "additionalProperties": false
+    },
+    "SetLeaderRequest": {
+      "type": "object",
+      "required": ["operation_id", "leader_user_id", "expected_part_row_version", "expected_current_leader_assignment_id", "reason"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "leader_user_id": {"$ref": "common.schema.json#/$defs/UserId"},
+        "expected_part_row_version": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807},
+        "expected_current_leader_assignment_id": {"$ref": "common.schema.json#/$defs/NullableUuid"},
+        "reason": {"type": "string", "minLength": 1, "maxLength": 1000, "pattern": "\\S"}
+      },
+      "additionalProperties": false
+    },
+    "SetUserStatusRequest": {
+      "type": "object",
+      "required": ["operation_id", "expected_user_row_version", "expected_current_leader_assignment_id", "expected_part_row_version", "reason"],
+      "properties": {
+        "operation_id": {"$ref": "common.schema.json#/$defs/OperationId"},
+        "expected_user_row_version": {"type": "integer", "minimum": 1, "maximum": 9223372036854775807},
+        "expected_current_leader_assignment_id": {"$ref": "common.schema.json#/$defs/NullableUuid"},
+        "expected_part_row_version": {"$ref": "common.schema.json#/$defs/NullablePositiveVersion"},
+        "replacement_leader_user_id": {
+          "oneOf": [
+            {"$ref": "common.schema.json#/$defs/UserId"},
+            {"type": "null"}
+          ]
+        },
+        "reason": {"type": "string", "minLength": 1, "maxLength": 2000, "pattern": "\\S"}
+      },
+      "additionalProperties": false
+    },
+    "PurgeEligibleItem": {
+      "type": "object",
+      "required": ["space_id", "item_id", "title", "deactivated_at", "purge_eligible_at", "blocking_reference_count"],
+      "properties": {
+        "space_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "item_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "title": {"type": "string"},
+        "deactivated_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "purge_eligible_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "blocking_reference_count": {"type": "integer", "minimum": 0, "maximum": 9223372036854775807}
+      },
+      "additionalProperties": false
+    },
+    "PurgeEligibleResponse": {
+      "type": "object",
+      "required": ["request_id", "items", "next_cursor", "has_more"],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "items": {"type": "array", "items": {"$ref": "#/$defs/PurgeEligibleItem"}},
+        "next_cursor": {"$ref": "common.schema.json#/$defs/Cursor"},
+        "has_more": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

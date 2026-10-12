@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-SEMANTIC-GUARD-RETRY67-PROGRESS-20260830",
+  "recorded_at": "2026-08-30T17:22:02.0587586+09:00",
+  "status": "progress_semantic_guard_exact_transport_blocked",
+  "summary": "Retry67 preserves the complete 20-capture I0 journey and cleanup denominator while automatically excluding the four V0R-MU-004 and V0R-MU-006 screenshots whose reference capture timing contradicts their state contracts. Sixteen contract-aligned semantic captures report 4,655,927 unmasked differing pixels; the four excluded captures report 1,433,184 separately and cannot drive visual optimization. Chrome source inspection confirms the ordinary screenshot client does not serialize a requested codec, and the connected Chrome test tab exposes only pageAssets rather than the documented raw CDP capability, so lossless exact-reference capture remains blocked without changing browser surface or capability availability.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+      "sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa",
+      "modified": false
+    },
+    "semantic_suitability_audit": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-v2-semantic-reference-suitability-audit-20260830.json",
+      "sha256": "sha256:b4d46fdc5d70abc55a58dd55a3d56c4ec0d22efb24ac3e699acd94f0234450af",
+      "modified": false
+    },
+    "chrome_capture_transport_recheck": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-chrome-capture-transport-recheck-20260830.json",
+      "sha256": "sha256:39270b84eed1c96fe465d1aff86bd31f008cbd27b8aabd5d23236bc514b1a089",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "chrome_transport_deep_recheck": {
+    "plugin_cache_version": "26.825.32147",
+    "ordinary_screenshot_client": {
+      "accepts_full_page": true,
+      "accepts_clip": true,
+      "serializes_codec_or_type": false,
+      "png_request_reaches_transport": false,
+      "observed_returned_codec": "jpeg_jfif"
+    },
+    "documented_alternative": {
+      "capability_id": "cdp",
+      "potential_command": "Page.captureScreenshot",
+      "potential_format": "png"
+    },
+    "connected_test_tab": {
+      "target": "cleaned REF-FREE-B / V0R-B-ROOT test page",
+      "available_capability_ids": ["pageAssets"],
+      "cdp_get_result": "Capability is not available: cdp",
+      "lossless_capture_available": false
+    },
+    "fresh_tab_probe": {
+      "blank_tab_created": true,
+      "navigation_completed": false,
+      "reason": "the prior test-tab binding became stale before its URL could be reused",
+      "blank_tab_closed": true,
+      "remaining_tabs_in_owner_binding_after_cleanup": 0,
+      "external_notion_mutation": false
+    }
+  },
+  "implementation": {
+    "diagnostic_tool": {
+      "path": "code_assist_v1/tools/run_v0b_p1_i0_semantic_diagnostic_20260830.py",
+      "sha256": "sha256:227c2905c75762f9b2633a850c54a58bd335ef18432877a9d935183d933d80a2",
+      "output_root_immutability_suffix": "retry67",
+      "changes": [
+        "declare V0R-MU-004 and V0R-MU-006 capture-timing exclusions",
+        "fail closed on an incomplete ten-state denominator",
+        "split eligible and excluded state and capture totals",
+        "annotate every capture with semantic_reference_eligible",
+        "prohibit excluded-state visual optimization and all exact RGBA use"
+      ]
+    },
+    "test": {
+      "path": "code_assist_v1/tests/notion_collaboration/test_v0b_p1_i0_semantic_diagnostic.py",
+      "sha256": "sha256:e2f49f64055f79c929c5dc6ab59ec0b0fee6ec757d7f670da25b51560357bf89"
+    }
+  },
+  "accepted_retry67_diagnostic": {
+    "root": "code_assist_v1/.runtime/v0b-p1-i0-v2-semantic-diagnostic-20260830-retry67",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-i0-v2-semantic-diagnostic-20260830-retry67/diagnostic.json",
+    "receipt_sha256": "sha256:5da10a27346477b039754ce2b34aea30df3aca640935a055a85cf40c1a3ecbd9",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "journey_status": "pass",
+    "eligible_state_ids": [
+      "V0R-MU-001",
+      "V0R-MU-002",
+      "V0R-MU-003",
+      "V0R-MU-005",
+      "V0R-MU-015",
+      "V0R-MU-016",
+      "V0R-MU-017",
+      "V0R-MU-018"
+    ],
+    "eligible_state_count": 8,
+    "eligible_capture_count": 16,
+    "eligible_unmasked_difference_count": 4655927,
+    "eligible_masked_difference_count": 97052,
+    "excluded_state_ids": ["V0R-MU-004", "V0R-MU-006"],
+    "excluded_state_count": 2,
+    "excluded_capture_count": 4,
+    "excluded_unmasked_difference_count": 1433184,
+    "excluded_masked_difference_count": 13956,
+    "cleanup": {
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "permanent_delete_used": false
+    }
+  },
+  "verification": {
+    "local_services": {
+      "agent_10111": "200 ok",
+      "notion_10112": "200 ok",
+      "gateway_10113": "200 READY",
+      "gateway_restart_required": false
+    },
+    "targeted_tests": {
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_i0_semantic_diagnostic.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py"
+      ],
+      "result": "16 passed in 10.12s",
+      "exit_code": 0
+    }
+  },
+  "scope_attestation": {
+    "local_diagnostic_harness_changed": true,
+    "local_product_source_changed": false,
+    "external_notion_mutation": false,
+    "external_reference_receipt_modified": false,
+    "external_reference_screenshot_modified": false,
+    "personal_workspace_or_page_used": false,
+    "cookie_local_storage_profile_or_password_inspected": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "lossless_capture_transport": "blocked_in_connected_Chrome",
+    "corrected_V0R_MU_004_reference": "pending",
+    "corrected_V0R_MU_006_reference": "pending",
+    "exact_pixel_36_of_36": "not_run",
+    "core_25": "not_run",
+    "performance": "not_run",
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Keep retry67 as the authoritative guarded semantic diagnostic. Do not optimize against V0R-MU-004 or V0R-MU-006 and do not repeat ordinary Chrome screenshots. Exact reference work requires either connected-Chrome CDP capability availability or explicit authorization to test a different lossless capture surface, followed by action-time confirmation before recreating cleaned external fixtures."
+}

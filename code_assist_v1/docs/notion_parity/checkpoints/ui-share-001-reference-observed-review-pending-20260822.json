@@ -1,0 +1,165 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T01:03:37.5454694+09:00",
+  "run_id": "ui17-share-001-reference-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-SHARE-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_page_alias": "UI-PARITY-RUN-SHARE-001",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "owner_identity_transiently_visible_in_share_dialog": true,
+    "owner_identity_persisted": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "transient_screenshot_used_for_visual_confirmation": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "page_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-SHARE-001",
+    "status": "reference_observed_review_pending_six_semantic_fields",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 10,
+    "reference_partially_observed": 3,
+    "reference_unobserved": 7,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "input_snapshot": {
+    "agents_sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572",
+    "test_source_sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3",
+    "local_source_build_sha256": "sha256:8d0eb7ee6e24ed4824707ef3c788074d71843742a8a87b841e713f83504614f4",
+    "reference_source_build_sha256": "sha256:a38b080d126ae53d5b3342d62ac27c7d0c2723422e0a03a656017037947c39e2",
+    "action_log_sha256": "sha256:3ca3309d6b483e4e5bc66090a2f0bf3911c31c4eded8b985681e629a4c03f684"
+  },
+  "reference_action_captures": {
+    "UI-SHARE-001-A01": {
+      "sha256": "sha256:4fa5cd814a28d81b61a077fabae489d09392d908636a0d91ad252500c7ef3bb6",
+      "capture_validation_errors": 0,
+      "state": {"count": 1, "result": "pass"},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"sequence": ["SHARE-INVITE-INPUT"]},
+      "a11y": {"name": "SHARE-DIALOG", "role": "dialog"},
+      "semantic_visual": {"region": "SHARE-DIALOG", "state": "visible"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {
+        "SHARE-DIALOG": {"height": 293, "width": 456, "x": 1394, "y": 44}
+      },
+      "latency_ms": 500
+    },
+    "UI-SHARE-001-A02": {
+      "sha256": "sha256:21a90915be1e81963973360570c94cda338ffc5c4cdda4f43e4dbc95cbc91c1d",
+      "capture_validation_errors": 0,
+      "state": {"count": 0, "result": "pass"},
+      "keyboard": {"key": "ESCAPE", "result": "pass"},
+      "focus": {"sequence": ["SHARE-TRIGGER"]},
+      "a11y": {"name": "SHARE-TRIGGER", "role": "button"},
+      "semantic_visual": {"region": "SHARE-DIALOG", "state": "hidden_with_access_tooltip"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {
+        "SHARE-TRIGGER": {"height": 28, "width": 60, "x": 1760, "y": 8}
+      },
+      "latency_ms": 450
+    }
+  },
+  "reference_exact_results": {
+    "main_share_surface_role": "dialog",
+    "share_tab_selected": true,
+    "publish_tab_selected": false,
+    "publish_tab_visible_but_not_opened": true,
+    "invite_input_type": "email",
+    "invite_input_empty": true,
+    "invite_input_received_focus": true,
+    "general_access_state": "invite_only",
+    "link_copy_control_visible_but_not_used": true,
+    "owner_identity_surface_visible_but_redacted": true,
+    "escape_closed_main_share_dialog": true,
+    "escape_restored_focus_to_share_trigger": true,
+    "focused_share_trigger_access_tooltip_visible": true,
+    "focused_share_trigger_access_tooltip_role": "dialog",
+    "invitee_selected": false,
+    "invite_submitted": false,
+    "publish_tab_opened": false,
+    "public_link_created": false,
+    "link_copied": false,
+    "permission_changed": false,
+    "network_capture_performed": false,
+    "synthetic_page_moved_to_trash": true,
+    "synthetic_page_residual_count": 0,
+    "invite_input_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_evidence": {
+    "current_exact_test": "1 passed in 17.68s",
+    "focus_sequence": ["SHARE-DIALOG", "SHARE-TRIGGER"],
+    "access_mutation_count": 0,
+    "external_request_count": 0,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "synthetic_only": true,
+    "historical_action_capture_sha256": {
+      "UI-SHARE-001-A01": "sha256:d58c3d2655f3cb3b1731af786453aef53bc4c21cc2637785d65a796f5d2f9888",
+      "UI-SHARE-001-A02": "sha256:1d9684056ff48e610521981b6a5123f9fd56513bb183ae011659aa8fa350689d"
+    },
+    "current_capture_hash_status": "not_reextracted_after_current_source_build; exact current journey passed"
+  },
+  "precalibration_differential": {
+    "status": "fail",
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-SHARE-001-A01": {
+        "difference_count": 2,
+        "differences": ["focus", "keyboard"]
+      },
+      "UI-SHARE-001-A02": {
+        "difference_count": 1,
+        "differences": ["semantic_visual"]
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "interpretation": "Both implementations expose a dialog, preserve access state, execute zero invite/public-link/access mutations, close with Escape, and restore focus to the share trigger. Official Free web initially focuses the empty invite field rather than the dialog root and displays a self-access tooltip while the restored trigger remains focused."
+  },
+  "redacted_review_summary": {
+    "reference_profile": "Chrome desktop Free owner ko-KR",
+    "reference_workspace": "REF-FREE-A",
+    "result": "The Free share dialog exposed Share and Publish tabs, an empty invite field, invite-only general access, and a copy-link control. Opening focused the invite field. Escape closed the main dialog and restored focus to Share, where a self-access tooltip appeared. No invitee, publication, link copy, or permission change was executed.",
+    "cleanup": "The synthetic page was moved to Trash; the REF-FREE-A tree has zero matching residual rows, no invite input, and no open dialog.",
+    "privacy": "The owner identity was transiently visible in the official share dialog but was not copied into repository evidence. No personal page, raw DOM, network payload, cookies or storage, screenshot, invitation, public posting, permanent delete, or local live data was used."
+  },
+  "claims": {
+    "ui_share_001_reference_observed": true,
+    "ui_share_001_reference_characterized": false,
+    "ui_share_001_differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain workspace-owner approval of this redacted summary before sealing the receipt or changing local share-dialog focus/tooltip behavior. Preserve the 5/25 certified parent until the selected behavior and the full regression ladder pass."
+}

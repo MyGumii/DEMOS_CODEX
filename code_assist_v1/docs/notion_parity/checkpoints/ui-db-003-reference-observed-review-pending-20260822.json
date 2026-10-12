@@ -1,0 +1,147 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T00:25:32.0076569+09:00",
+  "run_id": "ui13-db-003-reference-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-DB-003",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_database_alias": "UI-PARITY-RUN-DB-003",
+    "synthetic_row_aliases": ["UI-VIEW-A", "UI-VIEW-B", "UI-VIEW-C"],
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "transient_screenshot_used_for_visual_confirmation": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "database_and_rows_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-DB-003",
+    "status": "reference_observed_review_pending_six_semantic_fields",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 7,
+    "reference_partially_observed": 2,
+    "reference_unobserved": 11,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "input_snapshot": {
+    "agents_sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572",
+    "test_source_sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3",
+    "local_source_build_sha256": "sha256:8d0eb7ee6e24ed4824707ef3c788074d71843742a8a87b841e713f83504614f4",
+    "reference_source_build_sha256": "sha256:a38b080d126ae53d5b3342d62ac27c7d0c2723422e0a03a656017037947c39e2",
+    "action_log_sha256": "sha256:74e469b0a1c2a2d8d8b64482430b615080ca82d14091ca5cf1cac1913a14988d"
+  },
+  "reference_action_captures": {
+    "UI-DB-003-A01": {
+      "sha256": "sha256:b8d6d5b13f622bdb7e81a93cd811d6f32f92520e0ff37357daebf8b76a596db6",
+      "capture_validation_errors": 0,
+      "state": {"count": 5, "result": "pass"},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"sequence": ["TABLE", "BOARD", "LIST", "GALLERY", "CALENDAR", "TABLE"]},
+      "a11y": {"name": "DATABASE-VIEW-SWITCHER", "role": "tablist"},
+      "semantic_visual": {"region": "DATABASE-VIEW-SWITCHER", "state": "five-views-rendered"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {
+        "DATABASE-VIEW-SWITCHER": {"height": 32, "width": 335, "x": 374, "y": 130}
+      },
+      "latency_ms": 1800
+    }
+  },
+  "reference_exact_results": {
+    "view_names_exact": ["표", "보드", "리스트", "갤러리", "캘린더"],
+    "active_view_received_focus_on_every_switch": true,
+    "active_view_aria_selected_on_every_switch": true,
+    "view_switcher_accessibility_role": "tablist",
+    "table_visible_titles": ["UI-VIEW-A", "UI-VIEW-B", "UI-VIEW-C"],
+    "board_visible_titles": ["UI-VIEW-C", "UI-VIEW-A", "UI-VIEW-B"],
+    "list_visible_titles": ["UI-VIEW-C", "UI-VIEW-B", "UI-VIEW-A"],
+    "gallery_visible_titles": ["UI-VIEW-C", "UI-VIEW-B", "UI-VIEW-A"],
+    "calendar_visible_titles": ["UI-VIEW-A", "UI-VIEW-B", "UI-VIEW-C"],
+    "calendar_active_after_reload": true,
+    "calendar_titles_after_reload": ["UI-VIEW-A", "UI-VIEW-B", "UI-VIEW-C"],
+    "table_rows_after_reload": [
+      {"title": "UI-VIEW-A", "status": "진행 중", "date": "2026년 8월 10일"},
+      {"title": "UI-VIEW-B", "status": "완료", "date": "2026년 8월 11일"},
+      {"title": "UI-VIEW-C", "status": "진행 중", "date": "2026년 8월 12일"}
+    ],
+    "canonical_row_identity_set_preserved": true,
+    "view_switch_created_or_deleted_row": false,
+    "synthetic_database_and_rows_moved_to_trash": true,
+    "synthetic_tree_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_evidence": {
+    "current_exact_test": "1 passed in 48.80s",
+    "canonical_rows_preserved": true,
+    "view_count": 5,
+    "active_view_focus_restored": true,
+    "view_state_restored": true,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "synthetic_only": true,
+    "historical_capture_sha256": {
+      "UI-DB-003-A01": "sha256:d9ff63edbe163d01ca41815326dab28c72f0c08ebd70c8add43e60260632101e"
+    },
+    "current_capture_hash_status": "not_reextracted_after_current_source_build; exact current journey passed",
+    "test_attempts": [
+      "first serial run failed in 33.30s because the third synthetic row side peek did not become visible before the 20-second assertion; no product source was changed",
+      "one direct serial rerun passed in 48.80s; the preceding timing failure did not reproduce"
+    ],
+    "timing_risk_status": "recorded_nondeterministic_side_peek_open_delay; not hidden and not treated as a product pass by itself"
+  },
+  "precalibration_differential": {
+    "status": "fail",
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-DB-003-A01": {
+        "difference_count": 1,
+        "differences": ["keyboard"]
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "interpretation": "Both implementations preserve the exact same three canonical rows and typed values across table, board, list, gallery, calendar, reload, and return-to-table. Both expose the view strip as a tablist and focus the selected tab. The official reference was observed through pointer actions, so keyboard behavior remains not_applicable rather than being inferred."
+  },
+  "redacted_review_summary": {
+    "reference_profile": "Chrome desktop Free owner ko-KR",
+    "reference_workspace": "REF-FREE-A",
+    "result": "One synthetic database retained three canonical rows and their status/date values while switching among table, board, list, gallery, and calendar. Every selected view exposed aria-selected=true and received focus. Calendar remained selected after reload, all three row identities remained visible, and returning to table showed the exact original title/status/date mapping.",
+    "cleanup": "The synthetic database and all three rows were moved together to Trash; the REF-FREE-A tree has zero matching residual rows and no open dialog remains.",
+    "privacy": "No personal workspace/page, raw DOM, network payload, cookies or storage, screenshot, public posting, invitation, permanent delete, or local live data was used."
+  },
+  "claims": {
+    "ui_db_003_reference_observed": true,
+    "ui_db_003_reference_characterized": false,
+    "ui_db_003_differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain workspace-owner approval of this redacted summary before sealing the receipt. Preserve the 5/25 certified parent and classify the one recorded local side-peek timing failure before any promotion; do not change product code or the completion matrix without approval."
+}

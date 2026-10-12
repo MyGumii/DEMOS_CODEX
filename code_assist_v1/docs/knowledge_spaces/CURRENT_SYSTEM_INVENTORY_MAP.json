@@ -1,0 +1,669 @@
+{
+  "schema_version": 1,
+  "expected_submitter_count": 8,
+  "expected_callsite_ids_sha256": "4ece2ab6d2f4017c438837a0823cb57a4c448ec42d277e8a502a3f1f4280dccf",
+  "mapping_rules": [
+    {
+      "mapping_id": "G02-COMPOSITION-REGISTRATION",
+      "priority": 0,
+      "selector": {
+        "files": ["app_code.py", "app_notion.py", "blueprint.py"],
+        "kinds": ["route_registration"]
+      },
+      "scope_owner": "shared_application_composition",
+      "replacement_phase": "P1",
+      "disposition": "replace",
+      "reason": "The standalone and blueprint registration graphs converge on one shared composition root."
+    },
+    {
+      "mapping_id": "G02-APP-CODE-SHELL-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["app_code.py"],
+        "kinds": ["route_decorator"]
+      },
+      "scope_owner": "code_web_shell",
+      "replacement_phase": "P1",
+      "disposition": "exclude_non_knowledge",
+      "reason": "Root, login, health, favicon, and static-shell routes do not own shared knowledge."
+    },
+    {
+      "mapping_id": "G02-NOTION-SHELL-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["app_notion.py"],
+        "kinds": ["route_decorator"]
+      },
+      "scope_owner": "notion_source_application",
+      "replacement_phase": "P1",
+      "disposition": "retain_external",
+      "reason": "The Notion web shell remains the external Notion source application."
+    },
+    {
+      "mapping_id": "G02-BLUEPRINT-SHELL-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["blueprint.py"],
+        "kinds": ["route_decorator"]
+      },
+      "scope_owner": "legacy_blueprint_shell",
+      "replacement_phase": "P1",
+      "disposition": "exclude_non_knowledge",
+      "reason": "Blueprint index and health routes are shell compatibility endpoints."
+    },
+    {
+      "mapping_id": "G02-COMPOSITION-PROJECT-CONTEXT",
+      "priority": 0,
+      "selector": {
+        "files": ["app_code.py", "blueprint.py"],
+        "kinds": ["context_reference"]
+      },
+      "scope_owner": "conversation_context_binding",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Implicit project-context composition is replaced by explicit conversation binding."
+    },
+    {
+      "mapping_id": "G02-NOTION-HTTP-ERROR-TYPES",
+      "priority": 0,
+      "selector": {
+        "files": ["notion_http.py"],
+        "kinds": ["legacy_store_import"]
+      },
+      "scope_owner": "notion_source_adapter",
+      "replacement_phase": "P4",
+      "disposition": "retain_external",
+      "reason": "The Notion HTTP compatibility boundary imports retained source-store exception types only; it does not authorize canonical knowledge access."
+    },
+    {
+      "mapping_id": "G02-AUTH-DB-SERVICES",
+      "priority": 0,
+      "selector": {
+        "files": ["auth.py"],
+        "kinds": ["context_reference", "route_decorator"]
+      },
+      "scope_owner": "db_user_audit_admin_services",
+      "replacement_phase": "P1",
+      "disposition": "replace",
+      "reason": "Authentication, user administration, audit, transfer, and data summary move behind DB services."
+    },
+    {
+      "mapping_id": "G02-JOB-REDACTION-COMPATIBILITY",
+      "priority": 0,
+      "selector": {
+        "files": ["codex_bridge.py", "outlook_graph.py"],
+        "kinds": ["legacy_store_call", "legacy_store_import"]
+      },
+      "scope_owner": "sensitive_payload_redaction",
+      "replacement_phase": "P7",
+      "disposition": "retain_compatibility",
+      "reason": "These sites use only the job module redaction helper, not closure submission or job authority."
+    },
+    {
+      "mapping_id": "G02-OUTLOOK-NOTION-INTEGRATION",
+      "priority": 0,
+      "selector": {
+        "files": ["outlook_integration.py"],
+        "kinds": ["legacy_store_call", "legacy_store_import"]
+      },
+      "scope_owner": "notion_outlook_source_adapter",
+      "replacement_phase": "P7",
+      "disposition": "retain_external",
+      "reason": "Outlook synchronization writes the retained Notion source and uses redaction compatibility."
+    },
+    {
+      "mapping_id": "G02-NOTION-STORE-SESSION-PAGES",
+      "priority": 0,
+      "selector": {
+        "files": ["notion_store.py"],
+        "kinds": ["context_reference"]
+      },
+      "scope_owner": "conversation_attachment_relation",
+      "replacement_phase": "P3/P4",
+      "disposition": "replace",
+      "reason": "Legacy session_pages storage is rebound to canonical conversation IDs with access validation."
+    },
+    {
+      "mapping_id": "G02-AGENT-HARNESS-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_agent_harness.py"],
+        "kinds": ["route_decorator"]
+      },
+      "scope_owner": "agent_harness",
+      "replacement_phase": "P3",
+      "disposition": "exclude_non_knowledge",
+      "reason": "Harness control endpoints do not own knowledge state."
+    },
+    {
+      "mapping_id": "G02-AGENT-HARNESS-CONTEXT",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_agent_harness.py"],
+        "kinds": ["context_reference"]
+      },
+      "scope_owner": "conversation_context_binding",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Harness project-context input must use the explicit scoped conversation binding."
+    },
+    {
+      "mapping_id": "G02-CHAT-DEPENDENCIES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_chat_stream.py"],
+        "kinds": ["context_reference", "legacy_store_call", "legacy_store_import", "route_decorator"]
+      },
+      "scope_owner": "scoped_conversation_service",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Chat retrieval, memory side effects, pins, summaries, project context, and Notion attachments become scope-bound conversation dependencies."
+    },
+    {
+      "mapping_id": "G02-DURABLE-JOB-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_jobs.py"],
+        "kinds": ["legacy_store_call", "legacy_store_import", "route_decorator"]
+      },
+      "scope_owner": "durable_job_repository",
+      "replacement_phase": "P7",
+      "disposition": "replace",
+      "reason": "File-backed job reads and cancellation move to durable actor-and-space jobs."
+    },
+    {
+      "mapping_id": "G02-LEGACY-KNOWLEDGE-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_knowledge.py"],
+        "kinds": ["legacy_store_call", "legacy_store_import", "route_decorator"]
+      },
+      "scope_owner": "scoped_knowledge_compatibility_service",
+      "replacement_phase": "P3-P7",
+      "disposition": "replace",
+      "reason": "Legacy knowledge reads and writes become scoped repositories, publication commands, and rebuild jobs."
+    },
+    {
+      "mapping_id": "G02-PRIVATE-MEMORY-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_memory.py"],
+        "kinds": ["legacy_store_call", "legacy_store_import", "route_decorator"]
+      },
+      "scope_owner": "private_memory_repository",
+      "replacement_phase": "P3",
+      "disposition": "retain_external",
+      "reason": "Private memory remains distinct from shared knowledge and is allowed only as authenticated personal context."
+    },
+    {
+      "mapping_id": "G02-MODEL-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_models.py"],
+        "kinds": ["route_decorator"]
+      },
+      "scope_owner": "inference_configuration",
+      "replacement_phase": "P7",
+      "disposition": "exclude_non_knowledge",
+      "reason": "Model discovery endpoints are inference configuration rather than knowledge storage."
+    },
+    {
+      "mapping_id": "G02-NOTION-SOURCE-GENERAL",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_notion.py"],
+        "kinds": ["context_reference", "legacy_store_call", "legacy_store_import", "route_decorator"]
+      },
+      "scope_owner": "notion_source_adapter",
+      "replacement_phase": "P4",
+      "disposition": "retain_external",
+      "reason": "General pages, blocks, comments, files, sharing, and public lookup remain owned by the Notion source application."
+    },
+    {
+      "mapping_id": "G02-NOTION-WORKSPACE-SOURCE",
+      "priority": 0,
+      "selector": {
+        "files": ["notion_workspace_inventory.py", "notion_workspace_pages.py", "routes_notion_workspace.py"],
+        "kinds": ["context_reference", "legacy_store_call", "legacy_store_import", "route_decorator"]
+      },
+      "scope_owner": "notion_workspace_source_adapter",
+      "replacement_phase": "P4",
+      "disposition": "retain_external",
+      "reason": "Workspace, member, guest, group, and teamspace administration remains owned by the retained Notion source application and does not authorize canonical knowledge access."
+    },
+    {
+      "mapping_id": "G02-NOTION-EXTENDED-SOURCE-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_notion_files.py", "routes_notion_history.py", "routes_notion_search.py"],
+        "kinds": ["route_decorator"]
+      },
+      "scope_owner": "notion_workspace_source_adapter",
+      "replacement_phase": "P4",
+      "disposition": "retain_external",
+      "reason": "Notion file, page-history, search, reminder, import, and export endpoints remain owned by the retained Notion source application and do not authorize canonical knowledge access."
+    },
+    {
+      "mapping_id": "G02-NOTION-SECOND-BRAIN-IMPORT",
+      "priority": 10,
+      "selector": {
+        "files": ["routes_notion.py"],
+        "callees": ["import:code_assist_v1.second_brain_store"]
+      },
+      "scope_owner": "knowledge_publication_service",
+      "replacement_phase": "P3/P4",
+      "disposition": "replace",
+      "reason": "Direct Second Brain authority in the Notion process is replaced by scoped publication and reads."
+    },
+    {
+      "mapping_id": "G02-NOTION-KNOWLEDGE-BRIDGES",
+      "priority": 20,
+      "selector": {
+        "files": ["routes_notion.py"],
+        "symbols": [
+          "register_notion_routes.api_notion_overview",
+          "register_notion_routes.api_notion_page_attach",
+          "register_notion_routes.api_notion_publish_preview",
+          "register_notion_routes.api_notion_publish_second_brain",
+          "register_notion_routes.api_notion_session_page_detach",
+          "register_notion_routes.api_notion_session_pages"
+        ]
+      },
+      "scope_owner": "publication_and_conversation_attachment_services",
+      "replacement_phase": "P3/P4",
+      "disposition": "replace",
+      "reason": "Overview legacy scans, publication, and session-page relations cross into canonical knowledge or conversations."
+    },
+    {
+      "mapping_id": "G02-CODE-NOTION-BRIDGE",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_notion_bridge.py"],
+        "kinds": ["context_reference", "legacy_store_call", "legacy_store_import", "route_decorator"]
+      },
+      "scope_owner": "notion_knowledge_bridge_adapter",
+      "replacement_phase": "P3/P4",
+      "disposition": "replace",
+      "reason": "The duplicate bridge is routed through canonical reads, publication, attachments, and the retained Notion adapter."
+    },
+    {
+      "mapping_id": "G02-OUTLOOK-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_outlook.py"],
+        "kinds": ["route_decorator"]
+      },
+      "scope_owner": "notion_outlook_source_adapter",
+      "replacement_phase": "P7",
+      "disposition": "retain_external",
+      "reason": "Outlook endpoints remain an external Notion integration while their jobs become durable."
+    },
+    {
+      "mapping_id": "G02-OUTLOOK-JOB-PRODUCERS",
+      "priority": 10,
+      "selector": {
+        "files": ["routes_outlook.py"],
+        "kinds": ["job_submit", "legacy_store_import"]
+      },
+      "scope_owner": "durable_job_repository",
+      "replacement_phase": "P7",
+      "disposition": "replace",
+      "reason": "Four Outlook closure producers become registered durable typed job inputs."
+    },
+    {
+      "mapping_id": "G02-PROJECT-CONTEXT-REPOSITORY",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_project_context.py"],
+        "kinds": ["legacy_store_call", "legacy_store_import", "route_decorator"]
+      },
+      "scope_owner": "project_context_repository",
+      "replacement_phase": "P3",
+      "disposition": "retain_external",
+      "reason": "Project context remains user/project data distinct from shared knowledge."
+    },
+    {
+      "mapping_id": "G02-PROJECT-CONTEXT-BINDING",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_project_context.py"],
+        "kinds": ["context_reference"]
+      },
+      "scope_owner": "conversation_context_binding",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Project-context selection becomes an explicit conversation attachment instead of an implicit default."
+    },
+    {
+      "mapping_id": "G02-PROJECT-CONTEXT-JOB-IMPORT",
+      "priority": 10,
+      "selector": {
+        "files": ["routes_project_context.py"],
+        "callees": ["import:code_assist_v1.job_manager.manager"]
+      },
+      "scope_owner": "durable_job_repository",
+      "replacement_phase": "P7",
+      "disposition": "replace",
+      "reason": "The project-context manager dependency is replaced by durable typed job registration."
+    },
+    {
+      "mapping_id": "G02-PROJECT-CONTEXT-JOB-PRODUCERS",
+      "priority": 20,
+      "selector": {
+        "files": ["routes_project_context.py"],
+        "kinds": ["job_submit"]
+      },
+      "scope_owner": "durable_job_repository",
+      "replacement_phase": "P7",
+      "disposition": "replace",
+      "reason": "Two project-context closure producers become registered durable typed job inputs."
+    },
+    {
+      "mapping_id": "G02-SECOND-BRAIN-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_second_brain.py"],
+        "kinds": ["job_submit", "legacy_store_call", "legacy_store_import", "route_decorator"]
+      },
+      "scope_owner": "canonical_knowledge_services",
+      "replacement_phase": "P3-P7",
+      "disposition": "replace",
+      "reason": "Second Brain reads, publication, curation, lifecycle, graph, rebuild, and two job producers move to canonical services."
+    },
+    {
+      "mapping_id": "G02-CONVERSATION-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_sessions.py"],
+        "kinds": ["route_decorator"]
+      },
+      "scope_owner": "scoped_conversation_repository",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "JSON session endpoints move to canonical conversations with immutable space binding."
+    },
+    {
+      "mapping_id": "G02-SKILL-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_skills.py"],
+        "kinds": ["route_decorator"]
+      },
+      "scope_owner": "skill_catalog",
+      "replacement_phase": "P3",
+      "disposition": "exclude_non_knowledge",
+      "reason": "Skill catalog CRUD is outside canonical knowledge ownership."
+    },
+    {
+      "mapping_id": "G02-WORKSPACE-ROUTES",
+      "priority": 0,
+      "selector": {
+        "files": ["routes_workspace.py"],
+        "kinds": ["route_decorator"]
+      },
+      "scope_owner": "workspace_files",
+      "replacement_phase": "P3",
+      "disposition": "exclude_non_knowledge",
+      "reason": "Workspace file operations do not own shared knowledge or conversation state."
+    },
+    {
+      "mapping_id": "G02-SESSION-COMPACTION-CONTEXT",
+      "priority": 0,
+      "selector": {
+        "files": ["session_context.py"],
+        "kinds": ["context_reference"]
+      },
+      "scope_owner": "scoped_conversation_service",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Legacy compact summaries become canonical conversation summary state."
+    },
+    {
+      "mapping_id": "G02-UI-APP-API",
+      "priority": 0,
+      "selector": {
+        "files": ["static/app.js"],
+        "kinds": ["ui_api_call"]
+      },
+      "scope_owner": "code_web_ui_integration",
+      "replacement_phase": "P1-P4",
+      "disposition": "replace",
+      "reason": "Account administration, Notion bridge, model shell, and project-context UI calls follow the new service composition."
+    },
+    {
+      "mapping_id": "G02-UI-AGENT-KNOWLEDGE-LOOP",
+      "priority": 0,
+      "selector": {
+        "files": ["static/agent_integrations.js"],
+        "kinds": ["ui_api_call"],
+        "callees": ["ui_api:<dynamic>"]
+      },
+      "scope_owner": "canonical_agent_integration_bridge",
+      "replacement_phase": "P3/P4",
+      "disposition": "replace",
+      "reason": "The authenticated integration API helper and capability probe use the scoped agent-knowledge-loop extension. Browser identity, grant scopes and personal Wiki ownership are revalidated by agent_integrations/routes.py and bridge.py; Wiki reads, conversations and publication use canonical services, never direct Wiki files. The separate connection/run ledger remains auxiliary. This rule does not grant Part/Team/Responsibility access or close extension acceptance gates."
+    },
+    {
+      "mapping_id": "G02-UI-APP-CONTEXT",
+      "priority": 0,
+      "selector": {
+        "files": ["static/app.js"],
+        "kinds": ["ui_context_reference"]
+      },
+      "scope_owner": "scoped_conversation_ui",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Browser-only pins, project context, and compact summaries become server-owned scoped conversation state."
+    },
+    {
+      "mapping_id": "G02-UI-ADMIN-ORGANIZATION",
+      "priority": 0,
+      "selector": {
+        "files": ["static/admin_organization.js"],
+        "kinds": ["ui_api_call", "ui_context_reference"]
+      },
+      "scope_owner": "canonical_organization_admin_ui",
+      "replacement_phase": "P1",
+      "disposition": "replace",
+      "reason": "The P1.8 administrator UI uses canonical organization, membership, leader, and account lifecycle commands while retained login-data utilities stay explicitly isolated."
+    },
+    {
+      "mapping_id": "G02-UI-CHAT",
+      "priority": 0,
+      "selector": {
+        "files": ["static/chat.js"],
+        "kinds": ["ui_api_call", "ui_context_reference"]
+      },
+      "scope_owner": "scoped_conversation_ui",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Chat session, stream, pins, summaries, and context payloads become scope-bound conversation interactions."
+    },
+    {
+      "mapping_id": "G02-UI-GRAPH",
+      "priority": 0,
+      "selector": {
+        "files": ["static/graph.js"],
+        "kinds": ["ui_api_call", "ui_context_reference"]
+      },
+      "scope_owner": "scoped_graph_and_lifecycle_ui",
+      "replacement_phase": "P3/P5",
+      "disposition": "replace",
+      "reason": "Graph reads, edits, deletes, and pins become scoped graph, lease, lifecycle, and conversation-pin operations."
+    },
+    {
+      "mapping_id": "G02-UI-KNOWLEDGE",
+      "priority": 0,
+      "selector": {
+        "files": ["static/knowledge.js"],
+        "kinds": ["ui_api_call", "ui_context_reference"]
+      },
+      "scope_owner": "scoped_knowledge_ui",
+      "replacement_phase": "P3-P7",
+      "disposition": "replace",
+      "reason": "Legacy knowledge UI reads, imports, curation, edits, deletes, and jobs move to scoped canonical workflows."
+    },
+    {
+      "mapping_id": "G02-UI-CANONICAL-BROWSER",
+      "priority": 0,
+      "selector": {
+        "files": ["static/knowledge_core_browser.js"],
+        "kinds": ["ui_api_call", "ui_context_reference"]
+      },
+      "scope_owner": "canonical_knowledge_browser",
+      "replacement_phase": "P3-P7",
+      "disposition": "replace",
+      "reason": "The canonical browser keeps conversation context and compact summaries bound to the selected canonical space."
+    },
+    {
+      "mapping_id": "G02-UI-SESSIONS",
+      "priority": 0,
+      "selector": {
+        "files": ["static/sessions.js"],
+        "kinds": ["ui_api_call", "ui_context_reference"]
+      },
+      "scope_owner": "scoped_conversation_ui",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Legacy JSON session calls and state become canonical conversations with visible immutable space."
+    },
+    {
+      "mapping_id": "G02-UI-SKILLS-GENERAL",
+      "priority": 0,
+      "selector": {
+        "files": ["static/skills.js"],
+        "kinds": ["ui_api_call"]
+      },
+      "scope_owner": "skill_catalog_ui",
+      "replacement_phase": "P3",
+      "disposition": "exclude_non_knowledge",
+      "reason": "General skill catalog API calls do not own canonical knowledge."
+    },
+    {
+      "mapping_id": "G02-UI-SKILLS-PIN-LOOKUP",
+      "priority": 10,
+      "selector": {
+        "files": ["static/skills.js"],
+        "callee_prefixes": ["ui_api:api/code/knowledge/"]
+      },
+      "scope_owner": "scoped_conversation_pin_service",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Skill UI pin lookup must validate the pinned item belongs to the conversation space."
+    },
+    {
+      "mapping_id": "G02-UI-SKILLS-PINS",
+      "priority": 0,
+      "selector": {
+        "files": ["static/skills.js"],
+        "kinds": ["ui_context_reference"]
+      },
+      "scope_owner": "scoped_conversation_pin_service",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Browser pin state is replaced by same-space conversation pins."
+    },
+    {
+      "mapping_id": "G02-UI-WORKSPACE-GENERAL",
+      "priority": 0,
+      "selector": {
+        "files": ["static/workspace.js"],
+        "kinds": ["ui_api_call"]
+      },
+      "scope_owner": "workspace_files_ui",
+      "replacement_phase": "P3",
+      "disposition": "exclude_non_knowledge",
+      "reason": "General workspace tree and file operations remain outside shared knowledge."
+    },
+    {
+      "mapping_id": "G02-UI-WORKSPACE-PROJECT-CONTEXT",
+      "priority": 10,
+      "selector": {
+        "files": ["static/workspace.js"],
+        "callee_prefixes": ["ui_api:api/code/project_context/"]
+      },
+      "scope_owner": "conversation_context_binding",
+      "replacement_phase": "P3/P7",
+      "disposition": "replace",
+      "reason": "Project-context imports and selection remain separate data but gain explicit conversation binding and durable jobs."
+    },
+    {
+      "mapping_id": "G02-UI-WORKSPACE-CONTEXT",
+      "priority": 0,
+      "selector": {
+        "files": ["static/workspace.js"],
+        "kinds": ["ui_context_reference"]
+      },
+      "scope_owner": "conversation_context_binding",
+      "replacement_phase": "P3",
+      "disposition": "replace",
+      "reason": "Project context is explicitly attached to a conversation and never silently injected into part scope."
+    },
+    {
+      "mapping_id": "G02-UI-NOTION-GENERAL",
+      "priority": 0,
+      "selector": {
+        "files": ["notion_static/notion.js"],
+        "kinds": ["ui_api_call"]
+      },
+      "scope_owner": "notion_source_ui",
+      "replacement_phase": "P4",
+      "disposition": "retain_external",
+      "reason": "General Notion workspace, sharing, Outlook, AI, and public-link UI remains in the external source application."
+    },
+    {
+      "mapping_id": "G02-UI-NOTION-AUTH",
+      "priority": 10,
+      "selector": {
+        "files": ["notion_static/notion.js"],
+        "callee_prefixes": ["ui_api:/api/code/auth/"]
+      },
+      "scope_owner": "db_user_audit_admin_services",
+      "replacement_phase": "P1",
+      "disposition": "replace",
+      "reason": "Notion-shell identity calls use the shared DB-backed authentication service."
+    },
+    {
+      "mapping_id": "G02-UI-NOTION-JOBS",
+      "priority": 10,
+      "selector": {
+        "files": ["notion_static/notion.js"],
+        "callee_prefixes": ["ui_api:/api/code/jobs/"]
+      },
+      "scope_owner": "durable_job_repository",
+      "replacement_phase": "P7",
+      "disposition": "replace",
+      "reason": "Notion-shell job polling reads durable jobs carrying actor and space."
+    },
+    {
+      "mapping_id": "G02-UI-NOTION-KNOWLEDGE-BRIDGES",
+      "priority": 10,
+      "selector": {
+        "files": ["notion_static/notion.js"],
+        "callee_prefixes": [
+          "ui_api:/api/notion/chat/sessions",
+          "ui_api:/api/notion/overview",
+          "ui_api:/api/notion/pages/${}/attach",
+          "ui_api:/api/notion/pages/${}/publish_",
+          "ui_api:/api/notion/session_pages"
+        ]
+      },
+      "scope_owner": "publication_and_conversation_attachment_ui",
+      "replacement_phase": "P3/P4",
+      "disposition": "replace",
+      "reason": "Notion publication, legacy overview scans, chat sessions, and attachments use canonical scoped services."
+    },
+    {
+      "mapping_id": "G02-UI-NOTION-SESSION-PAGES",
+      "priority": 0,
+      "selector": {
+        "files": ["notion_static/notion.js"],
+        "kinds": ["ui_context_reference"]
+      },
+      "scope_owner": "conversation_attachment_relation",
+      "replacement_phase": "P3/P4",
+      "disposition": "replace",
+      "reason": "UI session-page state is rebound to canonical conversations with page access checks."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-V0-EVIDENCE-LINEAGE-REBIND-ACTIVE-PRE-EDIT-20260907",
+  "recorded_at": "2026-09-07T00:25:56+09:00",
+  "checkpoint_kind": "doc_harness_evidence_lineage_rebind_pre_edit",
+  "packet_id": "V0B-P1",
+  "packet_status": "gate_evidence_verified_status_integration_in_progress",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "lease_id": "V0B-P1-V0-EVIDENCE-LINEAGE-REBIND-20260907",
+  "purpose": "Preserve exact pre-edit hashes before teaching the V0 evidence validators to follow the immutable V0R adopted-surface transition chain and the current O1B handoff state. This lease does not authorize product/runtime, SBE, immutable receipt, live, external, or production changes.",
+  "exact_owned_paths": [
+    "code_assist_v1/tools/verify_internal_collaborative_adopted_surface.py",
+    "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_execution.py",
+    "code_assist_v1/tools/internal_collaborative_reference_multiuser_approval.py",
+    "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py",
+    "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_adopted_surface.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_execution.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_receipt.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/tools/verify_internal_collaborative_adopted_surface.py": "sha256:54d24fd94654af6be33875625a64a49c6f33dfa6a263e13abc65d84ffd901445",
+    "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_execution.py": "sha256:50e1a00a4a281c573db35074e3c506d9d7adab4d3232923c94d9a236f1a9b266",
+    "code_assist_v1/tools/internal_collaborative_reference_multiuser_approval.py": "sha256:08c15220ac08fab201423db1249b562fc5dba7c284598f768fb8c03ba55e67f4",
+    "code_assist_v1/tools/verify_internal_collaborative_reference_multiuser_receipt.py": "sha256:27fe2dceb667304937ee29d1e65d32ed1e55af024f96385cc5bb826645f99a6d",
+    "code_assist_v1/tools/verify_internal_collaborative_v0b_p1_receipt.py": "sha256:8f4d6de3d11eb3e9be1ad4f6aae90a2d525aed86ad924c583cd03ff8f9aaed4a",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_adopted_surface.py": "sha256:a4d8d62811ee6457c13e7f2c4110fa8d784034bb527bea3139b2c9561b5dc663",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_execution.py": "sha256:52f8720dd589edb8af5993bb8aea9326fe1e50df55a3ee26eb17a3dca8482dfc",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_reference_multiuser_receipt.py": "sha256:82c512ee62fd2578f6fdf59320aef68d8f01c1a72c477c9c859aafba6658cb96",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py": "sha256:11771528aaf1d768995410f0fc4504b9e26c8661e150e13e80b8c91b2cf00eda"
+  },
+  "inherited_hot_contract_pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:4621fee9cacc15b4d0a9d3418aee64dc853c8f4eeaf146613cfb099eec2e4fdd",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:8de69ad4f2411b45b1c6f10324592ed7a4c8dd802a928d737275797da416cde0",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json": "sha256:a292494f67a299808b60ca41d7707275ad76516e0fc44c04e0d2502233597d3d",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json": "sha256:abfbb3745326ac86bd32f082f3fa9b61f2443422dd48957632e2baf1bbebc2d8",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-l6-final-generic-wrapper-20260906.json": "sha256:c5426066bbc7a1758e84920b1638161db478b8f3411542ca6d181ec4fe06de21"
+  },
+  "immutable_evidence": {
+    "v0r_receipt_sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "v0b_receipt_sha256": "sha256:d9fd95c7ed462bde80d50c86eaf6714405fbc5738c24cc3f8f05efbc9cda0d96",
+    "overwrite_allowed": false
+  },
+  "guards": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "product_source_change_allowed": false,
+    "sbe_change_allowed": false,
+    "external_mutation_allowed": false,
+    "product_complete": false,
+    "goal_complete": false
+  }
+}

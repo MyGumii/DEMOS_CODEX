@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.l9.live_stop_timeout_race_fixed_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-L9-LIVE-STOP-TIMEOUT-RACE-FIXED-20260909",
+  "recorded_at": "2026-09-09T20:45:27+09:00",
+  "status": "validated_live_five_green_and_lossless_owned_cleanup",
+  "immutable_after_recording": true,
+  "supersedes": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-l9-live-stop-timeout-race-pre-edit-20260909.json",
+    "sha256": "sha256:170abd14021b34f11912d9df6e45f33eacd5fe97d4be5f8045e80112ae73eb15",
+    "record_sha256": "sha256:429ae9584fdf518ad8a76ea577979400e439155541c1ae2a860f90e7b316e311"
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "approval_id": "AP-DEV-PAIR",
+    "exclusive_gate_id": "XG-10111-EXCLUSIVE-HANDOFF"
+  },
+  "source_bindings": [
+    {
+      "path": "code_assist_v1/notion_collaboration/approved_dev_pair.py",
+      "before_sha256": "sha256:5a9ae04cd3cfa4311f16a80c03a1c9bc8efe3dfbd00cb5b47ff320b92aec01f0",
+      "sha256": "sha256:78e811b1d99c539098653cf35ee1b664d56217ab7833f7aaae87f31d0815e302",
+      "classification": "product_source"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration/test_approved_dev_pair.py",
+      "before_sha256": "sha256:5d87abe2a5f6b6f98150bcbedd2bfeb220a99c6f2ee6f11edcd9f631f8167116",
+      "sha256": "sha256:6b76728ca51f6d22e335eeb714fbc9fc7341208868930899a01d491538a15",
+      "classification": "validation_source"
+    }
+  ],
+  "regression_evidence": {
+    "focused_unit_command": ".\\venv\\Scripts\\python.exe -E -m pytest -c code_assist_v1\\pytest.ini -q -p no:debugging -p no:cacheprovider code_assist_v1\\tests\\notion_collaboration\\test_approved_dev_pair.py",
+    "focused_unit_passed": 6,
+    "focused_unit_failed": 0,
+    "focused_unit_duration_seconds": 37.95,
+    "live_browser_passed": 5,
+    "live_browser_failed": 0,
+    "live_browser_skipped": 0,
+    "live_browser_duration_seconds": 89.98
+  },
+  "approved_live_execution": {
+    "root": "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113-l9-live-r2-20260909",
+    "root_marker_sha256": "sha256:8f2f3eadb2293f931f0a9a34795581562f1c0f43dfa571449bde42dfa64afd11",
+    "run_marker_sha256": "sha256:217cf2e8a0277fb0be8ad9fb03ebfe08b90db88ec2b68088593b1e8bc7070f63",
+    "stop_request_sha256": "sha256:60d0e7098d92f79bc7e11fbfb6eb0b035d97ef3840f6fc7010cd83beba8f7fe6",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "launch_id": "8e6f746aace149c5ae47806cfda3504e",
+    "root_id": "6ee7fc99-0541-4bb8-9ec7-31989a27f991",
+    "approved_identity_ids": ["admin", "user01"],
+    "ports": [10111, 10112, 10113],
+    "start_status": "pass",
+    "personal_content_imported": false,
+    "existing_signing_secret_copied": false,
+    "production_port_or_root_mutated": false
+  },
+  "cleanup_evidence": {
+    "stop_cli_exit_code": 0,
+    "stop_cli_receipt": {
+      "status": "stopped",
+      "ports_closed": true
+    },
+    "manager_exit_code": 0,
+    "manager_receipt": {
+      "status": "stopped",
+      "owned_gateway_processes_stopped": true,
+      "owned_host_processes_stopped": true,
+      "owned_ports_closed": true
+    },
+    "post_stop_status": {
+      "status": "stopped",
+      "active_run_recorded": false,
+      "manager_running": false,
+      "ports": {
+        "10111": false,
+        "10112": false,
+        "10113": false
+      }
+    }
+  },
+  "resolution": {
+    "source_location": "code_assist_v1/notion_collaboration/approved_dev_pair.py::_stop_main",
+    "change": "reuse one stopped predicate in the deadline loop and perform one final post-loop observation before raising STOP_TIMEOUT",
+    "deadline_boundary_regression_added": true,
+    "behavior_or_security_contract_weakened": false
+  },
+  "claims": {
+    "current_source_live_five_green": true,
+    "current_source_unit_regression_green": true,
+    "stop_cli_successful": true,
+    "owned_cleanup_succeeded": true,
+    "false_stop_timeout_resolved": true,
+    "production_changed": false,
+    "external_system_mutated": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:ccf4902159633363849b629e5b9d63eaaa5e938e200b3656cdc516b464d5ede1"
+}

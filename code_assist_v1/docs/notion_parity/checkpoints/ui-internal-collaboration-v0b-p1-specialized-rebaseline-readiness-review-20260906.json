@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-SPECIALIZED-REBASELINE-READINESS-REVIEW-20260906",
+  "recorded_at": "2026-09-06T13:21:00Z",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "status": "read_only_dependency_review_and_three_test_fixture_repairs_complete_full_integration_unapproved",
+  "previous_goal_turn_classification": "progress",
+  "current_goal_turn_progress": [
+    "Verified exact remaining twelve specialized-verifier failure classes without running browser or Python runtime scenarios.",
+    "Found and repaired three legacy JS test fixture bootstrap failures without changing production code or assertions.",
+    "All seven standalone Node UI regression scripts passed; sixteen source/test inputs and three reconstructed-original hashes verified."
+  ],
+  "original_twelve_verifier_review": {
+    "reviewer": "/root/receipt_discovery_review",
+    "method": "Sequential read-only verify functions using G:/AI_Agent/DEMOS_CODEX/venv/Scripts/python.exe; no pytest/browser execution.",
+    "contracts_unchanged": true,
+    "error_count": 72,
+    "error_classes": {
+      "MANIFEST_HASH_DRIFT": 64,
+      "DYNAMIC_INSTRUCTION_DRIFT": 7,
+      "SBE_DYNAMIC_PREFLIGHT_DRIFT": 1
+    },
+    "rows": [
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_live_collaboration_runtime.v1.json",
+        "contract_sha256": "sha256:d14d50a2168ac1b767d4ffd7013d6c0379e081c89041c510e94db451548db24d",
+        "packet_ids": [
+          "C0-P1",
+          "C0-P2"
+        ],
+        "reported_error_count": 8,
+        "has_dynamic_instruction_hash_drift": false,
+        "has_external_sbe_audit_failure": false
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editing_authority.v1.json",
+        "contract_sha256": "sha256:5d86c46d6b1ea0005dde9a281751126494382c800032fe0e4db1824006691856",
+        "packet_ids": [
+          "E1-P1"
+        ],
+        "reported_error_count": 1,
+        "has_dynamic_instruction_hash_drift": false,
+        "has_external_sbe_audit_failure": false
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editor_ui.v1.json",
+        "contract_sha256": "sha256:77357f7c9743c3adc75dc1c7c470a080e999b82fad960c6af171f528314a92d2",
+        "packet_ids": [
+          "E1-P2"
+        ],
+        "reported_error_count": 8,
+        "has_dynamic_instruction_hash_drift": false,
+        "has_external_sbe_audit_failure": false
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_convergence_corpus.v1.json",
+        "contract_sha256": "sha256:fbe0e386cb2d43021aebf14e30239f67bac8980ca2937f0ca6f68ae2d5b5d848",
+        "packet_ids": [
+          "E1-P3"
+        ],
+        "reported_error_count": 3,
+        "has_dynamic_instruction_hash_drift": false,
+        "has_external_sbe_audit_failure": false
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json",
+        "contract_sha256": "sha256:03e49b34bf56c1dc198cc0c2e9232b40974f37e6b38943d672443e8377ed792b",
+        "packet_ids": [
+          "S0A-P2"
+        ],
+        "reported_error_count": 18,
+        "has_dynamic_instruction_hash_drift": true,
+        "has_external_sbe_audit_failure": true
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_database_features.v1.json",
+        "contract_sha256": "sha256:b052132735c67814e7d711d502d7c5e68b27c3e0d460f9d99ad6fd2280b39ef6",
+        "packet_ids": [
+          "F0-P1"
+        ],
+        "reported_error_count": 3,
+        "has_dynamic_instruction_hash_drift": true,
+        "has_external_sbe_audit_failure": false
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_file_authority.v1.json",
+        "contract_sha256": "sha256:3feb9810bfa615748806d9da49adc72619bbc1a59d562dd88c364a868060ecb7",
+        "packet_ids": [
+          "F0-P2"
+        ],
+        "reported_error_count": 5,
+        "has_dynamic_instruction_hash_drift": true,
+        "has_external_sbe_audit_failure": false
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_history_authority.v1.json",
+        "contract_sha256": "sha256:ecf0a2604c7632eea3f1e30b5dcba427e81e545fc0949ff3a3bc30cf474af3e7",
+        "packet_ids": [
+          "F0-P3"
+        ],
+        "reported_error_count": 5,
+        "has_dynamic_instruction_hash_drift": true,
+        "has_external_sbe_audit_failure": false
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_search_authority.v1.json",
+        "contract_sha256": "sha256:2432d6dae20629af003c67294a6699828b1ffce8714b23019224bb0ffc02a5e3",
+        "packet_ids": [
+          "F0-P4"
+        ],
+        "reported_error_count": 5,
+        "has_dynamic_instruction_hash_drift": true,
+        "has_external_sbe_audit_failure": false
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_adopted_surface.v1.json",
+        "contract_sha256": "sha256:660f3a738d4835ecfe57be7fa9473da76129399de7095f508577ba297587dc77",
+        "packet_ids": [
+          "F0-P5"
+        ],
+        "reported_error_count": 7,
+        "has_dynamic_instruction_hash_drift": true,
+        "has_external_sbe_audit_failure": false
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_sharing_runtime.v1.json",
+        "contract_sha256": "sha256:1234e7b0bb38e4ce7192be53cd6bc8d84bb8f4ffe119de03ec30253a8e0e98a1",
+        "packet_ids": [
+          "I0-P2"
+        ],
+        "reported_error_count": 6,
+        "has_dynamic_instruction_hash_drift": false,
+        "has_external_sbe_audit_failure": false
+      },
+      {
+        "contract_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json",
+        "contract_sha256": "sha256:e7607663de6c6dc021d700b4283abd0709832b3c7573320e7eebc2243197f68c",
+        "packet_ids": [
+          "O1A-P1"
+        ],
+        "reported_error_count": 3,
+        "has_dynamic_instruction_hash_drift": true,
+        "has_external_sbe_audit_failure": false
+      }
+    ],
+    "interpretation": "No route-contract, structural or feature-constant error was returned. Hash/JSON verification does not prove absence of behavioral regressions.",
+    "caution": "Raw manifest hash comparisons contain additional historical source differences already handled by existing successor ownership rules; do not overwrite every old hash indiscriminately."
+  },
+  "post_fixture_targeted_review": {
+    "directly_affected_contract": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_editor_ui.v1.json",
+    "only_this_verifier_rerun": true,
+    "error_count_before": 8,
+    "error_count_after": 11,
+    "added_errors": [
+      {
+        "code": "MANIFEST_HASH_DRIFT",
+        "path": "code_assist_v1/tests/test_notion_ui_runtime.js"
+      },
+      {
+        "code": "MANIFEST_HASH_DRIFT",
+        "path": "code_assist_v1/tests/test_notion_atomic_save.js"
+      },
+      {
+        "code": "MANIFEST_HASH_DRIFT",
+        "path": "code_assist_v1/tests/test_notion_publication_ui.js"
+      }
+    ],
+    "prior_errors_unchanged": true,
+    "independent_patch_review": "No concrete defect found; removing the four added fixture lines from each file reconstructs its exact pre-edit hash.",
+    "aggregate_note": "The verified delta is +3 against the earlier 72-error review; the other eleven verifiers were not rerun after this fixture-only patch."
+  },
+  "ui_regression_evidence": {
+    "pre_edit_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-legacy-js-fixture-pre-edit-20260906.json",
+      "sha256": "sha256:9d073809e946f564a51bad37c33c96e9cb5a1ea2dc43f8472714e6eb9d131746"
+    },
+    "completed_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-legacy-js-fixture-verified-20260906.json",
+      "sha256": "sha256:57951b8702b73e5e4cde4822f0762dc9031ea7a45490a69be71ac4057695db05"
+    },
+    "passed_standalone_scripts": 7,
+    "failed_standalone_scripts": 0,
+    "assertions_changed": false,
+    "product_source_changed": false,
+    "evidence_credit_limit": "Supports the seven standalone JS regression suites only; not all twelve gate manifests, real-browser behavior, native IME, SBE publication or target restore."
+  },
+  "rebaseline_requirements": {
+    "preserve_historical_evidence": true,
+    "all_required_regressions_must_be_accounted_for": true,
+    "native_ime_and_completed_backup_evidence": "Review actual bound artifacts and unchanged owning sources before considering reruns; do not rerun completed external or heavy scenarios solely because a harness reference hash changed.",
+    "dynamic_instruction_binding": "Seven Notion contracts refer to the old AGENTS SHA. Refresh only their read-only reference bindings under an explicit Notion pre-edit declaration after current instructions/ownership are verified; AGENTS.md itself remains forbidden to edit.",
+    "external_sbe_preflight": "S0A-P2 cannot pass while the actual source-artifact OpenAPI mismatch remains. Rebaseline its fourteen changed read-only SBE inputs only after the SBE owner repair and fresh audit; never rewrite them merely to conceal failure.",
+    "complete_harness": "Previously recorded 52 passed / 3 failed still does not satisfy the clean integrated contract requirement. Preserve its failed result.",
+    "status_integration": "Do not promote V0R/V0B or rewrite the current stable pointer until all required dependency audits pass."
+  },
+  "unchanged_external_blocker": {
+    "error": "OPENAPI_HUMAN_OPERATION_MISMATCH",
+    "audit_input_sha256": "sha256:32c2ff0b4274cfcbfb09bf9a93de5c4adf2b2f0c7c115e04a96a606f643f963d",
+    "goal_count": 20,
+    "scenario_count": 284,
+    "proposal_path": "code_assist_v1/docs/notion_parity/core_free_web_ui/V0B_P1_SBE_SOURCE_ARTIFACT_CONTRACT_REPAIR_PROPOSAL_20260906.md",
+    "proposal_sha256": "sha256:313852f502ae2d6606e950d9070bd03e3bdad1f3b5eed85a1697aada6952f1a1",
+    "exact_proposed_file_count": 13,
+    "ownership_approval_received": false,
+    "approved_mutations_performed": false
+  },
+  "preserved_state": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "sbe_contracts_modified": false,
+    "twelve_specialized_contracts_modified": false,
+    "packet_catalog_or_ladder_modified": false,
+    "stable_pointer": "O1A-P1",
+    "v0r_v0b_packet_status": "planned",
+    "product_complete": false,
+    "goal_complete": false
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1533-ACCESS-WIDE-REMAINING-LINES-20260906",
+  "recorded_at": "2026-09-06T09:14:56.2373343+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1531-access-wide-exact-lines-20260906.json",
+    "sha256": "sha256:3eb47200587b01213e8e87b800cc27a8d65822ad0371fd74b1fd62d82c6fdc0c",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 738179
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-017 and V0R-MU-018 at 1440x900 only",
+    "description": "Add four verified dialog-outer exact rows and one verified lower-center exact row; reject the no-effect button-edge candidate.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:1d51eb3a541ce005d64632e4acd621c5dc054a12183ae3000afe13dd7a11f2ea",
+    "duplicated_capture_paths_updated": 2,
+    "python_compile_pass": true
+  },
+  "supporting_sweep": {
+    "run_id": "v0b-p1-i0-r1532-state017-wide-remaining-lines-sweep",
+    "results_path": ".runtime/v0b-p1-i0-r1532-state017-wide-remaining-lines-sweep/wide-exact-lines-results.json",
+    "results_sha256": "sha256:4d8f6844350d634a58dfda66d4d1faddce7c896f6399ce8c558c3509567603e7",
+    "baseline_difference_count": 11468,
+    "accepted_candidate_difference_count": 11227,
+    "improvement": 241,
+    "button_blue_candidate_improvement": 0,
+    "journey_status": "pass",
+    "cleanup_pass": true
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1533-access-wide-remaining-lines-receipt",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1533-access-wide-remaining-lines-receipt/diagnostic.json",
+    "diagnostic_sha256": "sha256:6d18c699389dcd68807809b58a28a976eb04cd0cd39996c507a1ae26d25d81aa",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 737688,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 737697,
+    "stable_normalized_improvement_from_predecessor": 482,
+    "changed_capture_count": 2,
+    "unchanged_capture_hash_count": 18,
+    "changed_captures": [
+      {
+        "capture": "V0R-MU-017@1440x900",
+        "predecessor_difference_count": 11468,
+        "accepted_difference_count": 11227,
+        "improvement": 241
+      },
+      {
+        "capture": "V0R-MU-018@1440x900",
+        "predecessor_difference_count": 11516,
+        "accepted_difference_count": 11275,
+        "improvement": 241
+      }
+    ],
+    "known_runtime_variance": {
+      "capture": "V0R-MU-004@1440x900",
+      "observed_low_mode_difference_count": 43876,
+      "stable_high_mode_difference_count": 43885,
+      "normalization_delta": 9
+    },
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1525-20260906",
+    "launch_id": "cd39c9dc305a4f6e89b7ac620f1bdbfa",
+    "root_id": "7417e295-3edb-4ffd-923d-8fffb0adeb60",
+    "manager_session_id": 79532,
+    "current_audit": {
+      "workspace_count": 18,
+      "reference_workspace_count": 16,
+      "active_membership_count": 18,
+      "active_page_binding_count": 16,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "0/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 737697. Do not run final gates before exact parity reaches 36/36."
+}

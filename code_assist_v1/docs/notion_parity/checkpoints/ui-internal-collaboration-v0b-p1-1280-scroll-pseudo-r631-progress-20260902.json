@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaboration.v0b_p1_progress_checkpoint.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-1280-SCROLL-PSEUDO-R631-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T04:10:05.7276392+09:00",
+  "status": "progress_only_gate_open",
+  "summary": "Removed reference-absent fixed scrollbar pseudo-elements from seven 1280x800 states while preserving the reference-required scroll treatment in V0R-MU-007, V0R-MU-013, and V0R-MU-014. I0, E1, C0, and F0 isolated runs reproduce 28,531 fewer unmasked pixels. Full r631 preserves all four journeys, 36 accessibility passes, 36 keyboard paths, cleanup, 17 targeted tests, and receipt integrity. Exact remains 0/36.",
+  "immutable_lineage": {
+    "reference_receipt_sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state011-cursor-opacity-r623-progress-20260902.json",
+      "sha256": "sha256:7e26000639fada2b1b0d5dc69e820f878a074e575373e4182ed7ad4919964733"
+    },
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "main_agent_handoff_sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "protected_files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+      }
+    ],
+    "protected_files_modified": false
+  },
+  "retained_source_binding": {
+    "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "sha256": "sha256:19a67e11d44759a7fd113dc6596c42634b834de873ca254e7ffb2d5968854660",
+    "size_bytes": 197369,
+    "change": {
+      "viewport": "1280x800 only",
+      "workspace_main_before_removed_states": [
+        "V0R-MU-003",
+        "V0R-MU-008",
+        "V0R-MU-009",
+        "V0R-MU-010",
+        "V0R-MU-011",
+        "V0R-MU-012"
+      ],
+      "inherited_share_scroll_pseudos_removed_state": "V0R-MU-006",
+      "preserved_reference_scroll_states": [
+        "V0R-MU-007",
+        "V0R-MU-013",
+        "V0R-MU-014"
+      ],
+      "production_changed": false,
+      "second_brain_changed": false
+    }
+  },
+  "isolated_validation": {
+    "I0_r627_state003": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r627",
+      "candidate_1280_sha256": "sha256:4d87722b4fb4ea03669d88fbfac60aa2a838a17b32f1902ef40ba4e2b02d2dbe",
+      "before_unmasked": 58842,
+      "after_unmasked": 54660,
+      "delta": -4182,
+      "journey_status": "pass",
+      "cleanup_passed": true
+    },
+    "I0_r630_state006": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-candidate-20260902-r630",
+      "candidate_1280_sha256": "sha256:758a9693b3e21345ea271be81cb89819a802305b140fba7c0b518e38786ff58a",
+      "before_unmasked": 71698,
+      "after_unmasked": 66235,
+      "delta": -5463,
+      "journey_status": "pass",
+      "cleanup_passed": true
+    },
+    "E1_r628": {
+      "root": "code_assist_v1/.runtime/v0b-p1-e1-candidate-20260902-r628",
+      "states": {
+        "V0R-MU-008": {
+          "candidate_1280_sha256": "sha256:e864321d7298bf6ed9afef67f7f781f4a5a8eca8832c90f996a018942d3d75bb",
+          "before_unmasked": 59807,
+          "after_unmasked": 56140,
+          "delta": -3667
+        },
+        "V0R-MU-009": {
+          "candidate_1280_sha256": "sha256:39ef2f073175d55a14f27ae76847695060609655b01fa5065b49999d84fbadea",
+          "before_unmasked": 59103,
+          "after_unmasked": 55436,
+          "delta": -3667
+        },
+        "V0R-MU-010": {
+          "candidate_1280_sha256": "sha256:c310b301632d9a4770c2b5dc53ef7984ce861b480a74e7153c25b79be24b1484",
+          "before_unmasked": 60811,
+          "after_unmasked": 57344,
+          "delta": -3467
+        }
+      },
+      "journey_status": "pass",
+      "cleanup_passed": true
+    },
+    "F0_r626_state011": {
+      "root": "code_assist_v1/.runtime/v0b-p1-f0-candidate-20260902-r626",
+      "candidate_1280_sha256": "sha256:6ba172a311d8da1fade5b5ab9582bde90bc4f468dd113fec6b28cecc83f00493",
+      "before_unmasked": 53882,
+      "after_unmasked": 49970,
+      "delta": -3912,
+      "journey_status": "pass",
+      "cleanup_passed": true
+    },
+    "C0_r629_state012": {
+      "root": "code_assist_v1/.runtime/v0b-p1-c0-candidate-20260902-r629",
+      "candidate_1280_sha256": "sha256:c27446f088e0f0f7f074698bf29321a9fac12c743d833dde60de88a7dfbe3eae",
+      "before_unmasked": 50009,
+      "after_unmasked": 45836,
+      "delta": -4173,
+      "journey_status": "pass",
+      "cleanup_passed": true
+    },
+    "aggregate_source_bound_unmasked_delta": -28531
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r631",
+    "receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r631/receipt.json",
+      "sha256": "sha256:437f7cb2bcc2250842d2b65789e03e672b2c82320a5d40b0627858e2d838eae6",
+      "size_bytes": 287106
+    },
+    "started_at": "2026-09-01T19:00:22.312025Z",
+    "ended_at": "2026-09-01T19:05:55.927066Z",
+    "duration_ms": 333615,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "keyboard_path_record_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2042773,
+    "masked_difference_count": 69442,
+    "total_difference_count": 2112215,
+    "journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 222,
+      "comment_delivery_ms": 1279,
+      "reaction_delivery_ms": 955,
+      "presence_ttl_expiry_ms": 15197,
+      "reconnect_ms": 1401
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:26c0c33223b681170279eda6b40d0542e64d88c6bb65ab7143cfe35d57aba20a"
+    }
+  },
+  "comparison_to_r623": {
+    "raw_unmasked_delta": -31526,
+    "raw_masked_delta": 16,
+    "raw_total_delta": -31510,
+    "source_bound_unmasked_delta": -28531,
+    "runtime_only_variations": {
+      "V0R-MU-002_unmasked": -975,
+      "V0R-MU-004_unmasked": -2040,
+      "V0R-MU-008_unmasked_beyond_isolated_source_delta": 20,
+      "V0R-MU-014_masked": 16
+    }
+  },
+  "cumulative_source_bound_improvement_from_r581": {
+    "pre_r631": -3035,
+    "scroll_pseudo_r631": -28531,
+    "aggregate_unmasked": -31566
+  },
+  "verification": {
+    "python_compile": "pass",
+    "targeted_tests": {
+      "result": "17 passed in 30.83s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:437f7cb2bcc2250842d2b65789e03e672b2c82320a5d40b0627858e2d838eae6"
+    }
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel remains 0/36. Core25 and performance remain forbidden before exact 36/36 and were not run.",
+    "claims_closed": false,
+    "product_complete": false,
+    "goal_complete": false
+  },
+  "next_cursor": {
+    "phase": "V0B-P1 exact-pixel local correction",
+    "start_from": "Retain source sha256:19a67e11d44759a7fd113dc6596c42634b834de873ca254e7ffb2d5968854660 and r631. Continue region-measured proposals; reject any per-state source-bound regression; do not run Core25/performance before exact 36/36."
+  }
+}

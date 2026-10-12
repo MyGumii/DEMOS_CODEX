@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-LEGACY-JS-FIXTURE-VERIFIED-20260906",
+  "recorded_at": "2026-09-06T13:18:31Z",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "packet_id": "V0B-P1",
+  "status": "seven_standalone_ui_regression_suites_passed_not_full_packet_gate",
+  "pre_edit_checkpoint": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-legacy-js-fixture-pre-edit-20260906.json",
+  "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-LEGACY-JS-FIXTURE-20260906",
+  "diagnosis": "Three legacy VM fixtures omitted existing NotionFileUpload and NotionDatabaseBridge globals, so notion.js stopped at its initialization guard before assertions. Importing the real modules and binding the existing globals resolves this fixture-only failure.",
+  "executed_runtime": {
+    "executable": "C:/Program Files/nodejs/node.exe",
+    "version": "v24.14.1",
+    "working_directory": "G:/AI_Agent/DEMOS_CODEX"
+  },
+  "execution_mode": "sequential_standalone_node_vm_tests",
+  "before_fix_results": [
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_collaboration_editor.js"
+      ],
+      "exit_code": 0,
+      "output": "notion_collaboration_editor: ok\n",
+      "wall_time_seconds": 0.6402838
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_editor_core.js"
+      ],
+      "exit_code": 0,
+      "output": "notion_editor_core: ok\n",
+      "wall_time_seconds": 0.4040671
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_ui_runtime.js"
+      ],
+      "exit_code": 1,
+      "output": "notion.js:185\r\n  throw new Error(\"Notion collaboration editor runtime failed to load\");\r\n  ^\r\n\r\nError: Notion collaboration editor runtime failed to load\r\n    at notion.js:185:9\r\n    at Script.runInContext (node:vm:149:12)\r\n    at Script.runInNewContext (node:vm:154:17)\r\n    at Object.runInNewContext (node:vm:310:38)\r\n    at Object.<anonymous> (G:\\AI_Agent\\DEMOS_CODEX\\code_assist_v1\\tests\\test_notion_ui_runtime.js:297:4)\r\n    at Module._compile (node:internal/modules/cjs/loader:1812:14)\r\n    at Object..js (node:internal/modules/cjs/loader:1943:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1533:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1335:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n\r\nNode.js v24.14.1\r\n",
+      "wall_time_seconds": 0.4190075
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_atomic_save.js"
+      ],
+      "exit_code": 1,
+      "output": "notion.js:185\r\n  throw new Error(\"Notion collaboration editor runtime failed to load\");\r\n  ^\r\n\r\nError: Notion collaboration editor runtime failed to load\r\n    at notion.js:185:9\r\n    at Script.runInContext (node:vm:149:12)\r\n    at Script.runInNewContext (node:vm:154:17)\r\n    at Object.runInNewContext (node:vm:310:38)\r\n    at Object.<anonymous> (G:\\AI_Agent\\DEMOS_CODEX\\code_assist_v1\\tests\\test_notion_atomic_save.js:642:4)\r\n    at Module._compile (node:internal/modules/cjs/loader:1812:14)\r\n    at Object..js (node:internal/modules/cjs/loader:1943:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1533:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1335:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n\r\nNode.js v24.14.1\r\n",
+      "wall_time_seconds": 0.5038349
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_navigation_ui.js"
+      ],
+      "exit_code": 0,
+      "output": "notion_navigation_ui: ok\n",
+      "wall_time_seconds": 0.4341978
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_publication_ui.js"
+      ],
+      "exit_code": 1,
+      "output": "G:\\AI_Agent\\DEMOS_CODEX\\code_assist_v1\\notion_static\\notion.js:185\r\n  throw new Error(\"Notion collaboration editor runtime failed to load\");\r\n  ^\r\n\r\nError: Notion collaboration editor runtime failed to load\r\n    at G:\\AI_Agent\\DEMOS_CODEX\\code_assist_v1\\notion_static\\notion.js:185:9\r\n    at Script.runInContext (node:vm:149:12)\r\n    at Script.runInNewContext (node:vm:154:17)\r\n    at Object.runInNewContext (node:vm:310:38)\r\n    at Object.<anonymous> (G:\\AI_Agent\\DEMOS_CODEX\\code_assist_v1\\tests\\test_notion_publication_ui.js:303:4)\r\n    at Module._compile (node:internal/modules/cjs/loader:1812:14)\r\n    at Object..js (node:internal/modules/cjs/loader:1943:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1533:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1335:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n\r\nNode.js v24.14.1\r\n",
+      "wall_time_seconds": 0.5145194
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_database_bridge.js"
+      ],
+      "exit_code": 0,
+      "output": "notion_database_bridge: ok\n",
+      "wall_time_seconds": 0.4105944
+    }
+  ],
+  "after_fix_results": [
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_collaboration_editor.js"
+      ],
+      "exit_code": 0,
+      "output": "notion_collaboration_editor: ok\n",
+      "wall_time_seconds": 0.4271207
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_editor_core.js"
+      ],
+      "exit_code": 0,
+      "output": "notion_editor_core: ok\n",
+      "wall_time_seconds": 0.3749442
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_ui_runtime.js"
+      ],
+      "exit_code": 0,
+      "output": "notion_ui_runtime: ok\n",
+      "wall_time_seconds": 0.5416861
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_atomic_save.js"
+      ],
+      "exit_code": 0,
+      "output": "notion_atomic_save: ok\n",
+      "wall_time_seconds": 0.4896075
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_navigation_ui.js"
+      ],
+      "exit_code": 0,
+      "output": "notion_navigation_ui: ok\n",
+      "wall_time_seconds": 0.4718741
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_publication_ui.js"
+      ],
+      "exit_code": 0,
+      "output": "notion publication UI tests passed\n",
+      "wall_time_seconds": 0.578553
+    },
+    {
+      "argv": [
+        "C:/Program Files/nodejs/node.exe",
+        "code_assist_v1/tests/test_notion_database_bridge.js"
+      ],
+      "exit_code": 0,
+      "output": "notion_database_bridge: ok\n",
+      "wall_time_seconds": 0.4021132
+    }
+  ],
+  "after_fix_completed_at": "2026-09-06T13:16:28Z",
+  "source_and_test_pre": [
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "sha256": "sha256:c3c4ee95236243f73a02256643d1199dfe155488f835c5b18e9bbb7b4272ae30"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.css",
+      "sha256": "sha256:797eadb7689d231dfcd34e23ad5ac1ea06ee2a8b1a92feb098ae3f948c4489c9"
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion_editor_core.js",
+      "sha256": "sha256:c2b25b7156076e70c68b7fe96d1fc41234e329bca4e54850676afc6fd0020367"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion_collaboration_editor.js",
+      "sha256": "sha256:d196d832110a975cb1ebb5d297e8f6add40511a043fec1bcbb0f051272873bdc"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion_database_bridge.js",
+      "sha256": "sha256:094f61fedc206e8917949582b77e57e14406a1f6038e82ca85e24efcf93dbfc9"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion_file_upload.js",
+      "sha256": "sha256:00f0de47827d4be0f93587b1a14d9a009ada7aaba43afb30d075dbec37dc7137"
+    },
+    {
+      "path": "code_assist_v1/notion_static/vendor/yjs-13.6.32.bundle.js",
+      "sha256": "sha256:242f8b9dd6ed5d09924b1115a0f5a976437520246dae536da5c85a1a3f64f436"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration_test_runtime.js",
+      "sha256": "sha256:85708cf64fc35a6283e76bcb9490525bed677ea864ef1da0da4ca9ecfc78e26f"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_collaboration_editor.js",
+      "sha256": "sha256:61ba0039e16e3946b7a2dc75ecf6677601f49d0a90af0826673ebf4e55a1f4a6"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_editor_core.js",
+      "sha256": "sha256:bb04bc3bec64b28e7b780d83119af7e95a3846e275b9260531286f19b21df2de"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_runtime.js",
+      "sha256": "sha256:16d604b441bad5e768f4dd40b228ead209c00d1707506ce42bb0305f2da58251"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_atomic_save.js",
+      "sha256": "sha256:355c2060c67408fd74dcc343eeabca93aaa3ef9e237ac67d3bd4da953225a03c"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_navigation_ui.js",
+      "sha256": "sha256:a1201d33dde59c3bca627864625644d5f497bc1b300ed11b82974694b8445f0b"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_publication_ui.js",
+      "sha256": "sha256:81dcdec9da5a1bdbd90dcb4441fc2b53430bbd4143d25fd17eb0b95e34c1e8ab"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_database_bridge.js",
+      "sha256": "sha256:791338195bc5b877505bc28c4392adeacae04eab8e6a4d698a853311c39a80ef"
+    }
+  ],
+  "source_and_test_post": [
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "sha256": "sha256:c3c4ee95236243f73a02256643d1199dfe155488f835c5b18e9bbb7b4272ae30"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion.css",
+      "sha256": "sha256:797eadb7689d231dfcd34e23ad5ac1ea06ee2a8b1a92feb098ae3f948c4489c9"
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion_editor_core.js",
+      "sha256": "sha256:c2b25b7156076e70c68b7fe96d1fc41234e329bca4e54850676afc6fd0020367"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion_collaboration_editor.js",
+      "sha256": "sha256:d196d832110a975cb1ebb5d297e8f6add40511a043fec1bcbb0f051272873bdc"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion_database_bridge.js",
+      "sha256": "sha256:094f61fedc206e8917949582b77e57e14406a1f6038e82ca85e24efcf93dbfc9"
+    },
+    {
+      "path": "code_assist_v1/notion_static/notion_file_upload.js",
+      "sha256": "sha256:00f0de47827d4be0f93587b1a14d9a009ada7aaba43afb30d075dbec37dc7137"
+    },
+    {
+      "path": "code_assist_v1/notion_static/vendor/yjs-13.6.32.bundle.js",
+      "sha256": "sha256:242f8b9dd6ed5d09924b1115a0f5a976437520246dae536da5c85a1a3f64f436"
+    },
+    {
+      "path": "code_assist_v1/tests/notion_collaboration_test_runtime.js",
+      "sha256": "sha256:85708cf64fc35a6283e76bcb9490525bed677ea864ef1da0da4ca9ecfc78e26f"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_collaboration_editor.js",
+      "sha256": "sha256:61ba0039e16e3946b7a2dc75ecf6677601f49d0a90af0826673ebf4e55a1f4a6"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_editor_core.js",
+      "sha256": "sha256:bb04bc3bec64b28e7b780d83119af7e95a3846e275b9260531286f19b21df2de"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_runtime.js",
+      "sha256": "sha256:28d34d37912ed1a7752c3546fb53d79b88399d2912543251089cac571383354f"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_atomic_save.js",
+      "sha256": "sha256:3326c1c5f17a3ad4a3d41de2683ab3beb8391242adcbe4a85ede5675bb84881e"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_navigation_ui.js",
+      "sha256": "sha256:a1201d33dde59c3bca627864625644d5f497bc1b300ed11b82974694b8445f0b"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_publication_ui.js",
+      "sha256": "sha256:56924254ef9adaf831851e08c964b0095e7f302281ffda093e522b7acaaeadde"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_database_bridge.js",
+      "sha256": "sha256:791338195bc5b877505bc28c4392adeacae04eab8e6a4d698a853311c39a80ef"
+    }
+  ],
+  "assertion_integrity": [
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_runtime.js",
+      "added_lines": 4,
+      "reconstructed_pre_sha256": "sha256:16d604b441bad5e768f4dd40b228ead209c00d1707506ce42bb0305f2da58251",
+      "expected_pre_sha256": "sha256:16d604b441bad5e768f4dd40b228ead209c00d1707506ce42bb0305f2da58251"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_atomic_save.js",
+      "added_lines": 4,
+      "reconstructed_pre_sha256": "sha256:355c2060c67408fd74dcc343eeabca93aaa3ef9e237ac67d3bd4da953225a03c",
+      "expected_pre_sha256": "sha256:355c2060c67408fd74dcc343eeabca93aaa3ef9e237ac67d3bd4da953225a03c"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_publication_ui.js",
+      "added_lines": 4,
+      "reconstructed_pre_sha256": "sha256:81dcdec9da5a1bdbd90dcb4441fc2b53430bbd4143d25fd17eb0b95e34c1e8ab",
+      "expected_pre_sha256": "sha256:81dcdec9da5a1bdbd90dcb4441fc2b53430bbd4143d25fd17eb0b95e34c1e8ab"
+    }
+  ],
+  "coverage": {
+    "passed_script_count": 7,
+    "failed_script_count": 0,
+    "test_case_count": "Scripts report suite completion, not a structured per-case denominator; no case count inferred.",
+    "included": [
+      "collaborative editor",
+      "editor core",
+      "UI runtime",
+      "atomic save",
+      "navigation UI",
+      "publication UI",
+      "database bridge"
+    ],
+    "all_existing_assertions_unchanged": true,
+    "equivalent_to_browser_reference_or_pixel_or_performance_gate": false,
+    "sufficient_for_twelve_specialized_contract_rebaseline": false
+  },
+  "preserved_state": {
+    "product_source_changed": false,
+    "initialization_guard_weakened": false,
+    "sbe_contracts_changed": false,
+    "agents_md_changed": false,
+    "twelve_specialized_contracts_rebaselined": false,
+    "existing_receipts_overwritten": false,
+    "browser_or_external_accounts_used": false,
+    "production_data_used": false,
+    "packet_catalog_or_completion_claims_changed": false,
+    "goal_complete": false
+  },
+  "remaining_dependency": "SBE 13-file ownership transfer remains unapproved. Full Notion status integration also needs the remaining declared regressions, seven dynamic instruction bindings and current checkpoint bindings reconciled after SBE audit recovery.",
+  "next_action": "Preserve these source-exact JS results. Do not rerun them unless an input changes or the required final validation contract demands a fresh run."
+}

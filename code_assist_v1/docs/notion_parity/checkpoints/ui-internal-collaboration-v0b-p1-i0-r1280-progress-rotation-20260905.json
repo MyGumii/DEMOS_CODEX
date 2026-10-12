@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1280-PROGRESS-ROTATION-20260905",
+  "recorded_at": "2026-09-05T17:14:02.5687216+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1255-progress-rotation-20260905.json",
+    "sha256": "sha256:a4030eab4e599a8f540ed4ae99ac581360d8ffcf2bf1c1cc7b112c348278fc37"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1280-state002-subtitle-tabs-rows-button-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1280-state002-subtitle-tabs-rows-button-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:65f289ddc31872a732a811bb0f42414e5383dfdd11e9e53807bfba5650198813",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:5612048022f05e06262f4fc1188ba237516184356210ef10a3779617a8e6a224",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 783446,
+    "masked_difference_count": 0,
+    "total_difference_count": 783446,
+    "stable_normalized_total_difference_count": 783446,
+    "runtime_variance": {
+      "V0R-MU-002": 0,
+      "V0R-MU-004": 0,
+      "normalization_basis": "both known alternating states at their higher stable counts"
+    },
+    "overall_exact_progress": "0/36"
+  },
+  "improvement_since_r1255": {
+    "stable_normalized_total_difference_delta": -2319,
+    "retained_changes": [
+      "Align the active People settings row with the measured one-pixel left-padding correction.",
+      "Align and recolor the workspace-member link copy action.",
+      "Match the measured user, teamspace, and group column-header letter spacing by viewport.",
+      "Restore the compact member-link paragraph width and apply its compact-only 0.175px text stroke.",
+      "Refine the workspace-members subtitle origin and inline-link spacing.",
+      "Align the guest, group, and contact tabs independently without moving the already-optimal active member tab.",
+      "Apply viewport-bounded second-row group and role-control transforms.",
+      "Render the member-add control as separate label and divider layers while preserving the live button interaction."
+    ],
+    "source_bound_reduction_breakdown": {
+      "people_navigation_row": -100,
+      "member_link_copy_action": -446,
+      "member_column_headers": -109,
+      "compact_member_link_paragraph": -128,
+      "members_subtitle": -64,
+      "member_tabs": -676,
+      "second_member_row": -64,
+      "member_add_button": -732
+    }
+  },
+  "rejected_diagnostics": [
+    {
+      "run_id": "v0b-p1-i0-r1260-state002-people-letter-spacing-sweep",
+      "reason": "People-row letter-spacing variants did not improve either viewport."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1262-state002-link-toggle-geometry-sweep",
+      "reason": "The retained member-link toggle width, height, and radius remained best."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1265-through-r1267-copy-action-followups",
+      "reason": "Copy-action padding, font, spacing, and alternate positioning did not beat the retained source-bound correction."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1269-state002-link-translation-sweep",
+      "reason": "The member-link paragraph translation plateau confirmed the retained placement."
+    },
+    {
+      "run_id": "v0b-p1-i0-r1277-state002-add-button-chevron-sweep",
+      "reason": "A synthetic chevron introduced an equally different raster and did not improve the separated label-and-divider result."
+    }
+  ],
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1256-20260905",
+    "launch_id": "330c337cffbe4aa190e0bb0d370bc14d",
+    "root_id": "913db322-464e-42e5-9471-bf159f693a5b",
+    "manager_session_id": 69842,
+    "manager_session_live": true,
+    "final_audit_before_rotation": {
+      "workspace_count": 50,
+      "reference_workspace_count": 48,
+      "active_membership_count": 50,
+      "active_page_binding_count": 48,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64,
+    "filesystem_preservation_required": true
+  },
+  "verification": {
+    "targeted_tests": "23 passed in 12.57s",
+    "python_compile": "pass",
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Preserve and stop the r1256 realm, start a fresh approved development realm, reproduce retained r1280, then continue lossless exact residual reduction. Do not run final gates before exact parity reaches 36/36."
+}

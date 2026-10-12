@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "receipt_id": "E0-P2-DISPOSABLE-ROOT-CLEANUP-20260824",
+  "contract": "code_assist.notion.crdt_runtime_spike_cleanup.v1",
+  "run_id": "E0P2-20260824-001",
+  "status": "pass",
+  "root_name_sha256": "sha256:1b421420fe1009ef4459b09913c329288b82e68782ab8d9d554e58ae2149e996",
+  "pre_cleanup_inventory": {
+    "file_count": 9401,
+    "directory_count": 1005,
+    "bytes": 95986394,
+    "owned_process_count": 0
+  },
+  "safety_preconditions": {
+    "absolute_root_resolved": true,
+    "direct_os_temp_child": true,
+    "root_name_pattern_matched": true,
+    "symbolic_link_rejected": true,
+    "owned_marker_contract_matched": true,
+    "owned_marker_run_id_matched": true,
+    "approval_scope_bound": true,
+    "existing_or_broad_root_targeted": false
+  },
+  "cleanup": {
+    "implementation": "code_assist_v1.tools.notion_parity.crdt_runtime_spike_executor.cleanup_owned_run_root",
+    "single_process_validation_and_recursive_removal": true,
+    "target_removed": true,
+    "target_exists_after_cleanup": false,
+    "other_path_removed": false
+  },
+  "rejected_attempt": {
+    "kind": "PowerShell Remove-Item command",
+    "rejected_by_execution_policy_before_start": true,
+    "filesystem_effect_occurred": false,
+    "fallback_expanded_scope": false
+  },
+  "claims": {
+    "candidate_process_left_running": false,
+    "candidate_root_left_present": false,
+    "package_installed_into_product_environment": false,
+    "product_lockfile_modified": false,
+    "persistent_service_or_port_modified": false,
+    "identity_workspace_or_protected_data_modified": false
+  }
+}

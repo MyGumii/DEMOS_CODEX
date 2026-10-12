@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-NEW-DIVIDER-GEOMETRY-R950-PROGRESS-20260904",
+  "recorded_at": "2026-09-04T17:40:14.2323081+09:00",
+  "checkpoint_kind": "bounded_shared_new_divider_geometry_progress_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "goal_complete": false,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-shared-title-stable-edit-time-r944-progress-20260904.json",
+    "sha256": "sha256:ea052920a0971647b5a5bbd1bcbb877b05772284b08412589fca775e91c7404e"
+  },
+  "retained_candidate": {
+    "label": "r950",
+    "supersedes": "r944",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260904-r950-new-divider-geometry/receipt.json",
+    "receipt_sha256": "sha256:f44fe7fc3d6ebb7963a2ea5c425e710838625ada95ec442e079e4b4fceb1fb0d",
+    "release_source_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 1646678,
+    "masked_difference_count": 68354,
+    "total_difference_count": 1715032,
+    "delta_from_r944_unmasked": -11975,
+    "delta_from_r944_masked": -64,
+    "delta_from_r944_total": -12039,
+    "improved_capture_count_from_r944": 10,
+    "unchanged_capture_count_from_r944": 26,
+    "regressed_capture_count_from_r944": 0,
+    "changed_capture_deltas_from_r944_unmasked": {
+      "V0R-MU-008@1440": -2247,
+      "V0R-MU-008@1280": -2152,
+      "V0R-MU-009@1440": -974,
+      "V0R-MU-009@1280": -936,
+      "V0R-MU-010@1440": -942,
+      "V0R-MU-010@1280": -904,
+      "V0R-MU-011@1440": -974,
+      "V0R-MU-011@1280": -936,
+      "V0R-MU-012@1440": -974,
+      "V0R-MU-012@1280": -936
+    },
+    "component_journeys": {
+      "C0-P2": "pass",
+      "I0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "run_started_at": "2026-09-04T08:30:49.442185Z",
+    "run_ended_at": "2026-09-04T08:36:17.322625Z",
+    "duration_ms": 327880,
+    "cleanup": {
+      "status": "complete",
+      "synthetic_only": true,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "active_fixture_root_count": 0,
+      "component_cleanup_verified": true,
+      "browser_closed": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:5aa5e4ec0259e8f01441656a30d2cc4f2546f1f344a15139c3c5b0497b213ba6"
+    }
+  },
+  "implemented_progress": {
+    "state008_missing_new_divider": {
+      "change": "Include V0R-MU-008 in the adopted fixed New-divider states.",
+      "validation": "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260904-r945-state008-new-divider",
+      "targeted_delta": {
+        "V0R-MU-008@1440": -1273,
+        "V0R-MU-008@1280": -1216
+      }
+    },
+    "shared_new_divider_geometry": {
+      "change": "Match the reference divider with 2px lines and a 30px border-box badge while retaining the no-regression 400 text weight.",
+      "validations": [
+        "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260904-r946-divider-geometry",
+        "code_assist_v1/.runtime/v0b-p1-f0-diagnostic-20260904-r947-divider-geometry",
+        "code_assist_v1/.runtime/v0b-p1-c0-diagnostic-20260904-r948-divider-geometry"
+      ],
+      "affected_states": [
+        "V0R-MU-008",
+        "V0R-MU-009",
+        "V0R-MU-010",
+        "V0R-MU-011",
+        "V0R-MU-012"
+      ],
+      "targeted_journeys_accessibility_and_cleanup": "pass"
+    },
+    "rejected_text_weight_probe": {
+      "path": "code_assist_v1/.runtime/v0b-p1-e1-diagnostic-20260904-r949-divider-text-weight",
+      "reason": "Weight 500 improved most divider text regions by only two pixels but regressed V0R-MU-008@1440 by 18 pixels; reverted before r950."
+    }
+  },
+  "regression_validation": {
+    "python_compile": {
+      "status": "pass",
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py"
+    },
+    "pytest": {
+      "status": "pass",
+      "passed": 23,
+      "skipped": 1,
+      "failed": 0
+    },
+    "official_receipt_verifier": {
+      "status": "expected_fail_open_gates_only",
+      "exit_code": 1,
+      "reference_paths_explicit": true,
+      "error_count": 39,
+      "expected_error_counts": {
+        "EXACT_PIXEL_GATE": 36,
+        "CORE_25_GATE": 1,
+        "PERFORMANCE_GATE": 1,
+        "CLAIMS_GATE": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:f44fe7fc3d6ebb7963a2ea5c425e710838625ada95ec442e079e4b4fceb1fb0d"
+    }
+  },
+  "approved_dev_realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r935-20260904",
+    "manager_session_id": 92582,
+    "manager_session_live": true,
+    "launch_id": "51d9527e832c4153ab912e5052c3b362",
+    "root_id": "b50c55f0-b26c-48dc-97c8-965846712e91",
+    "run_marker_sha256": "sha256:1a27f3d0c76d2663ed8e26856c521c2f182556d0960cc62a845235f1139dabf0",
+    "workspace_count": 36,
+    "reference_workspace_count": 34,
+    "reference_active_page_binding_count": 49,
+    "active_external_membership_count": 0,
+    "active_guest_count": 0,
+    "rotation_threshold": 64
+  },
+  "modified_sources": {
+    "code_assist_v1/notion_collaboration/v0b_p1_capture.py": "sha256:6e6a2c82d57a56cfb86d778eeb397110541239a6761916b7f3473ed47fffa512",
+    "code_assist_v1/notion_collaboration/f0_p5_browser.py": "sha256:2bac7d82d8e91e4f256626a425c6a6195ba9f74df36b44b9686cec408ca457a3"
+  },
+  "protected_hot_contracts": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "code_assist_v1/notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "protected_hot_contracts_modified": false,
+    "final_product_or_sbe_gate_run": false
+  },
+  "next_cursor": {
+    "action": "Continue V0B exact-pixel residual reduction from retained r950 in the approved r935 realm.",
+    "priority": [
+      "Preserve r950's exact shared title and New-divider geometry plus guest edit-time stability.",
+      "Measure the next repeated main-middle or sidebar residual independently.",
+      "Retain only full candidates with all four journeys passing, cleanup complete, accessibility and interaction 36/36, and zero regressed captures against r950.",
+      "Rotate before workspace count reaches 64.",
+      "Do not run final Core-25, performance, product, or SBE closure gates before exact 36/36."
+    ]
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "exact_36_of_36": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

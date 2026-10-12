@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.s0a.current_sbe_audit_successor_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-S0A-CURRENT-SBE-AUDIT-SUCCESSOR-V3-20260909",
+  "recorded_at": "2026-09-09T07:31:30.0000000+09:00",
+  "status": "validated_dynamic_audit_successor",
+  "immutable_after_recording": true,
+  "supersedes": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-s0a-current-sbe-audit-successor-v2-20260909.json",
+    "sha256": "sha256:727debd52d6a7b83e4462267582aa3952e835e20a4832df8a3a278cae627d440",
+    "record_sha256": "sha256:cacfcef5913aeacffcb3024bf306d7656f645df6039ab18117cff8ca579c6809"
+  },
+  "authority_snapshot": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-strict-similarity-r9-green-20260907.json",
+    "sha256": "sha256:fedcd2208fd4a311ca8191adb31d240ca98fc9d092bc728a0cb6acfe1c716ab8",
+    "previous_sbe_contract_audit_input_sha256": "sha256:4fbbf741aece1a5ee3ddd6e24479b3662dd76d04ed10566e642e300360ceedc7"
+  },
+  "sbe_audit_report": {
+    "path": "capture/o1b-p1-sbe-readiness-contract-audit-20260909-v9.json",
+    "sha256": "sha256:a4167425b80ef4556c9c26bd7d4fc6c0ecc14763c861e2ca626411a7e4c3b590"
+  },
+  "expected_report": {
+    "report_schema_version": 2,
+    "status": "pass",
+    "error_count": 0,
+    "input_sha256": "sha256:5a4d63e8501680129928649687aa3713a28e02550942569b5898056a9aee38aa",
+    "source_file_count": 33,
+    "goal_count": 20,
+    "mandatory_scenario_count": 284
+  },
+  "protected_source_binding": {
+    "path": "code_assist_v1/knowledge_core/services/publication.py",
+    "sha256": "sha256:f5fabdee88fcc216e3574d361543eabf993b55d5c41902ccac690a3042fa6d0f"
+  },
+  "ownership_handoff": {
+    "thread_id": "019fec6f-60b0-7f53-876d-ba9b7acb0c51",
+    "authority_input_count": 33,
+    "bounded_handoff_observed": true,
+    "sbe_source_or_contract_modified_by_notion_agent": false
+  },
+  "claims": {
+    "central_catalogs_modified": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "historical_checkpoint_overwritten": false,
+    "target_or_production_action_executed": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:9d57ba88efbfdbda148edbc9c865b214d63ea99b08a4ae2bf7cc46456136030a"
+}

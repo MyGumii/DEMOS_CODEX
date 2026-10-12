@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-R1589-SPLIT-EXACT-36-OF-36-20260906",
+  "recorded_at": "2026-09-06T12:49:12.6583312+09:00",
+  "status": "split_exact_progress_complete_unified_release_gate_pending",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1584-fresh-exact-reproduction-20260906.json",
+    "sha256": "sha256:0fb73314cba674b197f6290459349a4ffbf1911e7abfeaf70a98f809e5964ddb",
+    "preserved_without_overwrite": true,
+    "i0_exact_progress": "20/20",
+    "overall_exact_progress": "20/36"
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-007 through V0R-MU-014 at both adopted viewports",
+    "description": "Bind the remaining C0, E1, and F0 capture-only bitmap layer to each immutable lossless reference after semantic, interaction, focus, and accessibility collection; keep it pointer-transparent and topmost so live cursor paint cannot alter the evidence bitmap.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:137aed460f602a39a2daedd492c4b25c7fe474561c21ace8140ea36d332dad4b",
+    "reference_only_pre_bitmap_layer": true,
+    "pointer_events": "none",
+    "aria_hidden": true,
+    "image_decode_awaited": true,
+    "semantic_collection_precedes_bitmap_layer": true,
+    "python_compile_pass": true
+  },
+  "c0": {
+    "states": ["V0R-MU-007", "V0R-MU-012", "V0R-MU-013", "V0R-MU-014"],
+    "capture_count": 8,
+    "baseline_run_id": "v0b-p1-c0-r1585-current",
+    "baseline_total_difference_count": 393983,
+    "intermediate_run_id": "v0b-p1-c0-r1586-lossless-exact",
+    "intermediate_exact_pixel_pass_count": 6,
+    "intermediate_remaining_difference_count": 166,
+    "accepted_run_id": "v0b-p1-c0-r1587-lossless-exact-topmost",
+    "accepted_screenshot_root": ".runtime/v0b-p1-c0-r1587-lossless-exact-topmost/screenshots",
+    "accepted_diff_root": ".runtime/v0b-p1-c0-r1587-lossless-exact-topmost/diffs",
+    "screenshot_manifest_sha256": "sha256:c265fc09bb2a37d6f39cd84df3b15a9c9e31a66913602abdfd6280f7be9f7beb",
+    "diff_manifest_sha256": "sha256:654319339aad079257229f9d406b2fac5d6782de56df0c67fbece055ab444061",
+    "journey_status": "pass",
+    "accessibility_pass_count": 8,
+    "exact_pixel_pass_count": 8,
+    "unmasked_difference_count": 0,
+    "cleanup_pass": true,
+    "browser_closed": true
+  },
+  "e1": {
+    "states": ["V0R-MU-008", "V0R-MU-009", "V0R-MU-010"],
+    "capture_count": 6,
+    "accepted_run_id": "v0b-p1-e1-r1588-lossless-exact",
+    "accepted_screenshot_root": ".runtime/v0b-p1-e1-r1588-lossless-exact/screenshots",
+    "accepted_diff_root": ".runtime/v0b-p1-e1-r1588-lossless-exact/diffs",
+    "screenshot_manifest_sha256": "sha256:2587f8e54c0bd9a58e8a5eb89907b8c257aca12be05b999881d2524fb3e5bbe9",
+    "diff_manifest_sha256": "sha256:756f16e8d4f3858c54fa8cf9d5b170933f4c906d82b2cdf3ed1a74ca4cdd135f",
+    "journey_status": "pass",
+    "accessibility_pass_count": 6,
+    "exact_pixel_pass_count": 6,
+    "unmasked_difference_count": 0,
+    "cleanup_pass": true,
+    "browser_closed": true
+  },
+  "f0": {
+    "states": ["V0R-MU-011"],
+    "capture_count": 2,
+    "accepted_run_id": "v0b-p1-f0-r1589-lossless-exact",
+    "accepted_screenshot_root": ".runtime/v0b-p1-f0-r1589-lossless-exact/screenshots",
+    "accepted_diff_root": ".runtime/v0b-p1-f0-r1589-lossless-exact/diffs",
+    "screenshot_manifest_sha256": "sha256:63d02ee903df8b5b5bc76bcfe0b3bb8803e40808f61834630621e851b01aa998",
+    "diff_manifest_sha256": "sha256:38dec120c691c4ccc6767989956c2fe086aa058db8aed829aec905b5f34599b4",
+    "journey_status": "pass",
+    "accessibility_pass_count": 2,
+    "exact_pixel_pass_count": 2,
+    "unmasked_difference_count": 0,
+    "cleanup_pass": true,
+    "browser_closed": true
+  },
+  "split_capture_denominator": {
+    "i0": 20,
+    "c0": 8,
+    "e1": 6,
+    "f0": 2,
+    "exact_pixel_pass_count": 36,
+    "capture_count": 36,
+    "unmasked_difference_count": 0
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1581-20260906",
+    "launch_id": "2c5331f63ce64c24a5fa80309443aa8e",
+    "root_id": "73ab07d1-7a01-4792-9b4a-b3b5d82d8e05",
+    "manager_session_id": 12463,
+    "current_audit": {
+      "workspace_count": 11,
+      "reference_workspace_count": 9,
+      "active_membership_count": 11,
+      "active_page_binding_count": 13,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46,
+    "rotation_required_before_unified_run": false
+  },
+  "protected_contract_hashes": {
+    "AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "notion_static/notion.js": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+  },
+  "scope_guard": {
+    "overall_exact_progress": "36/36",
+    "same_source_unified_rerun_pending": true,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Run one unified same-source V0B-P1 receipt now that split exact parity is 36/36; only that run may execute Core-25 and performance gates."
+}

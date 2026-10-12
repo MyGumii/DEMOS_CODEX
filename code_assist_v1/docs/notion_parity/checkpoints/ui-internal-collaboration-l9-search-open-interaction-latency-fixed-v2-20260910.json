@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.l9.search_open_interaction_latency_fix.v2",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-L9-SEARCH-OPEN-INTERACTION-LATENCY-FIXED-V2-20260910",
+  "recorded_at": "2026-09-10T23:35:29.9005916+09:00",
+  "status": "fixed_and_repeated_green",
+  "immutable_after_recording": true,
+  "supersedes": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-l9-search-open-focus-latency-fixed-20260910.json",
+    "sha256": "sha256:3f7edaa2371041bccc88e6845ab9557e44b06aad78b0587128ced44d6617913b"
+  },
+  "failure_observations": {
+    "full_l9_search_open_p95_ms": 183.289,
+    "focused_reproduction_search_open_p95_ms": 205.642,
+    "diagnostic_distribution_search_open_p95_ms": 192.345,
+    "approved_budget_ms": 170,
+    "budget_changed": false
+  },
+  "diagnosis": {
+    "timed_completion_contract": "search_overlay_visible_and_global_search_input_focused",
+    "cause": "the click handler focused the input synchronously but still completed creator rendering and the synchronous search-request preparation before returning",
+    "user_path_effect": "automation actionability and Windows scheduling outliers were added to the interval before the click promise returned even though the input was already usable",
+    "search_result_latency_in_open_metric": false
+  },
+  "source_bindings": [
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "before_sha256": "sha256:2174054317d61fe95f4ff69031de021a3a52b75e27fa2964652556ff7030294c",
+      "sha256": "sha256:db5c6fa8d4f3aef25882e0d4a2b739eaefad68d6e8a42bd036c8c7e002c92543",
+      "classification": "product_source"
+    },
+    {
+      "path": "code_assist_v1/notion_static/index.html",
+      "before_sha256": "sha256:ed666cc28783d10c838394014262d77e7b31304b1e07c86745d90fdb6a7354c7",
+      "sha256": "sha256:9a04c7f3a4551840b8f5dc9ec64a4e567ef90582262c760695d7885c9d75ad1b",
+      "classification": "product_source"
+    }
+  ],
+  "fix_contract": {
+    "overlay_is_unhidden_before_focus": true,
+    "focus_is_synchronous": true,
+    "prevent_scroll_preserved": true,
+    "creator_and_result_loading_deferred_until_after_input_is_usable": true,
+    "return_focus_contract_preserved": true,
+    "performance_budget_relaxed": false
+  },
+  "verification": {
+    "javascript_syntax_check_passed": true,
+    "isolated_performance_runs_passed": 4,
+    "isolated_performance_runs_failed": 0,
+    "isolated_performance_run_durations_seconds": [
+      62.48,
+      63.32,
+      62.97,
+      62.72
+    ],
+    "search_and_workspace_scope_browser_tests_passed": 2,
+    "responsive_and_accessibility_browser_tests_passed": 2,
+    "related_browser_tests_failed": 0,
+    "related_browser_duration_seconds": 105.78,
+    "final_measurement_report_sha256": "sha256:d834a104cdad93893684047f52f62b7e42cc1d913b2c91be4c1637ccfa14a3d2",
+    "search_open_ms": {
+      "sample_count": 6,
+      "min": 74.76,
+      "p50": 90.418,
+      "p95": 109.616,
+      "p99": 109.616,
+      "max": 109.616,
+      "approved_budget": 170,
+      "p95_headroom": 60.384
+    },
+    "synthetic_state_unchanged": true,
+    "external_request_count": 0,
+    "publication_item_delta": 0,
+    "publication_revision_delta": 0
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    }
+  },
+  "claims": {
+    "historical_receipt_overwritten": false,
+    "central_catalog_ladder_matrix_or_pointer_modified": false,
+    "protected_sbe_source_or_contract_modified": false,
+    "external_target_or_production_action_executed": false,
+    "packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:005cd44998f9ba5e61f0d0a97a4f937e367e1e03d847fea2b851b5ff0193aa41"
+}

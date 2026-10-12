@@ -1,0 +1,146 @@
+{
+  "run_id": "np2c2a-offline-initial-tree-materializer-20260814",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "recorded_at": "2026-08-14T04:29:00.8010555+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "goal_completed": false
+  },
+  "slice": "NP2C-2a-offline-initial-exact-source-page-tree-materializer",
+  "status": "contract_tested_offline_initial_materializer_runtime_disabled",
+  "schema": {
+    "runtime_version": 2026081311,
+    "runtime_name": "notion_workspace_v2_np2c_page_tree_foundation",
+    "checksum": "sha256:bb88d9c7e7937d0e29086d20ebd0c7a567658678daca0dd31c931634431cf723",
+    "actual_schema_sha256": "sha256:7ef7fcee1e78a641388de16e55937ad73fd549d97aa33de7221c215d19da9517",
+    "object_count": 140,
+    "ddl_changed_in_this_slice": false
+  },
+  "implementation": {
+    "offline_initial_materializer_implemented": true,
+    "typed_tree_snapshot_implemented": true,
+    "exact_operation_replay_implemented": true,
+    "full_materialization_commitment_validation_implemented": true,
+    "deep_health_materialization_commitment_validation_implemented": true,
+    "maximum_active_binding_count": 1000,
+    "maximum_tree_depth": 256,
+    "maximum_source_snapshots_per_owner": 2,
+    "maximum_full_integrity_checks_per_owner": 1,
+    "hidden_or_unbound_parent_write_count": 0,
+    "source_drift_write_count": 0,
+    "cycle_write_count": 0,
+    "catalog_commit_atomic_components": [
+      "workspace_page_tree_state",
+      "workspace_page_tree_nodes",
+      "workspace_operation",
+      "workspace_audit_event",
+      "workspace_outbox"
+    ],
+    "materializer_scope": "initial_unmaterialized_tree_only",
+    "source_mutation_implemented": false,
+    "lifecycle_command_kernel_implemented": false,
+    "tree_refresh_implemented": false,
+    "routes_implemented": false,
+    "ui_implemented": false,
+    "runtime_registered": false,
+    "resolver_cutover_enabled": false,
+    "source_watermark_acknowledged": false,
+    "continuous_worker_enabled": false,
+    "permanent_delete_enabled": false,
+    "live_migration_applied": false,
+    "live_data_accessed": false
+  },
+  "security_and_correctness": {
+    "replay_precedes_sentinel_and_source_path_access": true,
+    "new_effect_requires_source_quiescence": true,
+    "new_effect_requires_rehearsal_sentinel": true,
+    "current_workspace_admin_reauthorized": true,
+    "every_active_binding_requires_current_incarnation_attestation": true,
+    "source_file_identity_schema_epoch_and_sweep_revalidated": true,
+    "parent_first_insert_order": true,
+    "dense_visible_sibling_ordinals": true,
+    "cross_owner_parentage_allowed": false,
+    "report_contains_page_or_owner_identifiers": false,
+    "report_contains_source_paths_or_secrets": false,
+    "outbox_fault_rolls_back_state_nodes_and_all_ledgers": true,
+    "empty_tree_opens_source_database": false
+  },
+  "output_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/notion_workspace_store.py": "1472b4561cbd64a260d9c5d191e03b9ad73c18e0fdddb0f0101e642cc2e165f3",
+    "code_assist_v1/notion_workspace_page_tree.py": "46c2e664f424e1d1d1bac41116554045c518b3ef31496a265edf13e987eada85",
+    "code_assist_v1/tests/test_notion_workspace_page_tree.py": "fb8a0a703663508632523bc785fea64a80be7049e26ac3e3f6662b77da8e9b63",
+    "code_assist_v1/tools/verify_notion_np2c_page_tree_contract.py": "d9307c29d5bc357755d24678b915ab565e44dd53ad720c5f54d4b2bf5aee3ea4",
+    "code_assist_v1/tests/test_verify_notion_np2c_page_tree_contract.py": "a9d063dc5d3a2dae0c2773a47ab63aeadd86f3dd98f0f902340c98f3ca610d80",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "dd364b462231b82509056efe8165f19ae44aa7accb7d81b944d0b8663c2a94f7",
+    "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "c6fca4a275b96776003832347b40371a3ea1850e79e29f675b0cbc8c19005227",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "0918b3e8e4ec06e866afa7b30e1ecf1a02ae788c5f3425b06405bd60c8702ff0",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "10cf2c604ff2e1d24e50dbdbece9bd2d3db9d95e99b1ed4dc0b229286f674e3d",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "6b823cc4b61c4c69c37b9382e47dc8df34a8a1bb343b305f77f7764e6577d7fd",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "c07f7f30977ad59a942d7f1439d7eb24aa287aec7cf972558c44b06370cd507f"
+  },
+  "tests": [
+    {
+      "selection": "current-tree migration/incarnation/store/page-tree plus projection/healing/outbox/offline rehearsal",
+      "result": "228 passed",
+      "exit_code": 0,
+      "duration_seconds": 301.39
+    },
+    {
+      "selection": "current-tree page-tree materializer plus store P1",
+      "result": "23 passed",
+      "exit_code": 0,
+      "duration_seconds": 36.65
+    },
+    {
+      "selection": "NP2C machine contract plus page-tree materializer",
+      "result": "10 passed",
+      "exit_code": 0,
+      "duration_seconds": 15.43
+    },
+    {
+      "selection": "Notion parity/catalog/route/NP2B/NP2C machine-contract verifiers",
+      "result": "63 passed",
+      "exit_code": 0,
+      "duration_seconds": 22.33
+    },
+    {
+      "selection": "workspace pages/routes/navigation/auth and route verifiers",
+      "result": "81 passed",
+      "exit_code": 0,
+      "duration_seconds": 52.04
+    },
+    {
+      "selection": "legacy Notion routes, publication adapter and Second Brain/Knowledge hard regressions",
+      "result": "17 passed",
+      "exit_code": 0,
+      "duration_seconds": 10.18
+    }
+  ],
+  "known_host_failure": "A final combined routes/auth/verifier rerun produced no buffered output and hit its 300 second wrapper timeout. No pytest child remained and no code failure output was observed. It is not counted as a pass. The same selections had independently completed as 81 passed and 63 passed before the final deep-health-only materialization commitment hook; the changed path was subsequently covered by current-tree 23 passed and 228 passed lanes.",
+  "review_outcome": {
+    "p0_remaining_in_enabled_paths": 0,
+    "p1_remaining_in_enabled_paths": 0,
+    "protected_boundaries_changed": false,
+    "runtime_state_changed": false,
+    "next_slice": "1312 lifecycle trigger hardening, then NP2C-2b fake/source-temp command kernel",
+    "next_slice_requirements": [
+      "frozen 1311 source and explicit guarded 1311-to-1312 migration",
+      "raw SQL lease duration expiry and fencing transition guards",
+      "two-way lifecycle-command and workspace-operation ID namespace exclusion",
+      "prepared source_applied finalized failed manual_audit phase APIs",
+      "bounded lease token digest and fencing generation CAS",
+      "exact operation replay before source effect",
+      "source-effect response-loss convergence",
+      "catalog-finalize crash convergence",
+      "current actor permission and tree/binding/incarnation revalidation",
+      "identifier-free canonical result audit and outbox commitment",
+      "no legacy source adapter route UI worker resolver ack or purge"
+    ]
+  },
+  "git_provenance": "unavailable: workspace .git is not valid repository metadata; no commit or landed claim",
+  "next_exact_work": "Re-hash this checkpoint and all output files, keep 1311 frozen, then implement a guarded 1311-to-1312 lifecycle trigger-hardening migration with raw SQL/deep-health negatives. Only after that add NP2C-2b command state/lease/replay/fake-effect convergence. Do not add source mutation adapters, routes/UI, runtime registration, resolver cutover, source watermark acknowledgement, permanent purge, live migration, or protected-file edits.",
+  "stop_reason": "NP2C-2a offline initial materializer is implemented and contract-tested. The active overall Notion parity goal remains open; NP2C-2b and later phases are not complete."
+}

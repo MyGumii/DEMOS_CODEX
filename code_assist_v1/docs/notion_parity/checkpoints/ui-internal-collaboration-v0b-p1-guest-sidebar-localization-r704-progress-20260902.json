@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-GUEST-SIDEBAR-LOCALIZATION-R704-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T08:41:30+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-new-dividers-r700-progress-20260902.json",
+    "checkpoint_sha256": "sha256:af5c0d38357eb9d2b09da2cd87b9b0625df91a45026f74af634cb46f27a1d0c4",
+    "source_sha256": "sha256:8207fbd1e6419a04a1595c81b779d4b4a9d169abbe18d49a68a73a208cf6e877",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r700/receipt.json",
+    "receipt_sha256": "sha256:cae54120046e4f4a7032205da0951660a53742a585fa0cb7f4189aae3fa49549",
+    "unmasked_differing_pixel_count": 2000083,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2068501
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:321c7fb3c68834dbc7ebd31d36fb5136798e131139367ff6737dff5644a8deef",
+    "summary": [
+      "Localized only V0R-MU-015 guest sidebar labels and badge to the Korean lossless reference.",
+      "Matched the V0R-MU-015 Home pill width so adjacent quick actions align with the reference.",
+      "Restored the edit icon in the V0R-MU-015 New footer button.",
+      "Kept V0R-MU-005 and V0R-MU-016 outside the localization override after isolated regression detection."
+    ],
+    "source_bound_unmasked_reduction_from_r700": 1512,
+    "source_bound_unmasked_reduction_from_r657": 16878,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 77925,
+    "source_bound_state_deltas_from_r700": {
+      "V0R-MU-015__1440x900": -756,
+      "V0R-MU-015__1280x800": -756
+    }
+  },
+  "accepted_diagnostics": {
+    "r702_state015_localization_scope": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r702",
+      "journey_status": "pass",
+      "cleanup": true,
+      "state015_unmasked_reduction": 1494,
+      "state005_and_state016_regression_count": 0
+    },
+    "r703_state015_footer_icon": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r703",
+      "journey_status": "pass",
+      "cleanup": true,
+      "additional_state015_unmasked_reduction": 18,
+      "other_I0_state_regression_count": 0
+    }
+  },
+  "rejected_diagnostics": {
+    "r701_overbroad_guest_localization": {
+      "reason": "Applying the override to V0R-MU-005 and V0R-MU-016 regressed those states; the override was narrowed to V0R-MU-015 only.",
+      "source_corrected": true
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r704",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r704/receipt.json",
+    "receipt_sha256": "sha256:697ceed97bda7111c9700d918d611ceb38a0edee02da6c7611aa7b665db3176f",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1999138,
+    "masked_differing_pixel_count": 68658,
+    "total_differing_pixel_count": 2067796,
+    "raw_unmasked_delta_from_r700": -945,
+    "raw_masked_delta_from_r700": 240,
+    "raw_total_delta_from_r700": -705,
+    "raw_unmasked_delta_from_r657": -14890,
+    "raw_masked_delta_from_r657": -768,
+    "raw_total_delta_from_r657": -15658,
+    "runtime_only_unmasked_variation_from_r700": {
+      "V0R-MU-002__1440x900": 975,
+      "V0R-MU-008__1440x900": -12,
+      "V0R-MU-008__1280x800": 1,
+      "V0R-MU-010__1440x900": 3,
+      "V0R-MU-011__1440x900": -75,
+      "V0R-MU-013__1440x900": -333,
+      "V0R-MU-014__1280x800": 8,
+      "net": 567
+    },
+    "runtime_only_masked_variation_from_r700": {
+      "net": 240
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1464,
+      "comment_delivery_ms": 922,
+      "reaction_delivery_ms": 1334,
+      "presence_ttl_expiry_ms": 15439,
+      "reconnect_ms": 1314
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:08a66c059fc26c19b0df5afaee2f3457f5619c5c2adee740baeeaf4fa53b17bf"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "result": "17 passed in 32.19s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:697ceed97bda7111c9700d918d611ceb38a0edee02da6c7611aa7b665db3176f"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r704 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

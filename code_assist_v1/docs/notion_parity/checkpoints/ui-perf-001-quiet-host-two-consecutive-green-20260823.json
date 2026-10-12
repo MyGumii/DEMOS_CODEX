@@ -1,0 +1,121 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-23T01:06:03+09:00",
+  "run_id": "ui67-perf-quiet-host-two-consecutive-green-20260823",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-high-host-load-retry-failed-no-promotion-20260823.json",
+    "sha256": "sha256:fc0997fb7fede98516783d955dfd02c415575829863c99485ff33baa289c84e8",
+    "semantic_status": "ui_perf_001_high_host_load_retry_failed_no_promotion"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "the user explicitly requested another execution",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-PERF-001",
+    "evidence_mode": "reference_measurement_local_budget",
+    "synthetic_only": true,
+    "isolated_os_temp_only": true,
+    "personal_or_live_data_accessed": false
+  },
+  "slice": {
+    "status": "quiet_host_two_consecutive_exact_gates_green",
+    "review_required": false,
+    "promotion_allowed": false,
+    "approved_budget_changed": false,
+    "product_code_changed": false
+  },
+  "approved_budget": {
+    "percentile": "p95",
+    "sample_count_per_metric": 6,
+    "shell_ready_ms": 1370,
+    "measurement_policy": "precalibration_measurement_only",
+    "notion_timing_parity_claimed": false,
+    "production_slo_claimed": false
+  },
+  "measurements": [
+    {
+      "run": 1,
+      "host_cpu_percent_samples": [
+        10.008,
+        14.116,
+        22.494,
+        8.512,
+        10.654
+      ],
+      "host_classification": "quiet",
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\browser\\test_notion_ui_performance.py::test_ui_perf_001_measurements_are_isolated_bounded_and_precalibration_only -q",
+      "exit_code": 0,
+      "result": "1 passed in 49.97s"
+    },
+    {
+      "run": 2,
+      "host_cpu_percent_samples": [
+        19.019,
+        21.551,
+        22.1,
+        20.691,
+        23.297
+      ],
+      "host_classification": "quiet",
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\browser\\test_notion_ui_performance.py::test_ui_perf_001_measurements_are_isolated_bounded_and_precalibration_only -q",
+      "exit_code": 0,
+      "result": "1 passed in 49.56s"
+    }
+  ],
+  "decision": {
+    "reason": "The unchanged exact six-sample p95 gate passed twice consecutively while host CPU remained low. This satisfies the already approved local precalibration measurement contract without changing the budget or claiming Notion timing parity.",
+    "actions": [
+      "mark UI-PERF-001 measurement contract passed",
+      "mark all 25 required scenario evidence contracts satisfied",
+      "keep promotion disallowed",
+      "keep H8 and H9 completion false",
+      "keep formal accessibility and legal brand review pending"
+    ]
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+      "sha256": "sha256:17cad4942917ad41e13501c05ec1dd085de82343852eeb4772ad9e62b93b6761"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/performance_budget.v1.json",
+      "sha256": "sha256:e142c76f6464a4b15869805eb82eeb1478f7e4d96d1fdbba4b0588a87a962e03"
+    }
+  ],
+  "safety": {
+    "live_local_data_accessed": false,
+    "personal_notion_content_accessed": false,
+    "reference_workspace_mutated": false,
+    "external_action_executed": false,
+    "product_code_changed": false,
+    "user_process_changed": false
+  },
+  "claims": {
+    "required_scenario_count": 25,
+    "evidence_satisfied_count": 25,
+    "unresolved_count": 0,
+    "reference_measurement_observed": true,
+    "local_budget_approved": true,
+    "current_local_budget_green": true,
+    "ui_perf_001_evidence_satisfied": true,
+    "all_required_scenario_evidence_satisfied": true,
+    "h8_complete": false,
+    "h9_complete": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Proceed to the remaining non-scenario release gates: formal accessibility review, legal brand review, production-default-off implementation, isolated canary and backup/restore validation. Do not claim release readiness from the 25-of-25 scenario evidence result alone.",
+  "vcs": {
+    "available": false,
+    "commit_claimed": false,
+    "observation": "the workspace is not a valid Git repository"
+  }
+}

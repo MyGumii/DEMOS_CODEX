@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-STATUS-INTEGRATION-PRE-EDIT-20260906",
+  "recorded_at": "2026-09-06T21:20:00+09:00",
+  "checkpoint_kind": "hot_contract_pre_integration",
+  "packet_id": "V0B-P1",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "purpose": "Freeze the exact V0B-P1 evidence, current Notion status contracts, current checkpoint chain, validator/test inputs, dynamic AGENTS.md instruction, and current SBE audit result before correcting generic execution-receipt discovery and integrating only the already-verified V0R-P1/V0B-P1 status. This checkpoint authorizes no product-source, SBE hot-contract, completion-matrix, release-readiness, production, or external-account mutation.",
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "lease_id": "UI-INTERNAL-COLLABORATION-V0B-P1-ROOT-STATUS-INTEGRATION-20260906",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "approval_implies_ownership": false,
+    "exact_paths_only": true
+  },
+  "doc_harness_owned_paths": [
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-l6-final-generic-wrapper-20260906.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-gate-passed-20260906.json"
+  ],
+  "hash_bound_non_edit_targets": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1a-p1-local-backup-restore-20260825.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1620-final-evidence-gate-pass-20260906.json"
+  ],
+  "pre_integration_sha256": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md": "sha256:a5d4a31c2b2e6cb8909c0c981b3f6ac97e9454245ec47cc5beeda3a0f606d8ab",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:b0f964b42f6bed61b180e70db3017346f51d9de33f9008945adc4c9f50c0a5fa",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:a503e03221d5082c5d9cac2e2d17bd3022f5c00de2017cbb6bdd574e6d0963a5",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:c2f05b8c4cd7ca00d08bbff211bfee1587f90df941fd0c9486cf5ac4a7f3bec9",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o1a-p1-local-backup-restore-20260825.json": "sha256:e71373cbacda8cdf00e47ba38ccc374dd78cdb6dcc8a1074b1eee5810f84b3a7",
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:01397fed93294cd3eb7be61e5bf353050a8d4d77ba5796b8efe8959d1e9781b5",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:7161715934a369743bcd022f19aa1c3684412e2894b48ff515cf3eb29eaa4a5c",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0b-p1-final-source-exact-core-quiet-performance-r1620-20260906.json": "sha256:d9fd95c7ed462bde80d50c86eaf6714405fbc5738c24cc3f8f05efbc9cda0d96",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-r1620-final-evidence-gate-pass-20260906.json": "sha256:1cd7b23239d87da2fd304083c04da1353ab679ca33641a8daceced37366d5c7b",
+    "code_assist_v1/.runtime/v0b-status-integration-sbe-contract-audit-abs-20260906.json": "sha256:6bac0dfd8d12a47cca76d8d024e6b4d9abc7ae0249e4bc5c90923f7ecce82d58"
+  },
+  "preflight": {
+    "central_notion_audit_status": "fail",
+    "central_notion_audit_error_count": 654,
+    "central_notion_audit_valid_execution_receipts": 19,
+    "central_notion_audit_expected_root_cause": "Specialized immutable JSON receipts in the shared receipt directory are incorrectly loaded as generic execution receipts.",
+    "sbe_contract_audit_status": "fail_external",
+    "sbe_contract_audit_error_count": 1,
+    "sbe_contract_audit_input_sha256": "sha256:32c2ff0b4274cfcbfb09bf9a93de5c4adf2b2f0c7c115e04a96a606f643f963d",
+    "sbe_contract_audit_error_code": "OPENAPI_HUMAN_OPERATION_MISMATCH",
+    "sbe_contract_audit_owner_boundary": "External SBE source-artifact human/OpenAPI documentation; not owned or modified by this integration.",
+    "goal_thread_id": "01a0399e-4edc-7792-9c0c-9c050b30e177",
+    "goal_status_observed": "active",
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "mutation_guard": {
+    "modify_completion_matrix": false,
+    "modify_release_readiness": false,
+    "modify_agents_md": false,
+    "modify_sbe_hot_contracts": false,
+    "modify_product_source": false,
+    "change_production_or_external_accounts": false,
+    "overwrite_existing_receipts": false
+  }
+}

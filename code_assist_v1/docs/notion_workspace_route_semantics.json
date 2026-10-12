@@ -1,0 +1,640 @@
+{
+  "schema_version": 1,
+  "manifest_id": "notion-workspace-route-semantics-np2a",
+  "status": "characterization_manifest",
+  "route_contract": {
+    "contract_id": "notion-workspace-route-contract-np2a",
+    "path": "docs/notion_workspace_route_contract.json"
+  },
+  "characterization": {
+    "claim": "current_handler_characterization_not_notion_product_parity",
+    "prefixes": ["/api/notion/ui-pilot/readiness", "/api/notion/workspaces"],
+    "prefix_error_profile": "notion_prefix_http",
+    "known_boundaries": {
+      "host_scope": "The overlay is registered by app_notion only; app_code and the frozen Notion bridge registrar do not register it.",
+      "legacy_baseline": "The frozen NP-1 surface remains 59 rules, 61 operations, and 15 hard operations.",
+      "security_scope": "Every registered operation is a required hard operation because it observes readiness or the canonical tenant and IAM boundary.",
+      "surface_scope": "This manifest characterizes the implemented UI-pilot readiness, workspace, page lifecycle and trash, member, guest, group, teamspace, per-member navigation, collaborative page sharing, comments, presence admission, server-sequenced editing commands, revision checkpoints, and permission-fenced inbox handlers; it does not claim Notion product parity."
+    }
+  },
+  "vocabulary": {
+    "auth_classes": ["authenticated"],
+    "transports": ["json_object", "none", "path", "query"],
+    "content_types": ["application/json"],
+    "methods": ["DELETE", "GET", "PATCH", "POST", "PUT"],
+    "error_codes": [
+      "FORBIDDEN",
+      "authentication_required",
+      "collaboration_authority_unavailable",
+      "collaboration_epoch_conflict",
+      "collaboration_operation_id_conflict",
+      "checkpoint_not_ready",
+      "comment_revision_conflict",
+      "document_sequence_conflict",
+      "internal_error",
+      "invalid_json_body",
+      "invalid_request",
+      "method_not_allowed",
+      "not_found",
+      "not_found_or_permission_denied",
+      "password_change_required",
+      "payload_too_large",
+      "permission_denied",
+      "route_not_found",
+      "revision_conflict",
+      "typed_command_target_conflict",
+      "workspace_operation_id_conflict",
+      "workspace_revision_conflict",
+      "workspace_substrate_unavailable"
+    ]
+  },
+  "error_profiles": [
+    {
+      "id": "auth_required",
+      "errors": [
+        {"status": 401, "code": "authentication_required", "wire_code_field": false}
+      ]
+    },
+    {
+      "id": "collaboration_conflict",
+      "errors": [
+        {"status": 409, "code": "collaboration_epoch_conflict", "wire_code_field": true},
+        {"status": 409, "code": "comment_revision_conflict", "wire_code_field": true},
+        {"status": 409, "code": "document_sequence_conflict", "wire_code_field": true},
+        {"status": 409, "code": "typed_command_target_conflict", "wire_code_field": true},
+        {"status": 409, "code": "revision_conflict", "wire_code_field": true},
+        {"status": 409, "code": "checkpoint_not_ready", "wire_code_field": true},
+        {"status": 409, "code": "collaboration_operation_id_conflict", "wire_code_field": true}
+      ]
+    },
+    {
+      "id": "collaboration_standard",
+      "errors": [
+        {"status": 404, "code": "not_found_or_permission_denied", "wire_code_field": true},
+        {"status": 503, "code": "collaboration_authority_unavailable", "wire_code_field": true}
+      ]
+    },
+    {
+      "id": "json_body",
+      "errors": [
+        {"status": 400, "code": "invalid_json_body", "wire_code_field": true}
+      ]
+    },
+    {
+      "id": "notion_prefix_http",
+      "errors": [
+        {"status": 404, "code": "route_not_found", "wire_code_field": true},
+        {"status": 405, "code": "method_not_allowed", "wire_code_field": true},
+        {"status": 413, "code": "payload_too_large", "wire_code_field": true}
+      ]
+    },
+    {
+      "id": "password_change",
+      "errors": [
+        {"status": 403, "code": "password_change_required", "wire_code_field": false}
+      ]
+    },
+    {
+      "id": "payload_limit",
+      "errors": [
+        {"status": 413, "code": "payload_too_large", "wire_code_field": true}
+      ]
+    },
+    {
+      "id": "request_security",
+      "errors": [
+        {"status": 403, "code": "FORBIDDEN", "wire_code_field": true}
+      ]
+    },
+    {
+      "id": "workspace_conflict",
+      "errors": [
+        {"status": 409, "code": "workspace_operation_id_conflict", "wire_code_field": true},
+        {"status": 409, "code": "workspace_revision_conflict", "wire_code_field": true}
+      ]
+    },
+    {
+      "id": "workspace_standard",
+      "errors": [
+        {"status": 400, "code": "invalid_request", "wire_code_field": true},
+        {"status": 403, "code": "permission_denied", "wire_code_field": true},
+        {"status": 404, "code": "not_found", "wire_code_field": true},
+        {"status": 500, "code": "internal_error", "wire_code_field": true}
+      ]
+    },
+    {
+      "id": "workspace_unavailable",
+      "errors": [
+        {"status": 503, "code": "workspace_substrate_unavailable", "wire_code_field": true}
+      ]
+    }
+  ],
+  "required_hard_operations": [
+    {"id": "core_ui_pilot_readiness", "operation_id": "notion_workspace.api_notion_core_ui_pilot_readiness.get"},
+    {"id": "workspace_create", "operation_id": "notion_workspace.api_notion_workspaces.post"},
+    {"id": "workspace_get", "operation_id": "notion_workspace.api_notion_workspace_get.get"},
+    {"id": "workspace_group_create", "operation_id": "notion_workspace.api_notion_workspace_group_create.post"},
+    {"id": "workspace_group_member_remove", "operation_id": "notion_workspace.api_notion_workspace_group_member.delete"},
+    {"id": "workspace_group_member_set", "operation_id": "notion_workspace.api_notion_workspace_group_member.put"},
+    {"id": "workspace_guest_revoke", "operation_id": "notion_workspace.api_notion_workspace_guest.delete"},
+    {"id": "workspace_guest_set", "operation_id": "notion_workspace.api_notion_workspace_guest.put"},
+    {"id": "workspace_inbox_get", "operation_id": "notion_workspace.api_notion_live_inbox.get"},
+    {"id": "workspace_inbox_read", "operation_id": "notion_workspace.api_notion_live_inbox_item.patch"},
+    {"id": "workspace_list", "operation_id": "notion_workspace.api_notion_workspaces.get"},
+    {"id": "workspace_member_revoke", "operation_id": "notion_workspace.api_notion_workspace_member.delete"},
+    {"id": "workspace_member_set", "operation_id": "notion_workspace.api_notion_workspace_member.put"},
+    {"id": "workspace_navigation_get", "operation_id": "notion_workspace.api_notion_workspace_navigation.get"},
+    {"id": "workspace_navigation_preferences_update", "operation_id": "notion_workspace.api_notion_workspace_navigation_preferences.patch"},
+    {"id": "workspace_page_collaboration_get", "operation_id": "notion_workspace.api_notion_collaborative_page.get"},
+    {"id": "workspace_page_comment_create", "operation_id": "notion_workspace.api_notion_live_comments.post"},
+    {"id": "workspace_page_comment_delete", "operation_id": "notion_workspace.api_notion_live_comment_item.delete"},
+    {"id": "workspace_page_comment_list", "operation_id": "notion_workspace.api_notion_live_comments.get"},
+    {"id": "workspace_page_comment_reaction", "operation_id": "notion_workspace.api_notion_live_comment_reaction.post"},
+    {"id": "workspace_page_comment_update", "operation_id": "notion_workspace.api_notion_live_comment_item.patch"},
+    {"id": "workspace_page_create", "operation_id": "notion_workspace.api_notion_workspace_pages.post"},
+    {"id": "workspace_page_database_command", "operation_id": "notion_workspace.api_notion_collaborative_database_command.post"},
+    {"id": "workspace_page_database_get", "operation_id": "notion_workspace.api_notion_collaborative_database.get"},
+    {"id": "workspace_page_duplicate", "operation_id": "notion_workspace.api_notion_workspace_page_duplicate.post"},
+    {"id": "workspace_page_editing_command", "operation_id": "notion_workspace.api_notion_collaborative_editing_command.post"},
+    {"id": "workspace_page_favorite_add", "operation_id": "notion_workspace.api_notion_workspace_navigation_favorites.put"},
+    {"id": "workspace_page_favorite_remove", "operation_id": "notion_workspace.api_notion_workspace_navigation_favorites.delete"},
+    {"id": "workspace_page_history_checkpoint_create", "operation_id": "notion_workspace.api_notion_collaborative_revision_checkpoints.post"},
+    {"id": "workspace_page_history_checkpoint_list", "operation_id": "notion_workspace.api_notion_collaborative_revision_checkpoints.get"},
+    {"id": "workspace_page_realtime_ticket", "operation_id": "notion_workspace.api_notion_collaborative_realtime_ticket.post"},
+    {"id": "workspace_page_share_list", "operation_id": "notion_workspace.api_notion_collaborative_page_shares.get"},
+    {"id": "workspace_page_share_revoke", "operation_id": "notion_workspace.api_notion_collaborative_page_share_revoke.delete"},
+    {"id": "workspace_page_share_set", "operation_id": "notion_workspace.api_notion_collaborative_page_shares.post"},
+    {"id": "workspace_page_trash", "operation_id": "notion_workspace.api_notion_workspace_page_trash.post"},
+    {"id": "workspace_pages_list", "operation_id": "notion_workspace.api_notion_workspace_pages.get"},
+    {"id": "workspace_teamspace_create", "operation_id": "notion_workspace.api_notion_workspace_teamspaces.post"},
+    {"id": "workspace_teamspace_list", "operation_id": "notion_workspace.api_notion_workspace_teamspaces.get"},
+    {"id": "workspace_teamspace_member_remove", "operation_id": "notion_workspace.api_notion_workspace_teamspace_member.delete"},
+    {"id": "workspace_teamspace_member_set", "operation_id": "notion_workspace.api_notion_workspace_teamspace_member.put"},
+    {"id": "workspace_trash_list", "operation_id": "notion_workspace.api_notion_workspace_trash.get"},
+    {"id": "workspace_trash_restore", "operation_id": "notion_workspace.api_notion_workspace_trash_restore.post"}
+  ],
+  "operations": [
+    {
+      "id": "notion_workspace.api_notion_collaborative_database.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/databases/<database_id>",
+      "endpoint": "api_notion_collaborative_database",
+      "auth_class": "authenticated",
+      "request": {"transport": "path", "required_fields": [], "path_fields": ["workspace_id", "page_id", "database_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["contract", "database", "document_id", "status", "workspace_id"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_collaborative_database_command.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/databases/commands",
+      "endpoint": "api_notion_collaborative_database_command",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["command_kind", "database_id", "expected_document_epoch", "expected_document_sequence", "expected_workspace_epoch", "operation_id", "payload", "target_id"], "path_fields": ["workspace_id", "page_id"], "optional_fields": ["expected_target_version"]},
+      "success": {"statuses": [201], "content_types": ["application/json"], "required_keys": ["command_kind", "content_sha256", "contract", "database_id", "document_id", "document_sequence", "effective_role", "status", "target_id", "target_version", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_collaborative_editing_command.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/editing/commands",
+      "endpoint": "api_notion_collaborative_editing_command",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["command_kind", "expected_document_epoch", "expected_document_sequence", "expected_workspace_epoch", "operation_id", "payload", "target_id"], "path_fields": ["workspace_id", "page_id"], "optional_fields": ["expected_target_version"]},
+      "success": {"statuses": [201], "content_types": ["application/json"], "required_keys": ["command_id", "command_kind", "command_sequence", "content_sha256", "contract", "document_id", "document_sequence", "effective_role", "status", "target_id", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_collaborative_page.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/collaboration",
+      "endpoint": "api_notion_collaborative_page",
+      "auth_class": "authenticated",
+      "request": {"transport": "path", "required_fields": [], "path_fields": ["workspace_id", "page_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["blocks", "capabilities", "contract", "files", "page", "revision"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_collaborative_page_share_revoke.delete",
+      "registrar": "notion_workspace",
+      "method": "DELETE",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/shares/<principal_type>/<path:principal_id>",
+      "endpoint": "api_notion_collaborative_page_share_revoke",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["expected_document_epoch", "expected_workspace_epoch", "operation_id"], "path_fields": ["workspace_id", "page_id", "principal_type", "principal_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["document_epoch", "document_id", "principal_id", "principal_type", "state", "status", "workspace_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_collaborative_page_shares.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/shares",
+      "endpoint": "api_notion_collaborative_page_shares",
+      "auth_class": "authenticated",
+      "request": {"transport": "path", "required_fields": [], "path_fields": ["workspace_id", "page_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["document_epoch", "document_id", "effective_access", "items", "status", "workspace_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_collaborative_page_shares.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/shares",
+      "endpoint": "api_notion_collaborative_page_shares",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["expected_document_epoch", "expected_workspace_epoch", "operation_id", "principal_id"], "path_fields": ["workspace_id", "page_id"], "optional_fields": ["inherit_to_descendants", "principal_type", "role"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["document_epoch", "document_id", "principal_id", "principal_type", "role", "status", "workspace_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_collaborative_realtime_ticket.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/realtime-ticket",
+      "endpoint": "api_notion_collaborative_realtime_ticket",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["client_id", "session_binding_sha256"], "path_fields": ["workspace_id", "page_id"]},
+      "success": {"statuses": [201], "content_types": ["application/json"], "required_keys": ["capabilities", "client_id", "document_epoch", "document_id", "expires_at_ms", "gateway_url", "last_document_sequence", "session_binding_sha256", "status", "subject_id", "token", "workspace_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_collaborative_revision_checkpoints.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/history/checkpoints",
+      "endpoint": "api_notion_collaborative_revision_checkpoints",
+      "auth_class": "authenticated",
+      "request": {"transport": "path", "required_fields": [], "path_fields": ["workspace_id", "page_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["contract", "count", "document_id", "items", "status", "workspace_id"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_collaborative_revision_checkpoints.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/history/checkpoints",
+      "endpoint": "api_notion_collaborative_revision_checkpoints",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["expected_document_epoch", "expected_document_sequence", "expected_revision", "expected_workspace_epoch", "operation_id"], "path_fields": ["workspace_id", "page_id"], "optional_fields": ["checkpoint_reason", "publication_revision_id"]},
+      "success": {"statuses": [201], "content_types": ["application/json"], "required_keys": ["content_sha256", "contract", "document_id", "document_sequence", "identities", "revision", "status", "through_structure_command_sequence", "through_update_sequence", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_core_ui_pilot_readiness.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/ui-pilot/readiness",
+      "endpoint": "api_notion_core_ui_pilot_readiness",
+      "auth_class": "authenticated",
+      "request": {"transport": "none", "required_fields": [], "path_fields": []},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["pilot", "status"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_live_comment_item.delete",
+      "registrar": "notion_workspace",
+      "method": "DELETE",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/comments/<comment_id>",
+      "endpoint": "api_notion_live_comment_item",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["expected_document_epoch", "expected_row_version", "expected_workspace_epoch", "operation_id"], "path_fields": ["workspace_id", "page_id", "comment_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["comment_id", "deleted", "document_epoch", "document_id", "document_sequence", "status", "workspace_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_live_comment_item.patch",
+      "registrar": "notion_workspace",
+      "method": "PATCH",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/comments/<comment_id>",
+      "endpoint": "api_notion_live_comment_item",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["expected_document_epoch", "expected_row_version", "expected_workspace_epoch", "operation_id"], "path_fields": ["workspace_id", "page_id", "comment_id"], "optional_fields": ["content", "mention_subject_ids", "resolved"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["comment_id", "document_epoch", "document_id", "document_sequence", "status", "workspace_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_live_comment_reaction.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/comments/<comment_id>/reactions",
+      "endpoint": "api_notion_live_comment_reaction",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["emoji", "expected_document_epoch", "expected_row_version", "expected_workspace_epoch", "operation_id"], "path_fields": ["workspace_id", "page_id", "comment_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["added", "comment_id", "document_epoch", "document_id", "document_sequence", "emoji", "reactions", "status", "workspace_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_live_comments.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/comments",
+      "endpoint": "api_notion_live_comments",
+      "auth_class": "authenticated",
+      "request": {"transport": "path", "required_fields": [], "path_fields": ["workspace_id", "page_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["count", "document_epoch", "document_id", "document_sequence", "items", "status", "workspace_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_live_comments.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/comments",
+      "endpoint": "api_notion_live_comments",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["comment_id", "content", "expected_document_epoch", "expected_workspace_epoch", "operation_id"], "path_fields": ["workspace_id", "page_id"], "optional_fields": ["anchor", "block_id", "mention_subject_ids", "parent_comment_id"]},
+      "success": {"statuses": [201], "content_types": ["application/json"], "required_keys": ["comment_id", "document_epoch", "document_id", "document_sequence", "notification_count", "status", "workspace_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_live_inbox.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/inbox",
+      "endpoint": "api_notion_live_inbox",
+      "auth_class": "authenticated",
+      "request": {"transport": "query", "required_fields": [], "path_fields": ["workspace_id"], "optional_fields": ["limit"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["count", "items", "status", "unread_count"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_live_inbox_item.patch",
+      "registrar": "notion_workspace",
+      "method": "PATCH",
+      "path": "/api/notion/workspaces/<workspace_id>/inbox/<notification_id>",
+      "endpoint": "api_notion_live_inbox_item",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["operation_id", "read"], "path_fields": ["workspace_id", "notification_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["document_epoch", "document_id", "notification_id", "read", "status", "workspace_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable", "collaboration_conflict", "collaboration_standard"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_get.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>",
+      "endpoint": "api_notion_workspace_get",
+      "auth_class": "authenticated",
+      "request": {"transport": "path", "required_fields": [], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["workspace"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_group_create.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/groups",
+      "endpoint": "api_notion_workspace_group_create",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "name", "operation_id"], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [201], "content_types": ["application/json"], "required_keys": ["group", "status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_group_member.delete",
+      "registrar": "notion_workspace",
+      "method": "DELETE",
+      "path": "/api/notion/workspaces/<workspace_id>/groups/<group_id>/members/<subject_id>",
+      "endpoint": "api_notion_workspace_group_member",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "group_id", "subject_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["group", "status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_group_member.put",
+      "registrar": "notion_workspace",
+      "method": "PUT",
+      "path": "/api/notion/workspaces/<workspace_id>/groups/<group_id>/members/<subject_id>",
+      "endpoint": "api_notion_workspace_group_member",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "group_id", "subject_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["group", "status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_guest.delete",
+      "registrar": "notion_workspace",
+      "method": "DELETE",
+      "path": "/api/notion/workspaces/<workspace_id>/guests/<subject_id>",
+      "endpoint": "api_notion_workspace_guest",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "subject_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["revoked_subject_id", "status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_guest.put",
+      "registrar": "notion_workspace",
+      "method": "PUT",
+      "path": "/api/notion/workspaces/<workspace_id>/guests/<subject_id>",
+      "endpoint": "api_notion_workspace_guest",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "subject_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["guest", "status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_member.delete",
+      "registrar": "notion_workspace",
+      "method": "DELETE",
+      "path": "/api/notion/workspaces/<workspace_id>/members/<subject_id>",
+      "endpoint": "api_notion_workspace_member",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "subject_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["revoked_subject_id", "status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_member.put",
+      "registrar": "notion_workspace",
+      "method": "PUT",
+      "path": "/api/notion/workspaces/<workspace_id>/members/<subject_id>",
+      "endpoint": "api_notion_workspace_member",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "subject_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["member", "status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_navigation.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/navigation",
+      "endpoint": "api_notion_workspace_navigation",
+      "auth_class": "authenticated",
+      "request": {"transport": "path", "required_fields": [], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["favorite_version", "favorites", "membership_epoch", "preference_version", "sections", "sidebar", "status", "subject_id", "workspace_id"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_navigation_favorites.delete",
+      "registrar": "notion_workspace",
+      "method": "DELETE",
+      "path": "/api/notion/workspaces/<workspace_id>/navigation/favorites",
+      "endpoint": "api_notion_workspace_navigation_favorites",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["expected_favorite_version", "operation_id", "source_owner_subject_id", "source_page_id"], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["changed", "favorite", "favorite_version", "preference_version", "status", "subject_id", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_navigation_favorites.put",
+      "registrar": "notion_workspace",
+      "method": "PUT",
+      "path": "/api/notion/workspaces/<workspace_id>/navigation/favorites",
+      "endpoint": "api_notion_workspace_navigation_favorites",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["expected_favorite_version", "operation_id", "source_owner_subject_id", "source_page_id"], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["changed", "favorite", "favorite_version", "preference_version", "status", "subject_id", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_navigation_preferences.patch",
+      "registrar": "notion_workspace",
+      "method": "PATCH",
+      "path": "/api/notion/workspaces/<workspace_id>/navigation/preferences",
+      "endpoint": "api_notion_workspace_navigation_preferences",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["expected_preference_version", "operation_id", "sections", "sidebar_collapsed", "sidebar_width_px"], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["favorite_version", "preference_version", "sections", "sidebar", "status", "subject_id", "workspace_id"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_page_duplicate.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/duplicate",
+      "endpoint": "api_notion_workspace_page_duplicate",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "page_id"]},
+      "success": {"statuses": [200, 201], "content_types": ["application/json"], "required_keys": ["bindings", "page", "replayed", "status", "subtree_count", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_page_trash.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/pages/<path:page_id>/trash",
+      "endpoint": "api_notion_workspace_page_trash",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "page_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["archived_count", "page_id", "replayed", "status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_pages.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/pages",
+      "endpoint": "api_notion_workspace_pages",
+      "auth_class": "authenticated",
+      "request": {"transport": "query", "required_fields": [], "optional_fields": ["q"], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["count", "degraded", "degraded_sources", "items", "membership_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_pages.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/pages",
+      "endpoint": "api_notion_workspace_pages",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id", "parent_id", "title"], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [200, 201], "content_types": ["application/json"], "required_keys": ["binding", "page", "replayed", "status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_teamspace_member.delete",
+      "registrar": "notion_workspace",
+      "method": "DELETE",
+      "path": "/api/notion/workspaces/<workspace_id>/teamspaces/<teamspace_id>/members/<subject_id>",
+      "endpoint": "api_notion_workspace_teamspace_member",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "teamspace_id", "subject_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["status", "teamspace_member", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_teamspace_member.put",
+      "registrar": "notion_workspace",
+      "method": "PUT",
+      "path": "/api/notion/workspaces/<workspace_id>/teamspaces/<teamspace_id>/members/<subject_id>",
+      "endpoint": "api_notion_workspace_teamspace_member",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "teamspace_id", "subject_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["status", "teamspace_member", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_teamspaces.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/teamspaces",
+      "endpoint": "api_notion_workspace_teamspaces",
+      "auth_class": "authenticated",
+      "request": {"transport": "path", "required_fields": [], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["count", "items", "membership_epoch", "workspace_id", "workspace_version"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_teamspaces.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/teamspaces",
+      "endpoint": "api_notion_workspace_teamspaces",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "name", "operation_id"], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [201], "content_types": ["application/json"], "required_keys": ["status", "teamspace", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_trash.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces/<workspace_id>/trash",
+      "endpoint": "api_notion_workspace_trash",
+      "auth_class": "authenticated",
+      "request": {"transport": "query", "required_fields": [], "optional_fields": ["q"], "path_fields": ["workspace_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["count", "items", "membership_epoch", "workspace_id"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspace_trash_restore.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces/<workspace_id>/trash/<path:page_id>/restore",
+      "endpoint": "api_notion_workspace_trash_restore",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["base_version", "operation_id"], "path_fields": ["workspace_id", "page_id"]},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["page", "replayed", "restored_count", "status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspaces.get",
+      "registrar": "notion_workspace",
+      "method": "GET",
+      "path": "/api/notion/workspaces",
+      "endpoint": "api_notion_workspaces",
+      "auth_class": "authenticated",
+      "request": {"transport": "none", "required_fields": [], "path_fields": []},
+      "success": {"statuses": [200], "content_types": ["application/json"], "required_keys": ["capabilities", "count", "items"]},
+      "error_profiles": ["auth_required", "password_change", "workspace_standard", "workspace_unavailable"]
+    },
+    {
+      "id": "notion_workspace.api_notion_workspaces.post",
+      "registrar": "notion_workspace",
+      "method": "POST",
+      "path": "/api/notion/workspaces",
+      "endpoint": "api_notion_workspaces",
+      "auth_class": "authenticated",
+      "request": {"transport": "json_object", "required_fields": ["name", "operation_id"], "path_fields": []},
+      "success": {"statuses": [201], "content_types": ["application/json"], "required_keys": ["status", "workspace"]},
+      "error_profiles": ["auth_required", "json_body", "password_change", "payload_limit", "request_security", "workspace_conflict", "workspace_standard"]
+    }
+  ]
+}

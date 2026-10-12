@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-PRODUCT-PURITY-R5-PREFLIGHT-20260907",
+  "recorded_at": "2026-09-07T03:47:00+09:00",
+  "status": "ready_for_fresh_unmodified_product_capture",
+  "packet_id": "V0B-P1",
+  "inherits_unchanged_bindings_from": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-product-purity-r4-preflight-20260907.json",
+  "supersede_reason": "r4 completed all four journeys and wrote 36 diagnostic images, but the new keyboard loop shadowed the capture tuple variable before receipt assembly",
+  "changed_bindings": {
+    "notion_collaboration/v0b_p1_product_capture.py": "sha256:839fa740cf512648a2c960f2bbd7cb674812a6d521254ce0e7a3f60f9adca1ca",
+    "tests/notion_collaboration/test_v0b_p1_product_capture_integrity.py": "sha256:caaec44d8bd97635f1322e1da692a76e05d16df2f065b41ee0b2de7bc6f1cb62"
+  },
+  "runtime": {
+    "root": "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113-product-purity-r5-20260907",
+    "allowed_parent": "G:/AI_Agent/DEMOS_CODEX/.dev",
+    "ports": [10111, 10112, 10113],
+    "ports_listening_before_start": [],
+    "approval_id": "AP-DEV-PAIR",
+    "identity_source": "G:/AI_Agent/DEMOS_CODEX/.tmp/second-brain-full-preview-10111/.runtime/users.json",
+    "identity_source_sha256": "sha256:b7a157296343dab1475594254a09d5708fff2fb65a394999f1e94d9b577d8759",
+    "identity_allowlist": ["admin", "user01"]
+  },
+  "capture": {
+    "output": "G:/AI_Agent/DEMOS_CODEX/.runtime/v0b-p1-product-purity-r5-20260907/receipt.json",
+    "candidate_root": "G:/AI_Agent/DEMOS_CODEX/.runtime/v0b-p1-product-purity-r5-20260907/candidates",
+    "diff_root": "G:/AI_Agent/DEMOS_CODEX/.runtime/v0b-p1-product-purity-r5-20260907/diffs",
+    "expected_capture_count": 36,
+    "create_only": true
+  },
+  "preflight_tests": {"python_targeted": {"passed": 21, "failed": 0}},
+  "safety": {"personal_content_imported": false, "production_mutation": false, "SBE_hot_contract_edit": false, "historical_receipt_overwrite": false},
+  "goal_complete": false
+}

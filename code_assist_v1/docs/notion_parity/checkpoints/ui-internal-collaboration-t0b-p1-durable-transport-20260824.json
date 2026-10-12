@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-T0B-P1-DURABLE-TRANSPORT-20260824",
+  "recorded_at": "2026-08-24T10:10:00Z",
+  "checkpoint_kind": "packet_gate_and_status_integration",
+  "packet_id": "T0B-P1",
+  "packet_status": "gate_passed",
+  "purpose": "Bind the exact additive 2026082401 to 2026082402 migration and a SQLite durable transport authority for digest-only one-time tickets, monotonic client ACK state, opaque Yjs updates, bounded replay, selected-runtime snapshot compaction, epoch fencing, and atomic update/event/audit/outbox/operation commits. All applies used pytest temporary catalogs. No network listener, service, port, live identity, development pair, existing per-user database, capability, or production target changed.",
+  "owner_agent": "/root",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py"
+  ],
+  "new_product_files": [
+    "code_assist_v1/notion_workspace_realtime_transport_migration.py",
+    "code_assist_v1/notion_collaboration/durable_transport.py",
+    "code_assist_v1/tools/migrate_notion_workspace_realtime_transport.py",
+    "code_assist_v1/tools/verify_internal_collaborative_transport_authority.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_transport_authority.v1.json"
+  ],
+  "modified_product_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tools/internal_collaborative_validation.py",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_durable_transport_migration.py",
+    "code_assist_v1/tests/notion_collaboration/test_durable_transport_authority.py",
+    "code_assist_v1/tests/notion_collaboration/test_durable_transport_compaction.py"
+  ],
+  "evidence_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p1-durable-transport-pre-edit-20260824.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p1-durable-transport-20260824.json",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/t0b-p1-l3-durable-transport-20260824.json"
+  ],
+  "read_only_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/notion_collaboration/canonical_authority.py",
+    "code_assist_v1/notion_collaboration/protocol_contract.py",
+    "code_assist_v1/notion_collaboration/selected_runtime_contract.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_protocol_contract.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_contract.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_crdt_winner_adr.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+    "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md"
+  ],
+  "protected_dependencies": [
+    "code_assist_v1/knowledge/",
+    "code_assist_v1/user_data/",
+    "code_assist_v1/.runtime/",
+    "existing per-user Notion databases",
+    "existing 10111 preview roots and processes",
+    "ports 10011, 10012, 10111, 10112, and 10113",
+    "production roots and services"
+  ],
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0b-p1-durable-transport-pre-edit-20260824.json",
+    "sha256": "sha256:2b251b55ec1160e05f3e14c7e29855c2a70a18abb5da8b2e10e2e4b5779dde41"
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/notion_collaboration/canonical_authority.py": "sha256:6c5a0c28a451028c6ea59f61d44b87711b7d70aeaf66fe62a661ff4f1b2510a3",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:24237a6888748aaeface685310bf78d8723342c93f724b434f7bbba2f3a3ccab",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:b08146fd8cb3ffe9a55d59f38a076193aa45bec726da28d76cdb1970417f918b",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:476c9229f13347c28a9b2884b6aa70e274204e798d1475aebe50a42cbc6ff2ad",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:e7c5c4cc838deaeac5e8ed9b204c32f01ad54e180ef79377d57f63f30804f4d4",
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:a12d3dddfcc219593bfcc52ff8b8e80e20576e60a044572e86728565910a1983",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:3ad5d53e2f900c731d9f5ac051bedbc145c0f8e280ebbefd2875a0716d2f4ca6"
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/notion_collaboration/canonical_authority.py": "sha256:6c5a0c28a451028c6ea59f61d44b87711b7d70aeaf66fe62a661ff4f1b2510a3",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:5341cf3cdb28aed5bed7553ec6ef28cd16fec7a4e1fe7ceb5a85863e845e62c8",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:28319e5c234cc0b2252ef2dd993c03a23fa2502b98c9b66be2851caf6914948e",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:bf36ed4155d33fc9200ecd60f1a0c2e5cd942b5102b51936236d8cb812c21dd9",
+    "code_assist_v1/tools/internal_collaborative_validation.py": "sha256:cb5a3029f5453c18da81bf584a18da5f77fb18e81fbcf01d193a8818419ff439",
+    "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py": "sha256:32ca8d27f61c47aef1fa8400ef1c1b229dc46f825d51c1c51b1f7ba4691bce35",
+    "code_assist_v1/notion_workspace_realtime_transport_migration.py": "sha256:55fec94bc3e7d8a04d4aec7d4e544aaf33bbeeba8a1c7309d8004de29f70f9ba",
+    "code_assist_v1/notion_collaboration/durable_transport.py": "sha256:1d0f0328445b63eac8a05d75be1c54522ec853932980ab525db3ce2b004fdb7d",
+    "code_assist_v1/tools/migrate_notion_workspace_realtime_transport.py": "sha256:36eeea7bb3e33658cbf527e12e4d36784be449cda1d9650efca0b5cc1c110c39",
+    "code_assist_v1/tools/verify_internal_collaborative_transport_authority.py": "sha256:635ff545f51bb149066a82ca5c36968cc1d35eb9decfc5fff9f2a9b106c47d2a",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_transport_authority.v1.json": "sha256:da36598d214023803373320ae27546dcd1fd861b2cff8bdcba16e0c1c936bdff",
+    "code_assist_v1/tests/notion_collaboration/test_durable_transport_migration.py": "sha256:d2967930444bba1de24a657bd3bb2f6f2c994a937123c726f4d1c4d2bad324c4",
+    "code_assist_v1/tests/notion_collaboration/test_durable_transport_authority.py": "sha256:afd99c973372061e22ee6ad3fcc7c628fe43b03561a074d896baaab85b13af05",
+    "code_assist_v1/tests/notion_collaboration/test_durable_transport_compaction.py": "sha256:44e91d6176376ff12d834192ba052b2c70cdbb9591969e8ecc52b787af535548"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-a0b-p1-canonical-authority-20260824.json",
+    "sha256": "sha256:a66b55f6fe245effcefddb0e6be1bc9c5e3936ea0544e5dbe29c57d012b9dc23",
+    "packet_id": "A0B-P1",
+    "receipt_id": "A0B-P1-L2-CANONICAL-AUTHORITY-20260824"
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-T0B-P1-ROOT-20260824",
+    "lane": "CANONICAL",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-24T09:20:00Z",
+    "expires_at": "2026-08-25T09:20:00Z",
+    "released_at": "2026-08-24T10:10:00Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "ownership_expansion": {
+    "path": "code_assist_v1/tools/verify_internal_collaborative_crdt_corpus.py",
+    "reason": "The frozen E0 verifier rejected the declared T0B extension and a downstream status-only completion-matrix hash. The change preserves the exact E0 test prefix and frozen historical hash, requires the exact three T0B files, and validates the current 28-row matrix identity. It touches no SBE or runtime path.",
+    "exact_path_collision_observed": false
+  },
+  "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked",
+    "tool_status_observed": "blocked_stale_after_prior_pause",
+    "user_resume_authority": "The user approved the complete G0-U recommendation and instructed continued execution.",
+    "goal_status_mutated_by_packet": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-24T10:10:00Z",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:87d4b24e32a8eb5725f44eb2b19f3df96211b64c6a96aeeac59b0d3510b04129",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_active_packet": "SBE-2.3",
+    "sbe_status_sha256": "sha256:ae8b81f3e6739a423d700abb65bfa21bc12f47cecf02650979e429ba8d0901a9",
+    "sbe_backlog_sha256": "sha256:761743ea761e10468ff9b761a78d5f41a43334ea0c6e8adf6f224feaf530efae",
+    "exact_path_collision_observed": false,
+    "sbe_hot_contracts_modified_by_this_packet": false,
+    "u0a_p2_checkpoint_sha256": "sha256:64abae55cbf7fb39d7d770b4df969d84db80252510dd40497e97dc8208a85d33"
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:24237a6888748aaeface685310bf78d8723342c93f724b434f7bbba2f3a3ccab",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:b08146fd8cb3ffe9a55d59f38a076193aa45bec726da28d76cdb1970417f918b"
+    },
+    "accepted_packet_receipt_ids": [
+      "A0B-P1-L2-CANONICAL-AUTHORITY-20260824",
+      "T0B-P1-L3-DURABLE-TRANSPORT-20260824"
+    ],
+    "lease": "UI-INTERNAL-COLLABORATION-T0B-P1-ROOT-20260824",
+    "post_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:5341cf3cdb28aed5bed7553ec6ef28cd16fec7a4e1fe7ceb5a85863e845e62c8",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:28319e5c234cc0b2252ef2dd993c03a23fa2502b98c9b66be2851caf6914948e"
+    }
+  },
+  "validation_receipt": {
+    "receipt_id": "T0B-P1-L3-DURABLE-TRANSPORT-20260824",
+    "validation_id": "L3-CRDT-PROTOCOL-CORPUS",
+    "validation_ids": [
+      "L2-COLLAB-AUTHORITY",
+      "L3-CRDT-PROTOCOL-CORPUS"
+    ],
+    "status": "pass",
+    "error_count": 0,
+    "executed_at": "2026-08-24T10:08:00Z",
+    "matrix_row_ids": [],
+    "phase_local_regression": {
+      "canonical_authority_lane": {
+        "passed": 50,
+        "failed": 0,
+        "errors": 0,
+        "duration_seconds": 83.08
+      },
+      "crdt_protocol_corpus_lane": {
+        "passed": 136,
+        "failed": 0,
+        "errors": 0,
+        "duration_seconds": 85.23
+      },
+      "new_T0B_tests": 15
+    },
+    "migration": {
+      "source_version": 2026082401,
+      "parallel_reserved_version": 2026081318,
+      "target_version": 2026082402,
+      "source_object_count": 213,
+      "target_object_count": 228,
+      "target_checksum": "sha256:76377bdee7954f9d03d27dcf56dcf052799547d65d4e6ba21f117455e085baba",
+      "target_actual_schema_sha256": "sha256:8f3bb03c8cecef84f9c4343234743bcd57c9264a293699d89576becb56c966c9"
+    },
+    "durable_transport": {
+      "plaintext_ticket_persisted": false,
+      "recognized_ticket_one_time_burn": true,
+      "commit_before_ack": true,
+      "same_operation_exact_replay": true,
+      "five_fault_points_full_rollback": true,
+      "selected_runtime_binding_sha256": "sha256:99b8e01015bbf92c385493bebbc08b6600add4b43afd2ab6e1746a6bb8e74057",
+      "snapshot_then_tail_replay": true,
+      "old_epoch_payload_delivery_after_revoke": 0
+    },
+    "claims": {
+      "T0B_P1_gate_passed": true,
+      "matrix_rows_closed": 0,
+      "actual_gateway_transport_implemented": false,
+      "actual_browser_collaboration_verified": false,
+      "runtime_or_feature_enabled": false,
+      "service_or_port_started": false,
+      "live_or_production_mutation": false,
+      "product_complete": false
+    }
+  },
+  "rollback_or_cleanup": "Delete only the unique T0B-P1 migration, durable transport, migrator, verifier, contract, tests, receipt, and checkpoint files; restore the exact pre-edit catalog, ladder, harness, internal validator, CRDT corpus verifier, and current-pointer hashes while this lease owns them. Pytest processes exited and temporary roots are disposable. No schema downgrade, live catalog restore, listener, service, port, identity, development-pair, or production cleanup is required.",
+  "completion_truth": {
+    "T0B_P1_gate_passed": true,
+    "matrix_rows_closed_by_packet": 0,
+    "actual_gateway_transport_implemented": false,
+    "runtime_or_feature_enabled": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "T0B-P1",
+    "current_state": "gate_passed_integrated",
+    "next_packet": "T0B-P2",
+    "next_state": "eligible_after_fresh_RUNTIME_lineage_and_cross_catalog_ownership_check",
+    "parallel_blocked_packet": "D0B-P1",
+    "parallel_block_reason": "AP-DEV-PAIR and XG-10111-EXCLUSIVE-HANDOFF remain pending",
+    "required_operator_approval_id": null,
+    "real_service_or_identity_mutation_allowed": false
+  }
+}

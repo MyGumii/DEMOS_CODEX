@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.l9.skip_denominator_classification_checkpoint.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-L9-SKIP-DENOMINATOR-CLASSIFIED-20260909",
+  "recorded_at": "2026-09-09T20:05:32+09:00",
+  "status": "all_seven_full_l9_skips_exactly_classified_no_hidden_failure",
+  "immutable_after_recording": true,
+  "predecessor": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-l9-full-python-green-quiescent-workspace-20260909.json",
+    "sha256": "sha256:876d5f6b7fb09ede36ee7ed5cf5e3011b97d348c279d7e81a02f9c39d8f22ff4",
+    "record_sha256": "sha256:fb214c9b5b9b7c596bac8aa36475210876ef27b84455cb6192986b1770ffc781"
+  },
+  "full_l9_observation": {
+    "passed": 4918,
+    "skipped": 7,
+    "subtests_passed": 5,
+    "failed": 0,
+    "errors": 0,
+    "duration_seconds": 7383.27
+  },
+  "classification_method": {
+    "static_source_scan": "enumerate every test function containing a direct pytest.skip call and inspect platform skipif and importorskip conditions",
+    "focused_runtime_replay": "execute every viable direct-skip candidate with pytest -rs while leaving live development pair opt-in variables unset",
+    "playwright_availability": "already proven by the current green L8 browser pilot and browser tests in the full L9 run",
+    "source_or_product_mutation": false
+  },
+  "focused_runtime_replay": [
+    {
+      "selection": "five approval-bound live collaboration tests plus Hermes and SQLite runtime conditions",
+      "exit_code": 0,
+      "passed": 2,
+      "skipped": 5,
+      "duration_seconds": 9.54,
+      "interpretation": "Hermes integration and the SQLite negative-control executed and passed; exactly the five live development-pair tests skipped"
+    },
+    {
+      "selection": "remaining nine direct-skip test functions across migration and filesystem guard suites",
+      "exit_code": 0,
+      "passed": 8,
+      "skipped": 2,
+      "duration_seconds": 7.96,
+      "interpretation": "all non-symlink conditions executed and passed; exactly two symlink-capability tests skipped"
+    }
+  ],
+  "exact_skip_denominator": [
+    {
+      "node_id": "code_assist_v1/tests/notion_collaboration/test_approved_dev_pair_browser.py::test_d0b_approved_development_pair_two_actual_chrome_contexts",
+      "classification": "action_time_live_development_pair_opt_in_absent",
+      "reason": "requires the explicitly approved live 10111/10112 development pair"
+    },
+    {
+      "node_id": "code_assist_v1/tests/notion_collaboration/browser/test_i0_p2_live_share_journey.py::test_i0_p2_live_two_principal_invite_inherit_role_change_and_revoke",
+      "classification": "action_time_live_development_pair_opt_in_absent",
+      "reason": "requires the explicitly approved live 10111/10112 pair"
+    },
+    {
+      "node_id": "code_assist_v1/tests/notion_collaboration/browser/test_f0_p5_adopted_surface.py::test_f0_p5_two_principal_adopted_database_surface_round_trip",
+      "classification": "action_time_live_development_pair_opt_in_absent",
+      "reason": "requires the explicitly approved live 10111/10112 pair"
+    },
+    {
+      "node_id": "code_assist_v1/tests/notion_collaboration/browser/test_e1_p2_collaborative_editor.py::test_e1_p2_real_browser_encrypted_recovery_convergence_and_remote_cursor",
+      "classification": "action_time_live_development_pair_opt_in_absent",
+      "reason": "requires the explicitly approved live 10111/10112/10113 pair"
+    },
+    {
+      "node_id": "code_assist_v1/tests/notion_collaboration/browser/test_c0_p2_live_collaboration.py::test_c0_p2_live_two_principal_presence_comments_inbox_and_revoke",
+      "classification": "action_time_live_development_pair_opt_in_absent",
+      "reason": "requires the explicitly approved live 10111/10112/10113 pair"
+    },
+    {
+      "node_id": "code_assist_v1/tests/test_migrate_notion_workspace_catalog.py::test_np2a_resolved_symlink_escape_is_rejected_when_supported",
+      "classification": "host_symlink_creation_capability_absent",
+      "reason": "symlink creation is not available on this platform"
+    },
+    {
+      "node_id": "code_assist_v1/tests/test_migrate_notion_workspace_schema.py::test_exact_path_and_symlink_guards",
+      "classification": "host_symlink_creation_capability_absent",
+      "reason": "directory symlinks are unavailable on this platform"
+    }
+  ],
+  "denominator_reconciliation": {
+    "full_l9_reported_skip_count": 7,
+    "exactly_classified_skip_count": 7,
+    "unclassified_skip_count": 0,
+    "live_action_time_gated_count": 5,
+    "host_capability_gated_count": 2,
+    "unexpected_behavior_failure_count": 0
+  },
+  "remaining_boundaries": [
+    "the five live tests must be executed only with the separately approved 10111/10112/10113 development pair and current principals",
+    "the two symlink guards require a Windows host or security policy that permits symbolic-link creation",
+    "classification does not convert a skip into a pass and grants no L9 strict no-skip, packet, matrix, phase, release, or product-completion credit"
+  ],
+  "claims": {
+    "all_full_l9_skips_classified": true,
+    "hidden_test_failure_relabelled_as_skip": false,
+    "live_service_started_or_restarted": false,
+    "external_system_mutated": false,
+    "product_source_changed": false,
+    "test_source_changed": false,
+    "historical_checkpoint_overwritten": false,
+    "central_catalogs_modified": false,
+    "new_packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:e525f7e34aa45f77478651f77c0ac62a1102c3c28187f8deff19f57a9395a820"
+}

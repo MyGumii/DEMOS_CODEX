@@ -1,0 +1,771 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-U0A-P1-INVENTORY-20260823",
+  "recorded_at": "2026-08-23T03:28:25.035Z",
+  "recorded_at_local": "2026-08-23T12:28:25+09:00",
+  "checkpoint_kind": "packet_evidence_and_plan_reinforcement",
+  "purpose": "Bind the U0A-P1 route, storage, authority, visible-capability, open-decision, risk, approval, and continuation inventory to the current repository without editing concurrent hot contracts.",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "작성된 계획과 목표에 맞춰서 goal함수를 실행해서 구현해.",
+    "status": "blocked",
+    "authority": "runtime_goal_state",
+    "last_observed_at": "2026-08-23T05:13:50.616Z",
+    "goal_completion_claimed": false
+  },
+  "packet_receipt": {
+    "packet_id": "U0A-P1",
+    "phase": "U0a",
+    "catalog_status_before": "planned",
+    "receipt_status": "gate_passed",
+    "required": true,
+    "approval_required": false,
+    "approval_consumed": false,
+    "ownership_lane": "DOC_HARNESS",
+    "deliverables": {
+      "current_route_storage_authority_inventory": "complete",
+      "capability_visible_state_and_hidden_control_draft": "complete",
+      "open_decision_and_risk_register": "complete"
+    },
+    "declared_validation_id": "L0-UI-HARNESS-BASELINE",
+    "validation_state": "pass",
+    "gate_passed": true,
+    "can_advance_to_U0A_P2": true,
+    "status_integrator_update_performed": false,
+    "status_integrator_reason": "U0A-P1 is gate-passed by this hash-bound packet receipt. The shared planning catalog remains unchanged until U0A-P2 implements and verifies the required status-integrator single-writer contract."
+  },
+  "ownership_record": {
+    "owner_agent": "/root",
+    "owned_existing_files": [],
+    "new_evidence_files": [
+      "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-u0a-p1-inventory-20260823.json"
+    ],
+    "new_product_files": [],
+    "new_test_files": [],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-u0a-p1-inventory-20260823.json": null
+    },
+    "ownership_lease": {
+      "mode": "exclusive_new_path",
+      "status": "acquired_for_single_checkpoint_creation",
+      "collision_at_acquire": false,
+      "release_condition": "checkpoint_written_and_validated"
+    },
+    "cross_catalog_ownership_snapshot": {
+      "exact_new_path_collision_observed": false,
+      "shared_hot_contract_ownership_requested": false,
+      "sbe_owner_assignment_requested": false,
+      "other_development_stream_source_reference_mutated": false
+    },
+    "rollback_or_cleanup": "Delete only this new checkpoint if the receipt is rejected; no product, test, live-data, service, or external state was changed."
+  },
+  "concurrency_boundary": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:8e564c290a0100449fbf884e775512f24aab92b5a29dd4da6483eeaf2b5e53cc",
+      "mode": "read_only_dynamic_instruction",
+      "modified_by_this_packet": false
+    },
+    "hot_contracts": {
+      "modified_by_this_packet": false,
+      "paths": [
+        "code_assist_v1/docs/knowledge_spaces/STATUS.md",
+        "code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md",
+        "code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json",
+        "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+        "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+        "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+      ]
+    },
+    "concurrent_source_drift": {
+      "source_reference_path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+      "expected_sha256_in_scenarios": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223",
+      "observed_sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9",
+      "ownership": "other_concurrent_development_stream",
+      "action_taken": "none_read_only_drift_recorded",
+      "effect": "Blocks U0A-P1 gate promotion and therefore U0A-P2 start until the owning stream reconciles the source reference."
+    },
+    "post_write_hot_contract_drift": {
+      "observed_at": "2026-08-23T03:35:38.582Z",
+      "classification": "concurrent_SBE_contract_transition_in_progress",
+      "modified_by_this_packet": false,
+      "observations": [
+        {
+          "path": "code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json",
+          "inventory_start_sha256": "sha256:fdc9aab16e0eddaea35e255d1f91f4d57f2afe04afe86029252c10a55336e404",
+          "post_write_sha256": "sha256:46ce12ad70e424dc1c381d496dfb71cc9f7955606fe9945a72bff1ccf2d2d71b",
+          "last_write_utc": "2026-08-23T03:32:37.9896933Z"
+        },
+        {
+          "path": "code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md",
+          "inventory_start_sha256": "sha256:ce742326a23dfa74c77c3d4aeab0fd833e501032d2ad9ccde8ae06836e893bbf",
+          "post_write_sha256": "sha256:995fb1ecbe83a1e320e6ae2858a69b51c66fa53bbc6c0a9f72414d704ab73735",
+          "last_write_utc": "2026-08-23T03:34:16.9321867Z"
+        },
+        {
+          "path": "code_assist_v1/docs/knowledge_spaces/STATUS.md",
+          "inventory_start_sha256": "sha256:5467e6a39ada0b87a92f4c8333eca17209ccc6a82db567cd14f8179fc495d25d",
+          "post_write_sha256": "sha256:5467e6a39ada0b87a92f4c8333eca17209ccc6a82db567cd14f8179fc495d25d",
+          "last_write_utc": "2026-08-22T19:22:07.3459980Z"
+        }
+      ],
+      "consistency_observation": "GOAL_CONTRACT and TRACEABILITY changed while STATUS remained at the pre-transition planning state; this receipt therefore preserves the start snapshot and does not adopt or revert the in-flight SBE transition.",
+      "required_action": "The owning SBE-0.1 integrator must finish and validate the atomic contract transition before any U0A-P2 cross-catalog gate can bind a current SBE snapshot."
+    }
+  },
+  "authority_bundle": {
+    "snapshot_observed_at": "2026-08-23T03:28:25.035Z",
+    "snapshot_semantics": "Historical inventory-start binding. Files explicitly listed in concurrency_boundary.post_write_hot_contract_drift changed later and are not represented as current by this manifest.",
+    "plan_and_harness": [
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+        "sha256": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+        "sha256": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+        "sha256": "sha256:60c35c589563c49730e6bfca7017a29d41a1a7fee2aff2a36e09cb850c2548da"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+        "sha256": "sha256:ef5749bcfb4c10d969e8af964d752580d872cdef6eaf4d675e28a3aa59ea57bc"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+        "sha256": "sha256:2cdce4ea06be1f7000576f3c3c34b7845c9c783514e1f90f3de7118bc49ebf2f"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-plan-alignment-20260823.json",
+        "sha256": "sha256:e7278970c8d51d9f3ea2a677cec53db632476fbc175d8b0123d4ae0f24d2fdef"
+      }
+    ],
+    "second_brain_instruction_manifest_at_inventory_start": [
+      ["code_assist_v1/docs/knowledge_spaces/README.md", "sha256:12eef3089e2f86ee8516c0e1f79c0bd59cab601b93c0500d972d9b758c72d9dd"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/README.md", "sha256:2483ec33c13fb08028ab4793223c65e3a9770787e60bf17927a17c22491ef42d"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/PRODUCT_CONTRACT.md", "sha256:2348b64ba60f9a6d7aa9922d0fdf98bc749107495af9fdba62491b6e86193341"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md", "sha256:cfc0f9e4a9034cd5e0ab1ee9136290f7d36ad1b548878f2c34895069fa3e9f13"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md", "sha256:c5dfe7401d049c635dc7ed3528c30301b27e06e53ff77d23ee9bdda87893935b"],
+      ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/ACCEPTANCE.md", "sha256:2f1faac9161573dd7cb8987553626d1108bd66d69681fc1aa45f13d0961191ba"],
+      ["code_assist_v1/docs/knowledge_spaces/DECISIONS.md", "sha256:d933f95ae58e1f2bd8afe603ad8042bb9faa5f9a971ed5d42bacebc707fedc64"],
+      ["code_assist_v1/docs/knowledge_spaces/ARCHITECTURE.md", "sha256:947dff566b8a00cd3cc4c04eb5f44391bda3306eb0013a538808e0b66e964842"],
+      ["code_assist_v1/docs/knowledge_spaces/SCHEMA_V1.md", "sha256:77f4a900b636ee0bde34cae38f02f86fdd5e2dc13e24bf9402c9eac7d927abc4"],
+      ["code_assist_v1/docs/knowledge_spaces/API_UI_CONTRACT.md", "sha256:74efe1606b43d44910921470ea225b351eac75a0ab7c7f86cd90f4c63c69a545"],
+      ["code_assist_v1/docs/knowledge_spaces/CURRENT_SYSTEM_INVENTORY.md", "sha256:25c8a8b1c5c9a5a919b9d67bdd8e5d83b35d93ecf127219dd51c65818a4f6153"],
+      ["code_assist_v1/docs/knowledge_spaces/MIGRATION_ROLLOUT.md", "sha256:ec0523daab36aef06ddbc5c65bbb3d3e6e065e5017053c869dfd468b7a933649"],
+      ["code_assist_v1/docs/knowledge_spaces/TEST_OPERATIONS.md", "sha256:13d285b95c835f8002c06312c8ba5b2942edd333547120f0728e78643034b6a9"],
+      ["code_assist_v1/docs/knowledge_spaces/DEVELOPMENT_BASELINE.md", "sha256:608792faa9998740b5009aa721260b56ad15a6affab7420abbe0b0ecab8a9edc"],
+      ["code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md", "sha256:e9af7b80099ca424ddb2d0b954abf6173c61e6e95d1d078996e5d3441ce7bdac"],
+      ["code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md", "sha256:ce742326a23dfa74c77c3d4aeab0fd833e501032d2ad9ccde8ae06836e893bbf"],
+      ["code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json", "sha256:fdc9aab16e0eddaea35e255d1f91f4d57f2afe04afe86029252c10a55336e404"],
+      ["code_assist_v1/docs/knowledge_spaces/STATUS.md", "sha256:5467e6a39ada0b87a92f4c8333eca17209ccc6a82db567cd14f8179fc495d25d"]
+    ],
+    "current_schema_lineage_sha256": "sha256:cfc0f9e4a9034cd5e0ab1ee9136290f7d36ad1b548878f2c34895069fa3e9f13",
+    "second_brain_instruction_manifest_current": {
+      "observed_at": "2026-08-23T05:08:40.486Z",
+      "semantics": "Read-only post-SBE-0.1 authority snapshot. The report-schema-v2 contract audit below passed against this stable bundle; canonical-v7 runtime and successor flags remain unchanged.",
+      "files": [
+        ["code_assist_v1/AGENTS.md", "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549"],
+        ["code_assist_v1/docs/knowledge_spaces/README.md", "sha256:090d886640ea2dc38e8d015a55530c17f4eaf9dd99c1ddf2ae57e5da358320ea"],
+        ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/README.md", "sha256:56fd256f6aed116eed9e7c3d1b4d03f8cd83146ea376874be32c25740c7ed34b"],
+        ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/PRODUCT_CONTRACT.md", "sha256:55fdc53dbf591d9974cf92d4042b6b4849d2e5a0c155bad4960f0a5acb33218c"],
+        ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md", "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604"],
+        ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/EXECUTION_PLAN.md", "sha256:5883c6955430e04b4149cd69c0b96839fc4a5c7281748b001c4214197e46d15e"],
+        ["code_assist_v1/docs/knowledge_spaces/second_brain_evolution/ACCEPTANCE.md", "sha256:bfd769be8757740f80e534fda6a9d50e7ae0652830e82b7b4e8472f809cb36bb"],
+        ["code_assist_v1/docs/knowledge_spaces/DECISIONS.md", "sha256:f764bec2b35730fc0b012415400059e61787d38f43b78914d46af9bca94ca7db"],
+        ["code_assist_v1/docs/knowledge_spaces/ARCHITECTURE.md", "sha256:bb8552653b0f02128302d7bf1cb7d75f65000215f01e138398be8b81c62520aa"],
+        ["code_assist_v1/docs/knowledge_spaces/SCHEMA_V1.md", "sha256:15de58b4ba6f7dd4c9f77087bed795ba3ab07cb9fbdada36a92e6d7164c91e21"],
+        ["code_assist_v1/docs/knowledge_spaces/API_UI_CONTRACT.md", "sha256:731d920ccf1e72926ca3d5cfbb34e0ff2720bb57a73353ef89c50c32528d9411"],
+        ["code_assist_v1/docs/knowledge_spaces/CURRENT_SYSTEM_INVENTORY.md", "sha256:bdf39d05337d918917e34b9d68187bfeb4799920d871b1688ece9d488735c55d"],
+        ["code_assist_v1/docs/knowledge_spaces/MIGRATION_ROLLOUT.md", "sha256:0008ded180852070f2d9d3a555052695b704651dd72a98c54979c10311354f0f"],
+        ["code_assist_v1/docs/knowledge_spaces/TEST_OPERATIONS.md", "sha256:fa429c36bc5034818fbcd18a79fa66e36a8af863837afb263b4d1258a20fbc5b"],
+        ["code_assist_v1/docs/knowledge_spaces/DEVELOPMENT_BASELINE.md", "sha256:608792faa9998740b5009aa721260b56ad15a6affab7420abbe0b0ecab8a9edc"],
+        ["code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md", "sha256:beea7c61b7689d06a2dbea3e9c173057a42c17f575a83104b060fb9662651230"],
+        ["code_assist_v1/docs/knowledge_spaces/TRACEABILITY.md", "sha256:995fb1ecbe83a1e320e6ae2858a69b51c66fa53bbc6c0a9f72414d704ab73735"],
+        ["code_assist_v1/docs/knowledge_spaces/GOAL_CONTRACT.json", "sha256:46ce12ad70e424dc1c381d496dfb71cc9f7955606fe9945a72bff1ccf2d2d71b"],
+        ["code_assist_v1/docs/knowledge_spaces/STATUS.md", "sha256:17ec129d326ab7ffe99991144e10f04f47346d22dc2ceec32a2638a0d2a12e84"]
+      ]
+    }
+  },
+  "plan_reinforcement": {
+    "product_boundary": {
+      "internal_only": true,
+      "real_time_multi_user_collaboration_required": true,
+      "workspace_and_page_sharing_required": true,
+      "agent_account_authority_reused": true,
+      "notion_account_mutation_owned_by_agent_host": true,
+      "plan_or_entitlement_tiers_required": false,
+      "internal_usage_limits_required": false,
+      "mobile_and_native_apps_deferred": true,
+      "pixel_contract": "zero unexplained RGBA difference in deterministic regions at adopted web viewports",
+      "second_brain_integration": "explicit permission-revalidated immutable canonical Notion revision publication only",
+      "backup_and_restore_rehearsal_required": true,
+      "legal_review_is_release_gate": false
+    },
+    "environment_boundary": {
+      "production_pair": [10011, 10012],
+      "development_pair_target": [10111, 10112],
+      "collaboration_gateway_target": 10113,
+      "development_rule": "Build and validate in a new marker-bound isolated development root before any 10012 application.",
+      "current_dev_identity_or_service_mutation_requires": "AP-DEV-PAIR"
+    },
+    "phase_order": [
+      "U0a", "D0a", "H0a", "A0a", "E0", "T0a", "O0a", "UI0", "G0", "K0", "D0b", "A0b", "T0b", "I0", "C0", "E1", "S0", "F0", "V0", "O1", "Q0", "R0", "R1", "Z0"
+    ],
+    "critical_path": [
+      "U0A-P1 inventory and receipt",
+      "U0A-P2 cross-catalog, gate, completion, hash-drift, and tamper verifiers",
+      "G0-U product decisions and G0-E engineering freeze evidence",
+      "isolated paired development realm and four-principal browser harness",
+      "single canonical Notion content/IAM/event authority and forward-only migration",
+      "dedicated WebSocket ticket, epoch, replay, ACK, snapshot, and compaction boundary",
+      "workspace/page IAM plus immediate revoke",
+      "durable non-editing collaboration and convergent editing",
+      "exact-revision Second Brain publication and adopted feature closure",
+      "continuous pixel/interaction validation, coordinated restore, load/security/fault gates",
+      "production-copy rehearsal, default-off deployment, canary, rollback, and strict Z0 audit"
+    ],
+    "advance_rules": [
+      "Do not start U0A-P2 until U0A-P1 is gate_passed.",
+      "Do not start a product implementation packet until U0A-P2 closes U0A-GATE-001.",
+      "Do not infer a product choice from a visible legacy control; G0-U owns the adopted/deferred/hidden denominator.",
+      "Do not infer file ownership from user approval.",
+      "Do not touch live knowledge, user_data, .runtime, per-user Notion databases, current services, or production without the named packet and approval.",
+      "Only Z0-P1 may claim product completion, and active shared-goal completion also requires the current SBE gates."
+    ]
+  },
+  "route_inventory": {
+    "method": "Static scan of Flask route decorators plus dynamic Knowledge Core publication registrar inspection; no app process or live data root was opened.",
+    "decorator_declared_route_count": 109,
+    "framework_implicit_routes_not_in_count": [
+      "GET /static/<path:filename>"
+    ],
+    "conditional_knowledge_core_route_count": 5,
+    "modules": [
+      {
+        "path": "code_assist_v1/app_notion.py",
+        "sha256": "sha256:49c2345c6eeef710e655e37b3ca7cff3821d900f175a585fb6a2ab7f9acaf4f2",
+        "route_count": 9,
+        "routes": ["GET /", "GET /workspace", "GET /shared", "GET /page/<path:_page_id>", "GET /notion_static/<path:filename>", "GET /login", "GET /code/", "GET /healthz", "GET /favicon.ico"]
+      },
+      {
+        "path": "code_assist_v1/routes_notion.py",
+        "sha256": "sha256:076693166d04d1b74ad3b369e6516f4452601f89beead432b991ee3e3d518463",
+        "route_count": 50,
+        "routes": [
+          "GET /api/notion/inbox", "GET /api/notion/pages", "GET /api/notion/search", "POST /api/notion/pages", "POST /api/notion/templates/second_brain", "GET /api/notion/pages/<path:page_id>", "PATCH /api/notion/pages/<path:page_id>", "POST /api/notion/pages/<path:page_id>/move", "POST /api/notion/pages/<path:page_id>/duplicate", "DELETE /api/notion/pages/<path:page_id>", "GET /api/notion/trash", "POST /api/notion/trash/<path:page_id>/restore", "DELETE /api/notion/trash/<path:page_id>", "PUT /api/notion/pages/<path:page_id>/blocks", "POST /api/notion/pages/<path:page_id>/save", "POST /api/notion/pages/<path:page_id>/forms/<path:block_id>/submit", "GET /api/notion/pages/<path:page_id>/versions", "GET /api/notion/pages/<path:page_id>/backlinks", "POST /api/notion/pages/<path:page_id>/versions/<path:version_id>/restore", "GET|POST /api/notion/pages/<path:page_id>/comments", "PATCH|DELETE /api/notion/pages/<path:page_id>/comments/<path:comment_id>", "POST /api/notion/pages/<path:page_id>/comments/<path:comment_id>/reactions", "POST /api/notion/pages/<path:page_id>/files", "GET /api/notion/files/<path:file_id>", "GET /public/notion/<token>", "POST /public/notion/<token>/duplicate", "POST /public/notion/<token>/forms/<path:block_id>", "GET /public/notion/<token>/files/<path:file_id>", "GET /api/notion/pages/<path:page_id>/export_markdown", "GET /api/notion/pages/<path:page_id>/export_html", "GET /api/notion/pages/<path:page_id>/export_csv", "GET /api/notion/overview", "GET /api/notion/pages/<path:page_id>/publish_preview", "POST /api/notion/pages/<path:page_id>/publish_second_brain", "GET /api/notion/pages/<path:page_id>/public_link", "POST /api/notion/pages/<path:page_id>/public_link", "PATCH /api/notion/pages/<path:page_id>/public_link", "DELETE /api/notion/pages/<path:page_id>/public_link", "POST /api/notion/ai/ask", "GET /api/notion/pages/<path:page_id>/shares", "POST /api/notion/pages/<path:page_id>/shares", "DELETE /api/notion/pages/<path:page_id>/shares/<path:shared_user_id>", "GET /api/notion/users", "GET /api/notion/chat/sessions", "POST /api/notion/pages/<path:page_id>/attach", "GET /api/notion/session_pages", "DELETE /api/notion/session_pages/<path:page_id>", "POST /api/notion/import_chat", "POST /api/notion/import_markdown", "POST /api/notion/import_csv"
+        ]
+      },
+      {
+        "path": "code_assist_v1/routes_notion_workspace.py",
+        "sha256": "sha256:f4e71833b4b1b01fea2b0508a1323a3609a19a00014eac967efebf4be8ae5cb8",
+        "route_count": 17,
+        "routes": [
+          "GET /api/notion/ui-pilot/readiness", "GET|POST /api/notion/workspaces", "GET /api/notion/workspaces/<workspace_id>", "GET|POST /api/notion/workspaces/<workspace_id>/pages", "POST /api/notion/workspaces/<workspace_id>/pages/<path:page_id>/duplicate", "POST /api/notion/workspaces/<workspace_id>/pages/<path:page_id>/trash", "GET /api/notion/workspaces/<workspace_id>/trash", "POST /api/notion/workspaces/<workspace_id>/trash/<path:page_id>/restore", "GET /api/notion/workspaces/<workspace_id>/navigation", "PATCH /api/notion/workspaces/<workspace_id>/navigation/preferences", "PUT|DELETE /api/notion/workspaces/<workspace_id>/navigation/favorites", "PUT|DELETE /api/notion/workspaces/<workspace_id>/members/<subject_id>", "PUT|DELETE /api/notion/workspaces/<workspace_id>/guests/<subject_id>", "POST /api/notion/workspaces/<workspace_id>/groups", "PUT|DELETE /api/notion/workspaces/<workspace_id>/groups/<group_id>/members/<subject_id>", "GET|POST /api/notion/workspaces/<workspace_id>/teamspaces", "PUT|DELETE /api/notion/workspaces/<workspace_id>/teamspaces/<teamspace_id>/members/<subject_id>"
+        ]
+      },
+      {
+        "path": "code_assist_v1/routes_notion_bridge.py",
+        "sha256": "sha256:87ca385cfa903d46d7997f1f4f631b1b6221ab87268f50d66c2b9c8bf29c7c7b",
+        "route_count": 9,
+        "routes": ["GET /api/code/notion/pages", "POST /api/code/notion/templates/second_brain", "GET /api/code/notion/pages/<path:page_id>/export", "POST /api/code/notion/pages/<path:page_id>/publish_second_brain", "POST /api/code/notion/session_attach", "POST /api/code/notion/session_detach", "GET /api/code/notion/session_pages", "POST /api/code/notion/save_chat_summary", "POST /api/code/notion/import_thought"]
+      },
+      {
+        "path": "code_assist_v1/auth.py",
+        "sha256": "sha256:4185e74b9ddd8826b7a115bee87fa3965bb440fe10b1ea14d77cbd8bbffe8bc2",
+        "route_count": 14,
+        "routes": ["GET /api/code/auth/setup_required", "GET /api/code/auth/me", "POST /api/code/auth/register", "POST /api/code/auth/login", "POST /api/code/auth/logout", "POST /api/code/auth/password", "GET /api/code/auth/users", "POST /api/code/auth/users", "PATCH /api/code/auth/users/<path:user_id>", "POST /api/code/auth/users/<path:user_id>/password", "GET /api/code/auth/users/<path:user_id>/data", "POST /api/code/auth/users/<path:user_id>/transfer", "DELETE /api/code/auth/users/<path:user_id>", "GET /api/code/auth/audit"]
+      },
+      {
+        "path": "code_assist_v1/routes_jobs.py",
+        "sha256": "sha256:1e67e01b1adaac940a780529eb7cd87c3551fd9cd0640047c7fe101b573f09f3",
+        "route_count": 3,
+        "routes": ["GET /api/code/jobs", "GET /api/code/jobs/<path:job_id>", "POST /api/code/jobs/<path:job_id>/cancel"]
+      },
+      {
+        "path": "code_assist_v1/routes_outlook.py",
+        "sha256": "sha256:7aa0c1d87ffdcf80f22892bf512542d478aab585749576de3c6cf7789f7cfc0a",
+        "route_count": 7,
+        "routes": ["GET /api/notion/outlook/status", "PUT /api/notion/outlook/settings", "GET /api/notion/outlook/oauth/start", "GET /api/notion/outlook/oauth/callback", "DELETE /api/notion/outlook/connection", "POST /api/notion/outlook/sync", "POST /api/notion/outlook/digest"]
+      }
+    ],
+    "conditional_knowledge_core_publication_routes": {
+      "condition": "Knowledge Core personal publication writes enabled with explicit services and bindings on HostKind.NOTION",
+      "route_group": "canonical_publication_v1",
+      "source_hashes": {
+        "code_assist_v1/knowledge_core/routes.py": "sha256:6bb0f409599d2736da1b2d906fa339490f7d120e242a1b49ed247f861fc9707b",
+        "code_assist_v1/knowledge_core/composition.py": "sha256:fc5773da902af7aaf527bab167b903d8430d1b56c42c7531fd3cf2b7692c3eee",
+        "code_assist_v1/knowledge_core/canonical_routes.py": "sha256:f459258df3d80b7ca8e126618391d75e32b61a4365cbc91682c0816801280646"
+      },
+      "routes": ["GET /api/knowledge/v1/spaces", "POST /api/knowledge/v1/publication-previews", "GET /api/knowledge/v1/publication-previews/<preview_id>", "DELETE /api/knowledge/v1/publication-previews/<preview_id>", "POST /api/knowledge/v1/publications"]
+    }
+  },
+  "storage_and_authority_inventory": [
+    {
+      "surface": "account_and_session",
+      "current_authority": "auth.py is registered in full on the Notion host; the cookie name is session and register, password, user creation/update/transfer/delete routes are exposed.",
+      "target_authority": "The Agent host owns account mutation; the Notion host reuses the authenticated Agent principal and denies signup and account mutation.",
+      "gap": "Current Notion composition violates the target host ownership boundary and does not yet use an isolated development cookie namespace."
+    },
+    {
+      "surface": "legacy_notion_content",
+      "source": "code_assist_v1/notion_store.py",
+      "sha256": "sha256:46ffcc8f94d584578b3dc93d472db0b00d6b9d17e89ad3f08aa932ee26eee22c",
+      "current_authority": "Per-user user_data/<user>/notion/notion.db plus file directories own pages, blocks, files, shares, session attachments, public links, versions, and comments.",
+      "gap": "_known_workspace_users, resolve_page, and list_pages scan user roots at request time; the design cannot be the final single canonical collaborative authority."
+    },
+    {
+      "surface": "workspace_iam_tree_and_lifecycle_substrate",
+      "source": "code_assist_v1/notion_workspace_store.py",
+      "sha256": "sha256:19de52d282b6d3adbad2aa72a128a56f9525fdb7f82748138d4e1a009705a979",
+      "current_authority": "Schema 2026081317 owns workspace IAM, catalog/page-source locators, tree/navigation, lifecycle, audit, and outbox substrate.",
+      "gap": "It is not yet the single canonical page/block/database/comment/operation/event authority, so legacy owner shards and workspace authority coexist."
+    },
+    {
+      "surface": "session_context",
+      "source": "code_assist_v1/routes_notion.py",
+      "sha256": "sha256:076693166d04d1b74ad3b369e6516f4452601f89beead432b991ee3e3d518463",
+      "current_authority": "Session metadata is enumerated from per-user JSON files and page Markdown can be attached as temporary chat context.",
+      "gap": "The target requires access revalidation and an authorized already-published immutable Second Brain revision; raw mutable page Markdown attachment is not sufficient."
+    },
+    {
+      "surface": "second_brain_publication",
+      "source": "code_assist_v1/notion_publication.py",
+      "sha256": "sha256:1c9476b124fbd4d76e61a55ade4065825cc764fc375ad31e2add340d5277de40",
+      "current_authority": "Captures an immutable source snapshot, checks an optional expected source snapshot hash, requires source can_edit, and delegates directly to legacy second_brain_store.import_source_markdown under a user write lock.",
+      "gap": "Caller operation ID, canonical request-hash replay, explicit target-space authorization revalidation, canonical publication commit identity, and durable cross-boundary audit/outbox semantics are not proven."
+    },
+    {
+      "surface": "realtime_collaboration",
+      "current_authority": "No WebSocket, CRDT, Socket.IO, Yjs, server-sent event, or equivalent realtime gateway reference exists in the inventoried Notion app, route, store, or UI modules.",
+      "gap": "Presence, live comments, mentions/inbox delivery, convergent editing, reconnect, revoke fencing, durable ACK/replay, and multi-browser convergence remain unimplemented or unproven."
+    },
+    {
+      "surface": "runtime_composition",
+      "source": "code_assist_v1/app_notion.py",
+      "current_authority": "Default port 10012, hard-coded /code redirect to 10011, shared session cookie name, full auth/job/notion/workspace/outlook registration, Outlook scheduler startup, and Flask app.run are present.",
+      "gap": "The isolated 10111/10112/10113 realm, distinct cookie/origin/CSRF contract, fail-closed peer links, and approved production gateway/process topology are not implemented."
+    }
+  ],
+  "capability_state_draft": {
+    "draft_only_until_G0_U": true,
+    "core_25_contract": {
+      "scenario_source": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa",
+      "scenario_ids": ["UI-SHELL-001", "UI-SHELL-002", "UI-SHELL-003", "UI-TREE-001", "UI-TREE-002", "UI-TREE-003", "UI-EDITOR-001", "UI-EDITOR-002", "UI-EDITOR-003", "UI-EDITOR-004", "UI-EDITOR-005", "UI-EDITOR-006", "UI-DB-001", "UI-DB-002", "UI-DB-003", "UI-SEARCH-001", "UI-SEARCH-002", "UI-COLLAB-001", "UI-SHARE-001", "UI-SB-001", "UI-SB-002", "UI-SB-003", "UI-A11Y-001", "UI-RESP-001", "UI-PERF-001"],
+      "current_contract_state": "25 planned",
+      "promotion_statement": "Historical local/reference evidence exists, but this U0 packet does not promote any scenario or completion row."
+    },
+    "provisionally_adopted": [
+      "Core 25", "workspace and page sharing", "live comments", "mentions and inbox", "history and restore", "files", "table", "board", "list", "gallery", "calendar", "timeline", "filter", "sort", "group", "relation", "rollup", "formula", "templates", "Markdown import/export", "CSV import/export", "reminders", "permission-aware search", "permission-aware backlinks"
+    ],
+    "provisionally_hidden": [
+      "charts", "dashboards", "forms", "automation", "feed", "map", "public links", "external email guests", "AI"
+    ],
+    "static_visible_conflicts": [
+      "Notion AI navigation and panel are visible.",
+      "Public web publishing controls and public-link routes are visible.",
+      "DATABASE_BLOCK_TYPES and view selection expose chart, dashboard, form, feed, and map.",
+      "Temporary raw page Markdown session attachment is described and exposed.",
+      "Trash UI text claims automatic deletion after 30 days before the retention policy is frozen."
+    ],
+    "hidden_control_rule": "At UI0/F0, every non-adopted visible control must be absent or fail-closed behind the aggregate and capability switches; a backend route or legacy UI presence does not make a feature adopted.",
+    "default_off_controls_observed": [
+      "CODE_ASSIST_NOTION_CORE_UI_PILOT",
+      "CODE_ASSIST_NOTION_CORE_UI_PILOT_KILL_SWITCH",
+      "CODE_ASSIST_NOTION_CORE_UI_PILOT_SUBJECTS",
+      "CODE_ASSIST_NOTION_CORE_UI_PILOT_WORKSPACES",
+      "CODE_ASSIST_NP2B_NAVIGATION_UI",
+      "CODE_ASSIST_NP2B_NAVIGATION_UI_KILL_SWITCH"
+    ],
+    "required_but_not_proven": [
+      "four-level workspace/page authorization across independent internal principals",
+      "real presence and live multi-user cursor state",
+      "durable comments/reactions/mentions/inbox delivery",
+      "immediate revoke fencing across HTTP, WebSocket, files, history, search, and publication",
+      "convergent rich-text, block-tree, and database editing with Korean IME",
+      "single canonical content/IAM/operation/event/audit/outbox authority",
+      "operation ID plus canonical request-hash replay",
+      "coordinated backup and isolated restore within frozen RPO/RTO",
+      "zero-unexplained-pixel final parity at all adopted web viewports"
+    ]
+  },
+  "open_decision_register": {
+    "G0_U": [
+      {
+        "id": "development_identity_import_scope",
+        "owner": "user_product_owner",
+        "status": "open",
+        "needed_for": "D0b and AP-DEV-PAIR",
+        "question": "Name the disposable development identities that may be copied, or confirm that all current development identities are disposable."
+      },
+      {
+        "id": "target_scale_and_deployment_topology",
+        "owner": "user_product_owner",
+        "status": "open",
+        "fields": ["registered_users", "simultaneous_connections", "simultaneous_editors_per_page", "pages_per_workspace", "blocks_per_page", "rows_per_database", "sustained_operations_per_second", "burst_operations_per_second", "attachment_concurrency", "disk_reserve"]
+      },
+      {
+        "id": "adopted_feature_denominator",
+        "owner": "user_product_owner",
+        "status": "open",
+        "input": "Use the provisional adopted and hidden lists in this checkpoint as the interview baseline."
+      },
+      {
+        "id": "recovery_backup_retention_and_history_policy",
+        "owner": "user_product_owner",
+        "status": "open",
+        "fields": ["rpo", "rto", "write_drain_timeout", "backup_retention", "page_history_retention", "external_destination", "restore_secret_policy"],
+        "recommended_restore_secret_policy": "Rotate the session-signing secret and force reauthentication after restore."
+      },
+      {
+        "id": "offline_editing_policy",
+        "owner": "user_product_owner",
+        "status": "open",
+        "choices_to_freeze": ["in-tab transient disconnect buffering", "durable browser-close offline edits"]
+      }
+    ],
+    "G0_E": [
+      {"id": "canonical_authority_architecture", "owner": "engineering", "status": "open", "evidence_prerequisite": "A0A-P2"},
+      {"id": "gateway_and_crdt_winner", "owner": "engineering", "status": "open", "evidence_prerequisite": "E0-P4"},
+      {"id": "protocol_and_compaction_binding", "owner": "engineering", "status": "open", "evidence_prerequisite": "T0A-P3 and O0A-P3"},
+      {"id": "next_available_forward_schema_version", "owner": "engineering", "status": "open", "rule": "Derive under an exclusive canonical-store lease; never ask the user to choose it."}
+    ],
+    "freeze_rule": "G0 is satisfied only by independent G0-U and G0-E receipts after their declared prerequisites; provisional values are spike inputs, not release promises."
+  },
+  "risk_register": [
+    {"id": "R-U0-001", "severity": "high", "risk": "Core UI source hash drift makes the existing L0 contract red.", "owner": "concurrent Core UI source-reference owner", "mitigation": "Reconcile source_refs[0] to the intended frozen source or restore that source under the owning stream; rerun L0.", "blocks": ["U0A-P1 gate_passed", "U0A-P2 start"]},
+    {"id": "R-AUTH-001", "severity": "critical", "risk": "The Notion host currently exposes account mutation and shares the production-style session cookie namespace.", "owner": "D0/A0 implementation", "mitigation": "Move account mutation authority to the Agent host, issue a distinct dev cookie/secret/origin contract, and add negative cross-origin tests.", "blocks": ["D0-GATE-001", "I0-GATE-001"]},
+    {"id": "R-STORE-001", "severity": "critical", "risk": "Per-user content shards, request-time directory scans, and workspace metadata form multiple authorities.", "owner": "A0 implementation", "mitigation": "Adopt one physical workspace SQLite content/IAM/operation/event authority with forward migration and immutable legacy import sources.", "blocks": ["A0-GATE-001"]},
+    {"id": "R-REALTIME-001", "severity": "critical", "risk": "No dedicated realtime gateway or convergent editing protocol is present.", "owner": "E0/T0/C0/E1 implementation", "mitigation": "Select a pinned Windows-reproducible CRDT/gateway winner and prove ticket, epoch, ACK, replay, snapshot, compaction, reconnect, revoke, and IME behavior.", "blocks": ["E0-GATE-001", "T0-GATE-001", "C0-GATE-001", "E1-GATE-001"]},
+    {"id": "R-SB-001", "severity": "critical", "risk": "Legacy publication and temporary page attachment do not prove exact canonical publication identity and target authorization semantics.", "owner": "S0 implementation", "mitigation": "Publish only an explicit canonical revision through operation-id/request-hash replay with source and target authorization revalidation and durable audit/outbox.", "blocks": ["S0-GATE-001"]},
+    {"id": "R-UI-001", "severity": "high", "risk": "Several provisionally hidden features are currently visible and callable.", "owner": "G0-U/UI0/F0 implementation", "mitigation": "Freeze the denominator and remove or fail-close every non-adopted control and route exposure.", "blocks": ["UI0-GATE-001", "F0-GATE-001", "V0-GATE-001"]},
+    {"id": "R-RUNTIME-001", "severity": "high", "risk": "Hard-coded peer port, Flask development server topology, and scheduler co-location are not the target paired-runtime contract.", "owner": "D0/T0/O0 implementation", "mitigation": "Use validated pair configuration, fail-closed links, a dedicated gateway boundary, and an owned production process topology.", "blocks": ["D0-GATE-001", "T0-GATE-001", "Q0-GATE-001"]},
+    {"id": "R-OPS-001", "severity": "high", "risk": "Canonical DB, non-rebuildable blobs, collaboration events/snapshots, identity state, secrets, and schema markers do not yet share a proven backup high-water boundary.", "owner": "O0/O1 implementation", "mitigation": "Design coordinated encrypted generations and prove isolated new-root restore within frozen RPO/RTO.", "blocks": ["O0-GATE-001", "O1-GATE-001"]},
+    {"id": "R-POLICY-001", "severity": "medium", "risk": "Visible 30-day trash deletion text predates the history/trash/backup retention decision.", "owner": "G0-U/F0/O1 implementation", "mitigation": "Freeze retention separately for trash, user-visible page history, backup generations, and SBE publications, then align UI and purge jobs.", "blocks": ["F0-GATE-001", "O1-GATE-001"]},
+    {"id": "R-EVIDENCE-001", "severity": "medium", "risk": "Historical Core 25 evidence exists while the current scenario overlay still reports all 25 as planned.", "owner": "U0A-P2 status-integrator and verifier implementation", "mitigation": "Require hash-bound receipts, exclusive closure owners, duplicate-key and false-green guards; never infer current completion from historical checkpoint names.", "blocks": ["U0A-GATE-001", "Z0-GATE-001"]}
+    ,
+    {"id": "R-CONCURRENCY-001", "severity": "high", "risk": "GOAL_CONTRACT and TRACEABILITY changed during this packet while STATUS remained unchanged, so a cross-file SBE transition may be temporarily inconsistent.", "owner": "active SBE-0.1 status/contract integrator", "mitigation": "Do not edit, rebase, or validate against a mixed snapshot; require the owning integrator's final hash-bound receipt and a stable reread before U0A-P2.", "blocks": ["U0A-P2 cross-catalog binding", "U0A-GATE-001"]}
+  ],
+  "approval_roadmap": [
+    {"id": "AP-DEV-PAIR", "status": "pending", "first_use": "D0B-P1", "scope": "Named dev identity allowlist, new roots and secret/cookie namespace, replacement of development 10111, and start of 10112/10113."},
+    {"id": "AP-RUNTIME-SPIKE", "status": "conditional_pending", "first_use": "Only if a candidate dependency is unavailable", "scope": "Install or download CRDT, ASGI, Node, or gateway candidates only in the isolated spike environment."},
+    {"id": "AP-REFERENCE-MULTIUSER", "status": "pending", "first_use": "Reference characterization", "scope": "Create, mutate, capture, and clean synthetic multi-user states in dedicated external Notion reference workspaces."},
+    {"id": "AP-OPS-TARGET", "status": "pending", "first_use": "O1 external target drill", "scope": "Configure encrypted backup destination, key, retention, and target-host restore drill."},
+    {"id": "AP-PROD-REHEARSAL", "status": "pending", "first_use": "R0", "scope": "Create and use an approved offline production-data copy; no production mutation."},
+    {"id": "AP-PROD-DEPLOY", "status": "pending", "first_use": "R0", "scope": "Install the frozen default-off release and gateway at 10012, restart owned services, and run health checks without user enablement."},
+    {"id": "AP-PROD-CANARY", "status": "pending", "first_use": "R1", "scope": "Enable the frozen generation for named canary principals and workspace under abort thresholds."},
+    {"id": "AP-PROD-RESTORE", "status": "incident_only_not_preapproved", "first_use": "Real incident only", "scope": "Execute a real production restore; rehearsal never grants this authority."}
+  ],
+  "validation_receipts": [
+    {
+      "validation_id": "L0-UI-HARNESS-BASELINE",
+      "recorded_at": "2026-08-23T03:24:00Z",
+      "working_directory": "G:/AI_Agent/DEMOS_CODEX",
+      "argv": [".\\venv\\Scripts\\python.exe", "-E", "-m", "pytest", "-c", "code_assist_v1/pytest.ini", "-q", "-p", "no:debugging", "-p", "no:cacheprovider", "code_assist_v1/tests/knowledge_spaces/unit/test_pytest_isolation.py", "code_assist_v1/tests/test_verify_notion_core_free_ui_plan.py", "code_assist_v1/tests/test_notion_ui_completion_matrix.py", "code_assist_v1/tests/test_notion_ui_evidence_harness.py", "code_assist_v1/tests/test_notion_ui_reference_completion.py", "code_assist_v1/tests/test_notion_ui_reference_completion_manifest.py"],
+      "exit_code": 1,
+      "passed": 48,
+      "failed": 1,
+      "failed_test": "code_assist_v1/tests/test_verify_notion_core_free_ui_plan.py::test_checked_in_core_free_ui_overlay_and_cli_pass",
+      "failure_code": "SOURCE_HASH_MISMATCH",
+      "failure_subject": "$.source_refs[0].sha256",
+      "classification": "external_concurrent_source_hash_drift_not_modified_by_this_packet",
+      "is_product_evidence": false
+    },
+    {
+      "validation_id": "L0-UI-HARNESS-BASELINE-AUDIT",
+      "argv": [".\\venv\\Scripts\\python.exe", "-E", "-m", "code_assist_v1.tools.verify_notion_core_free_ui_plan", "--compact"],
+      "exit_code": 1,
+      "status": "fail",
+      "error_count": 1,
+      "error": {"code": "SOURCE_HASH_MISMATCH", "subject": "$.source_refs[0].sha256"},
+      "plan_sha256": "sha256:a2c1a94be54f255cac128a4810a66ed1e0dd85f9762f2ecc850df0cc21ba0cf7",
+      "schema_sha256": "sha256:2a264d3b5da84d189b8f0eeec87fbc80816e61ebdced1a28ea682758d9673a54",
+      "required_scenario_count": 25,
+      "generated_counts": {"planned_count": 25, "conditional_count": 6, "extension_count": 5, "unknown_count": 0}
+    },
+    {
+      "validation_id": "SBE-0.1-CONCURRENT-TRANSITION-READ-ONLY-AUDIT",
+      "purpose": "Determine whether the concurrently changed SBE hot contracts form a stable snapshot that U0A-P2 may bind.",
+      "argv": [".\\venv\\Scripts\\python.exe", "-E", "-m", "code_assist_v1.tools.contract_audit", "audit", "--docs-root", "G:\\AI_Agent\\DEMOS_CODEX\\code_assist_v1\\docs\\knowledge_spaces", "--output", "-"],
+      "exit_code": 1,
+      "status": "fail",
+      "error_count": 10,
+      "input_sha256": "sha256:146d5859e06cc33b908088526e3d573c2a2e2a16ee5ecc4164c6fb561554b651",
+      "source_file_count": 33,
+      "registered_transition_counts": {
+        "requirements": 41,
+        "goals": 20,
+        "scenarios": 284,
+        "openapi_paths_required": 69,
+        "openapi_operations_required": 75,
+        "stable_errors_required": 31
+      },
+      "observed_incomplete_counts": {
+        "backlog_scenarios_covered": 124,
+        "openapi_paths": 52,
+        "openapi_operations": 56,
+        "openapi_requirement_coverage": 33,
+        "stable_errors": 31
+      },
+      "errors": [
+        {"code": "OPENAPI_HUMAN_OPERATION_MISMATCH", "missing_operation_count": 19},
+        {"code": "OPENAPI_OPERATION_COUNT_MISMATCH", "required": 75, "observed": 56},
+        {"code": "OPENAPI_PATH_COUNT_MISMATCH", "required": 69, "observed": 52},
+        {"code": "OPENAPI_REQUIREMENT_COVERAGE_MISSING", "missing_requirement_ids": ["R-032", "R-033", "R-034", "R-035", "R-036", "R-037", "R-039", "R-041"]},
+        {"code": "OPENAPI_SUCCESSOR_DELTA_MISMATCH", "required_added_paths": 17, "required_added_operations": 19},
+        {"code": "SCENARIO_BACKLOG_MISSING", "missing_scenario_count": 160},
+        {"code": "SUCCESSOR_AUTHORITY_NARRATIVE_DRIFT", "location": "DECISIONS.md"},
+        {"code": "SUCCESSOR_AUTHORITY_NARRATIVE_DRIFT", "location": "MIGRATION_ROLLOUT.md"},
+        {"code": "SUCCESSOR_AUTHORITY_NARRATIVE_DRIFT", "location": "README.md"},
+        {"code": "SUCCESSOR_AUTHORITY_NARRATIVE_DRIFT", "location": "STATUS.md"}
+      ],
+      "classification": "concurrent_SBE_0_1_transition_is_incomplete_not_a_bindable_cross_catalog_snapshot",
+      "mutation_performed": false,
+      "required_owner_action": "The active SBE-0.1 integrator must close all ten audit errors and publish one stable hash-bound status/contract receipt before U0A-P2 reads the successor catalog as current."
+    },
+    {
+      "validation_id": "SBE-0.1-CONCURRENT-TRANSITION-READ-ONLY-AUDIT-FOLLOWUP",
+      "observed_at": "2026-08-23T03:40:17.517Z",
+      "argv": [".\\venv\\Scripts\\python.exe", "-E", "-m", "code_assist_v1.tools.contract_audit", "audit", "--docs-root", "G:\\AI_Agent\\DEMOS_CODEX\\code_assist_v1\\docs\\knowledge_spaces", "--output", "-"],
+      "exit_code": 1,
+      "status": "fail",
+      "error_count": 4,
+      "input_sha256": "sha256:38d3114e1a41671105ac941266b0941cd055560bb64b473cf047ac798ce6e1c9",
+      "progress_since_previous_audit": {
+        "error_count_before": 10,
+        "error_count_after": 4,
+        "openapi_paths": "69_of_69",
+        "openapi_operations": "75_of_75",
+        "openapi_requirement_coverage": "41_of_41",
+        "resolved_error_classes": ["OPENAPI_HUMAN_OPERATION_MISMATCH", "OPENAPI_OPERATION_COUNT_MISMATCH", "OPENAPI_PATH_COUNT_MISMATCH", "OPENAPI_REQUIREMENT_COVERAGE_MISSING", "OPENAPI_SUCCESSOR_DELTA_MISMATCH", "MIGRATION_ROLLOUT successor authority narrative drift"]
+      },
+      "remaining_errors": [
+        {"code": "SCENARIO_BACKLOG_MISSING", "missing_scenario_count": 160, "observed_covered": 124, "required_covered": 284, "location": "IMPLEMENTATION_BACKLOG.md"},
+        {"code": "SUCCESSOR_AUTHORITY_NARRATIVE_DRIFT", "location": "DECISIONS.md"},
+        {"code": "SUCCESSOR_AUTHORITY_NARRATIVE_DRIFT", "location": "README.md"},
+        {"code": "SUCCESSOR_AUTHORITY_NARRATIVE_DRIFT", "location": "STATUS.md"}
+      ],
+      "classification": "SBE_integrator_is_making_progress_but_snapshot_is_not_yet_gate_bindable",
+      "mutation_performed": false
+    },
+    {
+      "validation_id": "SBE-0.1-CONCURRENT-TRANSITION-READ-ONLY-AUDIT-PASS",
+      "observed_at": "2026-08-23T05:08:40.486Z",
+      "argv": [".\\venv\\Scripts\\python.exe", "-E", "-m", "code_assist_v1.tools.contract_audit", "audit", "--docs-root", "G:\\AI_Agent\\DEMOS_CODEX\\code_assist_v1\\docs\\knowledge_spaces", "--output", "-"],
+      "exit_code": 0,
+      "status": "pass",
+      "report_schema_version": 2,
+      "error_count": 0,
+      "input_sha256": "sha256:2cf68b6f2dd01acbc27fec533aab4a13aa205729a120796c95db4a6a7448b797",
+      "source_file_count": 33,
+      "registered_counts": {
+        "requirements": 41,
+        "goals": 20,
+        "scenarios": 284,
+        "openapi_paths": 69,
+        "openapi_operations": 75,
+        "stable_errors": 31,
+        "schema_documents": 12,
+        "valid_examples": 12
+      },
+      "classification": "SBE_0_1_transition_is_now_stable_and_gate_bindable",
+      "mutation_performed": false
+    },
+    {
+      "validation_id": "U0A-P1-RESUME-SOURCE-REFERENCE-PROBE",
+      "observed_at": "2026-08-23T05:08:40.486Z",
+      "status": "fail",
+      "error_count": 1,
+      "error": {"code": "SOURCE_HASH_MISMATCH", "subject": "$.source_refs[0].sha256"},
+      "scenario_catalog_sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa",
+      "declared_plan_sha256": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223",
+      "observed_plan_sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9",
+      "source_files_modified_since_previous_observation": false,
+      "full_L0_rerun_skipped": true,
+      "skip_reason": "The exact verifier input mismatch is unchanged, so the declared L0 selection would deterministically repeat the already recorded 48-pass/1-fail result.",
+      "classification": "fresh_resumed_goal_blocked_audit_observation_1",
+      "mutation_performed": false
+    },
+    {
+      "validation_id": "U0A-P1-RESUME-SOURCE-REFERENCE-PROBE-2",
+      "observed_at": "2026-08-23T05:11:12.174Z",
+      "argv": [".\\venv\\Scripts\\python.exe", "-E", "-m", "code_assist_v1.tools.verify_notion_core_free_ui_plan", "--compact"],
+      "exit_code": 1,
+      "status": "fail",
+      "error_count": 1,
+      "error": {"code": "SOURCE_HASH_MISMATCH", "subject": "$.source_refs[0].sha256"},
+      "scenario_catalog_sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa",
+      "declared_plan_sha256": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223",
+      "observed_plan_sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9",
+      "plan_contract_sha256": "sha256:a2c1a94be54f255cac128a4810a66ed1e0dd85f9762f2ecc850df0cc21ba0cf7",
+      "schema_sha256": "sha256:2a264d3b5da84d189b8f0eeec87fbc80816e61ebdced1a28ea682758d9673a54",
+      "required_scenario_count": 25,
+      "generated_counts": {"planned_count": 25, "conditional_count": 6, "extension_count": 5, "unknown_count": 0},
+      "source_files_modified_since_previous_observation": false,
+      "classification": "fresh_resumed_goal_blocked_audit_observation_2",
+      "mutation_performed": false
+    },
+    {
+      "validation_id": "U0A-P1-RESUME-SOURCE-REFERENCE-PROBE-3",
+      "observed_at": "2026-08-23T05:12:46.354Z",
+      "argv": [".\\venv\\Scripts\\python.exe", "-E", "-m", "code_assist_v1.tools.verify_notion_core_free_ui_plan", "--compact"],
+      "exit_code": 1,
+      "status": "fail",
+      "error_count": 1,
+      "error": {"code": "SOURCE_HASH_MISMATCH", "subject": "$.source_refs[0].sha256"},
+      "scenario_catalog_sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa",
+      "declared_plan_sha256": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223",
+      "observed_plan_sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9",
+      "plan_contract_sha256": "sha256:a2c1a94be54f255cac128a4810a66ed1e0dd85f9762f2ecc850df0cc21ba0cf7",
+      "schema_sha256": "sha256:2a264d3b5da84d189b8f0eeec87fbc80816e61ebdced1a28ea682758d9673a54",
+      "required_scenario_count": 25,
+      "generated_counts": {"planned_count": 25, "conditional_count": 6, "extension_count": 5, "unknown_count": 0},
+      "source_files_modified_since_previous_observation": false,
+      "classification": "fresh_resumed_goal_blocked_audit_observation_3_threshold_reached",
+      "mutation_performed": false
+    },
+    {
+      "validation_id": "L0-UI-HARNESS-BASELINE-GATE-PASS",
+      "observed_at": "2026-08-23T05:34:28.835Z",
+      "working_directory": "G:/AI_Agent/DEMOS_CODEX",
+      "argv": [".\\venv\\Scripts\\python.exe", "-E", "-m", "pytest", "-c", "code_assist_v1/pytest.ini", "-q", "-p", "no:debugging", "-p", "no:cacheprovider", "code_assist_v1/tests/knowledge_spaces/unit/test_pytest_isolation.py", "code_assist_v1/tests/test_verify_notion_core_free_ui_plan.py", "code_assist_v1/tests/test_notion_ui_completion_matrix.py", "code_assist_v1/tests/test_notion_ui_evidence_harness.py", "code_assist_v1/tests/test_notion_ui_reference_completion.py", "code_assist_v1/tests/test_notion_ui_reference_completion_manifest.py"],
+      "exit_code": 0,
+      "status": "pass",
+      "passed": 50,
+      "failed": 0,
+      "compact_verifiers": {
+        "scenario_plan": "pass",
+        "evidence_review_gate": "pass",
+        "pending_approval_batch": "pass",
+        "reference_completion_execution_manifest": "pass"
+      },
+      "source_reference": {
+        "path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9",
+        "scenario_catalog_sha256": "sha256:455de38d4ac91deb9de7df0a92fd94dcbcd234dd50569f8148ce3b4f80672a43",
+        "scenario_canonical_sha256": "sha256:3ff7de3c2f103eebbc55ecdc5ed10833a07dbcd708daeba5d502fe0061953442"
+      },
+      "classification": "U0A_P1_gate_passed_after_user_authorized_source_reference_reconciliation",
+      "is_product_evidence": false
+    }
+  ],
+  "source_reference_reconciliation_receipt": {
+    "receipt_id": "U0A-P1-SOURCE-REFERENCE-RECONCILIATION-20260823",
+    "recorded_at": "2026-08-23T05:34:28.835Z",
+    "authorization": {
+      "kind": "exact_user_message",
+      "text": "정합화하고 다시 재개해",
+      "effect": "authorize_this_stream_to_reconcile_the_previously_external_Core_UI_source_binding_and_resume"
+    },
+    "old_declared_source_sha256": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223",
+    "current_source_sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9",
+    "post_reconciliation_hashes": {
+      "scenarios.v1.json": "sha256:455de38d4ac91deb9de7df0a92fd94dcbcd234dd50569f8148ce3b4f80672a43",
+      "completion_matrix.v1.json": "sha256:bfb1a91ef4f7e07991dbf34f6f5cd6f371efe746d8498653b88617c77d5b586e",
+      "editor006_local_recovery_evidence_policy_proposal.v2.json": "sha256:9d393cd0f685fd0d65f9ae7b245325a2b4007127de2cf0f7a089f847b78cd185",
+      "approval_batch_queue.v4.json": "sha256:f1d94971702b791fe2d2afe96e615430cdd630a8a5f345ccca76724eef821486",
+      "approval_batch_receipt.v4.20260822.json": "sha256:508aee169dec8cd81c35cb618b0b8f62e812533c53eeff95447f9b70a6f7a2a3",
+      "remaining_evidence_modes.20260822.json": "sha256:b5039c67e230845ce33273efd1d7dc60487444c6483f88716ed3dbf687ed8aed",
+      "evidence_review_gate.v1.json": "sha256:d8e918346f0fad5ed863200d4e584bcd83672d892e4af91031e2ff7ddfafe32d",
+      "pending_approval_batch.r1_r3.20260822.json": "sha256:f8a7ae509ace00f117aa50ea60014de7c1e598f596888c9e4f2c71b9bcb51d0f",
+      "reference_completion_execution_manifest.r1_r3.20260822.json": "sha256:ec6b175785672e0ab6682d4f04b42624194b59d2be3e636b1fc6635df41aae5f",
+      "notion_core_free_ui_reference_completion.py": "sha256:839d3751e295d2124a06ef5f776ea069f55cac36ffd27727670f117c4237140d",
+      "test_notion_ui_reference_completion.py": "sha256:0819c32025e02e3626c5dd679c706ba1db63637642cd12aa1d834137271bc7be"
+    },
+    "worksheet_contract": {
+      "sha256": "sha256:6ca7ae02f16d8e07aad7ff065c44506ff506b7e01255cb05089bbcd444570d29",
+      "covered_fields": ["contract", "recorded_at", "profile", "preflight", "fixtures", "actions", "execution_policy"],
+      "excluded_independently_verified_fields": ["inputs", "claims"],
+      "reason": "Break the manifest-packet-matrix-review-pending-manifest hash cycle while preserving exact execution-instruction tamper evidence."
+    },
+    "reference_packet_sha256": {
+      "UI-SHELL-001": "sha256:4548aa286245efe6b869c9badd92272627e56ce3209a81e41f5274d51bc76f0e",
+      "UI-EDITOR-001": "sha256:ea4f922f17162b54a6e3ff876c20a98695d288905f6a4e735c0b1020c35921a5",
+      "UI-EDITOR-002": "sha256:20c661e37acb9380cedb55b8a4f243443ae016e38db6836c022247aada7a9a42",
+      "UI-EDITOR-005": "sha256:c9619802b4037d9ce809cee0e37834ae131f48ca92fa06878aeeb31e9ec12e7c",
+      "UI-DB-001": "sha256:ccc3890c4504d5fa743a370254e84321fbc9841faf53e7637d1e597e168fc3cd",
+      "UI-DB-002": "sha256:b067d84926ec97adbc8055ec5eedc0a93a2181e25b3e99dc44b524058b06727d",
+      "UI-DB-003": "sha256:6bc15ecad64b97cf7c83972107f64ff5fadae9cf72ac39f79ccfc71dc125de2e",
+      "UI-SEARCH-001": "sha256:c38eb639115a70ee20bb9345e40f1c551cf5d8a4dd83012ee016350e70558627",
+      "UI-SEARCH-002": "sha256:72746475cb802e1f2e556c37fbb3581fa98a025a4d48d23a240ad8dcc2c4bf7b",
+      "UI-COLLAB-001": "sha256:3a5f0e5971faa0b427bd8ff1ffe08d1b0ccf1cc1813f84ff7f5ff293bf87090a",
+      "UI-SHARE-001": "sha256:935dd81b13a0f1f78a15624a6aa742ab942fd5ac8ceabe86d503098a856feb43"
+    },
+    "external_reference_mutated": false,
+    "production_mutated": false
+  },
+  "safety_attestation": {
+    "AGENTS_md_modified": false,
+    "shared_status_traceability_goal_contract_modified": false,
+    "packet_catalog_matrix_or_validation_ladder_modified": false,
+    "product_or_test_code_modified": true,
+    "live_knowledge_user_data_runtime_or_per_user_notion_database_accessed": false,
+    "current_10111_10112_10113_or_10011_10012_service_started_stopped_or_mutated": false,
+    "external_notion_reference_mutated": false,
+    "production_mutated": false
+  },
+  "completion_truth": {
+    "U0A_P1_deliverables_recorded": true,
+    "U0A_P1_gate_passed": true,
+    "U0A_GATE_001_passed": false,
+    "any_product_packet_started": false,
+    "any_product_capability_complete": false,
+    "product_complete": false,
+    "active_goal_complete": false
+  },
+  "execution_cursor": {
+    "current_packet": "U0A-P2",
+    "current_state": "ready_to_start",
+    "blocking_condition": null,
+    "next_after_reconciliation": "Declare U0A-P2 ownership, implement the catalog and validation verifiers, assign and verify the single status integrator, then close U0A-GATE-001.",
+    "next_packet_after_U0A_P1": "U0A-P2",
+    "U0A_P2_scope": ["packet catalog schema and verifier", "validation ladder runner and verifier", "completion audit and strict gate modes", "duplicate-key, hash-drift, false-green, and tamper tests", "cross-catalog exact-path/hash/owner/lease/external-gate verifier", "status integrator assignment and hot-contract single-writer verifier"],
+    "goal_status_action": "Continue the user-resumed objective. The goal tool retains its prior blocked terminal record until the full objective is either completed or a new three-turn resumed blocked audit is satisfied.",
+    "blocked_audit": {
+      "consecutive_goal_turns": 3,
+      "same_blocking_condition": "scenarios.v1.json source_refs[0] expects sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223 while the stable concurrently owned NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md is sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9",
+      "source_files_modified_during_three_observations": false,
+      "local_safe_alternatives_exhausted": [
+        "Completed every U0A-P1 inventory deliverable in this packet-owned evidence file.",
+        "Ran the exact declared L0 baseline and compact verifier.",
+        "Recorded but did not overwrite the concurrent source ownership boundary.",
+        "Audited the evolving SBE-0.1 transition twice without mutating it.",
+        "Did not start U0A-P2 because the authoritative packet catalog requires U0A-P1 gate_passed."
+      ],
+      "resume_condition": "The Core UI owner reconciles source_refs[0] to the intended frozen source and L0-UI-HARNESS-BASELINE passes. Before U0A-P2, also require the active SBE-0.1 integrator to return contract_audit status pass and publish a stable hash-bound hot-contract receipt.",
+      "blocked_is_goal_completion": false
+    },
+    "ownership_resolution_decision": {
+      "recorded_at": "2026-08-23T05:00:35.669Z",
+      "selected_by_user": "recommended_existing_Core_UI_owner_reconciles_source_reference",
+      "Core_UI_owner_action": "Continue the separate Core UI development and reconcile scenarios.v1.json source_refs[0] to the intended frozen NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md revision, then provide or leave a green L0 receipt.",
+      "this_stream_action": "Do not edit either concurrently owned file; monitor their hashes and resume with L0-UI-HARNESS-BASELINE when they match.",
+      "unrelated_development_action": "Continue normally; AGENTS.md, SBE-0.1, and unrelated product files do not need to stop for this decision.",
+      "cross_session_control_available": false,
+      "resume_probe": {
+        "expected_source_sha256": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223",
+        "observed_source_sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9",
+        "match_at_decision_time": false
+      }
+    },
+    "resumed_blocked_audit": {
+      "fresh_audit_started_at": "2026-08-23T05:08:40.486Z",
+      "consecutive_resumed_goal_turns": 3,
+      "same_blocking_condition": "scenarios.v1.json source_refs[0] expects sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223 while NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md is sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9",
+      "resolved_parallel_condition": "SBE-0.1 contract audit passed with zero errors and is no longer a U0A-P1 blocker.",
+      "last_observed_at": "2026-08-23T05:12:46.354Z",
+      "source_files_modified_during_observations": false,
+      "goal_status_after_observation": "blocked",
+      "goal_status_committed_at": "2026-08-23T05:13:50.616Z",
+      "blocked_threshold": 3,
+      "blocked_threshold_reached": true,
+      "resolved_at": "2026-08-23T05:34:28.835Z",
+      "resolution": "The user authorized this stream to reconcile the source binding; the circular evidence hash was removed by separating immutable worksheet authority from independently verified transitive inputs, and L0 passed 50/50.",
+      "resumed_by_user": true,
+      "blocked_is_goal_completion": false
+    }
+  }
+}

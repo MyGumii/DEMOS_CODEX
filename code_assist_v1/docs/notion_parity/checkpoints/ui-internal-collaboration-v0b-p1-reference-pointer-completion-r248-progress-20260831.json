@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-REFERENCE-POINTER-COMPLETION-R248-PROGRESS-20260831",
+  "recorded_at": "2026-08-31T13:17:37.1462794+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The retained r248 Chrome 153 full candidate captures all 18 named states at both adopted viewports, passes all 36 accessibility captures and all four component journeys, and completes synthetic cleanup. Completing the state-bounded recorded-pointer alignment for V0R-MU-008, V0R-MU-012, and V0R-MU-015 reduces the full unmasked difference by 3,310 pixels and the raw difference by 5,666 pixels from r243. The cumulative reduction from r231 is 51,523 unmasked pixels and 53,895 raw pixels. Exact RGBA remains 0/36, so r248 is a mutable progress candidate only and is not immutable V0B evidence, a phase-gate claim, or a product-complete claim.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-exact-v4-browser-20260830.json",
+      "sha256": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+      "modified_by_this_packet": false,
+      "concurrent_hot_contract_update_reread": true,
+      "conflicting_change_detected": false
+    },
+    "previous_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-reference-cursor-alignment-r243-progress-20260831.json",
+      "sha256": "sha256:ed846fa0e4faf2626b692266cab60e7d453aed26d4bc4982ae46dfb4899a040e"
+    },
+    "baseline_candidate": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r231/receipt.json",
+      "receipt_sha256": "sha256:6def10297f8011749f51c81a1f439059bd20313beebc1d1f92e0878964c0cca4",
+      "unmasked_difference_count": 2349944,
+      "masked_difference_count": 72612,
+      "raw_difference_count": 2422556
+    },
+    "previous_candidate": {
+      "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r243/receipt.json",
+      "receipt_sha256": "sha256:385e1c362884db460f50b953c18886804c91794c3d998a5efb7052aaec08666e",
+      "unmasked_difference_count": 2301731,
+      "masked_difference_count": 72596,
+      "raw_difference_count": 2374327
+    }
+  },
+  "implementation": {
+    "source_files": [
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:e89c34f4bfb5f2b759b1b78b29254a2af3a9065c1394c62ff94bdd53bfe4d629",
+        "changes": [
+          "retain the r243 state-bounded layout and recorded-pointer corrections",
+          "align the V0R-MU-008 pointer to the right viewport boundary at y=346",
+          "align the V0R-MU-012 pointer to fixed center 529,374 at both adopted viewports",
+          "align the V0R-MU-015 pointer to fixed center 781,284 at both adopted viewports"
+        ]
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:b9fd7185d0b81d5c5b3faff110125bc1595f3d4147e98c3ccd5e9c592b3bc4c3"
+      }
+    ],
+    "rejected_experiments_removed": [
+      "V0R-MU-001 pageEditorGroup 246 pixel vertical shift; actual I0 delta was +3,094 pixels"
+    ],
+    "repeat_run_variability": {
+      "V0R-MU-002_delta_from_r243": 975,
+      "V0R-MU-004_delta_from_r243": 106,
+      "V0R-MU-010_delta_from_r243": 713,
+      "V0R-MU-014_delta_from_r243": 1,
+      "interpretation": "These states had no corresponding retained source change after r243 and varied across repeat journey runs. V0R-MU-010 returned exactly to its r231 total, so the r243-only 713 pixel reduction is not claimed as a retained implementation improvement."
+    }
+  },
+  "retained_r248_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r248",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260831-r248/receipt.json",
+    "receipt_sha256": "sha256:73ebcdd260dc50b2a63d33811f7e18ce5139386227140a5afb967fc7438b1d7c",
+    "release_candidate_source_build_sha256": "sha256:71ca9181b50966bcfdb9e0385e86c2d4c54f02295ff51e5bc9f1924d403d245f",
+    "runtime_candidate_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "browser_major_version": "153",
+    "duration_ms": 368531,
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 2298421,
+    "masked_difference_count": 70240,
+    "raw_difference_count": 2368661,
+    "unmasked_delta_from_r243": -3310,
+    "masked_delta_from_r243": -2356,
+    "raw_delta_from_r243": -5666,
+    "unmasked_delta_from_r231": -51523,
+    "masked_delta_from_r231": -2372,
+    "raw_delta_from_r231": -53895,
+    "unmasked_state_totals": {
+      "V0R-MU-001": 203944,
+      "V0R-MU-002": 200292,
+      "V0R-MU-003": 137453,
+      "V0R-MU-004": 125192,
+      "V0R-MU-005": 80835,
+      "V0R-MU-006": 189974,
+      "V0R-MU-007": 113094,
+      "V0R-MU-008": 115339,
+      "V0R-MU-009": 131745,
+      "V0R-MU-010": 117642,
+      "V0R-MU-011": 113001,
+      "V0R-MU-012": 110620,
+      "V0R-MU-013": 143500,
+      "V0R-MU-014": 171718,
+      "V0R-MU-015": 82704,
+      "V0R-MU-016": 79620,
+      "V0R-MU-017": 90943,
+      "V0R-MU-018": 90805
+    },
+    "new_reproduced_state_deltas_from_r243": {
+      "V0R-MU-008": -1650,
+      "V0R-MU-012": -1180,
+      "V0R-MU-015": -2275
+    },
+    "c0_p2_measurements_ms": {
+      "presence_delivery_ms": 1796,
+      "comment_delivery_ms": 1968,
+      "reaction_delivery_ms": 1390,
+      "presence_ttl_expiry_ms": 15343,
+      "reconnect_ms": 1297
+    },
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:32771bfbc1c47b7f2e287c06f5e3b49db0e65f7d6397349fa544945fb4a37246"
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "working_directory": "workspace_root",
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py"
+      ],
+      "result": "14 passed in 10.98s",
+      "exit_code": 0
+    },
+    "full_candidate": {
+      "component_journey_statuses": {
+        "I0-P2": "pass",
+        "C0-P2": "pass",
+        "E1-P2": "pass",
+        "F0-P5": "pass"
+      },
+      "all_adopted_multiuser_states_captured": true,
+      "accessibility_evidence_complete": true,
+      "zero_unmasked_RGBA_difference": false
+    },
+    "active_service_health": {
+      "agent_10111_status": 200,
+      "notion_10112_status": 200
+    }
+  },
+  "promotion": {
+    "immutable_receipt_written": false,
+    "immutable_receipt_write_authorized": false,
+    "exact_gate_closed": false,
+    "core_25_fresh_rerun_complete": false,
+    "quiet_host_performance_gate_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_cursor": "Continue V0B-P1 exact-pixel convergence from the retained r248 mutable candidate. Recorded-pointer alignment is now covered for every reference state that visibly contains the Computer Use pointer. Prioritize non-pointer structural differences in V0R-MU-001, V0R-MU-002, V0R-MU-006, and V0R-MU-014. Do not run fresh Core 25 or quiet-host performance gates until the 36/36 exact gate closes."
+}

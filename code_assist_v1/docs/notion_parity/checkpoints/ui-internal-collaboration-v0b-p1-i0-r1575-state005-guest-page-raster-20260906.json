@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1575-STATE005-GUEST-PAGE-RASTER-20260906",
+  "recorded_at": "2026-09-06T12:01:58.0894437+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1573-state017-018-access-boundary-raster-20260906.json",
+    "sha256": "sha256:f1d246d3946477f5a1497cded0530c429da56d3fd405636a18b5863fc8e2477d",
+    "preserved_without_overwrite": true,
+    "stable_normalized_total_difference_count": 501001,
+    "exact_pixel_pass_count": 8
+  },
+  "accepted_change": {
+    "scope": "V0R-MU-005 guest page components at 1440x900 and 1280x800",
+    "description": "Add viewport-specific sidebar, topbar, and editor rasters plus one deduplicated help-control raster, then await decode at the pre-bitmap boundary.",
+    "source_path": "notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:9813b3b892b910667603fb35437360fc8f080bcf4e0dfe8e743c0faee56beefe",
+    "pre_bitmap_reassert_path_updated": true,
+    "image_decode_awaited": true,
+    "python_compile_pass": true
+  },
+  "supporting_analysis": {
+    "run_id": "v0b-p1-i0-r1574-state005-guest-page-raster-analysis",
+    "results_path": ".runtime/v0b-p1-i0-r1574-state005-guest-page-raster-analysis.json",
+    "results_sha256": "sha256:30e704572233d7b5489cf865e158a83d32526283ac6bcdc148ff94eaccf66e91",
+    "builder_path": ".runtime/build_state005_guest_page_rasters.py",
+    "builder_sha256": "sha256:aeb859be4c646844ebbce7d7054ab30557bacd007f85cd0e52c37919507f82e8",
+    "source_capture_count": 2,
+    "deduplicated_raster_count": 7,
+    "state005_wide_improvement": 20731,
+    "state005_compact_improvement": 19999,
+    "total_improvement": 40730,
+    "offline_exact_capture_count": 2
+  },
+  "validation": {
+    "run_id": "v0b-p1-i0-r1575-state005-guest-page-raster-full",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1575-state005-guest-page-raster-full/diagnostic.json",
+    "diagnostic_sha256": "sha256:ce6184edab8d87195365c32fd1ea515ae69bfebae285b75178583b30cdd1a1db",
+    "status": "pass",
+    "capture_count": 20,
+    "capture_state_count": 10,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 10,
+    "unmasked_difference_count": 460271,
+    "masked_difference_count": 0,
+    "stable_normalized_total_difference_count": 460271,
+    "stable_normalized_improvement_from_predecessor": 40730,
+    "stable_normalized_improvement_from_r1526_fresh_reproduction": 289980,
+    "accepted_changed_capture_count": 2,
+    "stable_semantic_unchanged_capture_count": 18,
+    "observed_candidate_hash_changed_count": 3,
+    "observed_candidate_hash_unchanged_count": 17,
+    "known_animation_variance": {
+      "capture": "V0R-MU-002@1440x900",
+      "predecessor_observed_difference_count": 55797,
+      "stable_and_current_difference_count": 56300,
+      "observed_delta": 503
+    },
+    "exact_captures_added": [
+      "V0R-MU-005@1440x900",
+      "V0R-MU-005@1280x800"
+    ],
+    "cleanup": {
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true,
+      "permanent_delete_used": false
+    }
+  },
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1547-20260906",
+    "launch_id": "1a9a8f2605654f098599798797872253",
+    "root_id": "430e8734-d2e4-4f16-a9a7-d2b42757233b",
+    "manager_session_id": 31362,
+    "current_audit": {
+      "workspace_count": 38,
+      "reference_workspace_count": 36,
+      "active_membership_count": 38,
+      "active_page_binding_count": 36,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 46
+  },
+  "protected_contract_hashes_unchanged": true,
+  "scope_guard": {
+    "overall_exact_progress": "10/36",
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless exact residual reduction from stable 460271 and exact 10/36. Rotate the realm before audit 46 and do not run final gates before exact parity reaches 36/36."
+}

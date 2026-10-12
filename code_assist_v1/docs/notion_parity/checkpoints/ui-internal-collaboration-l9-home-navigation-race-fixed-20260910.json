@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.l9.home_navigation_race_fix.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-L9-HOME-NAVIGATION-RACE-FIXED-20260910",
+  "recorded_at": "2026-09-10T03:49:39.3495483+09:00",
+  "status": "fixed_and_repeated_green",
+  "immutable_after_recording": true,
+  "failure_observations": {
+    "full_l9_failure": "home view became visible, then the late startup page load made pageView visible again",
+    "focused_reproduction_failure": "home view stayed visible initially, then the late startup page load changed homeNavBtn aria-selected back to false",
+    "first_partial_fix_failure": "an in-flight response was invalidated, but startup could still begin a new default-page load after the home action",
+    "full_l9_total_failures": 2,
+    "full_l9_unrelated_import_timeout": true
+  },
+  "diagnosis": {
+    "cause": "startup default-page selection and explicit home navigation had no shared navigation generation, so a page load could begin or commit after the user selected home",
+    "user_path_effect": "immediately selecting Home after sign-in could be reversed by the late automatic page selection",
+    "visual_layout_changed": false,
+    "authorization_or_data_contract_changed": false
+  },
+  "source_bindings": [
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "before_sha256": "sha256:3226ba6684849b8d055d513a24e970f5e89e048e222788f6d0c4ac60a9bf06cf",
+      "sha256": "sha256:8948bed5b27146b67fb4c837dbc22e85f507d24cfb59ed59e70621419448102f",
+      "classification": "product_source"
+    }
+  ],
+  "fix_contract": {
+    "home_navigation_invalidates_in_flight_page_loads": true,
+    "newer_page_navigation_invalidates_older_page_loads": true,
+    "stale_success_and_error_responses_are_ignored": true,
+    "startup_default_page_respects_newer_user_navigation": true,
+    "page_focus_policy_preserved": true,
+    "performance_budget_relaxed": false
+  },
+  "verification": {
+    "javascript_syntax_check_passed": true,
+    "pre_fix_focused_reproduction_failed": 2,
+    "post_fix_focused_runs_passed": 4,
+    "post_fix_focused_runs_failed": 0,
+    "post_fix_focused_run_durations_seconds": [
+      21.04,
+      20.2,
+      19.48,
+      21.11
+    ],
+    "full_browser_golden_journeys_passed": 21,
+    "full_browser_golden_journeys_failed": 0,
+    "full_browser_golden_duration_seconds": 510.33,
+    "isolated_performance_test_passed": 1,
+    "isolated_performance_test_failed": 0,
+    "isolated_performance_duration_seconds": 58.11,
+    "import_side_effect_test_runs_passed": 3,
+    "import_side_effect_test_runs_failed": 0,
+    "browser_suite_repository_tree_file_count": 3648,
+    "browser_suite_pre_and_post_tree_sha256": "sha256:1fdf22d23baa2c2b998dcc21986af5abe712c6b71a3fc22f0333ef97801e312b"
+  },
+  "authority_bindings": {
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    }
+  },
+  "claims": {
+    "historical_receipt_overwritten": false,
+    "central_catalog_ladder_matrix_or_pointer_modified": false,
+    "protected_sbe_source_or_contract_modified": false,
+    "external_target_or_production_action_executed": false,
+    "packet_or_gate_credit_awarded": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:2d783fec2dd0e80129981b775f5f18248dd144052fe7a519ca401ccc34a7d975"
+}

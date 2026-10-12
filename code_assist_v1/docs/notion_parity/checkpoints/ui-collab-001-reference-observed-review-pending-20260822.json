@@ -1,0 +1,162 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T00:58:33.9767712+09:00",
+  "run_id": "ui16-collab-001-reference-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-COLLAB-001",
+    "reference_workspace_alias": "REF-FREE-A",
+    "synthetic_page_alias": "UI-PARITY-RUN-COMMENT-001",
+    "synthetic_comment_alias": "UI 합성 댓글 001",
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_persisted": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "transient_screenshot_used_for_visual_confirmation": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "page_and_comment_trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "ref_free_a_root"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-COLLAB-001",
+    "status": "reference_observed_review_pending_six_semantic_fields",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 9,
+    "reference_partially_observed": 3,
+    "reference_unobserved": 8,
+    "completion_matrix_sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586",
+    "overall_goal_complete": false
+  },
+  "input_snapshot": {
+    "agents_sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572",
+    "test_source_sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3",
+    "local_source_build_sha256": "sha256:8d0eb7ee6e24ed4824707ef3c788074d71843742a8a87b841e713f83504614f4",
+    "reference_source_build_sha256": "sha256:a38b080d126ae53d5b3342d62ac27c7d0c2723422e0a03a656017037947c39e2",
+    "action_log_sha256": "sha256:4d6b99ae81f4e4f47519aac039a36b69b2ad086874867d20ecbfe0b94555b6d0"
+  },
+  "reference_action_captures": {
+    "UI-COLLAB-001-A01": {
+      "sha256": "sha256:fc32bb269c7be2a25d59ba11e0e8d72925e15d6d99a80d592b254e3d48a99b78",
+      "capture_validation_errors": 0,
+      "state": {"count": 1, "result": "pass"},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"sequence": ["COMMENT-INPUT"]},
+      "a11y": {"name": "COMMENT-THREAD", "role": "textbox"},
+      "semantic_visual": {"region": "COMMENT-PANEL", "state": "posted"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {
+        "COMMENT-THREAD": {"height": 90, "width": 681, "x": 772, "y": 234}
+      },
+      "latency_ms": 1000
+    },
+    "UI-COLLAB-001-A02": {
+      "sha256": "sha256:1a1788a0c3b742ba417b94cdf8f5e978732df41f2c203f74032637f8668a48ef",
+      "capture_validation_errors": 0,
+      "state": {"count": 1, "result": "pass"},
+      "keyboard": {"result": "not_applicable"},
+      "focus": {"sequence": ["BODY"]},
+      "a11y": {"name": "COMMENT-THREAD", "role": "NONE"},
+      "semantic_visual": {"region": "COMMENT-PANEL", "state": "resolved_and_hidden"},
+      "error_recovery": {"result": "pass"},
+      "geometry": {},
+      "latency_ms": 800
+    }
+  },
+  "reference_exact_results": {
+    "comment_text_exact": "UI 합성 댓글 001",
+    "comment_posted_count": 1,
+    "comment_posted_author_surface_present": true,
+    "comment_posted_time_surface_present": true,
+    "comment_post_focus_target": "COMMENT-INPUT",
+    "resolve_control_accessible_name": "해결",
+    "comment_hidden_from_page_after_resolve": true,
+    "resolve_focus_target": "BODY",
+    "all_discussions_surface_visible": true,
+    "resolved_comment_visible_in_all_discussions": true,
+    "reopen_control_accessible_name": "다시 열기",
+    "reopen_focus_target": "RESOLVE-CONTROL",
+    "comment_text_occurrences_after_reload": 2,
+    "resolve_control_count_after_reload": 2,
+    "reopen_control_count_after_reload": 0,
+    "reopened_state_survived_reload": true,
+    "page_association_survived_reload": true,
+    "external_invite_or_recipient_selected": false,
+    "external_email_or_message_control_invoked": false,
+    "network_capture_performed": false,
+    "synthetic_page_and_comment_moved_to_trash": true,
+    "synthetic_page_residual_count": 0,
+    "synthetic_comment_residual_count": 0,
+    "open_dialog_residual_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_evidence": {
+    "current_exact_test": "1 passed in 21.55s",
+    "comment_mutation_sequence": ["POST", "PATCH", "PATCH"],
+    "comment_round_trip": true,
+    "focus_sequence": ["COMMENT-THREAD", "COMMENT-THREAD", "COMMENT-THREAD"],
+    "external_request_count": 0,
+    "second_brain_item_delta": 0,
+    "second_brain_revision_delta": 0,
+    "synthetic_only": true,
+    "historical_action_capture_sha256": {
+      "UI-COLLAB-001-A01": "sha256:c826b3e1ead95c90daa65b896593cefb3bf684d695431c539d1c2117c928fbce",
+      "UI-COLLAB-001-A02": "sha256:0d776195593c2747e52a4cff82a005132e8147aed61404d8410d25a64eb16cd2"
+    },
+    "current_capture_hash_status": "not_reextracted_after_current_source_build; exact current journey passed"
+  },
+  "precalibration_differential": {
+    "status": "fail",
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-COLLAB-001-A01": {
+        "difference_count": 3,
+        "differences": ["a11y", "focus", "keyboard"]
+      },
+      "UI-COLLAB-001-A02": {
+        "difference_count": 3,
+        "differences": ["a11y", "focus", "keyboard"]
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "interpretation": "Both implementations preserve the exact comment, resolve it, reopen it, and retain the reopened page association after reload. Official Free web leaves focus in the comment textbox after posting, on the body after resolving, and on the resolve control after reopening; local intentionally restores focus to a stable named comment-thread group after each mutation."
+  },
+  "redacted_review_summary": {
+    "reference_profile": "Chrome desktop Free owner ko-KR",
+    "reference_workspace": "REF-FREE-A",
+    "result": "A synthetic comment was posted, resolved, found in All discussions, reopened, and verified after reload with exact text and page association. The official surface changes focus across the comment input, body, and resolve control, unlike the local stable thread-group focus. No recipient, invite, public link, email, or external-message control was used.",
+    "cleanup": "The synthetic page and its comment were moved together to Trash; the REF-FREE-A tree has zero matching page/comment residuals and no open dialog remains.",
+    "privacy": "No personal workspace/page, raw DOM, network payload, cookies or storage, screenshot, invitation, public posting, permanent delete, or local live data was used."
+  },
+  "claims": {
+    "ui_collab_001_reference_observed": true,
+    "ui_collab_001_reference_characterized": false,
+    "ui_collab_001_differential_passed": false,
+    "completion_matrix_changed": false,
+    "certified_count": 5,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain workspace-owner approval of this redacted summary before sealing the receipt or changing local comment-thread focus semantics. Preserve the 5/25 certified parent until the selected behavior and the full regression ladder pass."
+}

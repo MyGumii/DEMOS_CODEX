@@ -1,0 +1,219 @@
+{
+  "contract": "np2c4d_1317_atomic_subtree_finalizer_rehearsal_checkpoint_v1",
+  "recorded_at": "2026-08-14T14:59:12+09:00",
+  "run_id": "np2c4d-1317-atomic-subtree-finalizer-rehearsal-20260814",
+  "model_handoff_profile": "ultra_plan_xhigh_execution_ready",
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "resume current development documents and plan, verify the goal, and continue development",
+    "completion_claimed": false
+  },
+  "slice": {
+    "id": "NP2C-4d-atomic-catalog-finalizers-and-exact-sentinel-rehearsal",
+    "status": "offline_quiesced_contract_tested_complete",
+    "next_slice": "NP2C-4e-independent-audit-and-bounded-adversarial-rehearsal",
+    "next_design_after_audit": "NP2C-5-official-archive-source-contract-design",
+    "runtime_or_live_followup_authorized": false,
+    "live_or_differential_pass_claimed": false,
+    "overall_np2c_complete_claimed": false,
+    "overall_parity_complete_claimed": false
+  },
+  "schema": {
+    "source_version": 2026081316,
+    "source_name": "notion_workspace_v2_np2c_lifecycle_subtree_guards",
+    "source_checksum": "sha256:04db7799402ea563228c6be4b016907c0f51ae4ba376fb176bb2a15ca588d81c",
+    "source_actual_schema_sha256": "sha256:cb375ac9e36d42fb3896eabf11f32d6b35a131f5075c1512a51add3da6d32981",
+    "source_object_count": 179,
+    "target_version": 2026081317,
+    "target_name": "notion_workspace_v2_np2c_lifecycle_subtree_finalize_authority",
+    "target_checksum": "sha256:6cb890ccc026435715a1c9171b4d1fd0f74ae6896f63d3cdf66a27b6eec5b61b",
+    "target_actual_schema_sha256": "sha256:650a031ff1f7d1794bde06d9f9479794d0c89fa2faba8e07762badfe3c500aad",
+    "target_object_count": 179,
+    "maximum_effect_rows": 11004,
+    "transitioned_values": [0, 1],
+    "frozen_1316_independent": true,
+    "request_or_startup_migration_enabled": false,
+    "operational_catalog_migrated": false
+  },
+  "implemented": {
+    "explicit_offline_1316_to_1317_migration_and_dry_run_cli": true,
+    "transitioned_and_unchanged_parent_sibling_effect_authority": true,
+    "active_to_active_proof_refresh_guard": true,
+    "atomic_duplicate_trash_restore_catalog_finalizer": true,
+    "binding_projection_incarnation_tree_manifest_effect_mapping_atomicity": true,
+    "workspace_security_tree_version_and_operation_audit_outbox_atomicity": true,
+    "exact_source_lineage_receipt_and_command_fence_revalidation": true,
+    "duplicate_full_binding_and_tree_creation": true,
+    "trash_projection_removal_and_exact_tree_transition": true,
+    "restore_exact_same_incarnation_cohort": true,
+    "finalized_replay_before_sentinel_path_quiescence_and_source_io": true,
+    "exact_sentinel_offline_orchestration": true,
+    "identifier_free_aggregate_report": true,
+    "deep_health_finalized_evidence_correlation": true,
+    "runtime_registration": false,
+    "routes_or_ui_changed": false,
+    "resolver_cutover": false,
+    "continuous_worker": false,
+    "destructive_watermark_ack": false,
+    "official_archive_unarchive": false,
+    "public_duplicate": false,
+    "permanent_delete_or_purge": false,
+    "live_data_access": false
+  },
+  "machine_contract": {
+    "version": 17,
+    "status": "duplicate_trash_restore_1317_atomic_catalog_finalizer_and_offline_rehearsal_contract_tested_default_off",
+    "verified_valid": true,
+    "current_workspace_schema_version": 2026081317,
+    "candidate_workspace_schema_version": 2026081317,
+    "runtime_commands_enabled": false,
+    "permanent_delete_enabled": false
+  },
+  "tests": [
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_subtree_finalize.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_subtree_kernel.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_subtree_finalize.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_subtree_orchestration.py code_assist_v1\\tests\\test_notion_workspace_page_tree.py -q",
+      "result": "24 passed in 72.85s",
+      "exit_code": 0,
+      "snapshot_note": "post-document-sync current-tree focused run"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_workspace_migration_chain_rehearsal.py -q",
+      "result": "2 passed in 8.31s",
+      "exit_code": 0,
+      "snapshot_note": "full frozen 1303 through 1317 chain plus retained pre-1317 restore replay"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q",
+      "result": "3 passed in 0.78s",
+      "exit_code": 0
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_np2c_page_tree_contract",
+      "result": "valid=true, contract=17, current=1317, candidate=1317, runtime_commands=false, permanent_delete=false",
+      "exit_code": 0
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m py_compile code_assist_v1\\notion_workspace_lifecycle_subtree_finalize_migration.py code_assist_v1\\notion_workspace_page_lifecycle_subtree_finalize.py code_assist_v1\\notion_workspace_page_lifecycle_subtree_orchestration.py code_assist_v1\\tools\\migrate_notion_workspace_lifecycle_subtree_finalize.py code_assist_v1\\tools\\verify_notion_np2c_page_tree_contract.py",
+      "result": "passed",
+      "exit_code": 0
+    },
+    {
+      "command": "earlier current-production-source 1317 migration/kernel/finalizer lane",
+      "result": "20 passed in 58.27s",
+      "exit_code": 0
+    },
+    {
+      "command": "earlier current-production-source source-adapter/structural/finalizer/rehearsal lane",
+      "result": "48 passed in 127.53s",
+      "exit_code": 0
+    },
+    {
+      "command": "earlier current-production-source store/projection/healing/outbox lane",
+      "result": "170 passed, 2 historical expectation failures in 341.44s; both expectations corrected and exact rerun 2 passed in 3.87s",
+      "exit_code": 0,
+      "snapshot_note": "production failure count was zero; the two failures were 1317 expectation drift"
+    }
+  ],
+  "observed_corrected_failures": [
+    {
+      "failure": "migration-chain final marker compared the 1317 catalog with the frozen 1316 actual-schema hash",
+      "classification": "historical fixture expectation drift",
+      "correction": "bound the final marker to migration_1317.TARGET_ACTUAL_SCHEMA_SHA256",
+      "final_result": "chain progressed to retained-snapshot check"
+    },
+    {
+      "failure": "retained final snapshot was pre-1317 but the test reapplied migration_1316",
+      "classification": "migration-chain final-step fixture drift",
+      "correction": "reapplied migration_1317 to the retained pre-1317 snapshot",
+      "final_result": "2 passed"
+    },
+    {
+      "failure": "one short exact rerun printed 2 passed and then PowerShell exited with 0xc0000409",
+      "classification": "known host-dependent post-test process termination",
+      "correction": "reran the same exact command once in the canonical shell",
+      "final_result": "2 passed with exit code 0; abnormal attempt retained in evidence"
+    }
+  ],
+  "files": {
+    "code_assist_v1/notion_workspace_store.py": "eb654ab9ccb3904cfe246060d2b21d8a3a400af7a6294c7fb4f8bfab7d95fe8c",
+    "code_assist_v1/notion_workspace_lifecycle_subtree_migration.py": "a56d65e79bde93ce4e1122e0f7d86113f650144eb473f5acbce7b2412a178ede",
+    "code_assist_v1/notion_workspace_lifecycle_subtree_finalize_migration.py": "67f00babc3e09c6e7308b77ef52fe2af12810573257ae7a3ccb45619805aca95",
+    "code_assist_v1/notion_workspace_page_lifecycle_subtree_finalize.py": "4c5b4a77b35b0dbb08cf209263a72874dff308ab7f4feecdb0282f3fdca7adce",
+    "code_assist_v1/notion_workspace_page_lifecycle_subtree_orchestration.py": "439791223e5a7db6dd9a8f8dd03795f3e960b0336afb8178d32bc6a95f6e830e",
+    "code_assist_v1/notion_workspace_rehearsal.py": "64da281dc0861d9baddaf591235579eee40444e5195576b0bc7adac940d338e1",
+    "code_assist_v1/notion_legacy_page_duplicate_trash_restore_contract.py": "d8e48b1162e2b7e42d85311d9f893a2f06a8eeb909c06ead1b5ebea902d38101",
+    "code_assist_v1/notion_legacy_page_duplicate_trash_restore.py": "392c4ab4c9cba15e63583050ac35403fda7fc479f5af27bd61818528dda1ea55",
+    "code_assist_v1/tools/migrate_notion_workspace_lifecycle_subtree_finalize.py": "be6aad26740a36b551486b9af14a8a6e80d3210990434b2623f94956733e42e7",
+    "code_assist_v1/tools/verify_notion_np2c_page_tree_contract.py": "ace0680d6f80ff3ed57a67f4d69b571cc231863ede710eb0fe414eeb662c971e",
+    "code_assist_v1/tests/test_migrate_notion_workspace_lifecycle_subtree.py": "5dd8c81bf2bc127e1c5031668690694592bc1d622cfed07e10183151f962d4b3",
+    "code_assist_v1/tests/test_migrate_notion_workspace_lifecycle_subtree_finalize.py": "78232ceee999299043f52c6ee39f1b2a82cd9de45ea9360a4e71da6be1527fcc",
+    "code_assist_v1/tests/test_notion_workspace_page_lifecycle_subtree_kernel.py": "7b025fabeb729fa43df2fdd11af52f70ba7dc288d0c8f5489ce739a190977ab3",
+    "code_assist_v1/tests/test_notion_workspace_page_lifecycle_subtree_finalize.py": "5c999b2abd607bfbb5e1e3838bd3d2feeb360de5903adcde909b047026c8c135",
+    "code_assist_v1/tests/test_notion_workspace_page_lifecycle_subtree_orchestration.py": "497855452240f89b19f89963c24107aeb8b72999fdc6e692d20c553670b38de0",
+    "code_assist_v1/tests/test_notion_workspace_page_tree.py": "e17ac812047cf59f27b66241177f4e11ed182a5afac5d97fdcffe311bb737760",
+    "code_assist_v1/tests/test_notion_workspace_migration_chain_rehearsal.py": "d2830076038b8d38ab9fdf0218b73eb746b96554022f554e9925afb4511741c8",
+    "code_assist_v1/tests/test_notion_workspace_offline_rehearsal.py": "51be83d347487dbddc12878d12c208e8fdb2b7a8cafea03f31cbb13af9b10122",
+    "code_assist_v1/tests/test_verify_notion_np2c_page_tree_contract.py": "06513deb6e77ddd11f9f54f5d17459870d15a5c1a388df9cc7349b81f80a40bd",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "1b43846acd5fc620bd53d4d9c22225f4308964c09f3f703f10b0d56c0dcd38be",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "5f60ab7b6a715fe38765cf02f0d2da369bc13b41a950aecaa36759c3fb39ce17",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "b6ab21c2fb7c72b6b159e978c90dc8da96234445a7e89345d318a23687669cdb",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "f325f5ebb76bae5b1c985c2daf4409c29ce761a59fb6345f69701ddd6c89f926",
+    "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "fde0bfac1f5c945b44a3b5ccdcb41e460e70f35642922380109e9d52b84e7636",
+    "code_assist_v1/docs/notion_parity/NP2C_DUPLICATE_TRASH_RESTORE_DESIGN.md": "79bb27d377a033d62d6be90acde94103d2806045215245dfeb395e5ad4c58a5d",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "c905ae1488e2154c5f3b90e98ba7fd8acb6e1e8062f218fffdaf84064447a88b"
+  },
+  "protected_boundaries": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/notion_store.py": "06c5680d0d73f775787ac5d793f7bc1ffdfc36fcd6e37e1db75d0d566f00cb02",
+    "code_assist_v1/app_code.py_observed_at_final_audit": "15f449cab38ab17d584f697114875de8523c60eafc93ed61db771b724fb36a33",
+    "app_code_external_drift_observed_during_documentation": true,
+    "app_code_owned_or_modified_by_this_slice": false,
+    "agents_md_modified": false,
+    "knowledge_or_second_brain_boundary_modified": false,
+    "live_runtime_or_user_data_accessed": false,
+    "protected_regression_rerun_after_external_app_code_drift": false,
+    "protected_regression_note": "concurrent developer owns the changed protected file; this slice did not inspect, overwrite, stage, or claim its regression result"
+  },
+  "vcs": {
+    "git_repository_available": false,
+    "git_init_performed": false,
+    "commit_or_landed_claimed": false,
+    "changed_file_inventory_basis": "explicit file hashes and observed mtimes, not git diff"
+  },
+  "remaining_plan": {
+    "engineering_progress_estimate": "approximately 10 percent of full parity",
+    "formal_differential_parity": "0 percent",
+    "np2a_substrate_estimate": "approximately 80 percent",
+    "immediate": [
+      "re-read AGENTS.md and active goal; rehash every owned 1317 input",
+      "obtain explicit ownership before editing any shared implementation file",
+      "run NP2C-4e independent rollback, response-loss, 11004-effect-bound, redaction, import-isolation and deep-health audit",
+      "record serial test evidence without runtime enablement"
+    ],
+    "after_immediate_review": [
+      "design official Archive/unarchive as a source lifecycle distinct from current Trash compatibility",
+      "resolve the H5e-reserved source-version lineage before assigning any new source schema",
+      "keep public duplicate in NP2E and purge behind retention/legal/backup approval"
+    ],
+    "later_global_phases": [
+      "complete NP-0 live characterization and differential evidence harness",
+      "finish NP-2A runtime consumer, fail-closed locator resolver and controlled cutover",
+      "finish remaining NP-2B through NP-2E gates",
+      "execute NP-3 through NP-11 only by their documented dependency order and release gates"
+    ]
+  },
+  "resume": {
+    "first_action": "re-read AGENTS.md, inspect the active goal, and recompute all current hashes before editing",
+    "next_exact_gate": "NP2C-4e-independent-audit-and-bounded-adversarial-rehearsal",
+    "next_exact_command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_subtree_finalize.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_subtree_kernel.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_subtree_finalize.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_subtree_orchestration.py code_assist_v1\\tests\\test_notion_workspace_page_tree.py code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q",
+    "stop_if": [
+      "file ownership or checkpoint hash drift",
+      "frozen 1316 or 1317 contract mismatch",
+      "protected boundary change is required",
+      "live migration, route, UI, worker, resolver, watermark acknowledgement, official Archive implementation, public duplicate, or purge is required",
+      "source receipt, complete effect scope, file outcome, lineage, or cross-database response-loss state cannot be proven exactly",
+      "a concurrent developer modifies an owned file after the pre-edit snapshot"
+    ]
+  }
+}

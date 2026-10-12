@@ -1,0 +1,488 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/schemas/notion-parity-catalog-v1.json",
+  "title": "Notion parity scenario catalog",
+  "description": "Schema for dated, profile-specific parity scenarios. Observation state is deliberately separate from the existing manifest promotion vocabulary.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "catalog_id",
+    "title",
+    "baseline",
+    "scope",
+    "claims",
+    "profiles",
+    "sources",
+    "reference_conflicts",
+    "second_brain_hard_gates",
+    "scenarios"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "catalog_id": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+    "title": { "type": "string", "minLength": 1 },
+    "baseline": { "$ref": "#/$defs/baseline" },
+    "scope": { "$ref": "#/$defs/scope" },
+    "claims": { "$ref": "#/$defs/claims" },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/profile" }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "reference_conflicts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/referenceConflict" }
+    },
+    "second_brain_hard_gates": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/hardGate" }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/scenario" }
+    }
+  },
+  "$defs": {
+    "referenceDate": { "type": "string", "format": "date", "const": "2026-08-13" },
+    "phase": { "enum": ["NP-2", "NP-3"] },
+    "observationState": {
+      "enum": [
+        "unknown",
+        "reference-only",
+        "exists",
+        "contract-tested",
+        "live-characterized",
+        "differential-passed",
+        "reference-conflict",
+        "excluded"
+      ]
+    },
+    "promotionStatus": {
+      "type": ["string", "null"],
+      "enum": [null, "exists", "contract_tested", "live_characterized", "differential_passed"]
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference_date", "timezone", "source_priority", "live_observation"],
+      "properties": {
+        "reference_date": { "$ref": "#/$defs/referenceDate" },
+        "timezone": { "const": "Asia/Seoul" },
+        "source_priority": {
+          "type": "array",
+          "prefixItems": [
+            { "const": "official_help" },
+            { "const": "official_developer" },
+            { "const": "official_release" },
+            { "const": "approved_live_characterization" }
+          ],
+          "items": false
+        },
+        "live_observation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["availability", "observation_state", "reason"],
+          "properties": {
+            "availability": { "const": "unavailable" },
+            "observation_state": { "const": "unknown" },
+            "reason": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phases", "catalog_completeness", "phase_completion_claim", "description"],
+      "properties": {
+        "phases": {
+          "type": "array",
+          "prefixItems": [{ "const": "NP-2" }, { "const": "NP-3" }],
+          "items": false
+        },
+        "catalog_completeness": { "const": "partial" },
+        "phase_completion_claim": { "const": false },
+        "description": { "type": "string", "minLength": 1 }
+      }
+    },
+    "claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["live_characterized", "differential_passed", "np2_gate_complete", "np3_gate_complete"],
+      "properties": {
+        "live_characterized": { "const": false },
+        "differential_passed": { "const": false },
+        "np2_gate_complete": { "const": false },
+        "np3_gate_complete": { "const": false }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "plan", "role", "platform", "locale"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$" },
+        "plan": { "enum": ["free", "plus", "business", "enterprise", "not_applicable"] },
+        "role": {
+          "enum": [
+            "workspace_owner",
+            "workspace_admin",
+            "workspace_member",
+            "guest_editor",
+            "guest_commenter",
+            "guest_viewer",
+            "public_anonymous"
+          ]
+        },
+        "platform": {
+          "enum": [
+            "desktop_web",
+            "desktop_app_windows",
+            "desktop_app_macos",
+            "mobile_web",
+            "ios_app",
+            "android_app",
+            "public_web"
+          ]
+        },
+        "locale": { "type": "string", "pattern": "^[a-z]{2}-[A-Z]{2}$" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "title",
+        "url",
+        "reference_date",
+        "observation_state",
+        "promotion_status",
+        "live_observation_status",
+        "claim_summary"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$" },
+        "kind": { "enum": ["official_help", "official_developer", "official_release"] },
+        "title": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri", "pattern": "^https://(www\\.)?(notion\\.com|developers\\.notion\\.com)/" },
+        "reference_date": { "$ref": "#/$defs/referenceDate" },
+        "observation_state": { "const": "reference-only" },
+        "promotion_status": { "type": "null" },
+        "live_observation_status": { "const": "unknown" },
+        "claim_summary": { "type": "string", "minLength": 1 }
+      }
+    },
+    "evidenceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "observation_state", "promotion_status", "description"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^EV-[A-Z0-9]+(?:-[A-Z0-9]+)*$" },
+        "kind": {
+          "enum": [
+            "official_reference",
+            "repository_source",
+            "contract_test",
+            "live_capture",
+            "differential_report",
+            "legal_review",
+            "security_review"
+          ]
+        },
+        "observation_state": { "$ref": "#/$defs/observationState" },
+        "promotion_status": { "$ref": "#/$defs/promotionStatus" },
+        "source_id": { "type": "string", "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$" },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"
+        },
+        "sha256": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+        "reviewer": { "type": "string", "minLength": 1 },
+        "reviewed_at": { "type": "string", "format": "date-time" },
+        "description": { "type": "string", "minLength": 1 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "official_reference" } }, "required": ["kind"] },
+          "then": { "required": ["source_id"] }
+        },
+        {
+          "if": { "properties": { "kind": { "enum": ["live_capture", "differential_report"] } }, "required": ["kind"] },
+          "then": { "required": ["path", "sha256", "reviewer", "reviewed_at"] }
+        }
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observation_state",
+        "promotion_status",
+        "live_characterization",
+        "differential",
+        "unverified_reason",
+        "records"
+      ],
+      "properties": {
+        "observation_state": { "$ref": "#/$defs/observationState" },
+        "promotion_status": { "$ref": "#/$defs/promotionStatus" },
+        "live_characterization": { "enum": ["unknown", "captured"] },
+        "differential": { "enum": ["unknown", "passed", "failed"] },
+        "unverified_reason": { "type": ["string", "null"] },
+        "records": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/evidenceRecord" }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "observation_state": { "enum": ["unknown", "reference-only", "reference-conflict", "excluded"] } }, "required": ["observation_state"] },
+          "then": {
+            "properties": {
+              "promotion_status": { "type": "null" },
+              "live_characterization": { "const": "unknown" },
+              "differential": { "const": "unknown" },
+              "unverified_reason": { "type": "string", "minLength": 1 },
+              "records": {
+                "not": {
+                  "contains": {
+                    "properties": { "kind": { "enum": ["live_capture", "differential_report"] } },
+                    "required": ["kind"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "observation_state": { "const": "exists" } }, "required": ["observation_state"] },
+          "then": {
+            "properties": {
+              "promotion_status": { "const": "exists" },
+              "live_characterization": { "const": "unknown" },
+              "differential": { "const": "unknown" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "observation_state": { "const": "contract-tested" } }, "required": ["observation_state"] },
+          "then": {
+            "properties": {
+              "promotion_status": { "const": "contract_tested" },
+              "live_characterization": { "const": "unknown" },
+              "differential": { "const": "unknown" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "observation_state": { "const": "live-characterized" } }, "required": ["observation_state"] },
+          "then": {
+            "properties": {
+              "promotion_status": { "const": "live_characterized" },
+              "live_characterization": { "const": "captured" },
+              "differential": { "enum": ["unknown", "failed"] },
+              "records": {
+                "contains": {
+                  "properties": { "kind": { "const": "live_capture" } },
+                  "required": ["kind"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "observation_state": { "const": "differential-passed" } }, "required": ["observation_state"] },
+          "then": {
+            "properties": {
+              "promotion_status": { "const": "differential_passed" },
+              "live_characterization": { "const": "captured" },
+              "differential": { "const": "passed" },
+              "records": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "properties": { "kind": { "const": "live_capture" } },
+                      "required": ["kind"]
+                    }
+                  },
+                  {
+                    "contains": {
+                      "properties": { "kind": { "const": "differential_report" } },
+                      "required": ["kind"]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "referenceConflict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "status",
+        "type",
+        "scenario_ids",
+        "source_ids",
+        "summary",
+        "impact",
+        "blocks_status_at_or_above",
+        "resolution"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^RC-[A-Z0-9]+(?:-[A-Z0-9]+)*$" },
+        "status": { "enum": ["open", "resolved"] },
+        "type": { "enum": ["document_conflict", "ui_api_conflict", "platform_variance", "rollout_variance", "scope_ambiguity"] },
+        "scenario_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^NP(?:2|3)-[A-Z0-9]+(?:-[A-Z0-9]+)+-[0-9]{3}$" }
+        },
+        "source_ids": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$" }
+        },
+        "summary": { "type": "string", "minLength": 1 },
+        "impact": { "type": "string", "minLength": 1 },
+        "blocks_status_at_or_above": { "enum": ["live-characterized", "differential-passed"] },
+        "resolution": { "type": ["string", "null"] }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "open" } }, "required": ["status"] },
+          "then": { "properties": { "resolution": { "type": "null" } } }
+        },
+        {
+          "if": { "properties": { "status": { "const": "resolved" } }, "required": ["status"] },
+          "then": { "properties": { "resolution": { "type": "string", "minLength": 1 } } }
+        }
+      ]
+    },
+    "hardGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source_manifest_gate_id",
+        "title",
+        "blocking",
+        "applies_to_phases",
+        "assertions",
+        "evidence"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^SB-[A-Z0-9]+(?:-[A-Z0-9]+)*$" },
+        "source_manifest_gate_id": { "type": "string", "pattern": "^SB-[A-Z0-9]+(?:-[A-Z0-9]+)*$" },
+        "title": { "type": "string", "minLength": 1 },
+        "blocking": { "const": true },
+        "applies_to_phases": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/phase" }
+        },
+        "assertions": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "precondition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "statement"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^P[0-9]+$" },
+        "statement": { "type": "string", "minLength": 1 }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["step", "actor", "operation", "target", "input"],
+      "properties": {
+        "step": { "type": "integer", "minimum": 1 },
+        "actor": { "type": "string", "minLength": 1 },
+        "operation": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "target": { "type": "string", "minLength": 1 },
+        "input": { "type": ["string", "number", "boolean", "object", "array", "null"] }
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "channel", "comparison", "expected"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^A[0-9]+$" },
+        "channel": { "enum": ["state", "keyboard", "focus", "a11y", "geometry", "semantic_visual", "error_recovery", "latency", "security"] },
+        "comparison": { "enum": ["exact", "contains", "ordered", "no_leakage", "no_mutation", "preserve", "tolerance", "reference_to_characterize"] },
+        "expected": { "type": "string", "minLength": 1 }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "feature_id",
+        "phase",
+        "title",
+        "reference_date",
+        "source_ids",
+        "profile_ids",
+        "plan",
+        "role",
+        "platform",
+        "locale",
+        "preconditions",
+        "actions",
+        "assertions",
+        "reference_conflict_ids",
+        "second_brain_hard_gate_ids",
+        "evidence",
+        "notes"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^NP(?:2|3)-[A-Z0-9]+(?:-[A-Z0-9]+)+-[0-9]{3}$" },
+        "feature_id": { "enum": ["sidebar.workspace_navigation", "workspace.iam", "workspace.page_lifecycle", "editor.block_transactions", "editor.surface_parity", "editor.persistence_conflict"] },
+        "phase": { "$ref": "#/$defs/phase" },
+        "title": { "type": "string", "minLength": 1 },
+        "reference_date": { "$ref": "#/$defs/referenceDate" },
+        "source_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^SRC-[A-Z0-9]+(?:-[A-Z0-9]+)*$" } },
+        "profile_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$" } },
+        "plan": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["free", "plus", "business", "enterprise", "not_applicable"] } },
+        "role": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["workspace_owner", "workspace_admin", "workspace_member", "guest_editor", "guest_commenter", "guest_viewer", "public_anonymous"] } },
+        "platform": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["desktop_web", "desktop_app_windows", "desktop_app_macos", "mobile_web", "ios_app", "android_app", "public_web"] } },
+        "locale": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z]{2}-[A-Z]{2}$" } },
+        "preconditions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/precondition" } },
+        "actions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/action" } },
+        "assertions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/assertion" } },
+        "reference_conflict_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^RC-[A-Z0-9]+(?:-[A-Z0-9]+)*$" } },
+        "second_brain_hard_gate_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^SB-[A-Z0-9]+(?:-[A-Z0-9]+)*$" } },
+        "evidence": { "$ref": "#/$defs/evidence" },
+        "notes": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

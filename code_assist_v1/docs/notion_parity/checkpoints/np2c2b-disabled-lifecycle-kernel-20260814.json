@@ -1,0 +1,173 @@
+{
+  "run_id": "np2c2b-disabled-lifecycle-kernel-20260814",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "recorded_at": "2026-08-14T05:40:36.6928171+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "goal_completed": false
+  },
+  "slice": "NP2C-2b-disabled-page-lifecycle-command-kernel",
+  "status": "contract_tested_disabled_kernel_runtime_off",
+  "input_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/np2c2b-lifecycle-kernel-guards-20260814.json",
+    "sha256": "0a467bdf09e140dafd697a9992beec64fb7a9bc38349f3d1f8edc62d9021c3b5"
+  },
+  "schema": {
+    "runtime_version": 2026081312,
+    "runtime_name": "notion_workspace_v2_np2c_lifecycle_kernel_guards",
+    "checksum": "sha256:effcfb238406228b79ad780e39c0577de4ac851f881af520c92b627b98b529f6",
+    "actual_schema_sha256": "sha256:49e388386f2a90ea23fe8861554c50274b127de2ad7aa171e78bb4e9ded074e1",
+    "object_count": 142,
+    "ddl_changed_by_this_slice": false,
+    "frozen_1311_remains_importable": true
+  },
+  "implementation": {
+    "command_kernel_implemented": true,
+    "command_kernel_scope": "disabled_rename_protocol_with_injected_temp_source_effect",
+    "prepare_exact_replay": true,
+    "claim_reclaim_heartbeat_fencing": true,
+    "same_token_sufficient_live_lease_ack_write_free": true,
+    "source_applied_receipt_recording": true,
+    "source_receipt_revalidated_before_and_inside_finalize": true,
+    "tree_binding_incarnation_fence_rechecked": true,
+    "operation_audit_outbox_command_finalize_atomic": true,
+    "failed_and_manual_audit_terminal_replay": true,
+    "finalized_commitment_replay_and_deep_health": true,
+    "new_effect_requires_source_quiescence": true,
+    "terminal_replay_precedes_quiescence_and_source_callbacks": true,
+    "source_commit_response_loss_converges": true,
+    "catalog_finalize_outbox_fault_converges_without_duplicate_effect": true,
+    "callback_lease_expiry_is_write_free": true,
+    "catalog_generation_drift_is_write_free": true,
+    "kernel_report_identifier_free": true,
+    "real_legacy_source_adapter_implemented": false,
+    "real_legacy_rename_performed": false,
+    "source_title_or_content_persisted_in_catalog_event": false,
+    "tree_binding_or_locator_projection_refreshed_by_kernel": false,
+    "routes_implemented": false,
+    "ui_implemented": false,
+    "runtime_commands_enabled": false,
+    "resolver_cutover_enabled": false,
+    "continuous_worker_enabled": false,
+    "destructive_watermark_ack_enabled": false,
+    "permanent_delete_enabled": false,
+    "live_migration_applied": false,
+    "live_data_accessed": false
+  },
+  "output_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/notion_workspace_store.py": "711bbcddfbba3f7c790735b8bf83a43e308b41386810c262c4e0c06b4c9abff8",
+    "code_assist_v1/notion_workspace_page_lifecycle.py": "bd4f07c42893ada0658252c232048a5fe03cf42a7a6cdb9a0e4c2741a5958a79",
+    "code_assist_v1/tests/test_notion_workspace_page_lifecycle_kernel.py": "75d4f99ee40c781b8bcbcc68197b836b5183da4ec54d236133686075624ed9ee",
+    "code_assist_v1/tests/test_notion_workspace_page_lifecycle.py": "104396793b21f1948db1644f4a85cc248cb0c9ffd22bea94869b5f8d2ad0e0f3",
+    "code_assist_v1/tools/verify_notion_np2c_page_tree_contract.py": "3dffa9f5152e6286151077ed56117815a57206b1bb341334af26beea23d8e751",
+    "code_assist_v1/tests/test_verify_notion_np2c_page_tree_contract.py": "698c2d9f0819a5b26cf225f3a1e55c4c15c0b986b044da6c475580310913d72b",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "1c346ae95e21a3526e3e9b76201a0b408ac3d9bf9813a093b6b6d0971cedba3b",
+    "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "dae74523de3ababf07364dbf9fdefe80c6505fad107f5a0a22b4b5c41081e13f",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "d824a8f44ea2cc64f84c216c0b6bb544c7745188dd7e9a35d263866d6c0b83ee",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "4602129e1a10222c052671bc2209b9af2d7693593be44960a299df9eaadf7f20",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "b283863b6b2f2c65f9aebcf20f9cd216000d022cb38563202c7c085ca78a11a4"
+  },
+  "tests": [
+    {
+      "selection": "disabled lifecycle store kernel: replay, lease, callback expiry, catalog drift, finalize rollback and ledger corruption",
+      "result": "7 passed",
+      "exit_code": 0,
+      "duration_seconds": 18.60
+    },
+    {
+      "selection": "disabled lifecycle orchestration: source response loss, catalog finalize crash, terminal replay, quiescence and import isolation",
+      "result": "6 passed",
+      "exit_code": 0,
+      "duration_seconds": 13.54
+    },
+    {
+      "selection": "1312 frozen migration and raw SQL/deep-health guards",
+      "result": "12 passed",
+      "exit_code": 0,
+      "duration_seconds": 8.75
+    },
+    {
+      "selection": "offline page-tree materializer regression",
+      "result": "7 passed",
+      "exit_code": 0,
+      "duration_seconds": 14.37
+    },
+    {
+      "selection": "workspace store regression",
+      "result": "18 passed",
+      "exit_code": 0,
+      "duration_seconds": 26.02
+    },
+    {
+      "selection": "outbox worker regression",
+      "result": "21 passed",
+      "exit_code": 0,
+      "duration_seconds": 11.79
+    },
+    {
+      "selection": "healing store and apply regressions",
+      "result": "46 passed",
+      "exit_code": 0,
+      "duration_seconds": 66.96
+    },
+    {
+      "selection": "locator projection and navigation regressions",
+      "result": "33 passed",
+      "exit_code": 0,
+      "duration_seconds": 45.60
+    },
+    {
+      "selection": "workspace pages/routes/auth isolation",
+      "result": "56 passed",
+      "exit_code": 0,
+      "duration_seconds": 30.66
+    },
+    {
+      "selection": "NP2C, NP2B, H5e, manifest, catalog and route machine contracts",
+      "result": "67 passed",
+      "exit_code": 0,
+      "duration_seconds": 23.66
+    }
+  ],
+  "known_host_failures": [
+    {
+      "command": "combined py_compile plus lifecycle kernel and orchestration pytest",
+      "exit_code": -1073740791,
+      "windows_status": "0xC0000409",
+      "timing": "before pytest collection output",
+      "interpretation": "host process failure; no pass or code-failure inference",
+      "followup": "py_compile and each focused file were run separately and passed"
+    },
+    {
+      "command": "combined lifecycle kernel and orchestration pytest retry",
+      "exit_code": -1073740791,
+      "windows_status": "0xC0000409",
+      "timing": "before pytest collection output",
+      "interpretation": "repeated host process failure; combined command retired",
+      "followup": "serial per-file evidence only"
+    }
+  ],
+  "review_outcome": {
+    "p0_remaining_in_disabled_kernel_scope": 0,
+    "p1_remaining_in_disabled_kernel_scope": 0,
+    "protected_boundaries_changed": false,
+    "runtime_state_changed": false,
+    "next_slice": "NP2C-3a-rename-source-adapter-design-and-receipt-contract",
+    "next_slice_requirements": [
+      "characterize the exact legacy rename transaction and no-op behavior without live mutation",
+      "define canonical expected source revision and change-generation pre-state",
+      "define a source-side immutable operation receipt and exact post-state recognition",
+      "keep title and content out of catalog result audit outbox reports and checkpoints",
+      "define atomic catalog binding proof locator projection and tree-node refresh",
+      "decide whether a frozen 1313 catalog extension and a new legacy source migration are required",
+      "test source commit response loss and catalog finalize rollback with temporary sources only",
+      "keep routes UI runtime workers resolver ack purge and live migration disabled"
+    ]
+  },
+  "git_provenance": "unavailable: workspace .git is not valid repository metadata; no commit or landed claim",
+  "next_exact_work": "Re-hash this checkpoint and its owned files, then design NP2C-3a before changing source or catalog schemas. Do not register the kernel or mutate a real legacy source.",
+  "stop_reason": "The disabled NP2C-2b kernel is contract-tested. The active overall Notion parity goal remains open; real source adapters and later phases are incomplete."
+}

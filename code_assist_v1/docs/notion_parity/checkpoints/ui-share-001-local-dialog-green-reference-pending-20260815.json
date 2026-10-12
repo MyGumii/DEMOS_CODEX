@@ -1,0 +1,254 @@
+{
+  "contract": "code_assist.notion.core_free_ui_checkpoint.v2",
+  "recorded_at": "2026-08-15T07:23:24+09:00",
+  "run_id": "ui-share-001-local-dialog-green-20260815",
+  "model": {
+    "implementation_profile": "gpt-5.6-sol-xhigh",
+    "planning_and_review_profile": "gpt-5.6-sol-ultra"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-collab-001-local-comment-green-reference-pending-20260815.json",
+    "sha256": "sha256:550f894080449ee262c378aa5064794760841bf2e2b6d13ba31e368350accb01",
+    "semantic_status": "historical parent; local H3-H5 and H6 search/comment green, official reference pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-15T06:52:00+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": 25,
+    "conditional_scenarios": 6,
+    "extension_scenarios": 5,
+    "synthetic_only": true,
+    "business_enterprise_archive_conditional": true,
+    "excluded": [
+      "personal Notion workspaces and content",
+      "live user_data, knowledge, .runtime, and sessions",
+      "trial, payment, invite, and public posting",
+      "operational migration and live feature flags",
+      "continuous consumer and resolver cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI-SHARE-001-DIALOG-READ-ONLY",
+    "status": "local-real-browser-green-reference-pending",
+    "acceptance_ids": [
+      "SHARE-DIALOG-VISIBLE",
+      "SHARE-DIALOG-NAMED",
+      "SHARE-DIALOG-FOCUS",
+      "SHARE-ESCAPE-DISMISS",
+      "SHARE-TRIGGER-RETURN-FOCUS",
+      "ACCESS-MUTATION-ZERO",
+      "PUBLIC-LINK-MUTATION-ZERO",
+      "EXTERNAL-REQUEST-ZERO",
+      "SECOND-BRAIN-ZERO-DELTA",
+      "LOCAL-REPEATABILITY",
+      "SYNTHETIC-ONLY"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "pre_sha256": "sha256:9de2ea9a8ffa403a0b632b844654367e984867ab003218761e151d724d3e006d",
+        "post_sha256": "sha256:fb15ad2d94e3d1e9d29c314f167efd6cb529d5e0bba6ec702b33ebffb695749e"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "pre_sha256": "sha256:eccf87d062487565ece8798cbfe7d64c279ced9b3ba8b4c2474c6aee7e77189b",
+        "post_sha256": "sha256:da7b0e1556f430eb1aba3907ae305eda9fdc6550c17790448063d307a1db21e4"
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_ui_runtime.js",
+        "pre_sha256": "sha256:da34524c91f88794bb2d2db067a68addfff57c856a352423381b3db674700f4e",
+        "post_sha256": "sha256:d0fa2116d0540685c212b2867271ee444dd906106a2dc20f5f7bb4b1fe1eff06"
+      },
+      {
+        "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+        "pre_sha256": "sha256:20403d07e4626f8f27629e996cd7fe19f1d335b04aad0e4f31bfb56cbfa7a1df",
+        "post_sha256": "sha256:0046579393ce8876f5f5d42e2d3c4f866e1922d27bb146c3db9cc8cad33bc228"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHARE_001_LOCAL_DIALOG_RESULT_20260815.md",
+        "pre_sha256": null,
+        "post_sha256": "sha256:45c57349404193b433bafa79fc31bf46932a453c3f990643a8d43710151b32ba"
+      },
+      {
+        "path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "pre_sha256": "sha256:0b9cc4f39710deb7958fc22883e0deed88956c959a31df84b030ba4feff8fb30",
+        "post_sha256": "sha256:248bbc32a12392c33f7199f72296c8134e6a10284226f458775d1307bf090ae2"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "pre_sha256": "sha256:d43e5d27fab463766c281a1546c7704178e6bf9a486608e4caf1279481d44c70",
+        "post_sha256": "sha256:3a47ba86de8d4a34f29ee733bacf0f3fd6216928b911622b579e259a254238a8"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:eea5abdb0680aa7ab9c6ccd691f6c3eab8d3ae8e055e5667a5ba4ae0a645d365",
+        "post_sha256": "sha256:2fa3929a1c3193f754e790d32d81e09273dd50625426e053813b7a2ebd7d0a95"
+      }
+    ],
+    "read_dependencies": [
+      {
+        "path": "code_assist_v1/AGENTS.md",
+        "sha256": "sha256:1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9"
+      }
+    ],
+    "protected_unchanged": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/app_code.py",
+      "code_assist_v1/auth.py",
+      "code_assist_v1/config.py",
+      "code_assist_v1/tests/conftest.py",
+      "code_assist_v1/docs/knowledge_spaces/**",
+      "code_assist_v1/knowledge_core/**",
+      "code_assist_v1/tests/knowledge_spaces/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_accessed": false,
+    "reference_workspace_accessed": false,
+    "live_mutation": false,
+    "flags_unchanged": true,
+    "git_provenance_available": false
+  },
+  "evidence": {
+    "source_ui_build_sha256": "sha256:cf2bfc112fb04fca523576901a38f24cb502a61e7abf364fcd1cb4f5861de194",
+    "scenario_plan_sha256": "sha256:2f9e69171a55677feb2bf1ab2701aaec911b6f06557ed065768b40eda07434f3",
+    "local": {
+      "UI-SHARE-001-A01": "sha256:d58c3d2655f3cb3b1731af786453aef53bc4c21cc2637785d65a796f5d2f9888",
+      "UI-SHARE-001-A02": "sha256:1d9684056ff48e610521981b6a5123f9fd56513bb183ae011659aa8fa350689d"
+    },
+    "reference": null,
+    "differential": null,
+    "redaction": "pass",
+    "result_document": "docs/notion_parity/core_free_web_ui/UI_SHARE_001_LOCAL_DIALOG_RESULT_20260815.md"
+  },
+  "commands": [
+    {
+      "selection": "UI-SHARE-001 product red",
+      "result": "inspector lacked dialog semantics; 1 failed, 17 deselected in 13.33s",
+      "exit_code": 1
+    },
+    {
+      "selection": "first static contract after implementation",
+      "result": "source-pattern assertion over-constrained timer punctuation; behavior unchanged and assertion corrected",
+      "exit_code": 1
+    },
+    {
+      "selection": "UI-SHARE-001 focused current-source run",
+      "result": "1 passed, 17 deselected in 14.62s",
+      "exit_code": 0
+    },
+    {
+      "selection": "combined H6 search/comment/share selection",
+      "result": "share and search passed; comment setup title-save response timed out before feature path; 1 failed, 2 passed, 15 deselected in 61.15s",
+      "exit_code": 1
+    },
+    {
+      "selection": "exact comment retry",
+      "result": "1 passed in 14.47s",
+      "exit_code": 0
+    },
+    {
+      "selection": "first complete Chrome run",
+      "result": "17 passed; one editor test was assigned Chromium-rejected loopback port 3659; 1 failed in 356.81s",
+      "exit_code": 1
+    },
+    {
+      "selection": "first browser-safe port filter",
+      "result": "host low dynamic range exhausted the over-restrictive filter before navigation; 1 failed in 1.42s",
+      "exit_code": 1
+    },
+    {
+      "selection": "exact editor-recovery retry after explicit safe-range allocator",
+      "result": "1 passed in 20.61s",
+      "exit_code": 0
+    },
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py final current-source run",
+      "result": "18 passed in 372.91s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six Node UI/editor/navigation/publication/atomic-save/CSRF scripts",
+      "result": "6 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion route, atomic-save compatibility, and publication adapter",
+      "result": "25 passed in 11.52s",
+      "exit_code": 0
+    },
+    {
+      "selection": "Second Brain publication/job restart and chat characterization",
+      "result": "5 passed in 4.87s",
+      "exit_code": 0
+    },
+    {
+      "selection": "plan, fixture, evidence, packet, policy, differential, and reference-guard bundle",
+      "result": "90 passed in 24.86s",
+      "exit_code": 0
+    },
+    {
+      "selection": "isolated identifier-free UI-SHARE-001 report extraction",
+      "result": "pass; zero access mutations, external requests, and Second Brain deltas",
+      "exit_code": 0
+    },
+    {
+      "selection": "python -m code_assist_v1.tools.verify_notion_core_free_ui_plan --compact",
+      "result": "pass with 25 required scenarios and zero promotions",
+      "exit_code": 0
+    }
+  ],
+  "tests": {
+    "local_real_chrome": "18 passed",
+    "ui_share_real_chrome": "1 passed",
+    "node_contracts": "6 passed",
+    "notion_routes_and_storage": "25 passed",
+    "second_brain": "5 passed",
+    "evidence_and_reference_guards": "90 passed",
+    "scenario_verifier": "pass"
+  },
+  "claims": {
+    "h3_local_implementation_green": true,
+    "h3_complete": false,
+    "h4_local_scenario_set_green": true,
+    "h4_complete": false,
+    "h5_local_scenario_set_green": true,
+    "h5_complete": false,
+    "h6_local_scenario_set_green": true,
+    "h6_complete": false,
+    "h7_preview_and_publication_local_green": true,
+    "h7_complete": false,
+    "reference_characterized": false,
+    "differential_passed": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": true,
+    "overall_notion_parity_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "owned_file_drift": false,
+    "personal_content_exposure": false,
+    "live_data_access": false,
+    "protected_file_edit": false,
+    "auth_or_csrf_regression": false,
+    "second_brain_regression": false,
+    "purchase_invite_or_public_post_required": false,
+    "repeated_host_failure": false
+  },
+  "remaining": [
+    "recover signed-in Chrome control and run identifier-free C0 against synthetic REF-FREE-A/B only",
+    "capture and seal reference differentials for all local-green scenarios",
+    "complete H7 UI-SB-003 session attach/detach",
+    "complete H8 responsive/a11y/performance and H9 pilot/rollback gates"
+  ],
+  "next_exact_command": "if safe signed-in Chrome C0 remains unavailable, inspect UI-SB-003 and implement one synthetic session attach/detach round-trip with current-access revalidation and zero publication mutation; otherwise prioritize synthetic REF-FREE-A/B reference capture"
+}

@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_product_decision.g0_u.v1",
+  "decision_id": "G0-U",
+  "recorded_at": "2026-08-24T08:10:00Z",
+  "status": "frozen_product_owner_subgate",
+  "approval_receipt": {
+    "receipt_id": "G0-U-USER-PRODUCT-OWNER-APPROVAL-20260824",
+    "source": "current_user_conversation",
+    "approved_text_profile": "G0-U_recommended_policy",
+    "explicit_values": {
+      "identity": "active_general_accounts_auto_provisioned_and_workspace_membership_by_invitation",
+      "load_floor": "100_registered_30_simultaneous_10_same_page_editors",
+      "feature_scope": "proposed_internal_core_feature_denominator",
+      "recovery": "RPO_15m_RTO_60m_daily_30_monthly_12",
+      "offline": "level_2_browser_close_reopen_durable_unsent_edits"
+    },
+    "authorizes_external_mutation": false,
+    "authorizes_dev_or_production_service_start": false,
+    "authorizes_identity_import": false,
+    "authorizes_production_deployment": false
+  },
+  "prerequisite_evidence": {
+    "U0A-GATE-001": {
+      "path": "../checkpoints/ui-internal-collaboration-u0a-p2-harness-20260823.json",
+      "sha256": "sha256:64abae55cbf7fb39d7d770b4df969d84db80252510dd40497e97dc8208a85d33",
+      "status": "gate_passed"
+    },
+    "G0-E": {
+      "path": "internal_collaborative_engineering_decision.v1.json",
+      "sha256": "sha256:0dc3b39f9eb64b93496026701adf8638785268d0fb1dea9e021a8c8c58b4bb74",
+      "status": "frozen_engineering_subgate"
+    }
+  },
+  "decisions": {
+    "development_identity_import_scope": {
+      "development_identity_authority": "10111_Agent_identity_registry",
+      "development_notion_target": "10112_new_marker_bound_development_realm",
+      "production_identity_authority": "10011_Agent_identity_registry",
+      "production_notion_target": "10012_after_all_release_gates",
+      "provisioning": "just_in_time_shadow_profile_for_every_active_human_account",
+      "excluded_principals": [
+        "disabled_accounts",
+        "service_accounts",
+        "system_accounts"
+      ],
+      "password_or_login_authority_copied_to_notion": false,
+      "workspace_membership": "invitation_only_except_creator_owns_new_workspace",
+      "workspace_creation_per_user": "unlimited_product_quota",
+      "workspace_visibility": "owned_or_membership_granted_only",
+      "page_only_share_visibility": "shared_page_and_authorized_descendants_only",
+      "cross_workspace_search_or_notification_leak_allowed": false,
+      "external_email_guests_adopted": false,
+      "revoke_contract": "disable_remove_or_share_revoke_fences_existing_realtime_connections_and_all_derived_surfaces",
+      "actual_10111_import_requires_approval": "AP-DEV-PAIR"
+    },
+    "target_scale_and_deployment_topology": {
+      "product_quota_mode": "no_plan_or_user_feature_storage_quota",
+      "values_are": "minimum_acceptance_load_floors_not_runtime_admission_caps",
+      "initial_topology": "one_target_class_Windows_host_with_separate_Notion_app_gateway_and_Yjs_compactor_processes",
+      "registered_users": 100,
+      "simultaneous_connections": 30,
+      "simultaneous_editors_per_page": 10,
+      "pages_per_workspace": {
+        "product_limit": null,
+        "acceptance_fixture_floor": 10000
+      },
+      "blocks_per_page": {
+        "product_limit": null,
+        "acceptance_fixture_floor": 5000
+      },
+      "rows_per_database": {
+        "product_limit": null,
+        "acceptance_fixture_floor": 100000
+      },
+      "sustained_operations_per_second": 30,
+      "burst_operations_per_second": 100,
+      "attachment_concurrency": 10,
+      "disk_reserve": {
+        "minimum_free_bytes": 21474836480,
+        "minimum_free_percent": 20,
+        "rule": "fail_new_capacity_consuming_writes_when_either_floor_is_breached_without_hiding_existing_data"
+      },
+      "future_scale_rule": "raise_acceptance_profile_and_revalidate_before_claiming_a_larger_supported_deployment"
+    },
+    "adopted_feature_denominator": {
+      "adopted": [
+        "Core_25_desktop_web_scenarios",
+        "workspace_create_switch_invite_roles_and_leave",
+        "page_tree_create_move_duplicate_trash_restore_and_favorites",
+        "rich_block_editor_slash_drag_keyboard_undo_redo_and_Korean_IME",
+        "workspace_and_page_sharing_with_inherited_full_edit_comment_view_permissions",
+        "live_presence_cursor_selection_and_convergent_multi_user_editing",
+        "comments_replies_reactions_mentions_and_inbox",
+        "files_and_images",
+        "user_visible_page_history_and_revision_restore",
+        "table_board_list_gallery_calendar_and_timeline_database_views",
+        "database_filter_sort_group_relation_rollup_formula_and_templates",
+        "Markdown_and_CSV_import_export",
+        "reminders",
+        "permission_aware_search_recent_favorites_and_backlinks",
+        "exact_revision_Second_Brain_publication_and_attachment_boundary"
+      ],
+      "deferred_and_hidden": [
+        "charts",
+        "dashboards",
+        "forms",
+        "automations",
+        "feed_view",
+        "map_view",
+        "native_mobile_apps",
+        "full_offline_workspace_browse_and_search",
+        "external_calendar_and_mail_integrations"
+      ],
+      "excluded_and_hidden": [
+        "public_web_publish_and_public_links",
+        "external_email_guests",
+        "pricing_billing_and_plan_entitlements",
+        "Notion_AI_replica"
+      ],
+      "non_adopted_control_policy": "remove_or_fail_closed_every_control_route_and_deep_link_until_its_own_adoption_gate_passes",
+      "pixel_parity_scope": "every_adopted_reference_state_at_the_frozen_desktop_viewports_not_non_adopted_Notion_surfaces"
+    },
+    "recovery_backup_retention_and_history_policy": {
+      "rpo_seconds": 900,
+      "rto_seconds": 3600,
+      "write_drain_timeout_seconds": 60,
+      "backup_retention": {
+        "rolling_15_minute_generations": 96,
+        "daily_generations": 30,
+        "monthly_generations": 12,
+        "active_or_unverified_generation_may_be_pruned": false
+      },
+      "page_history_retention": "no_automatic_deletion_of_user_visible_revisions",
+      "raw_crdt_retention": "may_compact_only_after_verified_snapshot_high_water_backup_and_replay_proof",
+      "trash_retention_days": 30,
+      "external_destination": "encrypted_off_host_destination_required; exact_target_and_key_owner_freeze_at_AP-OPS-TARGET",
+      "restore_secret_policy": "rotate_session_signing_secret_and_force_reauthentication",
+      "restore_validation": "monthly_automated_new_root_restore_and_quarterly_full_service_recovery_drill",
+      "ordinary_process_fault_acknowledged_update_loss_allowed": false
+    },
+    "offline_editing_policy": {
+      "selected_level": 2,
+      "selected": "durable_browser_close_reopen_unsent_edit_recovery",
+      "storage_boundary": "per_subject_per_realm_per_workspace_encrypted_browser_outbox",
+      "supported_scope": "previously_opened_pages_with_locally_authored_unsent_operations",
+      "reconnect_contract": "reauthorize_subject_workspace_page_and_epochs_before_replay_then_deduplicate_by_operation_id",
+      "revoked_or_stale_epoch_behavior": "do_not_commit_and_offer_an_explicit_local_recovery_export_without_disclosing_new_server_state",
+      "logout_contract": "remove_local_collaboration_material_for_the_logged_out_subject",
+      "full_offline_workspace_browse_search_or_bulk_sync_adopted": false
+    }
+  },
+  "g0_aggregate_boundary": {
+    "G0_U_status": "frozen",
+    "G0_E_status": "frozen",
+    "G0_status": "frozen",
+    "G0_E_receipt_sha256": "sha256:0dc3b39f9eb64b93496026701adf8638785268d0fb1dea9e021a8c8c58b4bb74",
+    "implementation_packets_requiring_G0_may_start": true,
+    "next_packet": "K0-P1"
+  },
+  "claims": {
+    "G0_U_frozen": true,
+    "G0_E_frozen": true,
+    "G0_aggregate_frozen": true,
+    "identity_import_executed": false,
+    "dev_or_production_service_started": false,
+    "schema_migration_implemented": false,
+    "runtime_or_feature_enabled": false,
+    "live_or_production_data_accessed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

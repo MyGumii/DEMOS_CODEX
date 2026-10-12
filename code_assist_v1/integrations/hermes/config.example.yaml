@@ -1,0 +1,19 @@
+# Merge this server entry into the chosen Hermes profile's config.yaml.
+# Keep existing mcp_servers entries. Save the token separately, outside the repo.
+# Copy only hermes_mcp.py to the client; change all paths to that client's paths.
+# For another host, use its reachable HTTPS origin instead of this loopback URL.
+mcp_servers:
+  second_brain:
+    command: 'D:/Hermes/hermes-agent/venv/Scripts/python.exe'
+    args:
+      - 'D:/Hermes/tools/hermes_mcp.py'
+    env:
+      SECOND_BRAIN_URL: 'http://127.0.0.1:10221'
+      SECOND_BRAIN_TOKEN_FILE: 'D:/Hermes/second-brain.token'
+    enabled: true
+    timeout: 420
+    connect_timeout: 30
+    supports_parallel_tool_calls: false
+    tools:
+      resources: false
+      prompts: false

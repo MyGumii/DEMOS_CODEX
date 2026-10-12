@@ -1,0 +1,191 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T22:59:08.5682514+09:00",
+  "run_id": "ui6-editor-002-reference-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-reference-differential-green-20260821.json",
+    "sha256": "sha256:c02c179b83732e34709bdcfe38b1374f76d77de3a312030ae6f83767a56d9b1f",
+    "semantic_status": "current_5_of_25_certified_parent"
+  },
+  "parallel_pending_observations": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-shell-001-reference-observed-review-pending-20260821.json",
+      "sha256": "sha256:293b71d6184f60308cbd21b17196692941087066d802c1188af662328bebae5e",
+      "semantic_status": "awaiting_workspace_owner_summary_approval"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-001-reference-observed-review-pending-20260821.json",
+      "sha256": "sha256:549cac2ec21b31e425da7819ee1b5c9b9be812f0c8e3d5784c0fd53783d255e7",
+      "semantic_status": "awaiting_workspace_owner_summary_approval"
+    }
+  ],
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "objective": "UI-TREE-003 요약 승인하고 계획들 이어서 진행해줘"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-EDITOR-002",
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "raw_dom_captured": false,
+    "network_payload_captured": false,
+    "cookies_or_storage_captured": false,
+    "screenshot_persisted": false,
+    "external_side_effect_attempted": false,
+    "synthetic_mutation_executed": true,
+    "cleanup_disposition": "trash_only_recoverable",
+    "permanent_delete_used": false,
+    "final_tab_state": "handoff_ref_free_a"
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-EDITOR-002",
+    "status": "reference_observed_review_pending_one_focus_field",
+    "review_required": true,
+    "promotion_allowed": false
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 5,
+    "differential_passed": 5,
+    "reference_observed_review_pending": 3,
+    "reference_unobserved": 17,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:a8fc1aa9f922bb7b73af678b0d8fc0da4347c271322b54e22c328bf72d98b8fa",
+      "canonical_sha256": "sha256:a2c1a94be54f255cac128a4810a66ed1e0dd85f9762f2ecc850df0cc21ba0cf7"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+      "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:03fb4107916771efd6b1030ca589defdba8a926c851b327465a4838226eef3b3"
+    }
+  ],
+  "reference_intake": {
+    "worksheet_sha256": "sha256:d5d39525be811a1968117b1cfa479880672e67856e4b65e25e344d56af423f3c",
+    "c0_status": "pass",
+    "c0_sha256": "sha256:d1db281700feff3cdbccca23b9a031779ef004454bc1d0adcabe2ca05fd9dfc4",
+    "action_log_sha256": "sha256:1abca8dcab7f7d48e2b9500503efb1875372fa20e05246b8fd53208d0ad7243e",
+    "source_build_sha256": "sha256:03218a26ce51cdddfeac602b6f8add6b515cc6d12a0cd07307e6001addc5de10",
+    "source_build_basis": "profile_date_fingerprint_without_raw_build_access",
+    "capture_validation_errors": 0,
+    "operator_review": {
+      "status": "pending",
+      "scope": "redacted_summary_only"
+    }
+  },
+  "reference_action_captures": {
+    "UI-EDITOR-002-A01": {
+      "sha256": "sha256:5dd67c01badb147e83438ff6df8c712a94dbfcdcc7bc5e827e8fcacd56e25af7",
+      "state": {"count": 1, "result": "pass"},
+      "keyboard": {"result": "pass"},
+      "focus": {"name": "SLASH-MENU", "state": "focused"},
+      "a11y": {"name": "SLASH-MENU", "role": "DIALOG"},
+      "semantic_visual": {"region": "SLASH-MENU", "state": "visible"},
+      "geometry": {
+        "SLASH-MENU": {"height": 368, "width": 324, "x": 738, "y": 421}
+      },
+      "latency_ms": 3013
+    },
+    "UI-EDITOR-002-A02": {
+      "sha256": "sha256:390635ecf1994dfdb5f29b2586e386e5d01627925d14776aa20bae518f6ad708",
+      "state": {"count": 1, "result": "pass"},
+      "keyboard": {"result": "pass"},
+      "focus": {"name": "PAGE-EDITOR-GROUP", "state": "focused"},
+      "a11y": {"name": "BLOCK-HEADING", "role": "TEXTBOX"},
+      "semantic_visual": {"region": "PAGE-ROOT", "state": "restored"},
+      "geometry": {
+        "BLOCK-HEADING": {"height": 43, "width": 708, "x": 741, "y": 250}
+      },
+      "latency_ms": 851
+    }
+  },
+  "reference_exact_results": {
+    "slash_on_empty_synthetic_block_opened_dialog": true,
+    "slash_menu_exposed_listbox_options": true,
+    "slash_menu_focus_settled_on_expanded_combobox": true,
+    "heading_one_option_visible": true,
+    "heading_one_transform_closed_menu": true,
+    "heading_one_exposed_textbox_semantics": true,
+    "heading_content_round_trip_after_reload_exact": true,
+    "synthetic_page_moved_to_trash": true,
+    "synthetic_tree_residual_count": 0,
+    "final_dialog_count": 0,
+    "permanent_delete_used": false
+  },
+  "local_action_captures": {
+    "UI-EDITOR-002-A01": {
+      "sha256": "sha256:fcf29c446e0e16ff44aeae9b7ef040990a0a858a061aeecfcef999529b6434e3",
+      "state": {"count": 1, "result": "pass"},
+      "focus": {"name": "SLASH-MENU", "state": "focused"},
+      "a11y": {"name": "SLASH-MENU", "role": "DIALOG"},
+      "semantic_visual": {"region": "SLASH-MENU", "state": "visible"},
+      "geometry": {
+        "SLASH-MENU": {"height": 430, "width": 306, "x": 421, "y": 323}
+      }
+    },
+    "UI-EDITOR-002-A02": {
+      "sha256": "sha256:783f57227107ee670e6dcce4d64f0d69ddec018a7b1377df0871def69889fd79",
+      "state": {"count": 1, "result": "pass"},
+      "focus": {"name": "EDITOR-BLOCK", "state": "focused"},
+      "a11y": {"name": "BLOCK-HEADING", "role": "TEXTBOX"},
+      "semantic_visual": {"region": "PAGE-ROOT", "state": "restored"},
+      "geometry": {
+        "PAGE-ROOT": {"height": 202, "width": 760, "x": 475, "y": 151}
+      }
+    }
+  },
+  "precalibration_differential": {
+    "status": "fail",
+    "promotion_allowed": false,
+    "comparisons": {
+      "UI-EDITOR-002-A01": {
+        "difference_count": 0,
+        "differences": []
+      },
+      "UI-EDITOR-002-A02": {
+        "difference_count": 1,
+        "differences": ["focus"]
+      }
+    },
+    "geometry_and_latency": "measurement_only",
+    "interpretation": "Reference and local slash-menu state, keyboard behavior, dialog semantics, heading semantics, and reload persistence agree. After heading conversion the reference settles focus on the page editor group while local reports the transformed editor block as focused."
+  },
+  "verification": {
+    "isolated_local_browser_test": "1 passed in 33.77s",
+    "isolated_local_capture_run": "completed with deterministic action hashes and zero Second Brain deltas",
+    "reference_capture_validation": "2 captures, 0 errors",
+    "local_second_brain_item_delta": 0,
+    "local_second_brain_revision_delta": 0
+  },
+  "redacted_review_summary": {
+    "reference_profile": "Chrome desktop Free owner ko-KR",
+    "reference_workspace": "REF-FREE-A",
+    "result": "Typing slash in an empty synthetic block opened the command dialog and focused its expanded combobox. Choosing Heading 1 closed the dialog and produced a persistent heading textbox. The local implementation matched the menu and heading semantics; only the post-transform focus target differed, with reference focus on the page editor group and local focus on the transformed block.",
+    "cleanup": "The synthetic page was returned to Trash, no permanent delete was used, no synthetic tree row remained, and REF-FREE-A was left open with no dialog.",
+    "privacy": "No personal workspace/page, raw DOM, network payload, cookies or storage, persisted screenshot, public posting, invitation, or permanent delete was used."
+  },
+  "claims": {
+    "ui_editor_002_reference_observed": true,
+    "ui_editor_002_reference_characterized": false,
+    "ui_editor_002_differential_passed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Obtain workspace-owner approval of the redacted UI-SHELL-001, UI-EDITOR-001, and UI-EDITOR-002 summaries. Then seal receipts, preserve the certified 5/25 parent, and implement only the approved focus-state parity corrections before rerunning the exact browser, route, and Second Brain ladders."
+}

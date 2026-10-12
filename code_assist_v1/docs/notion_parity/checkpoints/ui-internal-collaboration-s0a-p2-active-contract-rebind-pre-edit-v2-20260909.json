@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.s0a.active_publication_contract_rebind_pre_edit.v1",
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-S0A-P2-ACTIVE-CONTRACT-REBIND-PRE-EDIT-V2-20260909",
+  "recorded_at": "2026-09-09T23:28:05.9432238+09:00",
+  "status": "pre_edit_boundary_recorded",
+  "immutable_after_recording": true,
+  "target_contract": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_second_brain_publication.v1.json",
+    "sha256": "sha256:4e16e79fef55d58a96d99df53ba549b90819bae056cd171b3e8465216b66b249"
+  },
+  "observed_manifest_drift": [
+    {
+      "path": "code_assist_v1/notion_collaboration/approved_dev_pair.py",
+      "recorded_sha256": "sha256:5a9ae04cd3cfa4311f16a80c03a1c9bc8efe3dfbd00cb5b47ff320b92aec01f0",
+      "current_sha256": "sha256:78e811b1d99c539098653cf35ee1b664d56217ab7833f7aaae87f31d0815e302"
+    },
+    {
+      "path": "code_assist_v1/tools/internal_collaborative_validation.py",
+      "recorded_sha256": "sha256:e67c7a81b0b947ad49db0107d69c44200545b092b0639025dbf4fce00173db0c",
+      "current_sha256": "sha256:f981578f3588d80564c734ad178b660e87f874c9381f0b5bb784b89ff52e8066"
+    }
+  ],
+  "dynamic_dependencies": {
+    "agents_md_sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "sbe_contract_audit_input_sha256": "sha256:5a4d63e8501680129928649687aa3713a28e02550942569b5898056a9aee38aa",
+    "sbe_audit_status": "pass",
+    "sbe_audit_error_count": 0
+  },
+  "planned_change": {
+    "scope": "replace_only_two_stale_source_manifest_sha256_values",
+    "central_catalog_ladder_matrix_or_pointer_modified": false,
+    "protected_sbe_source_or_contract_modified": false
+  },
+  "claims": {
+    "historical_checkpoint_overwritten": false,
+    "packet_or_gate_credit_awarded": false,
+    "target_or_production_action_executed": false,
+    "product_complete": false,
+    "shared_goal_complete": false
+  },
+  "record_sha256": "sha256:1d9d5c5acf3ee8c92adaac508eb49190ad3c9973cfb41318cf2761413154c2fb"
+}

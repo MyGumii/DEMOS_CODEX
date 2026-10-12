@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-I0-R1159-PROGRESS-20260905",
+  "recorded_at": "2026-09-05T09:29:54.6313387+09:00",
+  "status": "progress_only_not_final_gate",
+  "predecessor": {
+    "path": "docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-i0-r1149-progress-20260905.json",
+    "sha256": "sha256:76136c2f2324e224143485751874c38fbb62b9e233ad286e853b612cace4d4ba"
+  },
+  "retained_candidate": {
+    "run_id": "v0b-p1-i0-r1159-line-details-standard",
+    "diagnostic_path": ".runtime/v0b-p1-i0-r1159-line-details-standard/diagnostic.json",
+    "diagnostic_sha256": "sha256:d87dd72217b095501920d03f755e9a620b7062969345cf929d58ce6fbc1a2fb9",
+    "capture_source_path": "notion_collaboration/v0b_p1_capture.py",
+    "capture_source_sha256": "sha256:398a2a741f386d6eee20ad451b1cdd655129a5bdcd3baf7042281c5ef9a425ef",
+    "status": "pass",
+    "capture_count": 20,
+    "accessibility_pass_count": 20,
+    "interaction_pass_count": 20,
+    "exact_pixel_pass_count": 0,
+    "unmasked_difference_count": 795033,
+    "masked_difference_count": 0,
+    "total_difference_count": 795033,
+    "overall_exact_progress": "0/36"
+  },
+  "comparison": {
+    "predecessor_run_id": "v0b-p1-i0-r1149-state004-redactions-standard",
+    "predecessor_unmasked_difference_count": 820181,
+    "retained_unmasked_difference_count": 795033,
+    "net_unmasked_improvement_from_predecessor": 25148,
+    "predecessor_masked_difference_count": 0,
+    "retained_masked_difference_count": 0,
+    "net_masked_improvement_from_predecessor": 0,
+    "net_total_improvement_from_predecessor": 25148,
+    "source_attributable_regression_count": 0,
+    "stable_improvements_since_predecessor": [
+      "V0R-MU-003 and V0R-MU-006 wide database grids replace the candidate row borders with five measured reference lines: 20014 fewer unmasked pixels.",
+      "V0R-MU-003 and V0R-MU-006 restore the measured one-pixel inbox/sidebar edge at both viewports: 2616 fewer unmasked pixels.",
+      "V0R-MU-004 uses the measured active shared-page row width and height, moving its centered icon and title with the real layout: 2128 fewer unmasked pixels.",
+      "V0R-MU-003 and V0R-MU-006 restore the measured comment connector and erase only the premature database column segment: 390 fewer unmasked pixels."
+    ],
+    "known_runtime_variance": {
+      "state_id": "V0R-MU-002",
+      "viewport": "1440x900",
+      "difference_count": 975,
+      "treatment": "Excluded from source-attributable improvement; r1159 reproduced the established stable value."
+    }
+  },
+  "rejected_experiments": [
+    "V0R-MU-004 private-section visibility increased differences by about 1300 pixels per viewport and was not retained.",
+    "V0R-MU-004 private-section position, size, letter-spacing, and stroke refinements did not beat the hidden baseline at both viewports and were not retained.",
+    "V0R-MU-002 workspace-members shadow refinement found the current shadow lowest at both viewports; every tested offset, alpha, and blur variant regressed.",
+    "The one-run V0R-MU-001 wide sidebar render variance in r1152 disappeared on identical-condition rerun r1153 and was excluded from source attribution."
+  ],
+  "realm": {
+    "path": ".dev/notion-collaboration-10111-10113-clean-r1144-20260905",
+    "launch_id": "3bd46909382749e18e335fbca851a3f1",
+    "root_id": "6432f4f1-82a7-4b44-a8be-f5fadcb63f09",
+    "health": {
+      "state": "READY",
+      "ready_for_admission": true,
+      "ready_for_realtime": true,
+      "ready_for_compaction": true,
+      "schema_compatibility": "compatible",
+      "restart_required": false
+    },
+    "current_audit": {
+      "workspace_count": 34,
+      "reference_workspace_count": 32,
+      "active_membership_count": 34,
+      "active_page_binding_count": 32,
+      "active_external_membership_count": 0,
+      "active_guest_count": 0
+    },
+    "rotation_threshold": 64,
+    "preserved_predecessor_realm": ".dev/notion-collaboration-10111-10113-clean-r1112-20260905"
+  },
+  "verification": {
+    "pytest": {
+      "status": "pass",
+      "passed": 21,
+      "duration_seconds": 11.75
+    },
+    "python_compile": "pass",
+    "cleanup": {
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "permanent_delete_used": false
+    }
+  },
+  "protected_contract_hashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    {
+      "path": "notion_static/index.html",
+      "sha256": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e"
+    },
+    {
+      "path": "notion_static/notion.css",
+      "sha256": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1"
+    },
+    {
+      "path": "notion_static/notion.js",
+      "sha256": "sha256:45319878e06ac0500049befd6ace5da2bf7fd000204a194fc0774631df10b7e1"
+    }
+  ],
+  "scope_guard": {
+    "protected_hot_contract_modified": false,
+    "final_core25_gate_run": false,
+    "performance_gate_run": false,
+    "product_gate_run": false,
+    "sbe_final_gate_run": false,
+    "goal_complete": false
+  },
+  "next_action": "Continue lossless I0 exact residual reduction from stable r1159. The active realm is at 34 of 64 workspaces. Do not run final Core 25, performance, product, or SBE gates before exact 36/36."
+}

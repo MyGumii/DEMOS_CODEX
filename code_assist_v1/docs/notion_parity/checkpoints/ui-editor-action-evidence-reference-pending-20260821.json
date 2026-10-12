@@ -1,0 +1,111 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T19:40:08+09:00",
+  "run_id": "ui-editor-action-evidence-20260821",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-003-local-action-evidence-reference-pending-20260821.json",
+    "sha256": "sha256:145e56b09d1f7ef4cbe674542733428087854fb67a8a1d40543ac53053b8b200",
+    "semantic_status": "superseded_by_additional_local_reference_readiness"
+  },
+  "certified_parent": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-tree-002-reference-differential-green-20260821.json",
+    "sha256": "sha256:03c69e0e13ce1f48fcc0b6ff5c9259af9c866658fb846bfd5e33bff875ec50c0",
+    "semantic_status": "current_4_of_25_certified_state"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "complete the adopted 25-scenario Core Free Web UI and Second Brain plan"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "prepared_scenarios": ["UI-TREE-003","UI-EDITOR-001","UI-EDITOR-004"],
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "live_local_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "screenshot_count": 0
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 4,
+    "differential_passed": 4,
+    "action_level_local_reference_ready": ["UI-TREE-003","UI-EDITOR-001","UI-EDITOR-004"],
+    "overall_goal_complete": false
+  },
+  "owned_outputs": [
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:46f305a7ee4a1ca7572b397ac39de470dcc57cf9810a275ea64f4f93947bc158"
+    }
+  ],
+  "implemented_corrections": [
+    "align the golden journey Home locator with the reviewed role=tab and aria-selected contract",
+    "open the adopted page-type menu before creating a general golden-journey page",
+    "capture UI-EDITOR-001 immediately after the acknowledged paragraph save",
+    "capture UI-EDITOR-001 immediately after exact reload restoration",
+    "make the golden journey viewport injectable for reference-sized local capture",
+    "capture UI-EDITOR-004 immediately after compositionend and the single acknowledged save",
+    "retain zero intermediate IME saves and exact Second Brain snapshot behavior"
+  ],
+  "local_source_build_sha256": "sha256:15b646fbd45fcd34ed9c8dde33e2920a9751e47024cda4c671885eb4626e419c",
+  "local_action_evidence": {
+    "UI-EDITOR-001": {
+      "action_log_sha256": "sha256:18a76b1285aaa81f14f2dd3cb2504ed6ebc9b5ca6f54be61d7846d5d53b0d257",
+      "worksheet_sha256": "sha256:c126b8de330f0000a20bada24a2adee907af17e25286a5fb9dc7cb065bb562c1",
+      "captures": {
+        "UI-EDITOR-001-A03": {
+          "sha256": "sha256:042cb875492f09351a6d90f3353c179e41b3ba5ce5e82f548dcf157c73bcff74",
+          "state": {"count":1,"state":"committed"},
+          "focus": {"name":"EDITOR-BLOCK","state":"focused"},
+          "geometry": {"EDITOR-BLOCK":{"height":32,"width":760,"x":715,"y":287},"PAGE-TITLE":{"height":48,"width":760,"x":715,"y":191}}
+        },
+        "UI-EDITOR-001-A04": {
+          "sha256": "sha256:6f2a06f596b171261852c8bcdca0394f4f64341ed5080d6e024212b6ed30ddc7",
+          "state": {"count":1,"state":"restored"},
+          "focus": {"name":"PAGE-CANVAS","state":"focused"},
+          "geometry": {"EDITOR-BLOCK":{"height":32,"width":760,"x":715,"y":287},"PAGE-CANVAS":{"height":168,"width":760,"x":715,"y":151}}
+        }
+      }
+    },
+    "UI-EDITOR-004": {
+      "action_log_sha256": "sha256:c1de7057a2017af284393325216ffbc35e324427e5674045fee74e67648b46ac",
+      "worksheet_sha256": "sha256:e07b72868b877e1bcfc153c45e4cd73b40ac3e6a34b47182bdd2fc0cd6072e0e",
+      "captures": {
+        "UI-EDITOR-004-A01": {
+          "sha256": "sha256:92bd826c9698b41c7854f645960bc21588d1d5190bcc3acd67d47ba0e5a07f4b",
+          "state": {"count":1,"state":"committed"},
+          "focus": {"name":"EDITOR-BLOCK","state":"focused"},
+          "geometry": {"EDITOR-BLOCK":{"height":32,"width":760,"x":715,"y":287}},
+          "intermediate_save_count": 0,
+          "committed_save_count": 1
+        }
+      }
+    }
+  },
+  "commands": [
+    {"selection":"current-source general editor golden journey after action-capture patch","result":"1 passed in 21.75s","exit_code":0},
+    {"selection":"1920x863 UI-EDITOR-001 local action evidence","result":"2 exact action captures; save and reload state green","exit_code":0},
+    {"selection":"current-source Korean IME journey after action-capture patch","result":"1 passed in 22.31s","exit_code":0},
+    {"selection":"1920x863 UI-EDITOR-004 local action evidence","result":"1 exact action capture; intermediate saves 0; committed saves 1","exit_code":0},
+    {"selection":"combined general editor, Second Brain, UI-TREE-003, and IME real-browser regressions","result":"4 passed in 101.19s","exit_code":0},
+    {"selection":"Node UI runtime and navigation contracts","result":"2 commands passed","exit_code":0}
+  ],
+  "claims": {
+    "additional_local_reference_readiness_green": true,
+    "fifth_reference_characterized": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_content_exposed": false,
+    "live_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "protected_file_modified": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false
+  },
+  "next_exact_action": "Open a Chrome tab whose visible title is exactly REF-FREE-A | Notion and leave it open. Resume UI-TREE-003 reference C0 first, then use the already-prepared editor worksheets without reopening personal content."
+}

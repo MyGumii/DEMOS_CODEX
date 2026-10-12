@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O0A-P3-SELECTED-RUNTIME-BACKUP-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-24T00:40:00Z",
+  "checkpoint_kind": "pre_edit_ownership_and_dependency_snapshot",
+  "packet_id": "O0A-P3",
+  "packet_status": "in_progress",
+  "purpose": "Freeze the exact O0A-P3 inputs before implementing a marker-bound, synthetic-only selected Yjs compaction, crash/restart replay, coordinated-generation, and new-root restore benchmark. No live data, existing preview root, service, listener, fixed port, schema migration, product feature flag, or production recovery action is authorized.",
+  "owner_agent": "/root",
+  "ownership_lane": "SPIKE",
+  "owned_paths": [
+    "code_assist_v1/notion_collaboration/coordinated_backup_prototype.py",
+    "code_assist_v1/notion_collaboration/selected_runtime_backup_prototype.py",
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_compaction_adapter.cjs",
+    "code_assist_v1/tools/notion_parity/run_selected_runtime_backup_benchmark.py",
+    "code_assist_v1/tests/notion_collaboration/test_compaction_boundary.py",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o0a-p3-selected-runtime-backup-receipt-20260824.json",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o0a-p3-selected-runtime-backup-20260824.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json"
+  ],
+  "read_only_inputs": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/notion_collaboration/selected_runtime_contract.py": "sha256:31947c8739e5555875e6df8c0e604e987299299726684f2cf3220d11dd1f79fa",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_gateway_topology_adr.v1.json": "sha256:ac102389d11e7270d8bb3bacbff37482da81c8cfe0f7389838a9a0f42ee5770f",
+    "code_assist_v1/collaboration_runtime/ARTIFACT_MANIFEST.json": "sha256:8059bf135ca66a49d67c0798d30b71ed48bf779e3f142cb20d94a1328354e584",
+    "code_assist_v1/collaboration_runtime/node/package.json": "sha256:19296e28baa32d70748e7dd5d006246366bc181934321eaf9fee6dd21aae1f51",
+    "code_assist_v1/collaboration_runtime/node/package-lock.json": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3",
+    "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md": "sha256:b4dff500da85408d9a417d8cd8f6f33d42b136eb1715bd980dce3d8ca001f1d4",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md": "sha256:01b6c94ef328ce32aed2cb54513d240afd12bd1ee2bd7eabd32a45338fab4bfc"
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/notion_collaboration/coordinated_backup_prototype.py": "sha256:191799ed1ae9b2a95b4fdc68d0d9b84f3a499f7d32414e3cf86edfb6775e3ced",
+    "code_assist_v1/notion_collaboration/selected_runtime_backup_prototype.py": null,
+    "code_assist_v1/tools/notion_parity/spike_adapters/yjs_compaction_adapter.cjs": null,
+    "code_assist_v1/tools/notion_parity/run_selected_runtime_backup_benchmark.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_compaction_boundary.py": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:feb4a7a1ac45706780f5d4277a2ef4bd7e6081d66b2004f982e09c0791c00e6b",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:1ab3f7cd59ba1b16733c00af1f89ef9d4b5748f751b0fb5f29d4e7ee158d1d7d",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:30b9faf66ad026371cebe33399718aec6ad8a3baf722673090540cfd11a1e260",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:45d24dee0c957f483c75cb71cc6b25e71e06646e535cd93cd8c473a30655cd76"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-t0a-p3-selected-runtime-binding-20260824.json",
+    "sha256": "sha256:b3a0018adf6e78f42ec6d100e13c3d35bca51a1067d8ffa7ff9de591fc706bdb",
+    "packet_id": "T0A-P3",
+    "receipt_id": "T0A-P3-SELECTED-RUNTIME-BINDING-20260824"
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "blocked",
+    "resumed_by_user": true,
+    "latest_user_authority": "AP-RUNTIME-SPIKE-E0-P3-REINSTALL approved",
+    "goal_completion_claimed": false
+  },
+  "sbe_alignment": {
+    "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+    "contract_audit_status": "pass",
+    "contract_audit_error_count": 0,
+    "contract_audit_input_sha256": "sha256:e42924c7d5d305dad8b483b76909eb86398c720626e90c99f37e60f682d49bc4",
+    "goal_count": 20,
+    "mandatory_scenario_count": 284,
+    "hot_contracts_modified_by_this_packet": false
+  },
+  "execution_boundary": {
+    "realm_id": "synthetic_isolated",
+    "os_temporary_roots_only": true,
+    "offline_selected_dependency_install_only": true,
+    "network_listener_allowed": false,
+    "port_binding_allowed": false,
+    "live_or_existing_preview_root_allowed": false,
+    "target_or_production_restore_allowed": false,
+    "approval_required_for_packet": false,
+    "production_rpo_rto_freeze_claimed": false
+  }
+}

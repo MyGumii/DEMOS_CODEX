@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-STATE004-STARTER-RENDER-R796-PROGRESS-20260903",
+  "recorded_at": "2026-09-03T00:04:18+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-comment-table-dividers-r790-progress-20260902.json",
+    "checkpoint_sha256": "sha256:5ff0298dbb9517a53ec23e0d6d80b6cde62bb29f4a4bb879e1cf1645567a3884",
+    "source_sha256": "sha256:7df98661ab2585206c23df28152465bf13700d04829a3a3a10527868a5e87d92",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r790/receipt.json",
+    "receipt_sha256": "sha256:695d823fdad7a0a482dde37067cd0b5311a12c6342172a955233c52ec6cbd647",
+    "unmasked_differing_pixel_count": 1836785,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1905203
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:e3b30e06f2eceec0a7312a57f1ceb71e430c79ad89f81cecf75c0b43671982de",
+    "summary": [
+      "Deterministically rerendered the already-loaded V0R-MU-004 starter blocks before viewport-specific capture styling so the initial 1440 capture no longer records the transient empty editor.",
+      "Applied V0R-MU-004-only checkbox, indentation, inline-code, toggle, and per-row editor alignment after the final page render.",
+      "Reused the accepted V0R-MU-005 input-control styling while preserving the independent V0R-MU-004 page and share-dialog geometry."
+    ],
+    "source_bound_unmasked_reduction_from_r790": 3519,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 242848,
+    "source_bound_state_deltas_from_r790": {
+      "V0R-MU-004__1440x900": -3150,
+      "V0R-MU-004__1280x800": -369
+    }
+  },
+  "accepted_diagnostics": {
+    "r795_state004_final_block_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-state004-block-align-r795",
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "accessibility_pass_count": 20,
+      "state004_deltas_from_r790": {
+        "V0R-MU-004__1440x900": -3150,
+        "V0R-MU-004__1280x800": -369
+      }
+    }
+  },
+  "rejected_diagnostics": {
+    "r793_multirow_korean_inbox_history": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-inbox-history-r793",
+      "journey_status": "pass",
+      "cleanup": true,
+      "reason": "Repeated an already-rejected second-notification-row direction and regressed V0R-MU-003 by 13540 pixels and V0R-MU-006 by 14575 pixels across both viewports.",
+      "source_restored_to_r790_sha256": "sha256:7df98661ab2585206c23df28152465bf13700d04829a3a3a10527868a5e87d92"
+    },
+    "r794_state004_rerender_without_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-state004-render-r794",
+      "journey_status": "pass",
+      "cleanup": true,
+      "reason": "The rerender restored the missing wide starter body but exposed unaligned control and row geometry, regressing V0R-MU-004__1440x900 by 2146 pixels while leaving 1280 unchanged. The render step was retained only together with the accepted r795 alignment."
+    }
+  },
+  "execution_notes": {
+    "approved_dev_pair_recovery": "The already-approved AP-DEV-PAIR development services were restarted under the existing immutable approval after ports 10111-10113 were found down. Production ports and data were untouched.",
+    "full_run_order": "r796 used the stable C0-P2 to I0-P2 to E1-P2 to F0-P5 order established by r790.",
+    "verifier_invocation_correction": "An initial verifier call omitted the custom reference and runtime artifact roots and therefore inspected obsolete default paths; it was discarded. The corrected six-root invocation produced only the 39 expected open-gate errors.",
+    "test_scope_correction": "An initial ad hoc test list mistakenly included future E1-P3 seal preflight tests, whose three expected phase-open assertions failed. The established four-file V0B scope was rerun and passed 17 of 17."
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r796",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r796/receipt.json",
+    "receipt_sha256": "sha256:2d7cf51c5bac5aafa6557fe665666d8dc3389b97609204e85a6d7d0740a4b10e",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1833268,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1901686,
+    "raw_unmasked_delta_from_r790": -3517,
+    "raw_masked_delta_from_r790": 0,
+    "raw_total_delta_from_r790": -3517,
+    "source_bound_unmasked_delta_from_r790": -3519,
+    "runtime_only_variation_from_r790": {
+      "V0R-MU-010__1440x900": 3,
+      "V0R-MU-010__1280x800": -1,
+      "unmasked_net": 2,
+      "masked_net": 0
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1439,
+      "comment_delivery_ms": 834,
+      "reaction_delivery_ms": 1450,
+      "presence_ttl_expiry_ms": 15180,
+      "reconnect_ms": 1284
+    },
+    "duration_ms": 367205,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:51e262c3a730ca4395c58924e8255f21da501b66dea8eea2fd082df3aa1d0818"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "command_scope": [
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_i0_semantic_diagnostic.py",
+        "code_assist_v1/tests/notion_collaboration/browser/test_exact_pixel_parity.py"
+      ],
+      "result": "17 passed in 25.73s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:2d7cf51c5bac5aafa6557fe665666d8dc3389b97609204e85a6d7d0740a4b10e"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r796 source and immutable receipt. Preserve the deterministic V0R-MU-004 starter rerender and final per-row alignment, reuse completed evidence by hash, do not restore r793 or r794-alone, and do not run final gates before exact 36/36."
+  }
+}

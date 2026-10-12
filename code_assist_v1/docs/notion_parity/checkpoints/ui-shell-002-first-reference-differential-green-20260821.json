@@ -1,0 +1,162 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-21T00:02:55+09:00",
+  "run_id": "ui-shell-002-first-reference-differential-20260820",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-reference-observation-host-blocked-20260820.json",
+    "sha256": "sha256:33abb6ef4e92a8cfbb75fbbe449b3c4a7c9bc32959834ed5639f6dae5f5a89ed",
+    "semantic_status": "superseded_browser_transport_recovered"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "implement the adopted 25-scenario Core Free Web UI and Second Brain plan through reviewed reference and differential gates",
+    "observed_at": "2026-08-20T23:22:00+09:00"
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-SHELL-002",
+    "reference_workspace_alias": "REF-FREE-A",
+    "secondary_workspace_boundary_confirmed": true,
+    "synthetic_only": true,
+    "personal_workspace_accessed": false,
+    "personal_page_accessed": false,
+    "live_local_data_accessed": false,
+    "business_enterprise_archive_required": false
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY/UI-SHELL-002",
+    "status": "first_reference_and_precalibration_differential_green",
+    "implemented_corrections": [
+      "create the isolated empty API model registry before starting the local fixture",
+      "publish a deterministic UI boot-ready signal before browser interaction",
+      "match reference pointer focus while preserving keyboard focus transfer",
+      "stop the workspace switcher key handler from consuming nested button activation"
+    ]
+  },
+  "quantitative_state": {
+    "required_scenarios": 25,
+    "local_green": 25,
+    "reference_characterized": 1,
+    "differential_passed": 1,
+    "promotion_allowed": 0,
+    "remaining_reference": 24,
+    "remaining_differential": 24,
+    "overall_goal_complete": false
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+      "sha256": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+      "sha256": "sha256:ee7fa3537dc953f33a2f029830a3463f30f4af6f65de776552ee3349b2252fdd"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+      "sha256": "sha256:d98237fe1fb7d19faf1205204e0eed105130cb54a0250b3e3c23dbc94e4a2df0"
+    }
+  ],
+  "owned_outputs": [
+    {
+      "path": "code_assist_v1/notion_static/notion.js",
+      "sha256": "sha256:a5f7445242dbd14ed6c002b545d1a2d8de5ad0ec12baf2ad7caa9c1e9262d5d7"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py",
+      "sha256": "sha256:ec8377c2124c9863f37c4a005b9700b9a6267317452f1dae754b0defbed7bba4"
+    },
+    {
+      "path": "code_assist_v1/tools/notion_parity/ui_local_fixture.py",
+      "sha256": "sha256:0476cee2511c219a3cdbf965c8ab8f362356f5252708441c378f5751bc08eded"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_local_fixture.py",
+      "sha256": "sha256:215f543c1a4567a00e8297d8f61669f9a9fb6112913ba3d4a089ca334db0da69"
+    },
+    {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_completion.py",
+      "sha256": "sha256:51926553c2bd4344698fcc578c644d4828b6fd226e51d818d26c0954e0d48072"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_completion_matrix.py",
+      "sha256": "sha256:8f49f2f1d2659e79175c5a4efd2f64acfce0db5619f20dfd65636230d92e4620"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_SHELL_002_REFERENCE_DIFFERENTIAL_20260820.json",
+      "sha256": "sha256:bd1cb1e1e77179dfd74c582845cba63bb473295470684b17a283c1abe38963e9"
+    }
+  ],
+  "reference_evidence": {
+    "submission_sha256": "sha256:97a7a96457deae975c1e460120f417d48cc1bc7a0ed44c6c1ffd01a0aa4f569b",
+    "receipt_sha256": "sha256:be089095f226d2391c9d6afa285d935c2389a51edbb368e17bab19e609bb5502",
+    "reviewed_redaction_summary": true,
+    "capture_count": 2,
+    "screenshot_count": 0,
+    "raw_dom_captured": false,
+    "network_payload_captured": false
+  },
+  "differential_evidence": {
+    "policy_state": "precalibration",
+    "action_count": 2,
+    "difference_count": 0,
+    "all_actions_passed": true,
+    "promotion_allowed": false
+  },
+  "commands": [
+    {
+      "selection": "isolated Chrome UI1 shell/search/editor repeatability",
+      "result": "1 passed in 36.62s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six serial Node editor/UI/navigation/publication/atomic-save/CSRF contracts",
+      "result": "6 commands passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "UI local fixture, evidence harness, manual intake, routes, atomic-save compatibility, publication adapter",
+      "result": "65 passed in 54.56s",
+      "exit_code": 0
+    },
+    {
+      "selection": "completion matrix verifier and adversarial evidence-packet validation",
+      "result": "6 passed; verifier pass with reference=1 and differential=1",
+      "exit_code": 0
+    }
+  ],
+  "known_failures_resolved": [
+    "explicit missing isolated API registry rejected fixture startup",
+    "sidebar interaction could run before asynchronous boot finished",
+    "workspace keydown handler prevented nested collapse button keyboard activation"
+  ],
+  "claims": {
+    "first_reference_characterized": true,
+    "first_precalibration_differential_passed": true,
+    "core_ui_complete": false,
+    "second_brain_complete": false,
+    "business_archive_complete": false,
+    "overall_goal_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "personal_content_exposed": false,
+    "live_data_accessed": false,
+    "external_side_effect_attempted": false,
+    "protected_file_modified": false,
+    "owned_file_concurrent_drift": false,
+    "auth_or_second_brain_regression": false
+  },
+  "remaining": [
+    "24 scenario reference characterizations",
+    "24 scenario differential passes",
+    "reviewed performance budget",
+    "formal accessibility review",
+    "H9 opt-in pilot and recovery gate"
+  ],
+  "next_exact_action": "Characterize UI-SHELL-001 in REF-FREE-A and REF-FREE-B using aliases only, then run the matching isolated local workspace-isolation differential without opening any personal workspace."
+}

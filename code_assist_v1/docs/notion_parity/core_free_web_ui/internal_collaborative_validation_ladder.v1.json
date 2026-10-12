@@ -1,0 +1,1732 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_validation_ladder.v1",
+  "recorded_at": "2026-08-23T00:00:00+09:00",
+  "revised_at": "2026-09-07T06:50:00+09:00",
+  "predecessor_sha256": "8982b39296e799709ab2a547c9db870c2fda715f618fc91d6153f489244dc89a",
+  "catalog_state": "authoritative_planning_contract_not_execution_evidence",
+  "authority_inputs": {
+    "ultra_plan": {
+      "path": "INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md",
+      "sha256": "35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377"
+    },
+    "xhigh_handoff": {
+      "path": "INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md",
+      "sha256": "abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912"
+    },
+    "packet_catalog": {
+      "path": "internal_collaborative_packets.v2.json",
+      "sha256": "86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "completion_matrix": {
+      "path": "internal_collaborative_completion_matrix.v1.json",
+      "sha256": "50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "dynamic_instructions": {
+      "path": "code_assist_v1/AGENTS.md",
+      "path_base": "repository_root",
+      "hash_policy": "Reread at every packet start and record the observed hash in that packet checkpoint; do not embed it as a static ladder authority because another authorized development stream owns the file.",
+      "write_policy": "read_only_for_this_plan"
+    }
+  },
+  "matrix_binding": {
+    "required_row_count": 28,
+    "required_row_ids": [
+      "ENV-001",
+      "ENV-002",
+      "DATA-001",
+      "DATA-002",
+      "IAM-001",
+      "IAM-002",
+      "IAM-003",
+      "RT-001",
+      "RT-002",
+      "EDIT-001",
+      "EDIT-002",
+      "EDIT-003",
+      "SB-001",
+      "FILE-001",
+      "HIST-001",
+      "DB-001",
+      "SEARCH-001",
+      "A11Y-001",
+      "SEC-001",
+      "OBS-001",
+      "CAP-001",
+      "UI-CORE-25",
+      "PIX-001",
+      "ICN-PERF-001",
+      "ICN-OPS-001",
+      "ICN-OPS-002",
+      "ROLL-001",
+      "PILOT-001"
+    ],
+    "closure_registry_source": "internal_collaborative_packets.v2.json#matrix_closure_registry",
+    "every_row_has_exactly_one_planned_closure_owner": true,
+    "row_status_is_derived_from_bound_receipts": true,
+    "manual_row_promotion_forbidden": true,
+    "historical_or_supporting_lane_may_close_row": false
+  },
+  "execution_contract": {
+    "working_directory": "repository_root",
+    "serial_within_lane": true,
+    "pytest_xdist_forbidden": true,
+    "shell_command_strings_forbidden": true,
+    "argv_arrays_required": true,
+    "globs_forbidden": true,
+    "pytest_basetemp_argument_forbidden": true,
+    "workspace_temp_forbidden": true,
+    "pytest_skip_policy": "zero_for_closing_lanes",
+    "pytest_xfail_policy": "zero_for_closing_lanes",
+    "collection_error_policy": "fail",
+    "node_execution": "one_script_per_process_with_unhandled_rejections_strict",
+    "browser_profile": "ephemeral_playwright_context_only",
+    "persistent_signed_in_profile_for_gate_evidence_forbidden": true,
+    "raw_trace_har_cookie_repository_write_forbidden": true,
+    "live_data_roots_forbidden_for_all_automated_test_lanes": [
+      "knowledge",
+      "user_data",
+      "sessions",
+      "workspace",
+      ".runtime",
+      "existing_per_user_notion_databases",
+      "existing_10111_preview_root",
+      "production_roots"
+    ],
+    "approval_never_converts_live_data_into_a_pytest_fixture": true,
+    "approved_live_or_production_copy_work_must_be_operator_action": true
+  },
+  "authority_precedence": [
+    "current_code_assist_v1_AGENTS.md",
+    "active_second_brain_contracts_and_owning_SBE_packet",
+    "ultra_parent_plan",
+    "xhigh_handoff",
+    "machine_readable_catalogs"
+  ],
+  "scenario_binding": {
+    "matrix_row_ids_are_product_rows_not_test_scenario_ids": true,
+    "notion_conflicting_rows_are_namespaced": [
+      "ICN-PERF-001",
+      "ICN-OPS-001",
+      "ICN-OPS-002"
+    ],
+    "sbe_test_ids_source": "code_assist_v1/docs/knowledge_spaces/TEST_OPERATIONS.md",
+    "sbe_test_id_must_appear_in_test_name_or_scenario_marker": true,
+    "sbe_adjacent_receipts_require_both_matrix_row_ids_and_scenario_ids": true,
+    "current_expected_sbe_counts": {
+      "goals": 20,
+      "mandatory_scenarios": 284,
+      "transition_owner": "SBE-0.1"
+    }
+  },
+  "lane_state_semantics": {
+    "existing_baseline": "Supporting regression evidence only; it cannot close a new collaborative completion row.",
+    "existing_command_future_gate": "The command exists, but it becomes gate evidence only when rerun against the frozen release candidate with a valid receipt.",
+    "composite_existing_lanes_future_gate": "All included commands must rerun separately and bind to the same release candidate.",
+    "planned_required": "The declared artifact is intentionally absent during planning; gate mode fails until it exists and produces a valid closing receipt."
+  },
+  "scope": {
+    "purpose": "Define the executable validation order, receipt shape, release binding, isolation policy, and fail-closed completion rules for the internal collaborative Notion implementation.",
+    "repository_root": ".",
+    "python_executable": ".\\venv\\Scripts\\python.exe",
+    "target_platform": "Windows 10 19045 x64",
+    "current_toolchain_observation": {
+      "python": "3.14.3",
+      "pytest": "9.0.3",
+      "node": "24.14.1",
+      "playwright": "1.62.0",
+      "chrome": "151.0.7922.173",
+      "claim": "observed_during_planning_not_a_release_receipt"
+    }
+  },
+  "claims": {
+    "catalog_is_execution_evidence": false,
+    "baseline_lanes_passed_by_this_document": false,
+    "future_lanes_exist_by_this_document": false,
+    "product_complete": false
+  },
+  "modes": {
+    "audit": {
+      "purpose": "Validate schemas, hashes, prerequisites, receipt integrity, declared incompleteness, and absence of false completion claims.",
+      "incomplete_result_may_exit_zero": true,
+      "may_promote_a_packet_or_product": false
+    },
+    "gate": {
+      "purpose": "Fail unless every required rung, packet, matrix row, approval, artifact, and freshness binding is satisfied.",
+      "incomplete_result_may_exit_zero": false,
+      "may_promote_a_packet_or_product": true
+    }
+  },
+  "release_binding": {
+    "release_candidate_id": {
+      "algorithm": "sha256",
+      "canonical_inputs": [
+        "source_manifest_without_runtime_evidence",
+        "dependency_lock_hashes",
+        "database_schema_version_and_migration_hashes",
+        "collaboration_protocol_version",
+        "frontend_build_manifest_hash"
+      ],
+      "must_match_across_realms": true
+    },
+    "realm_config_fingerprint": {
+      "algorithm": "sha256",
+      "canonical_inputs": [
+        "realm_id",
+        "origins_and_ports",
+        "cookie_name_and_security_flags_without_secret_values",
+        "database_and_storage_locator_classes_without_private_paths",
+        "feature_flags",
+        "gateway_topology",
+        "retention_and_recovery_policy"
+      ],
+      "must_match_across_realms": false,
+      "must_be_approved_for_realm": true
+    },
+    "derivation_proof": {
+      "required": true,
+      "rule": "Each promoted realm must prove that its source, dependencies, schema, protocol, and frontend build derive from the same release_candidate_id while retaining its own approved realm_config_fingerprint."
+    },
+    "deployment_generation_id": {
+      "required_for": [
+        "production_canary",
+        "production_full"
+      ],
+      "rule": "The canary generation must be reused or explicitly promoted into the full generation; rebuilding between them invalidates canary evidence."
+    },
+    "validation_binding": {
+      "validation_manifest_sha256_required": true,
+      "schema_catalog_sha256_required": true,
+      "product_source_pre_and_post_sha256_required": true,
+      "frontend_only_build_hash_is_sufficient": false,
+      "rule": "Validation sources are bound separately from product sources so a test-only change cannot silently change the release_candidate_id or reuse stale receipts."
+    }
+  },
+  "realms": [
+    {
+      "id": "synthetic_isolated",
+      "write_policy": "new_test_owned_roots_only",
+      "allowed_from_phase": "U0a",
+      "contains_real_user_content": false
+    },
+    {
+      "id": "development_pair",
+      "origins": [
+        "http://127.0.0.1:10111",
+        "http://127.0.0.1:10112",
+        "ws://127.0.0.1:10113"
+      ],
+      "write_policy": "approved_dev_identity_allowlist_and_new_dev_roots_only",
+      "allowed_from_phase": "D0b",
+      "contains_real_user_content": false
+    },
+    {
+      "id": "approved_offline_production_copy_operator",
+      "execution_class": "operator_action",
+      "automated_test_allowed": false,
+      "write_policy": "owner_approved_offline_copy_migration_restore_and_redacted_smoke_only",
+      "allowed_from_phase": "R0",
+      "contains_real_user_content": true
+    },
+    {
+      "id": "target_windows_load",
+      "execution_class": "sealed_target_runner",
+      "automated_test_allowed": true,
+      "write_policy": "new_synthetic_target_roots_only",
+      "allowed_from_phase": "Q0",
+      "contains_real_user_content": false
+    },
+    {
+      "id": "target_restore",
+      "execution_class": "operator_started_sealed_restore_runner",
+      "automated_test_allowed": true,
+      "write_policy": "new_synthetic_or_approved_restore_target_root_only",
+      "allowed_from_phase": "O1",
+      "contains_real_user_content": false
+    },
+    {
+      "id": "production_canary",
+      "execution_class": "approved_operator_action_with_sealed_observer",
+      "automated_test_allowed": false,
+      "origins": [
+        "http://127.0.0.1:10011",
+        "http://127.0.0.1:10012"
+      ],
+      "write_policy": "approved_canary_accounts_and_workspaces_only",
+      "allowed_from_phase": "R1",
+      "contains_real_user_content": true
+    }
+  ],
+  "receipt_contract": {
+    "required_fields": [
+      "schema_version",
+      "receipt_id",
+      "run_id",
+      "rung_id",
+      "lane_id",
+      "packet_ids",
+      "matrix_row_ids",
+      "scenario_ids",
+      "evidence_type",
+      "mode",
+      "release_candidate_id",
+      "realm_id",
+      "realm_config_fingerprint",
+      "source_manifest_sha256",
+      "validation_manifest_sha256",
+      "schema_catalog_sha256",
+      "current_schema_lineage_sha256",
+      "agents_md_sha256",
+      "goal_observation_sha256",
+      "goal_thread_id",
+      "goal_status_observed",
+      "cross_catalog_ownership_snapshot_sha256",
+      "working_directory",
+      "argv",
+      "environment_class",
+      "tool_versions",
+      "toolchain_fingerprint",
+      "temp_root_id",
+      "started_at",
+      "ended_at",
+      "duration_ms",
+      "exit_code",
+      "exit_code_signed",
+      "exit_code_hex",
+      "passed",
+      "failed",
+      "errors",
+      "skipped",
+      "xfailed",
+      "result",
+      "attempt",
+      "retry_class",
+      "source_pre_sha256",
+      "source_post_sha256",
+      "isolation_attestation",
+      "owned_process_cleanup",
+      "cleanup_attestation",
+      "artifact_hashes",
+      "redaction_summary"
+    ],
+    "result_values": [
+      "passed",
+      "failed",
+      "host_flaky",
+      "infra_blocked",
+      "evidence_missing",
+      "infrastructure_failure",
+      "not_run"
+    ],
+    "evidence_type_values": [
+      "contract",
+      "unit",
+      "integration",
+      "multiprocess",
+      "browser_interaction",
+      "exact_pixel",
+      "visual_similarity",
+      "accessibility",
+      "performance",
+      "security",
+      "fault_injection",
+      "backup_restore",
+      "migration",
+      "canary"
+    ],
+    "artifact_hash_rule": "Every evidence artifact is content-addressed with sha256 and bound to its receipt before a gate can consume it.",
+    "conditional_required_fields": {
+      "sbe_adjacent": [
+        "ordered_18_document_sbe_preflight_manifest_sha256",
+        "active_sbe_status_sha256",
+        "sbe_contract_bundle_sha256",
+        "sbe_owning_packet_id",
+        "sbe_rollout_gate_ids"
+      ],
+      "multiprocess": [
+        "distinct_process_ids",
+        "process_roles",
+        "process_count",
+        "shared_database_identity_sha256",
+        "fault_point_ids"
+      ],
+      "target_windows_load": [
+        "latency_p50_ms",
+        "latency_p95_ms",
+        "latency_p99_ms",
+        "sqlite_busy_count",
+        "queue_lag_ms",
+        "projection_lag_ms",
+        "memory_peak_bytes"
+      ],
+      "target_restore": [
+        "backup_completed_at",
+        "restore_started_at",
+        "restore_ended_at",
+        "restore_duration_ms",
+        "observed_rpo_ms",
+        "integrity_error_count"
+      ],
+      "phase_gate": [
+        "status_integrator_assignment_receipt_sha256",
+        "accepted_packet_receipt_ids",
+        "hot_contract_pre_sha256",
+        "hot_contract_post_sha256"
+      ]
+    },
+    "forbidden_content": [
+      "raw_session_cookie",
+      "signing_secret",
+      "csrf_secret_or_token",
+      "plaintext_password",
+      "raw_authorization_header",
+      "unredacted_har",
+      "raw_user_id",
+      "personal_page_title",
+      "absolute_personal_path",
+      "private_user_content_not_required_by_the_scenario"
+    ],
+    "freshness_rule": "A source, dependency, schema, protocol, build, mask, baseline, approval, AGENTS.md, goal observation, SBE contract/status, ownership snapshot, or realm-config hash change invalidates every dependent receipt."
+  },
+  "sbe_preflight_contract": {
+    "required_for": [
+      "S0",
+      "O0",
+      "O1",
+      "Q0",
+      "R0",
+      "R1",
+      "any_packet_touching_knowledge_core_app_code_auth_config_central_sbe_schema_or_sbe_hot_contract"
+    ],
+    "ordered_document_count": 18,
+    "order_source": "code_assist_v1/AGENTS.md#Start-here",
+    "all_documents_must_be_read_before_action": true,
+    "manifest_hash_required": true
+  },
+  "schema_lineage_branch_contract": {
+    "notion_workspace_lineage": "Owned only by the exclusive Notion CANONICAL packet; it remains physically and semantically separate from central SBE.",
+    "central_sbe_lineage": "Historical v1-v7 are read-only. A v8-v11 change requires the active owning SBE packet, forward-only checksummed migration, idempotency where applicable, single migrator, catalog/API/test/traceability/evidence updates, and rollout-gate receipt.",
+    "branch_selection_must_be_explicit_in_packet_receipt": true,
+    "cross_database_dual_write_forbidden": true
+  },
+  "multiprocess_evidence_contract": {
+    "thread_only_is_sufficient": false,
+    "required_domains": [
+      "locking",
+      "publication",
+      "job_claiming",
+      "backup",
+      "recovery"
+    ],
+    "distinct_os_processes_required": true,
+    "receipt_fields_enforced": true
+  },
+  "phase_local_regression_contract": {
+    "run_after_each_shared_product_change": true,
+    "minimum_legacy_lanes": [
+      "L1-AUTH-PAIR-BASELINE",
+      "L2-WORKSPACE-SUBSTRATE-BASELINE",
+      "L2-FORWARD-MIGRATION-BASELINE",
+      "L3-NODE-EDITOR-CORE",
+      "L3-NODE-UI-RUNTIME",
+      "L3-NODE-NAVIGATION",
+      "L3-NODE-PUBLICATION",
+      "L3-NODE-ATOMIC-SAVE",
+      "L3-NODE-CSRF",
+      "L4-EXISTING-GOLDEN-JOURNEY"
+    ],
+    "final_full_suite_does_not_replace_phase_local_regression": true
+  },
+  "isolation_policy": {
+    "pytest": [
+      "Run from the repository root with code_assist_v1/pytest.ini when the lane declares it.",
+      "Use the existing guarded temp-root fixtures; never set basetemp inside the repository.",
+      "Allocate a fresh synthetic data root, temp root, ports, browser context, and evidence directory per run."
+    ],
+    "processes": [
+      "Node, gateway, CRDT, browser, and child processes inherit only the runner-owned synthetic root and explicit environment allowlist.",
+      "Track every child PID or place it in a runner-owned Windows Job Object.",
+      "Cleanup may terminate only runner-owned PIDs; name-wide process termination is forbidden.",
+      "Assert that claimed ports and file handles are released after every lane."
+    ],
+    "browser": [
+      "Every principal uses an independent ephemeral Playwright context.",
+      "No persistent Chrome profile, logged-in personal browser state, HAR with credentials, or shared localStorage is admissible as automated gate evidence.",
+      "Owner, member, internal page guest, and outsider must be representable simultaneously."
+    ]
+  },
+  "windows_native_crash_policy": {
+    "recognized_signature": "0xC0000409_or_equivalent_native_abnormal_termination",
+    "recognized_signed_exit_codes": [
+      -1073740791
+    ],
+    "empty_stdout_alone_is_host_crash": false,
+    "assertion_failure_retry_count": 0,
+    "steps": [
+      "Preserve the original receipt, stderr, exit status, dump locator if safely available, and runner diagnostics.",
+      "Verify cleanup of runner-owned PIDs, ports, locks, and temp roots without killing unrelated processes.",
+      "Retry the same lane once with a new temp root, new browser contexts, and new ports.",
+      "If the retry passes, classify the original attempt as host_flaky rather than passed.",
+      "Require two later clean executions on the same release candidate before the lane may satisfy a gate.",
+      "If the retry crashes or fails, classify the lane as infra_blocked or failed according to reproduced cause; never promote it."
+    ],
+    "maximum_automatic_retries": 1,
+    "retry_requires_same_source_and_realm_config_hashes": true,
+    "missing_receipt_with_exit_zero": "evidence_missing",
+    "timeout": "infrastructure_failure"
+  },
+  "rungs": [
+    {
+      "id": "L0-CONTRACT-BOOT",
+      "order": 0,
+      "purpose": "Prove the environment, governing contracts, plan catalogs, and completion claims are internally consistent before product work.",
+      "prerequisites": [],
+      "packets": [
+        "U0A-P1",
+        "U0A-P2"
+      ],
+      "lanes": [
+        {
+          "id": "L0-PIP-CHECK",
+          "state": "existing_baseline",
+          "runner": "process",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "evidence_types": [
+            "contract"
+          ]
+        },
+        {
+          "id": "L0-KNOWLEDGE-CONTRACT-AUDIT",
+          "state": "existing_baseline",
+          "runner": "process",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+                                       "code_assist_v1.tools.contract_audit",
+                                       "audit",
+                                       "--docs-root",
+                                       "G:\\AI_Agent\\DEMOS_CODEX\\code_assist_v1\\docs\\knowledge_spaces",
+                                       "--output",
+            "-"
+          ],
+          "evidence_types": [
+            "contract"
+          ]
+        },
+        {
+          "id": "L0-UI-HARNESS-BASELINE",
+          "state": "existing_baseline",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/knowledge_spaces/unit/test_pytest_isolation.py",
+            "code_assist_v1/tests/test_verify_notion_core_free_ui_plan.py",
+            "code_assist_v1/tests/test_notion_ui_completion_matrix.py",
+            "code_assist_v1/tests/test_notion_ui_evidence_harness.py",
+            "code_assist_v1/tests/test_notion_ui_reference_completion.py",
+            "code_assist_v1/tests/test_notion_ui_reference_completion_manifest.py"
+          ],
+          "evidence_types": [
+            "contract",
+            "unit"
+          ]
+        },
+        {
+          "id": "L0-COLLAB-CATALOG-AUDIT",
+          "state": "existing_baseline",
+          "runner": "process",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "code_assist_v1/tools/verify_internal_collaborative_validation_ladder.py",
+            "--mode",
+            "audit"
+          ],
+          "required_deliverable": "code_assist_v1/tools/verify_internal_collaborative_validation_ladder.py",
+          "evidence_types": [
+            "contract"
+          ]
+        }
+      ],
+      "exit": "All governing hashes and references resolve, the audit verifier rejects tampering and false completion, and incomplete work remains explicitly incomplete."
+    },
+    {
+      "id": "L1-PAIR-AND-IDENTITY",
+      "order": 1,
+      "purpose": "Prove account reuse, pair isolation, CSRF/origin boundaries, and synthetic multi-principal setup before collaboration semantics.",
+      "prerequisites": [
+        "L0-CONTRACT-BOOT"
+      ],
+      "packets": [
+        "D0A-P1",
+        "D0A-P2",
+        "D0A-P3",
+        "D0B-P1",
+        "H0A-P1",
+        "H0A-P2"
+      ],
+      "lanes": [
+        {
+          "id": "L1-AUTH-PAIR-BASELINE",
+          "state": "existing_baseline",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/knowledge_spaces/integration/test_auth_flask_security.py",
+            "code_assist_v1/tests/test_notion_auth_contract.py",
+            "code_assist_v1/tests/test_notion_workspace_auth_isolation.py",
+            "code_assist_v1/tests/test_notion_ui_local_fixture.py",
+            "code_assist_v1/tests/test_notion_ui_pilot.py",
+            "code_assist_v1/tests/notion_collaboration/test_pair_configuration.py"
+          ],
+          "evidence_types": [
+            "security",
+            "integration"
+          ]
+        },
+        {
+          "id": "L1-SYNTHETIC-PAIR-LIVE",
+          "state": "existing_baseline",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/test_synthetic_pair_root.py",
+            "code_assist_v1/tests/notion_collaboration/test_dev_pair_runtime.py",
+            "code_assist_v1/tests/notion_collaboration/test_multi_principal_harness.py"
+          ],
+          "required_deliverables": [
+            "code_assist_v1/tests/notion_collaboration/test_synthetic_pair_root.py",
+            "code_assist_v1/tests/notion_collaboration/test_dev_pair_runtime.py",
+            "code_assist_v1/tests/notion_collaboration/test_multi_principal_harness.py"
+          ],
+          "evidence_types": [
+            "integration",
+            "multiprocess",
+            "security"
+          ]
+        },
+        {
+          "id": "L1-APPROVED-DEV-PAIR-LIVE",
+          "state": "existing_command_future_gate",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/test_approved_dev_pair.py"
+          ],
+          "required_deliverables": [
+            "code_assist_v1/tests/notion_collaboration/test_approved_dev_pair.py",
+            "code_assist_v1/tests/notion_collaboration/test_approved_dev_pair_browser.py",
+            "code_assist_v1/notion_collaboration/approved_dev_pair.py",
+            "code_assist_v1/notion_collaboration/approved_dev_pair_browser.py"
+          ],
+          "evidence_types": [
+            "approved_operator_action",
+            "actual_browser",
+            "integration",
+            "multiprocess",
+            "security"
+          ],
+          "matrix_row_ids": [
+            "ENV-001",
+            "ENV-002"
+          ]
+        }
+      ],
+      "exit": "The synthetic pair and then the approved development pair share only the intended identity authority, retain distinct data roots and secrets from production, and fail closed on cross-origin or cross-principal abuse."
+    },
+    {
+      "id": "L2-CANONICAL-AUTHORITY",
+      "order": 2,
+      "purpose": "Protect the existing workspace substrate while introducing one atomic content, IAM, event, audit, and outbox authority.",
+      "prerequisites": [
+        "L1-PAIR-AND-IDENTITY"
+      ],
+      "packets": [
+        "A0A-P1",
+        "A0A-P2",
+        "A0B-P1",
+        "I0-P1",
+        "I0-P2"
+      ],
+      "lanes": [
+        {
+          "id": "L2-WORKSPACE-SUBSTRATE-BASELINE",
+          "state": "existing_baseline",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/test_notion_workspace_store.py",
+            "code_assist_v1/tests/test_notion_workspace_store_p1.py",
+            "code_assist_v1/tests/test_notion_workspace_routes.py",
+            "code_assist_v1/tests/test_notion_workspace_pages.py",
+            "code_assist_v1/tests/test_notion_workspace_locator_projection.py",
+            "code_assist_v1/tests/test_notion_workspace_projection.py",
+            "code_assist_v1/tests/test_notion_workspace_outbox.py",
+            "code_assist_v1/tests/test_notion_workspace_outbox_delivery.py",
+            "code_assist_v1/tests/test_notion_workspace_navigation.py",
+            "code_assist_v1/tests/test_notion_workspace_navigation_routes.py",
+            "code_assist_v1/tests/test_notion_workspace_page_tree.py"
+          ],
+          "evidence_types": [
+            "unit",
+            "integration"
+          ]
+        },
+        {
+          "id": "L2-FORWARD-MIGRATION-BASELINE",
+          "state": "existing_baseline",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/test_migrate_notion_workspace_navigation.py",
+            "code_assist_v1/tests/test_migrate_notion_workspace_outbox.py",
+            "code_assist_v1/tests/test_migrate_notion_workspace_page_tree.py",
+            "code_assist_v1/tests/test_migrate_notion_workspace_lifecycle_subtree.py",
+            "code_assist_v1/tests/test_migrate_notion_workspace_lifecycle_subtree_finalize.py",
+            "code_assist_v1/tests/notion_collaboration/test_canonical_authority_migration.py"
+          ],
+          "evidence_types": [
+            "migration",
+            "unit"
+          ]
+        },
+        {
+          "id": "L2-COLLAB-AUTHORITY",
+          "state": "existing_baseline",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/test_canonical_authority.py",
+            "code_assist_v1/tests/notion_collaboration/test_iam_epochs.py",
+            "code_assist_v1/tests/notion_collaboration/test_event_outbox_atomicity.py",
+            "code_assist_v1/tests/notion_collaboration/test_restart_replay.py",
+            "code_assist_v1/tests/notion_collaboration/test_canonical_authority_migration.py",
+            "code_assist_v1/tests/notion_collaboration/test_canonical_authority_runtime.py",
+            "code_assist_v1/tests/notion_collaboration/test_legacy_snapshot_cutover.py",
+            "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_authority_baseline.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_migration.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_authority.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_compaction.py"
+          ],
+          "required_deliverables": [
+            "code_assist_v1/tests/notion_collaboration/test_canonical_authority.py",
+            "code_assist_v1/tests/notion_collaboration/test_iam_epochs.py",
+            "code_assist_v1/tests/notion_collaboration/test_event_outbox_atomicity.py",
+            "code_assist_v1/tests/notion_collaboration/test_restart_replay.py",
+            "code_assist_v1/tests/notion_collaboration/test_canonical_authority_migration.py",
+            "code_assist_v1/tests/notion_collaboration/test_canonical_authority_runtime.py",
+            "code_assist_v1/tests/notion_collaboration/test_legacy_snapshot_cutover.py",
+            "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_authority_baseline.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_migration.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_authority.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_compaction.py"
+          ],
+          "matrix_row_ids": [
+            "DATA-001",
+            "DATA-002"
+          ],
+          "evidence_types": [
+            "unit",
+            "integration",
+            "multiprocess",
+            "migration"
+          ]
+        },
+        {
+          "id": "L2-IAM-SHARING-AUTHORITY",
+          "state": "existing_baseline",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/test_collaborative_iam_authority.py"
+          ],
+          "required_deliverables": [
+            "code_assist_v1/notion_workspace_iam_migration.py",
+            "code_assist_v1/notion_collaboration/iam_authority.py",
+            "code_assist_v1/tests/notion_collaboration/test_collaborative_iam_authority.py",
+            "code_assist_v1/tools/verify_internal_collaborative_iam_authority.py",
+            "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_iam_authority.v1.json"
+          ],
+          "matrix_row_ids": [
+            "IAM-001",
+            "IAM-002",
+            "IAM-003",
+            "SEC-001"
+          ],
+          "evidence_types": [
+            "unit",
+            "integration",
+            "migration",
+            "multiprocess",
+            "security"
+          ]
+        }
+      ],
+      "exit": "There is no request-time directory authority or dual write, and authorization, content mutation, operation append, audit, and outbox effects share one durable transaction boundary."
+    },
+    {
+      "id": "L3-PROTOCOL-AND-CLIENT",
+      "order": 3,
+      "purpose": "Select and bind the CRDT/gateway runtime, then preserve existing editor behavior through a narrow host adapter.",
+      "prerequisites": [
+        "L2-CANONICAL-AUTHORITY"
+      ],
+      "packets": [
+        "E0-P1",
+        "E0-P2",
+        "E0-P3",
+        "E0-P4",
+        "T0A-P1",
+        "T0A-P2",
+        "T0A-P3",
+        "T0B-P1",
+        "T0B-P2",
+        "T0B-P3",
+        "UI0-P1",
+        "K0-P1",
+        "C0-P1",
+        "C0-P2"
+      ],
+      "lanes": [
+        {
+          "id": "L3-NODE-EDITOR-CORE",
+          "state": "existing_baseline",
+          "runner": "node",
+          "working_directory": ".",
+          "argv": [
+            "node",
+            "--unhandled-rejections=strict",
+            "code_assist_v1/tests/test_notion_editor_core.js"
+          ],
+          "evidence_types": [
+            "unit"
+          ]
+        },
+        {
+          "id": "L3-NODE-UI-RUNTIME",
+          "state": "existing_baseline",
+          "runner": "node",
+          "working_directory": ".",
+          "argv": [
+            "node",
+            "--unhandled-rejections=strict",
+            "code_assist_v1/tests/test_notion_ui_runtime.js"
+          ],
+          "evidence_types": [
+            "unit"
+          ]
+        },
+        {
+          "id": "L3-NODE-NAVIGATION",
+          "state": "existing_baseline",
+          "runner": "node",
+          "working_directory": ".",
+          "argv": [
+            "node",
+            "--unhandled-rejections=strict",
+            "code_assist_v1/tests/test_notion_navigation_ui.js"
+          ],
+          "evidence_types": [
+            "unit"
+          ]
+        },
+        {
+          "id": "L3-NODE-PUBLICATION",
+          "state": "existing_baseline",
+          "runner": "node",
+          "working_directory": ".",
+          "argv": [
+            "node",
+            "--unhandled-rejections=strict",
+            "code_assist_v1/tests/test_notion_publication_ui.js"
+          ],
+          "evidence_types": [
+            "unit"
+          ]
+        },
+        {
+          "id": "L3-NODE-ATOMIC-SAVE",
+          "state": "existing_baseline",
+          "runner": "node",
+          "working_directory": ".",
+          "argv": [
+            "node",
+            "--unhandled-rejections=strict",
+            "code_assist_v1/tests/test_notion_atomic_save.js"
+          ],
+          "evidence_types": [
+            "unit"
+          ]
+        },
+        {
+          "id": "L3-NODE-CSRF",
+          "state": "existing_baseline",
+          "runner": "node",
+          "working_directory": ".",
+          "argv": [
+            "node",
+            "--unhandled-rejections=strict",
+            "code_assist_v1/tests/test_auth_csrf_frontend.js"
+          ],
+          "evidence_types": [
+            "security",
+            "unit"
+          ]
+        },
+        {
+          "id": "L3-CRDT-PROTOCOL-CORPUS",
+          "state": "planned_required",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_corpus.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_contract.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_executor.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark_executor.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_winner_selection.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_winner_selection_executor.py",
+            "code_assist_v1/tests/notion_collaboration/test_ticket_protocol.py",
+            "code_assist_v1/tests/notion_collaboration/test_sequence_ack_replay.py",
+            "code_assist_v1/tests/notion_collaboration/test_compaction_boundary.py",
+            "code_assist_v1/tests/notion_collaboration/test_backpressure.py",
+            "code_assist_v1/tests/notion_collaboration/test_selected_runtime_contract.py",
+            "code_assist_v1/tests/notion_collaboration/test_selected_runtime_topology_adr.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_migration.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_authority.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_compaction.py",
+            "code_assist_v1/tests/notion_collaboration/test_runtime_gateway.py",
+            "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_redaction.py",
+            "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_lifecycle.py",
+            "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_cross_process.py"
+          ],
+          "required_deliverables": [
+            "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_corpus.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_contract.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_runtime_spike_executor.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_candidate_benchmark_executor.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_winner_selection.py",
+            "code_assist_v1/tests/notion_collaboration/test_crdt_winner_selection_executor.py",
+            "code_assist_v1/tests/notion_collaboration/test_ticket_protocol.py",
+            "code_assist_v1/tests/notion_collaboration/test_sequence_ack_replay.py",
+            "code_assist_v1/tests/notion_collaboration/test_compaction_boundary.py",
+            "code_assist_v1/tests/notion_collaboration/test_backpressure.py",
+            "code_assist_v1/tests/notion_collaboration/test_selected_runtime_contract.py",
+            "code_assist_v1/tests/notion_collaboration/test_selected_runtime_topology_adr.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_migration.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_authority.py",
+            "code_assist_v1/tests/notion_collaboration/test_durable_transport_compaction.py",
+            "code_assist_v1/tests/notion_collaboration/test_runtime_gateway.py",
+            "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_redaction.py",
+            "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_lifecycle.py",
+            "code_assist_v1/tests/notion_collaboration/test_runtime_gateway_cross_process.py"
+          ],
+          "evidence_types": [
+            "unit",
+            "integration",
+            "multiprocess",
+            "fault_injection"
+          ]
+        }
+      ],
+      "exit": "The chosen runtime passes convergence, Korean IME, restart, replay, compaction, backpressure, and cost tests; the legacy editor contract remains green through a host adapter."
+    },
+    {
+      "id": "L4-MULTI-PRINCIPAL-LIVE",
+      "order": 4,
+      "purpose": "Prove real simultaneous users, live presence/editing/comments/shares, revocation, stale clients, and deterministic convergence.",
+      "prerequisites": [
+        "L3-PROTOCOL-AND-CLIENT"
+      ],
+      "packets": [
+        "E1-P1",
+        "E1-P2",
+        "E1-P3",
+        "F0-P1",
+        "F0-P2",
+        "F0-P3",
+        "F0-P4",
+        "F0-P5"
+      ],
+      "lanes": [
+        {
+          "id": "L4-EXISTING-GOLDEN-JOURNEY",
+          "state": "existing_baseline",
+          "runner": "pytest_playwright",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py"
+          ],
+          "evidence_types": [
+            "browser_interaction"
+          ]
+        },
+        {
+          "id": "L4-REAL-MULTIPROCESS-COLLAB",
+          "state": "planned_required",
+          "runner": "pytest_playwright",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/browser/test_runtime_gateway_browser_transport.py",
+            "code_assist_v1/tests/notion_collaboration/browser/test_realtime_multi_principal.py",
+            "code_assist_v1/tests/notion_collaboration/browser/test_share_and_workspace_membership.py",
+            "code_assist_v1/tests/notion_collaboration/browser/test_revocation_and_stale_client.py",
+            "code_assist_v1/tests/notion_collaboration/browser/test_comments_mentions_notifications.py"
+          ],
+          "required_deliverables": [
+            "code_assist_v1/tests/notion_collaboration/browser/test_runtime_gateway_browser_transport.py",
+            "code_assist_v1/tests/notion_collaboration/browser/test_realtime_multi_principal.py",
+            "code_assist_v1/tests/notion_collaboration/browser/test_share_and_workspace_membership.py",
+            "code_assist_v1/tests/notion_collaboration/browser/test_revocation_and_stale_client.py",
+            "code_assist_v1/tests/notion_collaboration/browser/test_comments_mentions_notifications.py"
+          ],
+          "evidence_types": [
+            "multiprocess",
+            "browser_interaction",
+            "security"
+          ]
+        }
+      ],
+      "exit": "Independent browsers backed by independent server processes converge without lost acknowledged edits, and revocation closes every HTTP, WebSocket, replay, presence, comment, notification, and Second Brain path."
+    },
+    {
+      "id": "L5-SECOND-BRAIN-BOUNDARY",
+      "order": 5,
+      "purpose": "Keep the collaborative page authority compatible with Second Brain publication while preventing unpublished or revoked content leakage.",
+      "prerequisites": [
+        "L4-MULTI-PRINCIPAL-LIVE"
+      ],
+      "packets": [
+        "S0A-P1",
+        "S0B-P1",
+        "S0A-P2"
+      ],
+      "lanes": [
+        {
+          "id": "L5-SECOND-BRAIN-REGRESSION",
+          "state": "existing_baseline",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/test_notion_publication_adapter.py",
+            "code_assist_v1/tests/test_notion_atomic_save_compat.py",
+            "code_assist_v1/tests/knowledge_spaces/regression/test_notion_publication_and_job_restart.py",
+            "code_assist_v1/tests/knowledge_spaces/regression/test_second_brain_chat_characterization.py",
+            "code_assist_v1/tests/knowledge_spaces/integration/test_full_second_brain_preview.py",
+            "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py::test_ui1_second_brain_cancel_approve_and_replay_contract",
+            "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py::test_ui_tree_003_duplicate_trash_restore_preserves_second_brain",
+            "code_assist_v1/tests/browser/test_notion_ui1_golden_journey.py::test_ui_sb_003_session_attach_detach_revalidates_current_access"
+          ],
+          "evidence_types": [
+            "integration",
+            "browser_interaction",
+            "security"
+          ]
+        },
+        {
+          "id": "L5-COLLAB-PUBLICATION-FENCE",
+          "state": "planned_required",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/test_publication_high_water.py",
+            "code_assist_v1/tests/notion_collaboration/test_second_brain_revocation.py"
+          ],
+          "required_deliverables": [
+            "code_assist_v1/tests/notion_collaboration/test_publication_high_water.py",
+            "code_assist_v1/tests/notion_collaboration/test_second_brain_revocation.py"
+          ],
+          "matrix_row_ids": [
+            "SB-001",
+            "IAM-003"
+          ],
+          "sbe_scenario_ids": [
+            "PUB-001",
+            "PUB-002",
+            "PUB-003",
+            "PUB-004",
+            "AUTH-001",
+            "AUTH-002",
+            "AUTH-004",
+            "REG-002",
+            "REG-003"
+          ],
+          "evidence_types": [
+            "integration",
+            "security",
+            "fault_injection",
+            "multiprocess"
+          ]
+        }
+      ],
+      "exit": "Only an explicit durable publication commit crosses into Second Brain. Revocation plus retry/restart blocks live or unpublished source access and new publication, while an already-published independent SBE item remains governed solely by SBE authorization and lifecycle."
+    },
+    {
+      "id": "L6-VISUAL-ACCESSIBILITY",
+      "order": 6,
+      "purpose": "Prove strict interaction and accessibility parity for every approved visible state, exact immutable transport for the V0R reference corpus, and reviewed strict visual similarity for the V0B product candidate without conflating semantic, similarity, and exact-pixel evidence.",
+      "prerequisites": [
+        "L5-SECOND-BRAIN-BOUNDARY"
+      ],
+      "packets": [
+        "V0A-P1",
+        "V0R-P1",
+        "V0B-P1"
+      ],
+      "lanes": [
+        {
+          "id": "L6-EXACT-RGBA",
+          "state": "planned_required",
+          "runner": "pytest_playwright",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/browser/test_exact_pixel_parity.py",
+            "code_assist_v1/tests/notion_collaboration/test_exact_rgba_comparator.py",
+            "code_assist_v1/tests/notion_collaboration/test_pixel_mask_manifest.py"
+          ],
+          "required_deliverables": [
+            "code_assist_v1/tests/notion_collaboration/browser/test_exact_pixel_parity.py",
+            "code_assist_v1/tests/notion_collaboration/test_exact_rgba_comparator.py",
+            "code_assist_v1/tests/notion_collaboration/test_pixel_mask_manifest.py"
+          ],
+          "evidence_types": [
+            "exact_pixel",
+            "visual_similarity",
+            "browser_interaction"
+          ],
+          "comparison_contract": {
+            "decoded_color_space": "sRGB_RGBA8",
+            "viewport_and_device_scale_must_match": true,
+            "font_manifest_must_match": true,
+            "animation_and_time_must_be_frozen": true,
+            "v0r_reference_unmasked_differing_pixels_allowed": 0,
+            "v0b_candidate_exact_RGBA_is_diagnostic": true,
+            "v0b_candidate_similarity_policy": "whole_viewport_plus_three_broad_regions_plus_one_state_specific_critical_region_for_all_36_state_viewport_rows",
+            "mask_policy": "named_reviewed_content_independent_masks_only",
+            "required_outputs": [
+              "differing_pixel_count",
+              "difference_bounding_boxes",
+              "diff_image_sha256",
+              "mask_manifest_sha256",
+              "reference_image_sha256",
+              "candidate_image_sha256"
+            ]
+          }
+        },
+        {
+          "id": "L6-ACCESSIBILITY",
+          "state": "planned_required",
+          "runner": "pytest_playwright",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/browser/test_collaboration_accessibility.py"
+          ],
+          "required_deliverable": "code_assist_v1/tests/notion_collaboration/browser/test_collaboration_accessibility.py",
+          "evidence_types": [
+            "accessibility",
+            "browser_interaction"
+          ]
+        }
+      ],
+      "exit": "Every required viewport and state passes semantic interaction, keyboard/screen-reader checks, and zero unmasked RGBA difference against its approved reference."
+    },
+    {
+      "id": "L7-BACKUP-RESTORE",
+      "order": 7,
+      "purpose": "Prove an atomic high-water backup, forward restore, integrity audit, restart, and rollback-compatible recovery before production rehearsal.",
+      "prerequisites": [
+        "L3-PROTOCOL-AND-CLIENT"
+      ],
+      "packets": [
+        "O0A-P1",
+        "O0A-P2",
+        "O0A-P3",
+        "O1A-P1",
+        "O1B-P1"
+      ],
+      "lanes": [
+        {
+          "id": "L7-KNOWLEDGE-BACKUP-BASELINE",
+          "state": "existing_baseline",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/knowledge_spaces/unit/test_backup_service.py",
+            "code_assist_v1/tests/knowledge_spaces/unit/test_backup_retention.py",
+            "code_assist_v1/tests/knowledge_spaces/unit/test_backup_repository.py",
+            "code_assist_v1/tests/knowledge_spaces/unit/test_backup_manifest.py",
+            "code_assist_v1/tests/knowledge_spaces/unit/test_online_sqlite_backup.py",
+            "code_assist_v1/tests/knowledge_spaces/integration/test_backup_restore_cli.py",
+            "code_assist_v1/tests/knowledge_spaces/integration/test_backup_multiprocess.py",
+            "code_assist_v1/tests/knowledge_spaces/integration/test_restore_drill.py"
+          ],
+          "evidence_types": [
+            "backup_restore",
+            "multiprocess"
+          ]
+        },
+        {
+          "id": "L7-COLLAB-WORKSPACE-RESTORE",
+          "state": "planned_required",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py",
+            "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py",
+            "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py",
+            "code_assist_v1/tests/notion_collaboration/test_compaction_boundary.py"
+          ],
+          "required_deliverables": [
+            "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py",
+            "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py",
+            "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py",
+            "code_assist_v1/tests/notion_collaboration/test_compaction_boundary.py"
+          ],
+          "matrix_row_ids": [
+            "ICN-OPS-001",
+            "ICN-OPS-002"
+          ],
+          "sbe_scenario_ids": [
+            "OPS-001",
+            "OPS-002",
+            "OPS-003",
+            "OPS-004",
+            "OPS-005",
+            "OPS-006"
+          ],
+          "allowed_realm_ids": [
+            "synthetic_isolated",
+            "target_restore"
+          ],
+          "closure_requires_realm_id": "target_restore",
+          "evidence_types": [
+            "backup_restore",
+            "multiprocess",
+            "fault_injection"
+          ]
+        }
+      ],
+      "exit": "A new-root restore reproduces content, IAM epochs, event order, CRDT checkpoints, comments, shares, audit, publication high-water, and Second Brain boundaries within the frozen RPO/RTO contract."
+    },
+    {
+      "id": "L8-LOAD-FAULT-SECURITY",
+      "order": 8,
+      "purpose": "Exercise target concurrency, slow consumers, reconnect storms, crashes, revocation races, upload limits, and security abuse under the frozen topology.",
+      "prerequisites": [
+        "L4-MULTI-PRINCIPAL-LIVE",
+        "L7-BACKUP-RESTORE"
+      ],
+      "packets": [
+        "Q0-P1"
+      ],
+      "lanes": [
+        {
+          "id": "L8-EXISTING-PERFORMANCE-BASELINE",
+          "state": "existing_baseline",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/knowledge_spaces/unit/test_performance_load.py",
+            "code_assist_v1/tests/test_notion_ui_performance_budget.py",
+            "code_assist_v1/tests/test_notion_ui_performance_budget_proposal.py",
+            "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+            "code_assist_v1/tests/browser/test_notion_ui_pilot_recovery.py"
+          ],
+          "evidence_types": [
+            "performance",
+            "browser_interaction"
+          ]
+        },
+        {
+          "id": "L8-COLLAB-LOAD-FAULT",
+          "state": "planned_required",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests/notion_collaboration/load/test_target_concurrency.py",
+            "code_assist_v1/tests/notion_collaboration/load/test_reconnect_storm.py",
+            "code_assist_v1/tests/notion_collaboration/load/test_slow_consumer_backpressure.py",
+            "code_assist_v1/tests/notion_collaboration/load/test_long_soak.py",
+            "code_assist_v1/tests/notion_collaboration/security/test_collaboration_abuse.py",
+            "code_assist_v1/tests/notion_collaboration/fault/test_gateway_and_store_faults.py"
+          ],
+          "required_deliverables": [
+            "code_assist_v1/tests/notion_collaboration/load/test_target_concurrency.py",
+            "code_assist_v1/tests/notion_collaboration/load/test_reconnect_storm.py",
+            "code_assist_v1/tests/notion_collaboration/load/test_slow_consumer_backpressure.py",
+            "code_assist_v1/tests/notion_collaboration/load/test_long_soak.py",
+            "code_assist_v1/tests/notion_collaboration/security/test_collaboration_abuse.py",
+            "code_assist_v1/tests/notion_collaboration/fault/test_gateway_and_store_faults.py"
+          ],
+          "matrix_row_ids": [
+            "ICN-PERF-001",
+            "SEC-001",
+            "OBS-001"
+          ],
+          "sbe_scenario_ids": [
+            "PERF-001",
+            "OPS-005",
+            "AUTH-004"
+          ],
+          "required_realm_id": "target_windows_load",
+          "evidence_types": [
+            "performance",
+            "security",
+            "fault_injection",
+            "multiprocess"
+          ]
+        }
+      ],
+      "exit": "The frozen load envelope passes latency, loss, memory, queue, compaction, reconnect, revocation, security, and soak budgets with no acknowledged-edit loss."
+    },
+    {
+      "id": "L9-RELEASE-AND-CANARY",
+      "order": 9,
+      "purpose": "Bind the full suite to one release candidate, rehearse on an approved production copy, then canary and promote without rebuilding.",
+      "prerequisites": [
+        "L6-VISUAL-ACCESSIBILITY",
+        "L8-LOAD-FAULT-SECURITY"
+      ],
+      "packets": [
+        "R0A-P1",
+        "R0B-P1",
+        "R1-P1",
+        "Z0-P1"
+      ],
+      "lanes": [
+        {
+          "id": "L9-FULL-PYTHON-SUITE",
+          "state": "existing_command_future_gate",
+          "runner": "pytest",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "-E",
+            "-m",
+            "pytest",
+            "-c",
+            "code_assist_v1/pytest.ini",
+            "-q",
+            "-p",
+            "no:debugging",
+            "-p",
+            "no:cacheprovider",
+            "code_assist_v1/tests"
+          ],
+          "required_realm_id": "synthetic_isolated",
+          "live_or_production_copy_fixture_forbidden": true,
+          "evidence_types": [
+            "unit",
+            "integration",
+            "multiprocess",
+            "browser_interaction",
+            "security",
+            "migration",
+            "backup_restore"
+          ]
+        },
+        {
+          "id": "L9-NODE-SUITE",
+          "state": "composite_existing_lanes_future_gate",
+          "includes": [
+            "L3-NODE-EDITOR-CORE",
+            "L3-NODE-UI-RUNTIME",
+            "L3-NODE-NAVIGATION",
+            "L3-NODE-PUBLICATION",
+            "L3-NODE-ATOMIC-SAVE",
+            "L3-NODE-CSRF"
+          ],
+          "evidence_types": [
+            "unit",
+            "security"
+          ]
+        },
+        {
+          "id": "L9-REALM-PROMOTION",
+          "state": "planned_required",
+          "runner": "process",
+          "working_directory": ".",
+          "argv": [
+            ".\\venv\\Scripts\\python.exe",
+            "code_assist_v1/tools/run_internal_collaborative_validation.py",
+            "--mode",
+            "gate",
+            "--rung",
+            "L9-RELEASE-AND-CANARY"
+          ],
+          "required_deliverable": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+          "execution_contract": "The runner verifies separately approved operator-action receipts for the offline copy, default-off install, and canary; it never invokes pytest against those roots.",
+          "evidence_types": [
+            "migration",
+            "backup_restore",
+            "canary"
+          ]
+        }
+      ],
+      "exit": "The production-copy rehearsal, rollback compatibility, gateway package, canary, smoke, telemetry, and kill switch pass on the same release_candidate_id and approved realm-specific fingerprints."
+    }
+  ],
+  "operator_action_contract": {
+    "separate_from_pytest_lanes": true,
+    "approval_is_execution_authority_not_evidence": true,
+    "exact_scope_root_port_subject_workspace_argv_precondition_hash_expiry_and_rollback_required": true,
+    "offline_production_copy_allowed_actions": [
+      "offline_migration",
+      "new_root_restore",
+      "integrity_audit",
+      "redacted_application_smoke"
+    ],
+    "offline_production_copy_forbidden_actions": [
+      "pytest_fixture",
+      "writable_automated_test_target",
+      "in_place_restore",
+      "unredacted_evidence_capture"
+    ],
+    "approval_implies_local_or_cross_stream_file_ownership": false
+  },
+  "operator_gates": [
+    {
+      "packet_id": "E0-P2",
+      "approval_id": "AP-RUNTIME-SPIKE",
+      "required_when": "candidate_dependency_not_already_available",
+      "approval_is_test_evidence": false
+    },
+    {
+      "packet_id": "D0B-P1",
+      "approval_id": "AP-DEV-PAIR",
+      "required_when": "always",
+      "approval_is_test_evidence": false
+    },
+    {
+      "packet_id": "V0R-P1",
+      "approval_id": "AP-REFERENCE-MULTIUSER",
+      "required_when": "always",
+      "approval_is_test_evidence": false
+    },
+    {
+      "packet_id": "O1B-P1",
+      "approval_id": "AP-OPS-TARGET",
+      "required_when": "always_for_product_completion",
+      "approval_is_test_evidence": false
+    },
+    {
+      "packet_id": "R0A-P1",
+      "approval_id": "AP-PROD-REHEARSAL",
+      "required_when": "always",
+      "approval_is_test_evidence": false
+    },
+    {
+      "packet_id": "R0B-P1",
+      "approval_id": "AP-PROD-DEPLOY",
+      "required_when": "always",
+      "approval_is_test_evidence": false
+    },
+    {
+      "packet_id": "R1-P1",
+      "approval_id": "AP-PROD-CANARY",
+      "required_when": "always",
+      "approval_is_test_evidence": false
+    },
+    {
+      "packet_id": null,
+      "approval_id": "AP-PROD-RESTORE",
+      "required_when": "actual_incident_production_restore_only",
+      "approval_is_test_evidence": false
+    }
+  ],
+  "final_gate": {
+    "packet_id": "Z0-P1",
+    "mode": "strict_completion",
+    "required_rung_ids": [
+      "L0-CONTRACT-BOOT",
+      "L1-PAIR-AND-IDENTITY",
+      "L2-CANONICAL-AUTHORITY",
+      "L3-PROTOCOL-AND-CLIENT",
+      "L4-MULTI-PRINCIPAL-LIVE",
+      "L5-SECOND-BRAIN-BOUNDARY",
+      "L6-VISUAL-ACCESSIBILITY",
+      "L7-BACKUP-RESTORE",
+      "L8-LOAD-FAULT-SECURITY",
+      "L9-RELEASE-AND-CANARY"
+    ],
+    "all_matrix_rows_must_be_closed": true,
+    "open_decision_count_must_equal": 0,
+    "skip_count_must_equal": 0,
+    "xfail_count_must_equal": 0,
+    "collection_error_count_must_equal": 0,
+    "unresolved_host_retry_count_must_equal": 0,
+    "v0r_reference_unmasked_pixel_difference_count_must_equal": 0,
+    "v0b_candidate_strict_visual_similarity_pass_count_must_equal": 36,
+    "v0b_candidate_exact_pixel_count_is_diagnostic": true,
+    "post_revoke_delivery_count_must_equal": 0,
+    "convergence_mismatch_count_must_equal": 0,
+    "acknowledged_character_loss_count_must_equal": 0,
+    "required_viewports": [
+      {
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "width": 1280,
+        "height": 800
+      }
+    ],
+    "required_canary_principals": {
+      "collaborators": 2,
+      "outsider_negative_controls": 1
+    },
+    "full_python_and_six_node_commands_required": true,
+    "final_contract_audit_required": true,
+    "phase_gate_status_integrator_receipts_required": true,
+    "current_sbe_goal_count_must_equal": 20,
+    "current_sbe_mandatory_scenario_count_must_equal": 284,
+    "partial_sbe_count_transition_forbidden": true,
+    "notion_product_completion_does_not_by_itself_complete_active_shared_goal": true,
+    "active_shared_goal_additionally_requires_current_sbe_test_traceability_and_goal_contract_gates": true
+  },
+  "gate_failure_conditions": [
+    "An authority-input hash, source manifest, dependency lock, schema migration, collaboration protocol, frontend build, reference image, or mask differs from the receipt binding.",
+    "A required packet, matrix row, approval, rung, lane, artifact, or receipt is absent, expired, failed, host_flaky without two later clean runs, or infra_blocked.",
+    "A planned_required deliverable does not exist or its owning tests were not executed in the bound realm.",
+    "Audit mode output is presented as gate evidence.",
+    "A browser lane reuses a persistent personal profile or shares cookies/localStorage between principals.",
+    "Any automated test lane reads or writes production, an existing 10111 preview root, live knowledge/, live user_data/, live .runtime/, an existing per-user Notion database, an offline production copy, or any non-runner-owned fixture root, regardless of approval.",
+    "An approved operator action is presented as pytest evidence, exceeds its exact scope, or is used without a valid local and cross-stream ownership handoff.",
+    "A phase gate lacks a predeclared status integrator assignment receipt or a non-integrator edits AGENTS.md, STATUS.md, TRACEABILITY.md, GOAL_CONTRACT.json, or another hot contract.",
+    "An SBE-adjacent receipt lacks the current AGENTS.md hash, ordered 18-document manifest, current goal/status/schema lineage, owning SBE packet, rollout gate, or exact TEST_OPERATIONS.md scenario IDs.",
+    "A multiprocess claim lacks distinct process IDs and roles, shared database identity, process count, or exercised fault points.",
+    "A target Windows load or restore claim lacks p50/p95/p99, SQLite busy count, queue/projection lag, or restore timing as applicable.",
+    "A receipt or artifact contains a forbidden secret or unnecessary private user content.",
+    "The V0R exact-reference lane has any unmasked differing pixel, or the V0B candidate similarity lane has an unapproved mask, an unfrozen dynamic source, a mismatched viewport, scale, font, locale, or build, or any failed whole, broad, or state-specific critical region.",
+    "A collaboration run loses an acknowledged operation, accepts a stale permission epoch, leaks unpublished content, or fails deterministic replay after restart.",
+    "A backup lacks a single durable high-water boundary or a restore cannot pass integrity and application validation in a new root.",
+    "Canary and production-full do not share the promoted deployment_generation_id, or the artifact was rebuilt after canary.",
+    "Cleanup targets an unrelated process or leaves a runner-owned process, port, database handle, or temp root active."
+  ],
+  "implementation_targets": {
+    "runner": "code_assist_v1/tools/run_internal_collaborative_validation.py",
+    "ladder_verifier": "code_assist_v1/tools/verify_internal_collaborative_validation_ladder.py",
+    "completion_verifier": "code_assist_v1/tools/verify_internal_collaborative_completion.py",
+    "tests_root": "code_assist_v1/tests/notion_collaboration",
+    "next_packet": "O1B-P1",
+    "first_verifier_implementation_packet": "U0A-P2"
+  }
+}

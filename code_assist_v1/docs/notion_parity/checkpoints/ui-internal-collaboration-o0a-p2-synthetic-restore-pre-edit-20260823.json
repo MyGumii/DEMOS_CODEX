@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-O0A-P2-SYNTHETIC-RESTORE-PRE-EDIT-20260823",
+  "recorded_at": "2026-08-23T10:02:30Z",
+  "checkpoint_kind": "packet_pre_edit_ownership",
+  "packet_id": "O0A-P2",
+  "packet_status": "superseded",
+  "purpose": "Freeze exact SPIKE ownership before implementing a marker-bound, standard-library-only synthetic coordinated generation, real cross-process writer/failpoint harness, and verified new-root restore with projection regeneration. Only OS-temporary runner-owned roots are allowed; no product schema, service, port, live authority, SBE contract, or production recovery target is in scope.",
+  "owner_agent": "/root",
+  "ownership_lease": {
+    "lease_id": "O0A-P2-SPIKE-20260823-100230Z",
+    "lane": "SPIKE",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-23T10:02:30Z",
+    "expires_at": "2026-08-23T18:02:30Z",
+    "released_at": "2026-08-23T10:19:54Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json"
+  ],
+  "planned_new_product_files": [
+    "code_assist_v1/notion_collaboration/coordinated_backup_prototype.py"
+  ],
+  "planned_new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py",
+    "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py",
+    "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py"
+  ],
+  "pre_edit_sha256": {
+    "code_assist_v1/notion_collaboration/coordinated_backup_prototype.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_backup_high_water.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_restore_new_root.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_restore_replay_integrity.py": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:60a9e7caf8d16ba581392e15bd1cb29058a0c09479a7ae9045cf6572f4e591b4",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:b79a3a493ee2709f12fb265334c688e46e47b933b55b3afc8741d089ab548d1a",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:5909d1166006ce3b6165ed6496cd42a47b4d2682a21b9287933d886f78b93883",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json": "sha256:c6ee653ae70b017edeeeeee981bb090fe3245b02ddc63a8fc54498584557da1a"
+  },
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/notion_collaboration/canonical_authority_prototype.py": "sha256:a5cc2b84f0763f37ffff3745da2b67984c34e35e14e8bab74617ab2e44661376",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_backup_adr.v1.json": "sha256:d6798594ec6b7e79d6a04f5d6fdff6fa0fff28e1f34f2457960162ca81e3b084",
+    "code_assist_v1/knowledge_core/backup_manifest.py": "sha256:a7e4695aad59d02f3fb8aae82ee3308b1c4943bc89936a82d562ad47612a856a",
+    "code_assist_v1/knowledge_core/services/backup.py": "sha256:744f2f8c602518f538e5a292e7eb841aedc7a4bb28a432eb4b5373777935048f",
+    "code_assist_v1/knowledge_core/services/restore.py": "sha256:3ea7b1477451959e7a58da10a951067c8c388da1992f5158b672042f4142e0cd"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o0a-p1-backup-adr-20260823.json",
+    "sha256": "sha256:ce7f3c279c6bb5dca135fa8f46a15412678053567d72dec501b538a02bc80738",
+    "packet_id": "O0A-P1",
+    "receipt_id": "O0A-P1-L7-KNOWLEDGE-BACKUP-BASELINE-20260823"
+  },
+  "sbe_contract_audit": {
+    "status": "pass",
+    "error_count": 0,
+    "input_sha256": "sha256:284d70c452fa1b742212d12286d5d3c7da9b7e9a2014d9b29163df2a805c9cf0",
+    "goal_count": 20,
+    "mandatory_scenario_count": 284,
+    "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+    "ordered_instruction_documents_read": 18
+  },
+  "external_prerequisite_observation": {
+    "id": "XG-SBE-DYNAMIC-BASELINE",
+    "status": "not_listed_for_O0A_P2_but_revalidated_due_SBE_adjacent_scope",
+    "p7_4_baseline": "verified_existing_backup_and_isolated_restore_baseline",
+    "sbe_7_1_and_7_2": "not_started_and_not_modified",
+    "cross_database_atomic_transaction_claimed": false
+  },
+  "approval_state": {
+    "packet_approval_required": false,
+    "ap_runtime_spike_approved": false,
+    "dependency_download_or_install_allowed": false,
+    "actual_service_or_port_start_allowed": false,
+    "production_recovery_targets_frozen": false,
+    "production_schema_identity_or_data_root_mutation_allowed": false
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "paths": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/docs/knowledge_spaces",
+      "code_assist_v1/requirements-runtime.lock",
+      "code_assist_v1/notion_store.py",
+      "code_assist_v1/notion_workspace_store.py",
+      "code_assist_v1/routes_notion.py",
+      "code_assist_v1/routes_notion_workspace.py",
+      "code_assist_v1/knowledge_core",
+      "code_assist_v1/user_data",
+      "code_assist_v1/knowledge",
+      "code_assist_v1/.runtime"
+    ]
+  },
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "Resume the interrupted implementation goal.",
+    "status": "active",
+    "observed_at": "2026-08-23T10:02:30Z",
+    "goal_completion_claimed": false
+  },
+  "execution_cursor": {
+    "current_packet": "O0A-P2",
+    "current_state": "transferred_to_gate_checkpoint",
+    "parallel_reason": "O0A-P1 and A0A-P2 are gate_passed, O0A-P2 has no approval dependency, and all execution is marker-bound below pytest-owned OS-temporary roots. E0-P2 remains awaiting AP-RUNTIME-SPIKE.",
+    "next_primary_packet": "E0-P2",
+    "next_primary_state": "awaiting_conditional_approval",
+    "required_approval_id": "AP-RUNTIME-SPIKE"
+  },
+  "rollback_or_cleanup": "Delete only this O0A-P2 pre-edit checkpoint if implementation does not start. No package, lockfile, schema migration, route, store, runtime service, port, live identity, browser profile, backup destination, SBE contract, or protected data root is in scope."
+}

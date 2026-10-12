@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_crdt_winner_adr.v1",
+  "decision_id": "E0-P4-CRDT-WINNER-ADR-001",
+  "recorded_at": "2026-08-23T23:57:00Z",
+  "packet_id": "E0-P4",
+  "status": "accepted_for_follow_on_protocol_binding",
+  "decision": {
+    "selected_candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+    "gateway_execution_owner": "python",
+    "gateway_payload_semantics": "opaque_bytes",
+    "crdt_execution_owner": "node_yjs_compactor",
+    "canonical_IAM_and_ACK_owner": "canonical_python_authority",
+    "wire_format": "Yjs_v1_update_bytes",
+    "hosted_service_required": false,
+    "service_topology_frozen": false,
+    "runtime_enabled": false
+  },
+  "authority_inputs": {
+    "candidate_matrix": {
+      "path": "internal_collaborative_crdt_candidate_matrix.v1.json",
+      "sha256": "sha256:a97bde3c677acc198e1f451619367dcec20c59a76aa4934fe7f0905718831d57"
+    },
+    "candidate_corpus": {
+      "path": "internal_collaborative_crdt_corpus.v1.json",
+      "sha256": "sha256:9be012b8150b3db48c66f743369a2b9905e234582056e28e427d77f311fca8b2"
+    },
+    "gateway_contract": {
+      "path": "internal_collaborative_gateway_contract.v1.json",
+      "sha256": "sha256:8bfa575854f409e648822f8e4b6e27433f14cab699ee6def6fb3f08698fd4e96"
+    },
+    "protocol_contract": {
+      "path": "internal_collaborative_protocol_contract.v1.json",
+      "sha256": "sha256:c2ce4dcecebd4f7da459824f3f012a142ef8ef6d2fd08195490587ad4f954481"
+    },
+    "e0_p3_benchmark_receipt": {
+      "path": "../checkpoints/ui-internal-collaboration-e0-p3-candidate-benchmark-receipt-20260824.json",
+      "sha256": "sha256:15f7d5fa52844adc5b576d34d6ebe8cd5415446c61f465431c67c9b0f75d67cc"
+    },
+    "e0_p4_execution_receipt": {
+      "path": "../checkpoints/ui-internal-collaboration-e0-p4-winner-selection-receipt-20260824.json",
+      "sha256": "sha256:c358230bc289d8b1c2244ec46b8b5ebe939fd051fa0b4a595625044f7b0d490a"
+    },
+    "artifact_manifest": {
+      "path": "../../../collaboration_runtime/ARTIFACT_MANIFEST.json",
+      "sha256": "sha256:8059bf135ca66a49d67c0798d30b71ed48bf779e3f142cb20d94a1328354e584"
+    }
+  },
+  "mandatory_gate_evidence": {
+    "common_corpus": {
+      "candidate_count": 3,
+      "case_count_per_candidate": 53,
+      "total_candidate_case_count": 159,
+      "selected_case_count": 53,
+      "acknowledged_character_loss_count": 0,
+      "convergence_mismatch_count": 0,
+      "invalid_unicode_count": 0,
+      "duplicate_effect_count": 0,
+      "ime_intermediate_published_count": 0
+    },
+    "opaque_relay": {
+      "case_count": 53,
+      "delivered_update_count": 198,
+      "unique_update_count": 166,
+      "duplicate_update_count": 32,
+      "midstream_persist_reload_passed": 53,
+      "final_restart_recovery_passed": 53,
+      "content_inspected_by_python": false
+    },
+    "faults": {
+      "duplicate_delivery_cases": 45,
+      "deterministic_out_of_order_cases": 18,
+      "restart_after_half_cases": 12,
+      "compact_then_tail_replay_cases": 3,
+      "acknowledged_loss": 0
+    },
+    "windows_reproducibility": {
+      "python_hash_locked_clean_install_passed": true,
+      "python_pip_check_passed": true,
+      "node_offline_ci_passed": true,
+      "node_npm_ls_passed": true,
+      "temporary_repro_roots_removed": true
+    },
+    "iam_and_backpressure_contract": {
+      "transport_only_gateway_does_not_own_IAM": true,
+      "canonical_commit_precedes_ACK": true,
+      "send_time_epoch_revalidation": true,
+      "silent_durable_drop_allowed": false,
+      "availability_never_substitutes_for_authorization": true
+    }
+  },
+  "resource_tradeoff": {
+    "selected_peak_process_rss_bytes": 65806336,
+    "selected_operations_per_second": {
+      "p50": 23492.560689114307,
+      "p95": 43630.81617086347,
+      "p99": 51141.76756478634
+    },
+    "faster_lower_memory_candidate_observed": "PY_NATIVE_PYCRDT",
+    "reason_performance_did_not_override_gate": "Resource cost is comparative, while the frozen transitive-license allowlist is mandatory.",
+    "benchmark_scope_limit": "These small isolated no-listener cases establish comparative headroom only; T0/O0/Q0 still own real transport, high-water, backpressure, load, and soak evidence."
+  },
+  "license_decision": {
+    "frozen_allowed_spdx": [
+      "BSD-3-Clause",
+      "MIT"
+    ],
+    "selected_transitive_package_count": 8,
+    "selected_disallowed_package_count": 0,
+    "policy_expanded_by_e0_p4": false,
+    "rejected_candidates": [
+      {
+        "candidate_id": "PY_NATIVE_PYCRDT",
+        "blocking_package": "typing-extensions==4.16.0",
+        "observed_license_spdx": "PSF-2.0",
+        "reason_code": "FROZEN_LICENSE_ALLOWLIST_MISMATCH"
+      },
+      {
+        "candidate_id": "NODE_YJS_HOCUSPOCUS",
+        "blocking_package": "tslib==2.8.1",
+        "observed_license_spdx": "0BSD",
+        "reason_code": "FROZEN_LICENSE_ALLOWLIST_MISMATCH"
+      }
+    ],
+    "reopen_rule": "A later explicit policy decision may add a permissive SPDX identifier only through a new hash-bound decision packet and complete rerun; it does not retroactively change this ADR."
+  },
+  "pinned_runtime": {
+    "python_lock_path": "code_assist_v1/collaboration_runtime/python-requirements.lock",
+    "python_lock_sha256": "sha256:2910510df5c434104778c4a78f40a6b2368204513c8ac29824c5a1cb13db7c65",
+    "node_package_json_path": "code_assist_v1/collaboration_runtime/node/package.json",
+    "node_package_json_sha256": "sha256:19296e28baa32d70748e7dd5d006246366bc181934321eaf9fee6dd21aae1f51",
+    "node_package_lock_path": "code_assist_v1/collaboration_runtime/node/package-lock.json",
+    "node_package_lock_sha256": "sha256:83e6d16c1dbece14c9c572807c6e2e88431f672ce5878b3edd25310fdcca43b3",
+    "artifact_manifest_path": "code_assist_v1/collaboration_runtime/ARTIFACT_MANIFEST.json",
+    "artifact_manifest_sha256": "sha256:8059bf135ca66a49d67c0798d30b71ed48bf779e3f142cb20d94a1328354e584",
+    "global_application_runtime_lock_modified": false,
+    "separate_runtime_reason": "The Python ASGI gateway and Node compactor are separately managed processes and are not imports of the Flask/Waitress application environment."
+  },
+  "rejected_candidate_removal_plan": {
+    "production_dependency_pins_for_rejected_candidates_present": false,
+    "production_entry_points_for_rejected_candidates_present": false,
+    "retain_only_evidence_sources": [
+      "E0-P2/E0-P3 disposable adapters",
+      "hash-bound benchmark and lifecycle receipts",
+      "candidate rejection rows in the artifact manifest and this ADR"
+    ],
+    "temporary_runtime_action": "After E0-P4 packet tests and receipt preservation, marker-validate and remove the entire retained E0-P3 direct OS-temp child with the existing tested cleanup function.",
+    "future_release_action": "Package only the selected Python lock and Node lock. Do not install pycrdt, pycrdt-websocket, @hocuspocus/server, or their rejected transitive graphs."
+  },
+  "follow_on_constraints": {
+    "next_packet": "T0A-P3",
+    "T0A_P3_must_bind": [
+      "selected gateway process ownership and health",
+      "exact Yjs update envelope and payload hashing",
+      "canonical epoch and durable ACK boundary",
+      "Node compactor request/result and high-water protocol",
+      "start, stop, crash, rollback, and observability contract"
+    ],
+    "O0A_P3_must_bind": [
+      "Yjs snapshot and tail update high-water",
+      "compaction equivalence",
+      "coordinated backup manifest",
+      "new-root replay and restore timing"
+    ],
+    "Q0_must_prove": [
+      "target concurrent connections and editors",
+      "reconnect storm and slow-consumer bounds",
+      "sustained memory and operations envelopes",
+      "long soak with zero acknowledged loss"
+    ]
+  },
+  "claims": {
+    "winner_selected": true,
+    "dependency_versions_and_integrity_pinned": true,
+    "rejected_candidate_evidence_and_removal_plan_complete": true,
+    "E0_gate_ready_for_status_integration": true,
+    "actual_gateway_transport_implemented": false,
+    "actual_compactor_service_implemented": false,
+    "runtime_enabled": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

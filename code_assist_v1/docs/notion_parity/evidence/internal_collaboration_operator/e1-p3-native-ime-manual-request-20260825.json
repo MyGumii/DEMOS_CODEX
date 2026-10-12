@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.e1_p3_native_ime_manual_request.v1",
+  "request_id": "E1-P3-NATIVE-IME-MANUAL-20260825",
+  "packet_id": "E1-P3",
+  "recorded_at": "2026-08-25T03:43:00+09:00",
+  "status": "ready_for_single_manual_input",
+  "approval_id": "AP-DEV-PAIR",
+  "development_origin": "http://127.0.0.1:10112",
+  "approved_subject_id": "admin",
+  "workspace_id": "ws_b766f073426e43578863ce9448f42034",
+  "page_id": "p_a39ee60aba288cf054abfccb056cbd38",
+  "page_title": "E1-P3 네이티브 IME 검증",
+  "required_input": "한글 조합 테스트",
+  "required_user_completion_text": "E1-P3 네이티브 IME 입력 완료",
+  "instructions": [
+    "Open the approved 10112 development workspace as admin.",
+    "Open the page titled E1-P3 네이티브 IME 검증.",
+    "Use the Windows Korean IME to type 한글 조합 테스트 exactly once into the first empty block.",
+    "Wait until the text remains visible and the collaboration status is connected/saved.",
+    "Reply with the exact required_user_completion_text."
+  ],
+  "evidence_boundary": {
+    "synthetic_development_page_only": true,
+    "personal_content_forbidden": true,
+    "automated_fill_or_synthetic_composition_is_not_native_ime_evidence": true,
+    "user_confirmation_attests_only_the_visible_input_outcome": true,
+    "server_convergence_and_cleanup_are_verified_after_confirmation": true
+  },
+  "cleanup": {
+    "agent_moves_the_synthetic_page_to_trash_after_verification": true,
+    "production_10011_10012_changed": false
+  },
+  "claims": {
+    "native_ime_verified": false,
+    "E1_P3_gate_passed": false,
+    "E1_phase_gate_closed": false,
+    "product_complete": false
+  }
+}

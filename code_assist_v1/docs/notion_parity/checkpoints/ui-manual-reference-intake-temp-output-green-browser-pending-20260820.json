@@ -1,0 +1,201 @@
+{
+  "contract": "code_assist.notion.core_free_ui_checkpoint.v2",
+  "recorded_at": "2026-08-20T18:55:22+09:00",
+  "run_id": "ui-manual-reference-intake-temp-output-green-browser-pending-20260820",
+  "model": {
+    "implementation_profile": "gpt-5.6-sol-xhigh",
+    "planning_and_review_profile": "gpt-5.6-sol-ultra"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui-manual-reference-intake-green-browser-pending-20260820.json",
+    "sha256": "sha256:3cacc947a89893d7af3b48f280778471fc3d6ff71ae884e7af86353d26de69fb",
+    "semantic_status": "manual C0, worksheet, draft, and verifier foundation green; actual browser observation pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "observed_at": "2026-08-20T18:43:00+09:00",
+    "objective_preserved": true
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": 25,
+    "synthetic_only": true,
+    "slice": "exclusive trusted-temporary JSON transport for manual REF-FREE-A/B intake",
+    "business_enterprise_archive_conditional": true,
+    "excluded": [
+      "personal Notion workspaces and content",
+      "live user_data, knowledge, .runtime, and sessions",
+      "raw DOM, raw accessibility trees, network logs, cookies, storage, and bearer material",
+      "trial, payment, invite, public posting, and external messages",
+      "production migration, feature flag, consumer, and resolver cutover",
+      "live canary and operational restore"
+    ]
+  },
+  "slice_state": {
+    "id": "UI1-MANUAL-REFERENCE-TEMP-OUTPUT",
+    "status": "green-foundation-reference-observation-pending",
+    "acceptance_ids": [
+      "EXCLUSIVE-NEW-JSON-FILE",
+      "TRUSTED-OS-TEMP-ROOT-ONLY",
+      "REPOSITORY-OUTPUT-REFUSED",
+      "LINK-AND-REPARSE-PARENT-REFUSED",
+      "NO-OUTPUT-BEFORE-SYNTHETIC-CONFIRMATION",
+      "C0-WORKSHEET-DRAFT-RECEIPT-ROUNDTRIP",
+      "NO-REFERENCE-OR-PROMOTION-INFERENCE"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "code_assist_v1/tools/notion_parity/ui_reference_intake.py",
+        "pre_sha256": "sha256:1aaf79e81d6ece91ec958ee65006176867c91fbfd96eb8212df17202808c95e8",
+        "post_sha256": "sha256:086c5bc8735725703403a9c016a915cbbe13e0c416de663f88ea98c1496fce8c"
+      },
+      {
+        "path": "code_assist_v1/tests/test_notion_ui_reference_intake.py",
+        "pre_sha256": "sha256:ac750d707ba3b9f0f35738b19ef195181516252a69e882b0dab5aaa425c3715e",
+        "post_sha256": "sha256:d00fc7ce605c156e7edd205ed7d84ff42c1a34b139262e4a42fa85af72c924cd"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/CORE_FREE_WEB_UI_MANUAL_REFERENCE_INTAKE_RUNBOOK.md",
+        "pre_sha256": "sha256:7218d1fe0b7563b1228866b36f07e2f7c46b64beb1cfb812721e305bf6625656",
+        "post_sha256": "sha256:48912606a236da31ea495653c76c46a6d8a48b0524c6ab4bf5216fce7ce2659c"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/UI_MANUAL_REFERENCE_INTAKE_FOUNDATION_20260820.md",
+        "pre_sha256": "sha256:20d8d58d7b800553d8be7195a3803133894160536a2138d88e2bb54f5b0a1463",
+        "post_sha256": "sha256:4902f6138876eea0990baa45e55ff9bf805f8ca505a038b6d03c436638daff2c"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/scenarios.v1.json",
+        "pre_sha256": "sha256:075306e78576a8417e6199cd87b48555637d5ce3dff7c634025fe76ddbc13762",
+        "post_sha256": "sha256:d98237fe1fb7d19faf1205204e0eed105130cb54a0250b3e3c23dbc94e4a2df0",
+        "change": "update the reviewed manual runbook source hash only; no scenario status promotion"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json",
+        "pre_sha256": "sha256:34a8c6aea5d756502b0b51dcdc36e7ca3389cf8bb2529bc8278907cac2b3bed8",
+        "post_sha256": "sha256:5419717d3a9a449b9b5ad3ddc1b6f3b34f353b5a51b759c763a77a775ac22ab4",
+        "change": "bind the new scenario-plan hashes and preceding checkpoint; completion counters remain unchanged"
+      }
+    ],
+    "read_dependencies": [
+      {
+        "path": "code_assist_v1/AGENTS.md",
+        "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+      },
+      {
+        "path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md",
+        "sha256": "sha256:4d096ca5eab78f353806beebaed76223625e700d50c35aa49bb7f46b22a0d223"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/CORE_FREE_WEB_UI_HARNESS_DESIGN.md",
+        "sha256": "sha256:ee7fa3537dc953f33a2f029830a3463f30f4af6f65de776552ee3349b2252fdd"
+      },
+      {
+        "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-manual-reference-intake-green-browser-pending-20260820.json",
+        "sha256": "sha256:3cacc947a89893d7af3b48f280778471fc3d6ff71ae884e7af86353d26de69fb"
+      }
+    ],
+    "protected_unchanged": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/app_code.py",
+      "code_assist_v1/auth.py",
+      "code_assist_v1/config.py",
+      "code_assist_v1/tests/conftest.py",
+      "code_assist_v1/docs/knowledge_spaces/**",
+      "code_assist_v1/knowledge_core/**",
+      "code_assist_v1/tests/knowledge_spaces/**",
+      "live user_data/**, knowledge/**, .runtime/**, and sessions/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_accessed": false,
+    "reference_workspace_accessed": false,
+    "browser_tab_selected": false,
+    "live_mutation": false,
+    "flags_unchanged": true,
+    "runtime_registration_added": false,
+    "git_provenance_available": false
+  },
+  "evidence": {
+    "scenario_plan_file_sha256": "sha256:d98237fe1fb7d19faf1205204e0eed105130cb54a0250b3e3c23dbc94e4a2df0",
+    "scenario_plan_canonical_sha256": "sha256:c74d858f730443d1efb4e485d7dc6610aaaf0d21af64970107c6c9f1a0ddde6f",
+    "completion_matrix_sha256": "sha256:5419717d3a9a449b9b5ad3ddc1b6f3b34f353b5a51b759c763a77a775ac22ab4",
+    "required_scenarios": 25,
+    "local_real_browser_green": 24,
+    "local_measurement_green": 1,
+    "reference_characterized": 0,
+    "differential_passed": 0,
+    "promoted": 0,
+    "trusted_temp_output_contract_green": true,
+    "accepted_reference_receipt_created": false
+  },
+  "commands": [
+    {
+      "selection": "second resumed in-app signed-in Chrome initialization through the required Browser skill",
+      "result": "same host failure before code, browser, or tab selection: failed to write kernel assets; os error 3",
+      "exit_code": null,
+      "classification": "host capability failure; no Notion surface accessed"
+    },
+    {
+      "selection": "updated ui_reference_intake syntax and focused suite",
+      "result": "17 passed in 9.20s",
+      "exit_code": 0
+    },
+    {
+      "selection": "manual intake plus C0/action/capture/redaction/packet/plan/completion bundle",
+      "result": "82 passed in 26.78s",
+      "exit_code": 0
+    },
+    {
+      "selection": "compact Core Free UI scenario plan verifier",
+      "result": "pass; 25 required scenarios; 0 differential-passed; canonical sha256 c74d858f730443d1efb4e485d7dc6610aaaf0d21af64970107c6c9f1a0ddde6f",
+      "exit_code": 0
+    },
+    {
+      "selection": "compact Core Free UI completion verifier",
+      "result": "pass; completion_state=incomplete; 25 required, 24 local browser, 1 local measurement, 0 reference, 0 differential, 0 promotion",
+      "exit_code": 0
+    }
+  ],
+  "claims": {
+    "manual_reference_intake_foundation_green": true,
+    "trusted_temp_output_transport_green": true,
+    "all_required_local_contracts_green": true,
+    "all_required_reference_characterized": false,
+    "all_required_differential_passed": false,
+    "h8_complete": false,
+    "h9_complete": false,
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "overall_goal_complete": false
+  },
+  "stop_conditions_evaluated": {
+    "owned_file_drift": false,
+    "personal_content_exposure": false,
+    "live_data_access": false,
+    "protected_file_edit": false,
+    "reference_browser_initialized": false,
+    "reference_or_personal_workspace_opened": false,
+    "repository_output_attempted_by_tool": false,
+    "existing_output_overwritten": false,
+    "production_flag_or_live_canary_enabled": false,
+    "purchase_invite_or_public_post_required": false,
+    "same_browser_host_initialization_failure_resumed_occurrences": 2
+  },
+  "remaining": [
+    "run the identifier-free C0 against synthetic REF-FREE-A/B through a repaired signed-in Chrome transport or the reviewed manual runbook",
+    "produce the first accepted UI-SHELL-002 reference receipt without personal identifiers",
+    "seal its redacted evidence packet and compare it with the current local capture",
+    "perform and verify the first cohesive shell UI correction",
+    "characterize and differentially pass the remaining required scenarios",
+    "finish responsive, accessibility, performance, Second Brain hard-journey, pilot, and rollback gates",
+    "run the final requirement-level completion audit"
+  ],
+  "next_exact_action": "In one PowerShell session, create the runbook's unique OS-temporary intake directory, perform screenshot-free C0 in synthetic REF-FREE-A/B, and use --output to create c0.json, worksheet.json, submission.json, and receipt.json; stop before any personal workspace or identifier becomes visible in an artifact."
+}

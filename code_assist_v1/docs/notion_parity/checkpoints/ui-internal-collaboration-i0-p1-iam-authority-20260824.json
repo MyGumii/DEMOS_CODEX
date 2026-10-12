@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-I0-P1-IAM-AUTHORITY-20260824",
+  "recorded_at": "2026-08-24T23:03:30+09:00",
+  "checkpoint_kind": "packet_gate_passed_status_integration",
+  "packet_id": "I0-P1",
+  "packet_status": "gate_passed",
+  "owner_agent": "/root",
+  "ownership_lane": "CANONICAL",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+    "code_assist_v1/tools/internal_collaborative_validation.py"
+  ],
+  "new_product_files": [
+    "code_assist_v1/notion_workspace_iam_migration.py",
+    "code_assist_v1/notion_collaboration/iam_authority.py"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/test_collaborative_iam_authority.py"
+  ],
+  "new_evidence_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_iam_authority.v1.json",
+    "code_assist_v1/tools/verify_internal_collaborative_iam_authority.py",
+    "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/i0-p1-l2-iam-sharing-authority-20260824.json"
+  ],
+  "read_only_dependencies": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/STATUS.md",
+    "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md",
+    "code_assist_v1/docs/knowledge_spaces/second_brain_evolution/FORWARD_SCHEMA.md",
+    "code_assist_v1/notion_workspace_realtime_transport_migration.py",
+    "code_assist_v1/notion_collaboration/canonical_authority.py",
+    "code_assist_v1/notion_collaboration/durable_transport.py"
+  ],
+  "protected_dependencies": [
+    "code_assist_v1/knowledge/",
+    "code_assist_v1/user_data/",
+    "code_assist_v1/.runtime/",
+    "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113 persistent runtime and catalog",
+    "ports 10011 and 10012",
+    "production roots services sessions cookies secrets and personal content"
+  ],
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-i0-p1-iam-authority-pre-integration-20260824.json",
+    "sha256": "sha256:7735730930fcce10c879a9e1bf585c6be9e3f84585687e57299f23eaec074164"
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:efea10bfb3cedb12b46c8c0b1fe330276bf0697a535e5d8a2e4c42838bc7559f",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:be9cc4dfe19ae3c3d5f783399e8e35109bf3a6a194045dcc5fa26b47392c386b",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:bc739f8f1bbf65dc7dc1bbcbc48676f46752ed448ca5c2a4980bb16cbed0ad6c",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:20d037649a48391a6e122efc2a1b865fa0e1602ebbafd164421c23034a471f7a",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-d0b-p1-development-pair-20260824.json",
+    "sha256": "sha256:78819617e70ba36b5eca80cd68682ac25123e75a438ae41f2983aef0f4978f7d",
+    "packet_id": "D0B-P1",
+    "receipt_id": "D0B-P1-L1-APPROVED-DEVELOPMENT-PAIR-20260824"
+  },
+  "ownership_lease": {
+    "lease_id": "UI-INTERNAL-COLLABORATION-I0-P1-ROOT-20260824",
+    "lane": "CANONICAL",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-24T13:20:00Z",
+    "released_at": "2026-08-24T23:03:30+09:00",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false
+  },
+  "agents_md_sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+  "current_schema_lineage_sha256": "sha256:915c2b57235a52ff8d67996789da01bd415a0d6a981fdedeb673e3fab46308a3",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "persisted_tool_status": "active",
+    "tool_status_observed": "active_user_resumed_I0_P1",
+    "user_resume_authority": "The user explicitly requested continued implementation and reported the preceding browser gate PASS.",
+    "goal_status_mutated_by_packet": false
+  },
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-24T23:03:30+09:00",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:4f94702929f27b308ef034e6acd4b82a460037d426f94ead426a95968abdff04",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_active_packet": "SBE-3.1",
+    "sbe_status_sha256": "sha256:b5ffce906e22123e981d486b1d19af37d7353bfdeee6e4fd4d8229076cf9c5fb",
+    "sbe_backlog_sha256": "sha256:6ba46abe47198888eb3a9f519d9a956962218fb0f84001287153e1596eb8167e",
+    "exact_path_collision_observed": false,
+    "SBE_hot_contracts_modified_by_this_packet": false
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:efea10bfb3cedb12b46c8c0b1fe330276bf0697a535e5d8a2e4c42838bc7559f",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:be9cc4dfe19ae3c3d5f783399e8e35109bf3a6a194045dcc5fa26b47392c386b"
+    },
+    "accepted_packet_receipt_ids": [
+      "A0B-P1-L2-CANONICAL-AUTHORITY-20260824",
+      "T0B-P1-L3-DURABLE-TRANSPORT-20260824",
+      "T0B-P2-L3-RUNTIME-GATEWAY-20260824",
+      "T0B-P3-L4-CROSS-PROCESS-BROWSER-20260824",
+      "D0B-P1-L1-APPROVED-DEVELOPMENT-PAIR-20260824",
+      "I0-P1-L2-IAM-SHARING-AUTHORITY-20260824"
+    ],
+    "lease": "UI-INTERNAL-COLLABORATION-I0-P1-ROOT-20260824",
+    "post_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:bc739f8f1bbf65dc7dc1bbcbc48676f46752ed448ca5c2a4980bb16cbed0ad6c",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:20d037649a48391a6e122efc2a1b865fa0e1602ebbafd164421c23034a471f7a"
+    }
+  },
+  "validation_receipt": {
+    "receipt_id": "I0-P1-L2-IAM-SHARING-AUTHORITY-20260824",
+    "validation_id": "L2-IAM-SHARING-AUTHORITY",
+    "status": "pass",
+    "error_count": 0,
+    "executed_at": "2026-08-24T23:02:30+09:00",
+    "matrix_row_ids": [
+      "IAM-001",
+      "IAM-002",
+      "IAM-003",
+      "SEC-001"
+    ],
+    "phase_local_regression": {
+      "focused_migration_authority_and_multiprocess": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0,
+        "duration_seconds": 34.32
+      },
+      "adjacent_authority_transport_and_iam_regression": {
+        "passed": 33,
+        "failed": 0,
+        "skipped": 0,
+        "duration_seconds": 129.79
+      }
+    },
+    "claims": {
+      "I0_P1_gate_passed": true,
+      "exact_forward_migration_verified": true,
+      "direct_inherited_group_teamspace_resolution_verified": true,
+      "audited_idempotent_membership_and_grant_commands_verified": true,
+      "last_owner_disabled_and_outsider_guards_verified": true,
+      "persistent_development_runtime_changed": false,
+      "production_changed": false,
+      "product_complete": false
+    }
+  },
+  "evidence_artifacts": {
+    "execution_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/i0-p1-l2-iam-sharing-authority-20260824.json",
+      "sha256": "sha256:5c63a9d2487056048979b4dd8d8098d77558087747cb12418105c4f356530951"
+    },
+    "contract": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_iam_authority.v1.json",
+      "sha256": "sha256:a1c99de526e7904c1a4cd4bba78f761fe19fab5d53fc5e13d46e4e826cf9004e"
+    },
+    "contract_verifier": {
+      "path": "code_assist_v1/tools/verify_internal_collaborative_iam_authority.py",
+      "sha256": "sha256:053b49df1770ddd58c12c4e330d1878b763f92834826eff33313398e1b68d93b"
+    }
+  },
+  "runtime_boundary": {
+    "development_root": "G:/AI_Agent/DEMOS_CODEX/.dev/notion-collaboration-10111-10113",
+    "development_ports": [10111, 10112, 10113],
+    "persistent_development_schema_before_and_after": 2026082402,
+    "I0_P1_schema_tested_in": "pytest temporary catalogs only",
+    "runtime_integration_owner": "I0-P2",
+    "production_mutation_allowed": false
+  },
+  "rollback_or_cleanup": "I0-P1 did not migrate a persistent catalog. Roll back only the exact new 2026082403 authority artifacts and the two hot-contract edits to their declared pre-edit hashes; do not alter the D0B development realm, protected roots, production services, sessions, cookies, secrets, or personal content.",
+  "completion_truth": {
+    "I0_P1_gate_passed": true,
+    "canonical_iam_authority_implemented": true,
+    "matrix_rows_contributed_by_packet": 4,
+    "matrix_rows_closed_by_packet": 0,
+    "persistent_development_runtime_changed": false,
+    "production_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "I0-P1",
+    "current_state": "gate_passed_integrated_ephemeral_authority_only",
+    "next_packet": "I0-P2",
+    "next_state": "workspace_page_sharing_ui_and_persistent_development_runtime_integration",
+    "production_mutation_allowed": false
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "run_id": "np2c3b-v3-ledger-rename-source-adapter-20260814",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "recorded_at": "2026-08-14T06:23:52.7179918+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "goal_completed": false
+  },
+  "slice": "NP2C-3b-v3-ledger-backed-rename-source-adapter",
+  "status": "contract_tested_route_unregistered_temp_sources_only",
+  "input_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/np2c3a-rename-source-adapter-design-20260814.json",
+    "sha256": "e2c2e9a07916f37896f0dc647871b1aa5835929e67d7542bb8b721508f9dad94"
+  },
+  "source_schema": {
+    "version": 2026081303,
+    "new_source_migration_added": false,
+    "frozen_v3_ddl_changed": false,
+    "consumer_operation_table_reused": "notion_legacy_change_consumer_operations",
+    "consumer": "np2c.lifecycle",
+    "action": "legacy.page_lifecycle.rename",
+    "result_contract": "np2c_legacy_page_rename_receipt_v1",
+    "h5e_source_v4_reservation_preserved": 2026081304,
+    "atomic_save_revision_capability_required": true,
+    "page_save_operations_reused_as_replay_ledger": false
+  },
+  "adapter": {
+    "route_unregistered": true,
+    "caller_owned_exact_file_backed_connection": true,
+    "full_v1_v2_v3_integrity_checks_per_instance": 1,
+    "new_effect_requires_source_quiescence": true,
+    "exact_replay_precedes_quiescence_and_page_read": true,
+    "same_operation_changed_request_conflicts": true,
+    "source_identity_rechecked_before_write_and_after_commit": true,
+    "source_prestate_rechecked_under_begin_immediate": true,
+    "current_edit_role_rechecked": true,
+    "page_lock_rechecked": true,
+    "changed_page_update_statement_count": 1,
+    "changed_revision_delta": 1,
+    "changed_change_generation_delta": 1,
+    "changed_source_epoch_delta": 1,
+    "changed_full_sweep_generation_delta": 1,
+    "changed_incarnation_preserved": true,
+    "exact_noop_source_state_unchanged": true,
+    "exact_noop_operation_receipt_written": true,
+    "page_version_max_blocks": 10000,
+    "page_version_max_utf8_bytes": 16777216,
+    "permission_ancestry_max_hops": 256,
+    "raw_title_persisted_in_source_operation_result": false,
+    "raw_title_persisted_in_catalog_or_checkpoint": false,
+    "source_operation_and_page_mutation_atomic": true,
+    "source_commit_response_loss_replayable": true
+  },
+  "scope_guards": {
+    "notion_store_changed": false,
+    "legacy_change_migration_or_contract_changed": false,
+    "legacy_change_reader_changed": false,
+    "workspace_projection_changed": false,
+    "workspace_store_or_schema_changed": false,
+    "workspace_1313_implemented": false,
+    "catalog_finalizer_implemented": false,
+    "end_to_end_source_catalog_orchestration_implemented": false,
+    "routes_or_ui_changed": false,
+    "runtime_registration_enabled": false,
+    "resolver_cutover_enabled": false,
+    "continuous_worker_enabled": false,
+    "destructive_watermark_ack_enabled": false,
+    "purge_enabled": false,
+    "live_migration_applied": false,
+    "live_data_accessed": false
+  },
+  "unchanged_source_hashes": {
+    "code_assist_v1/notion_store.py": "06c5680d0d73f775787ac5d793f7bc1ffdfc36fcd6e37e1db75d0d566f00cb02",
+    "code_assist_v1/notion_legacy_change_migration.py": "b44745fb23daca222eed2d5f70d1ed718cba246fec9d32049970b4cec4c0d41d",
+    "code_assist_v1/notion_legacy_change_contract.py": "0796a5c4fdc0f9307aa3ac3b18e0bc67860b73a820a8f844b9157153093b4058",
+    "code_assist_v1/notion_legacy_changes.py": "4690e42a6f458f22ac15c08500613e28308e07f25d211a0965d95edc7f6405f3",
+    "code_assist_v1/notion_workspace_projection.py": "0417dee833519d10c231844fca73fd17e477fe7de309e166f33b0e274eeebcaf",
+    "code_assist_v1/notion_workspace_store.py": "711bbcddfbba3f7c790735b8bf83a43e308b41386810c262c4e0c06b4c9abff8"
+  },
+  "output_hashes": {
+    "code_assist_v1/AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "code_assist_v1/notion_legacy_page_lifecycle_contract.py": "658da713fe5df1a57087c185deb8a7a4d363ee872e801f276f54216e18958fb8",
+    "code_assist_v1/notion_legacy_page_lifecycle.py": "a0c81946dc9f1e953d33a12141a430cbb381a4bfcce4249fcf45003d5da99bf0",
+    "code_assist_v1/tests/test_notion_legacy_page_lifecycle.py": "306a5c147189a892909612937afd4e80e2faab9afe2e444501e4667988baed3b",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "d00d5e40cc46560f7b4229c44a1692300e4ea85dd7e79adcc313f0a3d0f3d98d",
+    "code_assist_v1/docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "d65dfeb6bea73dee3b44fb5b6b38995da8db764c87ebcb24c537f279629942b1",
+    "code_assist_v1/tools/verify_notion_np2c_page_tree_contract.py": "324061f93244e3e88d484748a69b2c335865f21c3bc085e6389710eaa3feb32a",
+    "code_assist_v1/tests/test_verify_notion_np2c_page_tree_contract.py": "d53ecc50cbdb52292e56d5215ba1b5ce4ed7f747544e32a764a1623119b0e25d",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "567e103af738195f1f793a5b9f47cef5d75c315fc70414d55ac831fff25f5f28",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "b659007d9424f64c3d4f9d1a5150c13512c8a596382ed838ac483d546892291a",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "9ab56b0b01318e808af9eb10f2b519cb677fd0a02e57962cc335efe3e3d122c4"
+  },
+  "tests": [
+    {
+      "selection": "NP2C-3b temporary-v3 rename adapter: changed/no-op/response-loss/conflict/rollback/permission/lock/stale/capability/bounds/tamper/import isolation",
+      "result": "6 passed",
+      "exit_code": 0,
+      "duration_seconds": 9.03
+    },
+    {
+      "selection": "NP2C source adapter plus machine contract plus disabled lifecycle orchestration/kernel",
+      "result": "22 passed",
+      "exit_code": 0,
+      "duration_seconds": 41.03
+    },
+    {
+      "selection": "legacy-v3 consumer store regression",
+      "result": "9 passed",
+      "exit_code": 0,
+      "duration_seconds": 8.80
+    },
+    {
+      "selection": "legacy-v3 consumer migration regression",
+      "result": "8 passed",
+      "exit_code": 0,
+      "duration_seconds": 6.40
+    },
+    {
+      "selection": "legacy-v2 incarnation migration regression",
+      "result": "10 passed",
+      "exit_code": 0,
+      "duration_seconds": 7.37
+    },
+    {
+      "selection": "NP2C, NP2B navigation and H5e conditional-ack machine contracts",
+      "result": "10 passed",
+      "exit_code": 0,
+      "duration_seconds": 2.58
+    },
+    {
+      "selection": "direct NP2C v7 machine verifier",
+      "result": "valid=true, error_count=0",
+      "exit_code": 0,
+      "duration_seconds": 0.5
+    },
+    {
+      "selection": "py_compile lifecycle contract adapter tests and verifier",
+      "result": "passed",
+      "exit_code": 0,
+      "duration_seconds": 0.6
+    }
+  ],
+  "review_outcome": {
+    "p0_remaining_in_source_adapter_scope": 0,
+    "p1_remaining_in_source_adapter_scope": 0,
+    "protected_boundaries_changed": false,
+    "runtime_state_changed": false,
+    "next_slice": "NP2C-3c-1313-atomic-catalog-rename-finalize",
+    "next_slice_requirements": [
+      "re-hash this checkpoint and all shared workspace store and lifecycle files before edit",
+      "freeze workspace 1312 before adding a distinct 1313 lifecycle-only service context",
+      "refuse any existing 1312 lifecycle command row during migration",
+      "add a narrow active-to-active binding proof refresh that cannot reuse healing authority",
+      "delete the old projection before parent binding generation update",
+      "atomically refresh binding proof, current incarnation attestation, locator projection, tree node, tree state and command ledger",
+      "keep tree_version unchanged and mark materialization partial with exact-owner full-sweep debt after a changed rename",
+      "keep exact no-op free of binding, tree and workspace version bumps",
+      "test raw SQL guards, deep health and every operation-audit-outbox rollback point",
+      "stop before source-plus-catalog orchestration, routes, UI, runtime worker, resolver, ack, purge or live migration"
+    ]
+  },
+  "git_provenance": "unavailable: workspace .git is not valid repository metadata; no commit or landed claim",
+  "next_exact_work": "Re-hash this checkpoint and shared catalog files, then design and freeze NP2C-3c workspace 1312-to-1313 lifecycle-only migration and atomic catalog finalizer. Do not combine it with the source adapter until a separate checkpoint passes.",
+  "stop_reason": "NP2C-3b is contract-tested with temporary source shards and remains route-unregistered. The active overall Notion parity goal remains open; catalog finalization and later phases are incomplete."
+}

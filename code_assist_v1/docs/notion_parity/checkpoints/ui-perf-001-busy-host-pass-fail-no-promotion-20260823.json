@@ -1,0 +1,142 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-23T00:07:33+09:00",
+  "run_id": "ui65-perf-busy-host-pass-fail-no-promotion-20260823",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-editor-006-local-recovery-approved-24-of-25-20260822.json",
+    "sha256": "sha256:5aab7b660185b8eb9c7db53097b332decc232bb8d3445e129539f0951cbddcbe",
+    "semantic_status": "ui_editor_006_local_recovery_approved_24_of_25"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "the user explicitly authorized UI-EDITOR-006 and requested continued execution",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "scenario_id": "UI-PERF-001",
+    "evidence_mode": "reference_measurement_local_budget",
+    "synthetic_only": true,
+    "isolated_os_temp_only": true,
+    "personal_or_live_data_accessed": false
+  },
+  "slice": {
+    "status": "host_contention_pass_fail_variance_unresolved",
+    "review_required": true,
+    "promotion_allowed": false,
+    "approved_budget_changed": false,
+    "product_code_changed": false
+  },
+  "approved_budget": {
+    "metric": "shell_ready_ms",
+    "percentile": "p95",
+    "sample_count": 6,
+    "budget_ms": 1370,
+    "nearest_rank_effect": "with six samples p95 equals the maximum sample"
+  },
+  "measurement": {
+    "failed_metric": "shell_ready_ms",
+    "observed_p95_ms": 2017.258,
+    "approved_budget_ms": 1370,
+    "over_budget_ms": 647.258,
+    "classification": "host_contention_correlated_multi_metric_failure",
+    "browser": {
+      "family": "chrome",
+      "version": "151.0.7922.173"
+    },
+    "sample_count": 6,
+    "metric_p95_ms": {
+      "create_page_ready_ms": 407.979,
+      "editor_input_ack_ms": 44.405,
+      "page_ready_ms": 379.394,
+      "reload_ready_ms": 575.349,
+      "save_ready_ms": 1449.857,
+      "search_open_ms": 226.136,
+      "search_result_ms": 169.994,
+      "second_brain_preview_ready_ms": 1040.727,
+      "shell_ready_ms": 2017.258
+    },
+    "failed_approved_metrics": [
+      "page_ready_ms",
+      "search_open_ms",
+      "search_result_ms",
+      "shell_ready_ms"
+    ]
+  },
+  "observations": [
+    {
+      "kind": "exact_six_sample_gate",
+      "result": "pass",
+      "test_result": "1 passed in 63.56s"
+    },
+    {
+      "kind": "immediate_equivalent_six_sample_diagnostic",
+      "result": "fail",
+      "state_contract_green": true,
+      "external_request_count": 0,
+      "publication_item_delta": 0,
+      "publication_revision_delta": 0
+    },
+    {
+      "kind": "host_cpu_observation_after_failed_diagnostic",
+      "result": "busy",
+      "total_cpu_percent_samples": [
+        86.35,
+        89.433,
+        95.393
+      ],
+      "process_identity_persisted": false
+    }
+  ],
+  "decision": {
+    "reason": "The same immutable browser journey and budget passed once and then failed across several unrelated interaction metrics while total host CPU was between 86 and 95 percent. The evidence does not isolate a stable product bottleneck and therefore cannot authorize product optimization or completion.",
+    "actions": [
+      "keep UI-PERF-001 evidence pending",
+      "do not relax or recalibrate the approved budget",
+      "do not change product UI, authentication, or Second Brain code",
+      "do not terminate or modify user processes",
+      "do not promote H8 or release readiness"
+    ]
+  },
+  "protected_inputs": [
+    {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"
+    },
+    {
+      "path": "code_assist_v1/tests/browser/test_notion_ui_performance.py",
+      "sha256": "sha256:17cad4942917ad41e13501c05ec1dd085de82343852eeb4772ad9e62b93b6761"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/performance_budget.v1.json",
+      "sha256": "sha256:e142c76f6464a4b15869805eb82eeb1478f7e4d96d1fdbba4b0588a87a962e03"
+    }
+  ],
+  "safety": {
+    "live_local_data_accessed": false,
+    "personal_notion_content_accessed": false,
+    "reference_workspace_mutated": false,
+    "external_action_executed": false,
+    "product_code_changed": false,
+    "user_process_changed": false
+  },
+  "claims": {
+    "required_scenario_count": 25,
+    "evidence_satisfied_count": 24,
+    "unresolved_count": 1,
+    "reference_measurement_observed": true,
+    "local_budget_approved": true,
+    "current_local_budget_green": false,
+    "ui_perf_001_evidence_satisfied": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "When the host is demonstrably quiet, rerun the unchanged exact six-sample gate. Require a reproducible budget result before changing product or evidence state; retain fail-closed 24-of-25 otherwise.",
+  "vcs": {
+    "available": false,
+    "commit_claimed": false,
+    "observation": "the workspace is not a valid Git repository"
+  }
+}

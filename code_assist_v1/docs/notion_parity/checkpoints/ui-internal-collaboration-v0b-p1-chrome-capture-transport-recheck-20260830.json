@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.chrome_capture_transport_recheck.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-CHROME-CAPTURE-TRANSPORT-RECHECK-20260830",
+  "recorded_at": "2026-08-30T17:15:26.1288808+09:00",
+  "status": "exact_reference_transport_blocked",
+  "purpose": "Recheck whether the explicitly selected authenticated Chrome surface can return lossless PNG bytes without mutating the cleaned external reference workspace.",
+  "lineage": {
+    "reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-corrective-v2-20260830.json",
+      "sha256": "sha256:3eee297813e3fcb3e4d218daa3c4e3c76cd86b76315549fa0b4a1db0673078aa",
+      "modified": false
+    },
+    "semantic_suitability_audit": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-v2-semantic-reference-suitability-audit-20260830.json",
+      "sha256": "sha256:b4d46fdc5d70abc55a58dd55a3d56c4ec0d22efb24ac3e699acd94f0234450af",
+      "modified": false
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    }
+  },
+  "browser_surface": {
+    "family": "chrome",
+    "connection": "existing authenticated Chrome extension binding",
+    "plugin_cache_version": "26.825.32147",
+    "target": "REF-FREE-B / V0R-B-ROOT cleaned test page",
+    "target_url_persisted": false,
+    "interaction_mode": "read_only",
+    "external_mutation": false
+  },
+  "probes": [
+    {
+      "id": "default_capture",
+      "requested_type": "default",
+      "returned_magic_hex": "ff d8 ff e0 00 10 4a 46 49 46 00 01 01 00 00 01",
+      "returned_codec": "jpeg_jfif",
+      "byte_length": 51378,
+      "width": 1920,
+      "height": 863,
+      "sha256": "sha256:6eb378790be67be49143d7f4ed2b14b8e5700785dd155f37a790072636269b1c",
+      "persisted": false
+    },
+    {
+      "id": "png_requested_capture",
+      "requested_type": "png",
+      "returned_magic_hex": "ff d8 ff e0 00 10 4a 46 49 46 00 01 01 00 00 01",
+      "returned_codec": "jpeg_jfif",
+      "byte_length": 51301,
+      "width": 1920,
+      "height": 863,
+      "sha256": "sha256:28cfaffc49c569f2fbb51d5605c2d2dd8dd6600d3391e5a9ef9501febb949093",
+      "persisted": false
+    }
+  ],
+  "ruling": {
+    "png_request_honored": false,
+    "source_encoding_lossless": false,
+    "decoded_png_storage_would_restore_lost_RGBA": false,
+    "exact_RGBA_reference_eligible": false,
+    "same_blocker_as_V2_reproduced": true,
+    "additional_Chrome_retry_authorized_without_transport_change": false
+  },
+  "scope_attestation": {
+    "external_notion_mutation": false,
+    "reference_receipt_modified": false,
+    "reference_screenshot_modified": false,
+    "new_external_screenshot_persisted": false,
+    "cookie_local_storage_profile_or_password_inspected": false,
+    "personal_workspace_or_page_used": false,
+    "public_publish_or_link_used": false,
+    "permanent_delete_used": false,
+    "AGENTS_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  },
+  "open_gates": {
+    "lossless_capture_transport": "blocked",
+    "corrected_V0R_MU_004_capture_timing": "pending_future_reference_run",
+    "corrected_V0R_MU_006_capture_timing": "pending_future_reference_run",
+    "exact_pixel_36_of_36": "not_run",
+    "core_25": "not_run",
+    "performance": "not_run",
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Do not repeat Chrome extension screenshots. Resume exact reference work only after a capture path is available that demonstrably returns PNG bytes from the source and after action-time confirmation for recreating the cleaned synthetic fixtures."
+}

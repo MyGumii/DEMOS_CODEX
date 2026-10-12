@@ -1,0 +1,122 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T16:44:42.698461+09:00",
+  "run_id": "ui43-approval-batch-and-resp-001-independent-work-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-resp-001-reference-multiviewport-green-review-pending-20260822.json",
+    "sha256": "sha256:872fdc7f77d7cf5684154283e03a34cc8c078da89834db8db52a7c269fe085aa",
+    "semantic_status": "reference_multiviewport_observed_review_pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed": "active",
+    "objective": "Accumulate approval-dependent work, process it as a batch, and continue every safe independent development step first.",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "product_code_changed": false,
+    "protected_agreement_files_changed": false,
+    "knowledge_space_contract_files_changed": false,
+    "completion_matrix_changed": false,
+    "personal_workspace_accessed": false,
+    "live_local_data_accessed": false,
+    "external_publish_share_invite_or_message_performed": false,
+    "trash_or_permanent_delete_performed": false,
+    "production_migration_flag_or_service_changed": false
+  },
+  "completed_work": [
+    {
+      "kind": "checkpoint_repair",
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-independent-create-pending-cleanup-20260822.json",
+      "sha256": "sha256:4129b507b65c3578cb652d55799726e72d9b6a6300f77a6d1d018e8d9ef96bc1",
+      "result": "stale handoff SHA replaced with the exact current handoff SHA; JSON remains valid"
+    },
+    {
+      "kind": "approval_batch_harness",
+      "queue": {
+        "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v1.json",
+        "sha256": "sha256:0c6a80362249a71378f01ac9f6c6f7b12fa8944f381fb7b8ae6ff1f3a9952598"
+      },
+      "verifier": {
+        "path": "code_assist_v1/tools/verify_notion_core_free_ui_approval_batch.py",
+        "sha256": "sha256:830c78c7e88623c93e08ae875eb4ce0523ec690daafd1fc0880fdb94ee6984a9"
+      },
+      "tests": {
+        "path": "code_assist_v1/tests/test_notion_ui_approval_batch_queue.py",
+        "sha256": "sha256:aec18f63a89397b07f668827f37f51dcf2707b1126933d19b5226b9da3687659"
+      },
+      "result": "four pending entries are categorized; destructive confirmation cannot be forged; manual IME input remains outside the batch; independent work is explicit"
+    },
+    {
+      "kind": "reference_read_only_measurement",
+      "scenario_id": "UI-RESP-001",
+      "result": "1440x900, 1280x800, 980x800, and 720x800 all have zero shell/editor horizontal overflow and keep primary navigation, editor, share, action, and share-dismissal surfaces reachable",
+      "viewport_reset": true,
+      "review_status": "pending_user_approval",
+      "promotion_allowed": false
+    }
+  ],
+  "approval_batch": {
+    "pending_entry_count": 4,
+    "human_evidence_approval_count": 2,
+    "manual_input_count": 1,
+    "destructive_external_action_count": 1,
+    "exact_batch_user_text": "UI-A11Y-001, UI-EDITOR-003 요약 승인; UI-RESP-001 다중 뷰포트 요약 승인; UI-PERF-001-REFERENCE-CREATE 휴지통 이동 승인",
+    "manual_followup": "Type 한글 조합 테스트 in the prepared empty REF-FREE-A block, then send UI-EDITOR-004 IME 입력 완료.",
+    "ui_editor_006_disposition": "Safe normal save/reload is already observed. Official failure/stale-revision induction remains deferred until a concrete non-disruptive method is separately reviewed; no vague approval request is queued."
+  },
+  "verification": [
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_approval_batch_queue.py code_assist_v1\\tests\\test_notion_ui_review_gate.py code_assist_v1\\tests\\test_notion_ui_completion_matrix.py code_assist_v1\\tests\\browser\\test_notion_ui1_golden_journey.py::test_ui_resp_001_shell_editor_and_overlays_fit_adopted_viewports -q",
+      "exit_code": 0,
+      "result": "19 passed in 31.50s"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_approval_batch_queue.py -q",
+      "exit_code": 0,
+      "result": "5 passed in 1.59s"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_approval_batch --compact",
+      "exit_code": 0,
+      "result": "pass; pending=4; human_approval=2; manual_input=1; destructive_external_action=1"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_review_gate --compact",
+      "exit_code": 0,
+      "result": "pass; certified=5; reference_observed_review_pending=11; local_integration_review_pending=3; reference_partially_observed=6"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.verify_notion_core_free_ui_completion --compact",
+      "exit_code": 0,
+      "result": "pass with completion_state=incomplete; required=25; reference_characterized=5; differential_passed=5; promoted=0"
+    }
+  ],
+  "host_observation": {
+    "code": "WINDOWS_POWERSHELL_EXIT_0XC0000409",
+    "classification": "known_host_failure_not_product_failure",
+    "recovery": "One direct canonical Python read completed successfully; no repeated PowerShell loop was used."
+  },
+  "protected_inputs": [
+    {"path": "code_assist_v1/AGENTS.md", "sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572"},
+    {"path": "code_assist_v1/docs/NOTION_UI_SECOND_BRAIN_XHIGH_HANDOFF_PLAN.md", "sha256": "sha256:786b19f165e1b124410df40799f56dce3f396017d0be2a085a0a3ab2ccb884e9"},
+    {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/evidence_review_gate.v1.json", "sha256": "sha256:5106bf14da624728c6ba2bde86e283c1f66b66fc6d18fafc12f0fd1971d6839b"},
+    {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/review_implementation_queue.v1.json", "sha256": "sha256:f6ee8e9b272bc22dfb6e080517671f99b0a2d05a494b13a951c52388a0a8e7b6"},
+    {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/completion_matrix.v1.json", "sha256": "sha256:2afdc2f35e1ba82836ecdd37df1242839810dfb7c9b9db9cc71362394782c586"}
+  ],
+  "claims": {
+    "approval_queue_machine_verified": true,
+    "safe_independent_work_exhausted_for_current_reference_state": true,
+    "approval_inferred_count": 0,
+    "external_action_executed_count": 0,
+    "ui_resp_001_reference_observed": true,
+    "ui_resp_001_reference_characterized": false,
+    "ui_resp_001_differential_passed": false,
+    "completion_matrix_changed": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next_exact_action": "Wait for the exact batch user text, then seal the two non-mutating summary receipts first, revalidate the exact synthetic page, perform only the confirmed Trash move, prove tree restoration, and rerun the three machine verifiers. UI-EDITOR-004 remains a separate manual input step."
+}

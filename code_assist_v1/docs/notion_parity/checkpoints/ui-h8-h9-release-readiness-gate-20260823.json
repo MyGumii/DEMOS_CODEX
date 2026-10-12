@@ -1,0 +1,122 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-23T01:22:20+09:00",
+  "run_id": "ui68-h8-h9-release-readiness-gate-20260823",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-quiet-host-two-consecutive-green-20260823.json",
+    "sha256": "sha256:30ae6501a9f88470a5bbe553df81f0a17c11d048b832675838de50a532b3e1e9",
+    "semantic_status": "all_25_required_scenario_evidence_contracts_satisfied_release_gates_pending"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "the user explicitly requested plan review and continued development",
+    "goal_complete": false
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "slice": "H8-H9-RELEASE-READINESS-GATE",
+    "product_code_changed": false,
+    "application_routes_changed": false,
+    "feature_flags_changed": false,
+    "live_or_personal_data_accessed": false
+  },
+  "outcome": {
+    "status": "development_evidence_complete_release_pending",
+    "scenario_evidence_satisfied": 25,
+    "scenario_evidence_required": 25,
+    "release_ready": false,
+    "machine_gate": "pass",
+    "pending_gates": [
+      "formal_accessibility_review",
+      "legal_brand_review",
+      "product_wide_production_default_off_boundary",
+      "operational_backup_restore",
+      "live_canary"
+    ]
+  },
+  "implementation": [
+    {
+      "path": "code_assist_v1/tools/verify_notion_core_free_ui_release_readiness.py",
+      "sha256": "sha256:993cf53a998a9ce911b04edf59fdc27bb38e9982ede60e05e9029daeb8bebfec",
+      "change": "new read-only fail-closed H8/H9 release-readiness verifier"
+    },
+    {
+      "path": "code_assist_v1/tests/test_notion_ui_release_readiness.py",
+      "sha256": "sha256:2c31d55fed4bc0397701d79d7c8d67f03c45221f6fb212cb190205ffd4ffeab5",
+      "change": "new positive, premature-promotion, drift, and import-boundary regressions"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/CORE_FREE_WEB_UI_RELEASE_READINESS_RUNBOOK.md",
+      "sha256": "sha256:f6dd620b752524ad0437f175c73a0398531e1999c432167305d5eb0502cafe49",
+      "change": "new operator-facing completion boundary and closure order"
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/release_readiness.v1.json",
+      "sha256": "sha256:cd5cc9324fad659876b48bbdfd720cbad034fbf1ba1f9d55ea999207523b9bed",
+      "change": "new hash-bound current release-readiness snapshot"
+    }
+  ],
+  "verified_boundaries": {
+    "workspace_navigation_default_off_capability": "implemented_contract_tested_flag_not_enabled",
+    "workspace_navigation_independent_kill_switch": "implemented_contract_tested",
+    "product_wide_release_gate": "not_implemented",
+    "isolated_copy_on_write_backup_restore": "green",
+    "operational_backup_restore": "not_authorized_not_run",
+    "isolated_synthetic_canary": "green",
+    "live_canary": "not_authorized_not_run",
+    "formal_human_reviews": "pending"
+  },
+  "commands": [
+    {
+      "selection": "release-readiness, isolated pilot, NP2B default-off and route kill-switch regressions",
+      "result": "16 passed in 6.58s",
+      "exit_code": 0
+    },
+    {
+      "selection": "existing evidence review verifier",
+      "result": "pass; certified=25; pending categories=0",
+      "exit_code": 0
+    },
+    {
+      "selection": "existing completion verifier",
+      "result": "pass; completion_state=incomplete; evidence_satisfied=25; unresolved=0",
+      "exit_code": 0
+    },
+    {
+      "selection": "new release-readiness verifier",
+      "result": "pass; release_state=pending_external_and_operational_gates; release_ready=false",
+      "exit_code": 0
+    },
+    {
+      "selection": "Python compilation",
+      "result": "pass",
+      "exit_code": 0
+    }
+  ],
+  "safety": {
+    "agents_md_sha256": "sha256:6fa22d33085cb5cf4ead7eda7d0fdeddd971be633ab2f74de9b71667ff4e0572",
+    "agents_md_changed": false,
+    "knowledge_sources_changed": false,
+    "app_auth_config_changed": false,
+    "live_feature_enabled": false,
+    "live_canary_run": false,
+    "restore_run": false,
+    "external_action_run": false,
+    "git_commit_claimed": false
+  },
+  "claims": {
+    "development_evidence_complete": true,
+    "release_ready": false,
+    "h8_complete": false,
+    "h9_complete": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Design and isolate-test the product-wide pilot capability, readiness response, allowlist and independent kill switch without registering or enabling them; separately prepare human accessibility and legal-brand review packets. Any live enable, operational restore, or canary still requires an explicitly named target and fresh authorization.",
+  "vcs": {
+    "available": false,
+    "commit_claimed": false,
+    "observation": "the workspace is not a valid Git repository"
+  }
+}

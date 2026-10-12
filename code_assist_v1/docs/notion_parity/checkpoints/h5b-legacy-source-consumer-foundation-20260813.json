@@ -1,0 +1,146 @@
+{
+  "run_id": "h5b-legacy-source-consumer-foundation-20260813",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "recorded_at": "2026-08-13T22:17:29.7897135+09:00",
+  "observed_goal": {
+    "tool_status": "active",
+    "tool_thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "document_status": "Shared Knowledge has a separate active goal 019fec6f-5503-7e30-a3cb-9dd206b9d549; no Shared Knowledge file was modified."
+  },
+  "slice": "H5b-legacy-source-v3-durable-pass-work-ledger-and-bounded-materialization",
+  "status": "tested_foundation",
+  "scope": {
+    "workspace_schema_changed": false,
+    "legacy_source_schema_added": true,
+    "legacy_source_version": 2026081303,
+    "live_mutation": false,
+    "feature_flags_changed": false,
+    "destructive_watermark_ack": false,
+    "continuous_consumer_registered": false,
+    "catalog_effect_claim_loop": false,
+    "full_sweep_completion": false,
+    "resolver_or_ui_cutover": false,
+    "git_provenance": "unavailable: workspace .git is not valid repository metadata"
+  },
+  "owned_files": [
+    "code_assist_v1/notion_legacy_incarnation_contract.py",
+    "code_assist_v1/notion_legacy_incarnation_migration.py",
+    "code_assist_v1/notion_legacy_changes.py",
+    "code_assist_v1/notion_legacy_change_consumer_contract.py",
+    "code_assist_v1/notion_legacy_change_consumer.py",
+    "code_assist_v1/notion_legacy_change_consumer_migration.py",
+    "code_assist_v1/notion_workspace_incarnation_orchestration.py",
+    "code_assist_v1/tools/migrate_notion_legacy_change_consumer.py",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer.py",
+    "code_assist_v1/tests/test_migrate_notion_legacy_change_consumer.py",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md",
+    "code_assist_v1/docs/notion_parity/checkpoints/h5b-legacy-source-consumer-foundation-20260813.json"
+  ],
+  "protected_files": [
+    "code_assist_v1/AGENTS.md",
+    "code_assist_v1/docs/knowledge_spaces/**",
+    "code_assist_v1/knowledge_core/**",
+    "code_assist_v1/tests/knowledge_spaces/**",
+    "code_assist_v1/app_code.py",
+    "code_assist_v1/app_notion.py",
+    "code_assist_v1/routes_notion_bridge.py",
+    "code_assist_v1/routes_chat_stream.py",
+    "code_assist_v1/auth.py",
+    "code_assist_v1/config.py",
+    "code_assist_v1/data_paths.py",
+    "code_assist_v1/tests/conftest.py",
+    "code_assist_v1/test_safety.py",
+    "live knowledge/user_data/.runtime/sessions/workspace paths"
+  ],
+  "input_hashes": {
+    "code_assist_v1/notion_legacy_incarnation_contract.py": "653a969cd6f35f8a88caa3605ec6fc92db0b5d2d57cbe28b94267ff5d75c5ecb",
+    "code_assist_v1/notion_legacy_incarnation_migration.py": "16bb3da6f9426b1b0bcb05bf57ce20b0ece1724eb4064f1d6bc617a2c9860a7c",
+    "code_assist_v1/notion_legacy_change_consumer_contract.py": "c865549d368bcf31afadee863b1a445bffe37dfc0136bf6181a5cea09107e48f",
+    "code_assist_v1/notion_legacy_change_consumer.py": "5d1659cb7e824540cf449ac23f67b0b0d7d98c8aec7b50054d2c5fa39c3d871f",
+    "code_assist_v1/notion_workspace_incarnation_orchestration.py": "46bd6fd570eb05338b151cbff3a5de91afed756610c432215e97bb3254b352c5",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer.py": "5af3c80c6588be486a9f28255ca9e1ad8347414272b39a04b582c85a64a1bfc8",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "6f74e1fc22c7f3764e535dc5df51de631e07269a7a615f7f231ce8e8183295d5",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "08a6f24166da29e9e2a75e82fb4f804d8a3bbe024d333a2176f534a0964db9f2",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "3f0760a2e2ec16874d2f284bf0d9eb8c0620a2a7e03f2d0f17526b60b6b0c308",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "eb49c542b78aeba28a7eed6392f88014b346352257888be6a6736cba3697b584"
+  },
+  "input_hash_notes": [
+    "notion_legacy_changes.py was changed only after its start-of-slice hash was not durably captured; its output hash is recorded and current-tree regression evidence covers the change.",
+    "Files first created in this slice have no input hash."
+  ],
+  "output_hashes": {
+    "code_assist_v1/notion_legacy_incarnation_contract.py": "653a969cd6f35f8a88caa3605ec6fc92db0b5d2d57cbe28b94267ff5d75c5ecb",
+    "code_assist_v1/notion_legacy_incarnation_migration.py": "2f04a3e5b60aaf37dac9514ebccb9b70bd3eeef0e06d05189bbe943126cb44f7",
+    "code_assist_v1/notion_legacy_changes.py": "4690e42a6f458f22ac15c08500613e28308e07f25d211a0965d95edc7f6405f3",
+    "code_assist_v1/notion_legacy_change_consumer_contract.py": "91fd34b947beed84d32ad4770bb3423860fc6f60f9a710d67bcae50c288b1fb9",
+    "code_assist_v1/notion_legacy_change_consumer.py": "a79e54bb7ea89ae15f7210dfb0a9426d063e3416133baf1cba320400483e877a",
+    "code_assist_v1/notion_legacy_change_consumer_migration.py": "ebfa4fb50efc8ad42a2bbcfae28ccbdf85c5dd2205c791c0811b91a8ddf339bb",
+    "code_assist_v1/notion_workspace_incarnation_orchestration.py": "f7dc7dd6b146e43ce074c62ddde6b847ab99f2aec4da12c008913904463bb9d0",
+    "code_assist_v1/tools/migrate_notion_legacy_change_consumer.py": "7e56c38bd743afc0f435221b2b751f9ebebdabf1a909b3cc24421c9e65e055e1",
+    "code_assist_v1/tests/test_notion_legacy_change_consumer.py": "14e9666d116fb84289c2156e032438d6d16559d968da51c579f422b6599e672e",
+    "code_assist_v1/tests/test_migrate_notion_legacy_change_consumer.py": "2f699e0a27e45d62580e85cb5067b604c8dfa38fa16ad831f9c3b67786aff42e",
+    "code_assist_v1/docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "d29ae5fe165004d7b94c7b6316491a3628d4cd1cce029aaa323f13edeeac4b6c",
+    "code_assist_v1/docs/NOTION_PARITY_MASTER_PLAN.md": "ce4f620fadb34500c4bb0fdf7a9252610bc36d2f6607bbb755b94ce33fb56ed5",
+    "code_assist_v1/docs/NOTION_PARITY_ROADMAP.md": "ea8b1abb1f74f9767c47748a6630d0d900baf94c3127a5d5a433c5db7768174b",
+    "code_assist_v1/docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "2e2748ff22137d82fdff0a33ec72b3d98ae9e14c2d36a8635bf6aff01ba8d19e"
+  },
+  "schema_contract": {
+    "workspace_version": 2026081309,
+    "workspace_checksum": "sha256:ecc2a8b40e8d114015e05b1772701dd97bb99ac513db9fd041626408f5f127ec",
+    "workspace_actual_schema_sha256": "sha256:d79ecc5b79faacf3ca4db288e7978b8192df91b8c3f9e1d5a99f0d859e2e06b1",
+    "legacy_source_version": 2026081303,
+    "legacy_source_name": "notion_legacy_change_consumer_v3",
+    "legacy_source_checksum": "sha256:9fc07c846c9e3e1aae98b3a8a8f0507a37fcf06a9ed203e4a5d650c4f3f71495",
+    "legacy_source_object_hash": "sha256:69a96d7b7c2affd2c0ea83ce80064853d8e12ee8d3f0fbcf27fae3a14f429e6b"
+  },
+  "tests": [
+    {
+      "selection": "legacy v3 migration and source-local consumer focused lane",
+      "result": "14 passed",
+      "exit_code": 0,
+      "duration_seconds": 11.74
+    },
+    {
+      "selection": "legacy v1/v2 migration and reader regression lane",
+      "result": "45 passed",
+      "exit_code": 0,
+      "duration_seconds": 25.05
+    },
+    {
+      "selection": "legacy v1/v2/v3, reader, incarnation orchestration, H5a healing integration lane",
+      "result": "89 passed",
+      "exit_code": 0,
+      "duration_seconds": 81.81
+    },
+    {
+      "selection": "projection, incarnation attestation/rebind, offline rehearsal, workspace 1309 migration adjacent lane",
+      "result": "70 passed",
+      "exit_code": 0,
+      "duration_seconds": 79.45
+    },
+    {
+      "selection": "Notion manifest/catalog/route/evidence/differential machine-contract lane",
+      "result": "79 passed",
+      "exit_code": 0,
+      "duration_seconds": 27.44
+    }
+  ],
+  "known_host_failures": [
+    "One combined py_compile+pytest process and one parallel compile/test wrapper exited -1073740791 before pytest output. Split direct commands then passed; neither host exit was counted as a code failure or pass.",
+    "The combined checkpoint-JSON validation plus py_compile command printed checkpoint-json-ok and then exited -1073740791 before compile completion; an isolated py_compile immediately passed and is the compile evidence."
+  ],
+  "invariants": [
+    "At most 32 source watermark rows are materialized per batch and incarnation history is looked up only for the selected page IDs.",
+    "Source file identity, source epoch, full-sweep generation, pass lease token digest, fencing generation and row version are exact pass fences.",
+    "Operation replay precedes lease validation and returns the exact canonical result without duplicating work.",
+    "No source watermark DELETE, clear or acknowledgement API exists in this slice.",
+    "full_sweep_required is an obligation signal, not catalog-wide completion evidence.",
+    "No request/startup import, continuous worker registration, resolver/UI cutover or live migration occurred."
+  ],
+  "next_exact_work": "Implement a disabled/offline bounded pending-work claim and catalog-effect convergence loop that uses H5a ledger replay before source I/O, then persist catalog-wide full-sweep completion evidence. Keep source watermark acknowledgement absent until those convergence and crash tests pass and separate approval is given.",
+  "stop_reason": null
+}

@@ -1,0 +1,20 @@
+{
+  "name": "repository-atlas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:map": "vite --host 127.0.0.1 --port 4173 --strictPort",
+    "setup:debug": "python scripts/setup_debugger.py",
+    "debug:server": "node server/index.mjs",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    "scan": "python scripts/scan_repository.py",
+    "test": "node --test tests/*.test.mjs && python -m unittest discover -s tests -p test_*.py"
+  },
+  "dependencies": {
+    "three": "^0.186.1",
+    "vite": "^8.3.3"
+  }
+}

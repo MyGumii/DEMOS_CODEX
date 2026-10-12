@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://code-assist.local/contracts/projection-manifest.schema.json",
+  "title": "Knowledge projection state and immutable generation manifest",
+  "$defs": {
+    "ProjectionStatus": {
+      "type": "string",
+      "enum": ["idle", "building", "ready", "error"]
+    },
+    "ProjectionEntry": {
+      "type": "object",
+      "required": ["relative_path", "media_type", "size_bytes", "sha256"],
+      "properties": {
+        "relative_path": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "media_type": {"type": "string", "minLength": 1, "maxLength": 200},
+        "size_bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"$ref": "common.schema.json#/$defs/Sha256"}
+      },
+      "additionalProperties": false
+    },
+    "ProjectionManifest": {
+      "type": "object",
+      "required": [
+        "schema_version", "projection_name", "space_id", "generation",
+        "canonical_high_water", "entries", "entries_sha256", "created_at"
+      ],
+      "properties": {
+        "schema_version": {"const": 1},
+        "projection_name": {"type": "string", "minLength": 1, "maxLength": 120},
+        "space_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "generation": {"type": "integer", "minimum": 0},
+        "canonical_high_water": {"type": "integer", "minimum": 0},
+        "entries": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/ProjectionEntry"}
+        },
+        "entries_sha256": {"$ref": "common.schema.json#/$defs/Sha256"},
+        "created_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"}
+      },
+      "additionalProperties": false
+    },
+    "ProjectionStatusResponse": {
+      "type": "object",
+      "required": [
+        "request_id", "space_id", "projection_name", "desired_generation",
+        "built_generation", "status", "lag_generations", "updated_at"
+      ],
+      "properties": {
+        "request_id": {"$ref": "common.schema.json#/$defs/RequestId"},
+        "space_id": {"$ref": "common.schema.json#/$defs/Uuid"},
+        "projection_name": {"type": "string", "minLength": 1, "maxLength": 120},
+        "desired_generation": {"type": "integer", "minimum": 0},
+        "built_generation": {"type": "integer", "minimum": 0},
+        "status": {"$ref": "#/$defs/ProjectionStatus"},
+        "lag_generations": {"type": "integer", "minimum": 0},
+        "checksum_sha256": {
+          "anyOf": [{"$ref": "common.schema.json#/$defs/Sha256"}, {"type": "null"}]
+        },
+        "last_error": {"type": ["object", "null"]},
+        "updated_at": {"$ref": "common.schema.json#/$defs/UtcTimestamp"},
+        "built_at": {
+          "anyOf": [{"$ref": "common.schema.json#/$defs/UtcTimestamp"}, {"type": "null"}]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

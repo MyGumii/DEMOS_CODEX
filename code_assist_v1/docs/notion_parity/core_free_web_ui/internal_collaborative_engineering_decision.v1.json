@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_engineering_decision.g0_e.v1",
+  "decision_id": "G0-E",
+  "recorded_at": "2026-08-24T01:08:00Z",
+  "status": "frozen_engineering_subgate",
+  "prerequisite_evidence": {
+    "A0A-P2": {
+      "path": "../checkpoints/ui-internal-collaboration-a0a-p2-authority-prototype-20260823.json",
+      "sha256": "sha256:da72ba9e899a541338592b207fe248375d1f61da7eb1e2cc66d45e1a99d9f230",
+      "packet_status": "gate_passed"
+    },
+    "E0-P4": {
+      "path": "../checkpoints/ui-internal-collaboration-e0-p4-winner-selection-20260824.json",
+      "sha256": "sha256:6fa6752c37d71e46831165e0898807763840aaf37bc02d746e4bba7fea06746f",
+      "packet_status": "gate_passed"
+    },
+    "T0A-P3": {
+      "path": "../checkpoints/ui-internal-collaboration-t0a-p3-selected-runtime-binding-20260824.json",
+      "sha256": "sha256:b3a0018adf6e78f42ec6d100e13c3d35bca51a1067d8ffa7ff9de591fc706bdb",
+      "packet_status": "gate_passed"
+    },
+    "O0A-P3": {
+      "path": "../checkpoints/ui-internal-collaboration-o0a-p3-selected-runtime-backup-receipt-20260824.json",
+      "sha256": "sha256:435e1995fa592d49384a9bf5597f96d48ca9daf3c240bacc79318b9a1af53736",
+      "packet_status": "gate_passed_by_current_checkpoint"
+    }
+  },
+  "authority_inputs": {
+    "authority_adr": {
+      "path": "internal_collaborative_authority_adr.v1.json",
+      "sha256": "sha256:0dfa4ad9fd30a8daf50d42e9fe60ea0126928a2f4a73c8a51d7b518d28c439c2"
+    },
+    "winner_adr": {
+      "path": "internal_collaborative_crdt_winner_adr.v1.json",
+      "sha256": "sha256:591b08a1cefcf5cf536b52a66e70ab6c1047133c8bcff99f27bdab90bef6a71a"
+    },
+    "gateway_topology_adr": {
+      "path": "internal_collaborative_gateway_topology_adr.v1.json",
+      "sha256": "sha256:ac102389d11e7270d8bb3bacbff37482da81c8cfe0f7389838a9a0f42ee5770f"
+    },
+    "protocol_contract": {
+      "path": "internal_collaborative_protocol_contract.v1.json",
+      "sha256": "sha256:c2ce4dcecebd4f7da459824f3f012a142ef8ef6d2fd08195490587ad4f954481"
+    },
+    "gateway_contract": {
+      "path": "internal_collaborative_gateway_contract.v1.json",
+      "sha256": "sha256:8bfa575854f409e648822f8e4b6e27433f14cab699ee6def6fb3f08698fd4e96"
+    },
+    "workspace_runtime_lineage": {
+      "path": "../../../notion_workspace_store.py",
+      "sha256": "sha256:19de52d282b6d3adbad2aa72a128a56f9525fdb7f82748138d4e1a009705a979",
+      "observed_schema_version": 2026081317
+    },
+    "parallel_archive_contract": {
+      "path": "../np2c_page_tree_lifecycle_contract.json",
+      "sha256": "sha256:86901eacd80880882096a9366109c69ed226402a4bf156dd63268ed317021dd5",
+      "reserved_candidate_schema_version": 2026081318
+    }
+  },
+  "decisions": {
+    "canonical_authority_architecture": {
+      "selected": "workspace_canonical_collaborative_documents",
+      "canonical_database": "one_Notion_workspace_SQLite_authority",
+      "atomic_boundary": "IAM_epochs_document_operation_event_audit_outbox_in_one_service_transaction",
+      "legacy_sources_after_cutover": "immutable_import_evidence_and_generated_compatibility_projections_only",
+      "request_time_directory_scan_allowed": false,
+      "dual_write_allowed": false,
+      "second_brain_database_merged_into_notion": false,
+      "second_brain_boundary": "separate_SBE_authority_with_revision_epoch_bound_service_publication"
+    },
+    "gateway_and_crdt_winner": {
+      "selected_candidate_id": "PY_OPAQUE_NODE_COMPACTOR",
+      "gateway_runtime": "pinned_Python_ASGI_WebSocket_opaque_relay",
+      "compactor_runtime": "pinned_Node_24.14.1_Yjs_13.6.32_child_process",
+      "gateway_owns_IAM_or_ACK": false,
+      "compactor_network_listener_allowed": false,
+      "hosted_service_dependency_required": false,
+      "rejected_runtime_auto_fallback_allowed": false
+    },
+    "protocol_and_compaction_binding": {
+      "wire_format": "Yjs_v1_update_bytes",
+      "runtime_binding_sha256": "sha256:99b8e01015bbf92c385493bebbc08b6600add4b43afd2ab6e1746a6bb8e74057",
+      "canonical_commit_before_ACK": true,
+      "workspace_and_page_epoch_bound": true,
+      "strict_document_sequence_replay": true,
+      "snapshot_commit_owner": "canonical_python_authority",
+      "compaction_owner": "Node_Yjs_child_without_database_or_network_access",
+      "backup_boundary": "one_verified_update_snapshot_state_vector_high_water_inside_coordinated_generation",
+      "unsupported_snapshot_rollback": "rebuild_from_retained_compatible_snapshot_plus_durable_tail"
+    },
+    "next_available_forward_schema_version": {
+      "authority_lineage": "Notion_workspace_schema_not_SBE_schema",
+      "current_version": 2026081317,
+      "parallel_reserved_version": 2026081318,
+      "parallel_reserved_owner": "NP2C_official_archive_characterization_and_follow_on",
+      "selected_version": 2026082401,
+      "selection_rule": "current_KST_date_namespace_first_sequence_after_rejecting_every_repository_collision_and_preserving_2026081318",
+      "reservation_owner": "A0B-P1_collaborative_authority_forward_migration",
+      "source_version_rule": "A0B-P1_must_reread_the_exclusive_current_lineage; source_is_2026081317_unless_the_reserved_archive_migration_lands_first",
+      "migration_file_created": false,
+      "DDL_frozen": false,
+      "runtime_schema_changed": false
+    }
+  },
+  "g0_aggregate_boundary": {
+    "G0_E_status": "frozen",
+    "G0_U_status": "open",
+    "G0_status": "open",
+    "implementation_packets_requiring_G0_may_start": false,
+    "scale_dependent_schema_bounds_frozen": false,
+    "recovery_retention_destination_frozen": false,
+    "offline_model_frozen": false,
+    "feature_denominator_frozen": false
+  },
+  "follow_on_contract": {
+    "next_required_action": "complete_G0_U_product_owner_interview_and_issue_one_aggregate_G0_receipt",
+    "A0B_P1": "after_G0_allocate_the_reserved_forward_migration_from_the_then_current_exact_lineage_and_keep_default_off",
+    "T0B": "implement_durable_authority_gateway_and_compactor_against_this_exact_runtime_and_protocol_binding",
+    "K0": "implement_default_off_aggregate_and_capability_switches_only_after_G0",
+    "O1": "implement_product_generation_and_target_restore_after_canonical_runtime_packets"
+  },
+  "claims": {
+    "G0_E_frozen": true,
+    "G0_U_frozen": false,
+    "G0_aggregate_frozen": false,
+    "schema_version_reserved": true,
+    "schema_migration_implemented": false,
+    "runtime_or_feature_enabled": false,
+    "live_or_production_data_accessed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

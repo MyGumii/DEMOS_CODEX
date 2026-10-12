@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-STATE002-MEMBER-TABLE-R808-REJECTED-20260903",
+  "recorded_at": "2026-09-03T01:34:00+09:00",
+  "status": "rejected_diagnostic",
+  "goal_status": "active",
+  "accepted_baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state001-body-rhythm-r807-progress-20260903.json",
+    "checkpoint_sha256": "sha256:b84e5c89ea71a0f2ae6df6d9f8ce19471ace71b5ee5b49a72736bc6e3001141b",
+    "source_sha256": "sha256:b37802ac1d36973ca5923950fd3deca974287aa6f6aec8d67c72fe2283e5a719",
+    "V0R_MU_002_unmasked_differing_pixel_count": 177110
+  },
+  "diagnostic": {
+    "root": "code_assist_v1/.runtime/v0b-p1-i0-state002-member-table-r808",
+    "capture_count": 20,
+    "journey_status": "pass",
+    "cleanup_completed_by_journey": true,
+    "V0R_MU_002_unmasked_differing_pixel_count": 177740,
+    "delta_from_r807": 630,
+    "attempted_change": "Right-content subtitle, tabs, compact table columns, second-row vertical rhythm, and role-select typography alignment."
+  },
+  "decision": {
+    "accepted": false,
+    "reason": "The source-bound V0R-MU-002 exact-pixel total regressed by 630 pixels.",
+    "reverted": true,
+    "restored_source_sha256": "sha256:b37802ac1d36973ca5923950fd3deca974287aa6f6aec8d67c72fe2283e5a719",
+    "accepted_receipt_remains": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r807/receipt.json"
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue from the accepted r807 source. Do not reapply the bundled r808 member-table typography and offset adjustments; isolate future V0R-MU-002 changes one control or one row at a time, or move to another residual state."
+  }
+}

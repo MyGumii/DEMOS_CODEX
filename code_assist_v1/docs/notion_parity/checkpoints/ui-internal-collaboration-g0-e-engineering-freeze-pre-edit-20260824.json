@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-G0-E-ENGINEERING-FREEZE-PRE-EDIT-20260824",
+  "recorded_at": "2026-08-24T01:05:00Z",
+  "checkpoint_kind": "engineering_decision_pre_edit_snapshot",
+  "decision_id": "G0-E",
+  "status": "in_progress",
+  "owner_agent": "/root",
+  "purpose": "Freeze the four engineering-owned G0-E decisions from already gate-passed A0A-P2, E0-P4, T0A-P3, and O0A-P3 evidence without answering G0-U product-owner choices or implementing a schema migration/runtime.",
+  "current_hot_contract_sha256": {
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:6e4d37e99db81f5253ebd997695397b058d4884f720f7c618348648a2d4e8186",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:1519bb6c6b9275b2071af7ac791c2aee767041d7cd9a5924510bd9557c6d1091",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:9d3ee68b748ac48169fde33e4292ab8c1f0748c1eee74f729ed87937801eebbd",
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-o0a-p3-selected-runtime-backup-20260824.json": "sha256:5ab8b79397ce10e7a9f115a194d006cf330951056e53259e6a44d8e6a9b13c5b"
+  },
+  "lineage_inputs": {
+    "code_assist_v1/notion_workspace_store.py": "sha256:19de52d282b6d3adbad2aa72a128a56f9525fdb7f82748138d4e1a009705a979",
+    "code_assist_v1/docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "sha256:86901eacd80880882096a9366109c69ed226402a4bf156dd63268ed317021dd5",
+    "observed_current_workspace_schema_version": 2026081317,
+    "reserved_parallel_archive_candidate_version": 2026081318,
+    "proposed_noncolliding_collaboration_version": 2026082401
+  },
+  "decision_boundary": {
+    "g0_u_modified": false,
+    "scale_or_retention_frozen": false,
+    "migration_file_created": false,
+    "schema_ddl_written": false,
+    "live_or_preview_root_accessed": false,
+    "service_or_port_started": false,
+    "user_approval_required": false
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.progress.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-WORKSPACE-HOME-RETRY30-20260829",
+  "recorded_at": "2026-08-29T03:58:54.4119410+09:00",
+  "status": "progress_exact_gate_open",
+  "summary": "The lossless reference exposed and corrected a duplicated synthetic title, an inbox-overlay capture regression, wide-viewport workspace-invite anchoring, and the absence of a product workspace/teamspace home. Retry30 completed all four browser journeys, all 36 captures, all 36 accessibility and interaction checks, and cleanup. Unmasked differences decreased by 605,545 from retry28. Exact pixel parity remains 0/36 and V0B-P1 is not complete.",
+  "immutable_lineage": {
+    "lossless_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-lossless-20260829.json",
+      "sha256": "sha256:84c6f7e917adbcb6af3f71d53312a1589a99172ac92e35be2cb7d382bfc7cd17"
+    },
+    "previous_v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-lossless-matte-retry28-progress-20260829.json",
+      "sha256": "sha256:1d6496889b7640b559e786b7096060875e32e7c279c6d57c5247974618f3c8f9"
+    },
+    "agents_md": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+      "modified": false
+    },
+    "handoff": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+      "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+      "modified": false
+    }
+  },
+  "accepted_source_binding": {
+    "ui_source_build_sha256": "sha256:8ec106cd7fdbdbb6fd61ead9ef58bff284792d1823f8b824f1f99d5ff170aa32",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:bbb4b508930e3f31f0f6294b427d16c8a3dd2599e99ae4f40e9b2ad58d5df343"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:8e85e335b71fd4d8623c1d42b5d92e1d6b25b2d7f206646579b4613080733632"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:8feddf902bfe7cc99f19adc33d8b00f4373ee21bc23cda44a7bac6f9487446ba"
+      },
+      {
+        "path": "code_assist_v1/notion_static/assets/emoji/1f44b.svg",
+        "sha256": "sha256:eaced9544876442d06a117570c6f9da91f08d758e1f4b0161b0b018c81235bc7"
+      },
+      {
+        "path": "code_assist_v1/notion_static/assets/emoji/TWEMOJI_ATTRIBUTION.md",
+        "sha256": "sha256:4dc6a4fcf72bb45818d97e0036ecb130faa41af06d49779eb1011539f38cae32"
+      }
+    ],
+    "iam_capture_journey": {
+      "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+      "sha256": "sha256:a3f34e16dfd4f6f34c2df39ee39f3552537dfff838db2f4f900366164dc5d153"
+    }
+  },
+  "product_and_journey_changes": {
+    "synthetic_title_normalization": "The IAM fixture now creates V0R-A-ROOT and V0R-B-ROOT once rather than duplicating each title.",
+    "workspace_shell_capture": "The notification inbox is validated and closed before V0R-MU-003; the journey then returns to the workspace home and reopens the shared page for inherited-access validation.",
+    "workspace_invite_layout": "Compact viewports retain a centered modal while wide viewports anchor the workspace invite to the observed right-side canvas position.",
+    "teamspace_home": "Collaborative workspaces now expose a reusable teamspace home, workspace breadcrumb, teamspace tree, application links, invite card, and collaborative notification control.",
+    "nonadopted_ai_fence": "The reference-like speech-bubble control is a collaboration notification control. The excluded Notion AI navigation and AI panel remain hidden and all three excluded deep links return 404."
+  },
+  "bounded_diagnostics": {
+    "iam_retry57": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry57-lossless-home",
+      "journey_status": "pass",
+      "capture_count": 20,
+      "unmasked_difference_count": 5870242,
+      "delta_from_retry28_iam": -633059,
+      "cleanup_verified": true
+    },
+    "iam_retry58_and_retry59": {
+      "status": "rejected_fail_closed",
+      "reason": "A hidden legacy page-row duplicate was selected before the visible teamspace row.",
+      "cleanup_path": "component finally cleanup",
+      "accepted": false
+    },
+    "iam_retry61": {
+      "root": "code_assist_v1/.runtime/v0b-p1-iam-diagnostic-20260829-retry61-lossless-sidebar",
+      "journey_status": "pass",
+      "capture_count": 20,
+      "accessibility_pass_count": 20,
+      "interaction_pass_count": 20,
+      "unmasked_difference_count": 5866233,
+      "masked_difference_count": 111004,
+      "browser_closed": true,
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true
+    },
+    "full_retry29": {
+      "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry29-lossless-ui",
+      "capture_file_count": 36,
+      "receipt_written": false,
+      "status": "rejected_fail_closed",
+      "reason": "The reference-like speech-bubble temporarily reused the excluded Notion AI control, so F0-P5 correctly rejected the candidate before receipt sealing.",
+      "cleanup_path": "F0-P5 finally cleanup",
+      "accepted": false
+    }
+  },
+  "accepted_full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry30-lossless-ui",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260829-retry30-lossless-ui/receipt.json",
+    "receipt_sha256": "sha256:459e4a29551abb2a399e23ca691717512077e04323380fc0e759c5c89e8a60f6",
+    "browser_version": "151.0.7922.173",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "interaction_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "journey_count": 4,
+    "journey_pass_count": 4,
+    "component_duration_ms": {
+      "I0-P2": 134442,
+      "C0-P2": 91303,
+      "E1-P2": 60965,
+      "F0-P5": 46027
+    },
+    "unmasked_difference_count": 10028546,
+    "masked_difference_count": 211220,
+    "raw_difference_count": 10239766,
+    "delta_from_retry28_unmasked": -605545,
+    "cleanup": {
+      "status": "complete",
+      "browser_closed": true,
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:a1633dedf152f93a382d025456d6b13912a51482cdaff9333740863730038471"
+    }
+  },
+  "state_deltas_from_retry28": [
+    {"state_id": "V0R-MU-003", "before": 900987, "after": 567664, "delta": -333323},
+    {"state_id": "V0R-MU-001", "before": 1072395, "after": 784996, "delta": -287399},
+    {"state_id": "V0R-MU-016", "before": 555238, "after": 548774, "delta": -6464},
+    {"state_id": "V0R-MU-015", "before": 559619, "after": 553339, "delta": -6280},
+    {"state_id": "V0R-MU-006", "before": 666695, "after": 661197, "delta": -5498},
+    {"state_id": "V0R-MU-004", "before": 645046, "after": 644909, "delta": -137}
+  ],
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates_only",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "gate_passed": false,
+    "product_complete": false
+  },
+  "open_gates": {
+    "exact_pixel": {"passed": 0, "required": 36, "status": "open"},
+    "core_25": {"status": "not_run_until_exact_36_of_36"},
+    "performance": {"status": "not_run_until_exact_36_of_36"},
+    "claims": {"status": "open"},
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "scope_attestation": {
+    "production_changed": false,
+    "second_brain_changed": false,
+    "user_chrome_touched": false,
+    "persistent_browser_profile_used": false,
+    "public_publish_or_link_used": false,
+    "personal_workspace_or_page_used": false,
+    "permanent_delete_used": false,
+    "reference_receipts_modified": false,
+    "agents_md_modified": false,
+    "other_sbe_hot_contract_modified": false
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-STATE004-BODY-TOPBAR-R838-PROGRESS-20260903",
+  "recorded_at": "2026-09-03T03:09:07+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state004-share-stabilization-r818-progress-20260903.json",
+    "checkpoint_sha256": "sha256:ddadf7b78255e8e6e7786eb521ad3f58b5db142d11185cf1bc67fa91755ffe6a",
+    "source_sha256": "sha256:e7580eba47bfc921a89c59cfa98f65fad75239c769cde2bedd70cfbda9babb32",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r818/receipt.json",
+    "receipt_sha256": "sha256:e90e3335e7bd91290b210b775fbbf2817634cc8e5b120798f4b2f7564a4ecf8b",
+    "unmasked_differing_pixel_count": 1811128,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1879546,
+    "V0R_MU_004_unmasked_differing_pixel_count": 109679
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:0c90f1807b35197860ff1b90038365df0d66f7f22af66759cbb2e89bc8178c9b",
+    "release_build_sha256": "sha256:f8c4a61a61c912905b0a5a7f567346a2f4f739b66a41adc530c6be14a97dffae",
+    "runtime_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "summary": [
+      "Aligned the V0R-MU-004 general-access label without changing its reference-contradicting typography experiments.",
+      "Moved only the wide-viewport page icon and title to their independently measured reference positions.",
+      "Aligned the first three seeded content rows with viewport-specific transforms while preserving the compact fourth row after a proven neutral experiment.",
+      "Aligned the breadcrumb, reference edit-time text, and wide-only share-button icon treatment, with an explicit compact reset preventing cross-viewport inline-style leakage."
+    ],
+    "source_bound_V0R_MU_004_reduction_from_r818": 7492,
+    "source_bound_V0R_MU_004_reduction_from_r807": 10614,
+    "source_bound_state_deltas_from_r818": {
+      "V0R-MU-004__1440x900": -7214,
+      "V0R-MU-004__1280x800": -278
+    }
+  },
+  "accepted_diagnostics": {
+    "r819_general_label_position": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-state004-general-label-r819",
+      "diagnostic_sha256": "sha256:4916dd6d08d2c271a73de1e7c21a6c14beb0fd94c09224ef382b9f17cdb7e749",
+      "V0R_MU_004_unmasked_differing_pixel_count": 109519,
+      "reduction_from_r818": 160
+    },
+    "r824_wide_page_icon_y": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-state004-wide-emoji-y-r824",
+      "diagnostic_sha256": "sha256:85ad96aed2c62136587a77518fb6c510739aa4b76d0a06ef61011e3d5eb04c17",
+      "V0R_MU_004_unmasked_differing_pixel_count": 105226,
+      "reduction_from_r819": 4293
+    },
+    "r825_wide_page_title_x": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-state004-wide-title-x-r825",
+      "diagnostic_sha256": "sha256:30a446d40d3c9a15e64dbc553c33a91fb5ecb05a3af1aafd0b0703ef6cf62477",
+      "V0R_MU_004_unmasked_differing_pixel_count": 103960,
+      "reduction_from_r824": 1266
+    },
+    "r828_r829_r830_seeded_rows": {
+      "roots": [
+        "code_assist_v1/.runtime/v0b-p1-b-only-state004-row1-x-r828",
+        "code_assist_v1/.runtime/v0b-p1-b-only-state004-row2-x-r829",
+        "code_assist_v1/.runtime/v0b-p1-b-only-state004-row3-r830"
+      ],
+      "diagnostic_sha256": [
+        "sha256:8409afcae1f53a241241951a75b21dc023e2331e4307200798189d3e64f2c6d5",
+        "sha256:ebc10d732f77cc0fa741d77376174f3af08a64a3e5959e3255f50d8cecfebfc3",
+        "sha256:096cecf0576ae0bffbdea98ab3eb05d8dead04043d7c6bae807c8280f4919dfd"
+      ],
+      "V0R_MU_004_unmasked_differing_pixel_count": 102615,
+      "reduction_from_r825": 1345,
+      "journey_status": "pass",
+      "cleanup_completed_by_journey": true,
+      "accessibility_status": "pass"
+    },
+    "r832_breadcrumb": {
+      "root": "code_assist_v1/.runtime/v0b-p1-b-only-state004-breadcrumb-r832",
+      "diagnostic_sha256": "sha256:52f28b9056d3eaad38ed474700bed26f040f3bd0c124081e212876a460e54760",
+      "V0R_MU_004_unmasked_differing_pixel_count": 102417,
+      "reduction_from_r830": 198
+    },
+    "r833_edit_time_text": {
+      "root": "code_assist_v1/.runtime/v0b-p1-b-only-state004-edit-time-r833",
+      "diagnostic_sha256": "sha256:40f64d1f9092dc3ba0ed88f6a6f5eaa68827c68ac8c699f844a6b033358202d0",
+      "V0R_MU_004_unmasked_differing_pixel_count": 102283,
+      "reduction_from_r832": 134
+    },
+    "r836_wide_share_button_with_compact_reset": {
+      "root": "code_assist_v1/.runtime/v0b-p1-b-only-state004-share-button-wide-reset-r836",
+      "diagnostic_sha256": "sha256:696cf2c17c9f5f935c21578c90a65e8eaf9ae59aebb5f1da71ce4954f271c4c8",
+      "V0R_MU_004_unmasked_differing_pixel_count": 102187,
+      "reduction_from_r833": 96,
+      "wide_unmasked_differing_pixel_count": 50570,
+      "compact_unmasked_differing_pixel_count": 51617,
+      "journey_status": "pass",
+      "cleanup_completed_by_journey": true,
+      "accessibility_status": "pass"
+    }
+  },
+  "rejected_or_neutral_diagnostics": {
+    "r820_general_label_letter_spacing": {
+      "diagnostic_sha256": "sha256:377d7d546d8b60167a90a8a895bb5b55bc115d6943ddd91d1023633f4c980f05",
+      "reason": "The letter-spacing change regressed the two-view target total by 42 pixels and was reverted."
+    },
+    "r821_r823_general_label_weight": {
+      "diagnostic_sha256": [
+        "sha256:f8c6887d227cc6a19e1ce870275bf691da12525f0e475c04832e2445829c2a79",
+        "sha256:789c3ff0c5f8e6bb83d5e144c887c95b605bbe20c4ff36a3852686a962a56d2b"
+      ],
+      "reason": "Font weight 500 had no source-bound target benefit and weight 600 regressed the two-view target total by 124 pixels; both were reverted."
+    },
+    "r822_r826_r827_transient_failures": {
+      "roots": [
+        "code_assist_v1/.runtime/v0b-p1-i0-state004-general-label-weight600-r822",
+        "code_assist_v1/.runtime/v0b-p1-i0-state004-row1-x-r826",
+        "code_assist_v1/.runtime/v0b-p1-i0-state004-row1-x-r827"
+      ],
+      "reason": "The full I0 diagnostic stopped at the earlier A CRDT seed readiness stage before target capture; these runs supplied no visual evidence and were not reused."
+    },
+    "r831_compact_fourth_row": {
+      "diagnostic_sha256": "sha256:096cecf0576ae0bffbdea98ab3eb05d8dead04043d7c6bae807c8280f4919dfd",
+      "reason": "The one-pixel compact fourth-row experiment was pixel-neutral and was reverted."
+    },
+    "r834_r835_share_button_leak": {
+      "diagnostic_sha256": [
+        "sha256:9860873013a1e267713aefd1e1660757305b462d86bcd34b8131c111e5730cbe",
+        "sha256:9860873013a1e267713aefd1e1660757305b462d86bcd34b8131c111e5730cbe"
+      ],
+      "reason": "The wide inline share-button styling persisted into the compact capture until r836 added an explicit reset."
+    },
+    "r837_edit_time_x": {
+      "root": "code_assist_v1/.runtime/v0b-p1-b-only-state004-edit-time-x-r837",
+      "diagnostic_sha256": "sha256:c41bc470c6b5026412d727c9628583e63f6679b306fd4fc5c2f92f215d109bfa",
+      "V0R_MU_004_unmasked_differing_pixel_count": 102320,
+      "regression_from_r836": 133,
+      "reason": "Moving the edit-time label left improved compact by 12 pixels but regressed wide by 145; the transform was reverted before r838."
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r838",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r838/receipt.json",
+    "receipt_sha256": "sha256:f208d105a986b906d05618ee224a82c1f8b2475f80c7d7e83072ef476e9d2960",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1802650,
+    "masked_differing_pixel_count": 68658,
+    "total_differing_pixel_count": 1871308,
+    "raw_unmasked_delta_from_r818": -8478,
+    "raw_masked_delta_from_r818": 240,
+    "raw_total_delta_from_r818": -8238,
+    "source_bound_V0R_MU_004_delta_from_r818": -7492,
+    "run_to_run_non_target_variation_from_r818": {
+      "V0R-MU-002": -975,
+      "V0R-MU-008": -20,
+      "V0R-MU-010": 1,
+      "V0R-MU-014_unmasked": 8,
+      "V0R-MU-014_masked": 240,
+      "unmasked_net": -986,
+      "masked_net": 240
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "duration_ms": 343100,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:918232a5788607f20ad8debdac102cacb6b1b2128280ad98c3dcc521fd856265"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "scope": [
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_i0_semantic_diagnostic.py",
+        "code_assist_v1/tests/notion_collaboration/test_v0b_p1_capture_matte.py",
+        "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_v0b_p1_receipt.py",
+        "code_assist_v1/tests/notion_collaboration/browser/test_f0_p5_adopted_surface.py"
+      ],
+      "result": "17 passed in 32.59s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:f208d105a986b906d05618ee224a82c1f8b2475f80c7d7e83072ef476e9d2960"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r838 source and immutable receipt. Preserve the accepted V0R-MU-004 body/topbar corrections and all earlier accepted state corrections; reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

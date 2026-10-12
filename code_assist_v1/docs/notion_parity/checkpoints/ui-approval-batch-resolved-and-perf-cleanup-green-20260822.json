@@ -1,0 +1,77 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T16:57:17.6572349+09:00",
+  "run_id": "ui46-approval-batch-resolved-and-perf-cleanup-green-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-approval-batch-receipt-compiler-green-20260822.json",
+    "sha256": "sha256:d5aa84e50a9b329fddc9cb18f66d14c0b35e8f0269d8bd8bff3d1478a0539f41",
+    "semantic_status": "approval_batch_compiler_green_exact_user_text_pending"
+  },
+  "approval_receipts": [
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_receipt.20260822.json",
+      "sha256": "sha256:81afd3cab4e94c3b0cddb6dfc7e212e8bfa4d9a39f9f9f6644948b61b08a83ee",
+      "resolved_entry_count": 3
+    },
+    {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/owner_approval_supplemental_receipt.20260822.json",
+      "sha256": "sha256:8427d69e0b2e2c8a7adf991ea42d0da5b6ebc5659ccf3c51a4c1099ac45e46aa",
+      "approved_summary_scenario_count": 3
+    }
+  ],
+  "resolved": {
+    "human_evidence_acceptance": [
+      "UI-A11Y-001",
+      "UI-EDITOR-003",
+      "UI-RESP-001"
+    ],
+    "destructive_external_action": {
+      "scenario_id": "UI-PERF-001",
+      "target_alias": "UI-PERF-001-REFERENCE-CREATE",
+      "action": "move_to_trash",
+      "executed": true,
+      "permanent_delete": false,
+      "execution_checkpoint": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-reference-create-cleanup-complete-20260822.json"
+    }
+  },
+  "still_pending": {
+    "manual_evidence_input": [
+      "UI-EDITOR-004-NATIVE-IME-INPUT"
+    ],
+    "reason": "Manual native Korean IME evidence was explicitly excluded from the approval batch."
+  },
+  "verification": [
+    {
+      "command": "venv\\Scripts\\python.exe -m code_assist_v1.tools.notion_core_free_ui_approval_batch verify --receipt code_assist_v1\\docs\\notion_parity\\core_free_web_ui\\approval_batch_receipt.20260822.json",
+      "exit_code": 0,
+      "result": "pass; resolved_entry_count=3; external_action_executed=false in the create-only authorization receipt"
+    },
+    {
+      "command": "venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_ui_approval_batch_receipt.py code_assist_v1\\tests\\test_notion_ui_approval_batch_queue.py code_assist_v1\\tests\\test_notion_ui_review_gate.py code_assist_v1\\tests\\test_notion_ui_completion_matrix.py -q",
+      "exit_code": 0,
+      "result": "24 passed in 11.51s"
+    },
+    {
+      "command": "three existing compact UI contract verifiers",
+      "exit_code": 0,
+      "result": "approval queue pass; review gate pass; completion pass with completion_state=incomplete"
+    }
+  ],
+  "safety": {
+    "completion_matrix_mutated": false,
+    "review_gate_mutated": false,
+    "personal_notion_content_accessed": false,
+    "live_local_data_accessed": false,
+    "external_publish_or_message_executed": false
+  },
+  "claims": {
+    "approval_batch_receipt_verified": true,
+    "approved_summaries_sealed": true,
+    "confirmed_synthetic_cleanup_complete": true,
+    "manual_ime_input_resolved": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false,
+    "git_commit_claimed": false
+  },
+  "next_exact_action": "Collect the separate UI-EDITOR-004 native Korean IME manual evidence, then recompute review/completion claims without inferring approval."
+}

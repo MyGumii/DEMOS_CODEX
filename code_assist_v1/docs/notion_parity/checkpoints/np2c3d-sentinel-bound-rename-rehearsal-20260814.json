@@ -1,0 +1,170 @@
+{
+  "checkpoint_version": 1,
+  "run_id": "np2c3d-sentinel-bound-rename-rehearsal-20260814",
+  "recorded_at": "2026-08-14T07:50:43+09:00",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "observed_goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "status": "active",
+    "objective": "resume 현재 우리가 작성한 개발 문서와 계획을 확인하고 goal resume을 해서 목표 확인 후 다시 개발 진행해.",
+    "completion_changed": false
+  },
+  "slice": "NP2C-3d-sentinel-bound-rename-end-to-end-rehearsal",
+  "status": "contract_tested_default_off",
+  "scope": {
+    "workspace_schema_version": 2026081313,
+    "workspace_schema_name": "notion_workspace_v2_np2c_rename_catalog_finalize",
+    "workspace_schema_checksum": "sha256:6be5b47275cf0dbe0b6b244c3f71672662f8ce648d1efa446208a94488da1637",
+    "workspace_actual_schema_sha256": "sha256:e971256344e262c59990901b3a6816ecac7be760a31c286f68c5e03d4d491595",
+    "workspace_schema_object_count": 144,
+    "legacy_source_version": 2026081303,
+    "new_schema_added": false,
+    "route_or_runtime_registration_added": false,
+    "runtime_commands_enabled": false,
+    "resolver_cutover_enabled": false,
+    "permanent_delete_enabled": false,
+    "continuous_worker_enabled": false,
+    "destructive_watermark_ack_enabled": false,
+    "live_migration_applied": false
+  },
+  "protected_inputs": {
+    "AGENTS.md": "1426602f125062ff89a5e73219b6ce704247bf05bee946de5def3bf754cef5b9",
+    "shared_knowledge_status_modified": false,
+    "shared_knowledge_traceability_modified": false
+  },
+  "input_output_hashes": {
+    "notion_workspace_store.py": "cf12c6766899873262cb81725a09c2ab8ad4559e00f0ff2a6548ae81d20be8a0",
+    "notion_workspace_page_lifecycle_rehearsal.py": "4215d991e915fb54a42e89ad8b67287d37ba078ea7cb9190653e216f70093c35",
+    "tests/test_notion_workspace_page_lifecycle_rehearsal.py": "b276ba92683c2be41f96bfe37d5bcb2684c1762c93a28e4ae07f4b2fbb2868c9",
+    "docs/notion_parity/np2c_page_tree_lifecycle_contract.json": "ab063ed94299bafad51b4554a164a68ed1c9d8c9548aa30d53ca4f36098b965a",
+    "tools/verify_notion_np2c_page_tree_contract.py": "5e209c2147021c9be3f6b6854150d57b6786e78582bace2a39a0c71aeecaa718",
+    "tests/test_verify_notion_np2c_page_tree_contract.py": "40bcce410b67d3654b749b90740d0d3863b5d1f508998b0dd18a88a791605b0e",
+    "docs/NOTION_PARITY_MASTER_PLAN.md": "b92362d82baaa45a80bcc8e6d5a839b8435f4383e8af272fba36f322295f54d0",
+    "docs/NOTION_PARITY_ROADMAP.md": "3589dcdf4b12ba12929e81828eac3d12e63fc414dcc18e87555e3ab2fbf5f3c4",
+    "docs/NOTION_PARITY_XHIGH_HANDOFF_PLAN.md": "ffa98b82c6868658e0fad103ae9d6b7eaff85f74848e279d8950163ce8ed8333",
+    "docs/notion_parity/NP2A_WORKSPACE_SUBSTRATE.md": "3e2b6115ec55e7bdae2724e57d2906a51114b113b855165c4d7be8f57d3927fc",
+    "docs/notion_parity/NP2C_PAGE_TREE_LIFECYCLE_DESIGN.md": "579fd4bb711c2f65f812b795d42aa3a93731510e42e7bc25c49d8edc7b48e127"
+  },
+  "evidence": [
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_rehearsal.py -q",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 15.78
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_legacy_page_lifecycle.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_kernel.py code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_finalize.py -q",
+      "exit_code": 0,
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 43.42
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_migrate_notion_legacy_change_consumer.py code_assist_v1\\tests\\test_notion_workspace_page_tree.py code_assist_v1\\tests\\test_migrate_notion_workspace_page_tree.py code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_kernel.py code_assist_v1\\tests\\test_migrate_notion_workspace_lifecycle_finalize.py -q",
+      "exit_code": 0,
+      "passed": 43,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 49.41
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_workspace_locator_projection.py code_assist_v1\\tests\\test_notion_workspace_projection.py code_assist_v1\\tests\\test_notion_workspace_healing_apply.py code_assist_v1\\tests\\test_notion_workspace_outbox_delivery.py -q",
+      "exit_code": 0,
+      "passed": 90,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 144.80
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py code_assist_v1\\tests\\test_notion_workspace_migration_chain_rehearsal.py -q",
+      "exit_code": 0,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 5.72
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m py_compile <NP2C-3d production, test, verifier files>",
+      "exit_code": 0,
+      "result": "py_compile and strict JSON UTF-8 read passed"
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_rehearsal.py code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q",
+      "exit_code": 0,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 16.96,
+      "result": "final post-document synchronization verification"
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_verify_notion_workspace_route_contract.py code_assist_v1\\tests\\test_verify_notion_route_contract.py code_assist_v1\\tests\\test_notion_workspace_routes.py code_assist_v1\\tests\\test_notion_workspace_auth_isolation.py code_assist_v1\\tests\\test_notion_auth_contract.py -q",
+      "exit_code": 0,
+      "passed": 74,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 32.79
+    },
+    {
+      "cwd": "G:\\AI_Agent\\DEMOS_CODEX",
+      "command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\knowledge_spaces\\regression\\test_second_brain_chat_characterization.py -q",
+      "exit_code": 0,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 2.07
+    }
+  ],
+  "development_observations": [
+    {
+      "kind": "fixture_setup_failure_fixed",
+      "context": "The first focused run had 4 passes and one FileNotFoundError because a nested temporary fixture parent was not created. The parent creation and nested monkeypatch capture were corrected; the full five-test file then passed. No product code failure was masked."
+    },
+    {
+      "kind": "vcs_unavailable",
+      "context": "The workspace .git directory is not a valid Git repository. No commit, branch, diff, or landed claim is made and git init was not run."
+    }
+  ],
+  "claims": {
+    "live_source_accessed": false,
+    "live_catalog_accessed": false,
+    "live_data_mutated": false,
+    "feature_flags_changed": false,
+    "routes_changed": false,
+    "app_or_second_brain_boundary_changed": false,
+    "shared_knowledge_boundary_changed": false,
+    "cross_database_exactly_once_claimed": false,
+    "delivery_semantics": "at_least_once_state_idempotent",
+    "git_commit_claimed": false,
+    "formal_differential_parity": false
+  },
+  "status_delta": {
+    "shared_status_update_required": false,
+    "reason": "NP2C is independent from the Shared Knowledge phase and its protected STATUS/TRACEABILITY files are owned by another development stream.",
+    "notion_status": "NP2C-3d contract-tested on isolated fixtures; runtime remains default-off."
+  },
+  "next_slice": {
+    "name": "NP2C-3e-create-move-reorder-contracts",
+    "objective": "Design and freeze create, move, and reorder as separate bounded source receipt and atomic catalog finalizer contracts; determine whether a distinct 1314 forward schema is required before implementation.",
+    "implementation_allowed_without_new_review": false,
+    "schema_change_allowed_without_design_review": false,
+    "route_or_runtime_registration_allowed": false,
+    "live_data_allowed": false,
+    "destructive_ack_allowed": false,
+    "duplicate_archive_restore_allowed": false,
+    "next_exact_command": ".\\venv\\Scripts\\python.exe -m pytest code_assist_v1\\tests\\test_notion_workspace_page_lifecycle_rehearsal.py code_assist_v1\\tests\\test_verify_notion_np2c_page_tree_contract.py -q"
+  },
+  "stop_reason": null
+}

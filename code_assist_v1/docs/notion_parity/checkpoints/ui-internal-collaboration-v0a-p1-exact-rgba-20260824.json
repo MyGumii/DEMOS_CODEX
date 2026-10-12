@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0A-P1-EXACT-RGBA-20260824",
+  "recorded_at": "2026-08-23T16:38:35Z",
+  "checkpoint_kind": "packet_evidence_and_status_integration",
+  "packet_id": "V0A-P1",
+  "packet_status": "gate_passed",
+  "purpose": "Bind the dependency-free V0 exact-pixel foundation: bounded strict PNG CRC/filter/color decoding into sRGB RGBA8, deterministic diff PNG and hashes, zero-unmasked-pixel pass semantics, named reviewed scenario-bound content-independent masks with a two-percent union cap, frozen capture-environment equality, exact receipt validation, semantic-differential rejection, and synthetic Chrome proof at both adopted viewports. No external Notion reference, approved reference mask, final candidate comparison, product UI mutation, live service, logged-in profile, or PIX-001 closure is claimed.",
+  "owner_agent": "/root",
+  "owned_existing_files": [
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py"
+  ],
+  "new_product_files": [
+    "code_assist_v1/tools/notion_parity/exact_pixel.py"
+  ],
+  "new_test_files": [
+    "code_assist_v1/tests/notion_collaboration/browser/test_exact_pixel_parity.py",
+    "code_assist_v1/tests/notion_collaboration/test_exact_rgba_comparator.py",
+    "code_assist_v1/tests/notion_collaboration/test_pixel_mask_manifest.py"
+  ],
+  "read_only_dependencies": {
+    "code_assist_v1/AGENTS.md": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_XHIGH_IMPLEMENTATION_HANDOFF_V2.md": "sha256:abaa2cc047e2b00e6e6d4abe1521743a3e0427eb1f6a2c64e4a7704254968912",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_ULTRA_EXECUTION_PLAN_V3.md": "sha256:35de7238678c68ea889e271f3107c170fc233cefb667d455a34db42484e71377",
+    "code_assist_v1/tools/notion_parity/ui_capture.py": "sha256:6458334d40dfe8b8600c335a35f3b61fa3e9054817fb38d8ac93492ad47faf2e"
+  },
+  "protected_dependencies": {
+    "modified_by_this_packet": false,
+    "paths": [
+      "code_assist_v1/AGENTS.md",
+      "code_assist_v1/docs/knowledge_spaces",
+      "code_assist_v1/notion_static",
+      "code_assist_v1/app_notion.py",
+      "code_assist_v1/routes_notion.py",
+      "code_assist_v1/routes_notion_workspace.py",
+      "code_assist_v1/notion_store.py",
+      "code_assist_v1/notion_workspace_store.py",
+      "code_assist_v1/user_data",
+      "code_assist_v1/knowledge",
+      "code_assist_v1/.runtime"
+    ]
+  },
+  "pre_edit_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0a-p1-exact-rgba-pre-edit-20260824.json",
+    "sha256": "sha256:e48703176f8ffd7e61b2c93f2720d6911b6b877c5632aa9f2cda0e2b53371b91"
+  },
+  "pre_edit_sha256": {
+    "code_assist_v1/tools/notion_parity/exact_pixel.py": null,
+    "code_assist_v1/tests/notion_collaboration/browser/test_exact_pixel_parity.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_exact_rgba_comparator.py": null,
+    "code_assist_v1/tests/notion_collaboration/test_pixel_mask_manifest.py": null,
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:ff3861bd15d1b788255ca05dc92e39276d409d1bf69a4fc28c6c24401f88c640",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:b80f1b8fc1e7d82c0d79aab7999ca572ee93228b2d0b5523391a96cc3c79e5b8",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:643c5f40be4854486db17fb5ffbb11756b6fa2b6d62677c10f58fd418a1c3489"
+  },
+  "post_edit_sha256": {
+    "code_assist_v1/tools/notion_parity/exact_pixel.py": "sha256:4797cd46fe6aebc3b11c768ef58d29e62a175a8d07dba0f08e1928fedb3135c5",
+    "code_assist_v1/tests/notion_collaboration/browser/test_exact_pixel_parity.py": "sha256:f8706f94f768a3f35e3075b32917b5c81ce8b0514a1d82f4ba7c65d2ae4d5520",
+    "code_assist_v1/tests/notion_collaboration/test_exact_rgba_comparator.py": "sha256:ff09deb1687124e93e22285fcc9bdfffb4ab07afe5d4805fb0562d369aed32e1",
+    "code_assist_v1/tests/notion_collaboration/test_pixel_mask_manifest.py": "sha256:dff0673c702135ce258e5acfa9cb34a3c39e28a591319cf67d9540a59cc2cd26",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:907287f527fc2493fe154621052080c5d339546ab84b4eef97f30ffd02da5625",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:00f8d071a30e29574b861ed80d981fb918b896a0371ca3036db6e4eeda06daff",
+    "code_assist_v1/tests/notion_collaboration/test_internal_collaborative_harness.py": "sha256:ebc30e142ae00c1ac9c1467be36649ddee94fbbf1c396e42c986070050eb702f"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-ui0-p1-editor-host-20260824.json",
+    "sha256": "sha256:55a86a8629afdb43e3a5e2eb3ba4b1c4a3fb07f1cb57a407039eb4a9fa25ee78",
+    "packet_id": "UI0-P1",
+    "receipt_id": "UI0-P1-L3-L4-EDITOR-HOST-20260824"
+  },
+  "ownership_lease": {
+    "lease_id": "V0A-P1-DOC-HARNESS-20260823-162532Z",
+    "lane": "DOC_HARNESS",
+    "owner_agent": "/root",
+    "status": "released_gate_passed",
+    "acquired_at": "2026-08-23T16:25:32Z",
+    "expires_at": "2026-08-24T00:25:32Z",
+    "released_at": "2026-08-23T16:38:35Z",
+    "exact_paths_only": true,
+    "approval_implies_ownership": false,
+    "release_condition": "The comparator, three exact L6 files, clean exact-lane evidence, catalog integration, checkpoint chain, and current pointer are hash-bound."
+  },
+  "agents_md_sha256": "sha256:916383ca3674842d7dd2f9ef77af989b3b7dfe38e4c3f745072c6f9655d47549",
+  "goal_observation": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "objective": "Resume the interrupted implementation goal.",
+    "status": "active",
+    "persisted_tool_status": "active",
+    "resumed_by_user": true,
+    "observed_at": "2026-08-23T16:38:35Z",
+    "goal_completion_claimed": false
+  },
+  "current_schema_lineage_sha256": "sha256:861a95d471d9bef0e2f386571cc4f723cc33af626c2f85812c990a96bf928604",
+  "cross_catalog_ownership_snapshot": {
+    "observed_at": "2026-08-23T16:38:35Z",
+    "predecessor_checkpoint_sha256": "sha256:55a86a8629afdb43e3a5e2eb3ba4b1c4a3fb07f1cb57a407039eb4a9fa25ee78",
+    "sbe_contract_audit_status": "pass",
+    "sbe_contract_audit_error_count": 0,
+    "sbe_contract_audit_input_sha256": "sha256:59c9eac679584ec7a7a879989245964e9bf5f12c608870860de57ac7b94ca22b",
+    "sbe_current_goal_count": 20,
+    "sbe_current_mandatory_scenario_count": 284,
+    "sbe_hot_contracts_modified_by_this_packet": false,
+    "exact_path_collision_observed": false,
+    "schema_migration_version_allocated": false,
+    "dependency_download_or_install_authorized": false,
+    "external_reference_capture_authorized": false,
+    "actual_network_service_or_port_started": false,
+    "live_identity_or_data_root_mutated": false
+  },
+  "status_integrator_assignment": {
+    "integrator_agent": "/root",
+    "exact_hot_contract_paths": [
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json"
+    ],
+    "pre_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:ff3861bd15d1b788255ca05dc92e39276d409d1bf69a4fc28c6c24401f88c640",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:b80f1b8fc1e7d82c0d79aab7999ca572ee93228b2d0b5523391a96cc3c79e5b8"
+    },
+    "accepted_packet_receipt_ids": [
+      "UI0-P1-L3-L4-EDITOR-HOST-20260824"
+    ],
+    "lease": "V0A-P1-DOC-HARNESS-20260823-162532Z",
+    "post_edit_sha256": {
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json": "sha256:907287f527fc2493fe154621052080c5d339546ab84b4eef97f30ffd02da5625",
+      "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json": "sha256:00f8d071a30e29574b861ed80d981fb918b896a0371ca3036db6e4eeda06daff"
+    }
+  },
+  "validation_receipt": {
+    "receipt_id": "V0A-P1-L6-EXACT-RGBA-20260824",
+    "validation_id": "L6-EXACT-RGBA",
+    "status": "pass",
+    "error_count": 0,
+    "executed_at": "2026-08-23T16:38:35Z",
+    "exact_lane": {
+      "argv": [
+        ".\\venv\\Scripts\\python.exe",
+        "-E",
+        "-m",
+        "pytest",
+        "-c",
+        "code_assist_v1/pytest.ini",
+        "-q",
+        "-p",
+        "no:debugging",
+        "-p",
+        "no:cacheprovider",
+        "code_assist_v1/tests/notion_collaboration/browser/test_exact_pixel_parity.py",
+        "code_assist_v1/tests/notion_collaboration/test_exact_rgba_comparator.py",
+        "code_assist_v1/tests/notion_collaboration/test_pixel_mask_manifest.py"
+      ],
+      "passed": 16,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "xfailed": 0,
+      "duration_seconds": 20.83,
+      "realm_id": "synthetic_isolated"
+    },
+    "unit_contracts": {
+      "passed": 15,
+      "failed": 0,
+      "duration_seconds": 3.61
+    },
+    "browser_contract": {
+      "adopted_viewports": [
+        {"width": 1440, "height": 900},
+        {"width": 1280, "height": 800}
+      ],
+      "synthetic_only": true,
+      "external_reference_used": false,
+      "clean_runs_after_host_crash": [
+        {"passed": 1, "failed": 0, "duration_seconds": 17.19},
+        {"passed": 1, "failed": 0, "duration_seconds": 17.19}
+      ]
+    },
+    "host_crash_observation": {
+      "classification": "pre_assertion_host_crash_non_evidence",
+      "failure": "Windows access violation while Python imported asyncio before Playwright startup",
+      "product_assertion_reached": false,
+      "playwright_fresh_process_imports_passed": 10,
+      "playwright_fresh_process_imports_failed": 0,
+      "two_subsequent_clean_browser_runs_required_and_observed": true,
+      "original_crash_counted_as_pass": false
+    },
+    "executed_denominators": {
+      "strict_png_signature_crc_chunk_and_deflate_validation": true,
+      "supported_input_color_types": ["RGB8", "RGBA8"],
+      "decoded_output": "sRGB_RGBA8",
+      "unmasked_differing_pixels_allowed": 0,
+      "maximum_masked_union_ratio": 0.02,
+      "named_mask_reason_count": 4,
+      "adopted_viewport_count": 2,
+      "legacy_semantic_differential_rejected": true,
+      "tamper_cases_passed": true
+    },
+    "sbe_contract_audit": {
+      "status": "pass",
+      "error_count": 0,
+      "input_sha256": "sha256:59c9eac679584ec7a7a879989245964e9bf5f12c608870860de57ac7b94ca22b",
+      "goal_count": 20,
+      "scenario_count": 284
+    },
+    "post_integration_validation": {
+      "status": "pass_with_recorded_cross_stream_drift",
+      "finalized_at": "2026-08-23T16:44:53Z",
+      "harness_tests": {
+        "passed": 11,
+        "failed": 0,
+        "errors": 0,
+        "duration_seconds": 9.88
+      },
+      "notion_collaboration_regression": {
+        "passed": 174,
+        "failed": 4,
+        "errors": 0,
+        "duration_seconds": 188.37,
+        "v0a_or_product_assertion_failures": 0,
+        "cross_stream_sbe_hash_drift_failures": 4,
+        "drifted_sbe_sources": [
+          "code_assist_v1/docs/knowledge_spaces/IMPLEMENTATION_BACKLOG.md",
+          "code_assist_v1/docs/knowledge_spaces/STATUS.md"
+        ],
+        "stale_read_only_consumers": [
+          "A0A-P1 canonical-authority ADR manifest",
+          "O0A-P1 coordinated-backup ADR manifest"
+        ],
+        "modified_by_v0a_p1": false
+      },
+      "completion_audit": {
+        "status": "pass",
+        "error_count": 0,
+        "completion_state": "incomplete",
+        "gate_passed_required_packets": 16,
+        "required_packets": 50,
+        "closed_matrix_rows": 0,
+        "matrix_rows": 28,
+        "closed_phase_gates": 3,
+        "phase_gates": 20,
+        "open_decisions": 5,
+        "planned_required_lanes": 9,
+        "product_complete": false
+      },
+      "strict_completion_gate": {
+        "status": "expected_fail",
+        "exit_code": 1,
+        "error_codes": [
+          "STRICT_COMPLETION_INCOMPLETE"
+        ],
+        "false_green_or_integrity_error_observed": false
+      }
+    },
+    "claims": {
+      "exact_rgba_comparator_foundation_implemented": true,
+      "mask_and_environment_verifiers_implemented": true,
+      "declared_v0a_packet_tests_passed": true,
+      "external_reference_captured": false,
+      "full_L6_exact_rgba_lane_closed": false,
+      "PIX_001_closed": false,
+      "product_ui_changed": false,
+      "dependency_installed_or_downloaded": false,
+      "production_schema_route_store_service_port_profile_or_data_root_changed": false,
+      "live_or_production_mutation": false
+    }
+  },
+  "rollback_or_cleanup": "Delete only the exact-pixel module, the three V0A-P1 tests, and the two V0A-P1 checkpoint files; restore catalog, ladder, harness, and current pointer to their pre-edit hashes. Browser contexts were ephemeral and synthetic. No external reference, dependency, product UI, service, port, profile, live identity, protected root, or SBE contract was modified.",
+  "completion_truth": {
+    "v0a_p1_started": true,
+    "v0a_p1_gate_passed": true,
+    "exact_pixel_foundation_complete": true,
+    "approved_external_reference_capture_complete": false,
+    "final_candidate_pixel_comparison_complete": false,
+    "PIX_001_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "execution_cursor": {
+    "completed_packet": "V0A-P1",
+    "current_state": "gate_passed_integrated_awaiting_next_approval",
+    "next_approval_free_packet": null,
+    "next_packet": "E0-P2",
+    "next_state": "awaiting_conditional_approval",
+    "required_approval_id": "AP-RUNTIME-SPIKE",
+    "approval_reason": "The selected CRDT/gateway candidate dependency is not already available and its disposable-root Windows install/start/stop spike is not authorized by V0A-P1.",
+    "real_service_or_identity_mutation_allowed": false
+  }
+}

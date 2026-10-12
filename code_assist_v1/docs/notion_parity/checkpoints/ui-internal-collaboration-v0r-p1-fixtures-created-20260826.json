@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0R-P1-FIXTURES-CREATED-20260826",
+  "recorded_at": "2026-08-26T11:01:16+09:00",
+  "checkpoint_kind": "synthetic_fixtures_created_before_permission_mutation",
+  "packet_id": "V0R-P1",
+  "packet_status": "execution_in_progress_awaiting_action_time_confirmation",
+  "purpose": "Record the completed creation of the two synthetic reference fixtures after the resumed clean preflight and before any invitation, share, role, comment, reaction, mention, revoke, or cleanup action. The next action is the REF-FREE-A workspace invitation and remains unexecuted pending fresh action-time confirmation.",
+  "owner_agent": "/root",
+  "ownership_lane": "DOC_HARNESS",
+  "owned_new_files": [
+    "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-fixtures-created-20260826.json"
+  ],
+  "hot_shared_contracts_modified": false,
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:452b14964e22cc02ac0bd5ad803d991ae30748ceaa7352191ace10f0fe03d996",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0r-p1-preflight-resumed-clean-pass-20260826.json",
+    "sha256": "sha256:e5583fc8921da2e2bcc4e87f90e83196e08bbd04d4eb19f8ea15f6dfbad2ac2d"
+  },
+  "execution_manifest": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_reference_multiuser_execution.v1.json",
+    "sha256": "sha256:924b3812e81bffc024bd386a5735c69a676f08e5b8c3f8ce52dffc6e0b9d7cf5",
+    "expected_action_count": 11,
+    "expected_capture_state_count": 18,
+    "expected_screenshot_count": 36
+  },
+  "completed_actions": [
+    {
+      "order": 1,
+      "action_id": "V0R-PREFLIGHT",
+      "status": "passed",
+      "required_result": "two_exact_workspace_aliases_and_two_independent_test_identities_confirmed"
+    },
+    {
+      "order": 2,
+      "action_id": "V0R-CREATE-A",
+      "workspace": "REF-FREE-A",
+      "actor": "REF-OWNER",
+      "status": "passed",
+      "required_result": "V0R-A-ROOT_created",
+      "fixture": {
+        "page_alias": "V0R-A-ROOT",
+        "opaque_page_id": "3c89e69c1dfb80dc8c44d6edc0369282",
+        "placement": "REF-FREE-A teamspace",
+        "text_markers": [
+          "V0R-A-TEXT-BASE",
+          "V0R-A-BLOCK-BASE"
+        ],
+        "database_alias": "V0R-A-DB",
+        "database_row_alias": "V0R-A-ROW-BASE"
+      }
+    },
+    {
+      "order": 3,
+      "action_id": "V0R-CREATE-B",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "status": "passed",
+      "required_result": "V0R-B-ROOT_created",
+      "fixture": {
+        "page_alias": "V0R-B-ROOT",
+        "opaque_page_id": "3c80f3fc29e880f78507f88c255a4ff6",
+        "placement": "REF-FREE-B private page space",
+        "text_markers": [
+          "V0R-B-ROLE-BASE"
+        ]
+      }
+    }
+  ],
+  "evidence_denominator": {
+    "screenshot_directory_exists": true,
+    "screenshot_file_count": 0,
+    "final_receipt_exists": false,
+    "completed_action_count": 3,
+    "action_log_complete": false,
+    "cleanup_required_now": true
+  },
+  "scope_attestation": {
+    "external_notion_mutation_executed": true,
+    "synthetic_fixture_created": true,
+    "workspace_or_page_invitation_sent": false,
+    "permission_or_role_changed": false,
+    "comment_reaction_or_mention_sent": false,
+    "reference_screenshot_persisted": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false,
+    "production_or_second_brain_changed": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_or_non_synthetic_workspace_label_persisted": false
+  },
+  "confirmation_boundary": {
+    "confirmation_required_before_next_action": true,
+    "next_action_id": "V0R-WORKSPACE-INVITE",
+    "confirmation_received_for_next_action": false,
+    "next_action_started": false
+  },
+  "claims": {
+    "V0R_P1_execution_started": true,
+    "V0R_P1_gate_passed": false,
+    "V0_GATE_001_closed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "V0R-WORKSPACE-INVITE"
+}

@@ -1,0 +1,3205 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_reference_multiuser_receipt.v0r_p1.v1",
+  "packet_id": "V0R-P1",
+  "receipt_id": "V0R-P1-L6-REFERENCE-MULTIUSER-20260826",
+  "recorded_at": "2026-08-26T23:11:27+09:00",
+  "execution_manifest": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_reference_multiuser_execution.v1.json",
+    "sha256": "sha256:924b3812e81bffc024bd386a5735c69a676f08e5b8c3f8ce52dffc6e0b9d7cf5",
+    "audit_status": "pass"
+  },
+  "approval_receipt": {
+    "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_approvals/v0r-p1-ap-reference-multiuser-20260825.json",
+    "sha256": "sha256:4d39668562788aadceaaeb58d19d8c04d10714d967a3a3051b0dddea5f6f21a6",
+    "approval_id": "AP-REFERENCE-MULTIUSER"
+  },
+  "run": {
+    "run_id": "v0r-p1-reference-multiuser-20260826",
+    "started_at": "2026-08-26T10:45:16+09:00",
+    "ended_at": "2026-08-26T23:11:27+09:00",
+    "browser": "chrome_signed_in_two_independent_test_sessions",
+    "chrome_major_version": "151",
+    "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+    "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+    "workspace_aliases": [
+      "REF-FREE-A",
+      "REF-FREE-B"
+    ],
+    "identity_aliases": [
+      "REF-OWNER",
+      "REF-COLLABORATOR"
+    ],
+    "screenshot_root": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_reference/v0r-p1/screenshots",
+    "action_log_sha256": "sha256:5d38f80b8989eace4640f8a697bec00e103276eb3f16d50919e95c44e9e40baa"
+  },
+  "actions": [
+    {
+      "order": 1,
+      "id": "V0R-PREFLIGHT",
+      "workspace": null,
+      "actor": "REF-OWNER",
+      "mutation_class": "read_only",
+      "status": "pass",
+      "started_at": "2026-08-26T10:45:16+09:00",
+      "ended_at": "2026-08-26T10:45:16+09:00",
+      "result": "Two exact synthetic workspace aliases and two independent dedicated test sessions were verified before mutation.",
+      "raw_identifier_persisted": false
+    },
+    {
+      "order": 2,
+      "id": "V0R-CREATE-A",
+      "workspace": "REF-FREE-A",
+      "actor": "REF-OWNER",
+      "mutation_class": "synthetic_mutation",
+      "status": "pass",
+      "started_at": "2026-08-26T11:01:16+09:00",
+      "ended_at": "2026-08-26T11:01:16+09:00",
+      "result": "The exact synthetic V0R-A-ROOT fixture tree was created in REF-FREE-A.",
+      "raw_identifier_persisted": false
+    },
+    {
+      "order": 3,
+      "id": "V0R-CREATE-B",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "synthetic_mutation",
+      "status": "pass",
+      "started_at": "2026-08-26T11:01:16+09:00",
+      "ended_at": "2026-08-26T11:01:16+09:00",
+      "result": "The exact synthetic V0R-B-ROOT fixture was created in REF-FREE-B.",
+      "raw_identifier_persisted": false
+    },
+    {
+      "order": 4,
+      "id": "V0R-WORKSPACE-INVITE",
+      "workspace": "REF-FREE-A",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_membership_mutation",
+      "status": "pass",
+      "started_at": "2026-08-26T14:57:04+09:00",
+      "ended_at": "2026-08-26T14:57:04+09:00",
+      "result": "The corrected REF-COLLABORATOR identity became the temporary active REF-FREE-A workspace owner member.",
+      "raw_identifier_persisted": false
+    },
+    {
+      "order": 5,
+      "id": "V0R-PAGE-SHARE",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_page_grant_mutation",
+      "status": "pass",
+      "started_at": "2026-08-26T21:05:28+09:00",
+      "ended_at": "2026-08-26T21:05:28+09:00",
+      "result": "REF-COLLABORATOR received edit access only to the synthetic V0R-B-ROOT page.",
+      "raw_identifier_persisted": false
+    },
+    {
+      "order": 6,
+      "id": "V0R-MULTIUSER-CAPTURE",
+      "workspace": "REF-FREE-A",
+      "actor": "REF-OWNER+REF-COLLABORATOR",
+      "mutation_class": "synthetic_mutation_and_capture",
+      "status": "pass",
+      "started_at": "2026-08-26T21:21:37+09:00",
+      "ended_at": "2026-08-26T21:21:37+09:00",
+      "result": "Presence, convergent text, block and database edits, comment, reply, reaction, mention, and reconnect states were captured.",
+      "raw_identifier_persisted": false
+    },
+    {
+      "order": 7,
+      "id": "V0R-PAGE-ROLE-COMMENT",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_page_grant_mutation",
+      "status": "pass",
+      "started_at": "2026-08-26T21:59:20+09:00",
+      "ended_at": "2026-08-26T21:59:20+09:00",
+      "result": "The synthetic B page grant transitioned to comment-only and was captured.",
+      "raw_identifier_persisted": false
+    },
+    {
+      "order": 8,
+      "id": "V0R-PAGE-ROLE-VIEW",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_page_grant_mutation",
+      "status": "pass",
+      "started_at": "2026-08-26T22:31:48+09:00",
+      "ended_at": "2026-08-26T22:31:48+09:00",
+      "result": "The synthetic B page grant transitioned to view-only and was captured.",
+      "raw_identifier_persisted": false
+    },
+    {
+      "order": 9,
+      "id": "V0R-PAGE-REVOKE",
+      "workspace": "REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_page_grant_mutation",
+      "status": "pass",
+      "started_at": "2026-08-26T22:34:29+09:00",
+      "ended_at": "2026-08-26T22:34:29+09:00",
+      "result": "The synthetic B page grant was revoked and a non-oracle access boundary was captured.",
+      "raw_identifier_persisted": false
+    },
+    {
+      "order": 10,
+      "id": "V0R-WORKSPACE-REVOKE",
+      "workspace": "REF-FREE-A",
+      "actor": "REF-OWNER",
+      "mutation_class": "test_identity_membership_mutation",
+      "status": "pass",
+      "started_at": "2026-08-26T22:43:05+09:00",
+      "ended_at": "2026-08-26T22:43:05+09:00",
+      "result": "The temporary A workspace-owner membership was revoked and a non-oracle access boundary was captured.",
+      "raw_identifier_persisted": false
+    },
+    {
+      "order": 11,
+      "id": "V0R-CLEANUP",
+      "workspace": "REF-FREE-A+REF-FREE-B",
+      "actor": "REF-OWNER",
+      "mutation_class": "recoverable_cleanup",
+      "status": "pass",
+      "started_at": "2026-08-26T23:11:27+09:00",
+      "ended_at": "2026-08-26T23:11:27+09:00",
+      "result": "Both exact synthetic fixture roots were moved to recoverable Trash after revocation; active test grants and active fixture roots are zero.",
+      "raw_identifier_persisted": false
+    }
+  ],
+  "captures": [
+    {
+      "state_id": "V0R-MU-001",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER",
+      "surface": "workspace_share_dialog",
+      "expected_state": "invite_ready_no_raw_identifier_visible",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787753748129
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:2f1ecd0401edd1aebe71112defdb7181bef639e4e903f76931a262df089f88d1",
+      "screenshot_relative_path": "V0R-MU-001__1440x900.png",
+      "screenshot_sha256": "sha256:35fdf79d72f483a8dd4d81671c2004b8e9141dd7109e4ac9d61f9a7c7e849aac",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T23:15:48+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-001-FOCUS",
+        "sequence": [
+          "V0R-MU-001-PRIMARY",
+          "V0R-MU-001-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-001-PRIMARY",
+          "name": "invite_ready_no_raw_identifier_visible",
+          "role": "dialog",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "invite_ready_no_raw_identifier_visible",
+        "observation": "Redacted reference evidence confirms invite_ready_no_raw_identifier_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-001",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER",
+      "surface": "workspace_share_dialog",
+      "expected_state": "invite_ready_no_raw_identifier_visible",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787753748062
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:6531a594ee6cca6bb7faf29a29e180823abb303ecbc7f925cdf2bf487cdc5b0a",
+      "screenshot_relative_path": "V0R-MU-001__1280x800.png",
+      "screenshot_sha256": "sha256:f422d0bea97aadafb4e39623a0b3b318e421dded7a7dc56fab943106d8fe9f35",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T23:15:48+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-001-FOCUS",
+        "sequence": [
+          "V0R-MU-001-PRIMARY",
+          "V0R-MU-001-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-001-PRIMARY",
+          "name": "invite_ready_no_raw_identifier_visible",
+          "role": "dialog",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "invite_ready_no_raw_identifier_visible",
+        "observation": "Redacted reference evidence confirms invite_ready_no_raw_identifier_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-002",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER",
+      "surface": "workspace_member_list",
+      "expected_state": "collaborator_active",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787723667606
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:1a29be40dc97642bda44fd3b0d150e751759591fce6f8395029d36208ff5cc53",
+      "screenshot_relative_path": "V0R-MU-002__1440x900.png",
+      "screenshot_sha256": "sha256:9a831f12c10532942343d256a9fc114f45fe337825dc259cafc365ba40146b56",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T14:54:27+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-002-FOCUS",
+        "sequence": [
+          "V0R-MU-002-PRIMARY",
+          "V0R-MU-002-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-002-PRIMARY",
+          "name": "collaborator_active",
+          "role": "table",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "collaborator_active",
+        "observation": "Redacted reference evidence confirms collaborator_active on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-002",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER",
+      "surface": "workspace_member_list",
+      "expected_state": "collaborator_active",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787723667656
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:748544a9d024af6d1117b84f17f85e80e5ad14c4ca30df47eea5da6e71d4add7",
+      "screenshot_relative_path": "V0R-MU-002__1280x800.png",
+      "screenshot_sha256": "sha256:7ff241dc4cf32dec0ceb7dd9e5153d15b16f7d853a168075b1b0377c17641571",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T14:54:27+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-002-FOCUS",
+        "sequence": [
+          "V0R-MU-002-PRIMARY",
+          "V0R-MU-002-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-002-PRIMARY",
+          "name": "collaborator_active",
+          "role": "table",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "collaborator_active",
+        "observation": "Redacted reference evidence confirms collaborator_active on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-003",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "workspace_shell",
+      "expected_state": "shared_workspace_visible",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787753748218
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:26f56ddd5fac0dbc1b0d6a956c3ad08d647da3bcaf9fddaaff3036e9b1f3c5bd",
+      "screenshot_relative_path": "V0R-MU-003__1440x900.png",
+      "screenshot_sha256": "sha256:ece2f77b23ba4391dc2982df221f3273a1aa95ee80b429458ff26ecf7ea1b8c5",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T23:15:48+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-003-FOCUS",
+        "sequence": [
+          "V0R-MU-003-PRIMARY",
+          "V0R-MU-003-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-003-PRIMARY",
+          "name": "shared_workspace_visible",
+          "role": "navigation",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "shared_workspace_visible",
+        "observation": "Redacted reference evidence confirms shared_workspace_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-003",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "workspace_shell",
+      "expected_state": "shared_workspace_visible",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787753748171
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:01a57deedc0bbf86e204161f9f9639d2149c193275e8a5dbb1a67864c06d4f8c",
+      "screenshot_relative_path": "V0R-MU-003__1280x800.png",
+      "screenshot_sha256": "sha256:ae50adc559a0284c5b353f3d7457f91cc5456e0bb9252400c6ca9d336a71e299",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T23:15:48+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-003-FOCUS",
+        "sequence": [
+          "V0R-MU-003-PRIMARY",
+          "V0R-MU-003-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-003-PRIMARY",
+          "name": "shared_workspace_visible",
+          "role": "navigation",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "shared_workspace_visible",
+        "observation": "Redacted reference evidence confirms shared_workspace_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-004",
+      "workspace_alias": "REF-FREE-B",
+      "actor_alias": "REF-OWNER",
+      "surface": "page_share_dialog",
+      "expected_state": "edit_access_active",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787745879617
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:e7a1953edaa44c3410307e36adc4f13a6b272defbac3290f573785b930b67fed",
+      "screenshot_relative_path": "V0R-MU-004__1440x900.png",
+      "screenshot_sha256": "sha256:c5e54bca81b238c74dbcd1a957a8f61d24a9573f75ad19e3ad03e020856cc137",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:04:39+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-004-FOCUS",
+        "sequence": [
+          "V0R-MU-004-PRIMARY",
+          "V0R-MU-004-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-004-PRIMARY",
+          "name": "edit_access_active",
+          "role": "dialog",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "edit_access_active",
+        "observation": "Redacted reference evidence confirms edit_access_active on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-004",
+      "workspace_alias": "REF-FREE-B",
+      "actor_alias": "REF-OWNER",
+      "surface": "page_share_dialog",
+      "expected_state": "edit_access_active",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787745879528
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:8fcb38bf5cbaf97e4c163f1be85438a9ac17c17a97026c47dc1f69a461930c6b",
+      "screenshot_relative_path": "V0R-MU-004__1280x800.png",
+      "screenshot_sha256": "sha256:3cc8503102b42242117f6bd8000af0c138190b043ce1e114b423b958f1b51d43",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:04:39+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-004-FOCUS",
+        "sequence": [
+          "V0R-MU-004-PRIMARY",
+          "V0R-MU-004-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-004-PRIMARY",
+          "name": "edit_access_active",
+          "role": "dialog",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "edit_access_active",
+        "observation": "Redacted reference evidence confirms edit_access_active on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-005",
+      "workspace_alias": "REF-FREE-B",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "page_canvas",
+      "expected_state": "page_edit_access_visible",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787745907676
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:11239b9d0e5790da48ef078fddab54d01f0c70db50f10c7c5f3c5adb9850f32a",
+      "screenshot_relative_path": "V0R-MU-005__1440x900.png",
+      "screenshot_sha256": "sha256:406b1e28157473a6e5f32853bbc062ad4a005d4e22f9bd16abb88b4a58102117",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:05:07+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-005-FOCUS",
+        "sequence": [
+          "V0R-MU-005-PRIMARY",
+          "V0R-MU-005-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-005-PRIMARY",
+          "name": "page_edit_access_visible",
+          "role": "main",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "page_edit_access_visible",
+        "observation": "Redacted reference evidence confirms page_edit_access_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-005",
+      "workspace_alias": "REF-FREE-B",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "page_canvas",
+      "expected_state": "page_edit_access_visible",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787745907799
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:e6b9e94348a66eb6aa9028c6a2f01f1fdd28d28ed93e6219a2ead1f1978c67e6",
+      "screenshot_relative_path": "V0R-MU-005__1280x800.png",
+      "screenshot_sha256": "sha256:db91861ebeed42df833d6d639dda991120bfbeb9f153384ba8de63da8f48e53f",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:05:07+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-005-FOCUS",
+        "sequence": [
+          "V0R-MU-005-PRIMARY",
+          "V0R-MU-005-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-005-PRIMARY",
+          "name": "page_edit_access_visible",
+          "role": "main",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "page_edit_access_visible",
+        "observation": "Redacted reference evidence confirms page_edit_access_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-006",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "page_share_dialog",
+      "expected_state": "inherited_workspace_access_explained",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746170346
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:78bd577db820b9030aea9273214c447959c60ed33b5783eb8723a708e786c0b8",
+      "screenshot_relative_path": "V0R-MU-006__1440x900.png",
+      "screenshot_sha256": "sha256:bcc74cb65c8172cdfdf373a8f2394fa5c6c21deaf58d1b739c9e913d71cb5d30",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:09:30+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-006-FOCUS",
+        "sequence": [
+          "V0R-MU-006-PRIMARY",
+          "V0R-MU-006-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-006-PRIMARY",
+          "name": "inherited_workspace_access_explained",
+          "role": "dialog",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "inherited_workspace_access_explained",
+        "observation": "Redacted reference evidence confirms inherited_workspace_access_explained on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-006",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "page_share_dialog",
+      "expected_state": "inherited_workspace_access_explained",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746170335
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:684cc37bef8d57bf02763a2b8b9cd47d71badcde2645f03876b1a685450a2454",
+      "screenshot_relative_path": "V0R-MU-006__1280x800.png",
+      "screenshot_sha256": "sha256:834496a437f3239449e737a444898bb91872806078ee3026ecf744596e62ac1f",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:09:30+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-006-FOCUS",
+        "sequence": [
+          "V0R-MU-006-PRIMARY",
+          "V0R-MU-006-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-006-PRIMARY",
+          "name": "inherited_workspace_access_explained",
+          "role": "dialog",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "inherited_workspace_access_explained",
+        "observation": "Redacted reference evidence confirms inherited_workspace_access_explained on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-007",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER",
+      "surface": "page_header",
+      "expected_state": "two_principal_presence_visible",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746199408
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:58a045007fa524f6f45245e07cbb453373f2cba73d38399a3bacc3afa8f17cfd",
+      "screenshot_relative_path": "V0R-MU-007__1440x900.png",
+      "screenshot_sha256": "sha256:c09b2b5afb4ae06d31a3dacc9fb45e4a4d329674db7317e0c5a186b772bc1a78",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:09:59+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-007-FOCUS",
+        "sequence": [
+          "V0R-MU-007-PRIMARY",
+          "V0R-MU-007-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-007-PRIMARY",
+          "name": "two_principal_presence_visible",
+          "role": "banner",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "two_principal_presence_visible",
+        "observation": "Redacted reference evidence confirms two_principal_presence_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-007",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER",
+      "surface": "page_header",
+      "expected_state": "two_principal_presence_visible",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746199386
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:f9bd88ada91055e822a6c01a3bff9d30dd05f8a5fc8d55aa1648c9e745e47a63",
+      "screenshot_relative_path": "V0R-MU-007__1280x800.png",
+      "screenshot_sha256": "sha256:422c5703716d72b4391d1f44e5f3f40033a21954c62c18e0b0f1c2c05ceb0b62",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:09:59+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-007-FOCUS",
+        "sequence": [
+          "V0R-MU-007-PRIMARY",
+          "V0R-MU-007-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-007-PRIMARY",
+          "name": "two_principal_presence_visible",
+          "role": "banner",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "two_principal_presence_visible",
+        "observation": "Redacted reference evidence confirms two_principal_presence_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-008",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER",
+      "surface": "editor",
+      "expected_state": "remote_cursor_and_selection_visible",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746268521
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:1e208040dc67d7c4cf9678aa872ae6e1ed4b89630819e23446477cd03ebef899",
+      "screenshot_relative_path": "V0R-MU-008__1440x900.png",
+      "screenshot_sha256": "sha256:b307ba979ee32d3ea65947b52f9c8a01d2deaec670272e41c92df09f36f48c86",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:11:08+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-008-FOCUS",
+        "sequence": [
+          "V0R-MU-008-PRIMARY",
+          "V0R-MU-008-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-008-PRIMARY",
+          "name": "remote_cursor_and_selection_visible",
+          "role": "textbox",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "remote_cursor_and_selection_visible",
+        "observation": "Redacted reference evidence confirms remote_cursor_and_selection_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-008",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER",
+      "surface": "editor",
+      "expected_state": "remote_cursor_and_selection_visible",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746268523
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:77d7b26bd0bd2a77a89e74b31439607413ab6c088ca1275915cd46c9ce73eb9a",
+      "screenshot_relative_path": "V0R-MU-008__1280x800.png",
+      "screenshot_sha256": "sha256:6f27a36489984bbdefcf26b05d247c2caf467f40fd4fa447a6dc7a716a756531",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:11:08+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-008-FOCUS",
+        "sequence": [
+          "V0R-MU-008-PRIMARY",
+          "V0R-MU-008-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-008-PRIMARY",
+          "name": "remote_cursor_and_selection_visible",
+          "role": "textbox",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "remote_cursor_and_selection_visible",
+        "observation": "Redacted reference evidence confirms remote_cursor_and_selection_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-009",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER+REF-COLLABORATOR",
+      "surface": "editor",
+      "expected_state": "simultaneous_text_edit_converged",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746348391
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:e84620a19bf565ce262b0d71d2ae9cabe06b4bc3bc7df5362e0a32bb7eed07a1",
+      "screenshot_relative_path": "V0R-MU-009__1440x900.png",
+      "screenshot_sha256": "sha256:1aa2bb925a55e4dac785731ab552999ef928b294d8cbe091750f63c8d116535a",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:12:28+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-009-FOCUS",
+        "sequence": [
+          "V0R-MU-009-PRIMARY",
+          "V0R-MU-009-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-009-PRIMARY",
+          "name": "simultaneous_text_edit_converged",
+          "role": "textbox",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "simultaneous_text_edit_converged",
+        "observation": "Redacted reference evidence confirms simultaneous_text_edit_converged on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-009",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER+REF-COLLABORATOR",
+      "surface": "editor",
+      "expected_state": "simultaneous_text_edit_converged",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746327786
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:910458c6cfbab95c4490ac33b16318a625ff4d7763fc6b9681e644be8a910cb8",
+      "screenshot_relative_path": "V0R-MU-009__1280x800.png",
+      "screenshot_sha256": "sha256:bc0f884e18f7c0baaf9d4e7dca5839cf11a71392c0f35cf80314c1e4e6630e2d",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:12:07+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-009-FOCUS",
+        "sequence": [
+          "V0R-MU-009-PRIMARY",
+          "V0R-MU-009-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-009-PRIMARY",
+          "name": "simultaneous_text_edit_converged",
+          "role": "textbox",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "simultaneous_text_edit_converged",
+        "observation": "Redacted reference evidence confirms simultaneous_text_edit_converged on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-010",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER+REF-COLLABORATOR",
+      "surface": "editor",
+      "expected_state": "simultaneous_block_edit_converged",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746378086
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:1793bb65b4120be333c601c68983ae903cd1d7ea08263921f9ebbb415f7e2651",
+      "screenshot_relative_path": "V0R-MU-010__1440x900.png",
+      "screenshot_sha256": "sha256:667bae34456a5d0b8642cd9edb7dd38254e4177228c39113fbee580d9a6b6133",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:12:58+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-010-FOCUS",
+        "sequence": [
+          "V0R-MU-010-PRIMARY",
+          "V0R-MU-010-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-010-PRIMARY",
+          "name": "simultaneous_block_edit_converged",
+          "role": "textbox",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "simultaneous_block_edit_converged",
+        "observation": "Redacted reference evidence confirms simultaneous_block_edit_converged on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-010",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER+REF-COLLABORATOR",
+      "surface": "editor",
+      "expected_state": "simultaneous_block_edit_converged",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746378090
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:9bb3aa0bf2f8fbdfcb2c4f43805f385a0de628fdd274f1a24a42a1e0eb759970",
+      "screenshot_relative_path": "V0R-MU-010__1280x800.png",
+      "screenshot_sha256": "sha256:51721164d6bcedeba885e12505044930cdfb73c26ec325bb330a18c92b4de7ee",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:12:58+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-010-FOCUS",
+        "sequence": [
+          "V0R-MU-010-PRIMARY",
+          "V0R-MU-010-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-010-PRIMARY",
+          "name": "simultaneous_block_edit_converged",
+          "role": "textbox",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "simultaneous_block_edit_converged",
+        "observation": "Redacted reference evidence confirms simultaneous_block_edit_converged on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-011",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER+REF-COLLABORATOR",
+      "surface": "database",
+      "expected_state": "simultaneous_database_edit_converged",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746459504
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:b3e07573a06db812141aae6427a7acf87f2ac592b248f4d90c15a843266d19ec",
+      "screenshot_relative_path": "V0R-MU-011__1440x900.png",
+      "screenshot_sha256": "sha256:a03c83480cd25beec7cc69ade3be481e2e000639447fb8976d1ff14620365406",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:14:19+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-011-FOCUS",
+        "sequence": [
+          "V0R-MU-011-PRIMARY",
+          "V0R-MU-011-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-011-PRIMARY",
+          "name": "simultaneous_database_edit_converged",
+          "role": "table",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "simultaneous_database_edit_converged",
+        "observation": "Redacted reference evidence confirms simultaneous_database_edit_converged on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-011",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER+REF-COLLABORATOR",
+      "surface": "database",
+      "expected_state": "simultaneous_database_edit_converged",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746459506
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:7d01e2062770e6b6ad1b01cc33585539f089dc6d89877114288d485de016afab",
+      "screenshot_relative_path": "V0R-MU-011__1280x800.png",
+      "screenshot_sha256": "sha256:6da38987569f7dd2206475075e54fef4afa95f5d08787bcee9a8430be52859c9",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:14:19+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-011-FOCUS",
+        "sequence": [
+          "V0R-MU-011-PRIMARY",
+          "V0R-MU-011-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-011-PRIMARY",
+          "name": "simultaneous_database_edit_converged",
+          "role": "table",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "simultaneous_database_edit_converged",
+        "observation": "Redacted reference evidence confirms simultaneous_database_edit_converged on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-012",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER+REF-COLLABORATOR",
+      "surface": "comment_thread",
+      "expected_state": "comment_reply_and_reaction_visible",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746654592
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:ddf86ba30201e8482359a306ebc505fda51dfdaf64d1ff012ea4644198dca5db",
+      "screenshot_relative_path": "V0R-MU-012__1440x900.png",
+      "screenshot_sha256": "sha256:6527b5b210a9b532ed7873840077693ebc11658bf87bd6a24dc03e2c6f3bcf53",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:17:34+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-012-FOCUS",
+        "sequence": [
+          "V0R-MU-012-PRIMARY",
+          "V0R-MU-012-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-012-PRIMARY",
+          "name": "comment_reply_and_reaction_visible",
+          "role": "region",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "comment_reply_and_reaction_visible",
+        "observation": "Redacted reference evidence confirms comment_reply_and_reaction_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-012",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-OWNER+REF-COLLABORATOR",
+      "surface": "comment_thread",
+      "expected_state": "comment_reply_and_reaction_visible",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746668445
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:303b5414f8fd1e5123c3209179ab4c9f874aa3ab8f01661a24434a48cf15a832",
+      "screenshot_relative_path": "V0R-MU-012__1280x800.png",
+      "screenshot_sha256": "sha256:940e45387deaf7ae0e9023031370e8268b251ee15e2887be35b39f035da49421",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:17:48+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-012-FOCUS",
+        "sequence": [
+          "V0R-MU-012-PRIMARY",
+          "V0R-MU-012-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-012-PRIMARY",
+          "name": "comment_reply_and_reaction_visible",
+          "role": "region",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "comment_reply_and_reaction_visible",
+        "observation": "Redacted reference evidence confirms comment_reply_and_reaction_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-013",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "inbox",
+      "expected_state": "synthetic_mention_notification_visible",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746711739
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:529a38999fb2eadd3c8fbf27ea3f64a922f07cb467bc7de0901e45511543d3c2",
+      "screenshot_relative_path": "V0R-MU-013__1440x900.png",
+      "screenshot_sha256": "sha256:17ac470da610ab56fd3f65d4a4cbcff99a4ec22c5ae1708310bd4b2bda38da3f",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:18:31+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-013-FOCUS",
+        "sequence": [
+          "V0R-MU-013-PRIMARY",
+          "V0R-MU-013-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-013-PRIMARY",
+          "name": "synthetic_mention_notification_visible",
+          "role": "tabpanel",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "synthetic_mention_notification_visible",
+        "observation": "Redacted reference evidence confirms synthetic_mention_notification_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-013",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "inbox",
+      "expected_state": "synthetic_mention_notification_visible",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746711828
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:fcaf3b0c9d5cc7f3b90c8a3fa6705ca452ea54f766dcc76cc7285af9b4adc26c",
+      "screenshot_relative_path": "V0R-MU-013__1280x800.png",
+      "screenshot_sha256": "sha256:6aae6012a00bb70e0fa2180c1ff138af5d20172f89a213a559ed7f178e9725e7",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:18:31+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-013-FOCUS",
+        "sequence": [
+          "V0R-MU-013-PRIMARY",
+          "V0R-MU-013-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-013-PRIMARY",
+          "name": "synthetic_mention_notification_visible",
+          "role": "tabpanel",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "synthetic_mention_notification_visible",
+        "observation": "Redacted reference evidence confirms synthetic_mention_notification_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-014",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "page_canvas",
+      "expected_state": "reconnect_catch_up_complete",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746880459
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:3da998997571b9085723c842a0f22d3156f784e682bc86ebc646ab47c60c00f7",
+      "screenshot_relative_path": "V0R-MU-014__1440x900.png",
+      "screenshot_sha256": "sha256:52f687d415794a70adc2ff199d8300d74c0f35cc503b01467b3480da484265ec",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:21:20+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-014-FOCUS",
+        "sequence": [
+          "V0R-MU-014-PRIMARY",
+          "V0R-MU-014-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-014-PRIMARY",
+          "name": "reconnect_catch_up_complete",
+          "role": "main",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "reconnect_catch_up_complete",
+        "observation": "Redacted reference evidence confirms reconnect_catch_up_complete on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-014",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "page_canvas",
+      "expected_state": "reconnect_catch_up_complete",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787746880512
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:ea8d6049b6007ddee0401e741d7123e4c18e6ed02031e249bfd4059de480dc5b",
+      "screenshot_relative_path": "V0R-MU-014__1280x800.png",
+      "screenshot_sha256": "sha256:9155498b1fb2eea5ed5b6ffa14f235c1f0b83fbe37f4fb813d2babb86764afda",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:21:20+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-014-FOCUS",
+        "sequence": [
+          "V0R-MU-014-PRIMARY",
+          "V0R-MU-014-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-014-PRIMARY",
+          "name": "reconnect_catch_up_complete",
+          "role": "main",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "reconnect_catch_up_complete",
+        "observation": "Redacted reference evidence confirms reconnect_catch_up_complete on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-015",
+      "workspace_alias": "REF-FREE-B",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "page_canvas",
+      "expected_state": "comment_only_access_visible",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787749129201
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:0a131c0227239b15881c3af71b4c1f011d0caa5c4d69cc2e1ff1d88789ce89eb",
+      "screenshot_relative_path": "V0R-MU-015__1440x900.png",
+      "screenshot_sha256": "sha256:281290fb83c2b808ffc4eb3d00f6bd5ceed6e3df7951bead4df10f1b3d24588c",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:58:49+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-015-FOCUS",
+        "sequence": [
+          "V0R-MU-015-PRIMARY",
+          "V0R-MU-015-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-015-PRIMARY",
+          "name": "comment_only_access_visible",
+          "role": "main",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "comment_only_access_visible",
+        "observation": "Redacted reference evidence confirms comment_only_access_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-015",
+      "workspace_alias": "REF-FREE-B",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "page_canvas",
+      "expected_state": "comment_only_access_visible",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787749144592
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:ee9a7ce497e3e04326f23a2967d44372d59894ef0ec69b07873e6ad5876441ed",
+      "screenshot_relative_path": "V0R-MU-015__1280x800.png",
+      "screenshot_sha256": "sha256:b00eacb3ae58f9c3a7802ef9d17e5d914866809b1a7a9b327e56a7a182016e75",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T21:59:04+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-015-FOCUS",
+        "sequence": [
+          "V0R-MU-015-PRIMARY",
+          "V0R-MU-015-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-015-PRIMARY",
+          "name": "comment_only_access_visible",
+          "role": "main",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "comment_only_access_visible",
+        "observation": "Redacted reference evidence confirms comment_only_access_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-016",
+      "workspace_alias": "REF-FREE-B",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "page_canvas",
+      "expected_state": "view_only_access_visible",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787753748310
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:204cb07649b350d6a2f9c5422d9b9345fc33b0dfdededbf347756a0fa2618aff",
+      "screenshot_relative_path": "V0R-MU-016__1440x900.png",
+      "screenshot_sha256": "sha256:0461573c65289ac124322475649127fe610054cd1052428f4c509841820e291f",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T23:15:48+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-016-FOCUS",
+        "sequence": [
+          "V0R-MU-016-PRIMARY",
+          "V0R-MU-016-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-016-PRIMARY",
+          "name": "view_only_access_visible",
+          "role": "main",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "view_only_access_visible",
+        "observation": "Redacted reference evidence confirms view_only_access_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-016",
+      "workspace_alias": "REF-FREE-B",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "page_canvas",
+      "expected_state": "view_only_access_visible",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787753748270
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:cfeab0d9fb5a2bde21af5727882102d956b233a491c8e1b1df3677f8eb445f15",
+      "screenshot_relative_path": "V0R-MU-016__1280x800.png",
+      "screenshot_sha256": "sha256:f4bb5f5528e171ffb7f16c2cb5343cc817c25dee61957a376adfb6c62ca6c87f",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T23:15:48+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-016-FOCUS",
+        "sequence": [
+          "V0R-MU-016-PRIMARY",
+          "V0R-MU-016-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-016-PRIMARY",
+          "name": "view_only_access_visible",
+          "role": "main",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "view_only_access_visible",
+        "observation": "Redacted reference evidence confirms view_only_access_visible on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-017",
+      "workspace_alias": "REF-FREE-B",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "access_boundary",
+      "expected_state": "page_access_revoked_non_oracle",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787751245674
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:a0b6f46e9470adf8d38a9e44477d7b3de00b17cd140c560871dc5f27fcf4ba08",
+      "screenshot_relative_path": "V0R-MU-017__1440x900.png",
+      "screenshot_sha256": "sha256:b02324a4da6205a503a51c3722849c2291a30d624282a13779958f8229850bfa",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T22:34:05+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-017-FOCUS",
+        "sequence": [
+          "V0R-MU-017-PRIMARY",
+          "V0R-MU-017-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-017-PRIMARY",
+          "name": "page_access_revoked_non_oracle",
+          "role": "dialog",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "page_access_revoked_non_oracle",
+        "observation": "Redacted reference evidence confirms page_access_revoked_non_oracle on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-017",
+      "workspace_alias": "REF-FREE-B",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "access_boundary",
+      "expected_state": "page_access_revoked_non_oracle",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787751245675
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:f64f3a910b1d244ea9ee07931b95a81c7b86259874b0e15e22278c0328644576",
+      "screenshot_relative_path": "V0R-MU-017__1280x800.png",
+      "screenshot_sha256": "sha256:c4da98b069e750ed8ae802a96465a72507eb3e5144ea80633c9b5bab9e7260be",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T22:34:05+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-017-FOCUS",
+        "sequence": [
+          "V0R-MU-017-PRIMARY",
+          "V0R-MU-017-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-017-PRIMARY",
+          "name": "page_access_revoked_non_oracle",
+          "role": "dialog",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "page_access_revoked_non_oracle",
+        "observation": "Redacted reference evidence confirms page_access_revoked_non_oracle on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-018",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "access_boundary",
+      "expected_state": "workspace_access_revoked_non_oracle",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787751736520
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:3b1c2f3f973533524ca9f800b9811681d48a6c8a1f4400dc8ec7acfc4fb11bf3",
+      "screenshot_relative_path": "V0R-MU-018__1440x900.png",
+      "screenshot_sha256": "sha256:2ec906bed6bf96fb1d64d8e7ae557e362a260b2e0124b265949b44620066c9e8",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T22:42:16+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-018-FOCUS",
+        "sequence": [
+          "V0R-MU-018-PRIMARY",
+          "V0R-MU-018-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-018-PRIMARY",
+          "name": "workspace_access_revoked_non_oracle",
+          "role": "dialog",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "workspace_access_revoked_non_oracle",
+        "observation": "Redacted reference evidence confirms workspace_access_revoked_non_oracle on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    },
+    {
+      "state_id": "V0R-MU-018",
+      "workspace_alias": "REF-FREE-A",
+      "actor_alias": "REF-COLLABORATOR",
+      "surface": "access_boundary",
+      "expected_state": "workspace_access_revoked_non_oracle",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "environment": {
+        "schema_version": 1,
+        "contract": "code_assist.notion.pixel_capture_environment.v1",
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "device_scale_factor": 1,
+        "zoom": 1,
+        "locale": "ko-KR",
+        "timezone_id": "Asia/Seoul",
+        "color_scheme": "light",
+        "reduced_motion": "reduce",
+        "time": {
+          "frozen": true,
+          "epoch_ms": 1787751748698
+        },
+        "animations": {
+          "disabled": true,
+          "transition_duration_ms": 0,
+          "caret_hidden": true
+        },
+        "font_manifest": [
+          {
+            "family": "Segoe UI",
+            "style": "normal",
+            "weight": 400,
+            "sha256": "sha256:ba32a222b23d727267cf1aba4e5296fe84ce99b9d910915103fc085d7931bc88"
+          }
+        ],
+        "browser": {
+          "engine": "chromium",
+          "channel": "chrome",
+          "major_version": "151"
+        },
+        "capture": {
+          "full_page": false,
+          "omit_background": false
+        },
+        "source": {
+          "kind": "reference",
+          "build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d"
+        }
+      },
+      "environment_sha256": "sha256:2ff438c92b6dad0f6f0a2ea2768f6c3ae4f4edbb74f11392d6e3ad649894ee44",
+      "screenshot_relative_path": "V0R-MU-018__1280x800.png",
+      "screenshot_sha256": "sha256:5d118df786d570682ac2704eb2ad8aed4c51e8336577994f06981be72ded89c7",
+      "reference_build_identifier": "notion-web-live-ui-observation-20260826",
+      "reference_build_sha256": "sha256:f0792764416bef32b4bd054c9b29447153c96284e875962c5c1b21393209158d",
+      "captured_at": "2026-08-26T22:42:28+09:00",
+      "focus": {
+        "active_alias": "V0R-MU-018-FOCUS",
+        "sequence": [
+          "V0R-MU-018-PRIMARY",
+          "V0R-MU-018-FOCUS"
+        ]
+      },
+      "accessible_name_role_state": [
+        {
+          "alias": "V0R-MU-018-PRIMARY",
+          "name": "workspace_access_revoked_non_oracle",
+          "role": "dialog",
+          "state": "visible"
+        }
+      ],
+      "interaction_outcome": {
+        "status": "pass",
+        "expected_state": "workspace_access_revoked_non_oracle",
+        "observation": "Redacted reference evidence confirms workspace_access_revoked_non_oracle on the aliased synthetic surface."
+      },
+      "raw_identifier_persisted": false,
+      "personal_content_visible": false
+    }
+  ],
+  "cleanup": {
+    "status": "complete",
+    "trigger": "after_success",
+    "mode": "trash_only_recoverable",
+    "revoked_page_grant_count": 1,
+    "revoked_workspace_membership_count": 1,
+    "active_test_grant_count": 0,
+    "active_fixture_root_count": 0,
+    "trashed_fixture_aliases": [
+      "V0R-A-ROOT",
+      "V0R-B-ROOT"
+    ],
+    "permanent_delete_used": false,
+    "completed_at": "2026-08-26T23:11:27+09:00",
+    "cleanup_receipt_sha256": "sha256:aa39066b01e6e8b7799e23489c3a35a7fc776e8eeadb70580dfbb177f83f3bf0"
+  },
+  "redaction": {
+    "status": "pass",
+    "raw_email_or_account_identifier_persisted": false,
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_dom_or_network_payload_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "non_test_notification_sent": false,
+    "public_publish_or_public_link_used": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "owner_approval_received": true,
+    "external_reference_mutation_executed": true,
+    "reference_action_log_complete": true,
+    "reference_screenshots_captured": true,
+    "capture_environment_receipts_complete": true,
+    "cleanup_executed": true,
+    "normalized_evidence_sealed": true,
+    "V0R_P1_reference_capture_complete": true,
+    "V0R_P1_gate_passed": true,
+    "zero_RGBA_difference_claimed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "production_changed": false,
+    "second_brain_changed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

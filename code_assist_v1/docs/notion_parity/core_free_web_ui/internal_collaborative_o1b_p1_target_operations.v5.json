@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_target_operations.o1b_p1.v1",
+  "packet_id": "O1B-P1",
+  "recorded_at": "2026-09-09T00:37:22+09:00",
+  "status": "ready_for_approval_and_target_handoff",
+  "current_bindings": {
+    "dynamic_instructions": {
+      "path": "code_assist_v1/AGENTS.md",
+      "sha256": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763"
+    },
+    "packet_catalog": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_packets.v2.json",
+      "sha256": "sha256:86adba05dd92948ca84dd22778db71b0814d6cba85a26be4a5d09e707ffede98"
+    },
+    "validation_ladder": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_validation_ladder.v1.json",
+      "sha256": "sha256:dad4341f01a75c88229cf09d933286bd48d98f34314e5e1cda3deb01d6706915"
+    },
+    "completion_matrix": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_completion_matrix.v1.json",
+      "sha256": "sha256:50c212a8c539718d7cbb24375d5f08b5bd35c68354bb9d4d28b3e4c29b5f3124"
+    },
+    "current_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_current_checkpoint.v1.json",
+      "sha256": "sha256:e7ccc66cd23092f47ad702c38a28ea0395b6bc131324587d938d04ba650f16b2"
+    },
+    "v0b_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-strict-similarity-r9-green-20260907.json",
+      "sha256": "sha256:fedcd2208fd4a311ca8191adb31d240ca98fc9d092bc728a0cb6acfe1c716ab8"
+    },
+    "o1a_contract": {
+      "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/internal_collaborative_local_backup_restore.v1.json",
+      "sha256": "sha256:816f61af095a8d95a7811140e50de5cda58888f242ad4e005476399818d3e9c7"
+    },
+    "o1a_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/o1a-p1-l7-local-backup-restore-20260825.json",
+      "sha256": "sha256:c5eaf3c949e57f11d4a4aba7ac6d8e3cf6383c147b2516a4c7499fb290a6f793"
+    },
+    "company_target_handoff": {
+      "path": "code_assist_v1/docs/COMPANY_TARGET_COMPLETION_HANDOFF.md",
+      "sha256": "sha256:ff980cd2d2d864f083fc2a231e3447d24b305290af0869c8996500d919687e06"
+    },
+    "sbe_contract_audit_report": {
+      "path": "capture/o1b-p1-sbe-readiness-contract-audit-20260909-v5.json",
+      "sha256": "sha256:81e0117294029d3b62080e4e1d623f38b7e81afab3c8ab40af97b46636f2dbd1"
+    },
+    "sbe_contract_auditor": {
+      "path": "code_assist_v1/tools/contract_audit.py",
+      "sha256": "sha256:b24a0f1da0c193ae499bddef1e8b5113020be14175bf31af736dafe190c7516d"
+    }
+  },
+  "sbe_dynamic_baseline": {
+    "status": "pass",
+    "error_count": 0,
+    "report_schema_version": 2,
+    "input_sha256": "sha256:c3e14a3126127b7ad64a665e5ecce28eedb1cf2613c3482f7082e3f6bbb54153",
+    "goal_count": 20,
+    "scenario_count": 284,
+    "report_path": "capture/o1b-p1-sbe-readiness-contract-audit-20260909-v5.json",
+    "report_sha256": "sha256:81e0117294029d3b62080e4e1d623f38b7e81afab3c8ab40af97b46636f2dbd1",
+    "protected_sbe_changed": false
+  },
+  "execution_contract": {
+    "approval_id": "AP-OPS-TARGET",
+    "approval_contract": "code_assist.notion.internal_collaborative_target_operations_approval.o1b_p1.v1",
+    "action_time_confirmation": "O1B-P1_TARGET_BACKUP_RESTORE",
+    "handoff_id": "XG-SBE-TARGET-OPERATIONS-HANDOFF",
+    "handoff_contract": "code_assist.notion.internal_collaborative_target_operations_handoff.o1b_p1.v1",
+    "receipt_contract": "code_assist.notion.internal_collaborative_target_backup_restore_receipt.o1b_p1.v1",
+    "evidence_index_contract": "code_assist.notion.internal_collaborative_target_evidence_index.o1b_p1.v1",
+    "evidence_artifact_contract": "code_assist.notion.internal_collaborative_target_evidence_artifact.o1b_p1.v1",
+    "evidence_artifact_count": 21,
+    "sanitized_evidence_root_required": true,
+    "nonce_ledger_compare_exchange_required": true,
+    "restore_generation_binding_required": true,
+    "rto_measurement_origin": "assumed_incident_at",
+    "cross_receipt_nonce_reuse_rejected_at_registration": true,
+    "realm_id": "target_restore",
+    "scenario_ids": [
+      "OPS-001",
+      "OPS-002",
+      "OPS-003",
+      "OPS-004",
+      "OPS-005",
+      "OPS-006"
+    ],
+    "target_scope": [
+      "encrypted_external_generation_publish",
+      "retention_key_and_destination_validation",
+      "target_host_new_root_restore_and_measured_rpo_rto"
+    ],
+    "locator_scheme": "hmac-sha256-v1",
+    "rpo_seconds_max": 900,
+    "rto_seconds_max": 3600,
+    "sbe_rpo_seconds_max": 3600,
+    "sbe_rto_seconds_max": 14400,
+    "retention": {
+      "half_hour_count": 96,
+      "daily_count": 30,
+      "monthly_count": 12
+    },
+    "same_volume_exception_allowed": false,
+    "destination_off_host_required": true,
+    "production_restore_authorized": false,
+    "raw_paths_or_secrets_in_receipt_allowed": false
+  },
+  "trust_anchor_policy": {
+    "status": "pending",
+    "signature_algorithm": "ed25519",
+    "public_key_encoding": "raw-base64",
+    "minimum_distinct_key_count": 4,
+    "authorized_release_candidate_sha256": null,
+    "approval": null,
+    "handoff": null,
+    "evidence_index": null,
+    "receipt_reviewer": null
+  },
+  "required_pre_execution_artifacts": [
+    "fresh_self_hashed_XG_SBE_TARGET_OPERATIONS_HANDOFF",
+    "fresh_self_hashed_AP_OPS_TARGET_approval",
+    "policy_bound_ed25519_trust_anchors",
+    "cryptographically_verified_approval_and_handoff",
+    "reviewed_release_candidate_and_target_identity",
+    "opaque_source_backup_and_restore_root_locators",
+    "reviewed_encryption_ACL_key_owner_and_key_ID",
+    "authorized_external_reviewer_and_signing_key_ID"
+  ],
+  "required_post_execution_evidence": [
+    "signed_target_evidence_index",
+    "durable_single_use_nonce_consumption_record",
+    "completed_external_generation_manifest",
+    "separate_Notion_and_Second_Brain_high_water_boundary",
+    "new_root_target_restore_integrity_and_canary_results",
+    "measured_RPO_and_RTO",
+    "post_drill_external_reviewer_attestation",
+    "closed_isolated_services_and_ports"
+  ],
+  "forbidden_shortcuts": [
+    "same_source_volume_backup",
+    "unencrypted_destination",
+    "unreviewed_destination_ACL",
+    "repository_stored_key_or_credential_material",
+    "workstation_evidence_labeled_as_target_server_evidence",
+    "Notion_receipt_closing_an_SBE_target_gate",
+    "SBE_receipt_closing_a_Notion_target_gate",
+    "production_restore_without_AP_PROD_RESTORE",
+    "O1B_or_product_completion_without_fresh_external_receipts"
+  ],
+  "claims": {
+    "O1B_P1_readiness_contract_passed": true,
+    "AP_OPS_TARGET_granted": false,
+    "target_operations_handoff_accepted": false,
+    "target_backup_restore_executed": false,
+    "O1B_P1_gate_passed": false,
+    "production_restore_executed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

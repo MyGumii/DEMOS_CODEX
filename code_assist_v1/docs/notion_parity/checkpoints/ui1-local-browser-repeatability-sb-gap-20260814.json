@@ -1,0 +1,186 @@
+{
+  "contract": "notion_ui_second_brain_checkpoint_v2",
+  "recorded_at": "2026-08-14T22:38:45+09:00",
+  "run_id": "ui1-local-chrome-repeatability-20260814",
+  "model": {
+    "planning": "ultra",
+    "implementation": "gpt-5.6-sol-xhigh"
+  },
+  "parent_checkpoint": {
+    "path": "docs/notion_parity/checkpoints/ui1-packet-d-isolated-runner-host-wait-20260814.json",
+    "sha256": "sha256:331edaa328ffdba106462310f3f77a701703fe10014c23261684de854d522386",
+    "semantic_status": "historical"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status": "active",
+    "user_resume_observed": true
+  },
+  "scope": {
+    "primary_profile": "free-owner-chrome-desktop-ko-KR",
+    "required_scenarios": [
+      "UI-SHELL-002",
+      "UI-SEARCH-001",
+      "UI-EDITOR-001",
+      "UI-SB-001",
+      "UI-SB-002",
+      "UI-A11Y-001"
+    ],
+    "extension": [],
+    "conditional": [
+      "Business",
+      "Enterprise",
+      "Archive"
+    ],
+    "excluded": [
+      "personal-notion-content",
+      "live-local-data",
+      "trial-payment-invite-public-posting",
+      "operational-migration-live-flag-resolver-cutover"
+    ]
+  },
+  "slice": {
+    "id": "UI1-FREE-DESKTOP-GOLDEN-JOURNEY",
+    "status": "local-repeatability-passed-reference-and-sb-replay-pending",
+    "acceptance_ids": [
+      "UI1-LOCAL-ISOLATION",
+      "UI1-LOCAL-REPEATABILITY",
+      "UI1-KOREAN-SAVE-RELOAD",
+      "UI1-SB-CANCEL-ZERO",
+      "UI1-SB-FIRST-APPROVAL-ONE",
+      "UI1-SB-REPLAY-ZERO",
+      "UI1-REFERENCE-C0",
+      "UI1-FIRST-DIFFERENTIAL"
+    ]
+  },
+  "ownership": {
+    "owned": [
+      {
+        "path": "tests/browser/test_notion_ui1_golden_journey.py",
+        "sha256": "sha256:b46ee986a80084d4dbee37c688b121e99b69353fa9e5df0fa3bddde8c0105d38"
+      },
+      {
+        "path": "docs/notion_parity/adr/UI_BROWSER_RUNNER_ADR_20260814.md",
+        "sha256": "sha256:9065f085c9921d6d79f2e14b6766d22dd40cce249e44bfe94c33fb8c74534daa"
+      },
+      {
+        "path": "docs/notion_parity/core_free_web_ui/UI1_LOCAL_BROWSER_GAP_20260814.md",
+        "sha256": "sha256:b39f2b78979accd6aebf3f529bb12a10567699fc07d3de70ff1d36006db6cb0e"
+      }
+    ],
+    "read_dependencies": [
+      {
+        "path": "notion_static/index.html",
+        "sha256": "sha256:ae324100186dc6e09d85ae01826b502a8abf723e85c928005391ee17f90d735e"
+      },
+      {
+        "path": "notion_static/notion.js",
+        "sha256": "sha256:a83c5addf5adb893cdcf285a8b31fa7b9df69464ac5ddd89f9f80089fa2620d2"
+      },
+      {
+        "path": "notion_static/notion.css",
+        "sha256": "sha256:6dbddb3d093d37f25ae5132a040023c122362a67b034bb2674fe39fc152f5b20"
+      },
+      {
+        "path": "tools/notion_parity/ui_local_fixture.py",
+        "sha256": "sha256:626f24f208e7526b070bd0afbb27351255ba0507b6507274521831e52e561b1f"
+      }
+    ],
+    "protected": [
+      "AGENTS.md",
+      "app_code.py",
+      "knowledge_core/**",
+      "docs/knowledge_spaces/**",
+      "tests/knowledge_spaces/**",
+      "user_data/**",
+      "knowledge/**",
+      ".runtime/**"
+    ]
+  },
+  "runtime": {
+    "isolated_data_root": true,
+    "synthetic_only": true,
+    "live_local_data_accessed": false,
+    "personal_notion_workspace_accessed": false,
+    "operational_migration_applied": false,
+    "feature_flags_changed": false,
+    "persistent_browser_profile_reused": false
+  },
+  "evidence": {
+    "reference": [],
+    "local": [
+      {
+        "kind": "real-browser-test",
+        "result": "one-pass-one-expected-failure",
+        "browser": "installed-stable-chrome-ephemeral",
+        "repeat_count": 2
+      }
+    ],
+    "differential": [],
+    "second_brain": [
+      {
+        "gap_id": "UI1-BLOCKER-SB-LEGACY-NONIDEMPOTENT",
+        "cancel_item_delta": 0,
+        "approve_item_delta": 1,
+        "replay_item_delta": 1,
+        "report_sha256": "sha256:b39f2b78979accd6aebf3f529bb12a10567699fc07d3de70ff1d36006db6cb0e"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "selection": "tests/browser/test_notion_ui1_golden_journey.py",
+      "result": "1 passed, 1 xfailed in 26.30s",
+      "exit_code": 0
+    },
+    {
+      "selection": "H1 contract/evidence/fixture/comparator tests",
+      "result": "57 passed in 16.42s",
+      "exit_code": 0
+    },
+    {
+      "selection": "six focused Node UI/auth contracts",
+      "result": "6 of 6 passed",
+      "exit_code": 0
+    },
+    {
+      "selection": "Notion route/publication/workspace/auth adjacent tests",
+      "result": "70 passed in 67.80s",
+      "exit_code": 0
+    },
+    {
+      "selection": "combined H1 pytest wrapper",
+      "result": "host-dependent stdout flush failure 0xC0000409; superseded by serial selections",
+      "exit_code": -1073740791
+    },
+    {
+      "selection": "signed-in Chrome Browser control connection",
+      "result": "host initialization failed before browser/tab selection; no reference access",
+      "exit_code": null
+    }
+  ],
+  "tests": {
+    "local_real_browser_repeatability": "pass",
+    "second_brain_cancel_zero": "pass",
+    "second_brain_first_approval_one": "pass",
+    "second_brain_replay_zero": "expected-failure",
+    "reference_c0": "not-run-host-connection",
+    "focused_regression": "pass"
+  },
+  "claims": {
+    "core_ui_complete": false,
+    "interaction_parity_complete": false,
+    "second_brain_regression_green": false,
+    "archive_business_complete": false,
+    "overall_notion_parity_complete": false
+  },
+  "remaining": [
+    "select and own the cohesive Second Brain publication idempotency boundary",
+    "make repeated unchanged approval produce zero additional publication",
+    "recover the signed-in Chrome Browser control connection",
+    "perform REF-FREE-A/B C0 without opening personal workspaces",
+    "record redacted reference/local captures and first differential",
+    "select the first measured cohesive production UI correction"
+  ],
+  "next_exact_command": "rehash the publication adapter/route/Second Brain target boundary, then run the focused real-browser replay test after an explicitly scoped correction"
+}

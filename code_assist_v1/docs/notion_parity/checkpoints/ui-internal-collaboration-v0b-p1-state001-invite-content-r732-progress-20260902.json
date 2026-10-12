@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-STATE001-INVITE-CONTENT-R732-PROGRESS-20260902",
+  "recorded_at": "2026-09-02T10:47:27+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state001-invite-structure-r728-progress-20260902.json",
+    "checkpoint_sha256": "sha256:885f3b0ac97ab2835b660cbc976c9e177cfdebeb9a93da1c80862359be17ff56",
+    "source_sha256": "sha256:9cfb12c330ef36b6ff54e0e5be9d7e926ec54a3015af3d51826d752fd720ab76",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r728/receipt.json",
+    "receipt_sha256": "sha256:feaa23d082950ae9027e6bae30124717f04943691bc68830e25aa90bc625b6b6",
+    "unmasked_differing_pixel_count": 1975392,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2043810
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:353269cfbf2b7ed862f921e427cbb7ee567cd28ef85d7a6fc83d55bbc2c704dc",
+    "summary": [
+      "Applied only to V0R-MU-001 after final workspace-invite control synchronization.",
+      "Aligned the intro icon, title, description, role copy, message label, message placeholder, and cancel label using element-specific one-pixel corrections measured against the immutable reference.",
+      "Added the reference-only eight-pixel blue canvas marker only at the 1440 viewport and removed it for compact and all non-V0R-MU-001 states.",
+      "Restored every inline content correction for non-V0R-MU-001 states."
+    ],
+    "source_bound_unmasked_reduction_from_r728": 3394,
+    "source_bound_unmasked_reduction_from_r720": 6738,
+    "source_bound_unmasked_reduction_from_r717": 9086,
+    "source_bound_unmasked_reduction_from_r713": 14085,
+    "source_bound_unmasked_reduction_from_r657": 43012,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 104059,
+    "source_bound_state_deltas_from_r728": {
+      "V0R-MU-001__1440x900": -1713,
+      "V0R-MU-001__1280x800": -1681
+    }
+  },
+  "accepted_diagnostics": {
+    "r729_state001_content_alignment": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r729",
+      "journey_status": "pass",
+      "cleanup": true,
+      "state001_1440_reduction_from_r728": 1681,
+      "state001_1280_reduction_from_r728": 1681,
+      "other_I0_source_regression_count": 0,
+      "accessibility_pass_count": 20
+    },
+    "r731_state001_wide_canvas_marker": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r731",
+      "journey_status": "pass",
+      "cleanup": true,
+      "state001_1440_reduction_from_r729": 32,
+      "state001_1280_delta_from_r729": 0,
+      "other_I0_source_regression_count": 0,
+      "accessibility_pass_count": 20
+    }
+  },
+  "rejected_diagnostics": {
+    "r730_overbroad_canvas_marker": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-diagnostic-20260902-r730",
+      "reason": "The marker improved V0R-MU-001 1440 by 32 pixels but regressed the compact viewport by exactly 60 pixels, so the compact marker was removed before r731.",
+      "source_corrected": true,
+      "adopted_as_evidence": false
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r732",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r732/receipt.json",
+    "receipt_sha256": "sha256:28684fd3ba84885df02451868d777dfa4bb3d38535c1f4ca8bb74b85cf7793ab",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1971022,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 2039440,
+    "raw_unmasked_delta_from_r728": -4370,
+    "raw_masked_delta_from_r728": 0,
+    "raw_total_delta_from_r728": -4370,
+    "raw_unmasked_delta_from_r720": -6385,
+    "raw_masked_delta_from_r720": 0,
+    "raw_total_delta_from_r720": -6385,
+    "raw_unmasked_delta_from_r713": -14993,
+    "raw_masked_delta_from_r713": 0,
+    "raw_total_delta_from_r713": -14993,
+    "raw_unmasked_delta_from_r657": -43006,
+    "raw_masked_delta_from_r657": -1008,
+    "raw_total_delta_from_r657": -44014,
+    "runtime_only_unmasked_variation_from_r728": {
+      "V0R-MU-002__1440x900": -975,
+      "V0R-MU-008__1280x800": -1,
+      "net": -976
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1949,
+      "comment_delivery_ms": 1365,
+      "reaction_delivery_ms": 1655,
+      "presence_ttl_expiry_ms": 15412,
+      "reconnect_ms": 1432
+    },
+    "duration_ms": 339418,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:e4bb0e4474ebc2639b73d8893d270cb6708dc1a08b11f6c9849a291f8b50392d"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "result": "17 passed in 31.98s",
+      "exit_code": 0,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:28684fd3ba84885df02451868d777dfa4bb3d38535c1f4ca8bb74b85cf7793ab"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r732 source and immutable receipt. Reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

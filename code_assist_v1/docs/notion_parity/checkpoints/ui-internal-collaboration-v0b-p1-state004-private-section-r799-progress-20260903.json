@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-STATE004-PRIVATE-SECTION-R799-PROGRESS-20260903",
+  "recorded_at": "2026-09-03T00:23:37+09:00",
+  "status": "progress",
+  "goal_status": "active",
+  "scope": "V0B-P1 exact-pixel convergence only; exact 36/36 and all final gates remain open",
+  "baseline": {
+    "checkpoint_path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-state004-starter-render-r796-progress-20260903.json",
+    "checkpoint_sha256": "sha256:f7d5bf400acc96a05f7d5349b467e0cce61684aa4bbad0068a487b66eca88d23",
+    "source_sha256": "sha256:e3b30e06f2eceec0a7312a57f1ceb71e430c79ad89f81cecf75c0b43671982de",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260902-r796/receipt.json",
+    "receipt_sha256": "sha256:2d7cf51c5bac5aafa6557fe665666d8dc3389b97609204e85a6d7d0740a4b10e",
+    "unmasked_differing_pixel_count": 1833268,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1901686
+  },
+  "change": {
+    "source_path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+    "source_sha256": "sha256:6e8ab962054b1f45070cb0c2fceb7feaac8258783726a77a5bdf3959cff8d003",
+    "summary": [
+      "Hid only the V0R-MU-004 private-page section with visibility rather than display so the reference blank interval is reproduced without moving the teamspace or shared-page sections.",
+      "Restored the private-page section for every other state and preserved the accepted r796 starter rerender and final row alignment."
+    ],
+    "source_bound_unmasked_reduction_from_r796": 460,
+    "cumulative_source_bound_unmasked_reduction_from_r581": 243308,
+    "source_bound_state_deltas_from_r796": {
+      "V0R-MU-004__1440x900": -177,
+      "V0R-MU-004__1280x800": -283
+    }
+  },
+  "accepted_diagnostics": {
+    "r797_state004_private_section": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-state004-private-section-r797",
+      "journey_status": "pass",
+      "cleanup": true,
+      "synthetic_member_absent": true,
+      "browser_closed": true,
+      "accessibility_pass_count": 20,
+      "state004_deltas_from_r796": {
+        "V0R-MU-004__1440x900": -177,
+        "V0R-MU-004__1280x800": -283
+      }
+    }
+  },
+  "rejected_diagnostics": {
+    "r798_state004_footer_translation": {
+      "root": "code_assist_v1/.runtime/v0b-p1-i0-state004-footer-r798",
+      "journey_status": "pass",
+      "cleanup": true,
+      "reason": "The live responsive footer layout contradicted the offline whole-region shift model and regressed V0R-MU-004__1440x900 by 1070 pixels from r797. The footer change was fully removed before r799."
+    }
+  },
+  "full_candidate": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r799",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260903-r799/receipt.json",
+    "receipt_sha256": "sha256:cc1b59d4adba2121887d4e7cec464f20f97bd85dd889a521b334e23b0843ff82",
+    "screenshot_count": 36,
+    "diff_count": 36,
+    "capture_count": 36,
+    "state_count": 18,
+    "viewport_count": 2,
+    "unmasked_differing_pixel_count": 1832788,
+    "masked_differing_pixel_count": 68418,
+    "total_differing_pixel_count": 1901206,
+    "raw_unmasked_delta_from_r796": -480,
+    "raw_masked_delta_from_r796": 0,
+    "raw_total_delta_from_r796": -480,
+    "source_bound_unmasked_delta_from_r796": -460,
+    "runtime_only_variation_from_r796": {
+      "V0R-MU-005__1440x900": 335,
+      "V0R-MU-008__1440x900": -20,
+      "V0R-MU-008__1280x800": 1,
+      "V0R-MU-010__1440x900": -3,
+      "V0R-MU-013__1280x800": -333,
+      "unmasked_net": -20,
+      "masked_net": 0
+    },
+    "exact_pixel_pass_count": 0,
+    "accessibility_pass_count": 36,
+    "keyboard_path_pass_count": 36,
+    "component_journeys": {
+      "I0-P2": "pass",
+      "C0-P2": "pass",
+      "E1-P2": "pass",
+      "F0-P5": "pass"
+    },
+    "c0_measurements_ms": {
+      "presence_delivery_ms": 1714,
+      "comment_delivery_ms": 906,
+      "reaction_delivery_ms": 2005,
+      "presence_ttl_expiry_ms": 15280,
+      "reconnect_ms": 1686
+    },
+    "duration_ms": 358688,
+    "cleanup": {
+      "status": "complete",
+      "active_fixture_root_count": 0,
+      "active_test_grant_count": 0,
+      "active_test_member_count": 0,
+      "browser_closed": true,
+      "component_cleanup_verified": true,
+      "synthetic_only": true,
+      "permanent_delete_used": false,
+      "cleanup_receipt_sha256": "sha256:5ee972b4563d7ca6500d761e415baf84415a529f81929dd4510a0d735b5685f3"
+    }
+  },
+  "verification": {
+    "python_compile": {
+      "result": "pass",
+      "exit_code": 0
+    },
+    "targeted_tests": {
+      "result": "17 passed in 30.07s",
+      "exit_code": 0,
+      "scope_count": 4,
+      "live_approved_pair_enabled": true
+    },
+    "official_receipt_verifier": {
+      "status": "fail_expected_open_gates",
+      "exit_code": 1,
+      "error_count": 39,
+      "expected_gate_errors": {
+        "claims": 1,
+        "core_25": 1,
+        "exact_pixel": 36,
+        "performance": 1
+      },
+      "non_gate_integrity_error_count": 0,
+      "recomputed_receipt_sha256": "sha256:cc1b59d4adba2121887d4e7cec464f20f97bd85dd889a521b334e23b0843ff82"
+    }
+  },
+  "protected_hashes": {
+    "code_assist_v1/AGENTS.md": "sha256:629fe4f841b6aa3ba4ea7b3dd987540e5a3bbcc0bcaf06c2d15f5367e881b763",
+    "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77",
+    "code_assist_v1/notion_static/index.html": "sha256:cc42add7879dbc7cdd271a6e59f5e1aee1d2673d339d158201edeed8972ffa5e",
+    "code_assist_v1/notion_static/notion.css": "sha256:847f6dcae822be8154d6c0745f63fc25e63776c4eb98934a030be82af1eb24d1",
+    "reference_receipt": "sha256:ede1c653d42abed4c15321ee680e29eb7a4183b78bb54f977cdeaaa2474a893c"
+  },
+  "promotion": {
+    "eligible": false,
+    "reason": "Exact pixel parity remains 0/36; Core25, performance, product, and SBE final gates must not run yet."
+  },
+  "next_cursor": {
+    "phase": "V0B-P1",
+    "instruction": "Continue source-bound exact-pixel convergence from the r799 source and immutable receipt. Preserve the V0R-MU-004 private-section visibility rule plus all r796 corrections; do not restore r798 footer translation; reuse completed evidence by hash; do not run final gates before exact 36/36."
+  }
+}

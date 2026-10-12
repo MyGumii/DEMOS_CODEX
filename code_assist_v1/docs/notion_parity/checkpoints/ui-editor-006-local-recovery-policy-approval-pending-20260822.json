@@ -1,0 +1,81 @@
+{
+  "contract": "code_assist.notion.core_free_ui.execution_checkpoint.v2",
+  "recorded_at": "2026-08-22T23:28:58+09:00",
+  "run_id": "ui63-editor006-local-recovery-policy-approval-pending-20260822",
+  "parent_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-perf-001-host-fixture-variance-no-promotion-20260822.json",
+    "sha256": "sha256:0650eb2c3e41830e6bef03dec52846050f1cfab2efd7b2d4598d85fd63206dea",
+    "semantic_status": "ui_perf_001_host_fixture_variance_no_promotion"
+  },
+  "goal": {
+    "thread_id": "019ff607-9116-78a1-9f40-c580c87c0038",
+    "tool_status_observed_before_resume": "blocked",
+    "resume_evidence": "the user explicitly said to continue",
+    "goal_complete": false
+  },
+  "scenario": {
+    "scenario_id": "UI-EDITOR-006",
+    "profile": "free-owner-chrome-desktop-ko-KR",
+    "current_state": "local_real_browser_green_reference_safely_unresolved",
+    "proposed_evidence_mode": "local_failure_recovery_contract",
+    "approval_state": "pending_exact_user_text",
+    "promotion_allowed_before_receipt": false,
+    "completion_matrix_changed": false,
+    "product_code_changed": false
+  },
+  "approval": {
+    "exact_user_text": "UI-EDITOR-006 공식 실패 유도 제외 및 로컬 회복 계약 승인",
+    "external_state_change": false,
+    "browser_control_required": false,
+    "authorization_effect": "allow_ui_editor_006_local_failure_recovery_evidence_satisfaction",
+    "approval_inferred": false
+  },
+  "owned_files": [
+    {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/editor006_local_recovery_evidence_policy_proposal.v1.json", "sha256": "sha256:2178944df71b104cc487df8ee9b3497489f2deaa544d8afa83149581322f922c"},
+    {"path": "code_assist_v1/docs/notion_parity/core_free_web_ui/approval_batch_queue.v3.json", "sha256": "sha256:743d0ab551c89a8b90d0c925603bad658e3b9c5416690ebdc078af0452a5b680"},
+    {"path": "code_assist_v1/tools/verify_notion_core_free_ui_editor006_policy_proposal.py", "sha256": "sha256:949353be5561cd13ba71e2bbe85a040c88ce5c74c225287a9750e7351eb5dfe0"},
+    {"path": "code_assist_v1/tools/verify_notion_core_free_ui_approval_batch_v3.py", "sha256": "sha256:83fc489f19012ae9a0ace5f40a48be66b17e732b55c3e37ed6b21c4139bc2960"},
+    {"path": "code_assist_v1/tools/notion_core_free_ui_approval_batch_v3.py", "sha256": "sha256:cc9ae997c025d972debc5207c4c4e4328558d4dc23aa8b158027db8f2ced31b6"},
+    {"path": "code_assist_v1/tests/test_notion_ui_approval_batch_v3.py", "sha256": "sha256:84d845bce9d8cf5a8ca4f99bc22177c297439d8cc3bc494bc4569d9042abe27d"}
+  ],
+  "verification": [
+    {"selection": "proposal and v3 queue module verifiers", "result": "both passed with zero errors"},
+    {"selection": "new v3 proposal, queue, and receipt tests", "result": "6 passed in 2.78s"},
+    {"selection": "existing v2 approval queue and receipt regressions", "result": "8 passed in 2.28s"},
+    {"selection": "completion matrix fail-closed regressions", "result": "8 passed in 8.62s"},
+    {"selection": "combined existing/new approval regression command", "result": "Windows host exit 0xC0000409 with no test output; split serial commands passed"},
+    {"selection": "Python syntax checks for three new tools and one new test", "result": "passed"}
+  ],
+  "claim_boundary": {
+    "official_notion_failure_ui_parity_claimed": false,
+    "official_notion_error_wording_or_timing_claimed": false,
+    "collaborative_realtime_merge_parity_claimed": false,
+    "ui_perf_001_completed": false,
+    "h8_or_h9_completed": false,
+    "release_promotion_allowed": false
+  },
+  "safety": {
+    "external_action_executed": false,
+    "personal_notion_content_accessed": false,
+    "live_notion_database_accessed": false,
+    "live_local_data_accessed_in_this_slice": false,
+    "browser_control_used": false,
+    "completion_matrix_mutated": false,
+    "product_code_mutated": false
+  },
+  "claims": {
+    "required_scenario_count": 25,
+    "evidence_satisfied_count": 23,
+    "unresolved_count": 2,
+    "pending_approval_count": 1,
+    "ui_editor_006_complete": false,
+    "core_ui_complete": false,
+    "overall_goal_complete": false
+  },
+  "next_exact_action": "Wait for the exact owner text, compile the create-only v3 receipt, revalidate the isolated UI-EDITOR-006 browser evidence, then apply only the authorized local_failure_recovery_contract evidence mode. Do not change UI-PERF-001 or claim official Notion failure parity.",
+  "vcs": {
+    "available": false,
+    "commit_claimed": false,
+    "observation": "the workspace is not a valid Git repository"
+  }
+}

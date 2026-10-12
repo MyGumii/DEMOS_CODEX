@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "contract": "code_assist.notion.internal_collaborative_v0b_p1.reference_encoding_diagnostic.v1",
+  "packet_id": "V0B-P1",
+  "checkpoint_id": "V0B-P1-REFERENCE-ENCODING-DIAGNOSTIC-20260828",
+  "recorded_at": "2026-08-28T17:42:29.3845766+09:00",
+  "status": "action_approval_required",
+  "summary": "The accepted retry26 candidate is functionally green and improves the aggregate, but strict zero-difference comparison is not defensibly reachable from product-semantic UI changes against the current corrective reference encoding. A fresh lossless reference lineage is required before additional exact-pixel work.",
+  "immutable_inputs": {
+    "semantic_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+      "sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+      "preserve_without_overwrite": true
+    },
+    "corrective_reference_receipt": {
+      "path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+      "sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+      "preserve_without_overwrite": true
+    },
+    "accepted_retry26_checkpoint": {
+      "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-twemoji-alignment-retry26-progress-20260828.json",
+      "sha256": "sha256:a6b75e03527dc2ddb3dbc295f1f2a4c0d8284229d4e14cb1fb79dc400b87791f"
+    },
+    "accepted_retry26_receipt": {
+      "path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry26/receipt.json",
+      "sha256": "sha256:71004c3e5659df232fd2271f357d4435c14441dd62715f4322940235ed0ddc9b"
+    }
+  },
+  "measured_evidence": {
+    "scenario": "V0R-MU-008__1440x900",
+    "exact_geometry_title_region": {
+      "rect": {"x": 480, "y": 288, "width": 280, "height": 44},
+      "reference_title_row_band": [296, 324],
+      "candidate_title_row_band": [296, 324],
+      "pixel_count": 12320,
+      "differing_pixel_count": 5169,
+      "channel_delta_at_most_2_count": 760,
+      "channel_delta_at_most_8_count": 2488,
+      "channel_delta_at_most_16_count": 4492,
+      "channel_delta_greater_than_32_count": 7
+    },
+    "twemoji_fill_color_counts": {
+      "rect": {"x": 480, "y": 155, "width": 110, "height": 115},
+      "colors": ["#ffdc5d", "#5dadec", "#ef9645"],
+      "reference_exact_counts": [5, 0, 0],
+      "candidate_exact_counts": [2643, 384, 147],
+      "interpretation": "The clean product asset preserves its official flat fills while the current reference pixels contain a transformed or lossy color distribution."
+    },
+    "state_dependent_reference_geometry": {
+      "V0R-MU-008": {
+        "reference_title_y_1440": 296,
+        "reference_title_y_1280": 296,
+        "candidate_title_y_1440": 296,
+        "candidate_title_y_1280": 296
+      },
+      "V0R-MU-009": {
+        "reference_title_y_1440": 313,
+        "reference_title_y_1280": 296,
+        "candidate_title_y_1440": 296,
+        "candidate_title_y_1280": 296
+      },
+      "V0R-MU-010": {
+        "reference_title_y_1440": 313,
+        "reference_title_y_1280": 313,
+        "candidate_title_y_1440": 296,
+        "candidate_title_y_1280": 296
+      },
+      "decision": "Do not add scenario-ID or viewport-specific product CSS solely to imitate inconsistent reference offsets."
+    }
+  },
+  "independent_verifier_result": {
+    "status": "fail_expected_open_gates_only",
+    "error_count": 39,
+    "error_breakdown": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "unexpected_error_count": 0,
+    "source_reference_capture_diff_accessibility_cleanup_binding_errors": 0
+  },
+  "prohibited_workarounds": [
+    "Do not overwrite either immutable reference receipt.",
+    "Do not alter the exact-pixel comparator to hide the mismatch.",
+    "Do not crop pixels from a reference screenshot into a product asset.",
+    "Do not add scenario-ID-specific or viewport-specific visual hacks without a product behavior justification.",
+    "Do not run Core25 or quiet-host performance evidence before exact 36/36."
+  ],
+  "required_next_action": {
+    "kind": "named_action_time_approval",
+    "approval_text": "V0R-P1 lossless corrective reference 재수집 및 새 immutable receipt로 supersede 승인",
+    "execution_contract": [
+      "Preserve the semantic and first corrective receipts unchanged.",
+      "Use a lossless, browser-environment-bound PNG capture path for all 36 reference states.",
+      "Record the browser executable, font manifest, viewport, locale, timezone, zoom, source hashes, and screenshot hashes.",
+      "Use only synthetic reference A/B workspaces and members, then revoke access, remove synthetic membership, and move synthetic roots to Trash.",
+      "Never use the user's persistent Chrome profile or signed-in personal Notion session.",
+      "Create a new immutable superseding receipt rather than replacing an existing file."
+    ]
+  },
+  "claims": {
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  }
+}

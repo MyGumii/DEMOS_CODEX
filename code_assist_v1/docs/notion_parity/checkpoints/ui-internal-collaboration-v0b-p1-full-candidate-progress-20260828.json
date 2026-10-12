@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "checkpoint_id": "UI-INTERNAL-COLLABORATION-V0B-P1-FULL-CANDIDATE-PROGRESS-20260828",
+  "recorded_at": "2026-08-28T04:42:00+09:00",
+  "checkpoint_kind": "complete_denominator_candidate_not_gate_pass",
+  "packet_id": "V0B-P1",
+  "packet_status": "in_progress_exact_pixel_core25_performance_gates_open",
+  "owner_agent": "/root",
+  "ownership_lane": "UI_DOC_HARNESS",
+  "purpose": "Bind the first current-build full 18-state by two-viewport candidate that completes all four live component journeys, 36 accessibility captures, and recoverable cleanup after the V0R corrective reference supersession.",
+  "dynamic_instruction_binding": {
+    "path": "code_assist_v1/AGENTS.md",
+    "sha256": "sha256:832b5b51ae0a0c6d3369262a6af33670eb5ed14645bf078872e08fa49b6be249",
+    "mode": "read_only"
+  },
+  "handoff_binding": {
+    "path": "code_assist_v1/docs/notion_parity/core_free_web_ui/INTERNAL_COLLABORATIVE_NOTION_MAIN_AGENT_HANDOFF_20260826.md",
+    "sha256": "sha256:d130b8d98f5b0cf0f5d0b3acc4a5ff224c31407bdb3f46c05a27d0ac6fed9f77"
+  },
+  "predecessor_checkpoint": {
+    "path": "code_assist_v1/docs/notion_parity/checkpoints/ui-internal-collaboration-v0b-p1-page-body-offset-progress-20260828.json",
+    "sha256": "sha256:ae5cf5a86525774977d0150bdf9f5f96c6e987b9ff917d6eb03bee6289dcd387"
+  },
+  "reference_lineage": {
+    "original_semantic_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-20260825.json",
+    "original_semantic_receipt_sha256": "sha256:5ef98450166e00b750890599049acc301d99915332f1c1542c7bd777fc98055f",
+    "corrective_pixel_receipt_path": "code_assist_v1/docs/notion_parity/evidence/internal_collaboration_receipts/v0r-p1-l6-reference-multiuser-corrective-20260828.json",
+    "corrective_pixel_receipt_sha256": "sha256:8c1065c33ef99c5c307aead4886a3b6e5e5df4786d7dd0921abe587bb50df7e5",
+    "reference_receipts_modified": false
+  },
+  "current_build_binding": {
+    "ui_source_build_sha256": "sha256:7225231ad08fc6972fe57d99756b221fe8c547805e04526c703ce4c5726e5909",
+    "runtime_source_build_sha256": "sha256:3fd980c99529767e8dd5ea0fd893255720195082395b9a03a547b24961e64347",
+    "files": [
+      {
+        "path": "code_assist_v1/notion_static/index.html",
+        "sha256": "sha256:dcddd11d7113c4f9b5f6e56c0aca3fa4baf8b1460925ff6ea6c6dc19ca871319"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.css",
+        "sha256": "sha256:2b1bb070c0b032431ab51aafba9b703bed64148899eba4eecdc97d9306bf23c3"
+      },
+      {
+        "path": "code_assist_v1/notion_static/notion.js",
+        "sha256": "sha256:21258576b09fe0319b5641f398e9fe69529b6d590c74851679f443fab6bab82b"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_browser.py",
+        "sha256": "sha256:25b154c739df617b6d2f2cf8e0b3ef57d00b9df974f96aa80c76fd535c3a50e6"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_iam_browser.py",
+        "sha256": "sha256:e94d976f4273c3cfa76b185dddbd3b987b2d3346e109418325002a01e42acbba"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/c0_p2_browser.py",
+        "sha256": "sha256:f1d757082c1b4f942fa2a852994a677ee1453fc9063627cba1a5fcb735fccf46"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/e1_p2_browser.py",
+        "sha256": "sha256:eaa7525e2407386139f334896544a45e0aff3f8d85b98bf9a4b10ee4af9ce409"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/f0_p5_browser.py",
+        "sha256": "sha256:44f19356dceb50a2d4fd7e4ceb673a1e5dec567fe45ca8a69386b938bdbcc654"
+      },
+      {
+        "path": "code_assist_v1/notion_collaboration/v0b_p1_capture.py",
+        "sha256": "sha256:70fe058df9ff726f46a50668ab655563358626573beaf1baf5b04592cf07f8b6"
+      }
+    ]
+  },
+  "candidate_evidence": {
+    "root": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry4",
+    "receipt_path": "code_assist_v1/.runtime/v0b-p1-full-candidate-20260828-retry4/receipt.json",
+    "receipt_sha256": "sha256:931d938a41426a8a07367c487c138f342fe7944784c695aef8fce676cf8dc3c6",
+    "state_count": 18,
+    "viewport_count": 2,
+    "capture_count": 36,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "component_journey_pass_count": 4,
+    "component_cleanup_pass_count": 4,
+    "gate_passed": false
+  },
+  "component_journeys": {
+    "I0-P2": {
+      "status": "pass",
+      "test_root_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true
+    },
+    "C0-P2": {
+      "status": "pass",
+      "test_page_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true
+    },
+    "E1-P2": {
+      "status": "pass",
+      "test_page_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true
+    },
+    "F0-P5": {
+      "status": "pass",
+      "test_page_moved_to_trash": true,
+      "synthetic_member_absent_after_cleanup": true,
+      "browser_closed": true
+    }
+  },
+  "pixel_summary": {
+    "baseline_total_difference_count": 16116120,
+    "current_total_difference_count": 10206468,
+    "reduction_count": 5909652,
+    "reduction_percent": 36.67,
+    "state_totals_sorted_by_current_difference": [
+      {"state_id": "V0R-MU-001", "current": 2049668, "baseline": 2050575, "reduction_percent": 0.04},
+      {"state_id": "V0R-MU-002", "current": 966712, "baseline": 1040240, "reduction_percent": 7.07},
+      {"state_id": "V0R-MU-015", "current": 689662, "baseline": 642894, "reduction_percent": -7.27},
+      {"state_id": "V0R-MU-016", "current": 680729, "baseline": 633538, "reduction_percent": -7.45},
+      {"state_id": "V0R-MU-010", "current": 528006, "baseline": 842534, "reduction_percent": 37.33},
+      {"state_id": "V0R-MU-017", "current": 525582, "baseline": 841338, "reduction_percent": 37.53},
+      {"state_id": "V0R-MU-018", "current": 518676, "baseline": 860450, "reduction_percent": 39.72},
+      {"state_id": "V0R-MU-008", "current": 514755, "baseline": 753834, "reduction_percent": 31.72},
+      {"state_id": "V0R-MU-009", "current": 512975, "baseline": 791115, "reduction_percent": 35.16},
+      {"state_id": "V0R-MU-005", "current": 502203, "baseline": 672622, "reduction_percent": 25.34},
+      {"state_id": "V0R-MU-007", "current": 435516, "baseline": 699043, "reduction_percent": 37.7},
+      {"state_id": "V0R-MU-006", "current": 390399, "baseline": 777421, "reduction_percent": 49.78},
+      {"state_id": "V0R-MU-004", "current": 386274, "baseline": 740227, "reduction_percent": 47.82},
+      {"state_id": "V0R-MU-013", "current": 371297, "baseline": 2063817, "reduction_percent": 82.01},
+      {"state_id": "V0R-MU-011", "current": 353829, "baseline": 634676, "reduction_percent": 44.25},
+      {"state_id": "V0R-MU-003", "current": 310614, "baseline": 594196, "reduction_percent": 47.73},
+      {"state_id": "V0R-MU-014", "current": 241916, "baseline": 725691, "reduction_percent": 66.66},
+      {"state_id": "V0R-MU-012", "current": 227655, "baseline": 751909, "reduction_percent": 69.72}
+    ]
+  },
+  "independent_verifier": {
+    "contract": "code_assist.notion.internal_collaborative_final_candidate.audit.v1",
+    "status": "fail_expected_open_gates",
+    "receipt_sha256": "sha256:931d938a41426a8a07367c487c138f342fe7944784c695aef8fce676cf8dc3c6",
+    "capture_count": 36,
+    "capture_state_count": 18,
+    "viewport_count": 2,
+    "accessibility_pass_count": 36,
+    "exact_pixel_pass_count": 0,
+    "error_count": 39,
+    "error_code_counts": {
+      "EXACT_PIXEL_GATE": 36,
+      "CORE_25_GATE": 1,
+      "PERFORMANCE_GATE": 1,
+      "CLAIMS_GATE": 1
+    },
+    "binding_or_denominator_error_count": 0
+  },
+  "remaining_gate_evidence": {
+    "core_25": {
+      "status": "fail",
+      "source": "inherited_preflight_not_fresh_gate_evidence",
+      "passed_test_count": 20,
+      "failed_test_count": 1,
+      "failed_scenario_id": "UI-COLLAB-001"
+    },
+    "performance": {
+      "status": "fail",
+      "source": "busy_host_preflight_not_fresh_gate_evidence",
+      "quiet_host_verified": false,
+      "approved_budget_ms": 1370.0,
+      "observed_p95_ms": 4514.289
+    },
+    "exact_pixel": {
+      "status": "fail",
+      "pass_count": 0,
+      "required_count": 36
+    }
+  },
+  "non_adopted_full_candidate_attempts": [
+    {"retry": 1, "receipt_created": false, "reason": "I0-P2 workspace member revoke stale locator"},
+    {"retry": 2, "receipt_created": false, "reason": "C0-P2 seed reconnect window collision"},
+    {"retry": 3, "receipt_created": false, "reason": "E1-P2 third structural seed envelope reconnect failure"}
+  ],
+  "cleanup_audit": {
+    "audit_mode": "read_only_api_plus_read_only_sqlite_discovery",
+    "audited_recent_workspace_count": 16,
+    "audited_root_count": 16,
+    "active_root_count": 0,
+    "recoverable_trash_root_count": 16,
+    "active_page_count": 0,
+    "active_collaborator_workspace_membership_count": 0,
+    "browser_closed": true,
+    "permanent_delete_used": false,
+    "status": "complete"
+  },
+  "verification": {
+    "node_syntax_check": "pass",
+    "python_syntax_check": "pass",
+    "targeted_regression": "20 passed, 3 skipped",
+    "targeted_regression_exit_code": 0,
+    "full_candidate_capture": "36/36 complete",
+    "accessibility_matrix": "36/36 pass",
+    "component_journeys": "4/4 pass",
+    "component_cleanup": "4/4 pass"
+  },
+  "scope_attestation": {
+    "credentials_cookie_token_or_storage_persisted": false,
+    "raw_email_or_account_identifier_persisted": false,
+    "personal_workspace_or_page_captured": false,
+    "production_or_second_brain_changed": false,
+    "hot_shared_contracts_modified": false,
+    "AGENTS_md_modified": false,
+    "reference_receipt_overwritten": false,
+    "permanent_delete_used": false
+  },
+  "claims": {
+    "V0R_P1_gate_passed": true,
+    "full_denominator_captured": true,
+    "all_component_journeys_passed": true,
+    "all_accessibility_captures_passed": true,
+    "all_component_cleanup_passed": true,
+    "zero_unmasked_RGBA_difference": false,
+    "fresh_core_25_passed": false,
+    "quiet_host_performance_passed": false,
+    "PIX_001_closed": false,
+    "A11Y_001_closed": false,
+    "UI_CORE_25_closed": false,
+    "V0B_P1_gate_passed": false,
+    "product_complete": false,
+    "active_shared_goal_complete": false
+  },
+  "next_action": "Prioritize V0R-MU-001 and V0R-MU-002 workspace share surfaces, then V0R-MU-015/016 role-restricted page surfaces. After exact-pixel work, run a fresh current-build Core 25 and quiet-host UI-PERF-001 gate. Do not enter O1B until all V0B gates pass."
+}
